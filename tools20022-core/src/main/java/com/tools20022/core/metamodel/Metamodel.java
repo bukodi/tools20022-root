@@ -1,0 +1,111 @@
+package com.tools20022.core.metamodel;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public interface Metamodel {
+
+	Stream<? extends MetamodelType<? extends GeneratedMetamodelBean>> listTypes();
+	
+	default Set<? extends MetamodelType<? extends GeneratedMetamodelBean>> getAllTypes() {
+		return listTypes().collect(Collectors.toCollection(LinkedHashSet::new));
+	}
+
+	MetamodelType<? extends GeneratedMetamodelBean> getTypeByName( String name );
+
+	<B extends GeneratedMetamodelBean> MetamodelType<B> getTypeByClass( Class<B> beanClass );
+
+	Stream<? extends MetamodelEnum<?>> listEnums();
+
+	default Set<? extends MetamodelEnum<?>> getAllEnums() {
+		return listEnums().collect(Collectors.toCollection(LinkedHashSet::new));
+	}
+
+	MetamodelEnum<?> getEnumByName( String name );
+	
+	<E extends Enum<?>> MetamodelEnum<E> getEnumByClass( Class<E> enumClass );
+
+	public interface MetamodelElement {		
+		String getName();
+		MetamodelDocImpl getDocumentation();
+	}
+
+	public interface MetamodelType<B extends GeneratedMetamodelBean> extends MetamodelElement {
+		boolean isAbstract();
+		Class<B> getBeanClass();
+		B newInstance();
+
+		Stream<? extends MetamodelType<? super B>> listSuperTypes( boolean includeThis, boolean recursive );
+		Stream<? extends MetamodelType<? extends B>> listSubTypes( boolean includeThis, boolean recursive );
+		Stream<? extends MetamodelAttribute<B,?>> listDeclaredAttributes();
+		Stream<? extends MetamodelConstraint<B>> listDeclaredConstraints();
+		
+		default Stream<? extends MetamodelAttribute<? super B,?>> listAllAttributes() {
+			return listSuperTypes(true, true).flatMap(mmType->mmType.listDeclaredAttributes() );
+		}
+
+		default Stream<? extends MetamodelConstraint<? super B>> listAllConstraints() {
+			return listSuperTypes( true, true ).flatMap(mmType->mmType.listDeclaredConstraints());
+		}
+
+		default Set<? extends MetamodelType<? super B>> getSuperTypes( boolean includeThis, boolean recursive ) {
+			return listSuperTypes( includeThis, recursive ).collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+
+		default Set<? extends MetamodelType<? extends B>> getSubTypes(  boolean includeThis, boolean recursive  ) {
+			return listSubTypes(includeThis, recursive ).collect(Collectors.toCollection(LinkedHashSet::new));
+		}		
+
+		default Set<? extends MetamodelAttribute<B,?>> getDeclaredAttributes() {
+			return listDeclaredAttributes().collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+
+		default Set<? extends MetamodelAttribute<? super B,?>> getAllAttributes() {
+			return listAllAttributes().collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+
+		default Set<? extends MetamodelConstraint<B>> getDeclaredConstraints() {
+			return listDeclaredConstraints().collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+
+		default Set<? extends MetamodelConstraint<? super B>> getAllConstraints() {
+			return listAllConstraints().collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+	}
+
+	public interface MetamodelAttribute<B extends GeneratedMetamodelBean,T> extends MetamodelElement {
+		MetamodelType<B> getDeclaringType();
+		boolean isOptional();
+		boolean isMultiple();
+		boolean isUnique();
+		boolean isContainer();
+		boolean isContainment();
+		MetamodelAttribute<?,? extends B> getOpposite();
+
+		Class<?> getValueJavaClass();
+		MetamodelType<?> getReferencedType();
+		MetamodelEnum<?> getEnumType();
+
+		T get(B obj);
+		void set(B obj,T value);
+	}
+
+	public interface MetamodelConstraint<B extends GeneratedMetamodelBean> extends MetamodelElement {
+		MetamodelType<B> getDeclaringType();
+		Consumer<B> checker();
+	}
+
+	public interface MetamodelEnum<E extends Enum<?>> extends MetamodelElement {
+		Class<E> getEnumJavaClass();
+		MetamodelEnumLiteral<E> getEnumLiteral( String name );
+		Stream<? extends MetamodelEnumLiteral<E>> listEnumLiterals();				
+	}
+
+	public interface MetamodelEnumLiteral<E extends Enum<?>> extends MetamodelElement {
+		E getValue();
+	}
+
+}
