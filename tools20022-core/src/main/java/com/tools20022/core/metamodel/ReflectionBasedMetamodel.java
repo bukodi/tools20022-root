@@ -35,7 +35,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	}
 
 	@Override
-	public Stream<? extends MetamodelType<?>> listTypes() {
+	public Stream<? extends MetamodelType<? extends GeneratedMetamodelBean>> listTypes() {
 		return mmTypesByName.values().stream();
 	}
 
