@@ -11,6 +11,9 @@
 		<module>tools20022-core</module>
 		<module>tools20022-generators</module>
 		<module>tools20022-mmgenerator</module>
+		<module>tools20022-repogenerator</module>
+		<module>tools20022-stdmm2013</module>
+		<module>tools20022-stdrepo20170516</module>
 	</modules>
 
 </project>
