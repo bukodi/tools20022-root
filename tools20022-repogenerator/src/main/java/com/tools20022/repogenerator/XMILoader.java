@@ -1,7 +1,6 @@
 package com.tools20022.repogenerator;
 
 import java.lang.reflect.Field;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -9,11 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -22,9 +18,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
@@ -33,7 +26,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnumLiteral;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.generators.PerformantXMIResourceFactoryImpl;
+import com.tools20022.generators.ECoreIOHelper;
 
 import test.gen.mm.MMRepository;
 
@@ -48,27 +41,6 @@ public class XMILoader {
 
 	final LinkedHashSet<GeneratedMetamodelBean> loadedObjects = new LinkedHashSet();
 
-	private EPackage loadECorePackage(String ecoreResource) {
-		try {
-			ResourceSet load_resourceSet = new ResourceSetImpl();
-			load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore",
-					new PerformantXMIResourceFactoryImpl());
-
-			URL url = getClass().getResource(ecoreResource);
-
-			// Create empty resource with the given URI
-			Resource load_resource = load_resourceSet.getResource(URI.createURI(url.toString()), true);
-			if (load_resource.getContents().size() != 1)
-				throw new RuntimeException("Exactly one root object allowed");
-
-			EPackage ecorePkg = (EPackage) load_resource.getContents().get(0);
-
-			EPackage.Registry.INSTANCE.put(ecorePkg.getNsURI(), ecorePkg);
-			return ecorePkg;
-		} catch (Exception e) {
-			throw new RuntimeException("Can't load ECore resource: " + ecoreResource, e);
-		}
-	}
 
 	private class ECoreToMetamodelMapping {
 		final Map<EClass, MetamodelType<?>> mmTypesByEClass = new HashMap<>();
@@ -201,13 +173,13 @@ public class XMILoader {
 
 	public RawRepository load(String ecoreResource, String xmiResource) {
 		// Init metamodel ePackage from eCore resource
-		final EPackage ecorePkg = loadECorePackage(ecoreResource);
+		final EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ecoreResource);
 
 		// Map loaded eCore model to generated metamodel
 		final ECoreToMetamodelMapping mapping = createECoreToMetamodelMapping(ecorePkg);
 
 		// Load XMI resource
-		EObject rootEObj = loadXMIResource(xmiResource);
+		EObject rootEObj = ECoreIOHelper.loadXMIResource(xmiResource);
 
 		// Load XMI objects
 		Map<EObject, GeneratedMetamodelBean> repoObjsByEObj = new HashMap<>();
@@ -229,25 +201,6 @@ public class XMILoader {
 		RawRepository rawRepo = new RawRepository(metamodel, (MMRepository) rootRepoObj ); 
 		loadedObjects.forEach(o->rawRepo.addObject(o));
 		return rawRepo;
-	}
-
-	private EObject loadXMIResource(String xmiResource) {
-		try {
-			ResourceSet load_resourceSet = new ResourceSetImpl();
-
-			load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*",
-					new PerformantXMIResourceFactoryImpl());
-			// TODO: use internal PerformantXMIResourceFactoryImpl class
-
-			URL url = getClass().getResource(xmiResource);
-
-			Resource load_resource = load_resourceSet.getResource(URI.createURI(url.toString()), true);
-			if (load_resource.getContents().size() != 1)
-				throw new RuntimeException("Exactly one root object allowed");
-			return load_resource.getContents().get(0);
-		} catch (Exception e) {
-			throw new RuntimeException("Can't load XMI resource: " + xmiResource, e);
-		}
 	}
 
 }

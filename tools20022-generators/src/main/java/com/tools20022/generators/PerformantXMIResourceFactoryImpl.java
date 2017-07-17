@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
  * 
  * @see https://www.iso20022.org/sites/default/files/documents/eRepositories/Metamodel/Eclipse_plugin_tip.pdf
  */
-public class PerformantXMIResourceFactoryImpl extends ResourceFactoryImpl {
+class PerformantXMIResourceFactoryImpl extends ResourceFactoryImpl {
 
 	private List<Object> lookupTable = new ArrayList<Object>();
 	private XMLParserPool parserPool = new XMLParserPoolImpl();

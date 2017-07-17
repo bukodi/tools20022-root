@@ -388,37 +388,5 @@ public class TestGeneratedMetamodel {
 				});
 	}
 
-	@Test
-	@Ignore
-	public void dumpContainmentHiearchy2() {
-		EClass ecRepository = (EClass) TestUtil.getISO200022Ecore().getEClassifier("Repository");
-		printSubContainment(ecRepository, Collections.emptyList(), "", "");
-	}
-
-	private final static void printSubContainment(EClass container, List<EReference> refPath, String tab,
-			String prefix) {
-		List<EClass> ignoreEClasses = new ArrayList<>();
-		ignoreEClasses.add((EClass) TestUtil.getISO200022Ecore().getEClassifier("Constraint"));
-		ignoreEClasses.add((EClass) TestUtil.getISO200022Ecore().getEClassifier("Doclet"));
-		ignoreEClasses.add((EClass) TestUtil.getISO200022Ecore().getEClassifier("SemanticMarkup"));
-
-		System.out.println(tab + prefix + container.getName());
-		Map<EClass, Set<EClass>> allImpementations = new LinkedHashMap<EClass, Set<EClass>>();
-
-		for (EReference containmentRef : container.getEAllContainments()) {
-			EClass refType = containmentRef.getEReferenceType();
-			Stream<EClass> s = allImpementations.computeIfAbsent(refType, x -> new LinkedHashSet<>()).stream();
-			s = Stream.concat(s, Stream.of(refType));
-			s = s.filter((t) -> (!t.isAbstract())); // Ignore abstract classes
-			s = s.filter((t) -> !ignoreEClasses.contains(t)); // ignore some
-																// classes
-
-			s.forEach((rt) -> {
-				List<EReference> nextpath = new ArrayList<>(refPath);
-				nextpath.add(containmentRef);
-				printSubContainment(rt, nextpath, tab + "  ", containmentRef.getName() + ":");
-			});
-		}
-	}
 
 }

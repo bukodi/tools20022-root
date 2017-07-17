@@ -59,7 +59,7 @@ public class TestRoaster {
 	}
 
 	@Test
-	// @Ignore
+	@Ignore
 	public void testStaticInitializer() {
 		String srcTxt = "class Foo{" + " static int i;"
 		// + " static{ i = 1;}"

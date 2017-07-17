@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.tools20022.core.metamodel.ISODoc;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
-import com.tools20022.generators.PerformantXMIResourceFactoryImpl;
+import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelAttribute;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelConstraint;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelElement;
@@ -331,21 +331,7 @@ public class ECoreBackedMetamodel {
 
 	public void loadFromECore(String resourceName) {
 
-		EPackage rootPkg;
-		try {
-			ResourceSet load_resourceSet = new ResourceSetImpl();
-			load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore",
-					new PerformantXMIResourceFactoryImpl());
-
-			URL url = RawMetamodel.class.getResource(resourceName);
-
-			// Create empty resource with the given URI
-			Resource load_resource = load_resourceSet.getResource(URI.createURI(url.toString()), true);
-
-			rootPkg = (EPackage) load_resource.getContents().get(0);
-		} catch (Exception e) {
-			throw new RuntimeException("Can't load ECore resource: " + resourceName, e);
-		}
+		EPackage rootPkg = ECoreIOHelper.loadECorePackage(resourceName);
 
 		/*** First phase: load types and enums with literals ***/
 		for (EObject eObj : rootPkg.eContents()) {

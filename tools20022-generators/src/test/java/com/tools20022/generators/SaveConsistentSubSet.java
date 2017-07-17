@@ -1,7 +1,10 @@
 package com.tools20022.generators;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,11 +31,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.DanglingHREFException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
-import com.tools20022.generators.PerformantXMIResourceFactoryImpl;
-
 /**
  * Saves the consistent subset of the full eRepository.
- * It is useful, for creating samller models for tests.
+ * It is useful, for creating smaller models for tests.
  * This class uses only the EMF eCore+XMI layer.  
  */
 public class SaveConsistentSubSet {
@@ -54,18 +55,19 @@ public class SaveConsistentSubSet {
 	}
 
 	public static void main(String[] args) throws Exception {
-		SaveConsistentSubSet scss = new SaveConsistentSubSet("/model/ISO20022.ecore",
+		SaveConsistentSubSet scss = new SaveConsistentSubSet("../tools20022-mmgenerator/src/test/resources/model/ISO20022.ecore",
 				"/model/20170516_ISO20022_2013_eRepository.iso20022");
 
 		// "MessageDefinition", "MandateInitiationRequestV05"
-		scss.saveTestFile("./test.iso20022");
+		Path tmpFile = Files.createTempFile("test", "iso20022");
+		scss.saveTestFile(tmpFile);
 	}
 
 	EClass getEClassByName(String eClassName) {
 		return (EClass) ecorePackage.getEClassifier(eClassName);
 	}
 
-	public void saveTestFile(String outFile) throws Exception {
+	public void saveTestFile(Path outFile) throws Exception {
 
 		EClass eClassMsgDef = (EClass) ecorePackage.getEClassifier("MessageDefinition");
 		EAttribute eAttrName = (EAttribute) eClassMsgDef.getEStructuralFeature("name");
@@ -143,7 +145,9 @@ public class SaveConsistentSubSet {
 			}
 		}
 
-		save(outFile, xmiRootEObj, false);
+		byte[] xmiBytes = ECoreIOHelper.writeXMIResource(xmiRootEObj);
+		Files.write(outFile, xmiBytes);
+		
 	}
 
 	int extendRetainSet(Set<EObject> markedForRetain) {
@@ -218,55 +222,6 @@ public class SaveConsistentSubSet {
 		}
 	}
 
-	private void save(String fileUri, EObject rootObj, boolean isSchemaLocationPresent) {
-		ResourceSet resourceSet = new ResourceSetImpl();
-
-		// Register XML Factory implementation to handle .xml files
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("iso20022",
-				new PerformantXMIResourceFactoryImpl());
-
-		// Create empty resource with the given URI
-		Resource resource = resourceSet.createResource(URI.createURI(fileUri));
-
-		// Add bookStoreObject to contents list of the resource
-		resource.getContents().add(rootObj);
-		Map options = new HashMap();
-		options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
-
-		try {
-			// Save the resource
-			if (isSchemaLocationPresent == true)
-				resource.save(options);
-			else
-				resource.save(null);
-		} catch (IOWrappedException iowe) {
-			if (iowe.getCause() instanceof DanglingHREFException) {
-				String msg = ((DanglingHREFException) (iowe.getCause())).getMessage();
-				// The object
-				// 'org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1e57d13c
-				// (eClass: org.eclipse.emf.ecore.impl.EClassImpl@530cd67e
-				// (name: MessageBuildingBlock) (instanceClassName: null)
-				// (abstract: false, interface: false))' is not contained in a
-				// resource.
-				String hcodeStr = msg.substring(msg.indexOf("@") + 1, msg.indexOf(" (eClass:"));
-				int hcode = Integer.parseInt(hcodeStr, 16);
-
-				xmiRootEObj.eAllContents().forEachRemaining(eObj -> {
-					if (eObj.hashCode() == hcode) {
-						System.out.println(eObj.eClass().getName());
-					}
-					;
-				});
-				iowe.printStackTrace();
-
-			} else {
-				iowe.printStackTrace();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	private EPackage loadECorePackage(String ecoreResource) {
 		try {
 			ResourceSet load_resourceSet = new ResourceSetImpl();
@@ -274,6 +229,12 @@ public class SaveConsistentSubSet {
 					new PerformantXMIResourceFactoryImpl());
 
 			URL url = getClass().getResource(ecoreResource);
+			File f = new File( url.toURI() );
+			if( f.exists() ) {
+				System.out.println( "OK:" + f.getAbsolutePath() );
+			} else {
+				System.out.println( "FAIL:" + f.getAbsolutePath() );
+			}
 
 			// Create empty resource with the given URI
 			Resource load_resource = load_resourceSet.getResource(URI.createURI(url.toString()), true);

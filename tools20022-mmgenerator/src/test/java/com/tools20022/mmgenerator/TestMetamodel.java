@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.tools20022.core.metamodel.ISODoc;
-import com.tools20022.mmgenerator.ECoreBackedMetamodel;
-import com.tools20022.mmgenerator.RawMetamodel;
+import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelAttribute;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelConstraint;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnum;
@@ -31,6 +31,13 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
 public class TestMetamodel {
+	
+	private static EPackage metamodelPkg;
+	
+	@BeforeClass
+	public static void loadECore() {
+		metamodelPkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
+	}
 	
 	@Test
 	@Ignore
@@ -70,7 +77,7 @@ public class TestMetamodel {
 	@Test
 	@Ignore
 	public void dumpEClassifiers() {
-		for (EObject e : TestUtil.getISO200022Ecore().eContents()) {
+		for (EObject e : metamodelPkg.eContents()) {
 			System.out.println(e.getClass() + " : " + e.toString());
 		}
 	}
@@ -78,7 +85,7 @@ public class TestMetamodel {
 	@Test
 //	@Ignore
 	public void dumpEOperations() {
-		for (EObject e : (Iterable<EObject>) () -> TestUtil.getISO200022Ecore().eAllContents()) {
+		for (EObject e : (Iterable<EObject>) () -> metamodelPkg.eAllContents()) {
 			if( e instanceof EOperation ) {
 				EOperation eop = (EOperation)e;
 				System.out.print( eop.getEContainingClass().isAbstract() ? "abstract ": "         ");
@@ -99,7 +106,7 @@ public class TestMetamodel {
 	@Test
 	@Ignore
 	public void dumpEAttributes() {
-		for (EObject e : (Iterable<EObject>) () -> TestUtil.getISO200022Ecore().eAllContents()) {
+		for (EObject e : (Iterable<EObject>) () -> metamodelPkg.eAllContents()) {
 			if( e instanceof EAttribute ) {
 				EAttribute eattr = (EAttribute)e;
 				System.out.print( eattr.getLowerBound() + ".." + eattr.getUpperBound() + "  " );
@@ -118,7 +125,7 @@ public class TestMetamodel {
 	@Test
 	public void countOptionalFeatures() {
 		int optional = 0, required = 0, multiple = 0;
-		for (EObject e : (Iterable<EObject>) () -> TestUtil.getISO200022Ecore().eAllContents()) {
+		for (EObject e : (Iterable<EObject>) () -> metamodelPkg.eAllContents()) {
 			if( e instanceof EStructuralFeature ) {
 				EStructuralFeature eattr = (EStructuralFeature)e;
 				if( eattr.getUpperBound() == 1 ) {
@@ -139,7 +146,7 @@ public class TestMetamodel {
 	//@Ignore
 	public void dumpEReferences() {
 		Set<EReference> processedRefs = new HashSet<>();
-		for (EObject e : (Iterable<EObject>) () -> TestUtil.getISO200022Ecore().eAllContents()) {
+		for (EObject e : (Iterable<EObject>) () -> metamodelPkg.eAllContents()) {
 			if( e instanceof EReference ) {
 				if(! ((EReference) e).isDerived() )
 					continue;
@@ -171,7 +178,7 @@ public class TestMetamodel {
 	@Test
 	@Ignore
 	public void dumpAnnotations() {
-		dumpAnnotations(TestUtil.getISO200022Ecore());
+		dumpAnnotations(metamodelPkg);
 	}
 
 	private void dumpAnnotations(EObject eObj) {
@@ -203,7 +210,7 @@ public class TestMetamodel {
 	@Test
 	@Ignore
 	public void plantUMLClassDiagramm() {
-		Set<EClass> eClasses = TestUtil.getISO200022Ecore().eContents().stream().filter(eObj -> eObj instanceof EClass)
+		Set<EClass> eClasses = metamodelPkg.eContents().stream().filter(eObj -> eObj instanceof EClass)
 				.map(eObj -> ((EClass) eObj)).collect(Collectors.toSet());
 		StringWriter sw = new StringWriter();
 		generatePlantUMLClassDiagramm(new PrintWriter(sw), eClasses);
