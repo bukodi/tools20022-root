@@ -45,12 +45,13 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
 public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.MetamodelElement> {
 
-	private final static String BASE_PKG_NAME = "test.gen.mm";
-	private final static String NONGEN_PKG_NAME = "test.nongen.mm";
 	private final static String CLASS_NAME_PREFIX = "MM";
 
 	boolean generateStaticMetas = true;
 	final RawMetamodel metamodel;
+
+	String mainClassSimpleName = "StandardMetamodel2013";
+	String basePackageName = "test.gen.mm";
 
 	public DefaultMetamodelGenerator(RawMetamodel metamodel) {
 		this.metamodel = metamodel;
@@ -62,7 +63,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 
 	protected JavaName getJavaName(MetamodelElement mmElem) {
 		if (mmElem instanceof MetamodelType || mmElem instanceof MetamodelEnum) {
-			return JavaName.primaryType(BASE_PKG_NAME, CLASS_NAME_PREFIX + mmElem.getName());
+			return JavaName.primaryType(basePackageName, CLASS_NAME_PREFIX + mmElem.getName());
 		}
 		JavaName parentName;
 		String memberName = mmElem.getName();
@@ -85,7 +86,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 
 	protected void generateMain() {
 		// Create metamodel model skeleton
-		JavaName mmName = JavaName.primaryType(BASE_PKG_NAME, "StandardMetamodel2013");
+		JavaName mmName = JavaName.primaryType(basePackageName, mainClassSimpleName);
 		JavaClassSource srcMetamodelMain = createSourceFile(JavaClassSource.class, mmName);
 		srcMetamodelMain.addImport(ReflectionBasedMetamodel.class);
 		srcMetamodelMain.setSuperType(ReflectionBasedMetamodel.class);

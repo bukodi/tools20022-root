@@ -11,6 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.tools.FileObject;
 import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
@@ -31,6 +32,14 @@ public abstract class AbstractGenerator<E> {
 		return src;
 	}
 
+	protected boolean isOverwriteProtected( FileObject fileObj ) {
+		return false;
+	}
+	
+	protected void setFileManager(JavaFileManager fileManager ) {
+		this.fileManager = fileManager;
+	}
+	
 	protected <T extends JavaSource<?>> T createSourceFile(Class<T> sourceType, JavaName javaName) {
 		T src = Roaster.create(sourceType);
 		src.setPackage(javaName.getPackage());
