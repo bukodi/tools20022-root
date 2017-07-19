@@ -44,6 +44,12 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
 public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.MetamodelElement> {
+	
+	public static class Builder{
+		private String mainClassSimpleName = "StandardMetamodel2013";
+		private String basePackageName = "test.gen.mm"; 
+		
+	}
 
 	private final static String CLASS_NAME_PREFIX = "MM";
 
