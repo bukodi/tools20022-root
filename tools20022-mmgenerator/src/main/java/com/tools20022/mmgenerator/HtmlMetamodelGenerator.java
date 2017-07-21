@@ -46,7 +46,7 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnum;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
-public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.MetamodelElement> {
+public class HtmlMetamodelGenerator extends AbstractGenerator<RawMetamodel.MetamodelElement> {
 
 	private final static String CLASS_NAME_PREFIX = "MM";
 
@@ -56,7 +56,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 	protected String basePackageName;
 	protected String mainClassSimpleName;
 
-	public DefaultMetamodelGenerator() {
+	public HtmlMetamodelGenerator() {
 	}
 	
 	protected String getBasePackageName() {

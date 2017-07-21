@@ -1,19 +1,24 @@
 package com.tools20022.mmgenerator;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.NoSuchElementException;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -25,191 +30,146 @@ import com.tools20022.core.metamodel.ISODoc;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
 
 public class ECoreBackedMetamodel implements RawMetamodel {
-	private final MetamodelType types[];
-	private final MetamodelEnum enums[];
 
-	private final LinkedHashMap<EClass, MMTypeImpl> mmTypesByEClasses = new LinkedHashMap<>();
-	private final LinkedHashMap<EStructuralFeature, MMAttributeImpl> mmAttrsByEStucturalFeatures = new LinkedHashMap<>();
-	private final LinkedHashMap<EOperation, MMConstraintImpl> mmConstraintsByEOperation = new LinkedHashMap<>();
-	private final LinkedHashMap<EEnum, MMEnumImpl> mmEnumsByEEnums = new LinkedHashMap<>();
+	private final EPackage rootPkg;
+
+	private final Map<EClass, List<EClass>> subTypesCache;
 
 	public ECoreBackedMetamodel(EPackage rootPkg) {
-
-		/*** First phase: load types and enums with literals ***/
-		for (EObject eObj : rootPkg.eContents()) {
-			if (eObj instanceof EClass) {
-				MMTypeImpl mClass = loadEClass((EClass) eObj);
-				mmTypesByEClasses.put((EClass) eObj, mClass);
-			} else if (eObj instanceof EEnum) {
-				MMEnumImpl mEnum = loadEEnum((EEnum) eObj);
-				mmEnumsByEEnums.put((EEnum) eObj, mEnum);
-
-				for (EObject eObj2 : eObj.eContents()) {
-					if (eObj2 instanceof EEnumLiteral) {
-						MMEnumLiteralImpl mEnumValue = loadEEnum(mEnum, (EEnumLiteral) eObj2);
-						mEnum.addLiteral(mEnumValue);
-					} else if (eObj2 instanceof EAnnotation) {
-						// Processed in phase 1, skip this
-					} else {
-						ecoreAssert(false, "Unsupported object", eObj2);
-					}
-				}
-
-			} else if (eObj instanceof EAnnotation) {
-				// Skip this
-			} else {
-				ecoreAssert(false, "Unsupported object", eObj);
-			}
-		}
-
-		/*** Second phase: add atributes and references ***/
-		for (EObject eObj : rootPkg.eContents()) {
-			if (!(eObj instanceof EClass))
-				continue;
-			EClass eClass = (EClass) eObj;
-			MMTypeImpl mClass = mmTypesByEClasses.get(eClass);
-
-			for (EObject eObj2 : eClass.eContents()) {
-				if (eObj2 instanceof EAttribute) {
-					MMAttributeImpl mAttr = loadEAttribute(mClass, (EAttribute) eObj2);
-					mClass.addMember(mAttr);
-					mmAttrsByEStucturalFeatures.put((EStructuralFeature) eObj2, mAttr);
-				} else if (eObj2 instanceof EReference) {
-					MMAttributeImpl mRef = loadEReference(mClass, (EReference) eObj2);
-					mClass.addMember(mRef);
-					mmAttrsByEStucturalFeatures.put((EStructuralFeature) eObj2, mRef);
-				} else if (eObj2 instanceof EOperation) {
-					MMConstraintImpl mConstr = loadEOperation(mClass, (EOperation) eObj2);
-					mClass.addConstraint(mConstr);
-					mmConstraintsByEOperation.put((EOperation) eObj2, mConstr);
-				} else if (eObj2 instanceof EGenericType) {
-					loadEGenericType(mClass, (EGenericType) eObj2);
-				} else if (eObj2 instanceof EAnnotation) {
-					// Processed in phase 1, skip this
-				} else {
-					ecoreAssert(false, "Unsupported object", eObj2);
-				}
-
-			}
-		}
-
-		/*** Third phase: set reference opposites ***/
-		for (EObject eObj : rootPkg.eContents()) {
-			if (!(eObj instanceof EClass))
-				continue;
-			EClass eClass = (EClass) eObj;
-
-			for (EObject eObj2 : eClass.eContents()) {
-				if (!(eObj2 instanceof EReference))
-					continue;
-				EReference eRef = (EReference) eObj2;
-				MMAttributeImpl mRef = (MMAttributeImpl) mmAttrsByEStucturalFeatures.get(eRef);
-				EReference oppositeERef = eRef.getEOpposite();
-				if (oppositeERef != null) {
-					MMAttributeImpl oppositeMMRef = (MMAttributeImpl) mmAttrsByEStucturalFeatures
-							.get(oppositeERef);
-					mRef.setOpposite(oppositeMMRef);
-				}
-			}
-		}
-		
-		types = mmTypesByEClasses.entrySet().stream().map(e -> e.getValue())
-				.toArray(MetamodelType[]::new);
-		enums = mmEnumsByEEnums.entrySet().stream().map(e -> e.getValue()).toArray(MetamodelEnum[]::new);
+		this.rootPkg = rootPkg;
+		subTypesCache = builSubTypesCache(rootPkg);
+		validateAddtitionalConstraints();
 	}
-		
+
+	private final static Map<EClass, List<EClass>> builSubTypesCache(EPackage rootPkg) {
+		LinkedHashMap<EClass, List<EClass>> subTypesCache = new LinkedHashMap<>();
+		for (EClassifier x : rootPkg.getEClassifiers()) {
+			if (!(x instanceof EClass))
+				continue;
+			EClass eClass = (EClass) x;
+			for (EClass eST : eClass.getESuperTypes()) {
+				subTypesCache.computeIfAbsent(eST, y -> new ArrayList<>()).add(eClass);
+			}
+		}
+		return Collections.unmodifiableMap(subTypesCache);
+	}
+
+	private void validateAddtitionalConstraints() {
+		{ /*** for all EStructuralFeature ***/
+
+			// ecoreAssert(eAttr.getLowerBound() != ETypedElement.UNSPECIFIED_MULTIPLICITY,
+			// "Lower bound unspecified", eAttr);
+			// ecoreAssert(eAttr.getUpperBound() != ETypedElement.UNSPECIFIED_MULTIPLICITY,
+			// "Upper bound unspecified", eAttr);
+			//
+			// ecoreAssert(eRef.getLowerBound() != ETypedElement.UNSPECIFIED_MULTIPLICITY,
+			// "Lower bound unspecified", eRef);
+			// ecoreAssert(eRef.getUpperBound() != ETypedElement.UNSPECIFIED_MULTIPLICITY,
+			// "Upper bound unspecified", eRef);
+		}
+
+		{ /*** for all MMAtribute-s ***/
+			// int nonNullTypeCount = valueJavaClass == null ? 0 : 1;
+			// nonNullTypeCount += enumType == null ? 0 : 1;
+			// nonNullTypeCount += referencedType == null ? 0 : 1;
+			// if ( nonNullTypeCount != 1 ) // == means: !XOR
+			// throw new IllegalArgumentException("Only one can be non null");
+
+		}
+	}
 
 	public Stream<MetamodelType> listTypes() {
-		return Stream.of(types);
+		return rootPkg.getEClassifiers().stream().filter(ec -> ec instanceof EClass)
+				.map(ec -> new MMTypeImpl((EClass) ec));
 	}
 
 	public Stream<MetamodelEnum> listEnums() {
-		return Stream.of(enums);
+		return rootPkg.getEClassifiers().stream().filter(ec -> ec instanceof EEnum)
+				.map(ec -> new MMEnumImpl((EEnum) ec));
 	}
 
 	@Override
 	public MetamodelType getTypeByName(String name) {
-		return Stream.of(types).filter(mmType -> mmType.getName().equals(name)).findFirst()
-				.orElseThrow(() -> new NoSuchElementException("Type with name: " + name));
+		return new MMTypeImpl((EClass) (rootPkg.getEClassifier(name)));
 	}
 
 	@Override
 	public MetamodelEnum getEnumByName(String name) {
-		return Stream.of(enums).filter(mmEnum -> mmEnum.getName().equals(name)).findFirst()
-				.orElseThrow(() -> new NoSuchElementException("Enum with name: " + name));
+		return new MMEnumImpl((EEnum) (rootPkg.getEClassifier(name)));
 	}
 
 	private abstract class MModelElementImpl implements MetamodelElement {
-		final String name;
-		final MetamodelDocImpl doc;
+		private final Supplier<ENamedElement> eModelElementRef;
 
-		public MModelElementImpl(String name, MetamodelDocImpl doc) {
-			super();
-			this.name = name;
-			this.doc = doc;
+		protected MModelElementImpl(Supplier<ENamedElement> eModelElementRef) {
+			if( eModelElementRef == null || eModelElementRef.get() == null )
+				throw new NullPointerException("eModelElementRef"); 
+			this.eModelElementRef = eModelElementRef;
 		}
 
 		@Override
 		public String getName() {
-			return name;
+			return eModelElementRef.get().getName();
 		}
 
 		@Override
 		public MetamodelDocImpl getDocumentation() {
-			return doc;
+			return loadEAnnotDoc(eModelElementRef.get());
 		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null || !(obj instanceof MModelElementImpl))
+				return false;
+			return eModelElementRef.get().equals(((MModelElementImpl) obj).eModelElementRef.get());
+		}
+
+		@Override
+		public int hashCode() {
+			return eModelElementRef.get().hashCode();
+		}
+
+		@Override
+		public String toString() {
+			return eModelElementRef.get().toString();
+		}
+
 	}
 
 	private class MMTypeImpl extends MModelElementImpl implements MetamodelType {
-		final LinkedHashSet<MMTypeImpl> superTypes = new LinkedHashSet<>();
-		final LinkedHashSet<MMTypeImpl> subTypes = new LinkedHashSet<>();
-		final boolean isAbstract;
-		final LinkedHashSet<MMAttributeImpl> declaredAttributes = new LinkedHashSet<>();
-		final LinkedHashSet<MMConstraintImpl> declaredConstraints = new LinkedHashSet<>();
+		// final LinkedHashSet<MMTypeImpl> superTypes = new LinkedHashSet<>();
+		// final LinkedHashSet<MMTypeImpl> subTypes = new LinkedHashSet<>();
+		// final boolean isAbstract;
+		// final LinkedHashSet<MMAttributeImpl> declaredAttributes = new
+		// LinkedHashSet<>();
+		// final LinkedHashSet<MMConstraintImpl> declaredConstraints = new
+		// LinkedHashSet<>();
 
-		public MMTypeImpl(String name, MetamodelDocImpl doc, boolean isAbstract) {
-			super(name, doc);
-			this.isAbstract = isAbstract;
+		private final EClass eClass;
+
+		public MMTypeImpl(EClass eClass) {
+			super(() -> eClass);
+			this.eClass = eClass;
 		}
 
 		@Override
 		public boolean isAbstract() {
-			return isAbstract;
-		}
-
-		void addSuperType(MMTypeImpl superType) {
-			if (superTypes.contains(superType))
-				throw new IllegalArgumentException(this + " already has this super type: " + superType);
-			long c = superTypes.stream().filter(mClass -> !mClass.isAbstract).count();
-			c += superType.isAbstract ? 0 : 1;
-			if (c > 1)
-				throw new RuntimeException("The class can't have more than one non-abstract super class: " + this);
-			superTypes.add(superType);
-			superType.subTypes.add(this);
-		}
-
-		void addMember(MMAttributeImpl newAttr) {
-			if (declaredAttributes.contains(newAttr))
-				throw new IllegalArgumentException(this + " already contains this attribute: " + newAttr);
-			declaredAttributes.add(newAttr);
-		}
-
-		void addConstraint(MMConstraintImpl newConstraint) {
-			if (declaredConstraints.contains(newConstraint))
-				throw new IllegalArgumentException(this + " already contains this constraint: " + newConstraint);
-			declaredConstraints.add(newConstraint);
+			return eClass.isAbstract();
 		}
 
 		@Override
-		public Stream<? extends MMTypeImpl> listSuperTypes( boolean includeThis, boolean recursive ) {
-			Stream<? extends MMTypeImpl> superTypeStream; 
-			if( recursive ) {
-				superTypeStream = listSuperTypes(false, false).flatMap(c -> c.listSuperTypes(true,true));
+		public Stream<? extends MMTypeImpl> listSuperTypes(boolean includeThis, boolean recursive) {
+			Stream<? extends MMTypeImpl> superTypeStream;
+			if (recursive) {
+				superTypeStream = listSuperTypes(false, false).flatMap(c -> c.listSuperTypes(true, true));
 			} else {
-				superTypeStream = superTypes.stream();
+				Stream<? extends EClass> genericSuperStream = eClass.getEGenericSuperTypes().stream()
+						.map(eGST -> (EClass) eGST.getEClassifier());
+				Stream<? extends EClass> normalSuperStream = eClass.getESuperTypes().stream();
+				superTypeStream = Stream.concat(normalSuperStream, genericSuperStream).map(eC -> new MMTypeImpl(eC));
 			}
-			
-			if( includeThis ) {
+
+			if (includeThis) {
 				superTypeStream = Stream.concat(Stream.of(this), superTypeStream);
 			}
 
@@ -217,15 +177,15 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 		}
 
 		@Override
-		public Stream<? extends MMTypeImpl> listSubTypes( boolean includeThis, boolean recursive ) {
-			Stream<? extends MMTypeImpl> subTypeStream; 
-			if( recursive ) {
-				subTypeStream = listSubTypes(false, false).flatMap(c -> c.listSubTypes(true,true));
+		public Stream<? extends MMTypeImpl> listSubTypes(boolean includeThis, boolean recursive) {
+			Stream<? extends MMTypeImpl> subTypeStream;
+			if (recursive) {
+				subTypeStream = listSubTypes(false, false).flatMap(c -> c.listSubTypes(true, true));
 			} else {
-				subTypeStream = subTypes.stream();
+				subTypeStream = subTypesCache.get(eClass).stream().map(eC -> new MMTypeImpl(eC));
 			}
-			
-			if( includeThis ) {
+
+			if (includeThis) {
 				subTypeStream = Stream.concat(Stream.of(this), subTypeStream);
 			}
 
@@ -234,214 +194,144 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 
 		@Override
 		public Stream<? extends MetamodelAttribute> listDeclaredAttributes() {
-			return declaredAttributes.stream();
+			return eClass.getEStructuralFeatures().stream().map(eSF -> {
+				if (eSF instanceof EAttribute) {
+					return new MMAttributeImpl((EAttribute) eSF);
+				} else if (eSF instanceof EReference) {
+					return new MMAttributeImpl((EReference) eSF);
+				} else {
+					throw new RuntimeException("Invalid class hierarchy: " + eSF.getClass());
+				}
+			});
 		}
 
 		@Override
 		public Stream<? extends MetamodelConstraint> listDeclaredConstraints() {
-			return declaredConstraints.stream();
+			return eClass.getEOperations().stream().map(eOp -> new MMConstraintImpl(eOp));
 		}
 	}
 
 	private class MMAttributeImpl extends MModelElementImpl implements MetamodelAttribute {
-		final MetamodelType declaringType;
-		final boolean isOptional;
-		final boolean isMultiple;
-		final boolean isUnique;
-		final boolean isContainer;
-		final boolean isContainment;
-		final Class<?> valueJavaClass;
-		final MMEnumImpl enumType;
-		final MMTypeImpl referncedType;
-		MMAttributeImpl oppositeAttr;
+		private final EAttribute eAttr;
+		private final EReference eRef;
 
-		public MMAttributeImpl(MetamodelType declaringType, String name, MetamodelDocImpl doc, Class<?> valueJavaClass,
-				MMTypeImpl referencedType, MMEnumImpl enumType, boolean isOptional, boolean isMultiple, boolean isUnique, boolean isContainer, boolean isContainment ) {
-			super(name, doc);
-			this.declaringType = declaringType; 
-
-			int nonNullTypeCount = valueJavaClass == null ? 0 : 1;
-			nonNullTypeCount += enumType == null ? 0 : 1; 
-			nonNullTypeCount += referencedType == null ? 0 : 1; 
-			if ( nonNullTypeCount != 1 ) // == means: !XOR
-				throw new IllegalArgumentException("Only one can be non null");
-			
-			this.isOptional = isOptional;
-			this.isMultiple = isMultiple;
-			this.isUnique = isUnique;
-			this.valueJavaClass = valueJavaClass;
-			this.enumType = enumType;
-			this.referncedType = referencedType;
-			this.isContainer = isContainer;
-			this.isContainment = isContainment;
+		private MMAttributeImpl(EAttribute eAttr) {
+			super(() -> eAttr);
+			this.eAttr = eAttr;
+			this.eRef = null;
 		}
+
+		private MMAttributeImpl(EReference eRef) {
+			super(() -> eRef);
+			this.eRef = eRef;
+			this.eAttr = null;
+		}
+
+		private EStructuralFeature eSF() {
+			return eAttr != null ? eAttr : eRef;
+		}
+
 		@Override
 		public MetamodelType getDeclaringType() {
-			return declaringType;
+			return new MMTypeImpl(eSF().getEContainingClass());
 		}
 
 		@Override
 		public boolean isOptional() {
-			return isOptional;
+			return eSF().getLowerBound() == 0;
 		}
 
 		@Override
 		public boolean isUnique() {
-			return isUnique;
+			return eSF().isUnique();
 		}
 
 		@Override
 		public boolean isMultiple() {
-			return isMultiple;
+			return eSF().getUpperBound() == ETypedElement.UNBOUNDED_MULTIPLICITY;
 		}
 
 		@Override
 		public boolean isContainer() {
-			return isContainer;
+			return eRef != null ? eRef.isContainer() : false;
 		}
 
 		@Override
 		public boolean isContainment() {
-			return isContainment;
+			return eRef != null ? eRef.isContainment() : false;
 		}
 
 		@Override
 		public Class<?> getValueJavaClass() {
-			return valueJavaClass;
+			if (eAttr == null)
+				return null;
+			EDataType eDT = eAttr.getEAttributeType();
+			return eDT instanceof EEnum ? null : eDT.getInstanceClass();
 		}
 
 		@Override
 		public MMEnumImpl getEnumType() {
-			return enumType;
+			if (eAttr == null)
+				return null;
+			EDataType eDT = eAttr.getEAttributeType();
+			return eDT instanceof EEnum ? new MMEnumImpl((EEnum) eDT) : null;
 		}
 
 		@Override
 		public MMTypeImpl getReferencedType() {
-			return referncedType;
-		}
-		
-		@Override
-		public MMAttributeImpl getOpposite() {
-			return oppositeAttr;
+			return eRef != null ? new MMTypeImpl(eRef.getEReferenceType()) : null;
 		}
 
-		public void setOpposite(MMAttributeImpl oppositeAttr) {
-			this.oppositeAttr = oppositeAttr;
+		@Override
+		public MMAttributeImpl getOpposite() {
+			return eRef != null && eRef.getEOpposite() != null ? new MMAttributeImpl(eRef.getEOpposite()) : null;
 		}
 
 	}
 
 	private class MMConstraintImpl extends MModelElementImpl implements MetamodelConstraint {
-		final MetamodelType declaringType;
+		final EOperation eOp;
 
-		public MMConstraintImpl(MetamodelType declaringType, String name, MetamodelDocImpl doc) {
-			super(name, doc);
-			this.declaringType = declaringType; 
+		public MMConstraintImpl(EOperation eOp) {
+			super(() -> eOp);
+			this.eOp = eOp;
 		}
 
 		@Override
 		public MetamodelType getDeclaringType() {
-			return declaringType;
+			return new MMTypeImpl(eOp.getEContainingClass());
 		}
 	}
 
 	private class MMEnumImpl extends MModelElementImpl implements MetamodelEnum {
 
-		final LinkedHashSet<MMEnumLiteralImpl> literals = new LinkedHashSet<>();
+		private final EEnum eEnum;
 
-		public MMEnumImpl(String name, MetamodelDocImpl doc) {
-			super(name, doc);
-		}
-
-		void addLiteral(MMEnumLiteralImpl newValue) {
-			if (literals.contains(newValue))
-				throw new IllegalArgumentException(this + " already contains this literal: " + newValue);
-			literals.add(newValue);
+		public MMEnumImpl(EEnum eEnum) {
+			super(() -> eEnum);
+			this.eEnum = eEnum;
 		}
 
 		@Override
 		public Stream<? extends MetamodelEnumLiteral> listEnumLiterals() {
-			return literals.stream();
+			return eEnum.getELiterals().stream().map(eEnumLit -> new MMEnumLiteralImpl(eEnumLit));
 		}
 
 	}
 
 	private class MMEnumLiteralImpl extends MModelElementImpl implements MetamodelEnumLiteral {
 
-		private final MMEnumImpl mmEnum;
+		private final EEnumLiteral eEnumLit;
 
-		public MMEnumLiteralImpl(MMEnumImpl mmEnum, String name, MetamodelDocImpl doc) {
-			super(name, doc);
-			this.mmEnum = mmEnum;
+		public MMEnumLiteralImpl(EEnumLiteral eEnumLit) {
+			super(() -> eEnumLit);
+			this.eEnumLit = eEnumLit;
 		}
 
 		@Override
 		public MetamodelEnum getDeclaringEnum() {
-			return mmEnum;
+			return new MMEnumImpl(eEnumLit.getEEnum());
 		}
-	}
-
-	private MMTypeImpl loadEClass(EClass eClass) {
-		MetamodelDocImpl docImpl = loadEAnnotDoc(eClass);
-		MMTypeImpl mClass = new MMTypeImpl(eClass.getName(), docImpl, eClass.isAbstract());
-		return mClass;
-	}
-
-	private MMEnumImpl loadEEnum(EEnum eEnum) {
-		MetamodelDocImpl docImpl = loadEAnnotDoc(eEnum);
-		MMEnumImpl mEnum = new MMEnumImpl(eEnum.getName(), docImpl);
-		return mEnum;
-	}
-
-	private MMEnumLiteralImpl loadEEnum(MMEnumImpl mEnum, EEnumLiteral eEnumLit) {
-		MetamodelDocImpl docImpl = loadEAnnotDoc(eEnumLit);
-		MMEnumLiteralImpl mEnumVal = new MMEnumLiteralImpl(mEnum, eEnumLit.getName(), docImpl);
-		return mEnumVal;
-	}
-
-	private void loadEGenericType(MMTypeImpl declaringClass, EGenericType eSuperType) {
-		MMTypeImpl mSuperType = mmTypesByEClasses.get(eSuperType.getEClassifier());
-		declaringClass.addSuperType(mSuperType);
-	}
-
-	private MMAttributeImpl loadEAttribute(MetamodelType declaringClass, EAttribute eAttr) {
-		MetamodelDocImpl docImpl = loadEAnnotDoc(eAttr);
-
-		ecoreAssert(eAttr.getLowerBound() != ETypedElement.UNSPECIFIED_MULTIPLICITY, "Lower bound unspecified", eAttr);
-		ecoreAssert(eAttr.getUpperBound() != ETypedElement.UNSPECIFIED_MULTIPLICITY, "Upper bound unspecified", eAttr);
-
-		final boolean isOptional = eAttr.getLowerBound() == 0;
-		final boolean isMultiple = eAttr.getUpperBound() == ETypedElement.UNBOUNDED_MULTIPLICITY;
-		final boolean isUnique = eAttr.isUnique();
-		EDataType eType = eAttr.getEAttributeType();
-		if (eType instanceof EEnum) {
-			MMEnumImpl enumType = mmEnumsByEEnums.get((EEnum) eType);
-			return new MMAttributeImpl(declaringClass, eAttr.getName(), docImpl, null, null, enumType, isOptional, isMultiple, isUnique, false, false );
-		} else {
-			Class<?> valueType = eType.getInstanceClass();
-			return new MMAttributeImpl(declaringClass, eAttr.getName(), docImpl, valueType, null, null, isOptional, isMultiple, isUnique, false, false);
-		}
-	}
-
-	private MMAttributeImpl loadEReference(MetamodelType declaringClass, EReference eRef) {
-		MetamodelDocImpl docImpl = loadEAnnotDoc(eRef);
-
-		ecoreAssert(eRef.getLowerBound() != ETypedElement.UNSPECIFIED_MULTIPLICITY, "Lower bound unspecified", eRef);
-		ecoreAssert(eRef.getUpperBound() != ETypedElement.UNSPECIFIED_MULTIPLICITY, "Upper bound unspecified", eRef);
-
-		final boolean isOptional = eRef.getLowerBound() == 0;
-		final boolean isMultiple = eRef.getUpperBound() == ETypedElement.UNBOUNDED_MULTIPLICITY;
-		EClass eRefClass = eRef.getEReferenceType();
-		MMTypeImpl refMClass = mmTypesByEClasses.get(eRefClass);
-
-		//return new MMReferenceImpl(declaringType, eRef.getName(), docImpl, refMClass, isOptional, isMultiple);
-		return new MMAttributeImpl(declaringClass, eRef.getName(), docImpl, null, refMClass, null, isOptional, isMultiple, eRef.isUnique(), eRef.isContainer(), eRef.isContainment() );
-	}
-
-	private MMConstraintImpl loadEOperation(MetamodelType declaringClass, EOperation eOp) {
-		MetamodelDocImpl docImpl = loadEAnnotDoc(eOp);
-		MMConstraintImpl mConstr = new MMConstraintImpl(declaringClass, eOp.getName(), docImpl);
-		return mConstr;
 	}
 
 	private MetamodelDocImpl loadEAnnotDoc(EModelElement eAnnotHolder) {
@@ -465,7 +355,7 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 				descText = a.getDetails().get("description");
 				ecoreAssert(a.getDetails().size() <= 2, "More than two details", eAnnotHolder);
 			} else {
-				ecoreAssert(false, "Unsopported annotation source", eAnnotHolder);
+				ecoreAssert(false, "Unsupported annotation source", eAnnotHolder);
 			}
 		}
 		if (docText != null && docText.trim().isEmpty()) {
@@ -479,6 +369,5 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 			throw new RuntimeException(message + "\n" + eObj.toString());
 		}
 	}
-
 
 }

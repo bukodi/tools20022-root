@@ -43,7 +43,7 @@ public class TestMetamodel {
 	@Ignore
 	public void testLoadMetamodelFromECore() throws Exception {
 		
-		RawMetamodel mm = ECoreLoader.load(metamodelPkg);
+		RawMetamodel mm = new ECoreBackedMetamodel(metamodelPkg);
 		
 		System.out.println("--- Classes ---");
 		for( MetamodelType mc : mm.listTypes().collect(Collectors.toList()) ) {
