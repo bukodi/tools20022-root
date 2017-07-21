@@ -29,6 +29,11 @@ import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardLocation;
 
+/**
+ * TODO: convert to maven layout file manager
+ * @author bukodi
+ *
+ */
 public class GeneratorFileManager implements JavaFileManager {
 
 	private Map<Location, Path> rootPaths = new HashMap<>();

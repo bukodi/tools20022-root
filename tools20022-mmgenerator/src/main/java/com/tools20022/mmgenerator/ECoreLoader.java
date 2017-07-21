@@ -36,7 +36,7 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnum;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
-public class ECoreBackedMetamodel {
+public class ECoreLoader {
 
 	private abstract class MModelElementImpl implements MetamodelElement {
 		final String name;
@@ -285,14 +285,17 @@ public class ECoreBackedMetamodel {
 	private final LinkedHashMap<EOperation, MMConstraintImpl> mmConstraintsByEOperation = new LinkedHashMap<>();
 	private final LinkedHashMap<EEnum, MMEnumImpl> mmEnumsByEEnums = new LinkedHashMap<>();
 
-	public ECoreBackedMetamodel() {
+	private ECoreLoader() {
 
 	}
 
-	public RawMetamodel build() {
-		MetamodelType mmTypes[] = mmTypesByEClasses.entrySet().stream().map(e -> e.getValue())
+	public static RawMetamodel load( EPackage ecorePackage ) {
+		ECoreLoader mmb = new ECoreLoader();
+		mmb.loadFromECore(ecorePackage);
+		
+		MetamodelType mmTypes[] = mmb.mmTypesByEClasses.entrySet().stream().map(e -> e.getValue())
 				.toArray(MetamodelType[]::new);
-		MetamodelEnum mmEnums[] = mmEnumsByEEnums.entrySet().stream().map(e -> e.getValue()).toArray(MetamodelEnum[]::new);
+		MetamodelEnum mmEnums[] = mmb.mmEnumsByEEnums.entrySet().stream().map(e -> e.getValue()).toArray(MetamodelEnum[]::new);
 
 		return new MetamodelImpl(mmTypes, mmEnums);
 	}
@@ -329,9 +332,7 @@ public class ECoreBackedMetamodel {
 
 	}
 
-	public void loadFromECore(String resourceName) {
-
-		EPackage rootPkg = ECoreIOHelper.loadECorePackage(resourceName);
+	private void loadFromECore(EPackage rootPkg) {
 
 		/*** First phase: load types and enums with literals ***/
 		for (EObject eObj : rootPkg.eContents()) {

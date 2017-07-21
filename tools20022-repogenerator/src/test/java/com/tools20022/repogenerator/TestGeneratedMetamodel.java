@@ -1,11 +1,11 @@
 package com.tools20022.repogenerator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -13,16 +13,16 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.generators.ECoreIOHelper;
 
 import test.gen.mm.MMBusinessArea;
 import test.gen.mm.MMBusinessComponent;
@@ -51,10 +51,15 @@ public class TestGeneratedMetamodel {
 	static {
 		long usedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		long start = System.currentTimeMillis();
-		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
-		repo = loader.load("/model/ISO20022.ecore", "/model/20170516_ISO20022_2013_eRepository.iso20022");
-		// repo = loader.load("/model/ISO20022.ecore",
-		// "/first5fromEveryType.iso20022");
+		try {
+			EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
+			EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022"));
+			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
+			repo = loader.load( ecorePkg, rootEObj);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		System.out.println("Model load: " + (System.currentTimeMillis() - start) + " ms, "
 				+ ((usedMem2 - usedMem) / (1024 * 1024)) + " MB");

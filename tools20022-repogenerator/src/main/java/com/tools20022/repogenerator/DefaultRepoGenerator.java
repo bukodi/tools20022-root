@@ -1,20 +1,27 @@
 package com.tools20022.repogenerator;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.generators.AbstractGenerator;
+import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.GenerationResult;
-import com.tools20022.generators.JavaName;
 import com.tools20022.generators.GenerationResult.JavaResult;
+import com.tools20022.generators.JavaName;
 
 import test.gen.mm.MMBusinessArea;
 import test.gen.mm.MMBusinessAssociationEnd;
@@ -38,21 +45,66 @@ import test.gen.mm.StandardMetamodel2013;
 
 public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBean> {
 
-	private final static String BASE_PKG_NAME = "test.gen.repo";
-	private final static String CLASS_NAME_PREFIX = "";
-
 	boolean generateStaticMetas = true;
-	final RawRepository repo;
+	private RawRepository repo;
+	private String basePackageName;
+	private String mainClassSimpleName;
 
-	public DefaultRepoGenerator(RawRepository repo) {
-		this.repo = repo;
+	public DefaultRepoGenerator() {
+	}
+
+	protected String getBasePackageName() {
+		if (basePackageName == null) {
+			setBasePackageName("test.gen.repo");
+		}
+		return basePackageName;
+	}
+
+	public void setBasePackageName(String basePackageName) {
+		if (this.basePackageName != null)
+			throw new IllegalStateException("basePackageName already set");
+		this.basePackageName = basePackageName;
+	}
+
+	protected String getMainClassSimpleName() {
+		if (mainClassSimpleName == null) {
+			setMainClassSimpleName("GeneratedRepository");
+		}
+		return mainClassSimpleName;
+	}
+
+	public void setMainClassSimpleName(String mainClassSimpleName) {
+		if (this.mainClassSimpleName != null)
+			throw new IllegalStateException("mainClassSimpleName already set");
+
+		this.mainClassSimpleName = mainClassSimpleName;
+	}
+
+	public void loadRepository(Metamodel metamodel, InputStream ecoreFileContent, InputStream xmiFileContent) {
+		try {
+			final EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ecoreFileContent);
+			EObject rootEObj = ECoreIOHelper.loadXMIResource(xmiFileContent);
+			XMILoader loader = new XMILoader(metamodel);		
+			repo = loader.load( ecorePkg, rootEObj);
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
+		}
+	}
+
+	protected RawRepository getRepository() {
+		if (repo == null) {			
+			InputStream ecoreFileContent = ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore");
+			InputStream xmiFileContent = ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022");
+			loadRepository(StandardMetamodel2013.metamodel(), ecoreFileContent, xmiFileContent);
+		}
+		return repo;
 	}
 
 	protected void generateMain() {
 		// Create repo skeleton
 		JavaResult<JavaClassSource> genRepoMain;
 		{
-			JavaName repoName = JavaName.primaryType(BASE_PKG_NAME, "StandardRepository20170516");
+			JavaName repoName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
 			JavaClassSource srcRepoMain = createSourceFile(JavaClassSource.class, repoName);
 			srcRepoMain.addImport(ReflectionBasedRepository.class);
 			srcRepoMain.setSuperType(ReflectionBasedRepository.class);
@@ -64,7 +116,7 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 					.setBody("super( " + StandardMetamodel2013.class.getSimpleName() + ".metamodel());");
 		}
 
-		MMRepository root = repo.getRootObject();
+		MMRepository root = getRepository().getRootObject();
 		for (MMTopLevelDictionaryEntry de : root.getDataDictionary().getTopLevelDictionaryEntry()) {
 			if (de instanceof MMBusinessComponent) {
 				generateMMBusinessComponent(genRepoMain, (MMBusinessComponent) de);
@@ -85,12 +137,12 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 	}
 
 	void implementDefaultInterfaces(JavaResult<JavaClassSource> gen, GeneratedMetamodelBean mmElem) {
-		if( mmElem instanceof MMRepositoryConcept ) {
+		if (mmElem instanceof MMRepositoryConcept) {
 			implementMMRepositoryConcept(gen, (MMRepositoryConcept) mmElem);
-		} else if( mmElem instanceof MMModelEntity ){
-			implementMMModelEntity(gen, (MMModelEntity)mmElem);
+		} else if (mmElem instanceof MMModelEntity) {
+			implementMMModelEntity(gen, (MMModelEntity) mmElem);
 		} else {
-			// Nothis special ...				
+			// Nothis special ...
 		}
 	}
 
@@ -168,34 +220,34 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 		JavaResult<JavaClassSource> gen = generateDefaultClass(md);
 		implementMMRepositoryConcept(gen, md);
 
-		
 		/*** MMBusinessArea.Members.messageDefinition ***/
 		for (MMMessageBuildingBlock mbb : md.getMessageBuildingBlock()) {
 			/** MMMessageBuildingBlock.Members.minOccurs **/
 			JavaName typeName;
-			if( mbb.getComplexType().isPresent() ) {				
+			if (mbb.getComplexType().isPresent()) {
 				MMMessageComponentType ct = mbb.getComplexType().get();
 				typeName = getJavaName(ct);
-			} else if( mbb.getSimpleType().isPresent() ) {
+			} else if (mbb.getSimpleType().isPresent()) {
 				MMDataType dt = mbb.getSimpleType().get();
 				typeName = getJavaName(dt);
 			} else {
-				throw new RuntimeException("Constraint violated:" + MMMessageBuildingBlock.Members.checkMessageBuildingBlockHasExactlyOneType.getName() );
+				throw new RuntimeException("Constraint violated:"
+						+ MMMessageBuildingBlock.Members.checkMessageBuildingBlockHasExactlyOneType.getName());
 			}
-			
+
 			gen.src.addImport(typeName.getFullName());
-			String wrappedSimpleTypeName = typeName.getSimpleName();						
-			if( mbb.getMaxOccurs().isPresent() && mbb.getMaxOccurs().get() > 1 ) {
+			String wrappedSimpleTypeName = typeName.getSimpleName();
+			if (mbb.getMaxOccurs().isPresent() && mbb.getMaxOccurs().get() > 1) {
 				gen.src.addImport(List.class);
 				wrappedSimpleTypeName = List.class.getSimpleName() + "<" + wrappedSimpleTypeName + ">";
-			} else if( mbb.getMinOccurs().isPresent() && mbb.getMinOccurs().get() == 0 ) {
+			} else if (mbb.getMinOccurs().isPresent() && mbb.getMinOccurs().get() == 0) {
 				gen.src.addImport(Optional.class);
-				wrappedSimpleTypeName = Optional.class.getSimpleName() + "<" + wrappedSimpleTypeName + ">";				
+				wrappedSimpleTypeName = Optional.class.getSimpleName() + "<" + wrappedSimpleTypeName + ">";
 			}
-			
+
 			// TODO: use getJavaName instead of mbb.getName()
 			gen.src.addProperty(wrappedSimpleTypeName, mbb.getName());
-			
+
 		}
 
 		return gen;
@@ -240,7 +292,8 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 			if (mmElem instanceof MMRepositoryConcept)
 				doc = ((MMRepositoryConcept) mmElem).getDefinition();
 
-			JavaResult<JavaClassSource> gen = GenerationResult.fromJavaSource( createSourceFile(JavaClassSource.class, mmElem) );			
+			JavaResult<JavaClassSource> gen = GenerationResult
+					.fromJavaSource(createSourceFile(JavaClassSource.class, mmElem));
 			return gen;
 		} catch (Exception e) {
 			System.err.println("--- " + mmElem.toString() + " ---");
@@ -255,14 +308,14 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 	protected JavaName getJavaName(GeneratedMetamodelBean mmElem) {
 		String pkg;
 		String cuName;
-		
+
 		// CU name
 		if (mmElem instanceof MMRepositoryConcept) {
 			cuName = ((MMRepositoryConcept) mmElem).getName();
 		} else {
 			cuName = null;
 		}
-		
+
 		// Package
 		if (mmElem instanceof MMMessageDefinition) {
 			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
@@ -272,7 +325,7 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 		} else if (mmElem instanceof MMTopLevelCatalogueEntry) {
 			if (mmElem instanceof MMMessageSet) {
 				pkg = "catalogue.msgset";
-			} else if (mmElem instanceof MMBusinessArea) {				
+			} else if (mmElem instanceof MMBusinessArea) {
 				pkg = "catalogue.area";
 			} else {
 				pkg = "catalogue.other";
@@ -294,9 +347,9 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 		} else {
 			return null;
 		}
-		pkg = BASE_PKG_NAME + "." + pkg;
+		pkg = getBasePackageName() + "." + pkg;
 
-		if ( cuName == null ) {
+		if (cuName == null) {
 			return null;
 		}
 
@@ -310,13 +363,13 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 		if (JAVA_RESERVED_WORDS.contains(cuName))
 			cuName = cuName + "_";
 
-		if( mmElem instanceof MMBusinessArea ) {
-			if( cuName.endsWith("master"))
+		if (mmElem instanceof MMBusinessArea) {
+			if (cuName.endsWith("master"))
 				cuName = cuName.substring(0, cuName.length() - "master".length());
-			if( cuName.endsWith("version") )
+			if (cuName.endsWith("version"))
 				cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
 		}
-		
+
 		return JavaName.primaryType(pkg, cuName);
 	}
 }

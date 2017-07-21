@@ -171,15 +171,9 @@ public class XMILoader {
 
 	}
 
-	public RawRepository load(String ecoreResource, String xmiResource) {
-		// Init metamodel ePackage from eCore resource
-		final EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ecoreResource);
-
+	public RawRepository load(EPackage ecorePkg, EObject rootEObj) {
 		// Map loaded eCore model to generated metamodel
 		final ECoreToMetamodelMapping mapping = createECoreToMetamodelMapping(ecorePkg);
-
-		// Load XMI resource
-		EObject rootEObj = ECoreIOHelper.loadXMIResource(xmiResource);
 
 		// Load XMI objects
 		Map<EObject, GeneratedMetamodelBean> repoObjsByEObj = new HashMap<>();
