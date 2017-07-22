@@ -6,6 +6,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
@@ -19,7 +20,11 @@ public class TestMMCodeGen {
 
 	@Test
 	public void testGerateMMClasses() throws Exception {
+		Path srcRoot = Paths.get("../tools20022-metamodel/src/main/java");
+		
+		
 		DefaultMetamodelGenerator mmGenerator = new DefaultMetamodelGenerator();
+//		mmGenerator.setFileManagerRoot(srcRoot);
 		mmGenerator.generate();
 		System.out.println("Done.");
 	}

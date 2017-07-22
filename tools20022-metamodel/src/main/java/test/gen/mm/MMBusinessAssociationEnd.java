@@ -72,8 +72,9 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 		MetamodelAttribute<MMBusinessAssociationEnd, MMBusinessComponent> type = newAttribute();
 		/**
 		 * Two opposite association ends may not have composite or shared
-		 * aggregation at the same time not(aggregation <> Aggregation::NONE and
-		 * opposite.aggregation <> Aggregation::NONE)
+		 * aggregation at the same time not(aggregation &lt;&gt;
+		 * Aggregation::NONE and opposite.aggregation &lt;&gt;
+		 * Aggregation::NONE)
 		 */
 		MetamodelConstraint<MMBusinessAssociationEnd> checkAtMostOneAggregatedEnd = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

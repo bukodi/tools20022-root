@@ -53,17 +53,17 @@ public interface MMMessageElement extends MMMessageConstruct, MMMessageConcept {
 		MetamodelAttribute<MMMessageElement, Boolean> isDerived = newAttribute();
 		/**
 		 * A MessageElement may not trace to both a BusinessComponent and a
-		 * BusinessElement businessComponentTrace->size( ) +
-		 * businessElementTrace->size( ) <= 1
+		 * BusinessElement businessComponentTrace-&gt;size( ) +
+		 * businessElementTrace-&gt;size( ) &lt;= 1
 		 */
 		MetamodelConstraint<MMMessageElement> checkNoMoreThanOneTrace = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");
 		});
 		/**
 		 * A trace can only raise the minimum cardinality and can only lower the
-		 * maximum cardinality minOccurs >= businessElementTrace.minOccurs and
-		 * (businessElementTrace.maxOccurs.oclIsUndefined() or maxOccurs <=
-		 * businessElementTrace.maxOccurs)
+		 * maximum cardinality minOccurs &gt;= businessElementTrace.minOccurs
+		 * and (businessElementTrace.maxOccurs.oclIsUndefined() or maxOccurs
+		 * &lt;= businessElementTrace.maxOccurs)
 		 */
 		MetamodelConstraint<MMMessageElement> checkCardinalityAlignment = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

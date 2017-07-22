@@ -40,8 +40,8 @@ public class MMBusinessProcessCatalogue implements MMModelEntity {
 		MetamodelAttribute<MMBusinessProcessCatalogue, List<MMTopLevelCatalogueEntry>> topLevelCatalogueEntry = newAttribute();
 		/**
 		 * All TopLevelCatalogueEntries of a BusinessProcessCatalogue must have
-		 * different names topLevelCatalogueEntry->forAll(entry1,entry2 | entry1
-		 * <> entry2 implies entry1.name <> entry2.name)
+		 * different names topLevelCatalogueEntry-&gt;forAll(entry1,entry2 |
+		 * entry1 &lt;&gt; entry2 implies entry1.name &lt;&gt; entry2.name)
 		 */
 		MetamodelConstraint<MMBusinessProcessCatalogue> checkEntriesHaveUniqueName = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

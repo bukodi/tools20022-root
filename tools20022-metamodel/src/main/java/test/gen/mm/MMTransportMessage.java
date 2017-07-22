@@ -42,8 +42,8 @@ public class MMTransportMessage implements MMModelEntity {
 		MetamodelAttribute<MMTransportMessage, List<MMMessagingEndpoint>> receiver = newAttribute();
 		/**
 		 * The sender and receiver of a TransportMessage must use the same
-		 * MessageTransportSystem receiver->asBag().transportSystem =
-		 * sender.transportSystem->asBag()
+		 * MessageTransportSystem receiver-&gt;asBag().transportSystem =
+		 * sender.transportSystem-&gt;asBag()
 		 */
 		MetamodelConstraint<MMTransportMessage> checksameMessageTransportSystem = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

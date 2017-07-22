@@ -90,8 +90,8 @@ public class MMBusinessComponent
 		MetamodelAttribute<MMBusinessComponent, List<MMMessageElement>> derivationElement = newAttribute();
 		/**
 		 * All BusinessElements contained by this BusinessComponents have
-		 * different names element->forAll(el1,el2 : BusinessElement| el1 <> el2
-		 * implies el1.name <> el2.name)
+		 * different names element-&gt;forAll(el1,el2 : BusinessElement| el1
+		 * &lt;&gt; el2 implies el1.name &lt;&gt; el2.name)
 		 */
 		MetamodelConstraint<MMBusinessComponent> checkBusinessElementsHaveUniqueNames = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

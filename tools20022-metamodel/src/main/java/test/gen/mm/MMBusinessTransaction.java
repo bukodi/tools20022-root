@@ -90,16 +90,16 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 		MetamodelAttribute<MMBusinessTransaction, List<MMMessageChoreography>> trace = newAttribute();
 		/**
 		 * All MessageTransmissions contained in this BusinessTransaction shall
-		 * have different names. transmission->forAll(msg1,msg2 | msg1 <> msg2
-		 * implies msg1.name <> msg2.name)
+		 * have different names. transmission-&gt;forAll(msg1,msg2 | msg1
+		 * &lt;&gt; msg2 implies msg1.name &lt;&gt; msg2.name)
 		 */
 		MetamodelConstraint<MMBusinessTransaction> checkMessageTransmissionsHaveUniqueNames = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");
 		});
 		/**
 		 * All Participants of this BusinessTransaction shall have different
-		 * names. participant->forAll(p1,p2 | p1 <> p2 implies p1.name <>
-		 * p2.name)
+		 * names. participant-&gt;forAll(p1,p2 | p1 &lt;&gt; p2 implies p1.name
+		 * &lt;&gt; p2.name)
 		 */
 		MetamodelConstraint<MMBusinessTransaction> checkParticipantsHaveUniqueNames = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

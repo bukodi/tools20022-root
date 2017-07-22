@@ -61,8 +61,8 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 		MetamodelAttribute<MMMessageBuildingBlock, Optional<MMMessageComponentType>> complexType = newAttribute();
 		/**
 		 * A MessageBuildingBlock must have exactly one of the following:
-		 * simpleType or complexType. complexType->size() + simpleType->size() =
-		 * 1
+		 * simpleType or complexType. complexType-&gt;size() +
+		 * simpleType-&gt;size() = 1
 		 */
 		MetamodelConstraint<MMMessageBuildingBlock> checkMessageBuildingBlockHasExactlyOneType = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

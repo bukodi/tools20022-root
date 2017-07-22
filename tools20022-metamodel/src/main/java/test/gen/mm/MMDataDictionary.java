@@ -40,8 +40,8 @@ public class MMDataDictionary implements MMModelEntity {
 		MetamodelAttribute<MMDataDictionary, MMRepository> repository = newAttribute();
 		/**
 		 * All TopLevelDictionaryEntries of a DataDictionary must have different
-		 * names topLevelDictionaryEntry->forAll(entry1,entry2 | entry1 <>
-		 * entry2 implies entry1.name <> entry2.name)
+		 * names topLevelDictionaryEntry-&gt;forAll(entry1,entry2 | entry1
+		 * &lt;&gt; entry2 implies entry1.name &lt;&gt; entry2.name)
 		 */
 		MetamodelConstraint<MMDataDictionary> checkEntriesHaveUniqueName = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

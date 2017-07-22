@@ -24,15 +24,15 @@ public interface MMMessageElementContainer extends MMMessageComponentType {
 		MetamodelAttribute<MMMessageElementContainer, List<MMMessageElement>> messageElement = newAttribute();
 		/**
 		 * All MessageElements contained in this MessageComponentContainer must
-		 * have different names. messageElement->forAll(el1,el2 | el1 <> el2
-		 * implies el1.name <> el2.name)
+		 * have different names. messageElement-&gt;forAll(el1,el2 | el1
+		 * &lt;&gt; el2 implies el1.name &lt;&gt; el2.name)
 		 */
 		MetamodelConstraint<MMMessageElementContainer> checkMessageElementsHaveUniqueNames = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");
 		});
 		/**
 		 * All the elements belonging to a technical MessageComponentContainer
-		 * must be technical. self.isTechnical implies messageElement ->
+		 * must be technical. self.isTechnical implies messageElement -&gt;
 		 * forAll(messageElement|messageElement.isTechnical)
 		 */
 		MetamodelConstraint<MMMessageElementContainer> checktechnicalElement = newConstraint(b -> {

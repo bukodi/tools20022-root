@@ -67,7 +67,7 @@ public class MMMessageAttribute implements MMMessageElement {
 		MetamodelAttribute<MMMessageAttribute, Optional<MMMessageComponentType>> complexType = newAttribute();
 		/**
 		 * A MessageAttribute must have exactly one of the following: simpleType
-		 * and complexType complexType->size() + simpleType->size() = 1
+		 * and complexType complexType-&gt;size() + simpleType-&gt;size() = 1
 		 */
 		MetamodelConstraint<MMMessageAttribute> checkMessageAttributeHasExactlyOneType = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

@@ -59,7 +59,7 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 		MetamodelAttribute<MMMessageSet, List<MMMessageDefinition>> messageDefinition = newAttribute();
 		/**
 		 * the generated syntax is derived from the syntax for a validEncoding
-		 * generatedSyntax->asBag() = validEncoding.syntax
+		 * generatedSyntax-&gt;asBag() = validEncoding.syntax
 		 */
 		MetamodelConstraint<MMMessageSet> checkGeneratedSyntaxDerivation = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

@@ -37,7 +37,7 @@ public class MMSyntax implements MMModelEntity {
 		MetamodelAttribute<MMSyntax, List<MMMessageSet>> generatedFor = newAttribute();
 		/**
 		 * the syntax that is valid for a MessageSet, based on the Encoding used
-		 * generatedFor-> asBag()=possibleEncodings.messageSet
+		 * generatedFor-&gt; asBag()=possibleEncodings.messageSet
 		 */
 		MetamodelConstraint<MMSyntax> checkGeneratedForDerivation = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

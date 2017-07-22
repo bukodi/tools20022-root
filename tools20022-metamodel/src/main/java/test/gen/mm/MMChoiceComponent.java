@@ -46,7 +46,7 @@ public class MMChoiceComponent implements MMMessageElementContainer {
 	public static interface Members extends MMMessageElementContainer.Members {
 		/**
 		 * A MessageComponent or ChoiceComponent must have at least one
-		 * MessageElement messageElement->notEmpty( )
+		 * MessageElement messageElement-&gt;notEmpty( )
 		 */
 		MetamodelConstraint<MMChoiceComponent> checkAtLeastOneProperty = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

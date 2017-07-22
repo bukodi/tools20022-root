@@ -424,9 +424,15 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 		if (mmDoc != null) {
 			if (mmDoc.getDocumentation() != null) {
 				JavaDocSource<?> srcJavaDoc = srcPart.getJavaDoc();
-				srcJavaDoc.setText(mmDoc.getDocumentation());
+				String javaDocText = escapeJavaDocText(mmDoc.getDocumentation());
+				srcJavaDoc.setText(javaDocText);
 			}
 		}
+	}
+	
+	private static String escapeJavaDocText( String originalDoc ) {
+		String javaDoc = originalDoc.replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		return javaDoc;
 	}
 
 }

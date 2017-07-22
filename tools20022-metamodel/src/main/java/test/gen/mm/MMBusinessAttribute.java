@@ -63,8 +63,8 @@ public class MMBusinessAttribute implements MMBusinessElement {
 		MetamodelAttribute<MMBusinessAttribute, Optional<MMBusinessComponent>> complexType = newAttribute();
 		/**
 		 * A BusinessAttribute must have exactly one of the following:
-		 * simpleType and complexType. complexType->size() + simpleType->size()
-		 * = 1
+		 * simpleType and complexType. complexType-&gt;size() +
+		 * simpleType-&gt;size() = 1
 		 */
 		MetamodelConstraint<MMBusinessAttribute> checkBusinessAttributeHasExactlyOneType = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");
@@ -73,7 +73,7 @@ public class MMBusinessAttribute implements MMBusinessElement {
 		 * Deriving Code Sets may only be used to type MessageAttributes.
 		 * Therefore, a BusinessAttribute may not be typed by a Deriving
 		 * CodeSet. simpleType.oclIsKindOf(CodeSet) implies
-		 * simpleType.oclAsType(CodeSet).trace->isEmpty()
+		 * simpleType.oclAsType(CodeSet).trace-&gt;isEmpty()
 		 */
 		MetamodelConstraint<MMBusinessAttribute> checkNoDerivingCodeSetType = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");

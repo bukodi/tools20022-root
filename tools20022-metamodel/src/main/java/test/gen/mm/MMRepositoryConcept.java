@@ -63,7 +63,7 @@ public interface MMRepositoryConcept extends MMModelEntity {
 		MetamodelAttribute<MMRepositoryConcept, Optional<Date>> removalDate = newAttribute();
 		/**
 		 * If a removalDate is specified then the registrationStatus must be
-		 * OBSOLETE removalDate->notEmpty( ) implies registrationStatus =
+		 * OBSOLETE removalDate-&gt;notEmpty( ) implies registrationStatus =
 		 * RegistrationStatus::OBSOLETE
 		 */
 		MetamodelConstraint<MMRepositoryConcept> checkRemovalDateRegistrationStatus = newConstraint(b -> {
@@ -73,7 +73,7 @@ public interface MMRepositoryConcept extends MMModelEntity {
 		 * First letter of name shall be upper case. [A-Z] Set
 		 * {'A','B','C','D','E'
 		 * ,'F','G','H','I','J','K','L','M','N','O','P','Q','R'
-		 * ,'S','T','U','V','W','X','Y','Z'}->exists(x|x=name.substring(1,1))
+		 * ,'S','T','U','V','W','X','Y','Z'}-&gt;exists(x|x=name.substring(1,1))
 		 */
 		MetamodelConstraint<MMRepositoryConcept> checkNameFirstLetterUppercase = newConstraint(b -> {
 			throw new RuntimeException("Not implemented!");
