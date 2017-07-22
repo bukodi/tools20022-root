@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tools20022</groupId>
-	<artifactId>tools20022-stdrepo20170516</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>tools20022-metamodel</artifactId>
+	<version>0.2013.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
         <name>${project.groupId}:${project.artifactId}</name>
 
@@ -16,8 +16,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tools20022-stdmm2013</artifactId>
-			<version>${project.version}</version>
+			<artifactId>tools20022-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
