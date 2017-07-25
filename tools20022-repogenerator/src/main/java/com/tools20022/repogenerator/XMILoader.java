@@ -26,9 +26,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnumLiteral;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.generators.ECoreIOHelper;
-
-import test.gen.mm.MMRepository;
+import com.tools20022.metamodel.MMRepository;
 
 public class XMILoader {
 

@@ -1,0 +1,169 @@
+package com.tools20022.metamodel;
+
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.metamodel.MMDataType;
+import java.util.Optional;
+import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMSemanticMarkup;
+import java.util.List;
+import com.tools20022.metamodel.MMDoclet;
+import com.tools20022.metamodel.MMConstraint;
+import com.tools20022.metamodel.MMRegistrationStatus;
+import java.util.Date;
+import com.tools20022.metamodel.MMModelEntity;
+
+/**
+ * Any set of values drawn from the value space of 'decimal', as specified by
+ * W3C Recommendation XML Schema Part 2: Datatypes
+ */
+public class MMDecimal implements MMDataType {
+
+	private GeneratedMetamodelBean container;
+	private Optional<String> minInclusive;
+	private Optional<String> minExclusive;
+	private Optional<String> maxInclusive;
+	private Optional<String> maxExclusive;
+	private Optional<Integer> totalDigits;
+	private Optional<Integer> fractionDigits;
+	private Optional<String> pattern;
+	private MMDataDictionary dataDictionary;
+	private String name;
+	private Optional<String> definition;
+	private List<MMSemanticMarkup> semanticMarkup;
+	private List<MMDoclet> doclet;
+	private List<String> example;
+	private List<MMConstraint> constraint;
+	private MMRegistrationStatus registrationStatus;
+	private Optional<Date> removalDate;
+	private List<MMModelEntity> nextVersions;
+	private Optional<MMModelEntity> previousVersion;
+	private Optional<String> objectIdentifier;
+
+	@Override
+	public GeneratedMetamodelBean getContainer() {
+		return container;
+	}
+
+	@Override
+	public MetamodelType<? extends MMDecimal> getMetamodel() {
+		return StandardMetamodel2013.metamodel().getTypeByClass(getClass());
+	}
+
+	public static MetamodelType<? extends MMDecimal> metaType() {
+		return StandardMetamodel2013.metamodel()
+				.getTypeByClass(MMDecimal.class);
+	}
+
+	/**
+	 * the lowest value in the allowed set of values
+	 */
+	public Optional<String> getMinInclusive() {
+		return minInclusive;
+	}
+
+	/**
+	 * the lowest but one value in the allowed set of values
+	 */
+	public Optional<String> getMinExclusive() {
+		return minExclusive;
+	}
+
+	/**
+	 * the highest value in the allowed set of values
+	 */
+	public Optional<String> getMaxInclusive() {
+		return maxInclusive;
+	}
+
+	/**
+	 * the highest but one value in the allowed set of values
+	 */
+	public Optional<String> getMaxExclusive() {
+		return maxExclusive;
+	}
+
+	/**
+	 * the maximum number of allowed digits in a Decimal number
+	 */
+	public Optional<Integer> getTotalDigits() {
+		return totalDigits;
+	}
+
+	/**
+	 * the fractional part of a Decimal number
+	 */
+	public Optional<Integer> getFractionDigits() {
+		return fractionDigits;
+	}
+
+	/**
+	 * A constraint on the value space of a datatype which is achieved by
+	 * constraining the lexical space to literals which match a specific
+	 * pattern.
+	 */
+	public Optional<String> getPattern() {
+		return pattern;
+	}
+
+	@Override
+	public MMDataDictionary getDataDictionary() {
+		return dataDictionary;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public Optional<String> getDefinition() {
+		return definition;
+	}
+
+	@Override
+	public List<MMSemanticMarkup> getSemanticMarkup() {
+		return semanticMarkup;
+	}
+
+	@Override
+	public List<MMDoclet> getDoclet() {
+		return doclet;
+	}
+
+	@Override
+	public List<String> getExample() {
+		return example;
+	}
+
+	@Override
+	public List<MMConstraint> getConstraint() {
+		return constraint;
+	}
+
+	@Override
+	public MMRegistrationStatus getRegistrationStatus() {
+		return registrationStatus;
+	}
+
+	@Override
+	public Optional<Date> getRemovalDate() {
+		return removalDate;
+	}
+
+	@Override
+	public List<MMModelEntity> getNextVersions() {
+		return nextVersions;
+	}
+
+	@Override
+	public Optional<MMModelEntity> getPreviousVersion() {
+		return previousVersion;
+	}
+
+	@Override
+	public Optional<String> getObjectIdentifier() {
+		return objectIdentifier;
+	}
+}

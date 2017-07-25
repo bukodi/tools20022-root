@@ -50,7 +50,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 
 	private final static String CLASS_NAME_PREFIX = "MM";
 
-	protected boolean generateStaticMetas = true;
+	protected boolean generateStaticStructs = true;
 
 	protected RawMetamodel metamodel;
 	protected String basePackageName;
@@ -61,7 +61,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 
 	protected String getBasePackageName() {
 		if (basePackageName == null) {
-			setBasePackageName("test.gen.mm");
+			setBasePackageName("com.tools20022.metamodel");
 		}
 		return basePackageName;
 	}
@@ -208,8 +208,8 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 		JavaClassSource src = createSourceFile(JavaClassSource.class, mmType);
 		setMMDoc(src, mmType);
 
-		if (generateStaticMetas) {
-			generateNestedMetaClass(srcMetamodelMain, src, mmType);
+		if (generateStaticStructs) {
+			generateStaticStructInterface(srcMetamodelMain, src, mmType);
 		}
 
 		{ // Implement getContainer();
@@ -263,39 +263,39 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 
 	};
 
-	<T extends JavaSource<?> & TypeHolderSource<? extends JavaSource<?>> & FieldHolderSource<? extends JavaSource<?>> & InterfaceCapableSource<? extends JavaSource<?>>> void generateNestedMetaClass(
-			JavaClassSource srcMetamodelMain, T src, MetamodelType mmType) {
+	<T extends JavaSource<?>> void generateStaticStructInterface(
+			JavaClassSource srcMetamodelMain, T mmTypeSrc, MetamodelType mmType) {
 		JavaName structJavaName = getStructJavaName(mmType);
-		JavaInterfaceSource nestedMetaType = createSourceFile(JavaInterfaceSource.class, structJavaName);
+		JavaInterfaceSource src = createSourceFile(JavaInterfaceSource.class, structJavaName);
 		for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
 			JavaName superStructName = getStructJavaName(superType);
-			nestedMetaType.addImport(superStructName.getFullName());
-			nestedMetaType.addInterface(superStructName.getSimpleName());
+			src.addImport(superStructName.getFullName());
+			src.addInterface(superStructName.getSimpleName());
 		}
-		nestedMetaType.addImport(src);
+		src.addImport(mmTypeSrc);
 
 		// Add declared attributes
 		for (MetamodelAttribute mmAttr : mmType.getDeclaredAttributes()) {
-			nestedMetaType.addImport(Metamodel.MetamodelAttribute.class);
-			String fieldtype = generateSourceType(mmAttr, nestedMetaType, false);
-			fieldtype = "<" + src.getName() + ", " + fieldtype + ">";
+			src.addImport(Metamodel.MetamodelAttribute.class);
+			String fieldtype = generateSourceType(mmAttr, src, false);
+			fieldtype = "<" + mmTypeSrc.getName() + ", " + fieldtype + ">";
 			fieldtype = Metamodel.MetamodelAttribute.class.getSimpleName() + fieldtype;
 
-			FieldSource<JavaInterfaceSource> metaField = nestedMetaType.addField()
+			FieldSource<JavaInterfaceSource> metaField = src.addField()
 					.setName(getJavaName(mmAttr).getSimpleName());
 			metaField.setType(fieldtype);
-			nestedMetaType.addImport(StaticMemembersBuilder.class.getName() + ".newAttribute").setStatic(true);
+			src.addImport(StaticMemembersBuilder.class.getName() + ".newAttribute").setStatic(true);
 			metaField.setLiteralInitializer("newAttribute()");
 			setMMDoc(metaField, mmAttr);
 		}
 
 		// Add declared constraints
 		for (MetamodelConstraint mmConstr : mmType.getDeclaredConstraints()) {
-			nestedMetaType.addImport(Metamodel.MetamodelConstraint.class);
-			FieldSource<JavaInterfaceSource> metaField = nestedMetaType.addField()
+			src.addImport(Metamodel.MetamodelConstraint.class);
+			FieldSource<JavaInterfaceSource> metaField = src.addField()
 					.setName(getJavaName(mmConstr).getSimpleName());
-			metaField.setType(Metamodel.MetamodelConstraint.class.getSimpleName() + "<" + src.getName() + ">");
-			nestedMetaType.addImport(StaticMemembersBuilder.class.getName() + ".newConstraint").setStatic(true);
+			metaField.setType(Metamodel.MetamodelConstraint.class.getSimpleName() + "<" + mmTypeSrc.getName() + ">");
+			src.addImport(StaticMemembersBuilder.class.getName() + ".newConstraint").setStatic(true);
 			setMMDoc(metaField, mmConstr);
 			// TODO: check class with name ConstraintExists
 			// src.addImport(RuntimeException.class);
@@ -345,8 +345,8 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 		JavaInterfaceSource src = createSourceFile(JavaInterfaceSource.class, mmType);
 		setMMDoc(src, mmType);
 
-		if (generateStaticMetas) {
-			generateNestedMetaClass(srcMetamodelMain, src, mmType);
+		if (generateStaticStructs) {
+			generateStaticStructInterface(srcMetamodelMain, src, mmType);
 		}
 
 		{

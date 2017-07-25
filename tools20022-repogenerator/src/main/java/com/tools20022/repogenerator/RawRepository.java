@@ -1,7 +1,6 @@
 package com.tools20022.repogenerator;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -11,8 +10,7 @@ import java.util.stream.Stream;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-
-import test.gen.mm.MMRepository;
+import com.tools20022.metamodel.MMRepository;
 
 public class RawRepository {
 

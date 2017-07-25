@@ -23,26 +23,25 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.ECoreIOHelper;
-
-import test.gen.mm.MMBusinessArea;
-import test.gen.mm.MMBusinessComponent;
-import test.gen.mm.MMBusinessProcessCatalogue;
-import test.gen.mm.MMChoiceComponent;
-import test.gen.mm.MMCodeSet;
-import test.gen.mm.MMConstraint;
-import test.gen.mm.MMDataDictionary;
-import test.gen.mm.MMDataType;
-import test.gen.mm.MMDoclet;
-import test.gen.mm.MMMessageComponent;
-import test.gen.mm.MMMessageDefinition;
-import test.gen.mm.MMMessageSet;
-import test.gen.mm.MMRepository;
-import test.gen.mm.MMRepositoryConcept;
-import test.gen.mm.MMSemanticMarkup;
-import test.gen.mm.MMSemanticMarkupElement;
-import test.gen.mm.MMTopLevelCatalogueEntry;
-import test.gen.mm.MMTopLevelDictionaryEntry;
-import test.gen.mm.StandardMetamodel2013;
+import com.tools20022.metamodel.MMBusinessArea;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.metamodel.MMBusinessProcessCatalogue;
+import com.tools20022.metamodel.MMChoiceComponent;
+import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstraint;
+import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMDataType;
+import com.tools20022.metamodel.MMDoclet;
+import com.tools20022.metamodel.MMMessageComponent;
+import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.MMSemanticMarkup;
+import com.tools20022.metamodel.MMSemanticMarkupElement;
+import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
+import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
+import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class TestGeneratedMetamodel {
 

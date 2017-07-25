@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import test.gen.mm.StandardMetamodel2013;
+import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class TestStandardMetamodel2013 {
 

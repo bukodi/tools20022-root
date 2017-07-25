@@ -7,9 +7,7 @@ import org.jboss.forge.roaster.model.source.MethodSource;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationResult;
-
-import test.gen.mm.MMRepository;
-import test.gen.mm.StandardMetamodel2013;
+import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class GenerateRepoGenerator {
 

@@ -9,14 +9,13 @@ import java.util.stream.Stream;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-
-import test.gen.mm.MMBusinessArea;
-import test.gen.mm.MMBusinessProcessCatalogue;
-import test.gen.mm.MMDataDictionary;
-import test.gen.mm.MMRepository;
-import test.gen.mm.struct.MMBusinessAttribute_;
-import test.gen.mm.struct.MMMessageAttribute_;
-import test.gen.mm.struct.MMMessageBuildingBlock_;
+import com.tools20022.metamodel.MMBusinessArea;
+import com.tools20022.metamodel.MMBusinessProcessCatalogue;
+import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.struct.MMBusinessAttribute_;
+import com.tools20022.metamodel.struct.MMMessageAttribute_;
+import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
 
 class CreateConsistentSubset implements Function<RawRepository, RawRepository> {
 

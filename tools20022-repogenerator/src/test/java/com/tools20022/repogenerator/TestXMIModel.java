@@ -13,15 +13,12 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.tools20022.generators.ECoreIOHelper;
-import com.tools20022.repogenerator.RawRepository;
-import com.tools20022.repogenerator.XMILoader;
-
-import test.gen.mm.MMBusinessArea;
-import test.gen.mm.MMBusinessAssociationEnd;
-import test.gen.mm.MMBusinessComponent;
-import test.gen.mm.MMConstraint;
-import test.gen.mm.MMMessageDefinition;
-import test.gen.mm.StandardMetamodel2013;
+import com.tools20022.metamodel.MMBusinessArea;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.metamodel.MMConstraint;
+import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class TestXMIModel {
 
