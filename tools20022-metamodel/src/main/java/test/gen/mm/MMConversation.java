@@ -1,9 +1,9 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +16,6 @@ public class MMConversation implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

@@ -24,7 +24,7 @@ public class TestMMCodeGen {
 		
 		
 		DefaultMetamodelGenerator mmGenerator = new DefaultMetamodelGenerator();
-//		mmGenerator.setFileManagerRoot(srcRoot);
+		mmGenerator.setFileManagerRoot(srcRoot);
 		mmGenerator.generate();
 		System.out.println("Done.");
 	}

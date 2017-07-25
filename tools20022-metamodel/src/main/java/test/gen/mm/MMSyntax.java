@@ -1,17 +1,13 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMEncoding;
-import java.util.List;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMMessageSet;
-import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import test.gen.mm.MMEncoding;
+import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
+import test.gen.mm.MMMessageSet;
 import java.util.Optional;
 
 /**
@@ -25,24 +21,6 @@ public class MMSyntax implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * the set of possible encodings for a given Syntax
-		 */
-		MetamodelAttribute<MMSyntax, List<MMEncoding>> possibleEncodings = newAttribute();
-		/**
-		 * the scheme in which a syntax is encoded
-		 */
-		MetamodelAttribute<MMSyntax, List<MMMessageSet>> generatedFor = newAttribute();
-		/**
-		 * the syntax that is valid for a MessageSet, based on the Encoding used
-		 * generatedFor-&gt; asBag()=possibleEncodings.messageSet
-		 */
-		MetamodelConstraint<MMSyntax> checkGeneratedForDerivation = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

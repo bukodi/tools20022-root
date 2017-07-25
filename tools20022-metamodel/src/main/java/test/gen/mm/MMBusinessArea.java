@@ -1,13 +1,11 @@
 package test.gen.mm;
 
-import test.gen.mm.MMTopLevelCatalogueEntry;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMMessageDefinition;
-import java.util.List;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMTopLevelCatalogueEntry;
+import test.gen.mm.MMMessageDefinition;
+import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
 import test.gen.mm.MMBusinessProcessCatalogue;
@@ -40,17 +38,6 @@ public class MMBusinessArea implements MMTopLevelCatalogueEntry {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMTopLevelCatalogueEntry.Members {
-		/**
-		 * The value of the BusinessArea code.
-		 */
-		MetamodelAttribute<MMBusinessArea, String> code = newAttribute();
-		/**
-		 * The MessageDefinition that belongs to the BusinessArea.
-		 */
-		MetamodelAttribute<MMBusinessArea, List<MMMessageDefinition>> messageDefinition = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

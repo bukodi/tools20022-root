@@ -1,12 +1,10 @@
 package test.gen.mm;
 
-import test.gen.mm.MMDataType;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMDataType;
+import java.util.Optional;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
 import java.util.List;
@@ -42,39 +40,6 @@ public class MMDecimal implements MMDataType {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMDataType.Members {
-		/**
-		 * the lowest value in the allowed set of values
-		 */
-		MetamodelAttribute<MMDecimal, Optional<String>> minInclusive = newAttribute();
-		/**
-		 * the lowest but one value in the allowed set of values
-		 */
-		MetamodelAttribute<MMDecimal, Optional<String>> minExclusive = newAttribute();
-		/**
-		 * the highest value in the allowed set of values
-		 */
-		MetamodelAttribute<MMDecimal, Optional<String>> maxInclusive = newAttribute();
-		/**
-		 * the highest but one value in the allowed set of values
-		 */
-		MetamodelAttribute<MMDecimal, Optional<String>> maxExclusive = newAttribute();
-		/**
-		 * the maximum number of allowed digits in a Decimal number
-		 */
-		MetamodelAttribute<MMDecimal, Optional<Integer>> totalDigits = newAttribute();
-		/**
-		 * the fractional part of a Decimal number
-		 */
-		MetamodelAttribute<MMDecimal, Optional<Integer>> fractionDigits = newAttribute();
-		/**
-		 * A constraint on the value space of a datatype which is achieved by
-		 * constraining the lexical space to literals which match a specific
-		 * pattern.
-		 */
-		MetamodelAttribute<MMDecimal, Optional<String>> pattern = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

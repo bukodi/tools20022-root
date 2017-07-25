@@ -1,11 +1,9 @@
 package test.gen.mm;
 
-import test.gen.mm.MMMessageElementContainer;
-import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMMessageElementContainer;
 import test.gen.mm.MMMessageElement;
 import java.util.List;
 import test.gen.mm.MMMessageBuildingBlock;
@@ -42,16 +40,6 @@ public class MMChoiceComponent implements MMMessageElementContainer {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMMessageElementContainer.Members {
-		/**
-		 * A MessageComponent or ChoiceComponent must have at least one
-		 * MessageElement messageElement-&gt;notEmpty( )
-		 */
-		MetamodelConstraint<MMChoiceComponent> checkAtLeastOneProperty = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

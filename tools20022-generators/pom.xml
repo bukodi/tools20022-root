@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>tools20022-generators</artifactId>
 	<packaging>jar</packaging>
-    <name>${project.groupId}:${project.artifactId}</name>
+	<name>${project.groupId}:${project.artifactId}</name>
 
 	<properties>
 		<eclipse.emf.version>2.12.0</eclipse.emf.version>

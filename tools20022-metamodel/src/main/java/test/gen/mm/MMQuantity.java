@@ -1,12 +1,10 @@
 package test.gen.mm;
 
-import test.gen.mm.MMDecimal;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMDecimal;
+import java.util.Optional;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
 import java.util.List;
@@ -42,13 +40,6 @@ public class MMQuantity extends MMDecimal {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMDecimal.Members {
-		/**
-		 * qualifies the value of a Quantity
-		 */
-		MetamodelAttribute<MMQuantity, Optional<String>> unitCode = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

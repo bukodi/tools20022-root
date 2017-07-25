@@ -1,12 +1,10 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import java.util.Optional;
 import java.util.List;
 
 /**
@@ -21,19 +19,6 @@ public class MMDoclet implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * The type of doclet. The definition of the doclet type is left open so
-		 * that new doclet types can be easily added without the need for a
-		 * change to the meta-model.
-		 */
-		MetamodelAttribute<MMDoclet, Optional<String>> type = newAttribute();
-		/**
-		 * The content for the documentation.
-		 */
-		MetamodelAttribute<MMDoclet, Optional<String>> content = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

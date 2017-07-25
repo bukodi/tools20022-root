@@ -1,17 +1,15 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMMessageTransportSystem;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMTransportMessage;
-import java.util.List;
-import test.gen.mm.MMAddress;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import test.gen.mm.MMMessageTransportSystem;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
+import test.gen.mm.MMTransportMessage;
+import java.util.List;
+import test.gen.mm.MMAddress;
 import java.util.Optional;
 
 /**
@@ -28,26 +26,6 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * the MessageTransportSystem that owns and uses this MessagingEndpoint
-		 */
-		MetamodelAttribute<MMMessagingEndpoint, MMMessageTransportSystem> transportSystem = newAttribute();
-		/**
-		 * the TransportMessage that is received by the receiving
-		 * MessagingEndpoint
-		 */
-		MetamodelAttribute<MMMessagingEndpoint, List<MMTransportMessage>> receivedMessage = newAttribute();
-		/**
-		 * the TransportMessage that is sent by the sending MessagingEndpoint
-		 */
-		MetamodelAttribute<MMMessagingEndpoint, List<MMTransportMessage>> sentMessage = newAttribute();
-		/**
-		 * an Address used to identify the MessagingEndpoint
-		 */
-		MetamodelAttribute<MMMessagingEndpoint, List<MMAddress>> location = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

@@ -1,13 +1,11 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMMessagingEndpoint;
-import java.util.List;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import test.gen.mm.MMMessagingEndpoint;
+import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
 import java.util.Optional;
@@ -24,13 +22,6 @@ public class MMMessageTransportSystem implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * a MessagingEndpoint owned by a single MessageTransportSystem
-		 */
-		MetamodelAttribute<MMMessageTransportSystem, List<MMMessagingEndpoint>> endpoint = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

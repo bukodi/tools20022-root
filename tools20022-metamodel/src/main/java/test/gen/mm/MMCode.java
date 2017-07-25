@@ -1,13 +1,11 @@
 package test.gen.mm;
 
-import test.gen.mm.MMRepositoryConcept;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMCodeSet;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMRepositoryConcept;
+import java.util.Optional;
+import test.gen.mm.MMCodeSet;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 import test.gen.mm.MMSemanticMarkup;
@@ -39,17 +37,6 @@ public class MMCode implements MMRepositoryConcept {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMRepositoryConcept.Members {
-		/**
-		 * Provides the full, non-abbreviated name of the Code
-		 */
-		MetamodelAttribute<MMCode, Optional<String>> codeName = newAttribute();
-		/**
-		 * Direct reference to the CodeSet owning this Code.
-		 */
-		MetamodelAttribute<MMCode, MMCodeSet> owner = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

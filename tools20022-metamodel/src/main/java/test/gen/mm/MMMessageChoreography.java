@@ -1,16 +1,14 @@
 package test.gen.mm;
 
-import test.gen.mm.MMTopLevelCatalogueEntry;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMBusinessTransaction;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMMessageDefinition;
-import java.util.List;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMTopLevelCatalogueEntry;
+import test.gen.mm.MMBusinessTransaction;
+import java.util.Optional;
 import com.tools20022.core.metamodel.Opposite;
+import test.gen.mm.MMMessageDefinition;
+import java.util.List;
 import test.gen.mm.MMBusinessProcessCatalogue;
 import test.gen.mm.MMSemanticMarkup;
 import test.gen.mm.MMDoclet;
@@ -42,18 +40,6 @@ public class MMMessageChoreography implements MMTopLevelCatalogueEntry {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMTopLevelCatalogueEntry.Members {
-		/**
-		 * the BusinessTransactionTrace from the MessageChoreography to the
-		 * BusinessTransaction
-		 */
-		MetamodelAttribute<MMMessageChoreography, Optional<MMBusinessTransaction>> businessTransactionTrace = newAttribute();
-		/**
-		 * The MessageDefinition that is used in a MessageChoreography.
-		 */
-		MetamodelAttribute<MMMessageChoreography, List<MMMessageDefinition>> messageDefinition = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

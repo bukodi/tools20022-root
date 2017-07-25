@@ -1,14 +1,12 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMSyntaxMessageScheme;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMTransportMessage;
-import java.util.List;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import test.gen.mm.MMSyntaxMessageScheme;
+import test.gen.mm.MMTransportMessage;
+import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.Optional;
 
@@ -24,17 +22,6 @@ public class MMMessageInstance implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * the SyntaxScheme instantiated by this MessageInstance
-		 */
-		MetamodelAttribute<MMMessageInstance, MMSyntaxMessageScheme> specification = newAttribute();
-		/**
-		 * the TransportMessage that contains the MessageInstance
-		 */
-		MetamodelAttribute<MMMessageInstance, List<MMTransportMessage>> transportMessage = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

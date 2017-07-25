@@ -1,23 +1,19 @@
 package test.gen.mm;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import test.gen.mm.StandardMetamodel2013;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import test.gen.mm.MMTopLevelCatalogueEntry;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import test.gen.mm.MMBusinessProcess;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+import com.tools20022.core.metamodel.Opposite;
 import test.gen.mm.MMParticipant;
 import java.util.List;
+import com.tools20022.core.metamodel.Containment;
 import test.gen.mm.MMMessageTransmission;
 import test.gen.mm.MMMessageTransportMode;
 import test.gen.mm.MMBusinessTransaction;
 import java.util.Optional;
 import test.gen.mm.MMMessageChoreography;
-import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import test.gen.mm.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.core.metamodel.Containment;
 import test.gen.mm.MMBusinessProcessCatalogue;
 import test.gen.mm.MMSemanticMarkup;
 import test.gen.mm.MMDoclet;
@@ -52,59 +48,6 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMTopLevelCatalogueEntry.Members {
-		/**
-		 * the BusinessProcessTrace that is used to trace the
-		 * BusinessTransaction
-		 */
-		MetamodelAttribute<MMBusinessTransaction, MMBusinessProcess> businessProcessTrace = newAttribute();
-		/**
-		 * the involvement of a BusinessRole in a BusinessTransaction
-		 */
-		MetamodelAttribute<MMBusinessTransaction, List<MMParticipant>> participant = newAttribute();
-		/**
-		 * he conveyance of information from a sending Participant in the
-		 * context of a BusinessTransaction
-		 */
-		MetamodelAttribute<MMBusinessTransaction, List<MMMessageTransmission>> transmission = newAttribute();
-		/**
-		 * Provides a set of characterstics for a MessageTransportMode to have
-		 * in the context of a single BusinessTransaction
-		 */
-		MetamodelAttribute<MMBusinessTransaction, MMMessageTransportMode> messageTransportMode = newAttribute();
-		/**
-		 * decomposition of a BusinessTransaction into a number of sub
-		 * transactions which are BusinessTransactions in their own right.
-		 */
-		MetamodelAttribute<MMBusinessTransaction, List<MMBusinessTransaction>> subTransaction = newAttribute();
-		/**
-		 * assembly of a number of BusinessTransactions that together form a
-		 * BusinessTransaction
-		 */
-		MetamodelAttribute<MMBusinessTransaction, Optional<MMBusinessTransaction>> parentTransaction = newAttribute();
-		/**
-		 * all of the BusinessTransactionTraces that derive
-		 * MessageChoreographies from one BusinessTransaction
-		 */
-		MetamodelAttribute<MMBusinessTransaction, List<MMMessageChoreography>> trace = newAttribute();
-		/**
-		 * All MessageTransmissions contained in this BusinessTransaction shall
-		 * have different names. transmission-&gt;forAll(msg1,msg2 | msg1
-		 * &lt;&gt; msg2 implies msg1.name &lt;&gt; msg2.name)
-		 */
-		MetamodelConstraint<MMBusinessTransaction> checkMessageTransmissionsHaveUniqueNames = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-		/**
-		 * All Participants of this BusinessTransaction shall have different
-		 * names. participant-&gt;forAll(p1,p2 | p1 &lt;&gt; p2 implies p1.name
-		 * &lt;&gt; p2.name)
-		 */
-		MetamodelConstraint<MMBusinessTransaction> checkParticipantsHaveUniqueNames = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

@@ -1,9 +1,9 @@
 package test.gen.mm;
 
-import test.gen.mm.MMIndustryMessageSet;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMIndustryMessageSet;
 import test.gen.mm.MMBusinessProcessCatalogue;
 import java.util.Optional;
 import test.gen.mm.MMSemanticMarkup;
@@ -33,9 +33,6 @@ public class MMISO15022MessageSet extends MMIndustryMessageSet {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMIndustryMessageSet.Members {
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

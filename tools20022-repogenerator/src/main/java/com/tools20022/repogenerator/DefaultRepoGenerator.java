@@ -42,6 +42,8 @@ import test.gen.mm.MMRepositoryConcept;
 import test.gen.mm.MMTopLevelCatalogueEntry;
 import test.gen.mm.MMTopLevelDictionaryEntry;
 import test.gen.mm.StandardMetamodel2013;
+import test.gen.mm.struct.MMBusinessAttribute_;
+import test.gen.mm.struct.MMMessageBuildingBlock_;
 
 public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBean> {
 
@@ -232,7 +234,7 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 				typeName = getJavaName(dt);
 			} else {
 				throw new RuntimeException("Constraint violated:"
-						+ MMMessageBuildingBlock.Members.checkMessageBuildingBlockHasExactlyOneType.getName());
+						+ MMMessageBuildingBlock_.checkMessageBuildingBlockHasExactlyOneType.getName());
 			}
 
 			gen.src.addImport(typeName.getFullName());
@@ -266,7 +268,7 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 				typeName = getJavaName(ct);
 			} else {
 				throw new RuntimeException(
-						"Constraint violated:" + MMBusinessAttribute.Members.checkBusinessAttributeHasExactlyOneType);
+						"Constraint violated:" + MMBusinessAttribute_.checkBusinessAttributeHasExactlyOneType);
 			}
 		} else if (elem instanceof MMBusinessAssociationEnd) {
 			MMBusinessAssociationEnd assoc = (MMBusinessAssociationEnd) elem;

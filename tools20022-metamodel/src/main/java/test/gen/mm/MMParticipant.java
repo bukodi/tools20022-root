@@ -1,19 +1,17 @@
 package test.gen.mm;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import test.gen.mm.StandardMetamodel2013;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import test.gen.mm.MMRepositoryConcept;
 import test.gen.mm.MMMultiplicityEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import test.gen.mm.MMBusinessTransaction;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.core.metamodel.Container;
 import test.gen.mm.MMReceive;
 import java.util.List;
 import test.gen.mm.MMSend;
 import test.gen.mm.MMBusinessRole;
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import test.gen.mm.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.core.metamodel.Container;
 import java.util.Optional;
 import test.gen.mm.MMSemanticMarkup;
 import test.gen.mm.MMDoclet;
@@ -45,29 +43,6 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	private Optional<String> objectIdentifier;
 	private Optional<Integer> maxOccurs;
 	private Optional<Integer> minOccurs;
-
-	public static interface Members
-			extends
-				MMRepositoryConcept.Members,
-				MMMultiplicityEntity.Members {
-		/**
-		 * the BusinessTransaction in which the Participant plays a role
-		 */
-		MetamodelAttribute<MMParticipant, MMBusinessTransaction> businessTransaction = newAttribute();
-		/**
-		 * The handling of a stimulus passed from a sending participant
-		 */
-		MetamodelAttribute<MMParticipant, List<MMReceive>> receives = newAttribute();
-		/**
-		 * The passing of information from a sending Participant to a receiving
-		 * Participant
-		 */
-		MetamodelAttribute<MMParticipant, List<MMSend>> sends = newAttribute();
-		/**
-		 * the BusinessRoleTrace that traces the Participant to its BusinessRole
-		 */
-		MetamodelAttribute<MMParticipant, MMBusinessRole> businessRoleTrace = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

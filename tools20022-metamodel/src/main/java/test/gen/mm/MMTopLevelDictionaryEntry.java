@@ -1,10 +1,8 @@
 package test.gen.mm;
 
-import test.gen.mm.MMRepositoryConcept;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMDataDictionary;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMRepositoryConcept;
+import test.gen.mm.MMDataDictionary;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 
@@ -13,14 +11,6 @@ import com.tools20022.core.metamodel.Container;
  * Repository
  */
 public interface MMTopLevelDictionaryEntry extends MMRepositoryConcept {
-
-	public static interface Members extends MMRepositoryConcept.Members {
-		/**
-		 * the DataDictionary that contains all ISO 20022
-		 * TopLevelDictionaryEntries
-		 */
-		MetamodelAttribute<MMTopLevelDictionaryEntry, MMDataDictionary> dataDictionary = newAttribute();
-	}
 
 	public static MetamodelType<MMTopLevelDictionaryEntry> metaType() {
 		return StandardMetamodel2013.metamodel().getTypeByClass(

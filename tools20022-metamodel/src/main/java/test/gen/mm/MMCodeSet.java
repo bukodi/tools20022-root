@@ -1,16 +1,14 @@
 package test.gen.mm;
 
-import test.gen.mm.MMString;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMCodeSet;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import java.util.List;
-import test.gen.mm.MMCode;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMString;
+import test.gen.mm.MMCodeSet;
+import java.util.Optional;
 import com.tools20022.core.metamodel.Opposite;
+import java.util.List;
+import test.gen.mm.MMCode;
 import com.tools20022.core.metamodel.Containment;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
@@ -46,26 +44,6 @@ public class MMCodeSet extends MMString {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMString.Members {
-		/**
-		 * The CodeSet that this CodesSet is derived from.
-		 */
-		MetamodelAttribute<MMCodeSet, Optional<MMCodeSet>> trace = newAttribute();
-		/**
-		 * The CodeSets which are derived from this CodeSet.
-		 */
-		MetamodelAttribute<MMCodeSet, List<MMCodeSet>> derivation = newAttribute();
-		/**
-		 * Uniquely identifies a set of Codes through a Uniform Resource
-		 * Identifier (URI).
-		 */
-		MetamodelAttribute<MMCodeSet, Optional<String>> identificationScheme = newAttribute();
-		/**
-		 * A set of Codes belonging to the same CodeSet
-		 */
-		MetamodelAttribute<MMCodeSet, List<MMCode>> code = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

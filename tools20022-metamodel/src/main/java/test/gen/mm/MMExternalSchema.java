@@ -1,13 +1,11 @@
 package test.gen.mm;
 
-import test.gen.mm.MMMessageComponentType;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.List;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMProcessContent;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMMessageComponentType;
+import java.util.List;
+import test.gen.mm.MMProcessContent;
 import test.gen.mm.MMMessageBuildingBlock;
 import test.gen.mm.MMBusinessComponent;
 import java.util.Optional;
@@ -43,19 +41,6 @@ public class MMExternalSchema implements MMMessageComponentType {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMMessageComponentType.Members {
-		/**
-		 * Identifies the description of the content model of an ExternalSchema,
-		 * through (a set of) URI.
-		 */
-		MetamodelAttribute<MMExternalSchema, List<String>> namespaceList = newAttribute();
-		/**
-		 * Specifies whether it is required for the content model of the
-		 * ExternalSchema to be validated.
-		 */
-		MetamodelAttribute<MMExternalSchema, MMProcessContent> processContent = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

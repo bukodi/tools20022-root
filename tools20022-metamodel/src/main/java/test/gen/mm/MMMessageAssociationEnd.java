@@ -1,12 +1,10 @@
 package test.gen.mm;
 
-import test.gen.mm.MMMessageElement;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMMessageComponentType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMMessageElement;
+import test.gen.mm.MMMessageComponentType;
 import test.gen.mm.MMBusinessComponent;
 import java.util.Optional;
 import test.gen.mm.MMBusinessElement;
@@ -50,18 +48,6 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 	private Optional<String> objectIdentifier;
 	private Optional<Integer> maxOccurs;
 	private Optional<Integer> minOccurs;
-
-	public static interface Members extends MMMessageElement.Members {
-		/**
-		 * Indicates if the message element is a composite.
-		 */
-		MetamodelAttribute<MMMessageAssociationEnd, Boolean> isComposite = newAttribute();
-		/**
-		 * The MessageComponentType which specifies the complex content model of
-		 * a MessageAssociationEnd.
-		 */
-		MetamodelAttribute<MMMessageAssociationEnd, MMMessageComponentType> type = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

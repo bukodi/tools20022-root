@@ -1,13 +1,11 @@
 package test.gen.mm;
 
-import test.gen.mm.MMTopLevelDictionaryEntry;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMMessageElementContainer;
-import java.util.List;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMTopLevelDictionaryEntry;
+import test.gen.mm.MMMessageElementContainer;
+import java.util.List;
 import test.gen.mm.MMDataDictionary;
 import java.util.Optional;
 import test.gen.mm.MMSemanticMarkup;
@@ -37,13 +35,6 @@ public class MMEndPointCategory implements MMTopLevelDictionaryEntry {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMTopLevelDictionaryEntry.Members {
-		/**
-		 * MessageComponents that are considered to be end points.
-		 */
-		MetamodelAttribute<MMEndPointCategory, List<MMMessageElementContainer>> endPoints = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

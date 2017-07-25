@@ -1,16 +1,12 @@
 package test.gen.mm;
 
-import test.gen.mm.MMBusinessElement;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMDataType;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMBusinessComponent;
-import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMBusinessElement;
+import test.gen.mm.MMDataType;
+import java.util.Optional;
+import test.gen.mm.MMBusinessComponent;
 import test.gen.mm.MMMessageElement;
 import java.util.List;
 import test.gen.mm.MMBusinessElementType;
@@ -49,36 +45,6 @@ public class MMBusinessAttribute implements MMBusinessElement {
 	private Optional<String> objectIdentifier;
 	private Optional<Integer> maxOccurs;
 	private Optional<Integer> minOccurs;
-
-	public static interface Members extends MMBusinessElement.Members {
-		/**
-		 * Expresses that the content model of a BusinessAttribute may be
-		 * specified by a type from the XSD type library or a derived datatype.
-		 */
-		MetamodelAttribute<MMBusinessAttribute, Optional<MMDataType>> simpleType = newAttribute();
-		/**
-		 * The BusinessComponent that describes the complex content model of the
-		 * BusinessAttrribute.
-		 */
-		MetamodelAttribute<MMBusinessAttribute, Optional<MMBusinessComponent>> complexType = newAttribute();
-		/**
-		 * A BusinessAttribute must have exactly one of the following:
-		 * simpleType and complexType. complexType-&gt;size() +
-		 * simpleType-&gt;size() = 1
-		 */
-		MetamodelConstraint<MMBusinessAttribute> checkBusinessAttributeHasExactlyOneType = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-		/**
-		 * Deriving Code Sets may only be used to type MessageAttributes.
-		 * Therefore, a BusinessAttribute may not be typed by a Deriving
-		 * CodeSet. simpleType.oclIsKindOf(CodeSet) implies
-		 * simpleType.oclAsType(CodeSet).trace-&gt;isEmpty()
-		 */
-		MetamodelConstraint<MMBusinessAttribute> checkNoDerivingCodeSetType = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

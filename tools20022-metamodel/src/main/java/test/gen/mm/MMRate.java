@@ -1,12 +1,10 @@
 package test.gen.mm;
 
-import test.gen.mm.MMDecimal;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import java.util.Optional;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMDecimal;
+import java.util.Optional;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
 import java.util.List;
@@ -44,17 +42,6 @@ public class MMRate extends MMDecimal {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMDecimal.Members {
-		/**
-		 * specifies the ratio between the base value and the actual value
-		 */
-		MetamodelAttribute<MMRate, Double> baseValue = newAttribute();
-		/**
-		 * specifies unit code required to qualify this rate
-		 */
-		MetamodelAttribute<MMRate, Optional<String>> baseUnitCode = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

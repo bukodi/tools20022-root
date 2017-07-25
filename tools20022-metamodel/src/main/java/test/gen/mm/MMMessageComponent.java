@@ -1,13 +1,11 @@
 package test.gen.mm;
 
-import test.gen.mm.MMMessageElementContainer;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMXor;
-import java.util.List;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMMessageElementContainer;
+import test.gen.mm.MMXor;
+import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
 import test.gen.mm.MMMessageElement;
@@ -46,13 +44,6 @@ public class MMMessageComponent implements MMMessageElementContainer {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMMessageElementContainer.Members {
-		/**
-		 * XORs applied to a selection of the elements of the Message Component.
-		 */
-		MetamodelAttribute<MMMessageComponent, List<MMXor>> xors = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

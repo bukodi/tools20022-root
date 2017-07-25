@@ -1,19 +1,17 @@
 package test.gen.mm;
 
-import test.gen.mm.MMRepositoryConcept;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMMessageElement;
-import java.util.List;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMMessageComponent;
-import java.util.Optional;
-import test.gen.mm.MMMessageBuildingBlock;
-import test.gen.mm.MMMessageDefinition;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMRepositoryConcept;
+import test.gen.mm.MMMessageElement;
+import java.util.List;
+import test.gen.mm.MMMessageComponent;
+import java.util.Optional;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
+import test.gen.mm.MMMessageBuildingBlock;
+import test.gen.mm.MMMessageDefinition;
 import test.gen.mm.MMSemanticMarkup;
 import test.gen.mm.MMDoclet;
 import test.gen.mm.MMConstraint;
@@ -43,25 +41,6 @@ public class MMXor implements MMRepositoryConcept {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMRepositoryConcept.Members {
-		/**
-		 * Message Elements impacted by the XOR.
-		 */
-		MetamodelAttribute<MMXor, List<MMMessageElement>> impactedElements = newAttribute();
-		/**
-		 * Message Component owning the XOR.
-		 */
-		MetamodelAttribute<MMXor, Optional<MMMessageComponent>> messageComponent = newAttribute();
-		/**
-		 * MessageBuildingBlocks impacted by the XOR.
-		 */
-		MetamodelAttribute<MMXor, List<MMMessageBuildingBlock>> impactedMessageBuildingBlocks = newAttribute();
-		/**
-		 * Message Definition owning the XOR.
-		 */
-		MetamodelAttribute<MMXor, Optional<MMMessageDefinition>> messageDefinition = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

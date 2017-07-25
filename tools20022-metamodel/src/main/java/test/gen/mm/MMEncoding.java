@@ -1,15 +1,13 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMMessageSet;
-import java.util.List;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMSyntax;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import test.gen.mm.MMMessageSet;
+import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
+import test.gen.mm.MMSyntax;
 import java.util.Optional;
 
 /**
@@ -23,17 +21,6 @@ public class MMEncoding implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * The MessageSets for which this Encoding is a valid ISO 20022 encoding
-		 */
-		MetamodelAttribute<MMEncoding, List<MMMessageSet>> messageSet = newAttribute();
-		/**
-		 * The source syntax on which an encoding applies
-		 */
-		MetamodelAttribute<MMEncoding, MMSyntax> syntax = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

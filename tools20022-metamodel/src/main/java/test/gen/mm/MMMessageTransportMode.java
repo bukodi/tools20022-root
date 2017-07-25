@@ -1,8 +1,9 @@
 package test.gen.mm;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import test.gen.mm.StandardMetamodel2013;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import test.gen.mm.MMTopLevelCatalogueEntry;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import test.gen.mm.MMDeliveryAssurance;
 import test.gen.mm.MMDurability;
 import test.gen.mm.MMMessageCasting;
@@ -14,9 +15,6 @@ import test.gen.mm.MMReceiverAsynchronicity;
 import test.gen.mm.MMSenderAsynchronicity;
 import test.gen.mm.MMBusinessTransaction;
 import java.util.List;
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import test.gen.mm.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
 import test.gen.mm.MMBusinessProcessCatalogue;
 import java.util.Optional;
@@ -61,92 +59,6 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMTopLevelCatalogueEntry.Members {
-		/**
-		 * the maximum duration of time within which a TransportMessage must be
-		 * delivered
-		 */
-		MetamodelAttribute<MMMessageTransportMode, String> boundedCommunicationDelay = newAttribute();
-		/**
-		 * clocks must maintain a maximum (inclusive) variance from UTC for the
-		 * supported MessageTransportMode
-		 */
-		MetamodelAttribute<MMMessageTransportMode, String> maximumClockVariation = newAttribute();
-		/**
-		 * the maximum size of a TransportMessage in kilobytes (any positive
-		 * integer greater than zero).
-		 */
-		MetamodelAttribute<MMMessageTransportMode, Integer> maximumMessageSize = newAttribute();
-		/**
-		 * the MessageDeliveryOrder is relaxed by a rolling window of time in
-		 * which the Transport Messages may be delivered out of order whereby
-		 * for each TransportMessage delivered it defines the maximum duration
-		 * of time it may be out of sequence within
-		 */
-		MetamodelAttribute<MMMessageTransportMode, String> messageDeliveryWindow = newAttribute();
-		/**
-		 * the Choreography is relaxed by a rolling window of time in which the
-		 * Business Messages may be sent out of order whereby for each Business
-		 * Message sent it defines the maximum duration of time it may be out of
-		 * sequence with
-		 */
-		MetamodelAttribute<MMMessageTransportMode, String> messageSendingWindow = newAttribute();
-		/**
-		 * the degree to which the sending MessagingEndpoint is assured that a
-		 * TransportMessage will be delivered
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMDeliveryAssurance> deliveryAssurance = newAttribute();
-		/**
-		 * whether the MessageTransportSystem safely retains a TransportMessage
-		 * until it has been received by the destination MessagingEndpoint
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMDurability> durability = newAttribute();
-		/**
-		 * specifies how receiving MessagingEndpoints may be addressed in a
-		 * TransportMessage
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMMessageCasting> messageCasting = newAttribute();
-		/**
-		 * indicates to what extent Transport Messages from a sending
-		 * MessagingEndpoint arrive in the order in which they were sent at the
-		 * receiving MessagingEndpoints
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMMessageDeliveryOrder> messageDeliveryOrder = newAttribute();
-		/**
-		 * the level of validation the MessageTransportSystem has tested the
-		 * message
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMMessageValidationLevel> messageValidationLevel = newAttribute();
-		/**
-		 * specifies whether the MessageTransportSystem validates the
-		 * MessageInstance with respect to SyntaxMessageScheme, Constraints, the
-		 * MarketPractices, and the MessageChoreography
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMMessageValidationOnOff> messageValidationOnOff = newAttribute();
-		/**
-		 * specifies how the MessageTransport System acts upon the results of
-		 * MessageValidationOnOff
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMMessageValidationResults> messageValidationResults = newAttribute();
-		/**
-		 * indicates whether a receiving MessagingEndpoint blocks the sending
-		 * and receipt of other Transport Messages until it sends a response to
-		 * this TransportMessage
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMReceiverAsynchronicity> receiverAsynchronicity = newAttribute();
-		/**
-		 * indicates whether a sending MessagingEndpoint blocks after sending a
-		 * TransportMessage to the MessageTransportSystem while waiting for a
-		 * response from a MessagingEndpoint
-		 */
-		MetamodelAttribute<MMMessageTransportMode, MMSenderAsynchronicity> senderAsynchronicity = newAttribute();
-		/**
-		 * specifies the BusinessTransaction for which a set of
-		 * MessageTransportMode characteristics apply
-		 */
-		MetamodelAttribute<MMMessageTransportMode, List<MMBusinessTransaction>> businessTransaction = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

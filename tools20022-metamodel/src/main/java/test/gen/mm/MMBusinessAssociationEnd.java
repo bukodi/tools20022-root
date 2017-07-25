@@ -1,17 +1,13 @@
 package test.gen.mm;
 
-import test.gen.mm.MMBusinessElement;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMBusinessAssociationEnd;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMAggregation;
-import test.gen.mm.MMBusinessComponent;
-import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMBusinessElement;
+import test.gen.mm.MMBusinessAssociationEnd;
+import java.util.Optional;
+import test.gen.mm.MMAggregation;
+import test.gen.mm.MMBusinessComponent;
 import com.tools20022.core.metamodel.Opposite;
 import test.gen.mm.MMMessageElement;
 import java.util.List;
@@ -52,42 +48,6 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 	private Optional<String> objectIdentifier;
 	private Optional<Integer> maxOccurs;
 	private Optional<Integer> minOccurs;
-
-	public static interface Members extends MMBusinessElement.Members {
-		/**
-		 * Opposite end of a bi-directional relationship between 2
-		 * BusinessComponents.
-		 */
-		MetamodelAttribute<MMBusinessAssociationEnd, Optional<MMBusinessAssociationEnd>> opposite = newAttribute();
-		/**
-		 * Expresses the strength of the semantic relationship between two
-		 * BusinessComponents.
-		 */
-		MetamodelAttribute<MMBusinessAssociationEnd, MMAggregation> aggregation = newAttribute();
-		/**
-		 * Specifies that a BusinessAssociationEnd always has a complex content
-		 * model and is therefore always typed by a BusinessComponent,
-		 * contrarily to a BusinessAttribute which may be typed by a data type.
-		 */
-		MetamodelAttribute<MMBusinessAssociationEnd, MMBusinessComponent> type = newAttribute();
-		/**
-		 * Two opposite association ends may not have composite or shared
-		 * aggregation at the same time not(aggregation &lt;&gt;
-		 * Aggregation::NONE and opposite.aggregation &lt;&gt;
-		 * Aggregation::NONE)
-		 */
-		MetamodelConstraint<MMBusinessAssociationEnd> checkAtMostOneAggregatedEnd = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-		/**
-		 * The context of this end must be the type of the opposite and
-		 * vice-versa opposite.elementContext = type and elementContext =
-		 * opposite.type
-		 */
-		MetamodelConstraint<MMBusinessAssociationEnd> checkContextConsistentWithType = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

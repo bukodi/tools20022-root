@@ -1,16 +1,12 @@
 package test.gen.mm;
 
-import test.gen.mm.MMMessageElement;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMDataType;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMMessageComponentType;
-import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMMessageElement;
+import test.gen.mm.MMDataType;
+import java.util.Optional;
+import test.gen.mm.MMMessageComponentType;
 import test.gen.mm.MMBusinessComponent;
 import test.gen.mm.MMBusinessElement;
 import test.gen.mm.MMMessageElementContainer;
@@ -53,26 +49,6 @@ public class MMMessageAttribute implements MMMessageElement {
 	private Optional<String> objectIdentifier;
 	private Optional<Integer> maxOccurs;
 	private Optional<Integer> minOccurs;
-
-	public static interface Members extends MMMessageElement.Members {
-		/**
-		 * the simple content model of a MessageAttribute when it is expressed
-		 * using a DataType
-		 */
-		MetamodelAttribute<MMMessageAttribute, Optional<MMDataType>> simpleType = newAttribute();
-		/**
-		 * the complex content model of a MessageAttribute when it is expressed
-		 * using a MessageComponentType
-		 */
-		MetamodelAttribute<MMMessageAttribute, Optional<MMMessageComponentType>> complexType = newAttribute();
-		/**
-		 * A MessageAttribute must have exactly one of the following: simpleType
-		 * and complexType complexType-&gt;size() + simpleType-&gt;size() = 1
-		 */
-		MetamodelConstraint<MMMessageAttribute> checkMessageAttributeHasExactlyOneType = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

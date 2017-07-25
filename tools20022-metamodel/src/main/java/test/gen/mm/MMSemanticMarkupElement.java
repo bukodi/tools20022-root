@@ -1,12 +1,10 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import java.util.Optional;
 import java.util.List;
 
 /**
@@ -22,17 +20,6 @@ public class MMSemanticMarkupElement implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * Name of the semantic mark-up element.
-		 */
-		MetamodelAttribute<MMSemanticMarkupElement, Optional<String>> name = newAttribute();
-		/**
-		 * Value of the semantic mark-up element.
-		 */
-		MetamodelAttribute<MMSemanticMarkupElement, Optional<String>> value = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

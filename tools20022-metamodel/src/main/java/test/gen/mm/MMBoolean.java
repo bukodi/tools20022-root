@@ -1,12 +1,10 @@
 package test.gen.mm;
 
-import test.gen.mm.MMDataType;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMDataType;
+import java.util.Optional;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
 import java.util.List;
@@ -36,15 +34,6 @@ public class MMBoolean implements MMDataType {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMDataType.Members {
-		/**
-		 * A constraint on the value space of a datatype which is achieved by
-		 * constraining the lexical space to literals which match a specific
-		 * pattern.
-		 */
-		MetamodelAttribute<MMBoolean, Optional<String>> pattern = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

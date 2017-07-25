@@ -1,9 +1,9 @@
 package test.gen.mm;
 
-import test.gen.mm.MMAbstractDateTimeConcept;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMAbstractDateTimeConcept;
 import java.util.Optional;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
@@ -38,9 +38,6 @@ public class MMDuration implements MMAbstractDateTimeConcept {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMAbstractDateTimeConcept.Members {
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

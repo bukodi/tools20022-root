@@ -1,14 +1,12 @@
 package test.gen.mm;
 
-import test.gen.mm.MMMessageComponentType;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMNamespace;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import java.util.Optional;
-import test.gen.mm.MMProcessContent;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMMessageComponentType;
+import test.gen.mm.MMNamespace;
+import java.util.Optional;
+import test.gen.mm.MMProcessContent;
 import test.gen.mm.MMMessageBuildingBlock;
 import java.util.List;
 import test.gen.mm.MMBusinessComponent;
@@ -45,24 +43,6 @@ public class MMUserDefined implements MMMessageComponentType {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMMessageComponentType.Members {
-		/**
-		 * The URN namespace of the referenced external structure definition.
-		 * The allowed values are: ##any, ##other or list. When equal to "list",
-		 * then the value of the property "namespaceList" must be filled.
-		 */
-		MetamodelAttribute<MMUserDefined, MMNamespace> namespace = newAttribute();
-		/**
-		 * A list of URN namespaces.
-		 */
-		MetamodelAttribute<MMUserDefined, Optional<String>> namespaceList = newAttribute();
-		/**
-		 * Indicates the kind of validation which must be performed on the
-		 * external structure.
-		 */
-		MetamodelAttribute<MMUserDefined, MMProcessContent> processContents = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

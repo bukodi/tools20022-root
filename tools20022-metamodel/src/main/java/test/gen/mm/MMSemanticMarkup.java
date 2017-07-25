@@ -1,14 +1,12 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMSemanticMarkupElement;
-import java.util.List;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import java.util.Optional;
+import test.gen.mm.MMSemanticMarkupElement;
+import java.util.List;
 import com.tools20022.core.metamodel.Containment;
 
 /**
@@ -23,17 +21,6 @@ public class MMSemanticMarkup implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * The type of semantic mark-up e.g. "synonym".
-		 */
-		MetamodelAttribute<MMSemanticMarkup, Optional<String>> type = newAttribute();
-		/**
-		 * The elements of semantic markup.
-		 */
-		MetamodelAttribute<MMSemanticMarkup, List<MMSemanticMarkupElement>> elements = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

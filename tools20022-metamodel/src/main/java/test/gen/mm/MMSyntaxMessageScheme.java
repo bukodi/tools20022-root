@@ -1,13 +1,11 @@
 package test.gen.mm;
 
-import test.gen.mm.MMTopLevelCatalogueEntry;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMMessageDefinition;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMTopLevelCatalogueEntry;
+import test.gen.mm.MMMessageDefinition;
+import java.util.Optional;
 import com.tools20022.core.metamodel.Opposite;
 import test.gen.mm.MMBusinessProcessCatalogue;
 import test.gen.mm.MMSemanticMarkup;
@@ -38,14 +36,6 @@ public class MMSyntaxMessageScheme implements MMTopLevelCatalogueEntry {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMTopLevelCatalogueEntry.Members {
-		/**
-		 * the MessageDefinitionTrace from the SyntaxMessageScheme to the
-		 * MessageDefinition
-		 */
-		MetamodelAttribute<MMSyntaxMessageScheme, Optional<MMMessageDefinition>> messageDefinitionTrace = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

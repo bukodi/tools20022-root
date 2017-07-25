@@ -1,15 +1,13 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMMessageTransmission;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMParticipant;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
+import test.gen.mm.MMMessageTransmission;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
+import test.gen.mm.MMParticipant;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,17 +22,6 @@ public class MMReceive implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * the stimulus handled as part of the Receive
-		 */
-		MetamodelAttribute<MMReceive, MMMessageTransmission> messageTransmission = newAttribute();
-		/**
-		 * the object handling a stimulus passed from the sender
-		 */
-		MetamodelAttribute<MMReceive, MMParticipant> receiver = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

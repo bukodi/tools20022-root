@@ -1,12 +1,10 @@
 package test.gen.mm;
 
-import test.gen.mm.MMDataType;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMDataType;
+import java.util.Optional;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
 import java.util.List;
@@ -39,27 +37,6 @@ public class MMBinary implements MMDataType {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMDataType.Members {
-		/**
-		 * the minimum number of units of characters
-		 */
-		MetamodelAttribute<MMBinary, Optional<Integer>> minLength = newAttribute();
-		/**
-		 * the maximum number of units of characters
-		 */
-		MetamodelAttribute<MMBinary, Optional<Integer>> maxLength = newAttribute();
-		/**
-		 * the number of units of characters
-		 */
-		MetamodelAttribute<MMBinary, Optional<Integer>> length = newAttribute();
-		/**
-		 * A constraint on the value space of a datatype which is achieved by
-		 * constraining the lexical space to literals which match a specific
-		 * pattern.
-		 */
-		MetamodelAttribute<MMBinary, Optional<String>> pattern = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

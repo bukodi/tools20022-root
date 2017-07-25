@@ -1,16 +1,12 @@
 package test.gen.mm;
 
-import test.gen.mm.MMMessageConstruct;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMDataType;
-import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMMessageComponentType;
-import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMMessageConstruct;
+import test.gen.mm.MMDataType;
+import java.util.Optional;
+import test.gen.mm.MMMessageComponentType;
 import com.tools20022.core.metamodel.Opposite;
 import test.gen.mm.MMLogicalType;
 import test.gen.mm.MMRepositoryType;
@@ -47,27 +43,6 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 	private Optional<String> objectIdentifier;
 	private Optional<Integer> maxOccurs;
 	private Optional<Integer> minOccurs;
-
-	public static interface Members extends MMMessageConstruct.Members {
-		/**
-		 * The simple content model of a MessageBuildingBlock when it is
-		 * expressed using a DataType
-		 */
-		MetamodelAttribute<MMMessageBuildingBlock, Optional<MMDataType>> simpleType = newAttribute();
-		/**
-		 * the complex content model of a MessageBuildingBlock when it is
-		 * expressed using a MessageComponentType
-		 */
-		MetamodelAttribute<MMMessageBuildingBlock, Optional<MMMessageComponentType>> complexType = newAttribute();
-		/**
-		 * A MessageBuildingBlock must have exactly one of the following:
-		 * simpleType or complexType. complexType-&gt;size() +
-		 * simpleType-&gt;size() = 1
-		 */
-		MetamodelConstraint<MMMessageBuildingBlock> checkMessageBuildingBlockHasExactlyOneType = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

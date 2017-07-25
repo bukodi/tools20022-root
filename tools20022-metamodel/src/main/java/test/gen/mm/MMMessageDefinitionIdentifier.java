@@ -1,11 +1,9 @@
 package test.gen.mm;
 
-import test.gen.mm.MMModelEntity;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMModelEntity;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,30 +22,6 @@ public class MMMessageDefinitionIdentifier implements MMModelEntity {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMModelEntity.Members {
-		/**
-		 * part of a MessageDefinitionIdentifier describing the BusinessArea to
-		 * which the MessageDefinition using this MessageDefinitionIdentifier
-		 * belongs
-		 */
-		MetamodelAttribute<MMMessageDefinitionIdentifier, String> businessArea = newAttribute();
-		/**
-		 * function and purpose for which a MessageInstance described by a
-		 * MessageDefinition can be used
-		 */
-		MetamodelAttribute<MMMessageDefinitionIdentifier, String> messageFunctionality = newAttribute();
-		/**
-		 * a variation of a messageFunctionality, whereby MessageDefinitions
-		 * that are based on this MessageDefinition are compliant to the
-		 * MessageDefinition from which this MessageDefinition is derived.
-		 */
-		MetamodelAttribute<MMMessageDefinitionIdentifier, String> flavour = newAttribute();
-		/**
-		 * identifies the version of the MessageDefinition
-		 */
-		MetamodelAttribute<MMMessageDefinitionIdentifier, String> version = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

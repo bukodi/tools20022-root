@@ -11,13 +11,12 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 
 import test.gen.mm.MMBusinessArea;
-import test.gen.mm.MMBusinessAttribute;
 import test.gen.mm.MMBusinessProcessCatalogue;
 import test.gen.mm.MMDataDictionary;
-import test.gen.mm.MMMessageAttribute;
-import test.gen.mm.MMMessageBuildingBlock;
-import test.gen.mm.MMMessageBuildingBlock.Members;
 import test.gen.mm.MMRepository;
+import test.gen.mm.struct.MMBusinessAttribute_;
+import test.gen.mm.struct.MMMessageAttribute_;
+import test.gen.mm.struct.MMMessageBuildingBlock_;
 
 class CreateConsistentSubset implements Function<RawRepository, RawRepository> {
 
@@ -29,9 +28,9 @@ class CreateConsistentSubset implements Function<RawRepository, RawRepository> {
 	Set<GeneratedMetamodelBean> markedForRetain = new HashSet<>();
 
 	Set<MetamodelAttribute<?, ?>> keepRefs = Stream
-			.of(MMMessageBuildingBlock.Members.simpleType, MMMessageBuildingBlock.Members.complexType,
-					MMMessageAttribute.Members.simpleType, MMMessageAttribute.Members.complexType, 
-					MMBusinessAttribute.Members.simpleType, MMBusinessAttribute.Members.complexType )
+			.of(MMMessageBuildingBlock_.simpleType, MMMessageBuildingBlock_.complexType,
+					MMMessageAttribute_.simpleType, MMMessageAttribute_.complexType, 
+					MMBusinessAttribute_.simpleType, MMBusinessAttribute_.complexType )
 			.collect(Collectors.toSet());
 
 	CreateConsistentSubset(RawRepository source) {

@@ -1,19 +1,17 @@
 package test.gen.mm;
 
-import test.gen.mm.MMRepositoryConcept;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMBusinessTransaction;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import test.gen.mm.MMMessageDefinition;
-import java.util.List;
-import test.gen.mm.MMSend;
-import test.gen.mm.MMReceive;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMRepositoryConcept;
+import test.gen.mm.MMBusinessTransaction;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
+import test.gen.mm.MMMessageDefinition;
+import java.util.List;
+import test.gen.mm.MMSend;
 import com.tools20022.core.metamodel.Containment;
+import test.gen.mm.MMReceive;
 import java.util.Optional;
 import test.gen.mm.MMSemanticMarkup;
 import test.gen.mm.MMDoclet;
@@ -45,32 +43,6 @@ public class MMMessageTransmission implements MMRepositoryConcept {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMRepositoryConcept.Members {
-		/**
-		 * the BusinessTransaction to which the MessageTransmission belongs
-		 */
-		MetamodelAttribute<MMMessageTransmission, MMBusinessTransaction> businessTransaction = newAttribute();
-		/**
-		 * all of the MessagetypeTraces that derive MessageDefinitions from one
-		 * MessageTransmission
-		 */
-		MetamodelAttribute<MMMessageTransmission, List<MMMessageDefinition>> derivation = newAttribute();
-		/**
-		 * Describes the purpose and scope of the MessageTransmission in the
-		 * BusinessTransaction
-		 */
-		MetamodelAttribute<MMMessageTransmission, String> messageTypeDescription = newAttribute();
-		/**
-		 * the passing of a MessagTransmission from a sender instance to a
-		 * receiver instance
-		 */
-		MetamodelAttribute<MMMessageTransmission, MMSend> send = newAttribute();
-		/**
-		 * the handling of a MessageTransmission passed from a sender instance
-		 */
-		MetamodelAttribute<MMMessageTransmission, List<MMReceive>> receive = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

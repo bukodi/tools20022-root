@@ -1,24 +1,20 @@
 package test.gen.mm;
 
-import test.gen.mm.MMTopLevelDictionaryEntry;
-import test.gen.mm.MMBusinessElementType;
-import test.gen.mm.MMBusinessConcept;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import test.gen.mm.MMBusinessComponent;
-import java.util.List;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import java.util.Optional;
-import test.gen.mm.MMBusinessElement;
-import test.gen.mm.MMMessageComponentType;
-import test.gen.mm.MMBusinessAssociationEnd;
-import test.gen.mm.MMMessageElement;
-import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMTopLevelDictionaryEntry;
+import test.gen.mm.MMBusinessElementType;
+import test.gen.mm.MMBusinessConcept;
+import test.gen.mm.MMBusinessComponent;
+import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
+import java.util.Optional;
+import test.gen.mm.MMBusinessElement;
 import com.tools20022.core.metamodel.Containment;
+import test.gen.mm.MMMessageComponentType;
+import test.gen.mm.MMBusinessAssociationEnd;
+import test.gen.mm.MMMessageElement;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
 import test.gen.mm.MMDoclet;
@@ -56,47 +52,6 @@ public class MMBusinessComponent
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members
-			extends
-				MMTopLevelDictionaryEntry.Members,
-				MMBusinessElementType.Members,
-				MMBusinessConcept.Members {
-		/**
-		 * The BusinessComponents that specialize this BusinessComponent.
-		 */
-		MetamodelAttribute<MMBusinessComponent, List<MMBusinessComponent>> subType = newAttribute();
-		/**
-		 * The BusinessComponent that is specialized by this BusinessComponent.
-		 */
-		MetamodelAttribute<MMBusinessComponent, Optional<MMBusinessComponent>> superType = newAttribute();
-		/**
-		 * A semantic property of a BusinessComponent.
-		 */
-		MetamodelAttribute<MMBusinessComponent, List<MMBusinessElement>> element = newAttribute();
-		/**
-		 * All of the MessageComponentTypes that derive from this
-		 * BusinessComponent.
-		 */
-		MetamodelAttribute<MMBusinessComponent, List<MMMessageComponentType>> derivationComponent = newAttribute();
-		/**
-		 * Describes the semantics that determine how the BusinessComponent may
-		 * participate in the BusinessAssociation.
-		 */
-		MetamodelAttribute<MMBusinessComponent, List<MMBusinessAssociationEnd>> associationDomain = newAttribute();
-		/**
-		 * All of the MessageElements that derive from this BusinessComponent.
-		 */
-		MetamodelAttribute<MMBusinessComponent, List<MMMessageElement>> derivationElement = newAttribute();
-		/**
-		 * All BusinessElements contained by this BusinessComponents have
-		 * different names element-&gt;forAll(el1,el2 : BusinessElement| el1
-		 * &lt;&gt; el2 implies el1.name &lt;&gt; el2.name)
-		 */
-		MetamodelConstraint<MMBusinessComponent> checkBusinessElementsHaveUniqueNames = newConstraint(b -> {
-			throw new RuntimeException("Not implemented!");
-		});
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

@@ -1,11 +1,9 @@
 package test.gen.mm;
 
-import test.gen.mm.MMBoolean;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import test.gen.mm.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import test.gen.mm.MMBoolean;
 import java.util.Optional;
 import test.gen.mm.MMDataDictionary;
 import test.gen.mm.MMSemanticMarkup;
@@ -38,17 +36,6 @@ public class MMIndicator extends MMBoolean {
 	private List<MMModelEntity> nextVersions;
 	private Optional<MMModelEntity> previousVersion;
 	private Optional<String> objectIdentifier;
-
-	public static interface Members extends MMBoolean.Members {
-		/**
-		 * Provides the semantic meaning when the Indicator is set to true.
-		 */
-		MetamodelAttribute<MMIndicator, String> meaningWhenTrue = newAttribute();
-		/**
-		 * Provides the semantic meaning when the Indicator is set to false.
-		 */
-		MetamodelAttribute<MMIndicator, String> meaningWhenFalse = newAttribute();
-	}
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

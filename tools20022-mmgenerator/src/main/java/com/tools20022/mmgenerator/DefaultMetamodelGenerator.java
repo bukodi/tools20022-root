@@ -58,35 +58,35 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 
 	public DefaultMetamodelGenerator() {
 	}
-	
+
 	protected String getBasePackageName() {
-		if( basePackageName == null ) {
+		if (basePackageName == null) {
 			setBasePackageName("test.gen.mm");
 		}
-		return basePackageName;		
+		return basePackageName;
 	}
-	
-	public void setBasePackageName( String basePackageName ) {
-		if( this.basePackageName != null )
+
+	public void setBasePackageName(String basePackageName) {
+		if (this.basePackageName != null)
 			throw new IllegalStateException("basePackageName already set");
 		this.basePackageName = basePackageName;
 	}
-		
+
 	protected String getMainClassSimpleName() {
-		if( mainClassSimpleName == null ) {
+		if (mainClassSimpleName == null) {
 			setMainClassSimpleName("StandardMetamodel2013");
 		}
-		return mainClassSimpleName;		
+		return mainClassSimpleName;
 	}
-	
+
 	public void setMainClassSimpleName(String mainClassSimpleName) {
-		if( this.mainClassSimpleName != null )
+		if (this.mainClassSimpleName != null)
 			throw new IllegalStateException("mainClassSimpleName already set");
 
 		this.mainClassSimpleName = mainClassSimpleName;
 	}
 
-	public void loadMetamodel(InputStream  ecoreFileContent) {
+	public void loadMetamodel(InputStream ecoreFileContent) {
 		if (this.metamodel != null)
 			throw new IllegalStateException("metamodel already set");
 
@@ -99,8 +99,8 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 	}
 
 	protected RawMetamodel getMetamodel() {
-		if( metamodel == null ) {
-			try(InputStream is = ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore")) {
+		if (metamodel == null) {
+			try (InputStream is = ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore")) {
 				loadMetamodel(is);
 			} catch (IOException ioe) {
 				throw new UncheckedIOException("Can't load ECore resource.", ioe);
@@ -108,10 +108,14 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 		}
 		return metamodel;
 	}
-	
 
 	private void addImport(Importer<? extends JavaSource<?>> src, MetamodelElement mmElem) {
 		src.addImport(getJavaName(mmElem).getFullName());
+	}
+
+	protected JavaName getStructJavaName(MetamodelType mmType) {
+		return JavaName.primaryType(getJavaName(mmType).getPackage() + ".struct",
+				getJavaName(mmType).getSimpleName() + "_");
 	}
 
 	protected JavaName getJavaName(MetamodelElement mmElem) {
@@ -147,8 +151,10 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 		// Add domain model classes and enums
 		getMetamodel().listEnums().forEachOrdered(e -> generateMMEnum(srcMetamodelMain, e));
 
-		getMetamodel().listTypes().filter(c -> !c.isAbstract()).forEachOrdered(t -> generateMMClass(srcMetamodelMain, t));
-		getMetamodel().listTypes().filter(c -> c.isAbstract()).forEachOrdered(t -> generateMMInterface(srcMetamodelMain, t));
+		getMetamodel().listTypes().filter(c -> !c.isAbstract())
+				.forEachOrdered(t -> generateMMClass(srcMetamodelMain, t));
+		getMetamodel().listTypes().filter(c -> c.isAbstract())
+				.forEachOrdered(t -> generateMMInterface(srcMetamodelMain, t));
 
 		{
 			// Add constructor
@@ -259,38 +265,37 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 
 	<T extends JavaSource<?> & TypeHolderSource<? extends JavaSource<?>> & FieldHolderSource<? extends JavaSource<?>> & InterfaceCapableSource<? extends JavaSource<?>>> void generateNestedMetaClass(
 			JavaClassSource srcMetamodelMain, T src, MetamodelType mmType) {
-		JavaInterfaceSource nestedMetaType;
-		{ // Add Members interface (This is a Roaster bug workaround.)
-			StringJoiner declaration = new StringJoiner(", ", "public static interface Members extends ", "{}");
-			for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
-				addImport(src, superType);
-				declaration.add(getJavaName(superType).getSimpleName() + ".Members");
-			}
-			nestedMetaType = src.addNestedType(declaration + "{}");
+		JavaName structJavaName = getStructJavaName(mmType);
+		JavaInterfaceSource nestedMetaType = createSourceFile(JavaInterfaceSource.class, structJavaName);
+		for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
+			JavaName superStructName = getStructJavaName(superType);
+			nestedMetaType.addImport(superStructName.getFullName());
+			nestedMetaType.addInterface(superStructName.getSimpleName());
 		}
+		nestedMetaType.addImport(src);
 
 		// Add declared attributes
 		for (MetamodelAttribute mmAttr : mmType.getDeclaredAttributes()) {
-			src.addImport(Metamodel.MetamodelAttribute.class);
-			String fieldtype = generateSourceType(mmAttr, src, false);
+			nestedMetaType.addImport(Metamodel.MetamodelAttribute.class);
+			String fieldtype = generateSourceType(mmAttr, nestedMetaType, false);
 			fieldtype = "<" + src.getName() + ", " + fieldtype + ">";
 			fieldtype = Metamodel.MetamodelAttribute.class.getSimpleName() + fieldtype;
 
 			FieldSource<JavaInterfaceSource> metaField = nestedMetaType.addField()
 					.setName(getJavaName(mmAttr).getSimpleName());
 			metaField.setType(fieldtype);
-			src.addImport(StaticMemembersBuilder.class.getName() + ".newAttribute").setStatic(true);
+			nestedMetaType.addImport(StaticMemembersBuilder.class.getName() + ".newAttribute").setStatic(true);
 			metaField.setLiteralInitializer("newAttribute()");
 			setMMDoc(metaField, mmAttr);
 		}
 
 		// Add declared constraints
 		for (MetamodelConstraint mmConstr : mmType.getDeclaredConstraints()) {
-			src.addImport(Metamodel.MetamodelConstraint.class);
+			nestedMetaType.addImport(Metamodel.MetamodelConstraint.class);
 			FieldSource<JavaInterfaceSource> metaField = nestedMetaType.addField()
 					.setName(getJavaName(mmConstr).getSimpleName());
 			metaField.setType(Metamodel.MetamodelConstraint.class.getSimpleName() + "<" + src.getName() + ">");
-			src.addImport(StaticMemembersBuilder.class.getName() + ".newConstraint").setStatic(true);
+			nestedMetaType.addImport(StaticMemembersBuilder.class.getName() + ".newConstraint").setStatic(true);
 			setMMDoc(metaField, mmConstr);
 			// TODO: check class with name ConstraintExists
 			// src.addImport(RuntimeException.class);
@@ -429,8 +434,8 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 			}
 		}
 	}
-	
-	private static String escapeJavaDocText( String originalDoc ) {
+
+	private static String escapeJavaDocText(String originalDoc) {
 		String javaDoc = originalDoc.replaceAll(">", "&gt;").replaceAll("<", "&lt;");
 		return javaDoc;
 	}
