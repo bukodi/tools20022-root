@@ -1,0 +1,6 @@
+package com.tools20022.repository.dict.choice;
+/**
+ * Choice of format for the processing position.
+ */
+public class ProcessingPosition18Choice {
+}

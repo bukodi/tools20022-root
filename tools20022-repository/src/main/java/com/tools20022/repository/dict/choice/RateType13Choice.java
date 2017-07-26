@@ -1,0 +1,13 @@
+package com.tools20022.repository.dict.choice;
+
+import com.tools20022.repository.dict.choice.RateType22Choice;
+import com.tools20022.core.repo.NextVersion;
+import com.tools20022.repository.dict.choice.RateType20Choice;
+
+/**
+ * Choice between a standard code or proprietary code to specify a rate type.
+ */
+@NextVersion(RateType22Choice.class)
+@NextVersion(RateType20Choice.class)
+public class RateType13Choice {
+}

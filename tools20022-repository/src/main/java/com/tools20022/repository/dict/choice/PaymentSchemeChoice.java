@@ -1,0 +1,9 @@
+package com.tools20022.repository.dict.choice;
+/**
+ * Pre-agreed offering between clearing agents, or the channel through which the
+ * payment instruction is to be processed. This payment scheme can point to a
+ * specific rulebook governing the rules of clearing and settlement between two
+ * parties.
+ */
+public class PaymentSchemeChoice {
+}

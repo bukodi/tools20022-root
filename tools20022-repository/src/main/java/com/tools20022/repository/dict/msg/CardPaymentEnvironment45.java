@@ -1,0 +1,14 @@
+package com.tools20022.repository.dict.msg;
+
+import com.tools20022.repository.dict.msg.CardPaymentEnvironment32;
+import com.tools20022.core.repo.PreviousVersion;
+import com.tools20022.repository.dict.msg.CardPaymentEnvironment57;
+import com.tools20022.core.repo.NextVersion;
+
+/**
+ * Environment of the transaction.
+ */
+@PreviousVersion(CardPaymentEnvironment32.class)
+@NextVersion(CardPaymentEnvironment57.class)
+public class CardPaymentEnvironment45 {
+}

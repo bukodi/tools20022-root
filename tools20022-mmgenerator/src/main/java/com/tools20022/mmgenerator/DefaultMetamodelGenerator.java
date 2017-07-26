@@ -436,7 +436,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 	}
 
 	private static String escapeJavaDocText(String originalDoc) {
-		String javaDoc = originalDoc.replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		String javaDoc = originalDoc.replaceAll("&", "	&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
 		return javaDoc;
 	}
 

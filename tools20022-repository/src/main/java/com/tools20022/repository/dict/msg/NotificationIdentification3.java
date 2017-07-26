@@ -1,0 +1,12 @@
+package com.tools20022.repository.dict.msg;
+
+import com.tools20022.repository.dict.msg.NotificationIdentification1;
+import com.tools20022.core.repo.PreviousVersion;
+
+/**
+ * Provides information about the identification and the creation date of a
+ * notification.
+ */
+@PreviousVersion(NotificationIdentification1.class)
+public class NotificationIdentification3 {
+}

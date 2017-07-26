@@ -1,7 +1,11 @@
 package com.tools20022.repogenerator;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestRepoCodeGen {
@@ -21,9 +25,13 @@ public class TestRepoCodeGen {
 	}
 
 	@Test
+	@Ignore
 	public void testGerateRepoClasses() throws Exception {
-		DefaultRepoGenerator ctx = new DefaultRepoGenerator();
-		ctx.generate();
+		Path srcRoot = Paths.get("../tools20022-repository/src/main/java");
+
+		DefaultRepoGenerator repoGenerator = new DefaultRepoGenerator();
+		repoGenerator.setFileManagerRoot(srcRoot);
+		repoGenerator.generate();
 	}
 
 }

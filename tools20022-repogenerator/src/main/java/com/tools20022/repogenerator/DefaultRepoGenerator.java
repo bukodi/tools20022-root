@@ -56,7 +56,7 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 
 	protected String getBasePackageName() {
 		if (basePackageName == null) {
-			setBasePackageName("test.gen.repo");
+			setBasePackageName("com.tools20022.repository");
 		}
 		return basePackageName;
 	}
@@ -172,7 +172,10 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 
 		/*** MMRepositoryConcept.Members.definition ***/
 		if (rc.getDefinition().isPresent()) {
-			gen.src.getJavaDoc().setText(rc.getDefinition().get());
+			String doc = rc.getDefinition().get();
+			// Replace <, >, &  chars
+			doc = doc.replaceAll("&", "	&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+			gen.src.getJavaDoc().setText(doc);
 		}
 	}
 

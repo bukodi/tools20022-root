@@ -1,0 +1,11 @@
+package com.tools20022.repository.dict.choice;
+
+import com.tools20022.repository.dict.choice.CorporateActionEventType8Choice;
+import com.tools20022.core.repo.NextVersion;
+
+/**
+ * Choice between formats to express the corporate event type.
+ */
+@NextVersion(CorporateActionEventType8Choice.class)
+public class CorporateActionEventType5Choice {
+}

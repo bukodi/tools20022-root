@@ -115,6 +115,7 @@ public class TestGeneratedMetamodel {
 	}
 
 	@Test
+	@Ignore
 	public void testConstraints() throws Exception {
 		int countMT15 = 0;
 		int countExpr = 0;

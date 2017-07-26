@@ -1,0 +1,14 @@
+package com.tools20022.repository.dict.msg;
+
+import com.tools20022.repository.dict.msg.MoneyMarketTransactionStatus1;
+import com.tools20022.core.repo.PreviousVersion;
+import com.tools20022.repository.dict.msg.InvoiceTaxReportTransactionStatus1;
+import com.tools20022.core.repo.NextVersion;
+
+/**
+ * Provides the details of each individual secured market transaction.
+ */
+@PreviousVersion(MoneyMarketTransactionStatus1.class)
+@NextVersion(InvoiceTaxReportTransactionStatus1.class)
+public class MoneyMarketTransactionStatus2 {
+}

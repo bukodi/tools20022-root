@@ -1,0 +1,11 @@
+package com.tools20022.repository.dict.msg;
+
+import com.tools20022.repository.dict.msg.DeniedReason5;
+import com.tools20022.core.repo.PreviousVersion;
+
+/**
+ * Specifies the reason why the request or instruction was denied.
+ */
+@PreviousVersion(DeniedReason5.class)
+public class DeniedReason10 {
+}
