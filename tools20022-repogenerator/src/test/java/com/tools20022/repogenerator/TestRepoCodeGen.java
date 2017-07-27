@@ -27,11 +27,13 @@ public class TestRepoCodeGen {
 	@Test
 	@Ignore
 	public void testGerateRepoClasses() throws Exception {
-		Path srcRoot = Paths.get("../tools20022-repository/src/main/java");
-
 		DefaultRepoGenerator repoGenerator = new DefaultRepoGenerator();
-		repoGenerator.setFileManagerRoot(srcRoot);
-		repoGenerator.generate();
+		start = System.currentTimeMillis();
+		RawRepository repo = repoGenerator.getRepository();
+		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
+		
+		
+//		repoGenerator.generate();
 	}
 
 }
