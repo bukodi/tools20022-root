@@ -67,7 +67,7 @@ public class ECoreIOHelper {
 
 	public static EObject loadXMIResource(String xmiResourceName) {
 		try(InputStream is = ECoreIOHelper.class.getResourceAsStream(xmiResourceName)) {
-			return loadECorePackage(is);
+			return loadXMIResource(is);
 		} catch (Exception e) {
 			throw new RuntimeException("Can't load XMI resource: " + xmiResourceName, e);
 		}

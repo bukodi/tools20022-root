@@ -13,7 +13,8 @@
 		<module>tools20022-mmgenerator</module>
 		<module>tools20022-repogenerator</module>
 		<module>tools20022-metamodel</module>
-		<module>tools20022-repository</module>
+		<!-- module>tools20022-repository</module -->
+		<module>tools20022-testrepo</module>
 	</modules>
 
 	<properties>

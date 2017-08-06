@@ -85,14 +85,22 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 		try {
 			final EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ecoreFileContent);
 			EObject rootEObj = ECoreIOHelper.loadXMIResource(xmiFileContent);
-			XMILoader loader = new XMILoader(metamodel);		
-			repo = loader.load( ecorePkg, rootEObj);
+			loadRepository(metamodel, ecorePkg, rootEObj);
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
 		}
 	}
 
-	protected RawRepository getRepository() {
+	public void loadRepository(Metamodel metamodel, EPackage ecorePkg, EObject rootEObj) {
+		try {
+			XMILoader loader = new XMILoader(metamodel);		
+			repo = loader.load( ecorePkg, rootEObj);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public RawRepository getRepository() {
 		if (repo == null) {			
 			InputStream ecoreFileContent = ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore");
 			InputStream xmiFileContent = ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022");
