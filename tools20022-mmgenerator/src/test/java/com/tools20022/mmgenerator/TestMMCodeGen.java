@@ -16,16 +16,18 @@ import java.util.zip.ZipOutputStream;
 
 import org.junit.Test;
 
+import com.tools20022.generators.GenerationContext;
+
 public class TestMMCodeGen {
 
 	@Test
 	public void testGerateMMClasses() throws Exception {
 		Path srcRoot = Paths.get("../tools20022-metamodel/src/main/java");
 		
-		
+		GenerationContext genCtx = new GenerationContext();
+		genCtx.setFileManagerRoot(srcRoot);
 		DefaultMetamodelGenerator mmGenerator = new DefaultMetamodelGenerator();
-		mmGenerator.setFileManagerRoot(srcRoot);
-		mmGenerator.generate();
+		genCtx.generate(mmGenerator);
 		System.out.println("Done.");
 	}
 

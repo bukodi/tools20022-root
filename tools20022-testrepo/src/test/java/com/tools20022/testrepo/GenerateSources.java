@@ -13,6 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.tools20022.generators.ECoreIOHelper;
+import com.tools20022.generators.GenerationContext;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.repogenerator.DefaultRepoGenerator;
 import com.tools20022.repogenerator.RawRepository;
@@ -40,8 +41,9 @@ public class GenerateSources {
 			throw new FileNotFoundException(srcRoot.toFile().getAbsolutePath().toString());
 		}
 
+		GenerationContext genCtx = new GenerationContext();
 		DefaultRepoGenerator repoGenerator = new DefaultRepoGenerator();
-		repoGenerator.setFileManagerRoot(srcRoot);
+		genCtx.setFileManagerRoot(srcRoot);
 
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
 		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/MandateInitiationRequestV05-with-BusinessConcepts.iso20022");
@@ -49,7 +51,7 @@ public class GenerateSources {
 		start = System.currentTimeMillis();
 		RawRepository repo = repoGenerator.getRepository();
 		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
-		repoGenerator.generate();
+		genCtx.generate( repoGenerator );
 		System.out.println("Generation time : " + (System.currentTimeMillis() - start) + " ms ");
 	}
 

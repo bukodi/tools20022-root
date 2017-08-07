@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -17,11 +18,12 @@ import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
-import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.ECoreIOHelper;
+import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.GenerationResult.JavaResult;
 import com.tools20022.generators.JavaName;
+import com.tools20022.generators.RoasterHelper;
 import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
@@ -44,14 +46,52 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.metamodel.struct.MMBusinessAttribute_;
 import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
 
-public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBean> {
+public class DefaultRepoGenerator implements Consumer<GenerationContext> {
 
 	boolean generateStaticMetas = true;
 	private RawRepository repo;
 	private String basePackageName;
 	private String mainClassSimpleName;
 
-	public DefaultRepoGenerator() {
+	protected GenerationContext ctx;
+
+	@Override
+	public void accept(GenerationContext ctx) {
+		this.ctx = ctx;
+
+		// Create repo skeleton
+		JavaResult<JavaClassSource> genRepoMain;
+		{
+			JavaName repoName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
+			JavaClassSource srcRepoMain = ctx.createSourceFile(JavaClassSource.class, repoName);
+			srcRepoMain.addImport(ReflectionBasedRepository.class);
+			srcRepoMain.setSuperType(ReflectionBasedRepository.class);
+			genRepoMain = GenerationResult.fromJavaSource(srcRepoMain);
+	
+			// Add constructor
+			srcRepoMain.addImport(StandardMetamodel2013.class);
+			srcRepoMain.addMethod().setConstructor(true).setPrivate()
+					.setBody("super( " + StandardMetamodel2013.class.getSimpleName() + ".metamodel());");
+		}
+	
+		MMRepository root = getRepository().getRootObject();
+		for (MMTopLevelDictionaryEntry de : root.getDataDictionary().getTopLevelDictionaryEntry()) {
+			if (de instanceof MMBusinessComponent) {
+				generateMMBusinessComponent(genRepoMain, (MMBusinessComponent) de);
+			} else {
+				JavaResult<JavaClassSource> gen = generateDefaultClass(de);
+				implementDefaultInterfaces(gen, de);
+			}
+		}
+		for (MMTopLevelCatalogueEntry ce : root.getBusinessProcessCatalogue().getTopLevelCatalogueEntry()) {
+			if (ce instanceof MMBusinessArea) {
+				generateMMBusinessArea(genRepoMain, (MMBusinessArea) ce);
+			} else {
+				JavaResult<JavaClassSource> gen = generateDefaultClass(ce);
+				implementDefaultInterfaces(gen, ce);
+			}
+		}
+	
 	}
 
 	protected String getBasePackageName() {
@@ -107,42 +147,6 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 			loadRepository(StandardMetamodel2013.metamodel(), ecoreFileContent, xmiFileContent);
 		}
 		return repo;
-	}
-
-	protected void generateMain() {
-		// Create repo skeleton
-		JavaResult<JavaClassSource> genRepoMain;
-		{
-			JavaName repoName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
-			JavaClassSource srcRepoMain = createSourceFile(JavaClassSource.class, repoName);
-			srcRepoMain.addImport(ReflectionBasedRepository.class);
-			srcRepoMain.setSuperType(ReflectionBasedRepository.class);
-			genRepoMain = GenerationResult.fromJavaSource(srcRepoMain);
-
-			// Add constructor
-			srcRepoMain.addImport(StandardMetamodel2013.class);
-			srcRepoMain.addMethod().setConstructor(true).setPrivate()
-					.setBody("super( " + StandardMetamodel2013.class.getSimpleName() + ".metamodel());");
-		}
-
-		MMRepository root = getRepository().getRootObject();
-		for (MMTopLevelDictionaryEntry de : root.getDataDictionary().getTopLevelDictionaryEntry()) {
-			if (de instanceof MMBusinessComponent) {
-				generateMMBusinessComponent(genRepoMain, (MMBusinessComponent) de);
-			} else {
-				JavaResult<JavaClassSource> gen = generateDefaultClass(de);
-				implementDefaultInterfaces(gen, de);
-			}
-		}
-		for (MMTopLevelCatalogueEntry ce : root.getBusinessProcessCatalogue().getTopLevelCatalogueEntry()) {
-			if (ce instanceof MMBusinessArea) {
-				generateMMBusinessArea(genRepoMain, (MMBusinessArea) ce);
-			} else {
-				JavaResult<JavaClassSource> gen = generateDefaultClass(ce);
-				implementDefaultInterfaces(gen, ce);
-			}
-		}
-
 	}
 
 	void implementDefaultInterfaces(JavaResult<JavaClassSource> gen, GeneratedMetamodelBean mmElem) {
@@ -305,7 +309,7 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 				doc = ((MMRepositoryConcept) mmElem).getDefinition();
 
 			JavaResult<JavaClassSource> gen = GenerationResult
-					.fromJavaSource(createSourceFile(JavaClassSource.class, mmElem));
+					.fromJavaSource(ctx.createSourceFile(JavaClassSource.class, getJavaName(mmElem)));
 			return gen;
 		} catch (Exception e) {
 			System.err.println("--- " + mmElem.toString() + " ---");
@@ -316,7 +320,6 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 		}
 	}
 
-	@Override
 	protected JavaName getJavaName(GeneratedMetamodelBean mmElem) {
 		String pkg;
 		String cuName;
@@ -372,7 +375,7 @@ public class DefaultRepoGenerator extends AbstractGenerator<GeneratedMetamodelBe
 				sb.append(ch);
 		}
 		cuName = sb.toString();
-		if (JAVA_RESERVED_WORDS.contains(cuName))
+		if (RoasterHelper.JAVA_RESERVED_WORDS.contains(cuName))
 			cuName = cuName + "_";
 
 		if (mmElem instanceof MMBusinessArea) {

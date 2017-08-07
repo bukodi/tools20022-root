@@ -1,6 +1,12 @@
 package com.tools20022.generators;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.jboss.forge.roaster.ParserException;
 import org.jboss.forge.roaster.Problem;
@@ -29,6 +35,28 @@ public class RoasterHelper {
 
 	// This is a static utility class, no instances allowed
 	private RoasterHelper() {
+	}
+
+	public final static Set<String> JAVA_RESERVED_WORDS = Collections.unmodifiableSet(new HashSet<>(
+	Arrays.asList("continue", "for", "new", "switch", "assert", "default", "goto", "package", "synchronized",
+			"boolean", "do", "if", "private", "this", "break", "double", "implements", "protected", "throw",
+			"byte", "else", "import", "public", "throws", "case", "enum", "instanceof", "return", "transient",
+			"catch", "extends", "int", "short", "try", "char", "final", "interface", "static", "void", "class",
+			"finally", "long", "strictfp", "volatile", "const", "float", "native", "super", "while")));
+
+	public final static Map<String, Class<?>> JAVA_PRIMITIVE_TYPE_WRAPPERS;
+	static {
+		HashMap<String, Class<?>> tmp = new HashMap<>();
+		tmp.put("boolean", Boolean.class);
+		tmp.put("byte", Byte.class);
+		tmp.put("char", Character.class);
+		tmp.put("double", Double.class);
+		tmp.put("float", Float.class);
+		tmp.put("int", Integer.class);
+		tmp.put("long", Long.class);
+		tmp.put("short", Short.class);
+		tmp.put("void", Void.class);
+		JAVA_PRIMITIVE_TYPE_WRAPPERS = Collections.unmodifiableMap(tmp);
 	}
 
 	public static void setStaticInitializer(JavaClassSource javaSrc, final String bodyTxt) {

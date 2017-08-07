@@ -6,6 +6,7 @@ import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,10 +14,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.AnnotationTargetSource;
 import org.jboss.forge.roaster.model.source.EnumConstantSource;
-import org.jboss.forge.roaster.model.source.FieldHolderSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.Importer;
-import org.jboss.forge.roaster.model.source.InterfaceCapableSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
 import org.jboss.forge.roaster.model.source.JavaDocSource;
@@ -26,7 +25,6 @@ import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 import org.jboss.forge.roaster.model.source.PropertyHolderSource;
 import org.jboss.forge.roaster.model.source.PropertySource;
-import org.jboss.forge.roaster.model.source.TypeHolderSource;
 
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
@@ -36,9 +34,10 @@ import com.tools20022.core.metamodel.MetamodelDocImpl;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.core.metamodel.StaticMemembersBuilder;
-import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.ECoreIOHelper;
+import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.JavaName;
+import com.tools20022.generators.RoasterHelper;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelAttribute;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelConstraint;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelElement;
@@ -46,17 +45,67 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnum;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
-public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.MetamodelElement> {
+public class DefaultMetamodelGenerator implements Consumer<GenerationContext>  {
 
 	private final static String CLASS_NAME_PREFIX = "MM";
 
 	protected boolean generateStaticStructs = true;
-
+	
 	protected RawMetamodel metamodel;
 	protected String basePackageName;
 	protected String mainClassSimpleName;
 
-	public DefaultMetamodelGenerator() {
+	protected GenerationContext ctx;
+
+	@Override
+	public void accept(GenerationContext ctx) {
+		this.ctx = ctx;
+		// Create metamodel model skeleton
+		JavaName mmName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
+		JavaClassSource srcMetamodelMain = ctx.createSourceFile(JavaClassSource.class, mmName);
+		srcMetamodelMain.addImport(ReflectionBasedMetamodel.class);
+		srcMetamodelMain.setSuperType(ReflectionBasedMetamodel.class);
+	
+		// Add domain model classes and enums
+		getMetamodel().listEnums().forEachOrdered(e -> generateMMEnum(srcMetamodelMain, e));
+	
+		getMetamodel().listTypes().filter(c -> !c.isAbstract())
+				.forEachOrdered(t -> generateMMClass(srcMetamodelMain, t));
+		getMetamodel().listTypes().filter(c -> c.isAbstract())
+				.forEachOrdered(t -> generateMMInterface(srcMetamodelMain, t));
+	
+		{
+			// Add constructor
+			StringJoiner sjEnums = new StringJoiner(",\n", "registerEnumsFromClasses( \n", ");\n");
+			getMetamodel().listEnums().forEachOrdered(mmEnum -> {
+				addImport(srcMetamodelMain, mmEnum);
+				sjEnums.add(getJavaName(mmEnum).getSimpleName() + ".class");
+			});
+	
+			StringJoiner sjTypes = new StringJoiner(",\n", "registerTypesFromClasses( \n", ");\n");
+			getMetamodel().listTypes().forEachOrdered(mmType -> {
+				addImport(srcMetamodelMain, mmType);
+				sjTypes.add(getJavaName(mmType).getSimpleName() + ".class");
+			});
+	
+			MethodSource<JavaClassSource> constructor = srcMetamodelMain.addMethod().setConstructor(true).setPrivate();
+			constructor.setBody(sjEnums.toString() + "\n" + sjTypes.toString());
+		}
+	
+		{
+			// Add static metamodel field;
+			FieldSource<JavaClassSource> fieldMetamodel = srcMetamodelMain.addField().setName("metamodel");
+			fieldMetamodel.setPrivate().setStatic(true).setFinal(true).setType(srcMetamodelMain);
+			fieldMetamodel.setLiteralInitializer("new " + srcMetamodelMain.getName() + "()");
+		}
+	
+		{
+			// Create static metaType()
+			MethodSource<JavaClassSource> method = srcMetamodelMain.addMethod();
+			method.setName("metamodel").setPublic().setStatic(true);
+			method.setReturnType(srcMetamodelMain.getName());
+			method.setBody("return metamodel;");
+		}
 	}
 
 	protected String getBasePackageName() {
@@ -135,63 +184,14 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 			throw new RuntimeException("Invalid type hierarchy:" + mmElem);
 		}
 
-		if (JAVA_RESERVED_WORDS.contains(memberName))
+		if (RoasterHelper.JAVA_RESERVED_WORDS.contains(memberName))
 			memberName = memberName + "_";
 		return JavaName.member(parentName, memberName);
 
 	}
-
-	protected void generateMain() {
-		// Create metamodel model skeleton
-		JavaName mmName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
-		JavaClassSource srcMetamodelMain = createSourceFile(JavaClassSource.class, mmName);
-		srcMetamodelMain.addImport(ReflectionBasedMetamodel.class);
-		srcMetamodelMain.setSuperType(ReflectionBasedMetamodel.class);
-
-		// Add domain model classes and enums
-		getMetamodel().listEnums().forEachOrdered(e -> generateMMEnum(srcMetamodelMain, e));
-
-		getMetamodel().listTypes().filter(c -> !c.isAbstract())
-				.forEachOrdered(t -> generateMMClass(srcMetamodelMain, t));
-		getMetamodel().listTypes().filter(c -> c.isAbstract())
-				.forEachOrdered(t -> generateMMInterface(srcMetamodelMain, t));
-
-		{
-			// Add constructor
-			StringJoiner sjEnums = new StringJoiner(",\n", "registerEnumsFromClasses( \n", ");\n");
-			getMetamodel().listEnums().forEachOrdered(mmEnum -> {
-				addImport(srcMetamodelMain, mmEnum);
-				sjEnums.add(getJavaName(mmEnum).getSimpleName() + ".class");
-			});
-
-			StringJoiner sjTypes = new StringJoiner(",\n", "registerTypesFromClasses( \n", ");\n");
-			getMetamodel().listTypes().forEachOrdered(mmType -> {
-				addImport(srcMetamodelMain, mmType);
-				sjTypes.add(getJavaName(mmType).getSimpleName() + ".class");
-			});
-
-			MethodSource<JavaClassSource> constructor = srcMetamodelMain.addMethod().setConstructor(true).setPrivate();
-			constructor.setBody(sjEnums.toString() + "\n" + sjTypes.toString());
-		}
-
-		{
-			// Add static metamodel field;
-			FieldSource<JavaClassSource> fieldMetamodel = srcMetamodelMain.addField().setName("metamodel");
-			fieldMetamodel.setPrivate().setStatic(true).setFinal(true).setType(srcMetamodelMain);
-			fieldMetamodel.setLiteralInitializer("new " + srcMetamodelMain.getName() + "()");
-		}
-
-		{
-			// Create static metaType()
-			MethodSource<JavaClassSource> method = srcMetamodelMain.addMethod();
-			method.setName("metamodel").setPublic().setStatic(true);
-			method.setReturnType(srcMetamodelMain.getName());
-			method.setBody("return metamodel;");
-		}
-	};
-
+	
 	void generateMMEnum(JavaClassSource srcMetamodelMain, MetamodelEnum mmEnum) {
-		JavaEnumSource src = createSourceFile(JavaEnumSource.class, mmEnum);
+		JavaEnumSource src = ctx.createSourceFile(JavaEnumSource.class, getJavaName(mmEnum));
 		setMMDoc(src, mmEnum);
 
 		mmEnum.listEnumLiterals().forEachOrdered(l -> generateMMEnumLiteral(src, l));
@@ -205,7 +205,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 	};
 
 	void generateMMClass(JavaClassSource srcMetamodelMain, MetamodelType mmType) {
-		JavaClassSource src = createSourceFile(JavaClassSource.class, mmType);
+		JavaClassSource src = ctx.createSourceFile(JavaClassSource.class, getJavaName(mmType));
 		setMMDoc(src, mmType);
 
 		if (generateStaticStructs) {
@@ -266,7 +266,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 	<T extends JavaSource<?>> void generateStaticStructInterface(
 			JavaClassSource srcMetamodelMain, T mmTypeSrc, MetamodelType mmType) {
 		JavaName structJavaName = getStructJavaName(mmType);
-		JavaInterfaceSource src = createSourceFile(JavaInterfaceSource.class, structJavaName);
+		JavaInterfaceSource src = ctx.createSourceFile(JavaInterfaceSource.class, structJavaName);
 		for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
 			JavaName superStructName = getStructJavaName(superType);
 			src.addImport(superStructName.getFullName());
@@ -342,7 +342,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 	}
 
 	void generateMMInterface(JavaClassSource srcMetamodelMain, MetamodelType mmType) {
-		JavaInterfaceSource src = createSourceFile(JavaInterfaceSource.class, mmType);
+		JavaInterfaceSource src = ctx.createSourceFile(JavaInterfaceSource.class, getJavaName(mmType));
 		setMMDoc(src, mmType);
 
 		if (generateStaticStructs) {
@@ -402,7 +402,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 
 			if (mmAttr.getValueJavaClass().isPrimitive()
 					&& (!allowPrimitiveTypes || mmAttr.isMultiple() || mmAttr.isOptional())) {
-				Class<?> wrapper = JAVA_PRIMITIVE_TYPE_WRAPPERS.get(mmAttr.getValueJavaClass().getSimpleName());
+				Class<?> wrapper = RoasterHelper.JAVA_PRIMITIVE_TYPE_WRAPPERS.get(mmAttr.getValueJavaClass().getSimpleName());
 				simplifiedTypeName = wrapper.getSimpleName();
 			} else {
 				simplifiedTypeName = mmAttr.getValueJavaClass().getSimpleName();
@@ -439,5 +439,6 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel.Me
 		String javaDoc = originalDoc.replaceAll("&", "	&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
 		return javaDoc;
 	}
+
 
 }
