@@ -43,7 +43,7 @@ import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.StandardMetamodel2013;
 
-public class TestGeneratedMetamodel {
+public class InspectGeneratedMetamodel {
 
 	final static RawRepository repo;
 
@@ -62,6 +62,13 @@ public class TestGeneratedMetamodel {
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		System.out.println("Model load: " + (System.currentTimeMillis() - start) + " ms, "
 				+ ((usedMem2 - usedMem) / (1024 * 1024)) + " MB");
+	}
+	
+	@Test
+	public void testContaining() {
+		//MMBusinessComponent.metaType().
+		
+		//StandardMetamodel2013.metamodel().
 	}
 
 	@Test
@@ -301,8 +308,7 @@ public class TestGeneratedMetamodel {
 	}
 
 	@Test
-	public void testContainmentHierarchy() throws Exception {
-
+	public void countMMTypes() throws Exception {
 		System.out.println(
 				"Abstract types: " + StandardMetamodel2013.metamodel().listTypes().filter(t -> t.isAbstract()).count());
 		System.out.println("Non abstract types: "
@@ -329,12 +335,17 @@ public class TestGeneratedMetamodel {
 		System.out.println("Number of MMSemanticMarkupElement objects : "
 				+ repo.getCountByType(MMSemanticMarkupElement.metaType()));
 		System.out.println();
-		System.out.println("-----Containment hiearchy (4 types skiped) -----");
-		System.out.println("   (*: instance of RepositoryConcept )");
-		printSubContainment2(MMRepository.metaType(), Collections.emptyList(), "  ", "");
+		
 	}
 
-	private final static void printSubContainment2(MetamodelType<?> container, List<MetamodelAttribute<?, ?>> refPath,
+	@Test
+	public void testContainmentHierarchy() throws Exception {
+		System.out.println("-----Containment hiearchy (4 types skiped) -----");
+		System.out.println("   (*: instance of RepositoryConcept )");
+		printContainmentTree(MMRepository.metaType(), Collections.emptyList(), "  ", "");
+	}
+
+	private final static void printContainmentTree(MetamodelType<?> container, List<MetamodelAttribute<?, ?>> refPath,
 			String tab, String prefix) {
 		List<MetamodelType<?>> ignoreTypes = new ArrayList<>();
 		ignoreTypes.add(MMConstraint.metaType());
@@ -388,7 +399,7 @@ public class TestGeneratedMetamodel {
 							.forEachOrdered(subType -> {
 								List<MetamodelAttribute<?, ?>> nextpath = new ArrayList<>(refPath);
 								nextpath.add(mmAttr);
-								printSubContainment2(subType, nextpath, tab + "  ", "(" + mmAttr.getName() + ") ");
+								printContainmentTree(subType, nextpath, tab + "  ", "(" + mmAttr.getName() + ") ");
 							});
 				});
 	}

@@ -55,12 +55,13 @@ public class DefaultRepoGenerator implements Consumer<GenerationContext> {
 
 	protected GenerationContext ctx;
 
+	JavaResult<JavaClassSource> genRepoMain;
+
 	@Override
 	public void accept(GenerationContext ctx) {
 		this.ctx = ctx;
 
 		// Create repo skeleton
-		JavaResult<JavaClassSource> genRepoMain;
 		{
 			JavaName repoName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
 			JavaClassSource srcRepoMain = ctx.createSourceFile(JavaClassSource.class, repoName);

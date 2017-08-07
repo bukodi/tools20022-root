@@ -30,7 +30,7 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnum;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
-public class TestMetamodel {
+public class InspectECoreMetamodel {
 	
 	private static EPackage metamodelPkg;
 	

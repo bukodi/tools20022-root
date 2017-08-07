@@ -52,13 +52,17 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		return ret;
 	}
 
-	@Override
-	public <B extends GeneratedMetamodelBean> MMTypeImpl<B> getTypeByClass(Class<B> beanClass) {
+	private <B extends GeneratedMetamodelBean> MMTypeImpl<B> getTypeImplByClass(Class<B> beanClass) {
 		@SuppressWarnings("unchecked")
 		MMTypeImpl<B> ret = (MMTypeImpl<B>) mmTypesByClass.get(beanClass);
 		if (ret == null)
 			throw new NoSuchElementException("No metatype for class " + beanClass);
-		return ret;
+		return ret;		
+	}
+
+	@Override
+	public <B extends GeneratedMetamodelBean> MetamodelType<B> getTypeByClass(Class<B> beanClass) {
+		return getTypeImplByClass(beanClass);
 	}
 
 	@Override
@@ -100,7 +104,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				for( MMAttributeImpl<?,?> mmAttr : mmType.attrsByName.values() ) {
 					Opposite annotOp = mmAttr.getterMethod.getAnnotation(Opposite.class);
 					if( annotOp != null ) {
-						MMTypeImpl<? extends GeneratedMetamodelBean> opType = getTypeByClass(annotOp.bean());
+						MMTypeImpl<? extends GeneratedMetamodelBean> opType = getTypeImplByClass(annotOp.bean());
 						MMAttributeImpl<?, ?> opAttr = opType.attrsByName.get(annotOp.attribute());
 						mmAttr.setOpposite((MMAttributeImpl<?, ?>) opAttr);						
 					}
@@ -198,7 +202,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 
 			filteredClasses.forEachOrdered(superBean -> {
 				@SuppressWarnings("unchecked")
-				MMTypeImpl<? super B> superMMType = getTypeByClass((Class<B>) superBean);
+				MMTypeImpl<? super B> superMMType = getTypeImplByClass((Class<B>) superBean);
 				directSuperTypes.add(superMMType);
 				superMMType.directSubTypes.add(this);
 			});
@@ -390,7 +394,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				Class<? extends GeneratedMetamodelBean> refClass = (Class<? extends GeneratedMetamodelBean>) pt.baseClass;
 				enumType = null;
 				valueJavaClass = null;
-				referncedType = getTypeByClass(refClass);
+				referncedType = getTypeImplByClass(refClass);
 			} else {
 				enumType = null;
 				valueJavaClass = pt.baseClass;
