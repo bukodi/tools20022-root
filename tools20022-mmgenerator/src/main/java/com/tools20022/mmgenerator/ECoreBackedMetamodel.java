@@ -2,11 +2,15 @@ package com.tools20022.mmgenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
@@ -33,14 +37,31 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 
 	private final EPackage rootPkg;
 
+	/**
+	 * key: EClass represents the super type
+	 * value: list of types which direct superType is the EClass in the key    
+	 */
 	private final Map<EClass, List<EClass>> subTypesCache;
+
+	/**
+	 * This is an inversion of the {@link EReference#getEReferenceType()} 
+	 * Contains all EClasses even it hasn't any incoming reference.
+	 * 
+	 * key: destination of the EReference
+	 * value: list of EReferences which eType is the EClass in the key or its super type (recursively). 
+	 */
+	private final Map<EClass, Set<EReference>> incominRefsCache;
 
 	public ECoreBackedMetamodel(EPackage rootPkg) {
 		this.rootPkg = rootPkg;
 		subTypesCache = builSubTypesCache(rootPkg);
+		incominRefsCache = buildIncominRefsCache(rootPkg);
 		validateAddtitionalConstraints();
 	}
 
+	/**
+	 * Builds {@link #subTypesCache}
+	 */
 	private final static Map<EClass, List<EClass>> builSubTypesCache(EPackage rootPkg) {
 		LinkedHashMap<EClass, List<EClass>> subTypesCache = new LinkedHashMap<>();
 		for (EClassifier x : rootPkg.getEClassifiers()) {
@@ -54,6 +75,39 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 		return Collections.unmodifiableMap(subTypesCache);
 	}
 
+	/**
+	 * Builds {@link #incominRefsCache}
+	 */
+	private final static Map<EClass, Set<EReference>> buildIncominRefsCache(EPackage rootPkg) {
+		// Collect all refs grouped by referenced EClass
+		LinkedHashMap<EClass, List<EReference>> directIncominRefs = new LinkedHashMap<>();
+		for (EClassifier x : rootPkg.getEClassifiers()) {
+			if (!(x instanceof EClass))
+				continue;
+			for( EReference eRef : ((EClass) x).getEReferences() ) {
+				directIncominRefs.computeIfAbsent(eRef.getEReferenceType(), y -> new ArrayList<>()).add(eRef);
+			}
+		}
+		// Join ref lists of all super types of a specific EClass
+		LinkedHashMap<EClass, Set<EReference>> allIncominRefs = new LinkedHashMap<>();
+		for (EClassifier x : rootPkg.getEClassifiers()) {
+			if (!(x instanceof EClass))
+				continue;
+			EClass eClass = (EClass)x;
+			Set<EReference> allrefs = new LinkedHashSet<>();
+			if( directIncominRefs.get(eClass) != null )
+				allrefs.addAll(directIncominRefs.get(x));
+			
+			for( EClass eST : eClass.getEAllSuperTypes() ) {
+				List<EReference> directRefs = directIncominRefs.get(eST);
+				if( directRefs != null )
+					allrefs.addAll( directRefs );
+			}
+			allIncominRefs.put(eClass, Collections.unmodifiableSet(allrefs));
+		}
+		return Collections.unmodifiableMap(allIncominRefs);
+	}
+	
 	private void validateAddtitionalConstraints() {
 		{ /*** for all EStructuralFeature ***/
 
@@ -137,14 +191,6 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 	}
 
 	private class MMTypeImpl extends MModelElementImpl implements MetamodelType {
-		// final LinkedHashSet<MMTypeImpl> superTypes = new LinkedHashSet<>();
-		// final LinkedHashSet<MMTypeImpl> subTypes = new LinkedHashSet<>();
-		// final boolean isAbstract;
-		// final LinkedHashSet<MMAttributeImpl> declaredAttributes = new
-		// LinkedHashSet<>();
-		// final LinkedHashSet<MMConstraintImpl> declaredConstraints = new
-		// LinkedHashSet<>();
-
 		private final EClass eClass;
 
 		public MMTypeImpl(EClass eClass) {
@@ -208,6 +254,11 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 		@Override
 		public Stream<? extends MetamodelConstraint> listDeclaredConstraints() {
 			return eClass.getEOperations().stream().map(eOp -> new MMConstraintImpl(eOp));
+		}
+
+		@Override
+		public Stream<? extends MMAttributeImpl> listIncomingAttributes() {			
+			return incominRefsCache.get(eClass).stream().map(eRef->new MMAttributeImpl(eRef));
 		}
 	}
 

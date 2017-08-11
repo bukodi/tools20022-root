@@ -66,9 +66,8 @@ public class InspectGeneratedMetamodel {
 	
 	@Test
 	public void testContaining() {
-		//MMBusinessComponent.metaType().
 		
-		//StandardMetamodel2013.metamodel().
+//		StandardMetamodel2013.metamodel().
 	}
 
 	@Test

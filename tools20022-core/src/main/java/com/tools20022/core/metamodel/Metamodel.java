@@ -41,6 +41,7 @@ public interface Metamodel {
 		Stream<? extends MetamodelType<? super B>> listSuperTypes( boolean includeThis, boolean recursive );
 		Stream<? extends MetamodelType<? extends B>> listSubTypes( boolean includeThis, boolean recursive );
 		Stream<? extends MetamodelAttribute<B,?>> listDeclaredAttributes();
+		Set<? extends MetamodelAttribute<?,?>> getIncomingAttributes();
 		Stream<? extends MetamodelConstraint<B>> listDeclaredConstraints();
 		
 		default Stream<? extends MetamodelAttribute<? super B,?>> listAllAttributes() {

@@ -1,7 +1,6 @@
 package com.tools20022.mmgenerator;
 
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,7 +38,8 @@ interface RawMetamodel {
 
 		Stream<? extends MetamodelConstraint> listDeclaredConstraints();
 
-
+		Stream<? extends MetamodelAttribute> listIncomingAttributes();
+		
 		default Stream<? extends MetamodelAttribute> listAllAttributes() {
 			return listSuperTypes( true, true).flatMap(mmType->mmType.listDeclaredAttributes() );
 		}
@@ -58,6 +58,10 @@ interface RawMetamodel {
 
 		default Set<? extends MetamodelAttribute> getAllAttributes() {
 			return listAllAttributes().collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+
+		default Set<? extends MetamodelAttribute> getIncomingAttributes() {
+			return listIncomingAttributes().collect(Collectors.toCollection(LinkedHashSet::new));
 		}
 
 		default Set<? extends MetamodelConstraint> getDeclaredConstraints() {

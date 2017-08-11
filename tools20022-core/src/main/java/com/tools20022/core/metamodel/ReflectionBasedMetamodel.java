@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -17,7 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.tools20022.core.metamodel.ISODoc.Basis;
@@ -99,7 +102,8 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			for (MMTypeImpl<?> mmType : mmTypes) {
 				mmType.initMembers();
 			}
-			// Fourh phase: resolve attr opposites
+			// Fourh phase: resolve attr opposites and collect directIncominRefs what used in the next phase 
+			LinkedHashMap<MMTypeImpl<?>, List<MMAttributeImpl<?,?>>> directIncominRefs = new LinkedHashMap<>();
 			for (MMTypeImpl<?> mmType : mmTypes) {
 				for( MMAttributeImpl<?,?> mmAttr : mmType.attrsByName.values() ) {
 					Opposite annotOp = mmAttr.getterMethod.getAnnotation(Opposite.class);
@@ -108,9 +112,26 @@ public class ReflectionBasedMetamodel implements Metamodel {
 						MMAttributeImpl<?, ?> opAttr = opType.attrsByName.get(annotOp.attribute());
 						mmAttr.setOpposite((MMAttributeImpl<?, ?>) opAttr);						
 					}
+					
+					MMTypeImpl<?> mmRefType = mmAttr.getReferencedType();
+					if( mmRefType != null ) {						
+						directIncominRefs.computeIfAbsent(mmRefType, y -> new ArrayList<>()).add(mmAttr);
+					}
 				}
 			}
-			// Fifth phase: bind static Member field imlementations
+			
+			// Fifth phase: calculate incoming refs
+			for (MMTypeImpl<?> mmType : mmTypes) {
+				Stream<? extends MMTypeImpl<?>> mmSuperTypeStream = mmType.listSuperTypes(true, true);
+				mmSuperTypeStream.forEachOrdered( mmST -> {
+					List<MMAttributeImpl<?,?>> directRefs = directIncominRefs.get(mmST);
+					if( directRefs != null )
+						mmType.incomingAttrs.addAll( directRefs );
+					
+				});
+			}
+			
+			// Sixth phase: bind static Member field imlementations
 			for (MMTypeImpl<?> mmType : mmTypes) {
 				mmType.initMembersClass();
 				;
@@ -161,6 +182,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		private final LinkedHashMap<String, MMConstraintImpl<B>> constraintsByName = new LinkedHashMap<>();
 		private final LinkedHashSet<MMTypeImpl<? super B>> directSuperTypes = new LinkedHashSet<>();
 		private final LinkedHashSet<MMTypeImpl<? extends B>> directSubTypes = new LinkedHashSet<>();
+		private final LinkedHashSet<MMAttributeImpl<?, ?>> incomingAttrs = new LinkedHashSet<>();
 
 		@Override
 		public Class<B> getBeanClass() {
@@ -309,6 +331,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		@Override
 		public Stream<? extends MetamodelAttribute<B, ?>> listDeclaredAttributes() {
 			return attrsByName.values().stream();
+		}
+
+		@Override
+		public Set<? extends MetamodelAttribute<?,?>> getIncomingAttributes() {			
+			return Collections.unmodifiableSet( incomingAttrs );
 		}
 
 		@Override
