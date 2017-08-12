@@ -228,7 +228,9 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 			if (recursive) {
 				subTypeStream = listSubTypes(false, false).flatMap(c -> c.listSubTypes(true, true));
 			} else {
-				subTypeStream = subTypesCache.get(eClass).stream().map(eC -> new MMTypeImpl(eC));
+				List<EClass> subTypes = subTypesCache.get(eClass);
+				subTypes = subTypes == null ? Collections.emptyList() : subTypes;
+				subTypeStream = subTypes.stream().map(eC -> new MMTypeImpl(eC));
 			}
 
 			if (includeThis) {
@@ -259,6 +261,11 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 		@Override
 		public Stream<? extends MMAttributeImpl> listIncomingAttributes() {			
 			return incominRefsCache.get(eClass).stream().map(eRef->new MMAttributeImpl(eRef));
+		}
+		
+		@Override
+		public String toString() {
+			return eClass.getName();
 		}
 	}
 
@@ -338,6 +345,10 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 			return eRef != null && eRef.getEOpposite() != null ? new MMAttributeImpl(eRef.getEOpposite()) : null;
 		}
 
+		@Override
+		public String toString() {
+			return getDeclaringType().toString() + "." + eSF().getName();
+		}
 	}
 
 	private class MMConstraintImpl extends MModelElementImpl implements MetamodelConstraint {
@@ -351,6 +362,11 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 		@Override
 		public MetamodelType getDeclaringType() {
 			return new MMTypeImpl(eOp.getEContainingClass());
+		}
+
+		@Override
+		public String toString() {
+			return getDeclaringType().toString() + "." + eOp.getName();
 		}
 	}
 
@@ -368,6 +384,10 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 			return eEnum.getELiterals().stream().map(eEnumLit -> new MMEnumLiteralImpl(eEnumLit));
 		}
 
+		@Override
+		public String toString() {
+			return eEnum.getName();
+		}
 	}
 
 	private class MMEnumLiteralImpl extends MModelElementImpl implements MetamodelEnumLiteral {
@@ -382,6 +402,11 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 		@Override
 		public MetamodelEnum getDeclaringEnum() {
 			return new MMEnumImpl(eEnumLit.getEEnum());
+		}
+
+		@Override
+		public String toString() {
+			return getDeclaringEnum().toString() + "." + eEnumLit.getName();
 		}
 	}
 

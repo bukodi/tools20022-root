@@ -6,7 +6,7 @@ import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,7 +45,7 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnum;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
-public class DefaultMetamodelGenerator implements Consumer<GenerationContext>  {
+public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,GenerationContext<RawMetamodel>>  {
 
 	private final static String CLASS_NAME_PREFIX = "MM";
 
@@ -55,10 +55,11 @@ public class DefaultMetamodelGenerator implements Consumer<GenerationContext>  {
 	protected String basePackageName;
 	protected String mainClassSimpleName;
 
-	protected GenerationContext ctx;
+	protected GenerationContext<RawMetamodel> ctx;
 
 	@Override
-	public void accept(GenerationContext ctx) {
+	public void accept(RawMetamodel metamodel, GenerationContext<RawMetamodel> ctx) {
+		this.metamodel = metamodel;
 		this.ctx = ctx;
 		// Create metamodel model skeleton
 		JavaName mmName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
@@ -67,23 +68,23 @@ public class DefaultMetamodelGenerator implements Consumer<GenerationContext>  {
 		srcMetamodelMain.setSuperType(ReflectionBasedMetamodel.class);
 	
 		// Add domain model classes and enums
-		getMetamodel().listEnums().forEachOrdered(e -> generateMMEnum(srcMetamodelMain, e));
+		metamodel.listEnums().forEachOrdered(e -> generateMMEnum(srcMetamodelMain, e));
 	
-		getMetamodel().listTypes().filter(c -> !c.isAbstract())
+		metamodel.listTypes().filter(c -> !c.isAbstract())
 				.forEachOrdered(t -> generateMMClass(srcMetamodelMain, t));
-		getMetamodel().listTypes().filter(c -> c.isAbstract())
+		metamodel.listTypes().filter(c -> c.isAbstract())
 				.forEachOrdered(t -> generateMMInterface(srcMetamodelMain, t));
 	
 		{
 			// Add constructor
 			StringJoiner sjEnums = new StringJoiner(",\n", "registerEnumsFromClasses( \n", ");\n");
-			getMetamodel().listEnums().forEachOrdered(mmEnum -> {
+			metamodel.listEnums().forEachOrdered(mmEnum -> {
 				addImport(srcMetamodelMain, mmEnum);
 				sjEnums.add(getJavaName(mmEnum).getSimpleName() + ".class");
 			});
 	
 			StringJoiner sjTypes = new StringJoiner(",\n", "registerTypesFromClasses( \n", ");\n");
-			getMetamodel().listTypes().forEachOrdered(mmType -> {
+			metamodel.listTypes().forEachOrdered(mmType -> {
 				addImport(srcMetamodelMain, mmType);
 				sjTypes.add(getJavaName(mmType).getSimpleName() + ".class");
 			});
@@ -133,29 +134,6 @@ public class DefaultMetamodelGenerator implements Consumer<GenerationContext>  {
 			throw new IllegalStateException("mainClassSimpleName already set");
 
 		this.mainClassSimpleName = mainClassSimpleName;
-	}
-
-	public void loadMetamodel(InputStream ecoreFileContent) {
-		if (this.metamodel != null)
-			throw new IllegalStateException("metamodel already set");
-
-		try {
-			EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ecoreFileContent);
-			metamodel = new ECoreBackedMetamodel(ecorePkg);
-		} catch (IOException e) {
-			throw new UncheckedIOException(e);
-		}
-	}
-
-	protected RawMetamodel getMetamodel() {
-		if (metamodel == null) {
-			try (InputStream is = ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore")) {
-				loadMetamodel(is);
-			} catch (IOException ioe) {
-				throw new UncheckedIOException("Can't load ECore resource.", ioe);
-			}
-		}
-		return metamodel;
 	}
 
 	private void addImport(Importer<? extends JavaSource<?>> src, MetamodelElement mmElem) {

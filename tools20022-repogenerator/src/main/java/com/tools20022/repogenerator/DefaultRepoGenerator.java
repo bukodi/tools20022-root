@@ -1,24 +1,17 @@
 package com.tools20022.repogenerator;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
-import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.GenerationResult.JavaResult;
@@ -46,24 +39,28 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.metamodel.struct.MMBusinessAttribute_;
 import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
 
-public class DefaultRepoGenerator implements Consumer<GenerationContext> {
+public class DefaultRepoGenerator implements BiConsumer<RawRepository,GenerationContext<RawRepository>> {
 
-	boolean generateStaticMetas = true;
-	private RawRepository repo;
-	private String basePackageName;
-	private String mainClassSimpleName;
+	/*** Customizable options ***/
+	protected boolean generateStaticMetas = true;	
+	protected String basePackageName = "com.tools20022.repository";
+	protected String mainClassSimpleName = "GeneratedRepository";
 
-	protected GenerationContext ctx;
+	/*** Set in {@link #accept(RawRepository, GenerationContext)} ***/  
+	protected RawRepository repo;
+	protected GenerationContext<RawRepository> ctx;
 
+	/*** Store intermediate generation results ***/ 
 	JavaResult<JavaClassSource> genRepoMain;
 
 	@Override
-	public void accept(GenerationContext ctx) {
+	public void accept(RawRepository repo, GenerationContext<RawRepository> ctx) {
+		this.repo = repo;
 		this.ctx = ctx;
 
 		// Create repo skeleton
 		{
-			JavaName repoName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
+			JavaName repoName = JavaName.primaryType(basePackageName, mainClassSimpleName );
 			JavaClassSource srcRepoMain = ctx.createSourceFile(JavaClassSource.class, repoName);
 			srcRepoMain.addImport(ReflectionBasedRepository.class);
 			srcRepoMain.setSuperType(ReflectionBasedRepository.class);
@@ -75,7 +72,7 @@ public class DefaultRepoGenerator implements Consumer<GenerationContext> {
 					.setBody("super( " + StandardMetamodel2013.class.getSimpleName() + ".metamodel());");
 		}
 	
-		MMRepository root = getRepository().getRootObject();
+		MMRepository root = repo.getRootObject();
 		for (MMTopLevelDictionaryEntry de : root.getDataDictionary().getTopLevelDictionaryEntry()) {
 			if (de instanceof MMBusinessComponent) {
 				generateMMBusinessComponent(genRepoMain, (MMBusinessComponent) de);
@@ -93,61 +90,6 @@ public class DefaultRepoGenerator implements Consumer<GenerationContext> {
 			}
 		}
 	
-	}
-
-	protected String getBasePackageName() {
-		if (basePackageName == null) {
-			setBasePackageName("com.tools20022.repository");
-		}
-		return basePackageName;
-	}
-
-	public void setBasePackageName(String basePackageName) {
-		if (this.basePackageName != null)
-			throw new IllegalStateException("basePackageName already set");
-		this.basePackageName = basePackageName;
-	}
-
-	protected String getMainClassSimpleName() {
-		if (mainClassSimpleName == null) {
-			setMainClassSimpleName("GeneratedRepository");
-		}
-		return mainClassSimpleName;
-	}
-
-	public void setMainClassSimpleName(String mainClassSimpleName) {
-		if (this.mainClassSimpleName != null)
-			throw new IllegalStateException("mainClassSimpleName already set");
-
-		this.mainClassSimpleName = mainClassSimpleName;
-	}
-
-	public void loadRepository(Metamodel metamodel, InputStream ecoreFileContent, InputStream xmiFileContent) {
-		try {
-			final EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ecoreFileContent);
-			EObject rootEObj = ECoreIOHelper.loadXMIResource(xmiFileContent);
-			loadRepository(metamodel, ecorePkg, rootEObj);
-		} catch (IOException e) {
-			throw new UncheckedIOException(e);
-		}
-	}
-
-	public void loadRepository(Metamodel metamodel, EPackage ecorePkg, EObject rootEObj) {
-		try {
-			XMILoader loader = new XMILoader(metamodel);		
-			repo = loader.load( ecorePkg, rootEObj);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	public RawRepository getRepository() {
-		if (repo == null) {			
-			InputStream ecoreFileContent = ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore");
-			InputStream xmiFileContent = ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022");
-			loadRepository(StandardMetamodel2013.metamodel(), ecoreFileContent, xmiFileContent);
-		}
-		return repo;
 	}
 
 	void implementDefaultInterfaces(JavaResult<JavaClassSource> gen, GeneratedMetamodelBean mmElem) {
@@ -363,7 +305,7 @@ public class DefaultRepoGenerator implements Consumer<GenerationContext> {
 		} else {
 			return null;
 		}
-		pkg = getBasePackageName() + "." + pkg;
+		pkg = basePackageName + "." + pkg;
 
 		if (cuName == null) {
 			return null;

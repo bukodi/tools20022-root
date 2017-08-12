@@ -17,6 +17,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.repogenerator.DefaultRepoGenerator;
 import com.tools20022.repogenerator.RawRepository;
+import com.tools20022.repogenerator.XMILoader;
 
 public class GenerateSources {
 
@@ -41,17 +42,17 @@ public class GenerateSources {
 			throw new FileNotFoundException(srcRoot.toFile().getAbsolutePath().toString());
 		}
 
-		GenerationContext genCtx = new GenerationContext();
-		DefaultRepoGenerator repoGenerator = new DefaultRepoGenerator();
-		genCtx.setFileManagerRoot(srcRoot);
-
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
 		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/MandateInitiationRequestV05-with-BusinessConcepts.iso20022");
-		repoGenerator.loadRepository(StandardMetamodel2013.metamodel(), ecorePkg, xmiRootObj);
+		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());		
+		RawRepository repo = loader.load( ecorePkg, xmiRootObj);
+
+		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
+		genCtx.setFileManagerRoot(srcRoot);
+
 		start = System.currentTimeMillis();
-		RawRepository repo = repoGenerator.getRepository();
 		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
-		genCtx.generate( repoGenerator );
+		genCtx.generate( repo, new DefaultRepoGenerator() );
 		System.out.println("Generation time : " + (System.currentTimeMillis() - start) + " ms ");
 	}
 

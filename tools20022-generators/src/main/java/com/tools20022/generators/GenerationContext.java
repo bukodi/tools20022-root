@@ -8,13 +8,13 @@ import java.nio.file.Path;
 import java.util.LinkedHashSet;
 import java.util.Properties;
 import java.util.Set;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 import javax.tools.FileObject;
 import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
-import javax.tools.StandardLocation;
 import javax.tools.JavaFileObject.Kind;
+import javax.tools.StandardLocation;
 
 import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.JavaCore;
@@ -23,13 +23,13 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.internal.compiler.impl.Com
 import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.util.Formatter;
 
-public class GenerationContext {
+public class GenerationContext<M> {
 
 	Set<JavaSource<?>> allSources = new LinkedHashSet<>();
 	private JavaFileManager fileManager;
 	private Properties formatterOptions;
 
-	public GenerationContext() {
+	public GenerationContext(Class<M> modelltype ) {
 	}
 
 	protected Properties getFormatterOptions() {
@@ -89,10 +89,10 @@ public class GenerationContext {
 		return src;
 	}
 
-	public final void generate( Consumer<GenerationContext> generator ) {
+	public final void generate( M model, BiConsumer<M,GenerationContext<M>> generator ) {
 		long start = System.currentTimeMillis();
 		
-		generator.accept( this );
+		generator.accept( model, this );
 
 		System.out.println("Generation time:" + (System.currentTimeMillis() - start) + " ms");
 		start = System.currentTimeMillis();

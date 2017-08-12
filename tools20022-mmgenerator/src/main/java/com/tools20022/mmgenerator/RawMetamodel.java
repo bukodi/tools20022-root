@@ -5,15 +5,27 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 
 interface RawMetamodel {
 
 	Stream<? extends MetamodelType> listTypes();
 
+	default Set<? extends MetamodelType> getAllTypes() {
+		return listTypes().collect(Collectors.toCollection(LinkedHashSet::new));
+	}
+
 	MetamodelType getTypeByName(String name);
 
 	Stream<? extends MetamodelEnum> listEnums();
+
+	default Set<? extends MetamodelEnum> getAllEnums() {
+		return listEnums().collect(Collectors.toCollection(LinkedHashSet::new));
+	}
 
 	MetamodelEnum getEnumByName(String name);
 
@@ -29,7 +41,7 @@ interface RawMetamodel {
 	 */
 	public interface MetamodelType extends MetamodelElement {
 		boolean isAbstract();
-
+		
 		Stream<? extends MetamodelType> listSuperTypes( boolean includeThis, boolean recursive );
 
 		Stream<? extends MetamodelType> listSubTypes( boolean includeThis, boolean recursive );
@@ -62,6 +74,11 @@ interface RawMetamodel {
 
 		default Set<? extends MetamodelAttribute> getIncomingAttributes() {
 			return listIncomingAttributes().collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+
+		default Set<? extends MetamodelType> getPossibleContainers() {
+			Stream<? extends MetamodelAttribute> containmentAttrs = listIncomingAttributes().filter(mmAttr->mmAttr.isContainment());
+			return containmentAttrs.map(mmAttr->mmAttr.getDeclaringType()).collect(Collectors.toCollection(LinkedHashSet::new));
 		}
 
 		default Set<? extends MetamodelConstraint> getDeclaredConstraints() {
