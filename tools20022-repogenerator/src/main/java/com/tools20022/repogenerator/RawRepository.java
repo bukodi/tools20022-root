@@ -43,6 +43,10 @@ public class RawRepository {
 		return (Stream<B>) objectsByType.get(mmtype).stream();
 	}
 
+	public Stream<? extends GeneratedMetamodelBean> listObjects() {
+		return objectsByType.values().stream().flatMap(l->l.stream());
+	}
+
 	@SuppressWarnings("unchecked")
 	public <B extends GeneratedMetamodelBean> Stream<? extends B> listObjects(Class<B> mmClass) {
 		MetamodelType<B> mmType = metamodel.getTypeByClass(mmClass);

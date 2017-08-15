@@ -18,10 +18,10 @@ import java.util.Optional;
 public class MMMessageTransportSystem implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private List<MMMessagingEndpoint> endpoint;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<MMMessagingEndpoint> endpoint;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

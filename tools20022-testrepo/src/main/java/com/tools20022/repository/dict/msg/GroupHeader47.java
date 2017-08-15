@@ -1,0 +1,11 @@
+package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.metamodel.MMMessageComponent;
+
+/**
+ * Set of characteristics shared by all individual transactions included in the
+ * message.
+ */
+public class GroupHeader47 implements InstanceOf<MMMessageComponent> {
+}

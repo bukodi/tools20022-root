@@ -9,6 +9,7 @@ import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.core.repo.InstanceOf;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
@@ -51,7 +52,7 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 	protected GenerationContext<RawRepository> ctx;
 
 	/*** Store intermediate generation results ***/ 
-	JavaResult<JavaClassSource> genRepoMain;
+	protected JavaResult<JavaClassSource> genRepoMain;
 
 	@Override
 	public void accept(RawRepository repo, GenerationContext<RawRepository> ctx) {
@@ -92,7 +93,7 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 	
 	}
 
-	void implementDefaultInterfaces(JavaResult<JavaClassSource> gen, GeneratedMetamodelBean mmElem) {
+	protected void implementDefaultInterfaces(JavaResult<JavaClassSource> gen, GeneratedMetamodelBean mmElem) {
 		if (mmElem instanceof MMRepositoryConcept) {
 			implementMMRepositoryConcept(gen, (MMRepositoryConcept) mmElem);
 		} else if (mmElem instanceof MMModelEntity) {
@@ -237,7 +238,7 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 
 		container.src.addImport(typeName.getFullName());
 		// TODO: use getJavaName instead of elem.getName()
-		PropertySource<JavaClassSource> prop = container.src.addProperty(typeName.getSimpleName(), elem.getName());
+		PropertySource<JavaClassSource> prop = container.src.addProperty(typeName.getSimpleName(), elem.getName().toString());
 	}
 
 	protected JavaResult<JavaClassSource> generateDefaultClass(GeneratedMetamodelBean mmElem) {
@@ -253,6 +254,10 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 
 			JavaResult<JavaClassSource> gen = GenerationResult
 					.fromJavaSource(ctx.createSourceFile(JavaClassSource.class, getJavaName(mmElem)));
+			gen.src.addImport(InstanceOf.class);
+			gen.src.addImport(mmElem.getClass());
+			gen.src.addInterface(InstanceOf.class.getSimpleName() + "<" + mmElem.getClass().getSimpleName() + ">");
+			
 			return gen;
 		} catch (Exception e) {
 			System.err.println("--- " + mmElem.toString() + " ---");
@@ -269,7 +274,7 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 
 		// CU name
 		if (mmElem instanceof MMRepositoryConcept) {
-			cuName = ((MMRepositoryConcept) mmElem).getName();
+			cuName = (((MMRepositoryConcept) mmElem).getName()).toString();
 		} else {
 			cuName = null;
 		}

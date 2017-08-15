@@ -30,28 +30,28 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMMessageDefinition implements MMRepositoryType {
 
 	private GeneratedMetamodelBean container;
-	private List<MMMessageSet> messageSet;
-	private Optional<String> xmlName;
-	private Optional<String> xmlTag;
-	private MMBusinessArea businessArea;
-	private List<MMXor> xors;
-	private String rootElement;
-	private List<MMMessageBuildingBlock> messageBuildingBlock;
-	private List<MMMessageChoreography> choreography;
-	private List<MMMessageTransmission> trace;
-	private MMMessageDefinitionIdentifier messageDefinitionIdentifier;
-	private List<MMSyntaxMessageScheme> derivation;
-	private String name;
-	private Optional<String> definition;
-	private List<MMSemanticMarkup> semanticMarkup;
-	private List<MMDoclet> doclet;
-	private List<String> example;
-	private List<MMConstraint> constraint;
-	private MMRegistrationStatus registrationStatus;
-	private Optional<Date> removalDate;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<MMMessageSet> messageSet;
+	protected Optional<String> xmlName;
+	protected Optional<String> xmlTag;
+	protected MMBusinessArea businessArea;
+	protected List<MMXor> xors;
+	protected String rootElement;
+	protected List<MMMessageBuildingBlock> messageBuildingBlock;
+	protected List<MMMessageChoreography> choreography;
+	protected List<MMMessageTransmission> trace;
+	protected MMMessageDefinitionIdentifier messageDefinitionIdentifier;
+	protected List<MMSyntaxMessageScheme> derivation;
+	protected String name;
+	protected Optional<String> definition;
+	protected List<MMSemanticMarkup> semanticMarkup;
+	protected List<MMDoclet> doclet;
+	protected List<String> example;
+	protected List<MMConstraint> constraint;
+	protected MMRegistrationStatus registrationStatus;
+	protected Optional<Date> removalDate;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

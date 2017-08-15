@@ -19,11 +19,11 @@ import java.util.Optional;
 public class MMBusinessProcessCatalogue implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private MMRepository repository;
-	private List<MMTopLevelCatalogueEntry> topLevelCatalogueEntry;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected MMRepository repository;
+	protected List<MMTopLevelCatalogueEntry> topLevelCatalogueEntry;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

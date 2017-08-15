@@ -31,6 +31,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 
 	private final LinkedHashMap<String, MMTypeImpl<?>> mmTypesByName = new LinkedHashMap<>();
 	private final LinkedHashMap<Class<? extends GeneratedMetamodelBean>, MMTypeImpl<?>> mmTypesByClass = new LinkedHashMap<>();
+	private final LinkedHashMap<MMTypeImpl<?>, Class<?>> classesBymmTypes = new LinkedHashMap<>();
 	private final LinkedHashMap<String, MMEnumImpl<?>> mmEnumsByName = new LinkedHashMap<>();
 	private final LinkedHashMap<Class<? extends Enum<?>>, MMEnumImpl<?>> mmEnumsByClass = new LinkedHashMap<>();
 
@@ -60,12 +61,25 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		MMTypeImpl<B> ret = (MMTypeImpl<B>) mmTypesByClass.get(beanClass);
 		if (ret == null)
 			throw new NoSuchElementException("No metatype for class " + beanClass);
-		return ret;		
+		return ret;
 	}
 
 	@Override
 	public <B extends GeneratedMetamodelBean> MetamodelType<B> getTypeByClass(Class<B> beanClass) {
 		return getTypeImplByClass(beanClass);
+	}
+
+	private <B extends GeneratedMetamodelBean> Class<B> getClassByType_(MetamodelType<B> mmType) {
+		@SuppressWarnings("unchecked")
+		Class<B> beanClass = (Class<B>) classesBymmTypes.get(mmType);
+		if (beanClass == null)
+			throw new NoSuchElementException("No class for metatype " + beanClass);
+		return beanClass;
+	}
+
+	@Override
+	public <B extends GeneratedMetamodelBean> Class<B> getClassByType(MetamodelType<B> mmType) {
+		return getClassByType_(mmType);
 	}
 
 	@Override
@@ -77,12 +91,12 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	}
 
 	@Override
-	public <E extends Enum<?>> MMEnumImpl<E> getEnumByClass( Class<E> enumClass ) {
+	public <E extends Enum<?>> MMEnumImpl<E> getEnumByClass(Class<E> enumClass) {
 		MMEnumImpl<?> ret = mmEnumsByClass.get(enumClass);
 		if (ret == null)
 			throw new NoSuchElementException("No metaenum for class " + enumClass);
 		@SuppressWarnings("unchecked")
-		MMEnumImpl<E> retCast = (MMEnumImpl<E>)ret;
+		MMEnumImpl<E> retCast = (MMEnumImpl<E>) ret;
 		return retCast;
 	}
 
@@ -102,35 +116,36 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			for (MMTypeImpl<?> mmType : mmTypes) {
 				mmType.initMembers();
 			}
-			// Fourh phase: resolve attr opposites and collect directIncominRefs what used in the next phase 
-			LinkedHashMap<MMTypeImpl<?>, List<MMAttributeImpl<?,?>>> directIncominRefs = new LinkedHashMap<>();
+			// Fourh phase: resolve attr opposites and collect directIncominRefs what used
+			// in the next phase
+			LinkedHashMap<MMTypeImpl<?>, List<MMAttributeImpl<?, ?>>> directIncominRefs = new LinkedHashMap<>();
 			for (MMTypeImpl<?> mmType : mmTypes) {
-				for( MMAttributeImpl<?,?> mmAttr : mmType.attrsByName.values() ) {
+				for (MMAttributeImpl<?, ?> mmAttr : mmType.attrsByName.values()) {
 					Opposite annotOp = mmAttr.getterMethod.getAnnotation(Opposite.class);
-					if( annotOp != null ) {
+					if (annotOp != null) {
 						MMTypeImpl<? extends GeneratedMetamodelBean> opType = getTypeImplByClass(annotOp.bean());
 						MMAttributeImpl<?, ?> opAttr = opType.attrsByName.get(annotOp.attribute());
-						mmAttr.setOpposite((MMAttributeImpl<?, ?>) opAttr);						
+						mmAttr.setOpposite((MMAttributeImpl<?, ?>) opAttr);
 					}
-					
+
 					MMTypeImpl<?> mmRefType = mmAttr.getReferencedType();
-					if( mmRefType != null ) {						
+					if (mmRefType != null) {
 						directIncominRefs.computeIfAbsent(mmRefType, y -> new ArrayList<>()).add(mmAttr);
 					}
 				}
 			}
-			
+
 			// Fifth phase: calculate incoming refs
 			for (MMTypeImpl<?> mmType : mmTypes) {
 				Stream<? extends MMTypeImpl<?>> mmSuperTypeStream = mmType.listSuperTypes(true, true);
-				mmSuperTypeStream.forEachOrdered( mmST -> {
-					List<MMAttributeImpl<?,?>> directRefs = directIncominRefs.get(mmST);
-					if( directRefs != null )
-						mmType.incomingAttrs.addAll( directRefs );
-					
+				mmSuperTypeStream.forEachOrdered(mmST -> {
+					List<MMAttributeImpl<?, ?>> directRefs = directIncominRefs.get(mmST);
+					if (directRefs != null)
+						mmType.incomingAttrs.addAll(directRefs);
+
 				});
 			}
-			
+
 			// Sixth phase: bind static Member field imlementations
 			for (MMTypeImpl<?> mmType : mmTypes) {
 				mmType.initMembersClass();
@@ -191,7 +206,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 
 		@Override
 		public B newInstance() {
-			if( isAbstract() )
+			if (isAbstract())
 				throw new RuntimeException("This is an abstract type");
 			try {
 				return beanClass.newInstance();
@@ -202,18 +217,22 @@ public class ReflectionBasedMetamodel implements Metamodel {
 
 		MMTypeImpl(Class<B> beanClass) {
 			this.beanClass = beanClass;
-			MMTypeImpl<?> prevType = mmTypesByName.putIfAbsent(getName(), this);
-			if (prevType != null)
-				throw new IllegalStateException("MMtype with name " + getName() + " already added: " + prevType);
-			prevType = mmTypesByClass.putIfAbsent(beanClass, this);
-			if (prevType != null)
-				throw new IllegalStateException("MMtype with bean class " + beanClass + " already added: " + prevType);
+			{
+				MMTypeImpl<?> prevType = mmTypesByName.putIfAbsent(getName(), this);
+				if (prevType != null)
+					throw new IllegalStateException("MMtype with name " + getName() + " already added: " + prevType);
+				prevType = mmTypesByClass.putIfAbsent(beanClass, this);
+				if (prevType != null)
+					throw new IllegalStateException(
+							"MMtype with bean class " + beanClass + " already added: " + prevType);
+				classesBymmTypes.putIfAbsent(this,beanClass);
+			}
 
-			for( Field f : this.beanClass.getDeclaredFields() ) {
+			for (Field f : this.beanClass.getDeclaredFields()) {
 				f.setAccessible(true);
 			}
 		}
-				
+
 		private void initInheritance() {
 			Stream<Class<?>> superClassStream = beanClass.getSuperclass() == null ? Stream.empty()
 					: Stream.of(beanClass.getSuperclass());
@@ -275,7 +294,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			if (membersClass == null)
 				return;
 			for (Field f : membersClass.getDeclaredFields()) {
-				if(f.isSynthetic() )
+				if (f.isSynthetic())
 					continue;
 				Object wrapper = f.get(null);
 				if (wrapper instanceof AttrWrapper) {
@@ -298,14 +317,14 @@ public class ReflectionBasedMetamodel implements Metamodel {
 
 		@Override
 		public Stream<? extends MMTypeImpl<? super B>> listSuperTypes(boolean includeThis, boolean recursive) {
-			Stream<? extends MMTypeImpl<? super B>> superTypeStream; 
-			if( recursive ) {
-				superTypeStream = listSuperTypes(false, false).flatMap(c -> c.listSuperTypes(true,true));
+			Stream<? extends MMTypeImpl<? super B>> superTypeStream;
+			if (recursive) {
+				superTypeStream = listSuperTypes(false, false).flatMap(c -> c.listSuperTypes(true, true));
 			} else {
 				superTypeStream = directSuperTypes.stream();
 			}
-			
-			if( includeThis ) {
+
+			if (includeThis) {
 				superTypeStream = Stream.concat(Stream.of(this), superTypeStream);
 			}
 
@@ -313,15 +332,15 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		@Override
-		public Stream<? extends MMTypeImpl<? extends B>> listSubTypes( boolean includeThis, boolean recursive ) {
-			Stream<? extends MMTypeImpl<? extends B>> subTypeStream; 
-			if( recursive ) {
-				subTypeStream = listSubTypes(false, false).flatMap(c -> c.listSubTypes(true,true));
+		public Stream<? extends MMTypeImpl<? extends B>> listSubTypes(boolean includeThis, boolean recursive) {
+			Stream<? extends MMTypeImpl<? extends B>> subTypeStream;
+			if (recursive) {
+				subTypeStream = listSubTypes(false, false).flatMap(c -> c.listSubTypes(true, true));
 			} else {
 				subTypeStream = directSubTypes.stream();
 			}
-			
-			if( includeThis ) {
+
+			if (includeThis) {
 				subTypeStream = Stream.concat(Stream.of(this), subTypeStream);
 			}
 
@@ -334,8 +353,8 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		@Override
-		public Set<? extends MetamodelAttribute<?,?>> getIncomingAttributes() {			
-			return Collections.unmodifiableSet( incomingAttrs );
+		public Set<? extends MetamodelAttribute<?, ?>> getIncomingAttributes() {
+			return Collections.unmodifiableSet(incomingAttrs);
 		}
 
 		@Override
@@ -358,13 +377,13 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 	}
-	
-	private static MetamodelDocImpl annotToDoc( AnnotatedElement javaElem ) {
+
+	private static MetamodelDocImpl annotToDoc(AnnotatedElement javaElem) {
 		ISODoc docAnnot = javaElem.getAnnotation(ISODoc.class);
-		if( docAnnot == null ) {
+		if (docAnnot == null) {
 			return new MetamodelDocImpl("", Basis.EMPTY, "");
 		} else {
-			return new MetamodelDocImpl(docAnnot.value(), docAnnot.basis(), docAnnot.ext());			
+			return new MetamodelDocImpl(docAnnot.value(), docAnnot.basis(), docAnnot.ext());
 		}
 	}
 
@@ -389,7 +408,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			this.metaType = metaType;
 			this.name = getPropertyName(getterMethod);
 			this.getterMethod = getterMethod;
-			
+
 			ParsedType pt = parseValueType(getterMethod.getGenericReturnType());
 			if (pt.wrapperClass == null) {
 				isOptional = false;
@@ -406,7 +425,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			} else {
 				throw new RuntimeException("Unsupported wrapper type: " + pt.wrapperClass);
 			}
-			
+
 			isContainer = getterMethod.getAnnotation(Container.class) != null;
 			isContainment = getterMethod.getAnnotation(Containment.class) != null;
 
@@ -438,11 +457,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		public String getName() {
 			return name;
 		}
-		
+
 		@Override
 		public T get(B obj) {
 			try {
-				return (T)getterMethod.invoke(obj);
+				return (T) getterMethod.invoke(obj);
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				throw new RuntimeException(e);
 			}
@@ -452,16 +471,16 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		public void set(B obj, T value) {
 			try {
 				Field field = null;
-				for( Class<?> declClass = obj.getClass(); field == null && declClass != null;  ) {
-					try{
-						field = declClass.getDeclaredField(name);						
-					} catch ( NoSuchFieldException nsfe ) {
+				for (Class<?> declClass = obj.getClass(); field == null && declClass != null;) {
+					try {
+						field = declClass.getDeclaredField(name);
+					} catch (NoSuchFieldException nsfe) {
 						// No problem, continue with superclass
 						declClass = declClass.getSuperclass();
 					}
 				}
 				boolean isAccessible = field.isAccessible();
-				if( ! isAccessible ) {
+				if (!isAccessible) {
 					field.setAccessible(true);
 				}
 				field.set(obj, value);
@@ -574,7 +593,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 
 	private class MMEnumImpl<E extends Enum<?>> extends MModelElementImpl implements MetamodelEnum<E> {
 		final Class<E> enumClass;
-		final LinkedHashMap<String,MMEnumLiteralImpl<E>> mmLiteralsByName = new LinkedHashMap<>();
+		final LinkedHashMap<String, MMEnumLiteralImpl<E>> mmLiteralsByName = new LinkedHashMap<>();
 
 		public MMEnumImpl(Class<E> enumClass) {
 			this.enumClass = enumClass;
@@ -584,7 +603,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			prevType = mmEnumsByClass.putIfAbsent(enumClass, this);
 			if (prevType != null)
 				throw new IllegalStateException("MMEnum with bean class " + enumClass + " already added: " + prevType);
-			for( E enumValue : enumClass.getEnumConstants() ) {
+			for (E enumValue : enumClass.getEnumConstants()) {
 				MMEnumLiteralImpl<E> mmEnumLit = new MMEnumLiteralImpl<E>(enumValue);
 				mmLiteralsByName.put(enumValue.name(), mmEnumLit);
 			}
@@ -624,10 +643,10 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	private class MMEnumLiteralImpl<E extends Enum<?>> extends MModelElementImpl implements MetamodelEnumLiteral<E> {
 		private final E enumValue;
 
-		MMEnumLiteralImpl( E enumValue ) {
+		MMEnumLiteralImpl(E enumValue) {
 			this.enumValue = enumValue;
 		}
-		
+
 		@Override
 		public String getName() {
 			// TODO: Support MetaName annotation
@@ -653,15 +672,14 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	}
 
 	/**
-	 * @return the property name or <code>null</code> if the method isn't a
-	 *         getter
+	 * @return the property name or <code>null</code> if the method isn't a getter
 	 */
 	private static String getPropertyName(Method getterMethod) {
 		if (!Modifier.isPublic(getterMethod.getModifiers()))
 			return null;
 		if (Modifier.isStatic(getterMethod.getModifiers()))
 			return null;
-		if( "getContainer".equals(getterMethod.getName()) )
+		if ("getContainer".equals(getterMethod.getName()))
 			return null;
 		String propName;
 		if (getterMethod.getName().startsWith("get")) {
@@ -685,7 +703,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			return null;
 		}
 		try {
-			return getterMethod.getDeclaringClass().getMethod(setterName, new Class[]{getterMethod.getReturnType()});
+			return getterMethod.getDeclaringClass().getMethod(setterName, new Class[] { getterMethod.getReturnType() });
 		} catch (NoSuchMethodException | SecurityException e) {
 			throw new RuntimeException(e);
 		}

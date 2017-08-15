@@ -39,6 +39,7 @@ public class CategorizeMetamodelTypes {
 	}
 
 	static enum Cat {
+		/** If the type one of the */
 		PACKAGE, SINGLETON, BEAN, ENUM, ENUM_VALUE, ANNOTATION, INTERFACE, UNCATEGORIZED
 	}
 

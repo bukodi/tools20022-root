@@ -13,9 +13,9 @@ import java.util.Optional;
 public class MMConversation implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

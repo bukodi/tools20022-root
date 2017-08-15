@@ -14,11 +14,11 @@ import java.util.List;
 public class MMDoclet implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private Optional<String> type;
-	private Optional<String> content;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected Optional<String> type;
+	protected Optional<String> content;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

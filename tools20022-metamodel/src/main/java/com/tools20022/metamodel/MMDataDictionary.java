@@ -19,11 +19,11 @@ import java.util.Optional;
 public class MMDataDictionary implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private List<MMTopLevelDictionaryEntry> topLevelDictionaryEntry;
-	private MMRepository repository;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<MMTopLevelDictionaryEntry> topLevelDictionaryEntry;
+	protected MMRepository repository;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

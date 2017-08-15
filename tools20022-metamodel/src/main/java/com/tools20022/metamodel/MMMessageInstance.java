@@ -17,11 +17,11 @@ import java.util.Optional;
 public class MMMessageInstance implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private MMSyntaxMessageScheme specification;
-	private List<MMTransportMessage> transportMessage;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected MMSyntaxMessageScheme specification;
+	protected List<MMTransportMessage> transportMessage;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

@@ -16,12 +16,12 @@ import java.util.Optional;
 public class MMTransportMessage implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private MMMessagingEndpoint sender;
-	private MMMessageInstance messageInstance;
-	private List<MMMessagingEndpoint> receiver;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected MMMessagingEndpoint sender;
+	protected MMMessageInstance messageInstance;
+	protected List<MMMessagingEndpoint> receiver;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

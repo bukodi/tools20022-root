@@ -17,11 +17,11 @@ import java.util.Optional;
 public class MMAddress implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private List<MMBroadcastList> broadCastList;
-	private MMMessagingEndpoint endpoint;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<MMBroadcastList> broadCastList;
+	protected MMMessagingEndpoint endpoint;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

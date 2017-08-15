@@ -25,29 +25,29 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMMessageAssociationEnd implements MMMessageElement {
 
 	private GeneratedMetamodelBean container;
-	private boolean isComposite;
-	private MMMessageComponentType type;
-	private boolean isTechnical;
-	private Optional<MMBusinessComponent> businessComponentTrace;
-	private Optional<MMBusinessElement> businessElementTrace;
-	private MMMessageElementContainer componentContext;
-	private boolean isDerived;
-	private Optional<String> xmlTag;
-	private MMLogicalType xmlMemberType;
-	private MMRepositoryType memberType;
-	private String name;
-	private Optional<String> definition;
-	private List<MMSemanticMarkup> semanticMarkup;
-	private List<MMDoclet> doclet;
-	private List<String> example;
-	private List<MMConstraint> constraint;
-	private MMRegistrationStatus registrationStatus;
-	private Optional<Date> removalDate;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
-	private Optional<Integer> maxOccurs;
-	private Optional<Integer> minOccurs;
+	protected boolean isComposite;
+	protected MMMessageComponentType type;
+	protected boolean isTechnical;
+	protected Optional<MMBusinessComponent> businessComponentTrace;
+	protected Optional<MMBusinessElement> businessElementTrace;
+	protected MMMessageElementContainer componentContext;
+	protected boolean isDerived;
+	protected Optional<String> xmlTag;
+	protected MMLogicalType xmlMemberType;
+	protected MMRepositoryType memberType;
+	protected String name;
+	protected Optional<String> definition;
+	protected List<MMSemanticMarkup> semanticMarkup;
+	protected List<MMDoclet> doclet;
+	protected List<String> example;
+	protected List<MMConstraint> constraint;
+	protected MMRegistrationStatus registrationStatus;
+	protected Optional<Date> removalDate;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
+	protected Optional<Integer> maxOccurs;
+	protected Optional<Integer> minOccurs;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

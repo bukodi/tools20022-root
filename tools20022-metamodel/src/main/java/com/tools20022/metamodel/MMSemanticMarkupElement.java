@@ -15,11 +15,11 @@ import java.util.List;
 public class MMSemanticMarkupElement implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private Optional<String> name;
-	private Optional<String> value;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected Optional<String> name;
+	protected Optional<String> value;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

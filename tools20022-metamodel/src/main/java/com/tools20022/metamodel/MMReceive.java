@@ -17,11 +17,11 @@ import java.util.Optional;
 public class MMReceive implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private MMMessageTransmission messageTransmission;
-	private MMParticipant receiver;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected MMMessageTransmission messageTransmission;
+	protected MMParticipant receiver;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

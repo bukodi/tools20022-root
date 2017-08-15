@@ -16,11 +16,11 @@ import com.tools20022.core.metamodel.Containment;
 public class MMSemanticMarkup implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private Optional<String> type;
-	private List<MMSemanticMarkupElement> elements;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected Optional<String> type;
+	protected List<MMSemanticMarkupElement> elements;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

@@ -6,6 +6,8 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+
 public interface Metamodel {
 
 	Stream<? extends MetamodelType<? extends GeneratedMetamodelBean>> listTypes();
@@ -17,7 +19,9 @@ public interface Metamodel {
 	MetamodelType<? extends GeneratedMetamodelBean> getTypeByName( String name );
 
 	<B extends GeneratedMetamodelBean> MetamodelType<B> getTypeByClass( Class<B> beanClass );
-
+	
+	<B extends GeneratedMetamodelBean> Class<B> getClassByType(MetamodelType<B> mmType);
+	
 	Stream<? extends MetamodelEnum<?>> listEnums();
 
 	default Set<? extends MetamodelEnum<?>> getAllEnums() {

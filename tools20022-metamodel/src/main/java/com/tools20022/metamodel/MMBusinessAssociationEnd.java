@@ -27,27 +27,27 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMBusinessAssociationEnd implements MMBusinessElement {
 
 	private GeneratedMetamodelBean container;
-	private Optional<MMBusinessAssociationEnd> opposite;
-	private MMAggregation aggregation;
-	private MMBusinessComponent type;
-	private boolean isDerived;
-	private List<MMMessageElement> derivation;
-	private MMBusinessElementType businessElementType;
-	private MMBusinessComponent elementContext;
-	private MMRepositoryType memberType;
-	private String name;
-	private Optional<String> definition;
-	private List<MMSemanticMarkup> semanticMarkup;
-	private List<MMDoclet> doclet;
-	private List<String> example;
-	private List<MMConstraint> constraint;
-	private MMRegistrationStatus registrationStatus;
-	private Optional<Date> removalDate;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
-	private Optional<Integer> maxOccurs;
-	private Optional<Integer> minOccurs;
+	protected Optional<MMBusinessAssociationEnd> opposite;
+	protected MMAggregation aggregation;
+	protected MMBusinessComponent type;
+	protected boolean isDerived;
+	protected List<MMMessageElement> derivation;
+	protected MMBusinessElementType businessElementType;
+	protected MMBusinessComponent elementContext;
+	protected MMRepositoryType memberType;
+	protected String name;
+	protected Optional<String> definition;
+	protected List<MMSemanticMarkup> semanticMarkup;
+	protected List<MMDoclet> doclet;
+	protected List<String> example;
+	protected List<MMConstraint> constraint;
+	protected MMRegistrationStatus registrationStatus;
+	protected Optional<Date> removalDate;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
+	protected Optional<Integer> maxOccurs;
+	protected Optional<Integer> minOccurs;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

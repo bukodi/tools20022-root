@@ -26,23 +26,23 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity {
 
 	private GeneratedMetamodelBean container;
-	private MMBusinessTransaction businessTransaction;
-	private List<MMReceive> receives;
-	private List<MMSend> sends;
-	private MMBusinessRole businessRoleTrace;
-	private String name;
-	private Optional<String> definition;
-	private List<MMSemanticMarkup> semanticMarkup;
-	private List<MMDoclet> doclet;
-	private List<String> example;
-	private List<MMConstraint> constraint;
-	private MMRegistrationStatus registrationStatus;
-	private Optional<Date> removalDate;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
-	private Optional<Integer> maxOccurs;
-	private Optional<Integer> minOccurs;
+	protected MMBusinessTransaction businessTransaction;
+	protected List<MMReceive> receives;
+	protected List<MMSend> sends;
+	protected MMBusinessRole businessRoleTrace;
+	protected String name;
+	protected Optional<String> definition;
+	protected List<MMSemanticMarkup> semanticMarkup;
+	protected List<MMDoclet> doclet;
+	protected List<String> example;
+	protected List<MMConstraint> constraint;
+	protected MMRegistrationStatus registrationStatus;
+	protected Optional<Date> removalDate;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
+	protected Optional<Integer> maxOccurs;
+	protected Optional<Integer> minOccurs;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

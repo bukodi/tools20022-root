@@ -34,24 +34,24 @@ public class MMBusinessComponent
 			MMBusinessConcept {
 
 	private GeneratedMetamodelBean container;
-	private List<MMBusinessComponent> subType;
-	private Optional<MMBusinessComponent> superType;
-	private List<MMBusinessElement> element;
-	private List<MMMessageComponentType> derivationComponent;
-	private List<MMBusinessAssociationEnd> associationDomain;
-	private List<MMMessageElement> derivationElement;
-	private MMDataDictionary dataDictionary;
-	private String name;
-	private Optional<String> definition;
-	private List<MMSemanticMarkup> semanticMarkup;
-	private List<MMDoclet> doclet;
-	private List<String> example;
-	private List<MMConstraint> constraint;
-	private MMRegistrationStatus registrationStatus;
-	private Optional<Date> removalDate;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<MMBusinessComponent> subType;
+	protected Optional<MMBusinessComponent> superType;
+	protected List<MMBusinessElement> element;
+	protected List<MMMessageComponentType> derivationComponent;
+	protected List<MMBusinessAssociationEnd> associationDomain;
+	protected List<MMMessageElement> derivationElement;
+	protected MMDataDictionary dataDictionary;
+	protected String name;
+	protected Optional<String> definition;
+	protected List<MMSemanticMarkup> semanticMarkup;
+	protected List<MMDoclet> doclet;
+	protected List<String> example;
+	protected List<MMConstraint> constraint;
+	protected MMRegistrationStatus registrationStatus;
+	protected Optional<Date> removalDate;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

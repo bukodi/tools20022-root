@@ -24,23 +24,23 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMExternalSchema implements MMMessageComponentType {
 
 	private GeneratedMetamodelBean container;
-	private List<String> namespaceList;
-	private MMProcessContent processContent;
-	private List<MMMessageBuildingBlock> messageBuildingBlock;
-	private boolean isTechnical;
-	private Optional<MMBusinessComponent> trace;
-	private MMDataDictionary dataDictionary;
-	private String name;
-	private Optional<String> definition;
-	private List<MMSemanticMarkup> semanticMarkup;
-	private List<MMDoclet> doclet;
-	private List<String> example;
-	private List<MMConstraint> constraint;
-	private MMRegistrationStatus registrationStatus;
-	private Optional<Date> removalDate;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<String> namespaceList;
+	protected MMProcessContent processContent;
+	protected List<MMMessageBuildingBlock> messageBuildingBlock;
+	protected boolean isTechnical;
+	protected Optional<MMBusinessComponent> trace;
+	protected MMDataDictionary dataDictionary;
+	protected String name;
+	protected Optional<String> definition;
+	protected List<MMSemanticMarkup> semanticMarkup;
+	protected List<MMDoclet> doclet;
+	protected List<String> example;
+	protected List<MMConstraint> constraint;
+	protected MMRegistrationStatus registrationStatus;
+	protected Optional<Date> removalDate;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

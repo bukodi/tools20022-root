@@ -16,10 +16,10 @@ import java.util.Optional;
 public class MMBroadcastList implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private List<MMAddress> address;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<MMAddress> address;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

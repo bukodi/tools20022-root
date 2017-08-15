@@ -17,11 +17,11 @@ import java.util.Optional;
 public class MMRepository implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private MMDataDictionary dataDictionary;
-	private MMBusinessProcessCatalogue businessProcessCatalogue;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected MMDataDictionary dataDictionary;
+	protected MMBusinessProcessCatalogue businessProcessCatalogue;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

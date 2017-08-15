@@ -16,11 +16,11 @@ import java.util.Optional;
 public class MMEncoding implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	private List<MMMessageSet> messageSet;
-	private MMSyntax syntax;
-	private List<MMModelEntity> nextVersions;
-	private Optional<MMModelEntity> previousVersion;
-	private Optional<String> objectIdentifier;
+	protected List<MMMessageSet> messageSet;
+	protected MMSyntax syntax;
+	protected List<MMModelEntity> nextVersions;
+	protected Optional<MMModelEntity> previousVersion;
+	protected Optional<String> objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {

@@ -52,8 +52,8 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 	protected boolean generateStaticStructs = true;
 	
 	protected RawMetamodel metamodel;
-	protected String basePackageName;
-	protected String mainClassSimpleName;
+	protected String basePackageName = "com.tools20022.metamodel";
+	protected String mainClassSimpleName = "StandardMetamodel2013";
 
 	protected GenerationContext<RawMetamodel> ctx;
 
@@ -62,7 +62,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 		this.metamodel = metamodel;
 		this.ctx = ctx;
 		// Create metamodel model skeleton
-		JavaName mmName = JavaName.primaryType(getBasePackageName(), getMainClassSimpleName());
+		JavaName mmName = JavaName.primaryType(basePackageName, mainClassSimpleName );
 		JavaClassSource srcMetamodelMain = ctx.createSourceFile(JavaClassSource.class, mmName);
 		srcMetamodelMain.addImport(ReflectionBasedMetamodel.class);
 		srcMetamodelMain.setSuperType(ReflectionBasedMetamodel.class);
@@ -109,33 +109,6 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 		}
 	}
 
-	protected String getBasePackageName() {
-		if (basePackageName == null) {
-			setBasePackageName("com.tools20022.metamodel");
-		}
-		return basePackageName;
-	}
-
-	public void setBasePackageName(String basePackageName) {
-		if (this.basePackageName != null)
-			throw new IllegalStateException("basePackageName already set");
-		this.basePackageName = basePackageName;
-	}
-
-	protected String getMainClassSimpleName() {
-		if (mainClassSimpleName == null) {
-			setMainClassSimpleName("StandardMetamodel2013");
-		}
-		return mainClassSimpleName;
-	}
-
-	public void setMainClassSimpleName(String mainClassSimpleName) {
-		if (this.mainClassSimpleName != null)
-			throw new IllegalStateException("mainClassSimpleName already set");
-
-		this.mainClassSimpleName = mainClassSimpleName;
-	}
-
 	private void addImport(Importer<? extends JavaSource<?>> src, MetamodelElement mmElem) {
 		src.addImport(getJavaName(mmElem).getFullName());
 	}
@@ -147,7 +120,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 
 	protected JavaName getJavaName(MetamodelElement mmElem) {
 		if (mmElem instanceof MetamodelType || mmElem instanceof MetamodelEnum) {
-			return JavaName.primaryType(getBasePackageName(), CLASS_NAME_PREFIX + mmElem.getName());
+			return JavaName.primaryType(basePackageName, CLASS_NAME_PREFIX + mmElem.getName());
 		}
 		JavaName parentName;
 		String memberName = mmElem.getName();
@@ -360,10 +333,11 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 			MetamodelAttribute mmAttr) {
 		String valueType = generateSourceType(mmAttr, srcMMType, true);
 
-		PropertySource<T> srcProp = srcMMType.addProperty(valueType, getJavaName(mmAttr).getSimpleName());
+		PropertySource<T> srcProp = srcMMType.addProperty(valueType, getJavaName(mmAttr).getSimpleName());		
 		srcProp.setMutable(false);
-		if (srcProp.getField() != null)
-			srcProp.getField().setFinal(false);
+		if (srcProp.getField() != null) {
+			srcProp.getField().setProtected().setFinal(false);
+		}
 		annotateProperty(srcMMType, srcProp, mmAttr);
 	};
 
