@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorAuthorisationRequestV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header30;
@@ -15,7 +17,9 @@ import java.util.Optional;
  * additional transaction data provided.
  */
 @PreviousVersion(AcceptorAuthorisationRequestV05.class)
-public class AcceptorAuthorisationRequestV06 {
+public class AcceptorAuthorisationRequestV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header30 Header;
 	private AcceptorAuthorisationRequest6 AuthorisationRequest;

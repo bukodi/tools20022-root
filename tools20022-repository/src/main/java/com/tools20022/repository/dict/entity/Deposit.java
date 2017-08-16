@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Money;
 import com.tools20022.repository.dict.codeset.DepositTypeCode;
 import com.tools20022.repository.dict.entity.Interest;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.Interest;
  * the borrower agrees to return the property or repay the money, usually along
  * with interest, at some future point(s) in time.
  */
-public class Deposit extends Money {
+public class Deposit extends Money
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DepositTypeCode DepositType;
 	private Interest Interest;

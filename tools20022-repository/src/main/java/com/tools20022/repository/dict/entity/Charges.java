@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Adjustment;
 import com.tools20022.repository.dict.codeset.ChargeTypeCode;
 import com.tools20022.repository.dict.codeset.CalculationBasisCode;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.codeset.ChargePaymentMethodCode;
 /**
  * Amount of money associated with a service.
  */
-public class Charges extends Adjustment {
+public class Charges extends Adjustment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ChargeTypeCode ChargeType;
 	private CalculationBasisCode CalculationBasis;

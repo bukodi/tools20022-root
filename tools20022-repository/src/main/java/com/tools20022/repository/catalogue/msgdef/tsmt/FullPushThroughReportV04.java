@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.FullPushThroughReportV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.tsmt.FullPushThroughReportV05;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.PendingActivity2;
  */
 @PreviousVersion(FullPushThroughReportV03.class)
 @NextVersion(FullPushThroughReportV05.class)
-public class FullPushThroughReportV04 {
+public class FullPushThroughReportV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

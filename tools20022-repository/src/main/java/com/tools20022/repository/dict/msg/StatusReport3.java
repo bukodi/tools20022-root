@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.StatusReport2;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.StatusReport4;
@@ -11,5 +13,5 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(StatusReport2.class)
 @NextVersion(StatusReport4.class)
-public class StatusReport3 {
+public class StatusReport3 implements GeneratedRepoBean<MMMessageComponent> {
 }

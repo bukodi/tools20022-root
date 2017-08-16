@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CaseAssignment;
 import com.tools20022.repository.dict.msg.Case;
 
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.Case;
  * messages must be sent - must be used exclusively between the case assignee
  * and its case creator/case assigner
  */
-public class RequestForDuplicateInstruction {
+public class RequestForDuplicateInstruction
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case Case;

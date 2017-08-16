@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesOrder;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.InvestmentFundTransaction;
@@ -21,7 +23,9 @@ import com.tools20022.repository.dict.entity.SecuritiesOrderStatus;
  * An investor's instruction to either subscribe or redeem an amount of money or
  * its equivalent, for example other assets, into or out of an investment fund.
  */
-public class InvestmentFundOrder extends SecuritiesOrder {
+public class InvestmentFundOrder extends SecuritiesOrder
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator GrossAmountIndicator;
 	private InvestmentFundTransaction RelatedTransaction;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPartyRole;
 import com.tools20022.repository.dict.codeset.SafekeepingPlaceCode;
 import com.tools20022.repository.dict.entity.Country;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.SecuritiesSettlement;
 /**
  * Organisation used as the safekeeping place for the securities.
  */
-public class SafekeepingPlace extends SecuritiesPartyRole {
+public class SafekeepingPlace extends SecuritiesPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SafekeepingPlaceCode SafekeepingPlaceType;
 	private Country Country;

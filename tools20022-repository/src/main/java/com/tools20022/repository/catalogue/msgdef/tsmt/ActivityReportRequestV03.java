@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.BICIdentification1;
 import java.util.Optional;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.DateTimePeriodDetails1;
  * transactions that the requester is involved in and for which an activity has
  * taken place within a time span specified by the requester.
  */
-public class ActivityReportRequestV03 {
+public class ActivityReportRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RequestIdentification;
 	private Optional<BICIdentification1> EntitiesToBeReported;

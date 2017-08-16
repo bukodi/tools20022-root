@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.StructuredRemittanceInformation9;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.StructuredRemittanceInformation12;
@@ -12,5 +14,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(StructuredRemittanceInformation9.class)
 @NextVersion(StructuredRemittanceInformation12.class)
-public class StructuredRemittanceInformation10 {
+public class StructuredRemittanceInformation10
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

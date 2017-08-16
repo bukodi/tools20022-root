@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MoneyMarketReportHeader1;
 import com.tools20022.repository.dict.choice.SecuredMarketReport3Choice;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * reporting agents to the relevant competent authority, to report all relevant
  * secured money market transactions.
  */
-public class MoneyMarketSecuredMarketStatisticalReportV01 {
+public class MoneyMarketSecuredMarketStatisticalReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MoneyMarketReportHeader1 ReportHeader;
 	private SecuredMarketReport3Choice SecuredMarketReport;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.NotificationToReceiveCancellationAdviceV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.NotificationToReceiveCancellationAdviceV04;
@@ -21,7 +23,9 @@ import java.util.Optional;
  */
 @PreviousVersion(NotificationToReceiveCancellationAdviceV02.class)
 @NextVersion(NotificationToReceiveCancellationAdviceV04.class)
-public class NotificationToReceiveCancellationAdviceV03 {
+public class NotificationToReceiveCancellationAdviceV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader59 GroupHeader;
 	private OriginalNotification6 OriginalNotification;

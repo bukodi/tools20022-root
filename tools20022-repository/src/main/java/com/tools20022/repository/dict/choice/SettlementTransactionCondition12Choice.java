@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.SettlementTransactionCondition6Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.SettlementTransactionCondition16Choice;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(SettlementTransactionCondition6Choice.class)
 @NextVersion(SettlementTransactionCondition16Choice.class)
-public class SettlementTransactionCondition12Choice {
+public class SettlementTransactionCondition12Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

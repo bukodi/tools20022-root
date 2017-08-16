@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catm.TerminalManagementRejectionV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header28;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.msg.AcceptorRejection3;
  * message could not be processed.
  */
 @PreviousVersion(TerminalManagementRejectionV03.class)
-public class TerminalManagementRejectionV04 {
+public class TerminalManagementRejectionV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header28 Header;
 	private AcceptorRejection3 Reject;

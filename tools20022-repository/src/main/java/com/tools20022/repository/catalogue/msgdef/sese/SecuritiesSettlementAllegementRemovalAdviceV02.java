@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementAllegementRemovalAdviceV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementAllegementRemovalAdviceV03;
@@ -36,7 +38,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesSettlementAllegementRemovalAdviceV01.class)
 @NextVersion(SecuritiesSettlementAllegementRemovalAdviceV03.class)
-public class SecuritiesSettlementAllegementRemovalAdviceV02 {
+public class SecuritiesSettlementAllegementRemovalAdviceV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private SettlementTypeAndIdentification3 AccountServicerTransactionIdentification;
 	private Optional<Identification1> MarketInfrastructureTransactionIdentification;

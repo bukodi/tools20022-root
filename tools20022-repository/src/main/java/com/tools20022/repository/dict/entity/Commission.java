@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Adjustment;
 import com.tools20022.repository.dict.entity.CommissionWaiver;
 import com.tools20022.repository.dict.entity.Trade;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.entity.CorporateActionFeesAndCharges;
 /**
  * Amount of money due to a party as compensation for a service.
  */
-public class Commission extends Adjustment {
+public class Commission extends Adjustment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CommissionWaiver CommissionWaiving;
 	private Trade Trade;

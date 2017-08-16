@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.LimitReportOrError1Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * error when the requested data cannot be retrieved.
  */
 @PreviousVersion(LimitReportOrError1Choice.class)
-public class LimitReportOrError2Choice {
+public class LimitReportOrError2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

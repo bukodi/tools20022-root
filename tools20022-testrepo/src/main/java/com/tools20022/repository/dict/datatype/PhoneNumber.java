@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMText;
 
 /**
@@ -9,5 +9,5 @@ import com.tools20022.metamodel.MMText;
  * code (from 1 to 3 characters) then a "-" and finally, any combination of
  * numbers, "(", ")", "+" and "-" (up to 30 characters).
  */
-public class PhoneNumber implements InstanceOf<MMText> {
+public class PhoneNumber implements GeneratedRepoBean<MMText> {
 }

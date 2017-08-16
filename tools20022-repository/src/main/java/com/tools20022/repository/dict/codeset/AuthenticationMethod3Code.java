@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.AuthenticationMethod2Code;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.codeset.AuthenticationMethod4Code;
@@ -12,5 +14,5 @@ import com.tools20022.repository.dict.codeset.AuthenticationMethod5Code;
 @PreviousVersion(AuthenticationMethod2Code.class)
 @NextVersion(AuthenticationMethod4Code.class)
 @NextVersion(AuthenticationMethod5Code.class)
-public class AuthenticationMethod3Code {
+public class AuthenticationMethod3Code implements GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsin;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.BusinessLetter1;
 import com.tools20022.repository.dict.msg.FinancingItemList1;
 import com.tools20022.repository.dict.datatype.Max15NumericText;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.EncapsulatedBusinessMessage1;
  * whether these parties are required to acknowledge the assignment. The message
  * can carry digital signatures if required by context.
  */
-public class InvoiceAssignmentStatusV01 {
+public class InvoiceAssignmentStatusV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private BusinessLetter1 Header;
 	private FinancingItemList1 AssignmentList;

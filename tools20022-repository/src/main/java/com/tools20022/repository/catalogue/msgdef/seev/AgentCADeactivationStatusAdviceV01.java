@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionInformation1;
 import com.tools20022.repository.dict.msg.CorporateActionDeactivationInstructionStatus1;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.choice.CorporateActionDeactivationCancella
  * used to provide a status on the deactivation instruction, especially to
  * confirm the deactivation of a Corporate Action event or option.
  */
-public class AgentCADeactivationStatusAdviceV01 {
+public class AgentCADeactivationStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private DocumentIdentification8 AgentCADeactivationInstructionIdentification;

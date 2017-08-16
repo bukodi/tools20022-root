@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CreditInstrument;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.entity.BankingTransaction;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.BankingTransaction;
 /**
  * Amount of money representing a value paid by an agent bank to a creditor.
  */
-public class CashDelivery extends CreditInstrument {
+public class CashDelivery extends CreditInstrument
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ActiveCurrencyAndAmount CashAmount;
 	private BankingTransaction RelatedBankingTransaction;

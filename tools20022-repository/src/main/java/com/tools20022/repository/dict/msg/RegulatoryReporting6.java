@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.RegulatoryReporting4;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * identifier, might be used on regular trade confirmations.
  */
 @PreviousVersion(RegulatoryReporting4.class)
-public class RegulatoryReporting6 {
+public class RegulatoryReporting6
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

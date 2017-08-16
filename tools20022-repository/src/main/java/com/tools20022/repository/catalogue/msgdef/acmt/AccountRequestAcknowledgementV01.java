@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountRequestAcknowledgementV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.References5;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature1;
  * authentication and authorization point of view.
  */
 @NextVersion(AccountRequestAcknowledgementV02.class)
-public class AccountRequestAcknowledgementV01 {
+public class AccountRequestAcknowledgementV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References5 References;
 	private Optional<AccountForAction1> AccountIdentification;

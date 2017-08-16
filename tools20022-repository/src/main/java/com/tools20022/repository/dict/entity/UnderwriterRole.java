@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPartyRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.SecuritiesPartyRole;
  * co-lead managers, co-managers and underwriters in order to raise money for a
  * borrower via a new issue.
  */
-public class UnderwriterRole extends SecuritiesPartyRole {
+public class UnderwriterRole extends SecuritiesPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

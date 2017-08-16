@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CollateralMovement;
 import com.tools20022.repository.dict.codeset.CollateralProposalResponseCode;
 import com.tools20022.repository.dict.codeset.ProposalTypeCode;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.CollateralManagement;
 /**
  * Specifies collateral proposed to the counterparty.
  */
-public class CollateralProposal {
+public class CollateralProposal extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CollateralMovement ProposedCollateralMovement;
 	private CollateralProposalResponseCode ResponseType;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.RolePlayer;
 import com.tools20022.repository.dict.entity.ContactPersonRole;
 import com.tools20022.repository.dict.codeset.PartyRoleCode;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.Entry;
 /**
  * Role of a party in an activity.
  */
-public class Role {
+public class Role extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private RolePlayer Player;
 	private ContactPersonRole ContactPersonRole;

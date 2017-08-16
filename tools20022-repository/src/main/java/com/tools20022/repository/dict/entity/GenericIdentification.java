@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.ContactPoint;
 import com.tools20022.repository.dict.entity.AccountIdentification;
@@ -27,7 +30,9 @@ import com.tools20022.repository.dict.entity.RegisteredContract;
  * Information related to a non-standardised identification, such as a
  * proprietary party identification or account identification.
  */
-public class GenericIdentification {
+public class GenericIdentification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text Identification;
 	private ContactPoint IdentificationForContactPoint;

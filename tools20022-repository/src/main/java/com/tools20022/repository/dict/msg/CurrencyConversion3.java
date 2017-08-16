@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.CurrencyConversion2;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CurrencyConversion7;
@@ -13,5 +15,7 @@ import com.tools20022.repository.dict.msg.CurrencyConversion8;
 @PreviousVersion(CurrencyConversion2.class)
 @NextVersion(CurrencyConversion7.class)
 @NextVersion(CurrencyConversion8.class)
-public class CurrencyConversion3 {
+public class CurrencyConversion3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

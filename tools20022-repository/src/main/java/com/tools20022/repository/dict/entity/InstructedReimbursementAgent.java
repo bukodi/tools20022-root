@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CashSettlementInstructionPartyRole;
 
 /**
@@ -12,5 +14,7 @@ import com.tools20022.repository.dict.entity.CashSettlementInstructionPartyRole;
  */
 public class InstructedReimbursementAgent
 		extends
-			CashSettlementInstructionPartyRole {
+			CashSettlementInstructionPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

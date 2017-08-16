@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFICustomerCreditTransferV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFICustomerCreditTransferV03;
@@ -36,7 +38,9 @@ import com.tools20022.repository.dict.msg.CreditTransferTransactionInformation11
  */
 @PreviousVersion(FIToFICustomerCreditTransferV01.class)
 @NextVersion(FIToFICustomerCreditTransferV03.class)
-public class FIToFICustomerCreditTransferV02 {
+public class FIToFICustomerCreditTransferV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader33 GroupHeader;
 	private CreditTransferTransactionInformation11 CreditTransferTransactionInformation;

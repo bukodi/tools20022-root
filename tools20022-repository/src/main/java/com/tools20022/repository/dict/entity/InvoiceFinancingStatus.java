@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.FinancingStatusReasonCode;
 import com.tools20022.repository.dict.codeset.TechnicalValidationStatusCode;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.entity.InvoiceFinancingAgreement;
  * Status of an invoice financing transaction and of the instructions related to
  * the invoice financing.
  */
-public class InvoiceFinancingStatus extends Status {
+public class InvoiceFinancingStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private FinancingStatusReasonCode ValidationStatusReason;
 	private TechnicalValidationStatusCode ValidationStatus;

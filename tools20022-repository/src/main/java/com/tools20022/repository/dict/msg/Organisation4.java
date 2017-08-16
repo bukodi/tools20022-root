@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Organisation21;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * government body, department, charity, or financial institution.
  */
 @NextVersion(Organisation21.class)
-public class Organisation4 {
+public class Organisation4 implements GeneratedRepoBean<MMMessageComponent> {
 }

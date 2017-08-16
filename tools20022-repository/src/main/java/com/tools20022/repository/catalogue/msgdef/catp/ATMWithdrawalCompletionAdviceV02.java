@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catp.ATMWithdrawalCompletionAdviceV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header32;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * message should be used instead of ATMCompletionAdvice.
  */
 @PreviousVersion(ATMWithdrawalCompletionAdviceV01.class)
-public class ATMWithdrawalCompletionAdviceV02 {
+public class ATMWithdrawalCompletionAdviceV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header32 Header;
 	private Optional<ContentInformationType10> ProtectedATMWithdrawalCompletionAdvice;

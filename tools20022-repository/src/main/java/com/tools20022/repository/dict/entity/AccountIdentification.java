@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Account;
 import com.tools20022.repository.dict.datatype.IBAN2007Identifier;
 import com.tools20022.repository.dict.datatype.BBANIdentifier;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
 /**
  * Unique identifier of an account, as assigned by the account servicer.
  */
-public class AccountIdentification {
+public class AccountIdentification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Account Account;
 	private IBAN2007Identifier IBAN;

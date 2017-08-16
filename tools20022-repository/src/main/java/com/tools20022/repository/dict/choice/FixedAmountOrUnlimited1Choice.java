@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice between a fixed amount and an unlimited amount.
  */
-public class FixedAmountOrUnlimited1Choice {
+public class FixedAmountOrUnlimited1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

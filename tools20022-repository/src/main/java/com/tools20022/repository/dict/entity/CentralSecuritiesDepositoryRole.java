@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.DepositoryRole;
 
 /**
@@ -9,5 +11,7 @@ import com.tools20022.repository.dict.entity.DepositoryRole;
  * of ownership of such securities by entries on its books and records. The
  * depository may delegate custody to another entity (custodian).
  */
-public class CentralSecuritiesDepositoryRole extends DepositoryRole {
+public class CentralSecuritiesDepositoryRole extends DepositoryRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

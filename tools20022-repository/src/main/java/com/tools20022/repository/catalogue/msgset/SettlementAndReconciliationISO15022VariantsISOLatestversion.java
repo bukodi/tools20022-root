@@ -1,4 +1,8 @@
 package com.tools20022.repository.catalogue.msgset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageSet;
+
 /**
  * This Message Definition Report provides the description of the ISO15022
  * Variants of the current version of the Settlement And Reconciliation message
@@ -14,5 +18,7 @@ package com.tools20022.repository.catalogue.msgset;
  * These variants are maintained by SWIFT. Requests for changes to these
  * variants should be addressed directly to SWIFT.
  */
-public class SettlementAndReconciliationISO15022VariantsISOLatestversion {
+public class SettlementAndReconciliationISO15022VariantsISOLatestversion
+		implements
+			GeneratedRepoBean<MMMessageSet> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SystemAvailability;
 import com.tools20022.repository.dict.datatype.ISOTime;
 
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.datatype.ISOTime;
  * Particular time span specified between a start time and an end time. The time
  * period cannot exceed 24 hours.
  */
-public class TimePeriod {
+public class TimePeriod extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SystemAvailability SystemAvailability;
 	private ISOTime FromTime;

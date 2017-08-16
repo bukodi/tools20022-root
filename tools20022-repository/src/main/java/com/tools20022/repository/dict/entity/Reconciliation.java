@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.System;
 import com.tools20022.repository.dict.entity.Document;
 import com.tools20022.repository.dict.entity.Trade;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.Account;
 /**
  * Process of matching different documents submitted by parties to a trade.
  */
-public class Reconciliation {
+public class Reconciliation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private System System;
 	private Document Document;

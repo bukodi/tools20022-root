@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.CreditorPaymentActivationRequestV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.GroupHeader45;
@@ -14,7 +16,9 @@ import java.util.Optional;
  * creditor.
  */
 @PreviousVersion(CreditorPaymentActivationRequestV05.class)
-public class CreditorPaymentActivationRequestV06 {
+public class CreditorPaymentActivationRequestV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader45 GroupHeader;
 	private PaymentInstruction23 PaymentInformation;

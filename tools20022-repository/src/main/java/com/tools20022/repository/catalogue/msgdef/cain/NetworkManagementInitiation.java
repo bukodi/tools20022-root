@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.cain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header17;
 import com.tools20022.repository.dict.msg.AcquirerNetworkManagementInitiation1;
 import com.tools20022.repository.dict.msg.ContentInformationType15;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * control the operating condition of the network and may be initiated by any
  * party to an acquirer, an issuer or an agent.
  */
-public class NetworkManagementInitiation {
+public class NetworkManagementInitiation
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header17 Header;
 	private AcquirerNetworkManagementInitiation1 NetworkManagementInitiation;

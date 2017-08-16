@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header29;
 import com.tools20022.repository.dict.msg.CertificateManagementRequest1;
 import com.tools20022.repository.dict.msg.ContentInformationType13;
@@ -12,7 +14,9 @@ import java.util.Optional;
  * initiating party, or for requesting the inclusion or the removal of the POI
  * to a white list of the terminal manager.
  */
-public class CertificateManagementRequestV01 {
+public class CertificateManagementRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header29 Header;
 	private CertificateManagementRequest1 CertificateManagementRequest;

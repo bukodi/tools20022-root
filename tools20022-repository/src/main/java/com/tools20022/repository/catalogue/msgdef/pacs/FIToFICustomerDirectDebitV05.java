@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFICustomerDirectDebitV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFICustomerDirectDebitV06;
@@ -26,7 +28,9 @@ import java.util.Optional;
  */
 @PreviousVersion(FIToFICustomerDirectDebitV04.class)
 @NextVersion(FIToFICustomerDirectDebitV06.class)
-public class FIToFICustomerDirectDebitV05 {
+public class FIToFICustomerDirectDebitV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader50 GroupHeader;
 	private DirectDebitTransactionInformation17 DirectDebitTransactionInformation;

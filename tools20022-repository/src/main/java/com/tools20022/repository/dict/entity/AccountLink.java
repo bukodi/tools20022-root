@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CashAccount;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
 import com.tools20022.repository.dict.entity.SecuritiesAccount;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.datatype.YesNoIndicator;
 /**
  * Defines the link between the accounts held with a market infrastructure.
  */
-public class AccountLink {
+public class AccountLink extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccount CashAccount;
 	private DateTimePeriod ValidityPeriod;

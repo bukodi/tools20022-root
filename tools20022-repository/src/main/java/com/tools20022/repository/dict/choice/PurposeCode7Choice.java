@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.PurposeCode2Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * type.
  */
 @PreviousVersion(PurposeCode2Choice.class)
-public class PurposeCode7Choice {
+public class PurposeCode7Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

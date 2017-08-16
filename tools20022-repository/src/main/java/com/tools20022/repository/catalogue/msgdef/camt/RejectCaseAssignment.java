@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CaseAssignment;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.msg.CaseAssignmentRejectionJustification;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.CaseAssignmentRejectionJustification;
  * assigner. The Reject Case Assignment message must not be used in place of a
  * Resolution Of Investigation or Case Status Report message.
  */
-public class RejectCaseAssignment {
+public class RejectCaseAssignment
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case Case;

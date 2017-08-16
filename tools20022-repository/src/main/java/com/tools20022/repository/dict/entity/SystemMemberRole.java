@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SystemPartyRole;
 import com.tools20022.repository.dict.entity.CashBalance;
 import com.tools20022.repository.dict.codeset.MemberTypeCode;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.Account;
 /**
  * Information about the members of a system.
  */
-public class SystemMemberRole extends SystemPartyRole {
+public class SystemMemberRole extends SystemPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashBalance CashBalance;
 	private MemberTypeCode Type;

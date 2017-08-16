@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferCancellationStatusReport;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferCancellationStatusReportV03;
@@ -32,7 +34,9 @@ import java.util.Optional;
  */
 @PreviousVersion(TransferCancellationStatusReport.class)
 @NextVersion(TransferCancellationStatusReportV03.class)
-public class TransferCancellationStatusReportV02 {
+public class TransferCancellationStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private List<AdditionalReference3> RelatedReference;

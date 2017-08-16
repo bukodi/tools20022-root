@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.other;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeAgreement7;
 import com.tools20022.repository.dict.msg.TradePartyIdentification6;
 import com.tools20022.repository.dict.msg.AmountsAndValueDate1;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * central settlement system to advise of the creation of a foreign exchange
  * trade.
  */
-public class ForeignExchangeTradeInstructionV02 {
+public class ForeignExchangeTradeInstructionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeAgreement7 TradeInformation;
 	private TradePartyIdentification6 TradingSideIdentification;

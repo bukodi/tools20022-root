@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.FundIdentification4;
 import com.tools20022.core.repo.NextVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.NextVersion;
  * investment fund class.
  */
 @NextVersion(FundIdentification4.class)
-public class FundIdentification3 {
+public class FundIdentification3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

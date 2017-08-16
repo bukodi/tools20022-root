@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TransactionIdentification7;
 import com.tools20022.repository.dict.choice.ResponseStatus8Choice;
 import com.tools20022.repository.dict.msg.TransactionDetails92;
@@ -29,7 +31,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * third party a copy of a message being sent by the account owner for
  * information using the relevant elements in the Business Application Header.
  */
-public class SecuritiesSettlementTransactionCounterpartyResponse002V02 {
+public class SecuritiesSettlementTransactionCounterpartyResponse002V02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionIdentification7 TransactionIdentification;
 	private ResponseStatus8Choice ResponseStatus;

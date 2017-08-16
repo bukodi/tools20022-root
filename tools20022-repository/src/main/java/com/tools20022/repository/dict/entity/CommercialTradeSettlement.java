@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Settlement;
 import com.tools20022.repository.dict.entity.Payment;
 import com.tools20022.repository.dict.entity.Invoice;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.entity.CommercialTrade;
  * Settlement of a commercial trade, that is, the instruction to deliver goods
  * or services against the payment of an amount of money.
  */
-public class CommercialTradeSettlement extends Settlement {
+public class CommercialTradeSettlement extends Settlement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Payment Payment;
 	private Invoice Invoice;

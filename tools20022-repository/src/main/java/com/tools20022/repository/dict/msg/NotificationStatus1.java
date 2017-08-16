@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.NotificationStatus2;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * confirmed or unconfirmed. Details of the event can be complete or incomplete.
  */
 @NextVersion(NotificationStatus2.class)
-public class NotificationStatus1 {
+public class NotificationStatus1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.codeset.ProcessingPositionCode;
 import com.tools20022.repository.dict.entity.SecuritiesSettlement;
@@ -18,7 +21,9 @@ import com.tools20022.repository.dict.codeset.ReportingCode;
  * counterparties orders. There could be several trade transactions necessary to
  * execute the trade.
  */
-public class SecuritiesTradeExecution {
+public class SecuritiesTradeExecution extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator StampDutyIndicator;
 	private ProcessingPositionCode ProcessingPosition;

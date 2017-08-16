@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.MandateInitiationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader31;
@@ -21,7 +23,9 @@ import com.tools20022.repository.dict.msg.MandateInformation2;
  * domestic and cross-border scenarios.
  */
 @NextVersion(MandateInitiationRequestV02.class)
-public class MandateInitiationRequestV01 {
+public class MandateInitiationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader31 GroupHeader;
 	private MandateInformation2 Mandate;

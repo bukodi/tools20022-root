@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionAllegementNotificationV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.TransactionAndDocumentIdentification1;
@@ -45,7 +47,9 @@ import com.tools20022.repository.dict.msg.Extension2;
  * identified as follows: “CoexistenceXxxxRule”.
  */
 @NextVersion(SecuritiesSettlementTransactionAllegementNotificationV02.class)
-public class SecuritiesSettlementTransactionAllegementNotificationV01 {
+public class SecuritiesSettlementTransactionAllegementNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionAndDocumentIdentification1 Identification;
 	private SettlementTypeAndAdditionalParameters2 SettlementTypeAndAdditionalParameters;

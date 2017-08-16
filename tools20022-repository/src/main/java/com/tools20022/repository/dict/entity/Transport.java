@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Incoterms;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.Packaging;
@@ -17,7 +20,9 @@ import com.tools20022.repository.dict.entity.Document;
 /**
  * Moving of goods or people from one place to another by vehicle.
  */
-public class Transport {
+public class Transport extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Incoterms Incoterms;
 	private Max35Text Identification;

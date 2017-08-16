@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.entity.ListTrading;
 import com.tools20022.repository.dict.codeset.LiquidityIndicatorTypeCode;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
  * Ability of a financial instrument to be easily traded and converted to cash,
  * at conditions that do not affect its price.
  */
-public class Liquidity {
+public class Liquidity extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity Quantity;
 	private ListTrading ListTrading;

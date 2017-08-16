@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionCancellationRequestV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionCancellationRequestV05;
@@ -33,7 +35,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(CorporateActionInstructionCancellationRequestV03.class)
 @NextVersion(CorporateActionInstructionCancellationRequestV05.class)
-public class CorporateActionInstructionCancellationRequestV04 {
+public class CorporateActionInstructionCancellationRequestV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<YesNoIndicator> ChangeInstructionIndicator;
 	private DocumentIdentification15 InstructionIdentification;

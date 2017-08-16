@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.DataSetSubmissionV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -38,7 +40,9 @@ import com.tools20022.repository.dict.msg.OtherCertificateDataSet1;
  * transaction(s), for example shipment date, invoice amount.
  */
 @NextVersion(DataSetSubmissionV04.class)
-public class DataSetSubmissionV03 {
+public class DataSetSubmissionV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 SubmissionIdentification;
 	private DataSetSubmissionReferences3 RelatedTransactionReferences;

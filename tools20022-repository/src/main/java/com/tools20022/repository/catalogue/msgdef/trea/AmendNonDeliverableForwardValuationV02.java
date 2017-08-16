@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeAgreement2;
 import com.tools20022.repository.dict.msg.TradePartyIdentification3;
 import com.tools20022.repository.dict.msg.AmountsAndValueDate1;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ValuationData2;
  * system to advise of the update of a previously sent notification and it
  * contains a "Related Reference" to link it to the previous notification.
  */
-public class AmendNonDeliverableForwardValuationV02 {
+public class AmendNonDeliverableForwardValuationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeAgreement2 TradeInformation;
 	private TradePartyIdentification3 TradingSideIdentification;

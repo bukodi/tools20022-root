@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Indicates the environment of the transaction.
  */
-public class TransactionEnvironment1Code {
+public class TransactionEnvironment1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

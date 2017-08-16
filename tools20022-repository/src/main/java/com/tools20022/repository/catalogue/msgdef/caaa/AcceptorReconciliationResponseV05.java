@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorReconciliationResponseV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header30;
@@ -16,7 +18,9 @@ import java.util.Optional;
  * will be resolved by other means, outside the scope of the protocol.
  */
 @PreviousVersion(AcceptorReconciliationResponseV04.class)
-public class AcceptorReconciliationResponseV05 {
+public class AcceptorReconciliationResponseV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header30 Header;
 	private AcceptorReconciliationResponse4 ReconciliationResponse;

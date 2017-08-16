@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.CustomerPaymentStatusReportV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader5;
@@ -28,7 +30,9 @@ import java.util.Optional;
  * urn:iso:std:iso:20022:tech:xsd:pain.002.001.02
  */
 @NextVersion(CustomerPaymentStatusReportV03.class)
-public class PaymentStatusReportV02 {
+public class PaymentStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader5 GroupHeader;
 	private OriginalGroupInformation1 OriginalGroupInformationAndStatus;

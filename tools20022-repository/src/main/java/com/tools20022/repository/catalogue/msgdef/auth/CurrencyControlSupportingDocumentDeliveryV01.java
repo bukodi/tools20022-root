@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CurrencyControlHeader3;
 import com.tools20022.repository.dict.msg.SupportingDocument1;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -11,7 +13,9 @@ import java.util.Optional;
  * agent (respectively the reporting party) in response to the supporting
  * document request.
  */
-public class CurrencyControlSupportingDocumentDeliveryV01 {
+public class CurrencyControlSupportingDocumentDeliveryV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CurrencyControlHeader3 GroupHeader;
 	private SupportingDocument1 SupportingDocument;

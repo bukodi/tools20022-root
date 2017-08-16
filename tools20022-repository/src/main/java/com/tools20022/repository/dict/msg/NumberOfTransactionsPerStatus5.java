@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.NumberOfTransactionsPerStatus3;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * transactions that are reported with a specific transaction status.
  */
 @PreviousVersion(NumberOfTransactionsPerStatus3.class)
-public class NumberOfTransactionsPerStatus5 {
+public class NumberOfTransactionsPerStatus5
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

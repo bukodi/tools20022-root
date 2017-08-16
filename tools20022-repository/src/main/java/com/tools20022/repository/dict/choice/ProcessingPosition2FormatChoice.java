@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of formats to express the processing position.
  */
-public class ProcessingPosition2FormatChoice {
+public class ProcessingPosition2FormatChoice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

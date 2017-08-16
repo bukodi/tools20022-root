@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.InvestigationCaseStatus;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.entity.Reassignment;
  * Set of activities performed to handle an exception to a normal transaction
  * flow..
  */
-public class InvestigationCase {
+public class InvestigationCase extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text AssignmentIdentification;
 	private ISODateTime CreationDateTime;

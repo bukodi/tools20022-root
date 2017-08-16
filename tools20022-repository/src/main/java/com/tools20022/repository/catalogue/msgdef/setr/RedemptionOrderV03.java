@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.RedemptionMultipleOrderV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.setr.RedemptionOrderV04;
@@ -30,7 +32,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(RedemptionMultipleOrderV02.class)
 @NextVersion(RedemptionOrderV04.class)
-public class RedemptionOrderV03 {
+public class RedemptionOrderV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.PendingCancellationReason3Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * why a cancellation request sent for the related instruction is pending.
  */
 @PreviousVersion(PendingCancellationReason3Choice.class)
-public class PendingCancellationReason5Choice {
+public class PendingCancellationReason5Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

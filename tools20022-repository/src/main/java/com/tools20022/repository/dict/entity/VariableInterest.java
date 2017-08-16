@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.FrequencyCode;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.InterestCalculation;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.entity.DurationCalculation;
  * Specifies the estimated interest rate and the parameters used for determining
  * its value.
  */
-public class VariableInterest {
+public class VariableInterest extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private FrequencyCode VariableRateChangeFrequency;
 	private ISODateTime FixingDate;

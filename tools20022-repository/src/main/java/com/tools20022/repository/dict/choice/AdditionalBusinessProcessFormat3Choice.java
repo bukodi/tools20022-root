@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.AdditionalBusinessProcessFormat7Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * additional business process, that is, a tax refund.
  */
 @NextVersion(AdditionalBusinessProcessFormat7Choice.class)
-public class AdditionalBusinessProcessFormat3Choice {
+public class AdditionalBusinessProcessFormat3Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

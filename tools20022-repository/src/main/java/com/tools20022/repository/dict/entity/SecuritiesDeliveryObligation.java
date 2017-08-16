@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Obligation;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.datatype.ISODateTime;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.entity.SecuritiesLending;
 /**
  * Obligation for one party to deliver securities to another party.
  */
-public class SecuritiesDeliveryObligation extends Obligation {
+public class SecuritiesDeliveryObligation extends Obligation
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator CCPEligibility;
 	private YesNoIndicator NettingEligibility;

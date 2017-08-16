@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.UTCOffset1;
 
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.UTCOffset1;
  * every day an activity report covering the last 24 hours and send it. By
  * default, this offset is equal to 0.
  */
-public class ActivityReportSetUpRequestV02 {
+public class ActivityReportSetUpRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RequestIdentification;
 	private UTCOffset1 UTCOffset;

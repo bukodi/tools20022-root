@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.BankToCustomerAccountReportV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.BankToCustomerAccountReportV05;
@@ -26,7 +28,9 @@ import java.util.Optional;
  */
 @PreviousVersion(BankToCustomerAccountReportV03.class)
 @NextVersion(BankToCustomerAccountReportV05.class)
-public class BankToCustomerAccountReportV04 {
+public class BankToCustomerAccountReportV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader58 GroupHeader;
 	private AccountReport16 Report;

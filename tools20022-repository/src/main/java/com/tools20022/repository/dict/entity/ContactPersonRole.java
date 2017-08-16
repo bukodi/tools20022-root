@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.entity.Meeting;
 import com.tools20022.repository.dict.entity.Person;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.Person;
  * domain (including meeting notifications) , it is the contact person at the
  * party organising the meeting, at the issuer or at an intermediary.
  */
-public class ContactPersonRole extends Role {
+public class ContactPersonRole extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Role Role;
 	private Meeting Meeting;

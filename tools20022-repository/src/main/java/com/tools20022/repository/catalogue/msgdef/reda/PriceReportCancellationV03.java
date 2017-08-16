@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.reda;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.reda.PriceReportCancellationV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.reda.PriceReportCancellationV04;
@@ -24,7 +26,9 @@ import com.tools20022.repository.dict.msg.PriceReport2;
  */
 @PreviousVersion(PriceReportCancellationV02.class)
 @NextVersion(PriceReportCancellationV04.class)
-public class PriceReportCancellationV03 {
+public class PriceReportCancellationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

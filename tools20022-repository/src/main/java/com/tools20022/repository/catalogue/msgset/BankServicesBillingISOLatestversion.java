@@ -1,4 +1,8 @@
 package com.tools20022.repository.catalogue.msgset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageSet;
+
 /**
  * A message that provides a standard means for banks to periodically advise
  * their wholesale clients or correspondent banks bank service fees, taxes and
@@ -15,5 +19,7 @@ package com.tools20022.repository.catalogue.msgset;
  * the time of its creation. A maintenance process will be available to address
  * future revisions to the standard which may be required.
  */
-public class BankServicesBillingISOLatestversion {
+public class BankServicesBillingISOLatestversion
+		implements
+			GeneratedRepoBean<MMMessageSet> {
 }

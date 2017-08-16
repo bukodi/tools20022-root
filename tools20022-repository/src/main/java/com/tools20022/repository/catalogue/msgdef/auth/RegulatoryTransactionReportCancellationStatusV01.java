@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.choice.PartyIdentification23Choice;
 import com.tools20022.repository.dict.msg.ReportStatusAndReason2;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.TradeTransactionStatusAndReason2;
  * Rejected. If the status is rejected, then reason for the rejection must be
  * specified.
  */
-public class RegulatoryTransactionReportCancellationStatusV01 {
+public class RegulatoryTransactionReportCancellationStatusV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private PartyIdentification23Choice ReportingInstitution;

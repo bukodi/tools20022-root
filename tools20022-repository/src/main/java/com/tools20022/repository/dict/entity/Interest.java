@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.InterestCalculation;
 import com.tools20022.repository.dict.datatype.PercentageRate;
@@ -28,7 +31,9 @@ import com.tools20022.repository.dict.entity.PaymentCard;
  * interest is expressed as a fixed amount or percentage of the amount upon
  * which the interest is applied.
  */
-public class Interest {
+public class Interest extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount AccruedInterestAmount;
 	private InterestCalculation InterestCalculation;

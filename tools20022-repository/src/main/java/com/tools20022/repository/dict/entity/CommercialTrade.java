@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Trade;
 import com.tools20022.repository.dict.entity.CashAccount;
 import com.tools20022.repository.dict.entity.PaymentObligation;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.entity.Agreement;
 /**
  * Commercial details of a trade transaction between a buyer and a seller.
  */
-public class CommercialTrade extends Trade {
+public class CommercialTrade extends Trade
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccount PurchaseAccount;
 	private PaymentObligation PaymentObligation;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.OtherCollateralResponse1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * rejection.
  */
 @PreviousVersion(OtherCollateralResponse1.class)
-public class OtherCollateralResponse2 {
+public class OtherCollateralResponse2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

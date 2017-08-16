@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.CardholderVerificationCapability4Code;
 import com.tools20022.core.repo.NextVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.NextVersion;
  * version 2003.
  */
 @NextVersion(CardholderVerificationCapability4Code.class)
-public class CardholderVerificationCapability2Code {
+public class CardholderVerificationCapability2Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

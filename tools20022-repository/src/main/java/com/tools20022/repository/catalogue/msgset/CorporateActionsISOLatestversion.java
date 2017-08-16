@@ -1,4 +1,8 @@
 package com.tools20022.repository.catalogue.msgset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageSet;
+
 /**
  * Set of messages used by intermediaries, such as (I)CSD's, global custodians
  * or local custodians, involved in the corporate action processing chain
@@ -7,5 +11,7 @@ package com.tools20022.repository.catalogue.msgset;
  * preliminary advices , movements confirmations , movements reversals and
  * status reporting.
  */
-public class CorporateActionsISOLatestversion {
+public class CorporateActionsISOLatestversion
+		implements
+			GeneratedRepoBean<MMMessageSet> {
 }

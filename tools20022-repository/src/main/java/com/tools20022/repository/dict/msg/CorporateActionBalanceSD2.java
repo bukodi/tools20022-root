@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides additional information regarding corporate action balance details.
  */
-public class CorporateActionBalanceSD2 {
+public class CorporateActionBalanceSD2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

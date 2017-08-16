@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.AdjustedBalanceTypeSD2Choice;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.choice.AdjustedBalanceTypeSD3Choice;
@@ -9,5 +11,7 @@ import com.tools20022.repository.dict.choice.AdjustedBalanceTypeSD3Choice;
  */
 @NextVersion(AdjustedBalanceTypeSD2Choice.class)
 @NextVersion(AdjustedBalanceTypeSD3Choice.class)
-public class AdjustedBalanceTypeSD1Choice {
+public class AdjustedBalanceTypeSD1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

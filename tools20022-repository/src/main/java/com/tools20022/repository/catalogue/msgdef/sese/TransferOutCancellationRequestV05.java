@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferOutCancellationRequestV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferOutCancellationRequestV06;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.CopyInformation2;
  */
 @PreviousVersion(TransferOutCancellationRequestV04.class)
 @NextVersion(TransferOutCancellationRequestV06.class)
-public class TransferOutCancellationRequestV05 {
+public class TransferOutCancellationRequestV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<References15> References;

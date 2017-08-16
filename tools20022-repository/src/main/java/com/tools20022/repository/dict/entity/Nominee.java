@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentAccountPartyRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.InvestmentAccountPartyRole;
  * behalf, often to facilitate dealing, or to conceal the identity of the
  * beneficiary. Securities and other assets are recorded in the nominee's name.
  */
-public class Nominee extends InvestmentAccountPartyRole {
+public class Nominee extends InvestmentAccountPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

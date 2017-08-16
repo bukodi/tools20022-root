@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CashAccountService;
 import com.tools20022.repository.dict.entity.Limit;
 import com.tools20022.repository.dict.entity.Interest;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.codeset.DebitCreditCode;
  * Specifies the conditions for overdraft on the account or for positive
  * amounts.
  */
-public class DebitCreditFacility extends CashAccountService {
+public class DebitCreditFacility extends CashAccountService
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Limit CreditLine;
 	private Interest CashAccountInterest;

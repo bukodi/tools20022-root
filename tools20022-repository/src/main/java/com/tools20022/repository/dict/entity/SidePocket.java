@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.InvestmentAccount;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.SecuritiesQuantity;
  * Separate account containing illiquid assets of a hedge fund portfolio. Only
  * the present participants in the hedge fund will be entitled to a share of it.
  */
-public class SidePocket {
+public class SidePocket extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator SidePocketInclusionIndicator;
 	private Max35Text SidePocketIdentification;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caam;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caam.ATMReconciliationAcknowledgementV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header21;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * message.
  */
 @NextVersion(ATMReconciliationAcknowledgementV02.class)
-public class ATMReconciliationAcknowledgementV01 {
+public class ATMReconciliationAcknowledgementV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header21 Header;
 	private Optional<ContentInformationType10> ProtectedATMReconciliationAcknowledgement;

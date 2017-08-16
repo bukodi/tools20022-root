@@ -1,6 +1,6 @@
 package com.tools20022.repository.catalogue.area;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessArea;
 
 /**
@@ -10,5 +10,5 @@ import com.tools20022.metamodel.MMBusinessArea;
  */
 public class PaymentsInitiationLatestVersion
 		implements
-			InstanceOf<MMBusinessArea> {
+			GeneratedRepoBean<MMBusinessArea> {
 }

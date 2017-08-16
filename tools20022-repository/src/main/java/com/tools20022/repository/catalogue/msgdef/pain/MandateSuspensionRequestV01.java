@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.GroupHeader47;
 import com.tools20022.repository.dict.msg.MandateSuspension1;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -16,7 +18,9 @@ import java.util.Optional;
  * MandateSuspensionRequest message can be used in domestic and cross-border
  * scenarios.
  */
-public class MandateSuspensionRequestV01 {
+public class MandateSuspensionRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader47 GroupHeader;
 	private MandateSuspension1 UnderlyingSuspensionDetails;

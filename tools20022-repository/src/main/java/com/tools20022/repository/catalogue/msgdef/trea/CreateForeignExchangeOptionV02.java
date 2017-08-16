@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeAgreement1;
 import com.tools20022.repository.dict.msg.TradePartyIdentification4;
 import com.tools20022.repository.dict.msg.Option3;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.Option3;
  * Simple (i.e. not Barrier) Vanilla (i.e. not Binary, Digital, Notouch) Foreign
  * Exchange Options.
  */
-public class CreateForeignExchangeOptionV02 {
+public class CreateForeignExchangeOptionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeAgreement1 TradeInformation;
 	private TradePartyIdentification4 TradingSideIdentification;

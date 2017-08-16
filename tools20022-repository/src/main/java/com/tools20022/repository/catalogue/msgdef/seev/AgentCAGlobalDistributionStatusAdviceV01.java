@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionInformation1;
 import com.tools20022.repository.dict.msg.GlobalDistributionStatus1;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.IndividualMovementStatus1;
  * by individual movements, in which case, the building block Individual
  * Movement Status must be present. An individual movement cannot be rejected.
  */
-public class AgentCAGlobalDistributionStatusAdviceV01 {
+public class AgentCAGlobalDistributionStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private DocumentIdentification8 AgentCAGlobalDistributionAuthorisationRequestIdentification;

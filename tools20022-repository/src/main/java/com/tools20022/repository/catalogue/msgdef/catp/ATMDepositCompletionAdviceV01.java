@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header32;
 import com.tools20022.repository.dict.msg.ContentInformationType10;
 import java.util.Optional;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * used each time a bundle is put in the ATM safe and/or at the end of a multi
  * bundle deposit.
  */
-public class ATMDepositCompletionAdviceV01 {
+public class ATMDepositCompletionAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header32 Header;
 	private Optional<ContentInformationType10> ProtectedATMDepositCompletionAdvice;

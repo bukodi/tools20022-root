@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesSettlementPartyRole;
 import com.tools20022.repository.dict.entity.DeliveringSettlementParty;
 
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.DeliveringSettlementParty;
  * Party that is responsible for delivering securities as part of a chain of
  * settlement parties or as party that sells them.
  */
-public class DeliveringSettlementParty extends SecuritiesSettlementPartyRole {
+public class DeliveringSettlementParty extends SecuritiesSettlementPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DeliveringSettlementParty DeliveringSettlementParty;
 	private DeliveringSettlementParty NextParty;

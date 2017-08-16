@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import com.tools20022.repository.dict.msg.DocumentIdentification3;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.msg.PendingActivity2;
  * request to accept role and baseline (RoleAndBaselineAcceptance or
  * RoleAndBaselineRejection message).
  */
-public class ActionReminderV03 {
+public class ActionReminderV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReminderIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

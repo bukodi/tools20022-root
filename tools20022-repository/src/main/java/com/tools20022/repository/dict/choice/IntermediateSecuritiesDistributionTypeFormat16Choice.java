@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.IntermediateSecuritiesDistributionTypeFormat5Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * intermediate securities distribution.
  */
 @PreviousVersion(IntermediateSecuritiesDistributionTypeFormat5Choice.class)
-public class IntermediateSecuritiesDistributionTypeFormat16Choice {
+public class IntermediateSecuritiesDistributionTypeFormat16Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

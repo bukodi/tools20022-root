@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of formats for the exemption reason.
  */
-public class ExemptionReason1Choice {
+public class ExemptionReason1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

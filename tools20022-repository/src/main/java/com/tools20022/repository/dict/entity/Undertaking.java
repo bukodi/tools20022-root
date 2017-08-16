@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.ElectronicSignature;
 import com.tools20022.repository.dict.entity.UndertakingStatus;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -27,7 +30,9 @@ import com.tools20022.repository.dict.entity.UndertakingExtension;
  * credit, that provides financial assurance, to be collected on the
  * presentation of documents that comply with its terms and conditions.
  */
-public class Undertaking {
+public class Undertaking extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ElectronicSignature ElectronicSignature;
 	private UndertakingStatus UndertakingStatus;

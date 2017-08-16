@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Defines an identifier for a party relative to another party using an
  * identifier of another party followed by a local identifier issued by the
@@ -11,5 +15,7 @@ package com.tools20022.repository.dict.msg;
  * sequence of relative identifiers is used to avoid a recursive definition in
  * the catalogue.
  */
-public class SingleQualifiedPartyIdentification1 {
+public class SingleQualifiedPartyIdentification1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

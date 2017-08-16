@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Undertaking;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.UndertakingDocument;
  * Document signed by the beneficiary demanding payment under a demand guarantee
  * or standby letter of credit.
  */
-public class Demand {
+public class Demand extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Undertaking Undertaking;
 	private ISODateTime SubmissionDateTime;

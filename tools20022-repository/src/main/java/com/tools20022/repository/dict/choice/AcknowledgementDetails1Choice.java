@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.msg.ConfirmationDetails1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * In Schedule message or the Pay In Call message.
  */
 @PreviousVersion(ConfirmationDetails1.class)
-public class AcknowledgementDetails1Choice {
+public class AcknowledgementDetails1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionStatusAdviceV07;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.TransactionIdentifications31;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * in the Business Application Header.
  */
 @PreviousVersion(SecuritiesSettlementTransactionStatusAdviceV07.class)
-public class SecuritiesSettlementTransactionStatusAdviceV08 {
+public class SecuritiesSettlementTransactionStatusAdviceV08
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionIdentifications31 TransactionIdentification;
 	private Optional<Linkages41> Linkages;

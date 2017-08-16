@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the level of response requested from the receiver of the message.
  */
-public class ResponseLevelCode {
+public class ResponseLevelCode implements GeneratedRepoBean<MMCodeSet> {
 }

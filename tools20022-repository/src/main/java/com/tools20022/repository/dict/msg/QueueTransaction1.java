@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Transaction summmary details.
  */
-public class QueueTransaction1 {
+public class QueueTransaction1 implements GeneratedRepoBean<MMMessageComponent> {
 }

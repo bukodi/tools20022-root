@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.colr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.colr.CollateralProposalResponseV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -24,7 +26,9 @@ import java.util.Optional;
  * the collateral that has been proposed to cover the margin call.
  */
 @PreviousVersion(CollateralProposalResponseV04.class)
-public class CollateralProposalResponseV05 {
+public class CollateralProposalResponseV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Obligation5 Obligation;

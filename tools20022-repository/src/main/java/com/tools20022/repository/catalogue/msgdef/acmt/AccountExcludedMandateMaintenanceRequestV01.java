@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountExcludedMandateMaintenanceRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.References4;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature1;
  * after processing the update request.
  */
 @NextVersion(AccountExcludedMandateMaintenanceRequestV02.class)
-public class AccountExcludedMandateMaintenanceRequestV01 {
+public class AccountExcludedMandateMaintenanceRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References4 References;
 	private Optional<AccountContract2> ContractDates;

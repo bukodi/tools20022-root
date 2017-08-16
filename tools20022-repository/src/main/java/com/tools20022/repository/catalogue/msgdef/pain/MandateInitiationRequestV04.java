@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.MandateInitiationRequestV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pain.MandateInitiationRequestV05;
@@ -26,7 +28,9 @@ import java.util.Optional;
  */
 @PreviousVersion(MandateInitiationRequestV03.class)
 @NextVersion(MandateInitiationRequestV05.class)
-public class MandateInitiationRequestV04 {
+public class MandateInitiationRequestV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader47 GroupHeader;
 	private Mandate7 Mandate;

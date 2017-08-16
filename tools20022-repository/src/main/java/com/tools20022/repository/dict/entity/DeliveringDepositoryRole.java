@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.DeliveringSettlementParty;
 
 /**
@@ -11,5 +13,7 @@ import com.tools20022.repository.dict.entity.DeliveringSettlementParty;
  * responsible for compliance of the portfolio with legal ratios etc. The
  * depository may delegate custody to another entity (custodian).
  */
-public class DeliveringDepositoryRole extends DeliveringSettlementParty {
+public class DeliveringDepositoryRole extends DeliveringSettlementParty
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CurrencyControlHeader1;
 import com.tools20022.repository.dict.msg.RegisteredContract2;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * to the registration agent to close the registered contract subject to
  * currency control.
  */
-public class ContractRegistrationClosureRequestV01 {
+public class ContractRegistrationClosureRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CurrencyControlHeader1 GroupHeader;
 	private RegisteredContract2 RegisteredContractClosure;

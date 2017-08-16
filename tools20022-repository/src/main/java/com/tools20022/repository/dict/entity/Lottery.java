@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.codeset.LotteryTypeCode;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.CorporateActionEvent;
 /**
  * The parameters required to manage the organisation of a lottery.
  */
-public class Lottery {
+public class Lottery extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime LotteryDate;
 	private SecuritiesQuantity IncrementalDenomination;

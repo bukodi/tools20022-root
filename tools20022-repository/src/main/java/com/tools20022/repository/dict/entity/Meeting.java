@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.codeset.MeetingDateStatusCode;
 import com.tools20022.repository.dict.entity.ContactPoint;
@@ -28,7 +31,9 @@ import com.tools20022.repository.dict.codeset.MeetingTypeClassificationCode;
  * Specifies the physical parameters of a general meeting. Several dates and
  * places can be defined for a meeting.
  */
-public class Meeting {
+public class Meeting extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime DateAndTime;
 	private MeetingDateStatusCode DateStatus;

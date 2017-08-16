@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.IdentificationModificationAdviceV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.IdentificationAssignment1;
@@ -25,7 +27,9 @@ import com.tools20022.repository.dict.msg.IdentificationModification1;
  * transaction messages.
  */
 @NextVersion(IdentificationModificationAdviceV02.class)
-public class IdentificationModificationAdviceV01 {
+public class IdentificationModificationAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private IdentificationAssignment1 Assignment;
 	private Optional<OriginalTransactionReference14> OriginalTransactionReference;

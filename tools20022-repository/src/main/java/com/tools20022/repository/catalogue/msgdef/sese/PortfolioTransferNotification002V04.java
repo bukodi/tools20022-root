@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Pagination;
 import com.tools20022.repository.dict.msg.Statement50;
 import com.tools20022.repository.dict.msg.PartyIdentification109;
@@ -30,7 +32,9 @@ import com.tools20022.repository.dict.msg.SecuritiesTradeDetails57;
  * a third party a copy of a message for information using the relevant elements
  * in the Business Application Header.
  */
-public class PortfolioTransferNotification002V04 {
+public class PortfolioTransferNotification002V04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement50 StatementGeneralDetails;

@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of SubBalance
  */
-public class SubBalanceType2Choice {
+public class SubBalanceType2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

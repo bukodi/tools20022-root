@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.TreasuryTrade;
 import com.tools20022.repository.dict.entity.CurrencyExchange;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.datatype.DecimalNumber;
  * Agreement between two parties in which one party buys a currency and the
  * other party sells a different currency.
  */
-public class ForeignExchangeTrade extends TreasuryTrade {
+public class ForeignExchangeTrade extends TreasuryTrade
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyExchange AgreedRate;
 	private Max35Text TypeOfProduct;

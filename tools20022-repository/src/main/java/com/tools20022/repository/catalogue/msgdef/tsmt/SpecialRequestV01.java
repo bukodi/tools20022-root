@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import java.util.Optional;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.Notification1;
  * during the life time of a transaction as long as the transaction is
  * established and not yet closed.
  */
-public class SpecialRequestV01 {
+public class SpecialRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RequestIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

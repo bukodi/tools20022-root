@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.StatementOfInvestmentFundTransactions;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.StatementOfInvestmentFundTransactionsV03;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(StatementOfInvestmentFundTransactions.class)
 @NextVersion(StatementOfInvestmentFundTransactionsV03.class)
-public class StatementOfInvestmentFundTransactionsV02 {
+public class StatementOfInvestmentFundTransactionsV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference2> PreviousReference;

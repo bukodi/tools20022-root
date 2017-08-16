@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.colr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.colr.InterestPaymentRequestV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * amount for a specific period.
  */
 @NextVersion(InterestPaymentRequestV04.class)
-public class InterestPaymentRequestV03 {
+public class InterestPaymentRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Obligation3 Obligation;

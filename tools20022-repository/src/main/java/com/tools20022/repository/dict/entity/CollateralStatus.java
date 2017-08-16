@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.ResponseStatusCode;
 import com.tools20022.repository.dict.codeset.CollateralManagementCancellationReasonCode;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.entity.Collateral;
 /**
  * Specifies the status of the collateral or of an event related to collateral.
  */
-public class CollateralStatus extends Status {
+public class CollateralStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ResponseStatusCode ResponseStatus;
 	private CollateralManagementCancellationReasonCode CollateralManagementCancellationReason;

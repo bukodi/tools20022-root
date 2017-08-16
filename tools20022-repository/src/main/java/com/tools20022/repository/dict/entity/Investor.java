@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentAccountPartyRole;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.datatype.Max350Text;
  * Party which makes investment decisions in relation with its investment
  * account.
  */
-public class Investor extends InvestmentAccountPartyRole {
+public class Investor extends InvestmentAccountPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator NewIssuePermission;
 	private Max35Text DeMinimusApplicable;

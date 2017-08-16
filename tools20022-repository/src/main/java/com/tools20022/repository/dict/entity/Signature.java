@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Evidence;
 import com.tools20022.repository.dict.entity.SignatureCondition;
 import com.tools20022.repository.dict.entity.CardPaymentValidation;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.CardPaymentValidation;
  * can be used as evidence of origin and integrity, i.e., authenticity of the
  * signed data. A judge can accept this evidence as proof.
  */
-public class Signature extends Evidence {
+public class Signature extends Evidence
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SignatureCondition Conditions;
 	private CardPaymentValidation CardPaymentValidation;

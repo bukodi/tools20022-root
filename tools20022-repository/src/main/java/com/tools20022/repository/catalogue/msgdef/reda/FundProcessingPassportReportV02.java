@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.reda;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.FundProcessingPassport1;
 
@@ -25,7 +27,9 @@ import com.tools20022.repository.dict.msg.FundProcessingPassport1;
  * database or regular distribution information. A reference data vendor may
  * assume the role of both report provider and report user.
  */
-public class FundProcessingPassportReportV02 {
+public class FundProcessingPassportReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private FundProcessingPassport1 FundProcessingPassport;

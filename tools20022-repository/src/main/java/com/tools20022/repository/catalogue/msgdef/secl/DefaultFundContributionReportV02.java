@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.secl;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.ReportParameters2;
 import com.tools20022.repository.dict.choice.PartyIdentification35Choice;
 import com.tools20022.repository.dict.msg.DefaultFundReport1;
@@ -21,7 +23,9 @@ import java.util.Optional;
  * calculate the excess of deficit of the default fund contribution. The
  * DefaultFundContributionReport is usually sent on a monthly basis.
  */
-public class DefaultFundContributionReportV02 {
+public class DefaultFundContributionReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportParameters2 ReportParameters;
 	private PartyIdentification35Choice ClearingMember;

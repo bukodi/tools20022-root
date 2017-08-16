@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header32;
 import com.tools20022.repository.dict.msg.ContentInformationType10;
 import java.util.Optional;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * agent to an ATM to acknowledge the receipt of an ATMDepositCompletionAdvice
  * message.
  */
-public class ATMDepositCompletionAcknowledgementV01 {
+public class ATMDepositCompletionAcknowledgementV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header32 Header;
 	private Optional<ContentInformationType10> ProtectedATMDepositCompletionAcknowledgement;

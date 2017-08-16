@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Debt;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.PaymentTerms;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.datatype.YesNoIndicator;
  * another party in exchange for future repayment of the principal amount along
  * with interest or other finance charges.
  */
-public class Loan extends Debt {
+public class Loan extends Debt
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount PrincipalAmount;
 	private PaymentTerms InterestPaymentsSchedule;

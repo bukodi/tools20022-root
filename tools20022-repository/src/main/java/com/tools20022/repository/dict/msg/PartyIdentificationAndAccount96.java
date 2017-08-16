@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Party and account information.
  */
-public class PartyIdentificationAndAccount96 {
+public class PartyIdentificationAndAccount96
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

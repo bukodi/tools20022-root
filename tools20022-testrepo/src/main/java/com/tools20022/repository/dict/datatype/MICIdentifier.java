@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMIdentifierSet;
 
 /**
@@ -8,5 +8,5 @@ import com.tools20022.metamodel.MMIdentifierSet;
  * stipulated in the norm ISO 10383 'Codes for exchanges and market
  * identifications'.
  */
-public class MICIdentifier implements InstanceOf<MMIdentifierSet> {
+public class MICIdentifier implements GeneratedRepoBean<MMIdentifierSet> {
 }

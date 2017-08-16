@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the type of information request related to a transaction number.
  */
-public class TransactionRequestTypeCode {
+public class TransactionRequestTypeCode implements GeneratedRepoBean<MMCodeSet> {
 }

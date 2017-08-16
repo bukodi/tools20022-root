@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesTransactionStatusQueryV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesTransactionStatusQueryV03;
@@ -37,7 +39,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesTransactionStatusQueryV01.class)
 @NextVersion(SecuritiesTransactionStatusQueryV03.class)
-public class SecuritiesTransactionStatusQueryV02 {
+public class SecuritiesTransactionStatusQueryV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentNumber5 StatusAdviceRequested;
 	private Optional<PartyIdentification36Choice> AccountOwner;

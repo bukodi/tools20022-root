@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.PaymentStatusCode;
 import com.tools20022.repository.dict.entity.Payment;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.codeset.PendingFailingSettlementCode;
 /**
  * Specifies the status of a payment at a specified time.
  */
-public class PaymentStatus extends Status {
+public class PaymentStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PaymentStatusCode Status;
 	private Payment Payment;

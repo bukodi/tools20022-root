@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.AccountOrBusinessError1Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * cannot be retrieved.
  */
 @PreviousVersion(AccountOrBusinessError1Choice.class)
-public class AccountOrBusinessError2Choice {
+public class AccountOrBusinessError2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

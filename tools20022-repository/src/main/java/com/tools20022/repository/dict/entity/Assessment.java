@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Document;
 import com.tools20022.repository.dict.codeset.POIComponentAssessmentCode;
 import com.tools20022.repository.dict.entity.System;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.datatype.ISODateTime;
 /**
  * Assessment for the components of a system.
  */
-public class Assessment extends Document {
+public class Assessment extends Document
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private POIComponentAssessmentCode AssessmentType;
 	private System System;

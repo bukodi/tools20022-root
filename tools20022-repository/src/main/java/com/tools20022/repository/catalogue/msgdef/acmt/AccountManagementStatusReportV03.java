@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountManagementStatusReportV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountManagementStatusReportV04;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.AccountManagementStatusAndReason2;
  */
 @PreviousVersion(AccountManagementStatusReportV02.class)
 @NextVersion(AccountManagementStatusReportV04.class)
-public class AccountManagementStatusReportV03 {
+public class AccountManagementStatusReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private List<AdditionalReference3> RelatedReference;

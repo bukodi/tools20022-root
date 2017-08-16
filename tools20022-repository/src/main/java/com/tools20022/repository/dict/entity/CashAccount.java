@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Account;
 import com.tools20022.repository.dict.codeset.CashAccountTypeCode;
 import com.tools20022.repository.dict.entity.InvestmentAccount;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.entity.Commission;
 /**
  * Account to or from which a cash entry is made.
  */
-public class CashAccount extends Account {
+public class CashAccount extends Account
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccountTypeCode CashAccountType;
 	private InvestmentAccount RelatedInvestmentAccount;

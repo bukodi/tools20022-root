@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.entity.Scheme;
 import com.tools20022.repository.dict.datatype.ISODateTime;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.datatype.RatingValueIdentifier;
 /**
  * Assessment of securities credit and investment risk.
  */
-public class Rating {
+public class Rating extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Security Security;
 	private Scheme RatingScheme;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.ConversionTypeFormat1Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * conversion.
  */
 @PreviousVersion(ConversionTypeFormat1Choice.class)
-public class ConversionTypeFormat3Choice {
+public class ConversionTypeFormat3Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

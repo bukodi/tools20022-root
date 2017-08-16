@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.DTCCPayoutType5Code;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * types.
  */
 @NextVersion(DTCCPayoutType5Code.class)
-public class DTCCPayoutType3Code {
+public class DTCCPayoutType3Code implements GeneratedRepoBean<MMCodeSet> {
 }

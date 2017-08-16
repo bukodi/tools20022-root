@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.NotificationCancellation1;
 import com.tools20022.repository.dict.msg.CorporateActionInformation2;
@@ -16,7 +18,9 @@ import java.util.Optional;
  * notification advice identification must be present to link this cancellation
  * request to the notification advice that was previously sent.
  */
-public class AgentCANotificationCancellationRequestV01 {
+public class AgentCANotificationCancellationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private NotificationCancellation1 NotificationCancellationTypeAndLinkage;

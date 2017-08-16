@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorRejectionV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header1;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.AcceptorRejection1;
  * to read or process the message, security error, duplicate message).
  */
 @NextVersion(AcceptorRejectionV02.class)
-public class AcceptorRejectionV01 {
+public class AcceptorRejectionV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header1 Header;
 	private AcceptorRejection1 Reject;

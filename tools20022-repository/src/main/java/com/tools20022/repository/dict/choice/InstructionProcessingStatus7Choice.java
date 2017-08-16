@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.InstructionProcessingStatus12Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.NextVersion;
  * Choice between different instruction processing statuses.
  */
 @NextVersion(InstructionProcessingStatus12Choice.class)
-public class InstructionProcessingStatus7Choice {
+public class InstructionProcessingStatus7Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

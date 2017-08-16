@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionGenerationNotificationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionGenerationNotificationV05;
@@ -54,7 +56,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesSettlementTransactionGenerationNotificationV03.class)
 @NextVersion(SecuritiesSettlementTransactionGenerationNotificationV05.class)
-public class SecuritiesSettlementTransactionGenerationNotificationV04 {
+public class SecuritiesSettlementTransactionGenerationNotificationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private SettlementTypeAndIdentification15 TransactionIdentificationDetails;
 	private Optional<NumberCount1Choice> NumberCounts;

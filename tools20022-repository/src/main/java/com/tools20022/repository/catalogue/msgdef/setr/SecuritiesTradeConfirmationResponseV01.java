@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TransactiontIdentification4;
 import com.tools20022.repository.dict.msg.Linkages15;
 import com.tools20022.repository.dict.msg.StatusAndReason10;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * respond if an affirmation. Executing party may respond with modification or
  * cancellation of the rejected SecuritiesTradeConfirmation message.
  */
-public class SecuritiesTradeConfirmationResponseV01 {
+public class SecuritiesTradeConfirmationResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactiontIdentification4 Identification;
 	private Linkages15 References;

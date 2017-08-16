@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesFinancingInstruction002V07;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.datatype.RestrictedFINXMax16Text;
@@ -45,7 +47,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * in the Business Application Header.
  */
 @NextVersion(SecuritiesFinancingInstruction002V07.class)
-public class SecuritiesFinancingInstruction002V06 {
+public class SecuritiesFinancingInstruction002V06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private RestrictedFINXMax16Text TransactionIdentification;
 	private TransactionTypeAndAdditionalParameters13 TransactionTypeAndAdditionalParameters;

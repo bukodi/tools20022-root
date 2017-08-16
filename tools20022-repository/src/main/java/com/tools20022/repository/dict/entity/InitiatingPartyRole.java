@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.PaymentPartyRole;
 
 /**
@@ -9,5 +11,7 @@ import com.tools20022.repository.dict.entity.PaymentPartyRole;
  * creditor. In the context of treasury, the party that instructs the trading
  * party to execute a treasury deal on its behalf.
  */
-public class InitiatingPartyRole extends PaymentPartyRole {
+public class InitiatingPartyRole extends PaymentPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

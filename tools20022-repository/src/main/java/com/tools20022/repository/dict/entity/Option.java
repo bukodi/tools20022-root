@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Derivative;
 import com.tools20022.repository.dict.codeset.AssignmentMethodCode;
 import com.tools20022.repository.dict.codeset.SettleStyleCode;
@@ -25,7 +27,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
  * privilege to sell the assets specified at a predetermined price or formula at
  * or within a time in the future.
  */
-public class Option extends Derivative {
+public class Option extends Derivative
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AssignmentMethodCode InstrumentAssignmentMethod;
 	private SettleStyleCode SettleStyle;

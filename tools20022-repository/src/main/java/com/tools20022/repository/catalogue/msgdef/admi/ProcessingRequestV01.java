@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.admi;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.Exact4AlphaNumericText;
 import java.util.Optional;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.msg.RequestDetails19;
  * The Processing Request message is sent by a participant to a central system
  * to request the initiation of a system process suported by a central system.
  */
-public class ProcessingRequestV01 {
+public class ProcessingRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text MessageIdentification;
 	private Optional<Exact4AlphaNumericText> SettlementSessionIdentifier;

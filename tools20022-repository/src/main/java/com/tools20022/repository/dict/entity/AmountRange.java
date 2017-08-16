@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.AmountRangeBoundary;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.DebitCreditCode;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.InterestCalculation;
 /**
  * Range of amount values.
  */
-public class AmountRange {
+public class AmountRange extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AmountRangeBoundary FromAmount;
 	private AmountRangeBoundary ToAmount;

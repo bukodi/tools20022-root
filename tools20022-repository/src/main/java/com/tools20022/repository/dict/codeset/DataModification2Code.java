@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specified the type of modification to be applied on a data set.
  */
-public class DataModification2Code {
+public class DataModification2Code implements GeneratedRepoBean<MMCodeSet> {
 }

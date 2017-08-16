@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CardPayment;
 import com.tools20022.repository.dict.codeset.CardTypeCode;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -20,7 +23,9 @@ import com.tools20022.repository.dict.entity.Country;
  * Electronic money product that provides the cardholder with a portable and
  * specialised computer device that typically contains a microprocessor.
  */
-public class PaymentCard {
+public class PaymentCard extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CardPayment Payment;
 	private CardTypeCode Type;

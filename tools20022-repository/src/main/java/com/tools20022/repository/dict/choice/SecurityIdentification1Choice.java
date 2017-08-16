@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.SecurityIdentification22Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.NextVersion;
  * Choice between formats for the identification of a financial instrument.
  */
 @NextVersion(SecurityIdentification22Choice.class)
-public class SecurityIdentification1Choice {
+public class SecurityIdentification1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCancellationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header1;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType3;
  * of the cancellation of the transaction by the acquirer.
  */
 @NextVersion(AcceptorCancellationRequestV02.class)
-public class AcceptorCancellationRequestV01 {
+public class AcceptorCancellationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header1 Header;
 	private AcceptorCancellationRequest1 CancellationRequest;

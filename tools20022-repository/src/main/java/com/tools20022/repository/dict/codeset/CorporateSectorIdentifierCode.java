@@ -1,7 +1,13 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Identifies the corporate sector of the counterparty for reporting to trade
  * repositories.
  */
-public class CorporateSectorIdentifierCode {
+public class CorporateSectorIdentifierCode
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

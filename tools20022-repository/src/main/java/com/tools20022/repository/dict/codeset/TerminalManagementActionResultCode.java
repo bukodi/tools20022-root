@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Final result of the processed terminal management action.
  */
-public class TerminalManagementActionResultCode {
+public class TerminalManagementActionResultCode
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

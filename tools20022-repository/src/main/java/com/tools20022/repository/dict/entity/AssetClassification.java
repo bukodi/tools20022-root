@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CFIOct2015Identifier;
 import com.tools20022.repository.dict.entity.Asset;
 import com.tools20022.repository.dict.codeset.LanguageCode;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.entity.AssetClassStrategy;
 /**
  * Other classification type of the security, ie, other than ISO 10962.
  */
-public class AssetClassification {
+public class AssetClassification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CFIOct2015Identifier ClassificationType;
 	private Asset Asset;

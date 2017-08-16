@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesMessageRejectionV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference2;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.RejectionReason1;
  * instruction message or because securities are not available for settlement.
  */
 @NextVersion(SecuritiesMessageRejectionV02.class)
-public class SecuritiesMessageRejection {
+public class SecuritiesMessageRejection
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private AdditionalReference2 RelatedReference;
 	private RejectionReason1 Reason;

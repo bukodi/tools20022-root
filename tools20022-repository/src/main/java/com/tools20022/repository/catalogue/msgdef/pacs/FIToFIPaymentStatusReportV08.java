@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFIPaymentStatusReportV07;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.GroupHeader53;
@@ -29,7 +31,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * the beneficiary is credited, or the transaction is rejected).
  */
 @PreviousVersion(FIToFIPaymentStatusReportV07.class)
-public class FIToFIPaymentStatusReportV08 {
+public class FIToFIPaymentStatusReportV08
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader53 GroupHeader;
 	private Optional<OriginalGroupHeader7> OriginalGroupInformationAndStatus;

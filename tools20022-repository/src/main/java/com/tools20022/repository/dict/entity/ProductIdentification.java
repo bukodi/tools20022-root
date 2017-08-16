@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.Product;
 import com.tools20022.repository.dict.codeset.ProductIdentifierCode;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.codeset.ProductIdentifierCode;
 /**
  * Information used to identify a product.
  */
-public class ProductIdentification {
+public class ProductIdentification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text Identifier;
 	private Product Product;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingNotificationV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.AmendInformation1;
@@ -35,7 +37,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * for use with the Business Application Header (head.001.001.01).
  */
 @PreviousVersion(MeetingNotificationV04.class)
-public class MeetingNotificationV05 {
+public class MeetingNotificationV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AmendInformation1> Amendment;
 	private NotificationStatus2 NotificationStatus;

@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Type of service provided by the card payment transaction.
  */
-public class CardPaymentServiceType1Code {
+public class CardPaymentServiceType1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.codeset.StandingOrderTypeCode;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.entity.StandingOrder;
  * Instruction given by an account holder to an account servicer to make regular
  * transfers on given dates to the same beneficiary.
  */
-public class StandingOrder {
+public class StandingOrder extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text Identification;
 	private StandingOrderTypeCode Type;

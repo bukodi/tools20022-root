@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCurrencyConversionRequestV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header30;
@@ -13,7 +15,9 @@ import java.util.Optional;
  * to pay in the currency of its card.
  */
 @PreviousVersion(AcceptorCurrencyConversionRequestV03.class)
-public class AcceptorCurrencyConversionRequestV04 {
+public class AcceptorCurrencyConversionRequestV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header30 Header;
 	private AcceptorCurrencyConversionRequest4 CurrencyConversionRequest;

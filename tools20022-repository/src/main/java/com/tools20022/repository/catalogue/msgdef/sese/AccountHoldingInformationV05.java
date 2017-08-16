@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.AccountHoldingInformationV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -23,7 +25,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * more ISA or portfolio products held in a client's account.
  */
 @PreviousVersion(AccountHoldingInformationV04.class)
-public class AccountHoldingInformationV05 {
+public class AccountHoldingInformationV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageReference;
 	private Optional<AdditionalReference6> PoolReference;

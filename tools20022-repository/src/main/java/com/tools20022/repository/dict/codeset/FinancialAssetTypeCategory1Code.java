@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Categorization of financial asset type.
  */
-public class FinancialAssetTypeCategory1Code {
+public class FinancialAssetTypeCategory1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

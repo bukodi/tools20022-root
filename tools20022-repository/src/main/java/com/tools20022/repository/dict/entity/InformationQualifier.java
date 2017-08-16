@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SystemBusinessInformation;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.codeset.PriorityCode;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.codeset.PriorityCode;
  * Further qualifies the information provided in terms of its importance and its
  * format.
  */
-public class InformationQualifier {
+public class InformationQualifier extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SystemBusinessInformation SystemBusinessInformation;
 	private YesNoIndicator IsFormatted;

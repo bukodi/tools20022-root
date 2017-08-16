@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.ResolutionOfInvestigationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.ResolutionOfInvestigationV05;
@@ -59,7 +61,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(ResolutionOfInvestigationV03.class)
 @NextVersion(ResolutionOfInvestigationV05.class)
-public class ResolutionOfInvestigationV04 {
+public class ResolutionOfInvestigationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Optional<Case3> ResolvedCase;

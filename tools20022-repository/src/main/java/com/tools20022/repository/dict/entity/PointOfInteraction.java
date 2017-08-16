@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.System;
 import com.tools20022.repository.dict.entity.CardPaymentAcquiring;
 import com.tools20022.repository.dict.codeset.CardDataReadingCode;
@@ -21,7 +23,9 @@ import com.tools20022.repository.dict.entity.TerminalManagementSystem;
  * payment terminals linked to a local or remote server, or it could be just an
  * interface to make payments as telephone or Internet browser.
  */
-public class PointOfInteraction extends System {
+public class PointOfInteraction extends System
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CardPaymentAcquiring CardPaymentAcquiring;
 	private CardDataReadingCode CardReadingCapabilities;

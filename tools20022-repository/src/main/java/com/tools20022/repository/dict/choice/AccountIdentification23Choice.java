@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.AccountIdentification21Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.AccountIdentification32Choice;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(AccountIdentification21Choice.class)
 @NextVersion(AccountIdentification32Choice.class)
-public class AccountIdentification23Choice {
+public class AccountIdentification23Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

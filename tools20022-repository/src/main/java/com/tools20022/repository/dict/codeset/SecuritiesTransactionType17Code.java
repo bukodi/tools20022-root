@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.SecuritiesTransactionType7Code;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * transaction.
  */
 @PreviousVersion(SecuritiesTransactionType7Code.class)
-public class SecuritiesTransactionType17Code {
+public class SecuritiesTransactionType17Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

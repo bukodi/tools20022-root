@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.codeset.CopyDuplicateCode;
 import com.tools20022.repository.dict.codeset.DocumentTypeCode;
@@ -19,7 +20,9 @@ import com.tools20022.repository.dict.entity.GenericIdentification;
  * General information that unambiguously identifies a document, such as
  * identification number and issue date time.
  */
-public class Document implements InstanceOf<MMBusinessComponent> {
+public class Document extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime IssueDate;
 	private CopyDuplicateCode CopyDuplicate;

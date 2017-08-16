@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorAuthorisationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header1;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType3;
  * acquirers, loyalty processing or management of the acceptor system.
  */
 @NextVersion(AcceptorAuthorisationRequestV02.class)
-public class AcceptorAuthorisationRequestV01 {
+public class AcceptorAuthorisationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header1 Header;
 	private AcceptorAuthorisationRequest1 AuthorisationRequest;

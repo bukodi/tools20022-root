@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.Mandate;
 import com.tools20022.repository.dict.entity.Authentication;
@@ -13,7 +14,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
  * Authorisation given by an issuing party to a holder party to act on the
  * issuer's behalf.
  */
-public class Mandate implements InstanceOf<MMBusinessComponent> {
+public class Mandate extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text MandateIdentification;
 	private Mandate Amendment;

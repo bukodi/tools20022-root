@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ForeignExchangeTrade;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
 import com.tools20022.repository.dict.entity.FixingCondition;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.FixingCondition;
  * Foreign exchange contract where one of the exchanged amounts is specified in
  * a non-deliverable currency.
  */
-public class NonDeliverableTrade extends ForeignExchangeTrade {
+public class NonDeliverableTrade extends ForeignExchangeTrade
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyCode SettlementCurrency;
 	private FixingCondition FixingConditions;

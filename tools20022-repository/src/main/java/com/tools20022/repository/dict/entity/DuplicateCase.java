@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestigationResolution;
 import com.tools20022.repository.dict.entity.InvestigationCase;
 import com.tools20022.repository.dict.entity.PaymentInvestigationCaseResolution;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.PaymentInvestigationCaseResolution;
  * Outcome that results in closing a case as duplicate because the same issue
  * has been reported by another party.
  */
-public class DuplicateCase extends InvestigationResolution {
+public class DuplicateCase extends InvestigationResolution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InvestigationCase DuplicatedCase;
 	private PaymentInvestigationCaseResolution RelatedCaseResolution;

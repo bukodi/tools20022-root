@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionAllegementNotification002V05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.datatype.RestrictedFINXMax16Text;
@@ -37,7 +39,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * in the Business Application Header.
  */
 @PreviousVersion(SecuritiesSettlementTransactionAllegementNotification002V05.class)
-public class SecuritiesSettlementTransactionAllegementNotification002V06 {
+public class SecuritiesSettlementTransactionAllegementNotification002V06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private RestrictedFINXMax16Text TransactionIdentification;
 	private SettlementTypeAndAdditionalParameters15 SettlementTypeAndAdditionalParameters;

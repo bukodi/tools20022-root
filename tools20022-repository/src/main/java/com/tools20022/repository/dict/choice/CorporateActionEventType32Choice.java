@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CorporateActionEventType11Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.CorporateActionEventType52Choice;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(CorporateActionEventType11Choice.class)
 @NextVersion(CorporateActionEventType52Choice.class)
-public class CorporateActionEventType32Choice {
+public class CorporateActionEventType32Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

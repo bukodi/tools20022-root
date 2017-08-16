@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.PartyIdentificationInformation;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.Person;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.PersonName;
 /**
  * Unique and unambiguous way to identify a person.
  */
-public class PersonIdentification extends PartyIdentificationInformation {
+public class PersonIdentification extends PartyIdentificationInformation
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text SocialSecurityNumber;
 	private Person Person;

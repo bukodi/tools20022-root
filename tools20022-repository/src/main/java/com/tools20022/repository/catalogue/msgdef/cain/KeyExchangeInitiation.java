@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.cain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header17;
 import com.tools20022.repository.dict.msg.AcquirerKeyExchangeInitiation1;
 import com.tools20022.repository.dict.msg.ContentInformationType12;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType12;
  * The KeyExchangeInitiation message is sent by any party to an acquirer, an
  * issuer or an agent, to initiate a cryptographic key exchange.
  */
-public class KeyExchangeInitiation {
+public class KeyExchangeInitiation
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header17 Header;
 	private AcquirerKeyExchangeInitiation1 KeyExchangeInitiation;

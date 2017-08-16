@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.CorporateActionEventTypeV3Code;
 import com.tools20022.repository.dict.codeset.CorporateActionMandatoryVoluntaryCode;
 import com.tools20022.repository.dict.entity.Security;
@@ -38,7 +41,9 @@ import com.tools20022.repository.dict.entity.ProceedsDefinition;
  * An event determined by a corporation's board of directors, that changes the
  * existing corporate capital structure or financial condition.
  */
-public class CorporateActionEvent {
+public class CorporateActionEvent extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CorporateActionEventTypeV3Code Type;
 	private CorporateActionMandatoryVoluntaryCode MandatoryVoluntaryEventType;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ContactPoint;
 import com.tools20022.repository.dict.datatype.Max256Text;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.Presentation;
 /**
  * Address which is accessed by electronic means.
  */
-public class ElectronicAddress extends ContactPoint {
+public class ElectronicAddress extends ContactPoint
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max256Text EmailAddress;
 	private Max256Text URLAddress;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.UnitOfMeasureCode;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
 import com.tools20022.repository.dict.entity.Product;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.Tolerance;
 /**
  * Specifies the ordered quantity of a product.
  */
-public class ProductQuantity {
+public class ProductQuantity extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private UnitOfMeasureCode UnitOfMeasure;
 	private DecimalNumber Value;

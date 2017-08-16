@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.ReportHeader;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.msg.CaseStatus;
@@ -23,7 +25,7 @@ import java.util.Optional;
  * Resolution Of Investigation message can be sent in lieu of a Case Status
  * Report and the case may be closed.)
  */
-public class CaseStatusReport {
+public class CaseStatusReport implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportHeader Header;
 	private Case Case;

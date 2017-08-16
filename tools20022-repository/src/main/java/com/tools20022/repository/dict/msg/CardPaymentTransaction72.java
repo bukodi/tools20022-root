@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.CardPaymentTransaction64;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * Data associated with the transaction for a potential currency conversion.
  */
 @PreviousVersion(CardPaymentTransaction64.class)
-public class CardPaymentTransaction72 {
+public class CardPaymentTransaction72
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

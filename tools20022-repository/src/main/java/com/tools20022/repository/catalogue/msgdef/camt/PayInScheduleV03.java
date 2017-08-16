@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.choice.PartyIdentification73Choice;
 import com.tools20022.repository.dict.msg.ReportData4;
 import com.tools20022.repository.dict.msg.BalanceStatus2;
@@ -15,7 +17,7 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * central settlement system may send information about how the timed payments
  * have been calculated.
  */
-public class PayInScheduleV03 {
+public class PayInScheduleV03 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private PartyIdentification73Choice PartyIdentification;
 	private ReportData4 ReportData;

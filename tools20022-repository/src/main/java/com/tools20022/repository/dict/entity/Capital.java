@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Issuance;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.codeset.CapitalTypeCode;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.datatype.DecimalNumber;
 /**
  * Amount of money targeted to be raised through the issuance of a security.
  */
-public class Capital {
+public class Capital extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Issuance AssetIssuance;
 	private ISODateTime Date;

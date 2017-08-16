@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Account;
 import com.tools20022.repository.dict.codeset.SecuritiesAccountPurposeTypeCode;
 import com.tools20022.repository.dict.entity.InvestmentAccount;
@@ -23,7 +25,9 @@ import com.tools20022.repository.dict.entity.AccountLink;
 /**
  * Account to or from which a securities entry is made.
  */
-public class SecuritiesAccount extends Account {
+public class SecuritiesAccount extends Account
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesAccountPurposeTypeCode SecuritiesAccountType;
 	private InvestmentAccount RelatedInvestmentAccount;

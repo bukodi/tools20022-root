@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.NetworkParameters1;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.NetworkParameters4;
@@ -14,5 +16,7 @@ import com.tools20022.repository.dict.msg.NetworkParameters6;
 @NextVersion(NetworkParameters4.class)
 @NextVersion(NetworkParameters5.class)
 @NextVersion(NetworkParameters6.class)
-public class NetworkParameters3 {
+public class NetworkParameters3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

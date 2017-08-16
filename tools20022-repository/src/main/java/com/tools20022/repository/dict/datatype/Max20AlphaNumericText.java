@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.datatype;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMText;
+
 /**
  * Specifies an alphanumeric string with a maximum length of 20 characters.
  */
-public class Max20AlphaNumericText {
+public class Max20AlphaNumericText implements GeneratedRepoBean<MMText> {
 }

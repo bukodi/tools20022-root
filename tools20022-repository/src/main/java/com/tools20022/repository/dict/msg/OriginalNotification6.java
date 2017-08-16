@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.OriginalNotification8;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * refers.
  */
 @NextVersion(OriginalNotification8.class)
-public class OriginalNotification6 {
+public class OriginalNotification6
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SubscriptionMultipleOrderV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.setr.SubscriptionOrderV04;
@@ -30,7 +32,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(SubscriptionMultipleOrderV02.class)
 @NextVersion(SubscriptionOrderV04.class)
-public class SubscriptionOrderV03 {
+public class SubscriptionOrderV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

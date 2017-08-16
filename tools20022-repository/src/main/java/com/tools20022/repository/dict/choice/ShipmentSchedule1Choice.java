@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.ShipmentSchedule2Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * quantity of line item quantity.
  */
 @NextVersion(ShipmentSchedule2Choice.class)
-public class ShipmentSchedule1Choice {
+public class ShipmentSchedule1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

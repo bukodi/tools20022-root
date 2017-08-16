@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Contract;
 import com.tools20022.repository.dict.entity.GenericIdentification;
 import com.tools20022.repository.dict.entity.CashBalance;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.entity.Document;
  * Contract registered for regulatory purpose by a registration agent for the
  * journaling of payments made against the contract.
  */
-public class RegisteredContract extends Contract {
+public class RegisteredContract extends Contract
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private GenericIdentification Certificate;
 	private CashBalance ContractBalance;

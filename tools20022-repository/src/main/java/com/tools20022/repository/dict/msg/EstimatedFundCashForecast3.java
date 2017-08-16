@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.EstimatedFundCashForecast6;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * transactions, eg, subscriptions or redemptions.
  */
 @NextVersion(EstimatedFundCashForecast6.class)
-public class EstimatedFundCashForecast3 {
+public class EstimatedFundCashForecast3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

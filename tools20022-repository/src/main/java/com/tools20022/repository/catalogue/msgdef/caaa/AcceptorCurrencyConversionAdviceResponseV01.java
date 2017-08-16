@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header34;
 import com.tools20022.repository.dict.msg.AcceptorCancellationAdviceResponse6;
 import com.tools20022.repository.dict.msg.ContentInformationType15;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * provider to acknowledge the acceptor about the notification of the reception
  * of the currency conversion advice.
  */
-public class AcceptorCurrencyConversionAdviceResponseV01 {
+public class AcceptorCurrencyConversionAdviceResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header34 Header;
 	private AcceptorCancellationAdviceResponse6 CurrencyConversionAdviceResponse;

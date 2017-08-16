@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
 import com.tools20022.repository.dict.entity.Document;
@@ -9,7 +10,9 @@ import com.tools20022.repository.dict.entity.Document;
 /**
  * Contractual details related to an agreement between parties.
  */
-public class Agreement implements InstanceOf<MMBusinessComponent> {
+public class Agreement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max350Text Description;
 	private DateTimePeriod ValidityPeriod;

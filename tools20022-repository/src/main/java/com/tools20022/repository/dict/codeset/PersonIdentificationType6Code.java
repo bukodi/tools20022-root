@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.PersonIdentificationType5Code;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * national registration identification number, passport number.
  */
 @PreviousVersion(PersonIdentificationType5Code.class)
-public class PersonIdentificationType6Code {
+public class PersonIdentificationType6Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

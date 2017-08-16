@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Obligation;
 import com.tools20022.repository.dict.entity.ProductDelivery;
 import com.tools20022.repository.dict.entity.CommercialTrade;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.CommercialTrade;
 /**
  * Obligation for the seller to deliver goods or services to the buyer.
  */
-public class ProductDeliveryObligation extends Obligation {
+public class ProductDeliveryObligation extends Obligation
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ProductDelivery ProductDeliveryOffset;
 	private CommercialTrade CommercialTrade;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.FundDetailedEstimatedCashForecastReportV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -43,7 +45,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * movement's underlying orders, such as commission and charges.
  */
 @PreviousVersion(FundDetailedEstimatedCashForecastReportV03.class)
-public class FundDetailedEstimatedCashForecastReportV04 {
+public class FundDetailedEstimatedCashForecastReportV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

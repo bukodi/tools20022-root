@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.ForwardDataSetSubmissionReportV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -23,7 +25,9 @@ import com.tools20022.repository.dict.msg.PendingActivity2;
  * forward the details of a DataSetSubmission message that it has obtained.
  */
 @PreviousVersion(ForwardDataSetSubmissionReportV04.class)
-public class ForwardDataSetSubmissionReportV05 {
+public class ForwardDataSetSubmissionReportV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private DataSetSubmissionReferences4 RelatedTransactionReferences;

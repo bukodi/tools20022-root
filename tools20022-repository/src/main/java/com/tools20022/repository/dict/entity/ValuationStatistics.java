@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
 import com.tools20022.repository.dict.codeset.TypeOfPriceCode;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.entity.NetAssetValueCalculation;
 /**
  * Statistical data related to the price change of a security.
  */
-public class ValuationStatistics {
+public class ValuationStatistics extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyCode Currency;
 	private TypeOfPriceCode PriceTypeChangeBasis;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.head;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.codeset.UnicodeChartsCode;
 import java.util.Optional;
 import com.tools20022.repository.dict.choice.Party9Choice;
@@ -35,7 +37,9 @@ import com.tools20022.repository.dict.msg.BusinessApplicationHeader1;
  * Specific usage of this BusinessMessageHeader may be defined by the relevant
  * SEG.
  */
-public class BusinessApplicationHeaderV01 {
+public class BusinessApplicationHeaderV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<UnicodeChartsCode> CharacterSet;
 	private Party9Choice From;

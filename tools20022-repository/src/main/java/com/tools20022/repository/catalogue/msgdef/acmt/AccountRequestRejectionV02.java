@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountRequestRejectionV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.References6;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * the organisation, if the business content is not valid.
  */
 @PreviousVersion(AccountRequestRejectionV01.class)
-public class AccountRequestRejectionV02 {
+public class AccountRequestRejectionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References6 References;
 	private Optional<OrganisationIdentification8> From;

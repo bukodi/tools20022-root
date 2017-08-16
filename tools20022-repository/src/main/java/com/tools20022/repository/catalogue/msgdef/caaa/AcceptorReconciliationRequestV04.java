@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorReconciliationRequestV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorReconciliationRequestV05;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType11;
  */
 @PreviousVersion(AcceptorReconciliationRequestV03.class)
 @NextVersion(AcceptorReconciliationRequestV05.class)
-public class AcceptorReconciliationRequestV04 {
+public class AcceptorReconciliationRequestV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header10 Header;
 	private AcceptorReconciliationRequest4 ReconciliationRequest;

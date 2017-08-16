@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.System;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.Max70Text;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.GenericIdentification;
 /**
  * Parameters that identify a system.
  */
-public class SystemIdentification {
+public class SystemIdentification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private System IdentificationForSystem;
 	private Max35Text Model;

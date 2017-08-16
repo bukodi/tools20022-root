@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.TaxExemptReasonCode;
 import com.tools20022.repository.dict.entity.Country;
 import com.tools20022.repository.dict.entity.NetAssetValueCalculation;
@@ -33,7 +36,9 @@ import com.tools20022.repository.dict.codeset.TaxIdentificationNumberTypeCode;
  * Amount of money due to the government or tax authority, according to various
  * pre-defined parameters such as thresholds or income.
  */
-public class Tax {
+public class Tax extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TaxExemptReasonCode ExemptionReason;
 	private Country Country;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.PaymentComplementaryInformation4;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * that cannot be transferred in a regular statement message.
  */
 @NextVersion(PaymentComplementaryInformation4.class)
-public class PaymentComplementaryInformation3 {
+public class PaymentComplementaryInformation3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

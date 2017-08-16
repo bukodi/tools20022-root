@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.CaseStatusReportRequestV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.ReportHeader4;
@@ -29,7 +31,9 @@ import java.util.Optional;
  * Agents may set their individual threshold wait-time.
  */
 @PreviousVersion(CaseStatusReportRequestV02.class)
-public class CaseStatusReportRequestV03 {
+public class CaseStatusReportRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportHeader4 RequestHeader;
 	private Case3 Case;

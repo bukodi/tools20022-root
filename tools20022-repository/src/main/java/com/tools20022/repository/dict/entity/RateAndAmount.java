@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Dividend;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.Index;
@@ -16,7 +19,9 @@ import com.tools20022.repository.dict.entity.YieldCalculation;
  * Specifies the value expressed as a rate or an amount. For example, the value
  * of a tax or a commission.
  */
-public class RateAndAmount {
+public class RateAndAmount extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Dividend FinalDividendParameters;
 	private Dividend FullyFrankedRateAndAmountDividendParameters;

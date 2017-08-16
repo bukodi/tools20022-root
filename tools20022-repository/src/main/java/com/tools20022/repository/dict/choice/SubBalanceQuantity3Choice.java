@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.SubBalanceQuantity5Choice;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.choice.SubBalanceQuantity6Choice;
@@ -9,5 +11,7 @@ import com.tools20022.repository.dict.choice.SubBalanceQuantity6Choice;
  */
 @NextVersion(SubBalanceQuantity5Choice.class)
 @NextVersion(SubBalanceQuantity6Choice.class)
-public class SubBalanceQuantity3Choice {
+public class SubBalanceQuantity3Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

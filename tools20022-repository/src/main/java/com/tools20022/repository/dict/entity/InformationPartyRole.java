@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.entity.GenericIdentification;
 import com.tools20022.repository.dict.entity.HaircutValuation;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.entity.TreasuryTrade;
 /**
  * Role played by a party as source of information.
  */
-public class InformationPartyRole extends Role {
+public class InformationPartyRole extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private GenericIdentification GenericIdentification;
 	private HaircutValuation HaircutValuation;

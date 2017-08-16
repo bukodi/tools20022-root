@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * CSC (Card Security Code) management associated with the transaction.
  */
-public class CSCManagementCode {
+public class CSCManagementCode implements GeneratedRepoBean<MMCodeSet> {
 }

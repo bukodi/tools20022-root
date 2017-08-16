@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCurrencyConversionResponseV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCurrencyConversionResponseV04;
@@ -16,7 +18,9 @@ import java.util.Optional;
  */
 @PreviousVersion(AcceptorCurrencyConversionResponseV02.class)
 @NextVersion(AcceptorCurrencyConversionResponseV04.class)
-public class AcceptorCurrencyConversionResponseV03 {
+public class AcceptorCurrencyConversionResponseV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header30 Header;
 	private AcceptorCurrencyConversionResponse3 CurrencyConversionResponse;

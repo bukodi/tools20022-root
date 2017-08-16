@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.EventFrequencyCode;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.entity.RateAndAmount;
@@ -21,7 +24,9 @@ import com.tools20022.repository.dict.codeset.FrequencyCode;
  * issue or, rarely, in kind, for example, in company products or property. The
  * dividend amount is decided by the board of directors.
  */
-public class Dividend {
+public class Dividend extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private EventFrequencyCode DividendFrequency;
 	private PercentageRate AnnualTotalDividendRate;

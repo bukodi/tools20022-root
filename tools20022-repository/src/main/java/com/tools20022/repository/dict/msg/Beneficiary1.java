@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Details related to the beneficiary.
  */
-public class Beneficiary1 {
+public class Beneficiary1 implements GeneratedRepoBean<MMMessageComponent> {
 }

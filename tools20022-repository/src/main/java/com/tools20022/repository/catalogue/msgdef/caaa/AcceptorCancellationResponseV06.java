@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCancellationResponseV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header30;
@@ -14,7 +16,9 @@ import java.util.Optional;
  * the financial data from the captured transaction.
  */
 @PreviousVersion(AcceptorCancellationResponseV05.class)
-public class AcceptorCancellationResponseV06 {
+public class AcceptorCancellationResponseV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header30 Header;
 	private AcceptorCancellationResponse6 CancellationResponse;

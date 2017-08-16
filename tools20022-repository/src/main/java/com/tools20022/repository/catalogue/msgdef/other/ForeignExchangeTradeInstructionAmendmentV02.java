@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.other;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeAgreement8;
 import com.tools20022.repository.dict.msg.TradePartyIdentification6;
 import com.tools20022.repository.dict.msg.AmountsAndValueDate1;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * notification. The "Related Reference" must be used to link it to the previous
  * notification.
  */
-public class ForeignExchangeTradeInstructionAmendmentV02 {
+public class ForeignExchangeTradeInstructionAmendmentV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeAgreement8 TradeInformation;
 	private TradePartyIdentification6 TradingSideIdentification;

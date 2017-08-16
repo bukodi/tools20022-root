@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCancellationAdviceV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCancellationAdviceV03;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType6;
  */
 @PreviousVersion(AcceptorCancellationAdviceV01.class)
 @NextVersion(AcceptorCancellationAdviceV03.class)
-public class AcceptorCancellationAdviceV02 {
+public class AcceptorCancellationAdviceV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header2 Header;
 	private AcceptorCancellationAdvice2 CancellationAdvice;

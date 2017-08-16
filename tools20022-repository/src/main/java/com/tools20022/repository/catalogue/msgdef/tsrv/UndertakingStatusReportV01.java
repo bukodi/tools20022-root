@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.UndertakingStatusAdvice1;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
 import java.util.Optional;
@@ -11,7 +13,9 @@ import java.util.Optional;
  * withdrawal, or non-conformation. The sender may add additional information,
  * as appropriate.
  */
-public class UndertakingStatusReportV01 {
+public class UndertakingStatusReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private UndertakingStatusAdvice1 UndertakingStatusReportDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

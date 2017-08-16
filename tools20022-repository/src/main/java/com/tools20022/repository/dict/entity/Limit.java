@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.LimitTypeCode;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.FloorLimitTypeCode;
@@ -16,7 +19,9 @@ import com.tools20022.repository.dict.entity.PaymentCard;
  * Value used for risk containment in a system or towards counterparts. The
  * limit may be a current limit or a default limit.
  */
-public class Limit {
+public class Limit extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private LimitTypeCode Type;
 	private CurrencyAndAmount Amount;

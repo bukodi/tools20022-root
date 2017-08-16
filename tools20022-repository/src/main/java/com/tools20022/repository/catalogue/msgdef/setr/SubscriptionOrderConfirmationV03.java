@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SubscriptionMultipleOrderConfirmationV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.setr.SubscriptionOrderConfirmationV04;
@@ -37,7 +39,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(SubscriptionMultipleOrderConfirmationV02.class)
 @NextVersion(SubscriptionOrderConfirmationV04.class)
-public class SubscriptionOrderConfirmationV03 {
+public class SubscriptionOrderConfirmationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

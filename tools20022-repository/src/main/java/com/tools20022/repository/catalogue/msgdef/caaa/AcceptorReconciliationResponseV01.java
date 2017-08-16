@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorReconciliationResponseV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header1;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType3;
  * totals between a card acceptor and an acquirer for the reconciliation period.
  */
 @NextVersion(AcceptorReconciliationResponseV02.class)
-public class AcceptorReconciliationResponseV01 {
+public class AcceptorReconciliationResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header1 Header;
 	private AcceptorReconciliationResponse1 ReconciliationResponse;

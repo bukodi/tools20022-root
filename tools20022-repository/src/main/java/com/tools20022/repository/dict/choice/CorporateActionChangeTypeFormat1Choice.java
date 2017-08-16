@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CorporateActionChangeTypeFormat5Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * of a corporate action event.
  */
 @NextVersion(CorporateActionChangeTypeFormat5Choice.class)
-public class CorporateActionChangeTypeFormat1Choice {
+public class CorporateActionChangeTypeFormat1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

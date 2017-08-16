@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Data related to a component of the POI.
  */
-public class PointOfInteractionComponent2 {
+public class PointOfInteractionComponent2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.remt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.remt.RemittanceAdviceV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.remt.RemittanceAdviceV03;
@@ -15,7 +17,9 @@ import java.util.Optional;
  */
 @PreviousVersion(RemittanceAdviceV01.class)
 @NextVersion(RemittanceAdviceV03.class)
-public class RemittanceAdviceV02 {
+public class RemittanceAdviceV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader62 GroupHeader;
 	private RemittanceInformation12 RemittanceInformation;

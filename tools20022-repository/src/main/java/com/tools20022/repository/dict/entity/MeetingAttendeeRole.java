@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.MeetingPartyRole;
 import com.tools20022.repository.dict.entity.Person;
 
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.Person;
  * person assigned by the security holder to attend the meeting without having
  * any voting rights or taking any action.
  */
-public class MeetingAttendeeRole extends MeetingPartyRole {
+public class MeetingAttendeeRole extends MeetingPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Person Person;
 

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesOrderExecutionInstruction;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.PlusOrMinusIndicator;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.codeset.OffsetTypeCode;
  * Indicates on an order that the trader wishes to display one price in the
  * market but will accept trades at another price.
  */
-public class Discretion {
+public class Discretion extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesOrderExecutionInstruction RelatedOrderExecution;
 	private CurrencyAndAmount Offset;

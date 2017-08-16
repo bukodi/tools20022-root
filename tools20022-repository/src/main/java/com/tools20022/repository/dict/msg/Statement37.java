@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Statement59;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * a precise date.
  */
 @NextVersion(Statement59.class)
-public class Statement37 {
+public class Statement37 implements GeneratedRepoBean<MMMessageComponent> {
 }

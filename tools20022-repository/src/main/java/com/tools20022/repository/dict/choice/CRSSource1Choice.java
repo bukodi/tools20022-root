@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of formats for the source of the Common Reporting Standard (CRS).
  */
-public class CRSSource1Choice {
+public class CRSSource1Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

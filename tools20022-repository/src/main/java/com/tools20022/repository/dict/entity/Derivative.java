@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Asset;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.datatype.Number;
  * Specifies the parameters of a derivative instrument based on a specific
  * asset.
  */
-public class Derivative extends Asset {
+public class Derivative extends Asset
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Asset UnderlyingAsset;
 	private CurrencyAndAmount NotionalCurrencyAndAmount;

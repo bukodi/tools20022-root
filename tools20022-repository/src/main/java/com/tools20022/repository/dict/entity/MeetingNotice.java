@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.MeetingServicing;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.datatype.YesNoIndicator;
  * requirements and the voting procedures. Alternatively, it may indicate where
  * such information may be obtained.
  */
-public class MeetingNotice {
+public class MeetingNotice extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private MeetingServicing RelatedServicing;
 	private YesNoIndicator BeneficialOwnerExclusiveIndicator;

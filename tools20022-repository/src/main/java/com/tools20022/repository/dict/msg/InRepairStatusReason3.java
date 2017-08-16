@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.InRepairStatusReason4;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.choice.InRepairStatusReason5Choice;
@@ -9,5 +11,7 @@ import com.tools20022.repository.dict.choice.InRepairStatusReason5Choice;
  */
 @NextVersion(InRepairStatusReason4.class)
 @NextVersion(InRepairStatusReason5Choice.class)
-public class InRepairStatusReason3 {
+public class InRepairStatusReason3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

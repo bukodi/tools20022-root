@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradePartyIdentification4;
 import com.tools20022.repository.dict.msg.OptionData2;
 import com.tools20022.repository.dict.msg.TradeStatus1;
@@ -14,7 +16,9 @@ import java.util.Optional;
  * from both. The message may also contain information on the settlement of the
  * trade and/or premium.
  */
-public class ForeignExchangeOptionNotificationV02 {
+public class ForeignExchangeOptionNotificationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradePartyIdentification4 TradingSideIdentification;
 	private TradePartyIdentification4 CounterpartySideIdentification;

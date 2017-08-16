@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ObligationFulfilment;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.entity.ClearingSystem;
  * results in one net position (due or to receive) with the clearing house or
  * the central clearing counterparty.
  */
-public class Clearing extends ObligationFulfilment {
+public class Clearing extends ObligationFulfilment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator ClearingThresholdIndicator;
 	private Max35Text ClearedIdentification;

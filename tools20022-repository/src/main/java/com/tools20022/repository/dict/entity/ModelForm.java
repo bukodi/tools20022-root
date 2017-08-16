@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.GovernanceRules;
 import com.tools20022.repository.dict.entity.Undertaking;
 import com.tools20022.repository.dict.codeset.ExternalModelFormIdentificationCode;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.datatype.ISODate;
 /**
  * Identification of a model form.
  */
-public class ModelForm {
+public class ModelForm extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private GovernanceRules GovernanceRules;
 	private Undertaking Undertaking;

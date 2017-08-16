@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.BusinessLetter1;
 import com.tools20022.repository.dict.msg.ReconciliationList1;
 import com.tools20022.repository.dict.datatype.Max15NumericText;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.EncapsulatedBusinessMessage1;
  * may include referenced data. The message can carry digital signatures if
  * required by context.
  */
-public class InvoicePaymentReconciliationAdviceV01 {
+public class InvoicePaymentReconciliationAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private BusinessLetter1 Header;
 	private ReconciliationList1 ReconciliationList;

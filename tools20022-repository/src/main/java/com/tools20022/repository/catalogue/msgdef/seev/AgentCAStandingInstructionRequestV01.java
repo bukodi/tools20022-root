@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionStandingInstructionGeneralInformation1;
 import com.tools20022.repository.dict.msg.CorporateActionStandingInstruction1;
@@ -18,7 +20,9 @@ import java.util.Optional;
  * instruction cancellation request is sent followed by a new standing
  * instruction request.
  */
-public class AgentCAStandingInstructionRequestV01 {
+public class AgentCAStandingInstructionRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private CorporateActionStandingInstructionGeneralInformation1 StandingInstructionGeneralInformation;

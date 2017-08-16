@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.DebitAuthorisationResponseV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment3;
@@ -25,7 +27,9 @@ import java.util.Optional;
  * message between subsequent agents.
  */
 @PreviousVersion(DebitAuthorisationResponseV02.class)
-public class DebitAuthorisationResponseV03 {
+public class DebitAuthorisationResponseV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

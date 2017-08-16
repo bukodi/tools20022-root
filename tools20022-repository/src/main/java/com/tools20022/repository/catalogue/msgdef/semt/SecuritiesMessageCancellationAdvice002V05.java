@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.choice.References53Choice;
 import com.tools20022.repository.dict.msg.PartyIdentification109;
 import java.util.Optional;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * message for information using the relevant elements in the Business
  * Application Header.
  */
-public class SecuritiesMessageCancellationAdvice002V05 {
+public class SecuritiesMessageCancellationAdvice002V05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References53Choice Reference;
 	private Optional<PartyIdentification109> AccountOwner;

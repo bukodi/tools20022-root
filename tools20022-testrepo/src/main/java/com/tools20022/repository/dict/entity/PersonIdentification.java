@@ -1,14 +1,17 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.Person;
 
 /**
  * Unique and unambiguous way to identify a person.
  */
-public class PersonIdentification implements InstanceOf<MMBusinessComponent> {
+public class PersonIdentification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text SocialSecurityNumber;
 	private Person Person;

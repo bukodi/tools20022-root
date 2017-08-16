@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionAdditionalInformation1;
 import java.util.Optional;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.choice.CorporateActionInformationStatus1Ch
  * statuses. The information advice identification must be present to link this
  * message to the information advice for which the status is provided.
  */
-public class AgentCAInformationStatusAdviceV01 {
+public class AgentCAInformationStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private DocumentIdentification8 AgentCAInformationAdviceIdentification;

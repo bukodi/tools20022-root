@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Details of the non extension request.
  */
-public class UndertakingNonExtensionRequest1 {
+public class UndertakingNonExtensionRequest1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

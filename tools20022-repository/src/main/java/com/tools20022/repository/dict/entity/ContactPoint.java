@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.GenericIdentification;
 import com.tools20022.repository.dict.entity.InvestmentFund;
 import com.tools20022.repository.dict.datatype.AnyBICIdentifier;
@@ -20,7 +23,9 @@ import com.tools20022.repository.dict.entity.InvestmentFundClassProcessingCharac
 /**
  * Number, physical or virtual address, used for communication.
  */
-public class ContactPoint {
+public class ContactPoint extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private GenericIdentification Identification;
 	private InvestmentFund RelatedInvestmentFund;

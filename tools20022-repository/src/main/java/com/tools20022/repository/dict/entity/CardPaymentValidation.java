@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.TrueFalseIndicator;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.entity.CardPaymentAcquiring;
@@ -17,7 +20,9 @@ import com.tools20022.repository.dict.entity.Signature;
 /**
  * Results and parameters of the card payment verification.
  */
-public class CardPaymentValidation {
+public class CardPaymentValidation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TrueFalseIndicator TransactionSuccess;
 	private TrueFalseIndicator MerchantOverride;

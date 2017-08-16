@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Exact3NumericText;
 import com.tools20022.repository.dict.codeset.CorporateActionOptionCode;
 import com.tools20022.repository.dict.codeset.FractionDispositionTypeCode;
@@ -19,7 +22,9 @@ import com.tools20022.repository.dict.entity.CorporateActionDistribution;
  * when participating to a corporate action event. This is defined at a general
  * level without looking at the specificities of the securities balances.
  */
-public class CorporateActionOption {
+public class CorporateActionOption extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Exact3NumericText OptionNumber;
 	private CorporateActionOptionCode OptionType;

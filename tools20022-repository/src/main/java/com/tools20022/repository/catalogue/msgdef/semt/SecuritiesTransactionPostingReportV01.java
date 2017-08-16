@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesTransactionPostingReportV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.DocumentIdentification11;
@@ -38,7 +40,9 @@ import com.tools20022.repository.dict.choice.PartyIdentification10Choice;
  * identified as follows: “CoexistenceXxxxRule”.
  */
 @NextVersion(SecuritiesTransactionPostingReportV02.class)
-public class SecuritiesTransactionPostingReportV01 {
+public class SecuritiesTransactionPostingReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification11 Identification;
 	private Pagination Pagination;

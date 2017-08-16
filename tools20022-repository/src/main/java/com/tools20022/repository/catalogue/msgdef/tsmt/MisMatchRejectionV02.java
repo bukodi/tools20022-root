@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import java.util.Optional;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.choice.RejectionReason1Choice;
  * mis-matched data sets can be achieved by sending a MisMatchAcceptance
  * message.
  */
-public class MisMatchRejectionV02 {
+public class MisMatchRejectionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RejectionIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

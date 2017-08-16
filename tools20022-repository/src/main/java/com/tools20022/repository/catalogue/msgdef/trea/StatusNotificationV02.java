@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeData1;
 
 /**
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.msg.TradeData1;
  * message will be sent at specific times agreed upon by the central settlement
  * system and a participant in a central settlement system.
  */
-public class StatusNotificationV02 {
+public class StatusNotificationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeData1 TradeData;
 

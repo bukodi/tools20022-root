@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionCancellationRequestV06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * relevant elements in the business application header (BAH).
  */
 @PreviousVersion(CorporateActionInstructionCancellationRequestV06.class)
-public class CorporateActionInstructionCancellationRequestV07 {
+public class CorporateActionInstructionCancellationRequestV07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<YesNoIndicator> ChangeInstructionIndicator;
 	private DocumentIdentification31 InstructionIdentification;

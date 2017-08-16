@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeAgreement2;
 import com.tools20022.repository.dict.msg.TradePartyIdentification4;
 import com.tools20022.repository.dict.msg.Option3;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.msg.Option3;
  * amendment. This message is only suitable for Simple (i.e. not Barrier)
  * Vanilla (i.e. not Binary, Digital, Notouch) Foreign Exchange Options.
  */
-public class AmendForeignExchangeOptionV02 {
+public class AmendForeignExchangeOptionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeAgreement2 TradeInformation;
 	private TradePartyIdentification4 TradingSideIdentification;

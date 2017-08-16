@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Amendment9;
 import com.tools20022.repository.dict.datatype.Max2000Text;
 import java.util.Optional;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature2;
  * UndertakingAmendmentResponse message, the issuer may also send the
  * UndertakingAmendmentResponseNotification to the applicant.
  */
-public class UndertakingAmendmentResponseNotificationV01 {
+public class UndertakingAmendmentResponseNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Amendment9 UndertakingAmendmentResponseNotificationDetails;
 	private Optional<Max2000Text> AdditionalInformation;

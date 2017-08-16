@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.Purpose3Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -11,5 +13,5 @@ import com.tools20022.core.repo.NextVersion;
  * any of the agents involved in the payment chain.
  */
 @NextVersion(Purpose3Choice.class)
-public class Purpose2Choice {
+public class Purpose2Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

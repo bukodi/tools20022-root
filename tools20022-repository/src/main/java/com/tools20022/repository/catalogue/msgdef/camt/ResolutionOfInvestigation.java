@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CaseAssignment;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.choice.InvestigationStatusChoice;
@@ -43,7 +45,9 @@ import com.tools20022.repository.dict.msg.PaymentInstructionExtract;
  * acceptable for the investigating agent, the assignee, to skip the Case Status
  * Report and send the Resolution Of Investigation message directly.
  */
-public class ResolutionOfInvestigation {
+public class ResolutionOfInvestigation
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case ResolvedCase;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.CollateralValuation;
 import com.tools20022.repository.dict.codeset.CollateralTypeCode;
@@ -19,7 +22,9 @@ import com.tools20022.repository.dict.entity.CollateralSubstitution;
  * Assets pledged by a debtor to secure a loan or an exposure and subject to
  * seizure in the event of default.
  */
-public class Collateral {
+public class Collateral extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount CollateralAmount;
 	private CollateralValuation Valuation;

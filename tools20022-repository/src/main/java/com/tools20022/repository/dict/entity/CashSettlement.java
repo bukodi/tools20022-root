@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Settlement;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.ISODateTime;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.entity.Reservation;
  * Instruction between two financial institutions stipulating the cash transfer
  * characteristics between the two parties.
  */
-public class CashSettlement extends Settlement {
+public class CashSettlement extends Settlement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount InterbankSettlementAmount;
 	private ISODateTime InterbankSettlementDate;

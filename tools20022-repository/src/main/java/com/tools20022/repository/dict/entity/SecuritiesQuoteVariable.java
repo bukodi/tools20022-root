@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.QualifierCode;
 import com.tools20022.repository.dict.codeset.QuoteTypeCode;
 import com.tools20022.repository.dict.entity.TradingSession;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.entity.Commission;
 /**
  * Proposition of price for a financial instrument.
  */
-public class SecuritiesQuoteVariable {
+public class SecuritiesQuoteVariable extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private QualifierCode Qualifier;
 	private QuoteTypeCode Type;

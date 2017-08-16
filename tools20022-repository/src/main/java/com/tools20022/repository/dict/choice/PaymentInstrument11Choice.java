@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.PaymentInstrument21Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * investment account.
  */
 @NextVersion(PaymentInstrument21Choice.class)
-public class PaymentInstrument11Choice {
+public class PaymentInstrument11Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

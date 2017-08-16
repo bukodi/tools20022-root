@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.SystemEventTypeCode;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.System;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.entity.System;
  * unplanned, for example, an unsolicited failure, as stipulated in the
  * specifications of the system.
  */
-public class SystemEventInformation {
+public class SystemEventInformation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SystemEventTypeCode Type;
 	private ISODateTime Time;

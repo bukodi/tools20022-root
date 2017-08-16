@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.CreditorPaymentActivationRequestStatusReportV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader46;
@@ -14,7 +16,9 @@ import java.util.Optional;
  * single or file).
  */
 @NextVersion(CreditorPaymentActivationRequestStatusReportV02.class)
-public class CreditorPaymentActivationRequestStatusReportV01 {
+public class CreditorPaymentActivationRequestStatusReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader46 GroupHeader;
 	private OriginalGroupInformation25 OriginalGroupInformationAndStatus;

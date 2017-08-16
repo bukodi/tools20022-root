@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Format of the check code line.
  */
-public class CheckCodeLineCode {
+public class CheckCodeLineCode implements GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.codeset.PreferenceToIncomeCode;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.datatype.Number;
  * or preferred shares, which receive dividends before ordinary shares but have
  * no voting right.
  */
-public class Equity extends Security {
+public class Equity extends Security
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PreferenceToIncomeCode PreferenceToIncome;
 	private YesNoIndicator ConvertibleIndicator;

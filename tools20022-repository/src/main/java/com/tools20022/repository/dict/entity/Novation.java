@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ObligationFulfilment;
 import com.tools20022.repository.dict.entity.SecuritiesClearing;
 import com.tools20022.repository.dict.codeset.NovationStatusCode;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.codeset.NovationStatusCode;
  * Act of either replacing an obligation to perform with a new obligation, or
  * replacing a party to an agreement with a new party.
  */
-public class Novation extends ObligationFulfilment {
+public class Novation extends ObligationFulfilment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesClearing SecuritiesClearing;
 	private NovationStatusCode NovationStatus;

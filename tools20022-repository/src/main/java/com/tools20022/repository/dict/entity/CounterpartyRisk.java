@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.entity.ExposureCalculation;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.ExposureCalculation;
  * Calculation of the exposure amount that one party has vis-a-vis one
  * counterparty or a central system, based on its credit risk.
  */
-public class CounterpartyRisk {
+public class CounterpartyRisk extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Role Party;
 	private ActiveCurrencyAndAmount ExposedAmount;

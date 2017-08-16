@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catp.ATMPINManagementRequestV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header31;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * request an operation on the cardholder PIN.
  */
 @PreviousVersion(ATMPINManagementRequestV01.class)
-public class ATMPINManagementRequestV02 {
+public class ATMPINManagementRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header31 Header;
 	private Optional<ContentInformationType10> ProtectedATMPINManagementRequest;

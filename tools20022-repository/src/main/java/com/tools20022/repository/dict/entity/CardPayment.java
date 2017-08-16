@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.IndividualPayment;
 import com.tools20022.repository.dict.entity.PaymentCard;
 import com.tools20022.repository.dict.entity.Product;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.entity.ATMTotal;
 /**
  * Payment through an electronic money product.
  */
-public class CardPayment extends IndividualPayment {
+public class CardPayment extends IndividualPayment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PaymentCard PaymentCard;
 	private Product Product;

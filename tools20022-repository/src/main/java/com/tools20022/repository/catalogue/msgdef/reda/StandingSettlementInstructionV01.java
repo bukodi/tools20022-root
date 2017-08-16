@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.reda;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.msg.EffectiveDate1;
 import java.util.Optional;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * global custodian (executing broker, prime broker) • A vendor’s application
  * communicating on behalf of the account owner or counterparty
  */
-public class StandingSettlementInstructionV01 {
+public class StandingSettlementInstructionV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text MessageReferenceIdentification;
 	private Optional<EffectiveDate1> EffectiveDateDetails;

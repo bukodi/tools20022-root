@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.RolePlayer;
 import com.tools20022.repository.dict.entity.SystemIdentification;
 import com.tools20022.repository.dict.entity.Location;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.codeset.ISO2ALanguageCode;
  * Set of integrated applications that provides centralised services such as
  * clearing, netting, reconciliation, trading and/or settlement.
  */
-public class System extends RolePlayer {
+public class System extends RolePlayer
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SystemIdentification SystemIdentification;
 	private Location Location;

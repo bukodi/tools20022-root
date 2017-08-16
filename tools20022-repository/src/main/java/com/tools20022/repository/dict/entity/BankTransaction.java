@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.ExternalBankTransactionDomainCode;
 import com.tools20022.repository.dict.codeset.ExternalBankTransactionFamilyCode;
 import com.tools20022.repository.dict.entity.GenericIdentification;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.entity.PaymentProcessing;
 /**
  * Code of the underlying bank transaction.
  */
-public class BankTransaction {
+public class BankTransaction extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ExternalBankTransactionDomainCode Domain;
 	private ExternalBankTransactionFamilyCode Family;

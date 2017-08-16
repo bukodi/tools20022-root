@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.BICIdentification1;
 import java.util.Optional;
@@ -13,7 +15,9 @@ import java.util.Optional;
  * transactions that the requester is involved in. The application will respond
  * to the request by sending a StatusReport message.
  */
-public class StatusReportRequestV03 {
+public class StatusReportRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RequestIdentification;
 	private Optional<BICIdentification1> EntitiesToBeReported;

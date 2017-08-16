@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCompletionAdviceResponseV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header24;
@@ -14,7 +16,9 @@ import java.util.Optional;
  * contained in the completion advice.
  */
 @PreviousVersion(AcceptorCompletionAdviceResponseV05.class)
-public class AcceptorCompletionAdviceResponseV06 {
+public class AcceptorCompletionAdviceResponseV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header24 Header;
 	private AcceptorCompletionAdviceResponse6 CompletionAdviceResponse;

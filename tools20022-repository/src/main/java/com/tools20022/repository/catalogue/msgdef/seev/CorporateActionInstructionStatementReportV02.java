@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionStatementReportV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionStatementReportV03;
@@ -31,7 +33,9 @@ import java.util.Optional;
  */
 @PreviousVersion(CorporateActionInstructionStatementReportV01.class)
 @NextVersion(CorporateActionInstructionStatementReportV03.class)
-public class CorporateActionInstructionStatementReportV02 {
+public class CorporateActionInstructionStatementReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement12 StatementGeneralDetails;

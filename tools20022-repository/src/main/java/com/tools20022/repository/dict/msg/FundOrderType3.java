@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Specifies the category of the investment fund order.
  */
-public class FundOrderType3 {
+public class FundOrderType3 implements GeneratedRepoBean<MMMessageComponent> {
 }

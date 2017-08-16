@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.AdditionalPaymentInformationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.AdditionalPaymentInformationV05;
@@ -55,7 +57,9 @@ import java.util.Optional;
  */
 @PreviousVersion(AdditionalPaymentInformationV03.class)
 @NextVersion(AdditionalPaymentInformationV05.class)
-public class AdditionalPaymentInformationV04 {
+public class AdditionalPaymentInformationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesTradeExecution;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.datatype.Max350Text;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.codeset.SourceOfCashCode;
  * Creation/cancellation of investment units on the books of the fund or its
  * designated agent, as a result of executing an investment fund order.
  */
-public class InvestmentFundOrderExecution extends SecuritiesTradeExecution {
+public class InvestmentFundOrderExecution extends SecuritiesTradeExecution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity UnitsNumber;
 	private Max350Text NonStandardSettlementInformation;

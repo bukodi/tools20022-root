@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.TreasuryTrade;
 import com.tools20022.repository.dict.datatype.ActiveOrHistoricCurrencyAndAmount;
 import com.tools20022.repository.dict.entity.PremiumCalculation;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.datatype.BaseOneRate;
  * against another amount in another currency at a predetermined exchange rate,
  * within a specified period of time or at a specified date and time.
  */
-public class CurrencyOption extends TreasuryTrade {
+public class CurrencyOption extends TreasuryTrade
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ActiveOrHistoricCurrencyAndAmount CallAmount;
 	private ActiveOrHistoricCurrencyAndAmount PutAmount;

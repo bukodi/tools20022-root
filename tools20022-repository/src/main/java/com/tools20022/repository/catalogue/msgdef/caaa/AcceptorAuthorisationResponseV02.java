@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorAuthorisationResponseV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorAuthorisationResponseV03;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType6;
  */
 @PreviousVersion(AcceptorAuthorisationResponseV01.class)
 @NextVersion(AcceptorAuthorisationResponseV03.class)
-public class AcceptorAuthorisationResponseV02 {
+public class AcceptorAuthorisationResponseV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header1 Header;
 	private AcceptorAuthorisationResponse2 AuthorisationResponse;

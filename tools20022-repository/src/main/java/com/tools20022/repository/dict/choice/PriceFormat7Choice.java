@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.PriceFormat34Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * amount or an amount price per financial instrument quantity.
  */
 @NextVersion(PriceFormat34Choice.class)
-public class PriceFormat7Choice {
+public class PriceFormat7Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

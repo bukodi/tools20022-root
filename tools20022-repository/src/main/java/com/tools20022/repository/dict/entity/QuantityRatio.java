@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesProceedsDefinition;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
 import com.tools20022.repository.dict.entity.Warrant;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.entity.Warrant;
 /**
  * Ratio expressed as a quotient of quantities.
  */
-public class QuantityRatio {
+public class QuantityRatio extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesProceedsDefinition AdditionalQuantityForResultantSecuritiesProceedsDefinition;
 	private DecimalNumber Quantity1;

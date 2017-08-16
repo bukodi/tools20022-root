@@ -1,4 +1,8 @@
 package com.tools20022.repository.catalogue.msgset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageSet;
+
 /**
  * Set of messages that Authorities (like police, customs, tax authorities,
  * enforcement authorities) can use to request account and other banking and
@@ -7,5 +11,7 @@ package com.tools20022.repository.catalogue.msgset;
  * and beneficiaries and co-owners as well as movements plus positions on these
  * accounts. Additionally, this information can pertain to loans and guarantees.
  */
-public class AuthoritiesFinancialInvestigationsISOLatestversion {
+public class AuthoritiesFinancialInvestigationsISOLatestversion
+		implements
+			GeneratedRepoBean<MMMessageSet> {
 }

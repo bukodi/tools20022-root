@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.BaselineReportV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -44,7 +46,9 @@ import com.tools20022.repository.dict.msg.PendingActivity2;
  * dynamic part of the baseline.
  */
 @NextVersion(BaselineReportV04.class)
-public class BaselineReportV03 {
+public class BaselineReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private Optional<MessageIdentification1> RelatedMessageReference;

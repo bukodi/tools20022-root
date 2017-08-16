@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Report of the requested data.
  */
-public class RequestDetails5 {
+public class RequestDetails5 implements GeneratedRepoBean<MMMessageComponent> {
 }

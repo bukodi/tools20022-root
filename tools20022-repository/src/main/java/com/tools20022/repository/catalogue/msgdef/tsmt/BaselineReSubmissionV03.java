@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.BaselineReSubmissionV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -35,7 +37,9 @@ import com.tools20022.repository.dict.msg.ContactIdentification3;
  * establishment of a transaction in the matching application.
  */
 @NextVersion(BaselineReSubmissionV04.class)
-public class BaselineReSubmissionV03 {
+public class BaselineReSubmissionV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 SubmissionIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

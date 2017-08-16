@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.StandingOrder;
 import com.tools20022.repository.dict.datatype.TrueFalseIndicator;
 import com.tools20022.repository.dict.entity.CashManagementService;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.entity.CashAccount;
  * implicit or explicit period of time. A standing order is given once and is
  * valid for an open or closed period of time.
  */
-public class CashStandingOrder extends StandingOrder {
+public class CashStandingOrder extends StandingOrder
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TrueFalseIndicator ZeroSweepIndicator;
 	private CashManagementService RelatedCashServices;

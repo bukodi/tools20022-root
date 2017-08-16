@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Document;
 import com.tools20022.repository.dict.entity.ElectronicSignature;
 import com.tools20022.repository.dict.entity.SecurityCertificatePartyRole;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
 /**
  * Certificate linked to a digital signature.
  */
-public class SecurityCertificate extends Document {
+public class SecurityCertificate extends Document
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ElectronicSignature ElectronicSignature;
 	private SecurityCertificatePartyRole SecurityCertificatePartyRole;

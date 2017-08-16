@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMDateTime;
 
 /**
@@ -16,5 +16,5 @@ import com.tools20022.metamodel.MMDateTime;
  * seconds may be included. In this case, the involved parties shall agree on
  * the maximum number of digits that are allowed.
  */
-public class ISODateTime implements InstanceOf<MMDateTime> {
+public class ISODateTime implements GeneratedRepoBean<MMDateTime> {
 }

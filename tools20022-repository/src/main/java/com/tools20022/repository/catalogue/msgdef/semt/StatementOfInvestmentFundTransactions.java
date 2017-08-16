@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.StatementOfInvestmentFundTransactionsV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference2;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * all the information.
  */
 @NextVersion(StatementOfInvestmentFundTransactionsV02.class)
-public class StatementOfInvestmentFundTransactions {
+public class StatementOfInvestmentFundTransactions
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AdditionalReference2> PreviousReference;
 	private Optional<AdditionalReference2> RelatedReference;

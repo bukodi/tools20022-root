@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.RequestForTransferStatusReport;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.RequestForTransferStatusReportV03;
@@ -19,7 +21,9 @@ import java.util.Optional;
  */
 @PreviousVersion(RequestForTransferStatusReport.class)
 @NextVersion(RequestForTransferStatusReportV03.class)
-public class RequestForTransferStatusReportV02 {
+public class RequestForTransferStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private MessageAndBusinessReference6 RequestDetails;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingInstructionV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MeetingReference7;
@@ -24,7 +26,9 @@ import java.util.Optional;
  * Application Header (head.001.001.01).
  */
 @PreviousVersion(MeetingInstructionV04.class)
-public class MeetingInstructionV05 {
+public class MeetingInstructionV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MeetingReference7 MeetingReference;
 	private SecurityIdentification14 FinancialInstrumentIdentification;

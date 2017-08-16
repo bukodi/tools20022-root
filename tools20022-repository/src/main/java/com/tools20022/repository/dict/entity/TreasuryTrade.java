@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Trade;
 import com.tools20022.repository.dict.entity.TreasuryTradeSettlementStatus;
 import com.tools20022.repository.dict.entity.InformationPartyRole;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.entity.TreasuryTradePartyRole;
  * currencies, the lending of cash amounts and the related derivatives trades
  * (options and non deliverable trades).
  */
-public class TreasuryTrade extends Trade {
+public class TreasuryTrade extends Trade
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TreasuryTradeSettlementStatus TreasuryTradeSettlementStatus;
 	private InformationPartyRole InformationPartyRole;

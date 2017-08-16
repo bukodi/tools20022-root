@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.FloatingRateNote2;
 import com.tools20022.core.repo.NextVersion;
 
@@ -10,5 +12,5 @@ import com.tools20022.core.repo.NextVersion;
  * fixing dates) and which has a maturity of no more than one year.
  */
 @NextVersion(FloatingRateNote2.class)
-public class FloatingRateNote1 {
+public class FloatingRateNote1 implements GeneratedRepoBean<MMMessageComponent> {
 }

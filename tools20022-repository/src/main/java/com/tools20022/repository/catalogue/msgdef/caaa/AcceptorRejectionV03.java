@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorRejectionV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorRejectionV04;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.AcceptorRejection2;
  */
 @PreviousVersion(AcceptorRejectionV02.class)
 @NextVersion(AcceptorRejectionV04.class)
-public class AcceptorRejectionV03 {
+public class AcceptorRejectionV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header9 Header;
 	private AcceptorRejection2 Reject;

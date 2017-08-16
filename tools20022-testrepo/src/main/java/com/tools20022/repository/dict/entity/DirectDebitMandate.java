@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.codeset.FrequencyCode;
 import com.tools20022.repository.dict.entity.PaymentProcessing;
@@ -14,7 +15,9 @@ import com.tools20022.repository.dict.codeset.MandateClassificationCode;
  * Authorisation in favour of the creditor given by the debtor to debit its own
  * account.
  */
-public class DirectDebitMandate implements InstanceOf<MMBusinessComponent> {
+public class DirectDebitMandate extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODate FinalCollectionDate;
 	private FrequencyCode Frequency;

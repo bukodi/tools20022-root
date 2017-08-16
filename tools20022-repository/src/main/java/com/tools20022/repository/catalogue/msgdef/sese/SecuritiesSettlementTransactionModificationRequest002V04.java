@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionModificationRequest002V05;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.TransactionDetails85;
@@ -26,7 +28,9 @@ import java.util.List;
  * elements in the Business Application Header.
  */
 @NextVersion(SecuritiesSettlementTransactionModificationRequest002V05.class)
-public class SecuritiesSettlementTransactionModificationRequest002V04 {
+public class SecuritiesSettlementTransactionModificationRequest002V04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionDetails85 ModifiedTransactionDetails;
 	private List<UpdateType22Choice> UpdateType;

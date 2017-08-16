@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.StatusReportItems2;
 import java.util.Optional;
@@ -12,7 +14,7 @@ import java.util.Optional;
  * sub-status of all transactions that the requester of the report is involved
  * in. The message can be sent in response to a StatusReportRequest message.
  */
-public class StatusReportV03 {
+public class StatusReportV03 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private MessageIdentification1 RelatedMessageReference;

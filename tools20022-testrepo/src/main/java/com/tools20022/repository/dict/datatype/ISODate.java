@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMDate;
 
 /**
@@ -9,5 +9,5 @@ import com.tools20022.metamodel.MMDate;
  * "XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004"
  * which is aligned with ISO 8601.
  */
-public class ISODate implements InstanceOf<MMDate> {
+public class ISODate implements GeneratedRepoBean<MMDate> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestigationResolution;
 import com.tools20022.repository.dict.codeset.CaseForwardingNotificationCode;
 import com.tools20022.repository.dict.entity.InvestigationCase;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.InvestigationCase;
  * Action that consists in forwarding an investigation case assignment to
  * another party which becomes the new assignee.
  */
-public class Reassignment extends InvestigationResolution {
+public class Reassignment extends InvestigationResolution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CaseForwardingNotificationCode Justification;
 	private InvestigationCase ReassignedCase;

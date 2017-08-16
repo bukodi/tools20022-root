@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.datatype.ISODate;
@@ -18,7 +21,9 @@ import com.tools20022.repository.dict.entity.CorporateActionProceedsDeliveryInst
 /**
  * Distribution of the proceeds of a CA event.
  */
-public class CorporateActionDistribution {
+public class CorporateActionDistribution extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity PostingQuantity;
 	private ISODateTime PostingDateTime;

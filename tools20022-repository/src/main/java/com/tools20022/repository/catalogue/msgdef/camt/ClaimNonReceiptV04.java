@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.ClaimNonReceiptV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.ClaimNonReceiptV05;
@@ -66,7 +68,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(ClaimNonReceiptV03.class)
 @NextVersion(ClaimNonReceiptV05.class)
-public class ClaimNonReceiptV04 {
+public class ClaimNonReceiptV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

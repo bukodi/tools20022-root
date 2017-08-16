@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.MandateOccurrences2;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MandateOccurrences4;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(MandateOccurrences2.class)
 @NextVersion(MandateOccurrences4.class)
-public class MandateOccurrences3 {
+public class MandateOccurrences3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

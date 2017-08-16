@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AccountBalanceSD9;
 import com.tools20022.core.repo.NextVersion;
 
@@ -9,5 +11,5 @@ import com.tools20022.core.repo.NextVersion;
  * undelivered trades (FAILs).
  */
 @NextVersion(AccountBalanceSD9.class)
-public class AccountBalanceSD4 {
+public class AccountBalanceSD4 implements GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.System;
 import com.tools20022.repository.dict.entity.Clearing;
 import com.tools20022.repository.dict.entity.CentralClearingCounterpartyRole;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.CollateralManagement;
 /**
  * Specifies the system which plays a role in the clearing process.
  */
-public class ClearingSystem extends System {
+public class ClearingSystem extends System
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Clearing Clearing;
 	private CentralClearingCounterpartyRole CentralClearingCounterparty;

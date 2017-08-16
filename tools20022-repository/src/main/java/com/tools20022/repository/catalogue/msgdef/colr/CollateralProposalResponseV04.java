@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.colr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.colr.CollateralProposalResponseV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.colr.CollateralProposalResponseV05;
@@ -27,7 +29,9 @@ import java.util.Optional;
  */
 @PreviousVersion(CollateralProposalResponseV03.class)
 @NextVersion(CollateralProposalResponseV05.class)
-public class CollateralProposalResponseV04 {
+public class CollateralProposalResponseV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Obligation4 Obligation;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Account14;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Account22;
@@ -10,5 +12,5 @@ import com.tools20022.repository.dict.msg.Account22;
  */
 @NextVersion(Account14.class)
 @NextVersion(Account22.class)
-public class Account7 {
+public class Account7 implements GeneratedRepoBean<MMMessageComponent> {
 }

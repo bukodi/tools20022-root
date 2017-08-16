@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.CommissionWaiver4;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * entitled to the commission.
  */
 @NextVersion(CommissionWaiver4.class)
-public class CommissionWaiver3 {
+public class CommissionWaiver3 implements GeneratedRepoBean<MMMessageComponent> {
 }

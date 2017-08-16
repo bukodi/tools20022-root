@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.datatype;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMTime;
+
 /**
  * A particular point in the progression of time in a calendar day expressed in
  * either UTC time format (hh:mm:ss.sssZ), local time with UTC offset format
@@ -11,5 +15,5 @@ package com.tools20022.repository.dict.datatype;
  * seconds may be included. In this case, the involved parties shall agree on
  * the maximum number of digits that are allowed.
  */
-public class ISOTime {
+public class ISOTime implements GeneratedRepoBean<MMTime> {
 }

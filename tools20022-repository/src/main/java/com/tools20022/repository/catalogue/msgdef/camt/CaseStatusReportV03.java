@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.CaseStatusReportV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.ReportHeader2;
@@ -26,7 +28,9 @@ import java.util.Optional;
  * case may be closed.)
  */
 @NextVersion(CaseStatusReportV04.class)
-public class CaseStatusReportV03 {
+public class CaseStatusReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportHeader2 Header;
 	private Case2 Case;

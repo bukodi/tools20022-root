@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.ResolutionStatusCode;
 import com.tools20022.repository.dict.codeset.CancellationStatusCode;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.Meeting;
 /**
  * Status of the instructions related to a meeting.
  */
-public class MeetingStatus extends Status {
+public class MeetingStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ResolutionStatusCode MeetingResolutionStatus;
 	private CancellationStatusCode InstructionCancellationStatus;

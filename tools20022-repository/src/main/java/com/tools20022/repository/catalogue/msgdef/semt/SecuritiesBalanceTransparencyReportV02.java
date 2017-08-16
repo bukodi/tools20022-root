@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.PartyIdentification100;
 import java.util.Optional;
@@ -53,7 +55,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * place of safekeeping (for example, an account in a transfer agent's register
  * of shareholders).
  */
-public class SecuritiesBalanceTransparencyReportV02 {
+public class SecuritiesBalanceTransparencyReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private PartyIdentification100 SenderIdentification;

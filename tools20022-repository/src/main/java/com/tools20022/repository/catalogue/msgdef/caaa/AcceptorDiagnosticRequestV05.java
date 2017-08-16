@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorDiagnosticRequestV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorDiagnosticRequestV06;
@@ -17,7 +19,9 @@ import java.util.Optional;
  */
 @PreviousVersion(AcceptorDiagnosticRequestV04.class)
 @NextVersion(AcceptorDiagnosticRequestV06.class)
-public class AcceptorDiagnosticRequestV05 {
+public class AcceptorDiagnosticRequestV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header30 Header;
 	private AcceptorDiagnosticRequest5 DiagnosticRequest;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Party;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.ISODateTime;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.datatype.ISODate;
  * Organised structure that is set up for a particular purpose. For example, a
  * business, government body, department, charity, or financial institution.
  */
-public class Organisation extends Party {
+public class Organisation extends Party
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text Purpose;
 	private ISODateTime RegistrationDate;

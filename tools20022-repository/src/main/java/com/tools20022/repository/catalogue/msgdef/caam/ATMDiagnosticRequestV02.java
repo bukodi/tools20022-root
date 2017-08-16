@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caam;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caam.ATMDiagnosticRequestV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header31;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * ATM is a valid ATM for its particular network.
  */
 @PreviousVersion(ATMDiagnosticRequestV01.class)
-public class ATMDiagnosticRequestV02 {
+public class ATMDiagnosticRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header31 Header;
 	private Optional<ContentInformationType10> ProtectedATMDiagnosticRequest;

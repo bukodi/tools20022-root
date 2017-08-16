@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AlgorithmIdentification6;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * cryptographic key.
  */
 @PreviousVersion(AlgorithmIdentification6.class)
-public class AlgorithmIdentification14 {
+public class AlgorithmIdentification14
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

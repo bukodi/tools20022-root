@@ -1,7 +1,13 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Set of elements used to report between the securities account reference data
  * or an operational error.
  */
-public class SecuritiesAccountOrOperationalError1Choice {
+public class SecuritiesAccountOrOperationalError1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

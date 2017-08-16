@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.OrderCancellationStatusReportV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference3;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.OrderStatusAndReason4;
  * must be specified.
  */
 @NextVersion(OrderCancellationStatusReportV03.class)
-public class OrderCancellationStatusReportV02 {
+public class OrderCancellationStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private List<AdditionalReference3> RelatedReference;
 	private List<AdditionalReference3> OtherReference;

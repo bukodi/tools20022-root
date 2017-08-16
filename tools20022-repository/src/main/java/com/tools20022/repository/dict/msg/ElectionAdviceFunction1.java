@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides information about the type of election advice and linked messages.
  */
-public class ElectionAdviceFunction1 {
+public class ElectionAdviceFunction1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

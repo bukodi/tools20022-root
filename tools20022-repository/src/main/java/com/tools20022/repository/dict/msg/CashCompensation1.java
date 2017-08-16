@@ -1,7 +1,11 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides details about the cash compensation such as the fees and the total
  * settlement amount.
  */
-public class CashCompensation1 {
+public class CashCompensation1 implements GeneratedRepoBean<MMMessageComponent> {
 }

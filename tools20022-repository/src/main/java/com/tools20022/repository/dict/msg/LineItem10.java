@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.LineItem16;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * and monetary summations reported as a discrete line items.
  */
 @NextVersion(LineItem16.class)
-public class LineItem10 {
+public class LineItem10 implements GeneratedRepoBean<MMMessageComponent> {
 }

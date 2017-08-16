@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradePartyIdentification3;
 import com.tools20022.repository.dict.msg.OpeningData2;
 import java.util.Optional;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.msg.SettlementData2;
  * from both. The message may also contain information on the settlement of the
  * trade.
  */
-public class NonDeliverableForwardNotificationV02 {
+public class NonDeliverableForwardNotificationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradePartyIdentification3 TradingSideIdentification;
 	private TradePartyIdentification3 CounterpartySideIdentification;

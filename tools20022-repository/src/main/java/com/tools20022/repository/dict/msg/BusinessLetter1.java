@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Defines a business letter containing identifications of involved entities and
  * their roles, references to documents, free form text and signatures. The
@@ -10,5 +14,5 @@ package com.tools20022.repository.dict.msg;
  * all elements defining qualified documents or references to them, (3) - the
  * LegalContext element.
  */
-public class BusinessLetter1 {
+public class BusinessLetter1 implements GeneratedRepoBean<MMMessageComponent> {
 }

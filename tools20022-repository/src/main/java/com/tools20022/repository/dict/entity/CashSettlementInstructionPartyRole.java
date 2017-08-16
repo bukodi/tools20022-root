@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SettlementPartyRole;
 import com.tools20022.repository.dict.entity.CashAccount;
 import com.tools20022.repository.dict.entity.CashSettlement;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.CashSettlement;
 /**
  * Role played by a party in cash settlement.
  */
-public class CashSettlementInstructionPartyRole extends SettlementPartyRole {
+public class CashSettlementInstructionPartyRole extends SettlementPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccount CashAccount;
 	private CashSettlement SettlementInstruction;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.NonDeliverableTrade;
 import com.tools20022.repository.dict.entity.CurrencyExchange;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.codeset.BusinessDayConventionCode;
  * Set of parameters used to calculate a rate for instance the fixing rate to be
  * applied to a non-deliverable agreement.
  */
-public class FixingCondition {
+public class FixingCondition extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime FixingDateTime;
 	private NonDeliverableTrade NonDeliverableTrade;

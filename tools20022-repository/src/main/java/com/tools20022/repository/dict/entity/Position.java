@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.System;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.SecuritiesSettlement;
 /**
  * Specifies the status of trades and their value inside a system.
  */
-public class Position {
+public class Position extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity NetQuantity;
 	private CurrencyAndAmount NetPositionAmount;

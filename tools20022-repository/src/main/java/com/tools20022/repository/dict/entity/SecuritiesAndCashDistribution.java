@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Distribution;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.entity.SecuritiesDistribution;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.CashDistribution;
 /**
  * Characteristics for a mixed cash and securities distribution event.
  */
-public class SecuritiesAndCashDistribution extends Distribution {
+public class SecuritiesAndCashDistribution extends Distribution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity IntermediateToUnderlyingDenominator;
 	private SecuritiesQuantity MaximumHolding;

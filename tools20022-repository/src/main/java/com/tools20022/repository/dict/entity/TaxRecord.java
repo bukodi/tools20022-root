@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Tax;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.TaxPeriod;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 /**
  * Record of tax details.
  */
-public class TaxRecord {
+public class TaxRecord extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Tax Tax;
 	private Max35Text TaxRecordType;

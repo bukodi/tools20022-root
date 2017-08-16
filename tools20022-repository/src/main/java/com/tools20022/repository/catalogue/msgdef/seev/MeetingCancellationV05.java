@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingCancellationV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MeetingReference6;
@@ -22,7 +24,9 @@ import java.util.Optional;
  * use with the Business Application Header (head.001.001.01).
  */
 @PreviousVersion(MeetingCancellationV04.class)
-public class MeetingCancellationV05 {
+public class MeetingCancellationV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MeetingReference6 MeetingReference;
 	private List<SecurityPosition8> Security;

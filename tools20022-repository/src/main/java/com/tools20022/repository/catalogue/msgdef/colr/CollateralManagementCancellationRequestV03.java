@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.colr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.colr.CollateralManagementCancellationRequestV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -31,7 +33,9 @@ import java.util.Optional;
  * message is made using a CollateralManagementCancellationStatus message.
  */
 @NextVersion(CollateralManagementCancellationRequestV04.class)
-public class CollateralManagementCancellationRequestV03 {
+public class CollateralManagementCancellationRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Reference2Choice Reference;

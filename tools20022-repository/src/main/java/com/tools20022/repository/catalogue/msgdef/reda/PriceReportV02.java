@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.reda;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.reda.PriceReportV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference3;
@@ -22,7 +24,7 @@ import com.tools20022.repository.dict.msg.Extension1;
  * purposes than the execution of investment funds orders.
  */
 @NextVersion(PriceReportV03.class)
-public class PriceReportV02 {
+public class PriceReportV02 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AdditionalReference3> PoolReference;
 	private Optional<AdditionalReference3> PreviousReference;

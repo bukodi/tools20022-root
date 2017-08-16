@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CashAccountService;
 import com.tools20022.repository.dict.entity.RiskManagementLimit;
 import com.tools20022.repository.dict.entity.CashStandingOrder;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.codeset.CallInCode;
  * Set of applications that provides services which facilitate the management of
  * cash positions on an account.
  */
-public class CashManagementService extends CashAccountService {
+public class CashManagementService extends CashAccountService
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private RiskManagementLimit RiskManagementLimit;
 	private CashStandingOrder StandingOrder;

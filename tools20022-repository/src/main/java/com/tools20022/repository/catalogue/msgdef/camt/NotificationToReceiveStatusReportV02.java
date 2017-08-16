@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.NotificationToReceiveStatusReportV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader44;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.OriginalNotification3;
  * received.
  */
 @NextVersion(NotificationToReceiveStatusReportV03.class)
-public class NotificationToReceiveStatusReportV02 {
+public class NotificationToReceiveStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader44 GroupHeader;
 	private OriginalNotification3 OriginalNotificationAndStatus;

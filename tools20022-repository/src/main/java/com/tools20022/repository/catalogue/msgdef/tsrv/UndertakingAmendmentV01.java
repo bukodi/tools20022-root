@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Amendment1;
 import com.tools20022.repository.dict.datatype.Max2000Text;
 import java.util.List;
@@ -18,7 +20,9 @@ import java.util.Optional;
  * Under practice and law, this communication binds the party issuing it. The
  * message constitutes an operative financial instrument.
  */
-public class UndertakingAmendmentV01 {
+public class UndertakingAmendmentV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Amendment1 UndertakingAmendmentDetails;
 	private List<Max2000Text> BankToBankInformation;

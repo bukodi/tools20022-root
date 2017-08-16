@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of transaction type or corporation action event type.
  */
-public class TransactionType1Choice {
+public class TransactionType1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

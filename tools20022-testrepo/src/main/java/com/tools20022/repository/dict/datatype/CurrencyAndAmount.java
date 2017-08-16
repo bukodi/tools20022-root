@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMAmount;
 
 /**
@@ -8,5 +8,5 @@ import com.tools20022.metamodel.MMAmount;
  * is explicit and compliant with ISO 4217. The decimal separator is a dot.
  * Note: A zero amount is considered a positive amount.
  */
-public class CurrencyAndAmount implements InstanceOf<MMAmount> {
+public class CurrencyAndAmount implements GeneratedRepoBean<MMAmount> {
 }

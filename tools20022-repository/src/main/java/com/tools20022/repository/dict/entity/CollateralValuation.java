@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Collateral;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.CollateralManagement;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.codeset.CurrencyCode;
  * Provides details about the valuation of each piece of collateral that is
  * posted.
  */
-public class CollateralValuation {
+public class CollateralValuation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Collateral Collateral;
 	private ISODateTime CollateralValuationDate;

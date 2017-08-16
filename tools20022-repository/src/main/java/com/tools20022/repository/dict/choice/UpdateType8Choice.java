@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice between action to request on a security.
  */
-public class UpdateType8Choice {
+public class UpdateType8Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

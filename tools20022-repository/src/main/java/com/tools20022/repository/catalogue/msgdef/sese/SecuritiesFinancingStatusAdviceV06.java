@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesFinancingStatusAdviceV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesFinancingStatusAdviceV07;
@@ -33,7 +35,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesFinancingStatusAdviceV05.class)
 @NextVersion(SecuritiesFinancingStatusAdviceV07.class)
-public class SecuritiesFinancingStatusAdviceV06 {
+public class SecuritiesFinancingStatusAdviceV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionIdentifications32 TransactionIdentification;
 	private Optional<ProcessingStatus51Choice> ProcessingStatus;

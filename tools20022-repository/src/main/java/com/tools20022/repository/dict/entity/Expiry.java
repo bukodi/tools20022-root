@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.Undertaking;
 import com.tools20022.repository.dict.datatype.Max2000Text;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.Location;
 /**
  * Expiry parameters.
  */
-public class Expiry {
+public class Expiry extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime ExpiryDateTime;
 	private Undertaking Undertaking;

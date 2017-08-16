@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionReversalAdviceV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionReversalAdviceV03;
@@ -46,7 +48,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesSettlementTransactionReversalAdviceV01.class)
 @NextVersion(SecuritiesSettlementTransactionReversalAdviceV03.class)
-public class SecuritiesSettlementTransactionReversalAdviceV02 {
+public class SecuritiesSettlementTransactionReversalAdviceV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private SettlementTypeAndIdentification9 TransactionIdentificationDetails;
 	private Identification1 ConfirmationReference;

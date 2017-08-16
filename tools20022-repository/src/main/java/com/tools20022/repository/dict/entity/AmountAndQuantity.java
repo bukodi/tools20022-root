@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.datatype.DecimalNumber;
  * Value expressed as an amount or a quantity. For example, the value of a
  * financial instrument.
  */
-public class AmountAndQuantity {
+public class AmountAndQuantity extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing SecuritiesPricing;
 	private CurrencyAndAmount Amount;

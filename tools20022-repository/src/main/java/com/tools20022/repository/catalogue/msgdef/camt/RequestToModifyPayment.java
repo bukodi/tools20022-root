@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CaseAssignment;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.msg.PaymentInstructionExtract;
@@ -75,7 +77,9 @@ import com.tools20022.repository.dict.msg.RequestedModification;
  * to modify payment case must be rejected (by means of a negative Resolution Of
  * Investigation message).
  */
-public class RequestToModifyPayment {
+public class RequestToModifyPayment
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case Case;

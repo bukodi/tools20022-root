@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPartyRole;
 import com.tools20022.repository.dict.codeset.BeneficiaryCertificationTypeCode;
 import com.tools20022.repository.dict.entity.Country;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
  * benefit of income and rights in a security, as opposed to a nominal or legal
  * owner.
  */
-public class BeneficialOwner extends SecuritiesPartyRole {
+public class BeneficialOwner extends SecuritiesPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private BeneficiaryCertificationTypeCode CertificationType;
 	private Country NonDomicileCountry;

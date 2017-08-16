@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.TradeProduct1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * natural process for purposes of specifying a product.
  */
 @PreviousVersion(TradeProduct1.class)
-public class TradeProduct2 {
+public class TradeProduct2 implements GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header31;
 import com.tools20022.repository.dict.msg.ContentInformationType10;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * The ATMTransferRequest message is sent by an ATM to an ATM manager to request
  * the approval of a fund transfer at the ATM.
  */
-public class ATMTransferRequestV01 {
+public class ATMTransferRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header31 Header;
 	private Optional<ContentInformationType10> ProtectedATMTransferRequest;

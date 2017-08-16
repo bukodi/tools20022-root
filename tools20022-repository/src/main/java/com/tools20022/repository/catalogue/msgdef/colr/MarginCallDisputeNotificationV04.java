@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.colr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.colr.MarginCallDisputeNotificationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -23,7 +25,9 @@ import java.util.Optional;
  * (full or partial) stating the reason why the margin call is being disputed.
  */
 @PreviousVersion(MarginCallDisputeNotificationV03.class)
-public class MarginCallDisputeNotificationV04 {
+public class MarginCallDisputeNotificationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Obligation4 Obligation;

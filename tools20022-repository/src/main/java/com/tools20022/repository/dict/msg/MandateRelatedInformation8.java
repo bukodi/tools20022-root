@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.MandateRelatedInformation10;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * creditor and the debtor.
  */
 @NextVersion(MandateRelatedInformation10.class)
-public class MandateRelatedInformation8 {
+public class MandateRelatedInformation8
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification37;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.DocumentIdentification17;
@@ -24,7 +26,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * message is Copy Duplicate), using the relevant elements in the business
  * application header (BAH).
  */
-public class CorporateActionMovementConfirmation002V08 {
+public class CorporateActionMovementConfirmation002V08
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<DocumentIdentification37> NotificationIdentification;
 	private Optional<DocumentIdentification37> MovementPreliminaryAdviceIdentification;

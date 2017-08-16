@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides additional information about the CA event.
  */
-public class CorporateActionNarrative2 {
+public class CorporateActionNarrative2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

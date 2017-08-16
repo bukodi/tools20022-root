@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DemandRefusal1;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature2;
  * has been made, either directly or via one or more advising parties. It
  * notifies the beneficiary or presenter that the demand has been refused.
  */
-public class DemandRefusalNotificationV01 {
+public class DemandRefusalNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<DemandRefusal1> DemandRefusalNotificationDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

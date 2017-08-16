@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of format for the settlement date code.
  */
-public class SettlementDateCode3Choice {
+public class SettlementDateCode3Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

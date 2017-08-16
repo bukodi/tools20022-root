@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides the reason for rejecting the case assignment.
  */
-public class CaseAssignmentRejectionJustification2 {
+public class CaseAssignmentRejectionJustification2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

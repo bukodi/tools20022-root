@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesOrder;
 import com.tools20022.repository.dict.codeset.CrossTradeExecutionCode;
 import com.tools20022.repository.dict.codeset.CrossTypeCode;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.codeset.PrioritisationCode;
  * Transaction where either the buy-broker and the sell-broker are the same, or
  * the buy-broker and the sell-broker belong to the same firm.
  */
-public class CrossTrade extends SecuritiesOrder {
+public class CrossTrade extends SecuritiesOrder
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesOrder BuySideOrder;
 	private SecuritiesOrder SellSideOrder;

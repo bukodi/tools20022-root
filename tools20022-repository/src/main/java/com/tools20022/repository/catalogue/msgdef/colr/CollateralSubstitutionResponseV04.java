@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.colr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.colr.CollateralSubstitutionResponseV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -27,7 +29,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * collateral proposed in the substitution request can be accepted or rejected.
  */
 @PreviousVersion(CollateralSubstitutionResponseV03.class)
-public class CollateralSubstitutionResponseV04 {
+public class CollateralSubstitutionResponseV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Obligation4 Obligation;

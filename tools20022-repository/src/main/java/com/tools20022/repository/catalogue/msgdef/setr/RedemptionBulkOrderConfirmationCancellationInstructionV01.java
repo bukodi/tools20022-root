@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.RedemptionBulkOrderConfirmationCancellationInstructionV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -47,7 +49,9 @@ import com.tools20022.repository.dict.msg.CopyInformation2;
  * confirmation was conveyed may also be quoted in PreviousReference.
  */
 @NextVersion(RedemptionBulkOrderConfirmationCancellationInstructionV02.class)
-public class RedemptionBulkOrderConfirmationCancellationInstructionV01 {
+public class RedemptionBulkOrderConfirmationCancellationInstructionV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pacs.FinancialInstitutionCreditTransferV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pacs.FinancialInstitutionCreditTransferV06;
@@ -25,7 +27,9 @@ import java.util.Optional;
  */
 @PreviousVersion(FinancialInstitutionCreditTransferV04.class)
 @NextVersion(FinancialInstitutionCreditTransferV06.class)
-public class FinancialInstitutionCreditTransferV05 {
+public class FinancialInstitutionCreditTransferV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader49 GroupHeader;
 	private CreditTransferTransaction17 CreditTransferTransactionInformation;

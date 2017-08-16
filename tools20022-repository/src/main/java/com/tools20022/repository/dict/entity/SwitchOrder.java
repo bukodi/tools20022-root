@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentFundOrder;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.SwitchRedemptionLeg;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.SwitchSubscriptionLeg;
  * investment fund class by the investor. A switch is composed of one or several
  * subscription legs, and one or several redemption legs.
  */
-public class SwitchOrder extends InvestmentFundOrder {
+public class SwitchOrder extends InvestmentFundOrder
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount AdditionalCashIn;
 	private CurrencyAndAmount ResultingCashOut;

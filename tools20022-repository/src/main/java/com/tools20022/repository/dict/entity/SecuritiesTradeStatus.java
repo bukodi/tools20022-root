@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.MatchingStatusCode;
 import com.tools20022.repository.dict.codeset.AffirmationStatusCode;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.entity.SecuritiesTransfer;
 /**
  * Status of a securities trade.
  */
-public class SecuritiesTradeStatus extends Status {
+public class SecuritiesTradeStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private MatchingStatusCode MatchingStatus;
 	private AffirmationStatusCode AffirmationStatus;

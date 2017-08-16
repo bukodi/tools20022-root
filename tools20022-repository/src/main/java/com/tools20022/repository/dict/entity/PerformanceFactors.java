@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.NetAssetValueCalculation;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.entity.DateTimePeriod;
 /**
  * Performance factors of the investment fund / fund class.
  */
-public class PerformanceFactors {
+public class PerformanceFactors extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private NetAssetValueCalculation NetAssetValueCalculation;
 	private DecimalNumber CorporateActionFactor;

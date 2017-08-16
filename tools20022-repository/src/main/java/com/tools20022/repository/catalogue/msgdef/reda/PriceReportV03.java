@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.reda;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.reda.PriceReportV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.reda.PriceReportV04;
@@ -26,7 +28,7 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(PriceReportV02.class)
 @NextVersion(PriceReportV04.class)
-public class PriceReportV03 {
+public class PriceReportV03 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

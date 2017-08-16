@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Agreement;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
 import com.tools20022.repository.dict.entity.MasterAgreement;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.entity.CollateralManagement;
  * Agreement between two trading parties that contains information about their
  * relative duties and rights regarding collateral processes.
  */
-public class CollateralAgreement extends Agreement {
+public class CollateralAgreement extends Agreement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyCode BaseCurrency;
 	private MasterAgreement AssociatedMasterAgreement;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Contract;
 import com.tools20022.repository.dict.entity.SignatureCondition;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
  * Authorisation given by an issuing party to a holder party to act on the
  * issuer's behalf.
  */
-public class Mandate extends Contract {
+public class Mandate extends Contract
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SignatureCondition SignatureConditions;
 	private Max35Text MandateIdentification;

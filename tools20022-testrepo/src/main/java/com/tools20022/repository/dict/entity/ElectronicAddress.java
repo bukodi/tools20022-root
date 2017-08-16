@@ -1,13 +1,16 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max256Text;
 
 /**
  * Address which is accessed by electronic means.
  */
-public class ElectronicAddress implements InstanceOf<MMBusinessComponent> {
+public class ElectronicAddress extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max256Text EmailAddress;
 

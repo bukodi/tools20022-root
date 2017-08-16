@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Document;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.entity.InvestmentPlan;
  * Formal document used to record a fact and used as proof of the fact that
  * goods have been insured under an insurance policy.
  */
-public class InsuranceCertificate extends Document {
+public class InsuranceCertificate extends Document
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODate EffectiveDate;
 	private CurrencyAndAmount InsuredAmount;

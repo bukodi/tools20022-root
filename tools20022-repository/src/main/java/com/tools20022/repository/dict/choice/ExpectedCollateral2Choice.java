@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.ExpectedCollateral1Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * only.
  */
 @PreviousVersion(ExpectedCollateral1Choice.class)
-public class ExpectedCollateral2Choice {
+public class ExpectedCollateral2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

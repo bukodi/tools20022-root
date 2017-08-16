@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionCounterpartyResponseV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.TransactionIdentification6;
@@ -32,7 +34,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * information using the relevant elements in the Business Application Header.
  */
 @PreviousVersion(SecuritiesSettlementTransactionCounterpartyResponseV01.class)
-public class SecuritiesSettlementTransactionCounterpartyResponseV02 {
+public class SecuritiesSettlementTransactionCounterpartyResponseV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionIdentification6 TransactionIdentification;
 	private ResponseStatus6Choice ResponseStatus;

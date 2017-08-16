@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentAccountPartyRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.InvestmentAccountPartyRole;
  * beneficial ownership. The trustee must ensure all terms and conditions of the
  * security are adhered to.
  */
-public class TrusteeRole extends InvestmentAccountPartyRole {
+public class TrusteeRole extends InvestmentAccountPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

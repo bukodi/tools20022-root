@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AmountAndDirection36;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * that results in an increase or decrease to the balance of the account.
  */
 @PreviousVersion(AmountAndDirection36.class)
-public class AmountAndDirection46 {
+public class AmountAndDirection46
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

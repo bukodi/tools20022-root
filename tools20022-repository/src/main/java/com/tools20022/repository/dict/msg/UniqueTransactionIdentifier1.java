@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.UniqueTransactionIdentifier2;
 import com.tools20022.core.repo.NextVersion;
 
@@ -12,5 +14,7 @@ import com.tools20022.core.repo.NextVersion;
  * Unique Swap Identifier (USI) or the Prior Unique Swap Identifier (PUSI).
  */
 @NextVersion(UniqueTransactionIdentifier2.class)
-public class UniqueTransactionIdentifier1 {
+public class UniqueTransactionIdentifier1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CollateralProposal3Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * the segregated independent amount, or the segregated independent amount only.
  */
 @NextVersion(CollateralProposal3Choice.class)
-public class CollateralProposal2Choice {
+public class CollateralProposal2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

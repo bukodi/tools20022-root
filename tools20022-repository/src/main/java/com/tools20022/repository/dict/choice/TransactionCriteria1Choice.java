@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.TransactionCriteria2Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * previous query or explicitly by defining the criteria.
  */
 @NextVersion(TransactionCriteria2Choice.class)
-public class TransactionCriteria1Choice {
+public class TransactionCriteria1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

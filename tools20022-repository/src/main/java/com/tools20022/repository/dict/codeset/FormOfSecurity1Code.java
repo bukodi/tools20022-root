@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Form of a financial instrument.
  */
-public class FormOfSecurity1Code {
+public class FormOfSecurity1Code implements GeneratedRepoBean<MMCodeSet> {
 }

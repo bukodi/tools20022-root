@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionCancellationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.DocumentIdentification12;
@@ -30,7 +32,9 @@ import com.tools20022.repository.dict.msg.Extension2;
  * “CoexistenceXxxxRule”.
  */
 @NextVersion(CorporateActionInstructionCancellationRequestV02.class)
-public class CorporateActionInstructionCancellationRequestV01 {
+public class CorporateActionInstructionCancellationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification12 Identification;
 	private DocumentIdentification15 InstructionIdentification;

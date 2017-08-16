@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMIdentifierSet;
 
 /**
@@ -9,5 +9,7 @@ import com.tools20022.metamodel.MMIdentifierSet;
  * code is assigned by the South African Bankers Services Company Ltd.
  * (BankServ).
  */
-public class SouthAfricanNCCIdentifier implements InstanceOf<MMIdentifierSet> {
+public class SouthAfricanNCCIdentifier
+		implements
+			GeneratedRepoBean<MMIdentifierSet> {
 }

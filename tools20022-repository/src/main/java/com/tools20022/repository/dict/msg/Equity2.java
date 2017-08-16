@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Financial instrument which represents a title of ownership in a company, ie,
  * the shareholder is entitled to a part of the company's profit - usually by
@@ -8,5 +12,5 @@ package com.tools20022.repository.dict.msg;
  * shares, which receive dividends before ordinary shares but have no voting
  * right.
  */
-public class Equity2 {
+public class Equity2 implements GeneratedRepoBean<MMMessageComponent> {
 }

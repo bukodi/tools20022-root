@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides the details for negotiating and trading a large number of securities
  * contained in or comprising a portfolio.
@@ -11,5 +15,5 @@ package com.tools20022.repository.dict.msg;
  * Other examples include liquidation of EFP (Exchange for Physical) stock
  * positions, portfolio realignment and portfolio liquidation.
  */
-public class List2 {
+public class List2 implements GeneratedRepoBean<MMMessageComponent> {
 }

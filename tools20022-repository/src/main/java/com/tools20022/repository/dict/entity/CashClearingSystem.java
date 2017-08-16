@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ClearingSystem;
 import com.tools20022.repository.dict.codeset.CashClearingSystemCode;
 import com.tools20022.repository.dict.entity.TransactionAdministrator;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.codeset.CashSettlementSystemCode;
 /**
  * Clearing system that processes only cash transfers.
  */
-public class CashClearingSystem extends ClearingSystem {
+public class CashClearingSystem extends ClearingSystem
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashClearingSystemCode Identification;
 	private TransactionAdministrator TransactionAdministrator;

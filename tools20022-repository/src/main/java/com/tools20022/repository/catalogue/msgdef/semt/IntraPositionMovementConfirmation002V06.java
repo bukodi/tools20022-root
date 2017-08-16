@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementConfirmation002V05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.AdditionalParameters25;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * in the Business Application Header.
  */
 @PreviousVersion(IntraPositionMovementConfirmation002V05.class)
-public class IntraPositionMovementConfirmation002V06 {
+public class IntraPositionMovementConfirmation002V06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AdditionalParameters25> AdditionalParameters;
 	private Optional<PartyIdentification103Choice> AccountOwner;

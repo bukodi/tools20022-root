@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Identification16;
 import com.tools20022.repository.dict.msg.TransactionIdentifications39;
 import java.util.Optional;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * a third party a copy of a message for information using the relevant elements
  * in the Business Application Header.
  */
-public class SecuritiesTransactionCancellationRequestStatusAdvice002V05 {
+public class SecuritiesTransactionCancellationRequestStatusAdvice002V05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Identification16 CancellationRequestReference;
 	private Optional<TransactionIdentifications39> TransactionIdentification;

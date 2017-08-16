@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CorporateActionOption4Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.CorporateActionOption15Choice;
@@ -13,5 +15,7 @@ import com.tools20022.repository.dict.choice.CorporateActionOption20Choice;
 @PreviousVersion(CorporateActionOption4Choice.class)
 @NextVersion(CorporateActionOption15Choice.class)
 @NextVersion(CorporateActionOption20Choice.class)
-public class CorporateActionOption12Choice {
+public class CorporateActionOption12Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

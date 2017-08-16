@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CurrencyControlHeader3;
 import com.tools20022.repository.dict.msg.RegulatoryReportingNotification1;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -14,7 +16,9 @@ import java.util.Optional;
  * In some cases, the registration agent may also sent this message to the
  * reporting party.
  */
-public class PaymentRegulatoryInformationNotificationV01 {
+public class PaymentRegulatoryInformationNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CurrencyControlHeader3 GroupHeader;
 	private RegulatoryReportingNotification1 TransactionNotification;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MoneyMarketReportHeader1;
 import com.tools20022.repository.dict.choice.ForeignExchangeSwap2Choice;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * reporting agents to the relevant competent authority, to report all daily
  * Foreign Exchange Swaps (FX Swaps) transactions.
  */
-public class MoneyMarketForeignExchangeSwapsStatisticalReportV01 {
+public class MoneyMarketForeignExchangeSwapsStatisticalReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MoneyMarketReportHeader1 ReportHeader;
 	private ForeignExchangeSwap2Choice ForeignExchangeSwapsReport;

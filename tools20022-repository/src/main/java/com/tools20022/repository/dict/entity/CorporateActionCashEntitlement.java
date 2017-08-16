@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CorporateActionEntitlement;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.CurrencyExchange;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.CurrencyExchange;
  * Rights for cash entitled to the account owner based on the terms of the
  * corporate action event and the balance of underlying securities.
  */
-public class CorporateActionCashEntitlement extends CorporateActionEntitlement {
+public class CorporateActionCashEntitlement extends CorporateActionEntitlement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount GrossCashAmount;
 	private CurrencyAndAmount NetCashAmount;

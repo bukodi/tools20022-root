@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Transfer17;
 import com.tools20022.core.repo.NextVersion;
 
@@ -9,5 +11,5 @@ import com.tools20022.core.repo.NextVersion;
  * designated securities account.
  */
 @NextVersion(Transfer17.class)
-public class Transfer7 {
+public class Transfer7 implements GeneratedRepoBean<MMMessageComponent> {
 }

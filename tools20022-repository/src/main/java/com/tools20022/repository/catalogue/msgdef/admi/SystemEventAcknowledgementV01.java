@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.admi;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import java.util.Optional;
 import com.tools20022.repository.dict.datatype.Exact4AlphaNumericText;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * system to the central system to acknowledge the notification of an occurrence
  * of an event in a central system.
  */
-public class SystemEventAcknowledgementV01 {
+public class SystemEventAcknowledgementV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text MessageIdentification;
 	private Optional<Max35Text> OriginatorReference;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.RequestForDuplicateV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment3;
@@ -21,7 +23,9 @@ import java.util.Optional;
  * and its case creator/case assigner
  */
 @PreviousVersion(RequestForDuplicateV03.class)
-public class RequestForDuplicateV04 {
+public class RequestForDuplicateV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

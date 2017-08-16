@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import com.tools20022.repository.dict.msg.Reason2;
@@ -12,7 +14,9 @@ import java.util.Optional;
  * RoleAndBaselineRejection message is sent in response to a message that is a
  * direct request to join a transaction.
  */
-public class RoleAndBaselineRejectionV01 {
+public class RoleAndBaselineRejectionV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RejectionIdentification;
 	private MessageIdentification1 RelatedMessageReference;

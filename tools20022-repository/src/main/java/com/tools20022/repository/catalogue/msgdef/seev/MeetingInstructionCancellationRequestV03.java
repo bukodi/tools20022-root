@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingInstructionCancellationRequestV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingInstructionCancellationRequestV04;
@@ -23,7 +25,9 @@ import com.tools20022.repository.dict.msg.SafekeepingAccount4;
  */
 @PreviousVersion(MeetingInstructionCancellationRequestV02.class)
 @NextVersion(MeetingInstructionCancellationRequestV04.class)
-public class MeetingInstructionCancellationRequestV03 {
+public class MeetingInstructionCancellationRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 Identification;
 	private MessageIdentification PreviousReference;

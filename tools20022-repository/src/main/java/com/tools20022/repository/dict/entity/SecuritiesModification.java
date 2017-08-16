@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.CorporateActionChangeTypeCode;
 import com.tools20022.repository.dict.entity.Organisation;
 import com.tools20022.repository.dict.entity.CorporateActionEvent;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.datatype.ISODateTime;
  * Modification of the reference data of a security or of the organisation that
  * issued it.
  */
-public class SecuritiesModification {
+public class SecuritiesModification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CorporateActionChangeTypeCode ChangeType;
 	private Organisation NewOrganisationInformation;

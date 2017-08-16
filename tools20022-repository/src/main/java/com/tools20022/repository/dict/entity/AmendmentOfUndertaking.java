@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.Undertaking;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
  * Modification of an undertaking such as an guarantee or standby letter of
  * credit.
  */
-public class AmendmentOfUndertaking {
+public class AmendmentOfUndertaking extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime DateOfIssuance;
 	private CurrencyAndAmount ChangeOfAmount;

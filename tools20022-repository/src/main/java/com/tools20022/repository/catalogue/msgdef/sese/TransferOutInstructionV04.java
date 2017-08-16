@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferOutInstructionV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferOutInstructionV05;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(TransferOutInstructionV03.class)
 @NextVersion(TransferOutInstructionV05.class)
-public class TransferOutInstructionV04 {
+public class TransferOutInstructionV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference2> PoolReference;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.MarginCall;
 import com.tools20022.repository.dict.entity.DefaultFund;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.codeset.DebitCreditCode;
  * Portion of the participation to the default fund that clearing member must
  * provide. It is the sum of the individual contributions.
  */
-public class DefaultFundContribution {
+public class DefaultFundContribution extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private MarginCall RelatedMarginCall;
 	private DefaultFund DefaultFund;

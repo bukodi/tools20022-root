@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AcceptorReconciliationRequest4;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.AcceptorReconciliationRequest6;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(AcceptorReconciliationRequest4.class)
 @NextVersion(AcceptorReconciliationRequest6.class)
-public class AcceptorReconciliationRequest5 {
+public class AcceptorReconciliationRequest5
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

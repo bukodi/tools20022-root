@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Contract;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.datatype.TrueFalseIndicator;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.codeset.TransactionChannelCode;
  * Agreement between an account servicer and an account owner about the services
  * linked to an account.
  */
-public class AccountContract extends Contract {
+public class AccountContract extends Contract
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime TargetClosingDate;
 	private TrueFalseIndicator UrgencyFlag;

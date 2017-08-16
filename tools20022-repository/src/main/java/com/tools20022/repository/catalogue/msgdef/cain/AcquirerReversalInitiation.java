@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.cain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header18;
 import com.tools20022.repository.dict.msg.AcquirerReversalInitiation1;
 import com.tools20022.repository.dict.msg.ContentInformationType15;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * an issuer or an agent, to request, advice or notify the reversal of a card
  * transaction.
  */
-public class AcquirerReversalInitiation {
+public class AcquirerReversalInitiation
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header18 Header;
 	private AcquirerReversalInitiation1 ReversalInitiation;

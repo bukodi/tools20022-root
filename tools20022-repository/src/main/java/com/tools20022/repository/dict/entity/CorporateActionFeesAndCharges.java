@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Charges;
 import com.tools20022.repository.dict.entity.CorporateActionEvent;
 import com.tools20022.repository.dict.entity.RateAndAmount;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.Commission;
 /**
  * The definition of all the charges related to a corporate action event.
  */
-public class CorporateActionFeesAndCharges extends Charges {
+public class CorporateActionFeesAndCharges extends Charges
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CorporateActionEvent CorporateAction;
 	private RateAndAmount SolicitationFee;

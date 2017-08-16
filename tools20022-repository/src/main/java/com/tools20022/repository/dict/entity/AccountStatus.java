@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.entity.Account;
 import com.tools20022.repository.dict.codeset.AccountStatusCode;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.codeset.ReasonBlockedCode;
  * Specifies the status of an account or the status of the processing of the
  * actions linked to the management of an account.
  */
-public class AccountStatus extends Status {
+public class AccountStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Account Account;
 	private AccountStatusCode Status;

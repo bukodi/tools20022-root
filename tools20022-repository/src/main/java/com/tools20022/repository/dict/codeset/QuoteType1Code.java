@@ -1,7 +1,11 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Identifies the type of quote. Can be either an indicative, a tradeable or a
  * restricted tradeable quote.
  */
-public class QuoteType1Code {
+public class QuoteType1Code implements GeneratedRepoBean<MMCodeSet> {
 }

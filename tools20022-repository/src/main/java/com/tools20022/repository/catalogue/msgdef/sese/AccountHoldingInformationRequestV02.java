@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.RequestForPEPOrISAOrPortfolioInformationV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.AccountHoldingInformationRequestV03;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(RequestForPEPOrISAOrPortfolioInformationV01.class)
 @NextVersion(AccountHoldingInformationRequestV03.class)
-public class AccountHoldingInformationRequestV02 {
+public class AccountHoldingInformationRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageReference;
 	private Optional<AdditionalReference3> PoolReference;

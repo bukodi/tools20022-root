@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFICustomerDirectDebitV06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.GroupHeader50;
@@ -21,7 +23,9 @@ import java.util.Optional;
  * message can be used in domestic and cross-border scenarios.
  */
 @PreviousVersion(FIToFICustomerDirectDebitV06.class)
-public class FIToFICustomerDirectDebitV07 {
+public class FIToFICustomerDirectDebitV07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader50 GroupHeader;
 	private DirectDebitTransactionInformation21 DirectDebitTransactionInformation;

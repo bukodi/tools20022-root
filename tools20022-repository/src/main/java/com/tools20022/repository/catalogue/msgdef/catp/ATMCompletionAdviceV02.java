@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catp.ATMCompletionAdviceV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header32;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * to inform of the result of a transaction performed on the ATM.
  */
 @PreviousVersion(ATMCompletionAdviceV01.class)
-public class ATMCompletionAdviceV02 {
+public class ATMCompletionAdviceV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header32 Header;
 	private Optional<ContentInformationType10> ProtectedATMCompletionAdvice;

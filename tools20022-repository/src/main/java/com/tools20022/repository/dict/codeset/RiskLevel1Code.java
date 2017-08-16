@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the risk level.
  */
-public class RiskLevel1Code {
+public class RiskLevel1Code implements GeneratedRepoBean<MMCodeSet> {
 }

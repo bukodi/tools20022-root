@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CashBalance;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.datatype.Max15NumericText;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.codeset.DebitCreditCode;
  * Indicates when the amount of money will become available, ie can be accessed
  * and start generating interest.
  */
-public class CashAvailability {
+public class CashAvailability extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashBalance CashBalance;
 	private ISODate Date;

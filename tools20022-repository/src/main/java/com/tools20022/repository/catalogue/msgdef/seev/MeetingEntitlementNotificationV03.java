@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingEntitlementNotificationV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingEntitlementNotificationV04;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.EligibilityDates1;
  */
 @PreviousVersion(MeetingEntitlementNotificationV02.class)
 @NextVersion(MeetingEntitlementNotificationV04.class)
-public class MeetingEntitlementNotificationV03 {
+public class MeetingEntitlementNotificationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 Identification;
 	private Optional<MessageIdentification> RelatedReference;

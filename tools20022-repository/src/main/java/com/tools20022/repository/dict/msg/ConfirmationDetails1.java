@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.choice.AcknowledgementDetails1Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.NextVersion;
  * message
  */
 @NextVersion(AcknowledgementDetails1Choice.class)
-public class ConfirmationDetails1 {
+public class ConfirmationDetails1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

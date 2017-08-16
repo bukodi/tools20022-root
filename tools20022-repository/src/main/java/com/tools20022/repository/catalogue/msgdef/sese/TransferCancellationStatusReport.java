@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferCancellationStatusReportV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference2;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.CancellationStatusAndReason;
  * information.
  */
 @NextVersion(TransferCancellationStatusReportV02.class)
-public class TransferCancellationStatusReport {
+public class TransferCancellationStatusReport
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private List<AdditionalReference2> RelatedReference;
 	private AdditionalReference2 OtherReference;

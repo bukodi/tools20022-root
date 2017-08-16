@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.DateFormat32Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * and a time.
  */
 @NextVersion(DateFormat32Choice.class)
-public class DateFormat20Choice {
+public class DateFormat20Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.InstructionForMeeting;
 import com.tools20022.repository.dict.entity.Vote;
 import com.tools20022.repository.dict.datatype.Number;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.ProxyAppointment;
  * Decision of the voting party for one resolution. Several types of decisions
  * can be indicated to allow for split vote specification.
  */
-public class VoteInstructionRequest {
+public class VoteInstructionRequest extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InstructionForMeeting MeetingInstruction;
 	private Vote VotePerResolution;

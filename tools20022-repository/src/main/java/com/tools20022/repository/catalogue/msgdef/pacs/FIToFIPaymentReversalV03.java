@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFIPaymentReversalV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFIPaymentReversalV04;
@@ -25,7 +27,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(FIToFIPaymentReversalV02.class)
 @NextVersion(FIToFIPaymentReversalV04.class)
-public class FIToFIPaymentReversalV03 {
+public class FIToFIPaymentReversalV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader57 GroupHeader;
 	private OriginalGroupHeader3 OriginalGroupInformation;

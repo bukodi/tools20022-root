@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Specifies the details relative to the submission of a data set.
  */
-public class RequiredSubmission2 {
+public class RequiredSubmission2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionInformation1;
 import com.tools20022.repository.dict.msg.CorporateActionSecuritiesMovement1;
@@ -33,7 +35,9 @@ import com.tools20022.repository.dict.msg.CashMovement3;
  * Advice message may be responded to by more than one Agent Corporate Action
  * Movement Confirmation messages.
  */
-public class AgentCAMovementConfirmationV01 {
+public class AgentCAMovementConfirmationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private DocumentIdentification8 AgentCAMovementInstructionIdentification;

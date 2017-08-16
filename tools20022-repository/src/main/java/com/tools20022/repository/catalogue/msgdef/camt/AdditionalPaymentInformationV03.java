@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.AdditionalPaymentInformationV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment2;
@@ -50,7 +52,9 @@ import com.tools20022.repository.dict.msg.PaymentComplementaryInformation2;
  * re-open the case.
  */
 @NextVersion(AdditionalPaymentInformationV04.class)
-public class AdditionalPaymentInformationV03 {
+public class AdditionalPaymentInformationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment2 Assignment;
 	private Case2 Case;

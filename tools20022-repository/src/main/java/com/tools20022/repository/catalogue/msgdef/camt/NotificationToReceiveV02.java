@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.NotificationToReceiveV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader43;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.AccountNotification4;
  * relay scenario.
  */
 @NextVersion(NotificationToReceiveV03.class)
-public class NotificationToReceiveV02 {
+public class NotificationToReceiveV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader43 GroupHeader;
 	private AccountNotification4 Notification;

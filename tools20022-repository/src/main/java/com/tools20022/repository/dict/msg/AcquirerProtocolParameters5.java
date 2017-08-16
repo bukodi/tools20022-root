@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AcquirerProtocolParameters4;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.AcquirerProtocolParameters8;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(AcquirerProtocolParameters4.class)
 @NextVersion(AcquirerProtocolParameters8.class)
-public class AcquirerProtocolParameters5 {
+public class AcquirerProtocolParameters5
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

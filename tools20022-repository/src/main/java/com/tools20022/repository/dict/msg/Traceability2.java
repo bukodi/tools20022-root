@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Traceability1;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Traceability3;
@@ -15,5 +17,5 @@ import com.tools20022.repository.dict.msg.Traceability5;
 @NextVersion(Traceability3.class)
 @NextVersion(Traceability4.class)
 @NextVersion(Traceability5.class)
-public class Traceability2 {
+public class Traceability2 implements GeneratedRepoBean<MMMessageComponent> {
 }

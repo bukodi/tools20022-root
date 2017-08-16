@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.CorporateActionInformation1;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.ProceedsMovement1;
  * another option within the sequestered balances in accordance to the new
  * option conditions. The order type must be 'option change order'.
  */
-public class AgentCAMovementInstructionV01 {
+public class AgentCAMovementInstructionV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private Optional<DocumentIdentification8> AgentCAElectionAdviceIdentification;

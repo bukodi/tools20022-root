@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.PortfolioStrategy;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.entity.DateTimePeriod;
 /**
  * Additional information on the definition of the strategy.
  */
-public class PortfolioStrategyDefinition {
+public class PortfolioStrategyDefinition extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PortfolioStrategy Strategy;
 	private Max350Text Name;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesBalanceCustodyReportV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesBalanceCustodyReportV05;
@@ -50,7 +52,9 @@ import com.tools20022.repository.dict.msg.TotalValueInPageAndStatement1;
  */
 @PreviousVersion(SecuritiesBalanceCustodyReportV03.class)
 @NextVersion(SecuritiesBalanceCustodyReportV05.class)
-public class SecuritiesBalanceCustodyReportV04 {
+public class SecuritiesBalanceCustodyReportV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement21 StatementGeneralDetails;

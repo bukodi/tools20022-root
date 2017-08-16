@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.UndertakingAdvice2;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
 import java.util.Optional;
@@ -15,7 +17,9 @@ import java.util.Optional;
  * undertaking, the message may provide information from the sender such as
  * confirmation details.
  */
-public class UndertakingIssuanceNotificationV01 {
+public class UndertakingIssuanceNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private UndertakingAdvice2 UndertakingIssuanceNotificationDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

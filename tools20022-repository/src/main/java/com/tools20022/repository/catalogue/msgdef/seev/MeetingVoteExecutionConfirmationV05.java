@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingVoteExecutionConfirmationV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification;
@@ -23,7 +25,9 @@ import java.util.Optional;
  * (head.001.001.01).
  */
 @PreviousVersion(MeetingVoteExecutionConfirmationV04.class)
-public class MeetingVoteExecutionConfirmationV05 {
+public class MeetingVoteExecutionConfirmationV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification RelatedReference;
 	private MeetingReference7 MeetingReference;

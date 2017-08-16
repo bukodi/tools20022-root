@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.StatusReason;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.codeset.ModificationProcessingStatusCode;
 /**
  * The status of an instruction, advice or request.
  */
-public class Status {
+public class Status extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private StatusReason StatusReason;
 	private ISODateTime StatusDateTime;

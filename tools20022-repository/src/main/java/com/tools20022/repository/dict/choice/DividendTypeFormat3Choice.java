@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.DividendTypeFormat5Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * dividend.
  */
 @NextVersion(DividendTypeFormat5Choice.class)
-public class DividendTypeFormat3Choice {
+public class DividendTypeFormat3Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionInstructionV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionInstructionV03;
@@ -54,7 +56,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesSettlementTransactionInstructionV01.class)
 @NextVersion(SecuritiesSettlementTransactionInstructionV03.class)
-public class SecuritiesSettlementTransactionInstructionV02 {
+public class SecuritiesSettlementTransactionInstructionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private SettlementTypeAndAdditionalParameters1 SettlementTypeAndAdditionalParameters;

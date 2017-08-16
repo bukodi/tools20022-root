@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentFund;
 import com.tools20022.repository.dict.codeset.CountryCode;
 import com.tools20022.repository.dict.entity.Person;
@@ -18,7 +21,9 @@ import com.tools20022.repository.dict.entity.PaymentCard;
 /**
  * Nation with its own government.
  */
-public class Country {
+public class Country extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InvestmentFund DomiciledFunds;
 	private CountryCode Code;

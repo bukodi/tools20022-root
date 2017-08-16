@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Deposit;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.Deposit;
  * borrower who promises to return it according to the terms of the agreement,
  * usually with interest for its use.
  */
-public class CashLoanDeposit extends Deposit {
+public class CashLoanDeposit extends Deposit
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

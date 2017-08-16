@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferInstructionStatusReportV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -32,7 +34,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * status.
  */
 @PreviousVersion(TransferInstructionStatusReportV04.class)
-public class TransferInstructionStatusReportV05 {
+public class TransferInstructionStatusReportV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference7> CounterpartyReference;

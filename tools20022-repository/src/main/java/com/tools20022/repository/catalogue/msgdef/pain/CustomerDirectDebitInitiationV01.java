@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.CustomerDirectDebitInitiationV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader1;
@@ -45,7 +47,9 @@ import com.tools20022.repository.dict.msg.PaymentInstructionInformation2;
  * contain one or several Direct Debit TransactionInformation block(s).
  */
 @NextVersion(CustomerDirectDebitInitiationV02.class)
-public class CustomerDirectDebitInitiationV01 {
+public class CustomerDirectDebitInitiationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader1 GroupHeader;
 	private PaymentInstructionInformation2 PaymentInformation;

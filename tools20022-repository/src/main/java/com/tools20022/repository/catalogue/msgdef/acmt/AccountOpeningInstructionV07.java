@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountOpeningInstructionV06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -36,7 +38,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * message.
  */
 @PreviousVersion(AccountOpeningInstructionV06.class)
-public class AccountOpeningInstructionV07 {
+public class AccountOpeningInstructionV07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<InvestmentFundOrder4> OrderReference;

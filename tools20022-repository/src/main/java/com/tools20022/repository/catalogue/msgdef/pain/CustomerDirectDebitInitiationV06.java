@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.CustomerDirectDebitInitiationV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pain.CustomerDirectDebitInitiationV07;
@@ -34,7 +36,9 @@ import java.util.Optional;
  */
 @PreviousVersion(CustomerDirectDebitInitiationV05.class)
 @NextVersion(CustomerDirectDebitInitiationV07.class)
-public class CustomerDirectDebitInitiationV06 {
+public class CustomerDirectDebitInitiationV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader55 GroupHeader;
 	private PaymentInstruction18 PaymentInformation;

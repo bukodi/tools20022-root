@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionNotificationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionNotificationV05;
@@ -47,7 +49,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(CorporateActionNotificationV03.class)
 @NextVersion(CorporateActionNotificationV05.class)
-public class CorporateActionNotificationV04 {
+public class CorporateActionNotificationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<Pagination> Pagination;
 	private CorporateActionNotification3 NotificationGeneralInformation;

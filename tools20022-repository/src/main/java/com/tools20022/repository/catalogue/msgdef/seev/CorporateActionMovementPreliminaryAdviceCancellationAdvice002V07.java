@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification37;
 import com.tools20022.repository.dict.msg.CorporateActionGeneralInformation123;
 import com.tools20022.repository.dict.choice.AccountIdentification34Choice;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * Duplicate), using the relevant elements in the business application header
  * (BAH).
  */
-public class CorporateActionMovementPreliminaryAdviceCancellationAdvice002V07 {
+public class CorporateActionMovementPreliminaryAdviceCancellationAdvice002V07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification37 MovementPreliminaryAdviceIdentification;
 	private CorporateActionGeneralInformation123 CorporateActionGeneralInformation;

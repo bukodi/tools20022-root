@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Limit;
 import com.tools20022.repository.dict.entity.CashManagementService;
 import com.tools20022.repository.dict.entity.SystemMemberRole;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.entity.SystemMemberRole;
  * as a credit or debit limit, from the point of view of the party setting the
  * limit.
  */
-public class RiskManagementLimit extends Limit {
+public class RiskManagementLimit extends Limit
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashManagementService CashManagementService;
 	private SystemMemberRole Counterparty;

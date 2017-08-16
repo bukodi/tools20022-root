@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
 import com.tools20022.repository.dict.entity.SecuritiesTransfer;
 import com.tools20022.repository.dict.entity.Security;
@@ -47,7 +50,9 @@ import com.tools20022.repository.dict.entity.Position;
 /**
  * Quantity of a security.
  */
-public class SecuritiesQuantity {
+public class SecuritiesQuantity extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DecimalNumber Unit;
 	private SecuritiesTransfer SecuritiesTransfer;

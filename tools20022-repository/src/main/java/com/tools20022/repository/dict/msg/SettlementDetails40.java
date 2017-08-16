@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.SettlementDetails63;
 import com.tools20022.core.repo.NextVersion;
 
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  * settlement rules in the market the transaction will settle in.
  */
 @NextVersion(SettlementDetails63.class)
-public class SettlementDetails40 {
+public class SettlementDetails40
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

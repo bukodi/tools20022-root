@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.codeset.DistributionPolicyCode;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.datatype.DecimalNumber;
  * Security that is a sub-set of an investment fund, and is governed by the same
  * investment fund policy, for example, a dividend option or valuation currency.
  */
-public class InvestmentFundClass extends Security {
+public class InvestmentFundClass extends Security
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text ClassType;
 	private DistributionPolicyCode DistributionPolicy;

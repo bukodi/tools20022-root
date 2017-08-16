@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Entry;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.entity.SecuritiesTransfer;
  * Posting to a securities account as a result of a securities creation,
  * deletion or transfer in the context of a securities transaction.
  */
-public class SecuritiesEntry extends Entry {
+public class SecuritiesEntry extends Entry
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODate AcquisitionDate;
 	private SecuritiesQuantity FinancialInstrumentQuantity;

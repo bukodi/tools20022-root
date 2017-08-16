@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionV06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -29,7 +31,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * using the relevant elements in the business application header (BAH).
  */
 @PreviousVersion(CorporateActionInstructionV06.class)
-public class CorporateActionInstructionV07 {
+public class CorporateActionInstructionV07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<YesNoIndicator> ChangeInstructionIndicator;
 	private Optional<DocumentIdentification31> CancelledInstructionIdentification;

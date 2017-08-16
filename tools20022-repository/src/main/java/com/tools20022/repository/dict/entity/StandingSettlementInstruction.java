@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Settlement;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.codeset.SettlementStandingInstructionDatabaseCode;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.entity.Asset;
 /**
  * Settlement instruction database information.
  */
-public class StandingSettlementInstruction {
+public class StandingSettlementInstruction extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Settlement Settlement;
 	private YesNoIndicator FXStandingInstruction;

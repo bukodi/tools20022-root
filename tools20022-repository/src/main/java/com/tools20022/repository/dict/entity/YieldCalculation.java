@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.codeset.CalculationTypeCode;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.VariableInterest;
 /**
  * Characteristics related to the yield.
  */
-public class YieldCalculation {
+public class YieldCalculation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing RedemptionPrice;
 	private PercentageRate Value;

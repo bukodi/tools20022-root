@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Account21;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * the other entity is the account servicer.
  */
 @PreviousVersion(Account21.class)
-public class Account23 {
+public class Account23 implements GeneratedRepoBean<MMMessageComponent> {
 }

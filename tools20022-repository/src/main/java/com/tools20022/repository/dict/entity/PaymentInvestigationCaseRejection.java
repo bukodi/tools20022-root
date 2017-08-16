@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.PaymentModificationRejectionV2Code;
 import com.tools20022.repository.dict.codeset.PaymentCancellationRejectionCode;
 import com.tools20022.repository.dict.datatype.Max140Text;
@@ -13,7 +16,11 @@ import com.tools20022.repository.dict.codeset.InvestigationRejectionCode;
  * activity may be the assignment of an investigation case, the cancellation or
  * the modification of a payment.
  */
-public class PaymentInvestigationCaseRejection {
+public class PaymentInvestigationCaseRejection
+		extends
+			AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PaymentModificationRejectionV2Code RejectedModification;
 	private PaymentCancellationRejectionCode RejectedCancellation;

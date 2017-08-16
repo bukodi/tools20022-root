@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the conditions under which the order/trade is to be settled.
  */
-public class SettlementTransactionConditionV2Code {
+public class SettlementTransactionConditionV2Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

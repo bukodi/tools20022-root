@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.FinancialDocument;
 import com.tools20022.repository.dict.codeset.ExternalUndertakingDocumentTypeCode;
 import com.tools20022.repository.dict.codeset.ExternalDocumentFormatCode;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.Demand;
 /**
  * Document presented.
  */
-public class UndertakingDocument extends FinancialDocument {
+public class UndertakingDocument extends FinancialDocument
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ExternalUndertakingDocumentTypeCode DocumentType;
 	private ExternalDocumentFormatCode Format;

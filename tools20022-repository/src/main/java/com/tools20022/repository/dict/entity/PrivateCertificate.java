@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Document;
 import com.tools20022.repository.dict.codeset.CertificateTypeCode;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.entity.PersonProfile;
  * Specifies the parameters associated with the production of a certificate to
  * identify the profile of a customer.
  */
-public class PrivateCertificate extends Document {
+public class PrivateCertificate extends Document
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CertificateTypeCode CertificateType;
 	private YesNoIndicator CertificationIndicator;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountMandateMaintenanceRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.References4;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature1;
  * message could be sent together with other related documents.
  */
 @NextVersion(AccountMandateMaintenanceRequestV02.class)
-public class AccountMandateMaintenanceRequestV01 {
+public class AccountMandateMaintenanceRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References4 References;
 	private Optional<AccountContract2> ContractDates;

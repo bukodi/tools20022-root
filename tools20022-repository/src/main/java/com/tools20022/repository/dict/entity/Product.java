@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CardPayment;
 import com.tools20022.repository.dict.entity.Price;
 import com.tools20022.repository.dict.entity.ProductCategory;
@@ -18,7 +21,9 @@ import com.tools20022.repository.dict.entity.Tax;
 /**
  * Item that is offered for sale. Products can be services or goods.
  */
-public class Product {
+public class Product extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CardPayment CardPayment;
 	private Price UnitPrice;

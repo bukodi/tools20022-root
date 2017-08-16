@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.colr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.colr.CollateralAndExposureReportV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.ReportParameters5;
@@ -25,7 +27,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * date.
  */
 @PreviousVersion(CollateralAndExposureReportV02.class)
-public class CollateralAndExposureReportV03 {
+public class CollateralAndExposureReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportParameters5 ReportParameters;
 	private Optional<Pagination> Pagination;

@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Qualifies the content of the subservice code.
  */
-public class BillingSubServiceQualifier1Code {
+public class BillingSubServiceQualifier1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

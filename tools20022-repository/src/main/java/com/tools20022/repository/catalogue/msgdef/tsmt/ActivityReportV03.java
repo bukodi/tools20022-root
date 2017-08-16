@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.ActivityReportV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.ActivityReportItems2;
  * requester in the ActivityReportRequest message.
  */
 @NextVersion(ActivityReportV04.class)
-public class ActivityReportV03 {
+public class ActivityReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private Optional<MessageIdentification1> RelatedMessageReference;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.CorporateActionInformation1;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.ContactPerson1;
  * link this message to the election advice for which additional information is
  * provided.
  */
-public class AgentCAInformationAdviceV01 {
+public class AgentCAInformationAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private Optional<DocumentIdentification8> AgentCAElectionAdviceIdentification;

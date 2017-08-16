@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.MarketIdentification79;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * order to negotiate and execute trades among themselves.
  */
 @NextVersion(MarketIdentification79.class)
-public class MarketIdentification77 {
+public class MarketIdentification77
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

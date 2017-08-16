@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ExposureTerm;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.ThresholdTypeCode;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.codeset.ThresholdTypeCode;
 /**
  * Defines the specific terms used to calculate a variation margin.
  */
-public class VariationMarginTerm extends ExposureTerm {
+public class VariationMarginTerm extends ExposureTerm
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ActiveCurrencyAndAmount ThresholdAmount;
 	private ThresholdTypeCode ThresholdType;

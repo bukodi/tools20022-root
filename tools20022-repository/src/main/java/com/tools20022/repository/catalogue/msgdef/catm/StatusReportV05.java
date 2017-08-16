@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catm.StatusReportV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.catm.StatusReportV06;
@@ -16,7 +18,7 @@ import java.util.Optional;
  */
 @PreviousVersion(StatusReportV04.class)
 @NextVersion(StatusReportV06.class)
-public class StatusReportV05 {
+public class StatusReportV05 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header27 Header;
 	private StatusReport5 StatusReport;

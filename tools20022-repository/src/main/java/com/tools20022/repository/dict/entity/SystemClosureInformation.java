@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
 import com.tools20022.repository.dict.entity.SystemAvailability;
 import com.tools20022.repository.dict.codeset.SystemClosureReasonCode;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.codeset.SystemClosureReasonCode;
 /**
  * Information about inactivity of a system.
  */
-public class SystemClosureInformation {
+public class SystemClosureInformation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DateTimePeriod Period;
 	private SystemAvailability SystemAvailability;

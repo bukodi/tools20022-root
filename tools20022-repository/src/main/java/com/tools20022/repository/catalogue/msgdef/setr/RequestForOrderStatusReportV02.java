@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.RequestForOrderStatusReportV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageAndBusinessReference2;
@@ -23,7 +25,9 @@ import com.tools20022.repository.dict.msg.MessageAndBusinessReference2;
  * the status of a financial instrument.
  */
 @NextVersion(RequestForOrderStatusReportV03.class)
-public class RequestForOrderStatusReportV02 {
+public class RequestForOrderStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageAndBusinessReference2 RequestDetails;
 

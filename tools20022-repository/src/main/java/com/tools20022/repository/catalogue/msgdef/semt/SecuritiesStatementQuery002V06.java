@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentNumber14;
 import com.tools20022.repository.dict.msg.Statement54;
 import java.util.Optional;
@@ -27,7 +29,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * a third party a copy of a message for information using the relevant elements
  * in the Business Application Header.
  */
-public class SecuritiesStatementQuery002V06 {
+public class SecuritiesStatementQuery002V06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentNumber14 StatementRequested;
 	private Optional<Statement54> StatementGeneralDetails;

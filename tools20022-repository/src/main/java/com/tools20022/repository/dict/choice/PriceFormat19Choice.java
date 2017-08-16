@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.PriceFormat29Choice;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.choice.PriceFormat45Choice;
@@ -9,5 +11,7 @@ import com.tools20022.repository.dict.choice.PriceFormat45Choice;
  */
 @NextVersion(PriceFormat29Choice.class)
 @NextVersion(PriceFormat45Choice.class)
-public class PriceFormat19Choice {
+public class PriceFormat19Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

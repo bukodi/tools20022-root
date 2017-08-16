@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Limit for a percentage rate range.
  */
-public class PercentageRangeBoundary1 {
+public class PercentageRangeBoundary1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

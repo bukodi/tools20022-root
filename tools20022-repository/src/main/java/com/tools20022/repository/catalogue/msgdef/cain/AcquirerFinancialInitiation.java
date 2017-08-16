@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.cain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header17;
 import com.tools20022.repository.dict.msg.AcquirerFinancialInitiation1;
 import com.tools20022.repository.dict.msg.ContentInformationType15;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * an issuer or an agent, to request, advice or notify the approval and the
  * clearing of a card transaction.
  */
-public class AcquirerFinancialInitiation {
+public class AcquirerFinancialInitiation
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header17 Header;
 	private AcquirerFinancialInitiation1 FinancialInitiation;

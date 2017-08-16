@@ -1,7 +1,13 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Specifies specific data from the Business Application Header of the Business
  * Message.
  */
-public class BusinessApplicationHeader3 {
+public class BusinessApplicationHeader3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

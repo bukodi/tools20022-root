@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CurrencyControlHeader3;
 import com.tools20022.repository.dict.msg.SupportingDocumentRequestOrLetter1;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -11,7 +13,9 @@ import java.util.Optional;
  * the reporting party) to send a currency control related letter or to request
  * for supporting documents.
  */
-public class CurrencyControlRequestOrLetterV01 {
+public class CurrencyControlRequestOrLetterV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CurrencyControlHeader3 GroupHeader;
 	private SupportingDocumentRequestOrLetter1 RequestOrLetter;

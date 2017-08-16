@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.codeset.DisputeResolutionTypeCode;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.CollateralManagement;
  * Provides the dispute details on the variation margin and/or the segregated
  * independent amount.
  */
-public class DisputeManagement {
+public class DisputeManagement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ActiveCurrencyAndAmount DisputedAmount;
 	private ISODate DisputeDate;

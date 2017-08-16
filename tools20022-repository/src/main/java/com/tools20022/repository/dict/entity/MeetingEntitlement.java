@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.datatype.Number;
 import com.tools20022.repository.dict.entity.SecuritiesBalance;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.MeetingServicing;
  * Notification of the entitlement that one party has in relation with a
  * specific meeting.
  */
-public class MeetingEntitlement {
+public class MeetingEntitlement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODate EntitlementFixingDate;
 	private Number EntitlementRatio;

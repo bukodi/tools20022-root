@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.choice.References60Choice;
 import com.tools20022.repository.dict.datatype.RestrictedFINXMax16Text;
 import java.util.Optional;
@@ -34,7 +36,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * of a message for information using the relevant elements in the Business
  * Application Header.
  */
-public class SecuritiesTransactionCancellationRequest002V05 {
+public class SecuritiesTransactionCancellationRequest002V05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References60Choice AccountOwnerTransactionIdentification;
 	private Optional<RestrictedFINXMax16Text> AccountServicerTransactionIdentification;

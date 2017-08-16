@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.EnabledStatusReason2Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * account.
  */
 @PreviousVersion(EnabledStatusReason2Choice.class)
-public class AccountStatusUpdateInstructionReason2Choice {
+public class AccountStatusUpdateInstructionReason2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.BusinessDayConventionCode;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.entity.Security;
  * Describes the reason and terms for early partial or total redemption,
  * amortisation or extension of an issue.
  */
-public class RedemptionSchedule {
+public class RedemptionSchedule extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private BusinessDayConventionCode BusinessDayConvention;
 	private DateTimePeriod EffectivePeriod;

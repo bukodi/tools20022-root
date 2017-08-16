@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Details from participant profile account.
  */
-public class ParticipantAccount1 {
+public class ParticipantAccount1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

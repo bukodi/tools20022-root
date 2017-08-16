@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.IndividualPayment;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.Max15NumericText;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.BankingTransaction;
 /**
  * Amount of money representing a value paid by a debtor to an agent bank.
  */
-public class CashDeposit extends IndividualPayment {
+public class CashDeposit extends IndividualPayment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount NoteDenomination;
 	private Max15NumericText NumberOfNotes;

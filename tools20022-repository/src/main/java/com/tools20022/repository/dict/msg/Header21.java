@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Header20;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * the ATM to the acquirer.
  */
 @PreviousVersion(Header20.class)
-public class Header21 {
+public class Header21 implements GeneratedRepoBean<MMMessageComponent> {
 }

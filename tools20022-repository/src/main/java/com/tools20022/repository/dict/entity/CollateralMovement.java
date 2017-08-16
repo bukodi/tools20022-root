@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CollateralProposal;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.MarginCall;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.entity.FinancialTransaction;
 /**
  * Provides the agreed amount and the collateral movement direction.
  */
-public class CollateralMovement {
+public class CollateralMovement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CollateralProposal RelatedCollateralProposal;
 	private CurrencyAndAmount VariationMargin;

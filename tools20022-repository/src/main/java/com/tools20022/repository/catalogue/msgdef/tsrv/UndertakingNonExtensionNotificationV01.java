@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.UndertakingNonExtensionStatusAdvice1;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * advising parties, to notify it of the non-extension of the referenced
  * undertaking beyond the current expiry date.
  */
-public class UndertakingNonExtensionNotificationV01 {
+public class UndertakingNonExtensionNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private UndertakingNonExtensionStatusAdvice1 UndertakingNonExtensionNotificationDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

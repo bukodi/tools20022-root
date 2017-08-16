@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeAgreement2;
 import com.tools20022.repository.dict.msg.TradePartyIdentification3;
 import java.util.Optional;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.NonDeliverableForwardValuationConditio
  * The message will contain a Related Reference to link it to the previously
  * sent notification. It may contain a reason for cancellation.
  */
-public class CancelNonDeliverableForwardOpeningV02 {
+public class CancelNonDeliverableForwardOpeningV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeAgreement2 TradeInformation;
 	private Optional<TradePartyIdentification3> TradingSideIdentification;

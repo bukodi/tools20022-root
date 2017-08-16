@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.entity.Scheme;
@@ -10,7 +11,9 @@ import com.tools20022.repository.dict.entity.Scheme;
  * Information related to a non-standardised identification, such as a
  * proprietary party identification or account identification.
  */
-public class GenericIdentification implements InstanceOf<MMBusinessComponent> {
+public class GenericIdentification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text Identification;
 	private ISODate IssueDate;

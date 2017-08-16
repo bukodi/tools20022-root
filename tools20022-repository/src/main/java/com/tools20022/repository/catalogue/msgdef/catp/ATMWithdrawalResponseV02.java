@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catp.ATMWithdrawalResponseV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header31;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * or decline of the withdrawal transaction.
  */
 @PreviousVersion(ATMWithdrawalResponseV01.class)
-public class ATMWithdrawalResponseV02 {
+public class ATMWithdrawalResponseV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header31 Header;
 	private Optional<ContentInformationType10> ProtectedATMWithdrawalResponse;

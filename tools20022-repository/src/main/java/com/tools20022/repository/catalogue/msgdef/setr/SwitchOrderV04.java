@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SwitchOrderV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -69,7 +71,7 @@ import com.tools20022.repository.dict.msg.Extension1;
  * subscription amount of the financial instrument ISIN LU4444444444
  */
 @PreviousVersion(SwitchOrderV03.class)
-public class SwitchOrderV04 {
+public class SwitchOrderV04 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference9> PoolReference;

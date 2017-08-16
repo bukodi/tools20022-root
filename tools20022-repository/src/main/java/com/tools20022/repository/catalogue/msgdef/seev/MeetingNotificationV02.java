@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingNotificationV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -32,7 +34,9 @@ import com.tools20022.repository.dict.msg.PowerOfAttorneyRequirements2;
  * The resolutions that are deleted should be assigned the status Withdrawn.
  */
 @NextVersion(MeetingNotificationV03.class)
-public class MeetingNotificationV02 {
+public class MeetingNotificationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MeetingNotificationIdentification;
 	private Optional<AmendInformation1> Amendment;

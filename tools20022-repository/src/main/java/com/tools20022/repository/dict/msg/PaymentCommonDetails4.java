@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Common detailed payment instruction information.
  */
-public class PaymentCommonDetails4 {
+public class PaymentCommonDetails4
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

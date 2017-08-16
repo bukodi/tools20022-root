@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountMandateMaintenanceRequestV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.References4;
@@ -30,7 +32,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * characteristics or organisation information with this message.
  */
 @PreviousVersion(AccountMandateMaintenanceRequestV01.class)
-public class AccountMandateMaintenanceRequestV02 {
+public class AccountMandateMaintenanceRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References4 References;
 	private Optional<OrganisationIdentification8> From;

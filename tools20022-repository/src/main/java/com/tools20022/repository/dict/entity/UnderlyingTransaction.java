@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Undertaking;
 import com.tools20022.repository.dict.codeset.ExternalUnderlyingTradeTransactionTypeCode;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.entity.CommercialTrade;
  * Reference information on a commercial obligation between the beneficiary and
  * applicant for which an undertaking is issued.
  */
-public class UnderlyingTransaction {
+public class UnderlyingTransaction extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Undertaking Undertaking;
 	private ExternalUnderlyingTradeTransactionTypeCode Type;

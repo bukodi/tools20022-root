@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.DocumentPartyRole;
 
 /**
@@ -8,5 +10,7 @@ import com.tools20022.repository.dict.entity.DocumentPartyRole;
  * certificate or the insurance company or its agent for an insurance
  * certificate.
  */
-public class DocumentIssuer extends DocumentPartyRole {
+public class DocumentIssuer extends DocumentPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.PendingReason1;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.PendingReason14;
@@ -10,5 +12,5 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(PendingReason1.class)
 @NextVersion(PendingReason14.class)
-public class PendingReason8 {
+public class PendingReason8 implements GeneratedRepoBean<MMMessageComponent> {
 }

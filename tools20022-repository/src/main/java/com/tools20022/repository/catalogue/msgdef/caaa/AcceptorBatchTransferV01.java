@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorBatchTransferV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header3;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType1;
  * financial settlement of these transactions (capture).
  */
 @NextVersion(AcceptorBatchTransferV02.class)
-public class AcceptorBatchTransferV01 {
+public class AcceptorBatchTransferV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header3 Header;
 	private CardPaymentDataSet1 DataSet;

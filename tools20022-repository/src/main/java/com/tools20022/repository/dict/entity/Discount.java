@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Adjustment;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.DiscountTypeCode;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.codeset.DiscountTypeCode;
  * Decrease of the value of goods and / or services by applying a discount rate
  * to the original amount.
  */
-public class Discount extends Adjustment {
+public class Discount extends Adjustment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount DiscountAppliedAmount;
 	private DiscountTypeCode DiscountType;

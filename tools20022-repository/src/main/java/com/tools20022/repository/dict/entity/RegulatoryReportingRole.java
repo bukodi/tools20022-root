@@ -1,12 +1,16 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.entity.RegisteredContract;
 
 /**
  * Party which plays a role for regulatory reporting.
  */
-public class RegulatoryReportingRole extends Role {
+public class RegulatoryReportingRole extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private RegisteredContract RelatedReportingParty;
 	private RegisteredContract RelatedRegistrationAgent;

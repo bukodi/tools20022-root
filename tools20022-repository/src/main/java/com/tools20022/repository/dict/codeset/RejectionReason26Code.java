@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.RejectionReason38Code;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * status.
  */
 @NextVersion(RejectionReason38Code.class)
-public class RejectionReason26Code {
+public class RejectionReason26Code implements GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.msg.LegalMandate1;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * 
  * Requests are underpinned by specific legal texts.
  */
-public class InformationRequestOpeningV01 {
+public class InformationRequestOpeningV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text InvestigationIdentification;
 	private LegalMandate1 LegalMandateBasis;

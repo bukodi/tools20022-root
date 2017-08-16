@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.datatype.ISODateTime;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.entity.CorporateActionEvent;
  * Specifies the conditions under which securities can be acquired as part of a
  * corporate action.
  */
-public class BiddingConditions {
+public class BiddingConditions extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PercentageRate ProposedRate;
 	private PercentageRate OversubscriptionRate;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesFinancingModificationInstruction002V05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.TransactionTypeAndAdditionalParameters20;
@@ -41,7 +43,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * in the Business Application Header.
  */
 @PreviousVersion(SecuritiesFinancingModificationInstruction002V05.class)
-public class SecuritiesFinancingModificationInstruction002V06 {
+public class SecuritiesFinancingModificationInstruction002V06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionTypeAndAdditionalParameters20 TransactionTypeAndModificationAdditionalParameters;
 	private SecuritiesTradeDetails12 TradeDetails;

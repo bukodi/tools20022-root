@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.PaymentPartyRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.PaymentPartyRole;
  * as a result of receipt of goods, assets, services, gifts, or charity
  * payments.
  */
-public class DebtorRole extends PaymentPartyRole {
+public class DebtorRole extends PaymentPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

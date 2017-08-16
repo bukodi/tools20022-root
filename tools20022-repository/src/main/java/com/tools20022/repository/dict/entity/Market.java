@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Trade;
 import com.tools20022.repository.dict.entity.Jurisdiction;
 import com.tools20022.repository.dict.entity.Country;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.PartyIdentificationInformation;
 /**
  * Context or geographic environment in which trading parties execute trades.
  */
-public class Market {
+public class Market extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Trade Trade;
 	private Jurisdiction Jurisdiction;

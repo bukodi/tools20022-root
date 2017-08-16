@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SettlementPartyRole;
 
 /**
@@ -8,5 +10,7 @@ import com.tools20022.repository.dict.entity.SettlementPartyRole;
  * buyer and the seller. It may net transactions and it substitutes itself as
  * settlement counterparty for each position.
  */
-public class ClearingPlace extends SettlementPartyRole {
+public class ClearingPlace extends SettlementPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

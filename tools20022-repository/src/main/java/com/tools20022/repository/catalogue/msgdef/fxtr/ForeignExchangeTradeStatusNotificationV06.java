@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.fxtr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeData15;
 import com.tools20022.repository.dict.msg.RegulatoryReporting6;
 import java.util.Optional;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * message will be sent at specific times agreed upon by the central settlement
  * system and a participant in a central settlement system.
  */
-public class ForeignExchangeTradeStatusNotificationV06 {
+public class ForeignExchangeTradeStatusNotificationV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeData15 TradeData;
 	private Optional<RegulatoryReporting6> RegulatoryReporting;

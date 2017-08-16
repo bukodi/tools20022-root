@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.IdentificationVerificationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.IdentificationAssignment1;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.IdentificationVerification1;
  * verification requests.
  */
 @NextVersion(IdentificationVerificationRequestV02.class)
-public class IdentificationVerificationRequestV01 {
+public class IdentificationVerificationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private IdentificationAssignment1 Assignment;
 	private IdentificationVerification1 Verification;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.BalanceTypeCode;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.codeset.DebitCreditCode;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.codeset.OpeningClosingCode;
  * Numerical representation of the net increases and decreases in an account at
  * a specific point in time.
  */
-public class Balance {
+public class Balance extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private BalanceTypeCode Type;
 	private ISODateTime ValueDate;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementStatusAdviceV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementStatusAdviceV04;
@@ -34,7 +36,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(IntraPositionMovementStatusAdviceV02.class)
 @NextVersion(IntraPositionMovementStatusAdviceV04.class)
-public class IntraPositionMovementStatusAdviceV03 {
+public class IntraPositionMovementStatusAdviceV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionIdentifications15 TransactionIdentification;
 	private Optional<IntraPositionProcessingStatus3Choice> ProcessingStatus;

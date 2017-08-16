@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header29;
 import com.tools20022.repository.dict.msg.CertificateManagementResponse1;
 import com.tools20022.repository.dict.msg.ContentInformationType13;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * to a CertificateManagementRequest to provide the outcome of the requested
  * service.
  */
-public class CertificateManagementResponseV01 {
+public class CertificateManagementResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header29 Header;
 	private CertificateManagementResponse1 CertificateManagementResponse;

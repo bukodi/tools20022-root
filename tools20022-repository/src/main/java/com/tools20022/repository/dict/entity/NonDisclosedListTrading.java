@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ListTrading;
 import com.tools20022.repository.dict.codeset.CountryCode;
 import com.tools20022.repository.dict.datatype.Max140Text;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
  * the financial instrument to be bought or sold. Using this information, the
  * sell-side firms bid for the trade.
  */
-public class NonDisclosedListTrading extends ListTrading {
+public class NonDisclosedListTrading extends ListTrading
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CountryCode BidByCurrency;
 	private Max140Text BidBySector;

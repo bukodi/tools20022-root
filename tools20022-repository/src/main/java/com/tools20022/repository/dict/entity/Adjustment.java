@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.codeset.TaxationBasisCode;
@@ -22,7 +25,9 @@ import com.tools20022.repository.dict.entity.Tax;
  * Modification on the value of goods and / or services. For example: rebate,
  * discount.
  */
-public class Adjustment {
+public class Adjustment extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount Amount;
 	private PercentageRate ChargeRate;

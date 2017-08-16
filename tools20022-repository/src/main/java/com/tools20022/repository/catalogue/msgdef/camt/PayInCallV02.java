@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.choice.PartyIdentification73Choice;
 import com.tools20022.repository.dict.msg.ReportData5;
 import com.tools20022.repository.dict.datatype.Exact4AlphaNumericText;
@@ -10,7 +12,7 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * The PayInCall message is sent by a central settlement system to request
  * additional funding from a settlement member impacted by a failure situation.
  */
-public class PayInCallV02 {
+public class PayInCallV02 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private PartyIdentification73Choice PartyIdentification;
 	private ReportData5 ReportData;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.GroupHeader71;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * message.
  */
 @NextVersion(GroupHeader71.class)
-public class GroupHeader57 {
+public class GroupHeader57 implements GeneratedRepoBean<MMMessageComponent> {
 }

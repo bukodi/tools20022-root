@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.Derivative;
 import com.tools20022.repository.dict.entity.AssetHolding;
@@ -20,7 +23,9 @@ import com.tools20022.repository.dict.entity.StandingSettlementInstruction;
 /**
  * Tangible items of value to a business.
  */
-public class Asset {
+public class Asset extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime ExpiryDate;
 	private ISODateTime MaturityDate;

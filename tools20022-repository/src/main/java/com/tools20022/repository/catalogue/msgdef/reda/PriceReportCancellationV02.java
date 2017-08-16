@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.reda;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.reda.PriceReportCancellationV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference3;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.PriceReport1;
  * cancelled, but this is not recommended.
  */
 @NextVersion(PriceReportCancellationV03.class)
-public class PriceReportCancellationV02 {
+public class PriceReportCancellationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AdditionalReference3> PoolReference;
 	private AdditionalReference3 PreviousReference;

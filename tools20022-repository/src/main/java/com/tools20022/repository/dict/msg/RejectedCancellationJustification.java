@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides the reason for rejecting a RequestToCancelPayment.
  */
-public class RejectedCancellationJustification {
+public class RejectedCancellationJustification
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

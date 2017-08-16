@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.RequestForAccountManagementStatusReportV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.AccountManagementMessageReference4;
  * AccountDetailsConfirmation message has not yet been received.
  */
 @PreviousVersion(RequestForAccountManagementStatusReportV04.class)
-public class RequestForAccountManagementStatusReportV05 {
+public class RequestForAccountManagementStatusReportV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private AccountManagementMessageReference4 RequestDetails;

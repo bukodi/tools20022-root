@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.SwitchOrder4;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -9,5 +11,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * subscription legs, and one or several redemption legs.
  */
 @PreviousVersion(SwitchOrder4.class)
-public class SwitchOrder7 {
+public class SwitchOrder7 implements GeneratedRepoBean<MMMessageComponent> {
 }

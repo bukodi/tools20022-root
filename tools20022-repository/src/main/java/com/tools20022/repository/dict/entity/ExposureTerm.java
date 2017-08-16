@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.ExposureTypeCode;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.RoundingMethodCode;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.CollateralAgreement;
 /**
  * Specifies the terms used to calculate a risk exposure and its coverage.
  */
-public class ExposureTerm {
+public class ExposureTerm extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ExposureTypeCode ExposureType;
 	private ActiveCurrencyAndAmount MinimumTransferAmount;

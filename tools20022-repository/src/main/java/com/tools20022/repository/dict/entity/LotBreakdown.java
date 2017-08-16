@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.entity.GenericIdentification;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.entity.TradingMarket;
  * options, a lot represents the number of contracts contained in one derivative
  * security.
  */
-public class LotBreakdown {
+public class LotBreakdown extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DecimalNumber LotUnit;
 	private SecuritiesQuantity SecuritiesQuantity;

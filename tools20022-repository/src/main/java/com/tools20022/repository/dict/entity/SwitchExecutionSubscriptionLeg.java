@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SubscriptionExecution;
 import com.tools20022.repository.dict.entity.SwitchExecution;
 import com.tools20022.repository.dict.datatype.PercentageRate;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
  * Execution of the subscription part, in a switch between investment funds or
  * investment fund classes.
  */
-public class SwitchExecutionSubscriptionLeg extends SubscriptionExecution {
+public class SwitchExecutionSubscriptionLeg extends SubscriptionExecution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SwitchExecution RelatedSwitchExecution;
 	private PercentageRate PercentageOfTotalRedemptionAmount;

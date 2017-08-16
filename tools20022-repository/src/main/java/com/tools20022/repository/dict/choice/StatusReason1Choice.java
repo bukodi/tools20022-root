@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Reason for the status of the transaction.
  */
-public class StatusReason1Choice {
+public class StatusReason1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

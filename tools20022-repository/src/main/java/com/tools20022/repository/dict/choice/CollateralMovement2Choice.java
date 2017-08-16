@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CollateralMovement3Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * return, or a return only.
  */
 @NextVersion(CollateralMovement3Choice.class)
-public class CollateralMovement2Choice {
+public class CollateralMovement2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

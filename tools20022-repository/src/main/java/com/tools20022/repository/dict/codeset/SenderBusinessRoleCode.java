@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies whether account owner or account servicer sends the message.
  */
-public class SenderBusinessRoleCode {
+public class SenderBusinessRoleCode implements GeneratedRepoBean<MMCodeSet> {
 }

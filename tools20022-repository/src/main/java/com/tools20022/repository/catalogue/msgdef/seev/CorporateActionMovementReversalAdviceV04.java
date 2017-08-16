@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionMovementReversalAdviceV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionMovementReversalAdviceV05;
@@ -36,7 +38,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(CorporateActionMovementReversalAdviceV03.class)
 @NextVersion(CorporateActionMovementReversalAdviceV05.class)
-public class CorporateActionMovementReversalAdviceV04 {
+public class CorporateActionMovementReversalAdviceV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification15 MovementConfirmationIdentification;
 	private Optional<DocumentIdentification13> OtherDocumentIdentification;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.ReportHeader;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.msg.CaseAssignment;
@@ -24,7 +26,9 @@ import com.tools20022.repository.dict.msg.CaseForwardingNotification;
  * reaches the case creator - must not be used in place of a Resolution Of
  * Investigation or a Case Status Report message.
  */
-public class NotificationOfCaseAssignment {
+public class NotificationOfCaseAssignment
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportHeader Header;
 	private Case Case;

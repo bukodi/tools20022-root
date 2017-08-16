@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.RejectInvestigationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment3;
@@ -29,7 +31,9 @@ import java.util.Optional;
  * Resolution Of Investigation or Case Status Report message.
  */
 @PreviousVersion(RejectInvestigationV03.class)
-public class RejectInvestigationV04 {
+public class RejectInvestigationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

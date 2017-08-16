@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesSettlementTransactionAllegementReportV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesSettlementTransactionAllegementReportV06;
@@ -29,7 +31,9 @@ import com.tools20022.repository.dict.msg.SecuritiesTradeDetails49;
  */
 @PreviousVersion(SecuritiesSettlementTransactionAllegementReportV04.class)
 @NextVersion(SecuritiesSettlementTransactionAllegementReportV06.class)
-public class SecuritiesSettlementTransactionAllegementReportV05 {
+public class SecuritiesSettlementTransactionAllegementReportV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement39 StatementGeneralDetails;

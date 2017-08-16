@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.AssetHolding;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.datatype.PlusOrMinusIndicator;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.InformationPartyRole;
 /**
  * Basic valuation details of an asset's market value.
  */
-public class HaircutValuation {
+public class HaircutValuation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AssetHolding AssetHolding;
 	private PercentageRate Haircut;

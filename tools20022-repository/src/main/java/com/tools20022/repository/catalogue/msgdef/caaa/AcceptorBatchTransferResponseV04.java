@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorBatchTransferResponseV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorBatchTransferResponseV05;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType12;
  */
 @PreviousVersion(AcceptorBatchTransferResponseV03.class)
 @NextVersion(AcceptorBatchTransferResponseV05.class)
-public class AcceptorBatchTransferResponseV04 {
+public class AcceptorBatchTransferResponseV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header12 Header;
 	private CardPaymentBatchTransferResponse3 BatchTransferResponse;

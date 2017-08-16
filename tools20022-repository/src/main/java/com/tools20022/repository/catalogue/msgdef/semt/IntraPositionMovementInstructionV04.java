@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementInstructionV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -32,7 +34,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * elements in the Business Application Header.
  */
 @PreviousVersion(IntraPositionMovementInstructionV03.class)
-public class IntraPositionMovementInstructionV04 {
+public class IntraPositionMovementInstructionV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Optional<Identification14> CorporateActionEventIdentification;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementInstructionV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementInstructionV04;
@@ -43,7 +45,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(IntraPositionMovementInstructionV02.class)
 @NextVersion(IntraPositionMovementInstructionV04.class)
-public class IntraPositionMovementInstructionV03 {
+public class IntraPositionMovementInstructionV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Optional<Identification1> CorporateActionEventIdentification;

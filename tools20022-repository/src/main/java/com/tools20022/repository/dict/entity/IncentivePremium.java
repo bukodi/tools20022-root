@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Number;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.datatype.Max350Text;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.entity.Distribution;
  * Cash premium made available if the securities holder consents or participates
  * to an event.
  */
-public class IncentivePremium {
+public class IncentivePremium extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Number PerSecurity;
 	private Number PerVote;

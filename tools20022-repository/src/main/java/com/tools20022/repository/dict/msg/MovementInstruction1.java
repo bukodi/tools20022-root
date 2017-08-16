@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Details of the movement instructions.
  */
-public class MovementInstruction1 {
+public class MovementInstruction1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

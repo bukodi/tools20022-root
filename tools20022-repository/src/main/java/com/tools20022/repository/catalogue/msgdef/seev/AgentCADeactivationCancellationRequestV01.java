@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionInformation1;
 import com.tools20022.repository.dict.msg.CorporateActionDeactivationInstruction1;
@@ -17,7 +19,9 @@ import java.util.Optional;
  * entire event or option; the notification advice message must be used to
  * reactivate a corporate action or option.
  */
-public class AgentCADeactivationCancellationRequestV01 {
+public class AgentCADeactivationCancellationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private DocumentIdentification8 AgentCADeactivationInstructionIdentification;

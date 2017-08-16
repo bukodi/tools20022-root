@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Vote;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.MeetingResultDissemination;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.datatype.Number;
  * Specifies whether an agenda item of a general meeting has been accepted or
  * rejected, together with the number of votes.
  */
-public class VoteResult {
+public class VoteResult extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Vote Vote;
 	private YesNoIndicator Accepted;

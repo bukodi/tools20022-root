@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.UnableToApplyV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment2;
@@ -52,7 +54,7 @@ import com.tools20022.repository.dict.choice.UnableToApplyJustification2Choice;
  * listed) or whether any supplementary information needs to be forwarded.
  */
 @NextVersion(UnableToApplyV04.class)
-public class UnableToApplyV03 {
+public class UnableToApplyV03 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment2 Assignment;
 	private Case2 Case;

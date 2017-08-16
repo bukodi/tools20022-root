@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.CancelledStatusReason13Code;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * transaction.
  */
 @NextVersion(CancelledStatusReason13Code.class)
-public class CancelledStatusReason9Code {
+public class CancelledStatusReason9Code implements GeneratedRepoBean<MMCodeSet> {
 }

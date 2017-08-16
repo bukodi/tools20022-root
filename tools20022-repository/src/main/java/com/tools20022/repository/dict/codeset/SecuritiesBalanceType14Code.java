@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the type of the securities or investment fund balance.
  */
-public class SecuritiesBalanceType14Code {
+public class SecuritiesBalanceType14Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

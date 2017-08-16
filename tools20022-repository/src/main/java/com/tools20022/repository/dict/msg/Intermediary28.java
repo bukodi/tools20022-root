@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Intermediary23;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * (Investment Funds).
  */
 @PreviousVersion(Intermediary23.class)
-public class Intermediary28 {
+public class Intermediary28 implements GeneratedRepoBean<MMMessageComponent> {
 }

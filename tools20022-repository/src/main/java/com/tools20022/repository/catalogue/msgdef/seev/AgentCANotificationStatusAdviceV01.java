@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionInformation2;
 import com.tools20022.repository.dict.choice.NotificationCancellationRequestStatus1Choice;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.choice.NotificationAdviceStatus1Choice;
  * building block Notification Cancellation Request Identification must be
  * present.
  */
-public class AgentCANotificationStatusAdviceV01 {
+public class AgentCANotificationStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private DocumentIdentification8 AgentCANotificationAdviceIdentification;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCompletionAdviceResponseV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header2;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType3;
  * out the financial clearing and settlement of the transaction.
  */
 @NextVersion(AcceptorCompletionAdviceResponseV02.class)
-public class AcceptorCompletionAdviceResponseV01 {
+public class AcceptorCompletionAdviceResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header2 Header;
 	private AcceptorCompletionAdviceResponse1 CompletionAdviceResponse;

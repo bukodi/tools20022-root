@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catm.AcceptorConfigurationUpdateV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.catm.AcceptorConfigurationUpdateV04;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType9;
  */
 @PreviousVersion(AcceptorConfigurationUpdateV02.class)
 @NextVersion(AcceptorConfigurationUpdateV04.class)
-public class AcceptorConfigurationUpdateV03 {
+public class AcceptorConfigurationUpdateV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header4 Header;
 	private AcceptorConfiguration3 AcceptorConfiguration;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SecuritiesTradeConfirmationV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.TransactiontIdentification4;
@@ -46,7 +48,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * with SecuritiesTradeConfirmationResponse (accept or reject) message.
  */
 @NextVersion(SecuritiesTradeConfirmationV02.class)
-public class SecuritiesTradeConfirmationV01 {
+public class SecuritiesTradeConfirmationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactiontIdentification4 Identification;
 	private Optional<NumberCount1Choice> NumberCount;

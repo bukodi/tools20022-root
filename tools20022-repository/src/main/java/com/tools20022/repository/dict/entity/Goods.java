@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Product;
 import com.tools20022.repository.dict.entity.Transport;
 import com.tools20022.repository.dict.datatype.Max70Text;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.GoodsPartyRole;
  * Good is a physical product that can be delivered to a purchaser and that
  * involves the transfer of ownership from seller to customer.
  */
-public class Goods extends Product {
+public class Goods extends Product
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Transport Transport;
 	private Max70Text Analysis;

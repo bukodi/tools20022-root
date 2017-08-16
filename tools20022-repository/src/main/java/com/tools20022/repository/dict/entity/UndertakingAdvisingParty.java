@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.UndertakingPartyRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.UndertakingPartyRole;
  * clarification, reference the applicable rules to which the undertaking is
  * subject.
  */
-public class UndertakingAdvisingParty extends UndertakingPartyRole {
+public class UndertakingAdvisingParty extends UndertakingPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

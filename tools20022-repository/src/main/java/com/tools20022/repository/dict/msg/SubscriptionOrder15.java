@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.SubscriptionOrder7;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * Order to invest the investor's principal in an investment fund.
  */
 @PreviousVersion(SubscriptionOrder7.class)
-public class SubscriptionOrder15 {
+public class SubscriptionOrder15
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

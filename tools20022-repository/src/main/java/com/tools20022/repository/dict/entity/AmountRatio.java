@@ -1,12 +1,17 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 
 /**
  * Ratio expressed as a quotient of amounts.
  */
-public class AmountRatio {
+public class AmountRatio extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing SecuritiesPricing;
 	private ActiveCurrencyAndAmount Amount1;

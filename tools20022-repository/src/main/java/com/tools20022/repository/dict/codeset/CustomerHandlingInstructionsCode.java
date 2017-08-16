@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Codes that apply special information that the Broker / Dealer needs to
  * report, as specified by the customer. Firms that are taking in orders
@@ -7,5 +11,7 @@ package com.tools20022.repository.dict.codeset;
  * for reporting only ( OATS = Order Audit Trail System - Phase III regulatory
  * requirement).
  */
-public class CustomerHandlingInstructionsCode {
+public class CustomerHandlingInstructionsCode
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

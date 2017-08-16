@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caam;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caam.ATMKeyDownloadRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header20;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType13;
  * initiate the download of one or several cryptographic keys.
  */
 @NextVersion(ATMKeyDownloadRequestV02.class)
-public class ATMKeyDownloadRequestV01 {
+public class ATMKeyDownloadRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header20 Header;
 	private Optional<ContentInformationType10> ProtectedATMKeyDownloadRequest;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import com.tools20022.repository.dict.msg.DocumentIdentification3;
@@ -39,7 +41,9 @@ import java.util.Optional;
  * data set(s) conveyed with the DataSetSubmission message and the related
  * baseline.
  */
-public class DataSetMatchReportV03 {
+public class DataSetMatchReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

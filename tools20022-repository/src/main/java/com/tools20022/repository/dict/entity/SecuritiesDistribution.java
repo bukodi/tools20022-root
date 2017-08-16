@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Distribution;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.codeset.RoundingDirectionCode;
 /**
  * Characteristics for a securities distribution event.
  */
-public class SecuritiesDistribution extends Distribution {
+public class SecuritiesDistribution extends Distribution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity MaximumHolding;
 	private SecuritiesQuantity IntermediateToUnderlyingNumerator;

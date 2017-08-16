@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Asset;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.entity.Document;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.entity.CommercialTradeSettlement;
  * demand for payment, upon the beneficiary's compliance with the terms and
  * conditions set forth in the undertaking.
  */
-public class LetterOfCredit extends Asset {
+public class LetterOfCredit extends Asset
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ActiveCurrencyAndAmount Amount;
 	private Document Document;

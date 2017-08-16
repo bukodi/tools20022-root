@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CorporateActionDistribution;
 import com.tools20022.repository.dict.entity.SecuritiesDeliveryObligation;
 import com.tools20022.repository.dict.entity.PaymentObligation;
@@ -10,7 +13,11 @@ import com.tools20022.repository.dict.entity.AgentCorporateActionStandingInstruc
  * Specifies the delivery instructions for the securities and cash proceeds at
  * any stage of the Corporate Action process.
  */
-public class CorporateActionProceedsDeliveryInstruction {
+public class CorporateActionProceedsDeliveryInstruction
+		extends
+			AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CorporateActionDistribution RelatedDistribution;
 	private SecuritiesDeliveryObligation SecuritiesProceedsMovement;

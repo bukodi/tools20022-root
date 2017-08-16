@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.AccountReportingRequestV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader43;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.ReportingRequest2;
  * direct or a relay scenario.
  */
 @NextVersion(AccountReportingRequestV03.class)
-public class AccountReportingRequestV02 {
+public class AccountReportingRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader43 GroupHeader;
 	private ReportingRequest2 ReportingRequest;

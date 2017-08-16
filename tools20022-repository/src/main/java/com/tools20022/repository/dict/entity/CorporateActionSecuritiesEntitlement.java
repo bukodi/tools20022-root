@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CorporateActionEntitlement;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.codeset.RenounceableStatusCode;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.codeset.RenounceableStatusCode;
  */
 public class CorporateActionSecuritiesEntitlement
 		extends
-			CorporateActionEntitlement {
+			CorporateActionEntitlement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity EntitledSecuritiesQuantity;
 	private RenounceableStatusCode RenounceableEntitlementStatusType;

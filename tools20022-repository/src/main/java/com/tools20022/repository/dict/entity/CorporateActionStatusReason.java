@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.StatusReason;
 import com.tools20022.repository.dict.codeset.CorporateActionCancellationReasonCode;
 import com.tools20022.repository.dict.entity.CorporateActionStatus;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.codeset.RejectionReasonCode;
 /**
  * Specifies the underlying reason for a status of a corporate action.
  */
-public class CorporateActionStatusReason extends StatusReason {
+public class CorporateActionStatusReason extends StatusReason
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CorporateActionCancellationReasonCode CorporateActionCancellationReason;
 	private CorporateActionStatus CorporateActionStatus;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.datatype.Max3NumericText;
 import com.tools20022.repository.dict.entity.Security;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
  * Physical certificates representing rights attached to the physical
  * certificates representing a security.
  */
-public class CouponAttached {
+public class CouponAttached extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODate Date;
 	private Max3NumericText Number;

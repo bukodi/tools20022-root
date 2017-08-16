@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingNotificationV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingNotificationV04;
@@ -37,7 +39,9 @@ import com.tools20022.repository.dict.msg.PowerOfAttorneyRequirements2;
  */
 @PreviousVersion(MeetingNotificationV02.class)
 @NextVersion(MeetingNotificationV04.class)
-public class MeetingNotificationV03 {
+public class MeetingNotificationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 Identification;
 	private Optional<AmendInformation1> Amendment;

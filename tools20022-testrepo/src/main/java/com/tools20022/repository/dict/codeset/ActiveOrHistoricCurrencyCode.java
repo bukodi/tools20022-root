@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.codeset;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMCodeSet;
 
 /**
@@ -9,5 +9,7 @@ import com.tools20022.metamodel.MMCodeSet;
  * international standard ISO 4217
  * "Codes for the representation of currencies and funds".
  */
-public class ActiveOrHistoricCurrencyCode implements InstanceOf<MMCodeSet> {
+public class ActiveOrHistoricCurrencyCode
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

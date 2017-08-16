@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Meeting;
 import com.tools20022.repository.dict.codeset.AdditionalRightCode;
 import com.tools20022.repository.dict.datatype.Max350Text;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
  * ask questions, the right to add items to the agenda or table draft
  * resolutions).
  */
-public class AdditionalRight {
+public class AdditionalRight extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Meeting Meeting;
 	private AdditionalRightCode Type;

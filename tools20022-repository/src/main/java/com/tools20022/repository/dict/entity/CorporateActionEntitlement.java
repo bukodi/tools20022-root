@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesBalance;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.CorporateActionServicing;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.CorporateActionServicing;
  * Rights entitled to the account owner based on the terms of the corporate
  * action event and the balance of underlying securities.
  */
-public class CorporateActionEntitlement {
+public class CorporateActionEntitlement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesBalance EligibleBalance;
 	private SecuritiesBalance SecuritiesBalance;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.NetReportData1;
 import com.tools20022.repository.dict.choice.PartyIdentification73Choice;
 import java.util.Optional;
@@ -11,7 +13,7 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * provide details of the of the bi-lateral payment obligations, calculated by
  * the central system per currency.
  */
-public class NetReportV01 {
+public class NetReportV01 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private NetReportData1 NetReportData;
 	private PartyIdentification73Choice NetServiceParticipantIdentification;

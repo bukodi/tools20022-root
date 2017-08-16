@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesMessageRejection;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesMessageRejectionV03;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.RejectionReason3;
  */
 @PreviousVersion(SecuritiesMessageRejection.class)
 @NextVersion(SecuritiesMessageRejectionV03.class)
-public class SecuritiesMessageRejectionV02 {
+public class SecuritiesMessageRejectionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private AdditionalReference3 RelatedReference;

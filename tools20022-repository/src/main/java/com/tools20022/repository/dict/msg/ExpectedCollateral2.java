@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.ExpectedCollateral1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * and optionaly the segregated independent amount.
  */
 @PreviousVersion(ExpectedCollateral1.class)
-public class ExpectedCollateral2 {
+public class ExpectedCollateral2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

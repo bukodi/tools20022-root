@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorCompletionAdviceV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header2;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType3;
  * the acquirer.
  */
 @NextVersion(AcceptorCompletionAdviceV02.class)
-public class AcceptorCompletionAdviceV01 {
+public class AcceptorCompletionAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header2 Header;
 	private AcceptorCompletionAdvice1 CompletionAdvice;

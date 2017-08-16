@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AccountSubLevel13;
 import com.tools20022.core.repo.NextVersion;
 
@@ -7,5 +9,5 @@ import com.tools20022.core.repo.NextVersion;
  * Account and holding of the next sub-level (Level 3).
  */
 @NextVersion(AccountSubLevel13.class)
-public class AccountSubLevel3 {
+public class AccountSubLevel3 implements GeneratedRepoBean<MMMessageComponent> {
 }

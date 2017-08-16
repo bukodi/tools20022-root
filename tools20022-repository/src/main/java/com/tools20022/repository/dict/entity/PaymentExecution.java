@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.DebitCreditCode;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.Payment;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.entity.CurrencyExchange;
  * Process required for executing an end to end payment. It consists of a
  * payment initiation which may be followed by a series of instructions.
  */
-public class PaymentExecution {
+public class PaymentExecution extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DebitCreditCode CreditDebitIndicator;
 	private ISODateTime CreationDate;

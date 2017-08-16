@@ -9,7 +9,8 @@ import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.AbstractBusinessComponent;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
@@ -144,6 +145,9 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 			JavaName superTypename = getJavaName(bc.getSuperType().get());
 			gen.src.addImport(superTypename.getFullName());
 			gen.src.setSuperType(superTypename.getSimpleName());
+		} else {
+			gen.src.addImport(AbstractBusinessComponent.class);
+			gen.src.setSuperType(AbstractBusinessComponent.class);
 		}
 
 		/*** MMBusinessComponent.Members.element ***/
@@ -254,9 +258,9 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 
 			JavaResult<JavaClassSource> gen = GenerationResult
 					.fromJavaSource(ctx.createSourceFile(JavaClassSource.class, getJavaName(mmElem)));
-			gen.src.addImport(InstanceOf.class);
+			gen.src.addImport(GeneratedRepoBean.class);
 			gen.src.addImport(mmElem.getClass());
-			gen.src.addInterface(InstanceOf.class.getSimpleName() + "<" + mmElem.getClass().getSimpleName() + ">");
+			gen.src.addInterface(GeneratedRepoBean.class.getSimpleName() + "<" + mmElem.getClass().getSimpleName() + ">");
 			
 			return gen;
 		} catch (Exception e) {

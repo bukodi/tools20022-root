@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.TerminalManagementActionCode;
 import com.tools20022.repository.dict.codeset.TerminalManagementActionTriggerCode;
 import com.tools20022.repository.dict.codeset.TerminalManagementAdditionalProcessCode;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.entity.TerminalManagementSystem;
 /**
  * Terminal management action to be performed by the point of interaction.
  */
-public class TerminalManagementAction {
+public class TerminalManagementAction extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TerminalManagementActionCode Type;
 	private TerminalManagementActionTriggerCode Trigger;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import com.tools20022.repository.dict.msg.DocumentIdentification3;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.PendingActivity2;
  * message is used to inform that a secondary bank has rejected the role and
  * baseline. No response is expected.
  */
-public class RoleAndBaselineRejectionNotificationV01 {
+public class RoleAndBaselineRejectionNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 NotificationIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

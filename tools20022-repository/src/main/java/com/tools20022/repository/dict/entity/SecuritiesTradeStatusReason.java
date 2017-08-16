@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.StatusReason;
 import com.tools20022.repository.dict.codeset.UnmatchedReasonCode;
 import com.tools20022.repository.dict.codeset.DeniedReasonCode;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.codeset.ModifiedStatusReasonCode;
 /**
  * Specifies the underlying reason for a status of a securities trade.
  */
-public class SecuritiesTradeStatusReason extends StatusReason {
+public class SecuritiesTradeStatusReason extends StatusReason
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private UnmatchedReasonCode UnmatchedReason;
 	private DeniedReasonCode DeniedReason;

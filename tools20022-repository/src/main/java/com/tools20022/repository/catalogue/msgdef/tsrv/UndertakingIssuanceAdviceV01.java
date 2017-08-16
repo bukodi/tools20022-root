@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.PartyIdentification43;
 import java.util.Optional;
 import com.tools20022.repository.dict.choice.DateAndDateTimeChoice;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature2;
  * and conditions of the undertaking, the advice may provide information from
  * the sender such as confirmation details.
  */
-public class UndertakingIssuanceAdviceV01 {
+public class UndertakingIssuanceAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private PartyIdentification43 AdvisingParty;
 	private Optional<PartyIdentification43> SecondAdvisingParty;

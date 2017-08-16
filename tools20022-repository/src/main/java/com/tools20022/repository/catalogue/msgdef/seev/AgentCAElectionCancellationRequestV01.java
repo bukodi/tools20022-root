@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionInformation1;
 import com.tools20022.repository.dict.msg.CorporateActionElection3;
@@ -16,7 +18,9 @@ import java.util.Optional;
  * may also contain details of the election advice to be cancelled, but this is
  * not recommended.
  */
-public class AgentCAElectionCancellationRequestV01 {
+public class AgentCAElectionCancellationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private DocumentIdentification8 AgentCAElectionAdviceIdentification;

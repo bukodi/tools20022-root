@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.fxtr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.msg.WithdrawalReason1;
 import java.util.Optional;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * ForeignExchangeTradeWithdrawalNotification message is used to confirm the
  * cancellation of a previously notified trade.
  */
-public class ForeignExchangeTradeWithdrawalNotificationV03 {
+public class ForeignExchangeTradeWithdrawalNotificationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text MessageIdentification;
 	private Max35Text MatchingSystemUniqueReference;

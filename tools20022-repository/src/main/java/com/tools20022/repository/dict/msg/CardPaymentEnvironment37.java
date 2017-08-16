@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.CardPaymentEnvironment25;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CardPaymentEnvironment50;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(CardPaymentEnvironment25.class)
 @NextVersion(CardPaymentEnvironment50.class)
-public class CardPaymentEnvironment37 {
+public class CardPaymentEnvironment37
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

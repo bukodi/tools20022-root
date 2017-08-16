@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Distribution;
 import com.tools20022.repository.dict.entity.CurrencyExchange;
 import com.tools20022.repository.dict.entity.SecuritiesAndCashDistribution;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.datatype.ISODateTime;
 /**
  * Distribution of cash pay-out.
  */
-public class CashDistribution extends Distribution {
+public class CashDistribution extends Distribution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyExchange DistributionCurrencyExchangeInformation;
 	private SecuritiesAndCashDistribution SecuritiesAndCashDistribution;

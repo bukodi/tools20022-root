@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.TradeStatusCode;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
 /**
  * Specifies the status of a treasury trade at a specified time.
  */
-public class TreasuryTradeSettlementStatus extends Status {
+public class TreasuryTradeSettlementStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TradeStatusCode TradeStatus;
 	private YesNoIndicator AllegedTrade;

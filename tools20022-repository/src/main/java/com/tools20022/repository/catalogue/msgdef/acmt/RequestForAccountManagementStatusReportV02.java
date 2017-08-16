@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.RequestForAccountManagementStatusReportV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.AccountManagementMessageReference1;
  * message has not yet been received.
  */
 @NextVersion(RequestForAccountManagementStatusReportV03.class)
-public class RequestForAccountManagementStatusReportV02 {
+public class RequestForAccountManagementStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private AccountManagementMessageReference1 RequestDetails;

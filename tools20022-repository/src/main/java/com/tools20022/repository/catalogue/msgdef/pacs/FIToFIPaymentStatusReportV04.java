@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFIPaymentStatusReportV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pacs.FIToFIPaymentStatusReportV05;
@@ -29,7 +31,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(FIToFIPaymentStatusReportV03.class)
 @NextVersion(FIToFIPaymentStatusReportV05.class)
-public class FIToFIPaymentStatusReportV04 {
+public class FIToFIPaymentStatusReportV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader53 GroupHeader;
 	private OriginalGroupHeader1 OriginalGroupInformationAndStatus;

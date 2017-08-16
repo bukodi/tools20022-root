@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Instruction given by a party that has explicit authority to instruct a debit
  * on the account, ie, either the debit account owner or originating party, to a
@@ -6,5 +10,7 @@ package com.tools20022.repository.dict.msg;
  * implicit or explicit period of time. A standing order is given once and is
  * valid for an open or closed period of time.
  */
-public class StandingOrderDetails3 {
+public class StandingOrderDetails3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

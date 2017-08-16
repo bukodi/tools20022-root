@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.PendingProcessingReason2Code;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * Settlement on the instructed settlement date is no longer possible.
  */
 @NextVersion(PendingProcessingReason2Code.class)
-public class PendingProcessingReason1Code {
+public class PendingProcessingReason1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

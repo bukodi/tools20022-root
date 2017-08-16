@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TaxReportHeader1;
 import com.tools20022.repository.dict.msg.TaxReport1;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -11,7 +13,9 @@ import java.util.Optional;
  * (VAT). This message is targeted to this reporting based on information in
  * sales invoices and card transactions.
  */
-public class InvoiceTaxReportV01 {
+public class InvoiceTaxReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TaxReportHeader1 InvoiceTaxReportHeader;
 	private TaxReport1 TaxReport;

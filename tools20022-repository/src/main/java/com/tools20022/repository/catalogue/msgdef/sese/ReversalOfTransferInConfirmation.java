@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.ReversalOfTransferInConfirmationV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference2;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.TransferIn1;
  * reversed message, but this is not recommended.
  */
 @NextVersion(ReversalOfTransferInConfirmationV02.class)
-public class ReversalOfTransferInConfirmation {
+public class ReversalOfTransferInConfirmation
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private AdditionalReference2 PreviousReference;
 	private Optional<AdditionalReference2> PoolReference;

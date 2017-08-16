@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.DebitAuthorisationRequestV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.DebitAuthorisationRequestV05;
@@ -32,7 +34,9 @@ import java.util.Optional;
  */
 @PreviousVersion(DebitAuthorisationRequestV03.class)
 @NextVersion(DebitAuthorisationRequestV05.class)
-public class DebitAuthorisationRequestV04 {
+public class DebitAuthorisationRequestV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

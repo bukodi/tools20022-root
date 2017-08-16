@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.StatusReport5;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * Of Interaction), its components and their installed versions.
  */
 @PreviousVersion(StatusReport5.class)
-public class StatusReport6 {
+public class StatusReport6 implements GeneratedRepoBean<MMMessageComponent> {
 }

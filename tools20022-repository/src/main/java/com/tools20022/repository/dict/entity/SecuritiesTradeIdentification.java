@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.TradeIdentification;
 import com.tools20022.repository.dict.entity.SecuritiesTrade;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
  * Specifies the different identifications associated with a securities
  * transaction.
  */
-public class SecuritiesTradeIdentification extends TradeIdentification {
+public class SecuritiesTradeIdentification extends TradeIdentification
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesTrade IdentifiedTrade;
 	private Max35Text MarketInfrastructureTransactionIdentification;

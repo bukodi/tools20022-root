@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountModificationInstructionV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -39,7 +41,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * message.
  */
 @NextVersion(AccountModificationInstructionV03.class)
-public class AccountModificationInstructionV02 {
+public class AccountModificationInstructionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PreviousReference;

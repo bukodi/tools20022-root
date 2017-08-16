@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ContactPoint;
 import com.tools20022.repository.dict.codeset.AddressTypeCode;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.entity.PhysicalDelivery;
 /**
  * Information that locates and identifies a specific address.
  */
-public class PostalAddress extends ContactPoint {
+public class PostalAddress extends ContactPoint
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AddressTypeCode AddressType;
 	private Max35Text StreetName;

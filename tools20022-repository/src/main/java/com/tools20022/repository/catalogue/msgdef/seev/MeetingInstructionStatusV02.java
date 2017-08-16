@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingInstructionStatusV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -32,7 +34,9 @@ import com.tools20022.repository.dict.choice.CancellationStatus1Choice;
  * using the status code NotReceived in the ProcessingStatus.
  */
 @NextVersion(MeetingInstructionStatusV03.class)
-public class MeetingInstructionStatusV02 {
+public class MeetingInstructionStatusV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MeetingInstructionStatusIdentification;
 	private MessageIdentification InstructionIdentification;

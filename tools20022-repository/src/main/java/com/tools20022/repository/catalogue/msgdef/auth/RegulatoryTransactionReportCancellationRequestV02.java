@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.choice.PartyIdentification23Choice;
 import com.tools20022.repository.dict.choice.PartyIdentification24Choice;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.TransactionDetails2;
  * more individual transactions in a previously sent
  * RegulatoryTransactionReport.
  */
-public class RegulatoryTransactionReportCancellationRequestV02 {
+public class RegulatoryTransactionReportCancellationRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private PartyIdentification23Choice ReportingInstitution;

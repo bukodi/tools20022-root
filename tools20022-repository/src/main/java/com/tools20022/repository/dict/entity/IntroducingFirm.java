@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesOrderPartyRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.SecuritiesOrderPartyRole;
  * investor. It can relay an order directly to the trading floor, or give
  * clients direct access to the floor.
  */
-public class IntroducingFirm extends SecuritiesOrderPartyRole {
+public class IntroducingFirm extends SecuritiesOrderPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

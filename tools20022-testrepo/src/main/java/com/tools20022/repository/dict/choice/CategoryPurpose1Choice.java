@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.choice;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMChoiceComponent;
 
 /**
@@ -10,5 +10,7 @@ import com.tools20022.metamodel.MMChoiceComponent;
  * trigger special processing by any of the agents involved in the payment
  * chain.
  */
-public class CategoryPurpose1Choice implements InstanceOf<MMChoiceComponent> {
+public class CategoryPurpose1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.Number;
 import com.tools20022.repository.dict.datatype.ISODate;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.Meeting;
 /**
  * Specifies the number of voting rights and of outstanding securities.
  */
-public class MeetingParticipation {
+public class MeetingParticipation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount TotalNumberOfSecuritiesOutstanding;
 	private Number TotalNumberOfVotingRights;

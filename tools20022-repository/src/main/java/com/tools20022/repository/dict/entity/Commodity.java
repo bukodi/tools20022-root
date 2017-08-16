@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Asset;
 import com.tools20022.repository.dict.codeset.AssetClassProductTypeCode;
 import com.tools20022.repository.dict.codeset.AssetClassDetailedSubProductTypeCode;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.codeset.AssetClassSubProductTypeCode;
  * traded on an exchange, commodities must also meet specified minimum
  * standards, also known as a basis grade.
  */
-public class Commodity extends Asset {
+public class Commodity extends Asset
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AssetClassProductTypeCode BaseProduct;
 	private AssetClassDetailedSubProductTypeCode DetailedSubProduct;

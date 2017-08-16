@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.BankServicesBillingStatementV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.ReportHeader3;
@@ -37,7 +39,9 @@ import com.tools20022.repository.dict.msg.StatementGroup2;
  * Business Application Header.
  */
 @PreviousVersion(BankServicesBillingStatementV01.class)
-public class BankServicesBillingStatementV02 {
+public class BankServicesBillingStatementV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportHeader3 ReportHeader;
 	private StatementGroup2 BillingStatementGroup;

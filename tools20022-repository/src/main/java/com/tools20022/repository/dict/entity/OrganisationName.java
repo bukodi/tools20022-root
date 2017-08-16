@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.PartyName;
 import com.tools20022.repository.dict.entity.OrganisationIdentification;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.datatype.Max350Text;
  * Name by which an organisation is known and which is usually used to identify
  * that organisation.
  */
-public class OrganisationName extends PartyName {
+public class OrganisationName extends PartyName
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private OrganisationIdentification Organisation;
 	private Max35Text LegalName;

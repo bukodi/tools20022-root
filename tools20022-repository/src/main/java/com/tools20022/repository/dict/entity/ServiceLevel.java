@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.PaymentProcessing;
 import com.tools20022.repository.dict.codeset.ServiceLevelCode;
 import com.tools20022.repository.dict.codeset.SWIFTServiceLevelCode;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
  * Agreement under which or rules under which the transaction should be
  * processed.
  */
-public class ServiceLevel {
+public class ServiceLevel extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PaymentProcessing PaymentProcessing;
 	private ServiceLevelCode Code;

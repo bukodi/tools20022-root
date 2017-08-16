@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.fxtr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeData12;
 import com.tools20022.repository.dict.msg.TradeData11;
 import com.tools20022.repository.dict.msg.Pagination;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * central system to the participant to provide notification of the current
  * status of one or more foreign exchange trades.
  */
-public class ForeignExchangeTradeBulkStatusNotificationV04 {
+public class ForeignExchangeTradeBulkStatusNotificationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeData12 StatusDetails;
 	private TradeData11 TradeData;

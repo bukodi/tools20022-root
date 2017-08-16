@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AdditionalBalanceInformation14;
 import com.tools20022.core.repo.NextVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.NextVersion;
  * example, registered.
  */
 @NextVersion(AdditionalBalanceInformation14.class)
-public class AdditionalBalanceInformation6 {
+public class AdditionalBalanceInformation6
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

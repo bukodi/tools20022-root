@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Indicates whether interest rate is fixed, variable or other.
  */
-public class InterestType3Code {
+public class InterestType3Code implements GeneratedRepoBean<MMCodeSet> {
 }

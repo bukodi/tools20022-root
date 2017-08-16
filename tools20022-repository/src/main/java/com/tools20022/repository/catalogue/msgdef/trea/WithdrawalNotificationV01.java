@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageReference;
 
 /**
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.msg.MessageReference;
  * receiver as an alleged trade. Usage The message is used to confirm the
  * cancellation of a previously notified trade.
  */
-public class WithdrawalNotificationV01 {
+public class WithdrawalNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageReference MatchingSystemUniqueReference;
 

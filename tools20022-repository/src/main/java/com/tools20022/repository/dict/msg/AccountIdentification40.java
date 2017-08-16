@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AccountIdentification33;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * corporate action events.
  */
 @PreviousVersion(AccountIdentification33.class)
-public class AccountIdentification40 {
+public class AccountIdentification40
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

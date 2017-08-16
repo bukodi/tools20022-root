@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * enforcement authorities) to a financial institution to inform the financial
  * institution that the confidentiality status of the investigation has changed.
  */
-public class InformationRequestStatusChangeNotificationV01 {
+public class InformationRequestStatusChangeNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text OriginalBusinessQuery;
 	private YesNoIndicator ConfidentialityStatus;

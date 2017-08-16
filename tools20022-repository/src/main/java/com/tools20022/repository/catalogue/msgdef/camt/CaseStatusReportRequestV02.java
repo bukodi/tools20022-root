@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.CaseStatusReportRequest;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.CaseStatusReportRequestV03;
@@ -30,7 +32,9 @@ import com.tools20022.repository.dict.msg.Case2;
  */
 @PreviousVersion(CaseStatusReportRequest.class)
 @NextVersion(CaseStatusReportRequestV03.class)
-public class CaseStatusReportRequestV02 {
+public class CaseStatusReportRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportHeader2 RequestHeader;
 	private Case2 Case;

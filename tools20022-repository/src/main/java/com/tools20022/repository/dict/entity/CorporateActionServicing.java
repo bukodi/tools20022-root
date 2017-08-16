@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.FinancialService;
 import com.tools20022.repository.dict.entity.SecuritiesAccount;
 import com.tools20022.repository.dict.entity.CorporateActionNotification;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.entity.CorporateActionEntitlement;
  * Services which consists in notifying the investor or its agent of a corporate
  * event and calculating its proceeds based on its holdings.
  */
-public class CorporateActionServicing extends FinancialService {
+public class CorporateActionServicing extends FinancialService
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesAccount SecuritiesAccount;
 	private CorporateActionNotification CorporateActionEventNotification;

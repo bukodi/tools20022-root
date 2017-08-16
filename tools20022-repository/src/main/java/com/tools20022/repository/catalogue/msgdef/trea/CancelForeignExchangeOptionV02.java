@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.trea;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeAgreement2;
 import com.tools20022.repository.dict.msg.TradePartyIdentification4;
 import java.util.Optional;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.Option3;
  * cancellation. This message is only suitable for Simple (i.e. not Barrier)
  * Vanilla (i.e. not Binary, Digital, Notouch) Foreign Exchange Options.
  */
-public class CancelForeignExchangeOptionV02 {
+public class CancelForeignExchangeOptionV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeAgreement2 TradeInformation;
 	private Optional<TradePartyIdentification4> TradingSideIdentification;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CorporateActionCancellation4;
 import com.tools20022.repository.dict.msg.CorporateActionGeneralInformation120;
 import com.tools20022.repository.dict.choice.AccountIdentification34Choice;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * message for information (the sub-function of the message is Copy Duplicate),
  * using the relevant elements in the business application header (BAH).
  */
-public class CorporateActionCancellationAdvice002V07 {
+public class CorporateActionCancellationAdvice002V07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CorporateActionCancellation4 CancellationAdviceGeneralInformation;
 	private CorporateActionGeneralInformation120 CorporateActionGeneralInformation;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.AccountService;
 import com.tools20022.repository.dict.entity.CashAccountMandate;
 import com.tools20022.repository.dict.codeset.CompensationMethodCode;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.entity.CashAccount;
  * the holder of a mandate. The exercise of these services may be submitted to a
  * limit.
  */
-public class CashAccountService extends AccountService {
+public class CashAccountService extends AccountService
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccountMandate CashAccountMandate;
 	private CompensationMethodCode CompensationMethod;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.RequestForTransferStatusReportV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * or, - the status of one or several transfer cancellation instructions.
  */
 @PreviousVersion(RequestForTransferStatusReportV04.class)
-public class RequestForTransferStatusReportV05 {
+public class RequestForTransferStatusReportV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private MessageAndBusinessReference8 RequestDetails;

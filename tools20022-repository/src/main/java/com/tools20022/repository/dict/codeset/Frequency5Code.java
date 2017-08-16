@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the regularity of an event.
  */
-public class Frequency5Code {
+public class Frequency5Code implements GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.codeset.ResolutionTypeCode;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.entity.Meeting;
  * submitted to the vote of the security holders, some are presented for
  * information only.
  */
-public class Resolution {
+public class Resolution extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text IssuerLabel;
 	private Max350Text Description;

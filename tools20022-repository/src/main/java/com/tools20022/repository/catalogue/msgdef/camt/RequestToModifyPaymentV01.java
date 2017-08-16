@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.RequestToModifyPaymentV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.RequestToModifyPaymentV02;
@@ -83,7 +85,9 @@ import java.util.Optional;
  */
 @PreviousVersion(RequestToModifyPaymentV03.class)
 @NextVersion(RequestToModifyPaymentV02.class)
-public class RequestToModifyPaymentV01 {
+public class RequestToModifyPaymentV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

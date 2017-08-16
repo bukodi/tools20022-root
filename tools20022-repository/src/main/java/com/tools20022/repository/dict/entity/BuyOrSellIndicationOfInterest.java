@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Negotiation;
 import com.tools20022.repository.dict.entity.Organisation;
 import com.tools20022.repository.dict.codeset.RelativeSizeCode;
@@ -16,7 +19,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
 /**
  * Intention to buy or sell a financial Instrument.
  */
-public class BuyOrSellIndicationOfInterest {
+public class BuyOrSellIndicationOfInterest extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Negotiation NegotiationDetails;
 	private Organisation Organisations;

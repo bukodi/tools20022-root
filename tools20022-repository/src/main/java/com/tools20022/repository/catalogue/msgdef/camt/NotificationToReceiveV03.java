@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.NotificationToReceiveV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.NotificationToReceiveV04;
@@ -21,7 +23,9 @@ import java.util.Optional;
  */
 @PreviousVersion(NotificationToReceiveV02.class)
 @NextVersion(NotificationToReceiveV04.class)
-public class NotificationToReceiveV03 {
+public class NotificationToReceiveV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader59 GroupHeader;
 	private AccountNotification6 Notification;

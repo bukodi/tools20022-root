@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeStatusReport1;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
 import java.util.Optional;
@@ -18,7 +20,9 @@ import java.util.Optional;
  * messages may be progressively sent in response to the incremental processing
  * of a single transaction.
  */
-public class TradeStatusReportV01 {
+public class TradeStatusReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeStatusReport1 TradeStatusAdviceDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

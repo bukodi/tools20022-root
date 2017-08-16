@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.BankToCustomerStatementV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader23;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.msg.AccountStatement1;
  * owner to receive the account information (also known as recipient).
  */
 @NextVersion(BankToCustomerStatementV02.class)
-public class BankToCustomerStatementV01 {
+public class BankToCustomerStatementV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader23 GroupHeader;
 	private AccountStatement1 Statement;

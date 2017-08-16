@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Defines an encapsulated form of an ISO 20022 message and, if present, its
  * associated Business Application Header. The encapsulation guarantees
@@ -9,5 +13,7 @@ package com.tools20022.repository.dict.msg;
  * prefix part is removed before signature verification. This is not done for
  * surrounding signatures.
  */
-public class EncapsulatedBusinessMessage1 {
+public class EncapsulatedBusinessMessage1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

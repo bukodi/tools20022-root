@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of formats for the price.
  */
-public class PriceRateOrAmount1Choice {
+public class PriceRateOrAmount1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

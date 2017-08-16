@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Proxy5;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * authorised to vote at a shareholders meeting.
  */
 @NextVersion(Proxy5.class)
-public class Proxy3 {
+public class Proxy3 implements GeneratedRepoBean<MMMessageComponent> {
 }

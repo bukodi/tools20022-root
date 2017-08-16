@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.entity.Meeting;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.entity.Meeting;
 /**
  * Conditions that must be met to propose a resolution.
  */
-public class ResolutionProposal {
+public class ResolutionProposal extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max350Text ResolutionProposalThreshold;
 	private PercentageRate ResolutionProposalThresholdPercentage;

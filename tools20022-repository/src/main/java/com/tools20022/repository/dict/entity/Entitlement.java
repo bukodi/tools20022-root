@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
  * Financial instrument providing the holder the privilege to subscribe to or to
  * receive specific assets on terms specified.
  */
-public class Entitlement extends Security {
+public class Entitlement extends Security
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing StrikePrice;
 	private YesNoIndicator CoveredIndicator;

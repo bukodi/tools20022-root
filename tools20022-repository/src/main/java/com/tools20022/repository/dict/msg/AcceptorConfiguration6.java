@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AcceptorConfiguration5;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * Acceptor configuration to be downloaded from the terminal management system.
  */
 @PreviousVersion(AcceptorConfiguration5.class)
-public class AcceptorConfiguration6 {
+public class AcceptorConfiguration6
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

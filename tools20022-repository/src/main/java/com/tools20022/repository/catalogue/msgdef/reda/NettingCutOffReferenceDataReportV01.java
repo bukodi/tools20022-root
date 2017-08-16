@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.reda;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.NettingCutOffReportData1;
 import com.tools20022.repository.dict.msg.CutOffData1;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * a central system to provide details of scheduled, changed, existing and
  * previous netting cut off data held at a central system.
  */
-public class NettingCutOffReferenceDataReportV01 {
+public class NettingCutOffReferenceDataReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private NettingCutOffReportData1 ReportData;
 	private CutOffData1 ParticipantNettingCutOffData;

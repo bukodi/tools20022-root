@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.colr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.colr.CollateralProposalV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -27,7 +29,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * proposal can include securities, cash and other types of collateral.
  */
 @NextVersion(CollateralProposalV04.class)
-public class CollateralProposalV03 {
+public class CollateralProposalV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text TransactionIdentification;
 	private Obligation3 Obligation;

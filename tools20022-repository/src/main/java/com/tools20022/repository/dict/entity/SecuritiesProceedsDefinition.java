@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ProceedsDefinition;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.codeset.ShareRankingCode;
  * would be the definition of a bonus rights issue where all the information
  * will be given in general on a per share basis.
  */
-public class SecuritiesProceedsDefinition extends ProceedsDefinition {
+public class SecuritiesProceedsDefinition extends ProceedsDefinition
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity SecuritiesQuantity;
 	private SecuritiesQuantity ConditionalQuantity;

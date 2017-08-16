@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SubscriptionOrderConfirmationCancellationInstructionV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -50,7 +52,9 @@ import com.tools20022.repository.dict.msg.CopyInformation1;
  * OrderConfirmationStatusReport message.
  */
 @NextVersion(SubscriptionOrderConfirmationCancellationInstructionV02.class)
-public class SubscriptionOrderConfirmationCancellationInstructionV01 {
+public class SubscriptionOrderConfirmationCancellationInstructionV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

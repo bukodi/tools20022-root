@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorDiagnosticResponseV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header30;
@@ -12,7 +14,9 @@ import java.util.Optional;
  * to provide to the acceptor the result of the diagnostic request.
  */
 @PreviousVersion(AcceptorDiagnosticResponseV04.class)
-public class AcceptorDiagnosticResponseV05 {
+public class AcceptorDiagnosticResponseV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header30 Header;
 	private AcceptorDiagnosticResponse4 DiagnosticResponse;

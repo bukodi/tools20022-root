@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.AccountingStatementOfHoldingsV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference2;
@@ -39,7 +41,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * length, several messages may be needed to accommodate all the information.
  */
 @NextVersion(AccountingStatementOfHoldingsV02.class)
-public class AccountingStatementOfHoldings {
+public class AccountingStatementOfHoldings
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AdditionalReference2> PreviousReference;
 	private Optional<AdditionalReference2> RelatedReference;

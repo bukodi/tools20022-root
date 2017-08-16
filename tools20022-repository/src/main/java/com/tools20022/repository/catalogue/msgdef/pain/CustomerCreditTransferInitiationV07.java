@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.CustomerCreditTransferInitiationV06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pain.CustomerCreditTransferInitiationV08;
@@ -35,7 +37,9 @@ import java.util.Optional;
  */
 @PreviousVersion(CustomerCreditTransferInitiationV06.class)
 @NextVersion(CustomerCreditTransferInitiationV08.class)
-public class CustomerCreditTransferInitiationV07 {
+public class CustomerCreditTransferInitiationV07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader48 GroupHeader;
 	private PaymentInstruction20 PaymentInformation;

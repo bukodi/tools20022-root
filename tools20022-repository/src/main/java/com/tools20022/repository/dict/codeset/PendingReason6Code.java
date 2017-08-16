@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.PendingReason9Code;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * instruction is pending.
  */
 @NextVersion(PendingReason9Code.class)
-public class PendingReason6Code {
+public class PendingReason6Code implements GeneratedRepoBean<MMCodeSet> {
 }

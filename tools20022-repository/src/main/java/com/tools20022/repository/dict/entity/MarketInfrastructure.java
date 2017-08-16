@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.entity.AccountLink;
 
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.AccountLink;
  * of the system, used for the purposes of clearing, settling, or recording
  * payments, securities, derivatives or other financial transactions.
  */
-public class MarketInfrastructure extends Role {
+public class MarketInfrastructure extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AccountLink AccountLink;
 

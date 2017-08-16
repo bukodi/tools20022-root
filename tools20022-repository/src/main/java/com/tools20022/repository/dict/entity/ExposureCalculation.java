@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.entity.IndependentAmount;
 import com.tools20022.repository.dict.entity.CollateralBalance;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.entity.TransactionRisk;
  * Description of the calculation of the amounts representing the risk that
  * needs to be covered, together with the calculation of the existing coverage.
  */
-public class ExposureCalculation {
+public class ExposureCalculation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ActiveCurrencyAndAmount TotalCollateralCurrentValue;
 	private ActiveCurrencyAndAmount TotalExposedAmount;

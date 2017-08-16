@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import java.util.Optional;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.TransactionStatus5;
  * which can accept or reject the status extension request by sending a
  * StatusExtensionAcceptance or StatusExtensionRejection message.
  */
-public class StatusExtensionRequestV03 {
+public class StatusExtensionRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RequestIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

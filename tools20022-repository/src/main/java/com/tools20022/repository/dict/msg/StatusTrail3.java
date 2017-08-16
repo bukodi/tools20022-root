@@ -1,7 +1,11 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides the history of status and reasons for a pending, posted or cancelled
  * transaction.
  */
-public class StatusTrail3 {
+public class StatusTrail3 implements GeneratedRepoBean<MMMessageComponent> {
 }

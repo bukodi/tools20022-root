@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CaseAssignment;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.msg.PaymentInstructionExtract;
@@ -37,7 +39,7 @@ import com.tools20022.repository.dict.choice.UnableToApplyJustificationChoice;
  * Request message, sent to the case creator/case assigner, if the payment
  * instruction has reached an incorrect creditor.
  */
-public class UnableToApply {
+public class UnableToApply implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case Case;

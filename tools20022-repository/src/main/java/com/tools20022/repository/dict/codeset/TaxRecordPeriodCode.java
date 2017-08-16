@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the period related to the tax payment.
  */
-public class TaxRecordPeriodCode {
+public class TaxRecordPeriodCode implements GeneratedRepoBean<MMCodeSet> {
 }

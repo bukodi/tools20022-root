@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Asset;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.entity.Trade;
 /**
  * Separate transactions which combined together form a trade.
  */
-public class Leg {
+public class Leg extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Asset RelatedAsset;
 	private PercentageRate RatioQuantity;

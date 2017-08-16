@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SwitchOrderV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.setr.SwitchOrderV04;
@@ -70,7 +72,7 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(SwitchOrderV02.class)
 @NextVersion(SwitchOrderV04.class)
-public class SwitchOrderV03 {
+public class SwitchOrderV03 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

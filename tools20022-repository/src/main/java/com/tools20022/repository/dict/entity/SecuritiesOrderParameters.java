@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.entity.SecuritiesPegOrderInstruction;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
@@ -22,7 +25,9 @@ import com.tools20022.repository.dict.entity.SecuritiesOrder;
 /**
  * Parameters of the transfer of a financial instrument.
  */
-public class SecuritiesOrderParameters {
+public class SecuritiesOrderParameters extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity MinimumQuantity;
 	private SecuritiesQuantity MatchIncrement;

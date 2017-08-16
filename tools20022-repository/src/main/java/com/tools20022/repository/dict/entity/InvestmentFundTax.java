@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesTax;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.InvestmentAccount;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.InvestmentFundTransaction;
 /**
  * Tax related to an investment fund order.
  */
-public class InvestmentFundTax extends SecuritiesTax {
+public class InvestmentFundTax extends SecuritiesTax
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator FiscalExemption;
 	private InvestmentAccount InvestmentAccount;

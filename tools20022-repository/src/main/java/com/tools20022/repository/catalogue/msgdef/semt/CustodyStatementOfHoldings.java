@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.CustodyStatementOfHoldingsV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference2;
@@ -44,7 +46,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * several messages may be needed to accommodate all the information.
  */
 @NextVersion(CustodyStatementOfHoldingsV02.class)
-public class CustodyStatementOfHoldings {
+public class CustodyStatementOfHoldings
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AdditionalReference2> PreviousReference;
 	private Optional<AdditionalReference2> RelatedReference;

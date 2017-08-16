@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.ReportSpecification4;
 
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.ReportSpecification4;
  * be used to request a report on all transactions that the requester is
  * involved in with a certain customer.
  */
-public class TransactionReportRequestV03 {
+public class TransactionReportRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RequestIdentification;
 	private ReportSpecification4 ReportSpecification;

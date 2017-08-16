@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesFinancing;
 import com.tools20022.repository.dict.entity.PaymentObligation;
 
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.PaymentObligation;
  * a forward contract. For the seller of the security it is a repo; for the
  * buyer of the security it is a reverse repurchase agreement.
  */
-public class RepurchaseAgreement extends SecuritiesFinancing {
+public class RepurchaseAgreement extends SecuritiesFinancing
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PaymentObligation PaymentObligation;
 

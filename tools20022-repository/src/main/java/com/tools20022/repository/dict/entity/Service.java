@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Product;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
 /**
  * Service is the intangible equivalent of a good.
  */
-public class Service extends Product {
+public class Service extends Product
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount Amount;
 	private Max35Text Type;

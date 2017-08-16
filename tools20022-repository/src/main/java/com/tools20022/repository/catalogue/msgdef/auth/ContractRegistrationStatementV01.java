@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CurrencyControlHeader2;
 import com.tools20022.repository.dict.msg.ContractRegistrationStatement1;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -11,7 +13,9 @@ import java.util.Optional;
  * send a statement of the operations related to the registered contract subject
  * to currency control.
  */
-public class ContractRegistrationStatementV01 {
+public class ContractRegistrationStatementV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CurrencyControlHeader2 GroupHeader;
 	private ContractRegistrationStatement1 Statement;

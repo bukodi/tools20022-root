@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.RegulatoryReportingTypeCode;
 import com.tools20022.repository.dict.entity.RegulatoryAuthorityRole;
 import com.tools20022.repository.dict.datatype.Max10Text;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.entity.ReportingPartyRole;
 /**
  * Information needed due to regulatory and statutory requirements.
  */
-public class RegulatoryReport {
+public class RegulatoryReport extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private RegulatoryReportingTypeCode DebitCreditReportingIndicator;
 	private RegulatoryAuthorityRole Authority;

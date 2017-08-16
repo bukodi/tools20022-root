@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.CorporateActionEvent;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.CorporateActionEvent;
  * that compensate financial penalties or indirect costs due to late delivery or
  * payment.
  */
-public class MarketClaim {
+public class MarketClaim extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount MarketClaimAmount;
 	private ISODateTime MarketClaimTrackingEndDate;

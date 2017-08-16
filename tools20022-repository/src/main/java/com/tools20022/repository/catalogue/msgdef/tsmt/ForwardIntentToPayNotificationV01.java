@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.ForwardIntentToPayNotificationV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -24,7 +26,9 @@ import java.util.Optional;
  * forwarded to the other primary bank for information. No response is expected.
  */
 @NextVersion(ForwardIntentToPayNotificationV02.class)
-public class ForwardIntentToPayNotificationV01 {
+public class ForwardIntentToPayNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 NotificationIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

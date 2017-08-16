@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.UndertakingStatusReason;
 import com.tools20022.repository.dict.codeset.ExternalDiscrepancyCode;
 import com.tools20022.repository.dict.datatype.Max2000Text;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.datatype.Max2000Text;
 /**
  * Identification of a discrepancy.
  */
-public class Discrepancy {
+public class Discrepancy extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private UndertakingStatusReason UndertakingStatusReason;
 	private ExternalDiscrepancyCode Type;

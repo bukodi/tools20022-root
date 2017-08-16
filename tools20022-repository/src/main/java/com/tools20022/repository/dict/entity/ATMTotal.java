@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ImpliedCurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
 import com.tools20022.repository.dict.datatype.Number;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.CardPayment;
 /**
  * Current totals of the ATM.
  */
-public class ATMTotal {
+public class ATMTotal extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ImpliedCurrencyAndAmount ATMBalance;
 	private CurrencyCode Currency;

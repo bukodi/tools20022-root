@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.GenericIdentification;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.codeset.TypeOfIdentificationCode;
@@ -12,9 +13,9 @@ import com.tools20022.repository.dict.datatype.LEIIdentifier;
 /**
  * Unique and unambiguous way to identify a party
  */
-public class PartyIdentificationInformation
+public class PartyIdentificationInformation extends AbstractBusinessComponent
 		implements
-			InstanceOf<MMBusinessComponent> {
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private GenericIdentification OtherIdentification;
 	private Max35Text TaxIdentificationNumber;

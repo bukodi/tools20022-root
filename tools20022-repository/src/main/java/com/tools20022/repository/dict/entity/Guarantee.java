@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Asset;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.entity.GuaranteePartyRole;
 /**
  * Partial or full coverage of amounts by a party other than the debtor.
  */
-public class Guarantee extends Asset {
+public class Guarantee extends Asset
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount CoveredAmount;
 	private DateTimePeriod EffectivePeriod;

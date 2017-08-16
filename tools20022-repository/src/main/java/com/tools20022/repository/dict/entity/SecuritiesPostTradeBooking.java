@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.DayBookingInstructionCode;
 import com.tools20022.repository.dict.codeset.BookingUnitCode;
 import com.tools20022.repository.dict.codeset.PreAllocationMethodCode;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.SecuritiesOrder;
 /**
  * Information used to book the executions of a trade.
  */
-public class SecuritiesPostTradeBooking {
+public class SecuritiesPostTradeBooking extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DayBookingInstructionCode DayBooking;
 	private BookingUnitCode BookingUnit;

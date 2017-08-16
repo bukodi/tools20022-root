@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.PaymentExecution;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
 import com.tools20022.repository.dict.codeset.InstructionCode;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.entity.StandingOrder;
  * of an originator. This instruction may have to be forwarded several times to
  * complete the settlement chain.
  */
-public class PaymentInstruction extends PaymentExecution {
+public class PaymentInstruction extends PaymentExecution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DateTimePeriod ProcessingValidityTime;
 	private InstructionCode InstructionForNextAgent;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.AccountService;
 import com.tools20022.repository.dict.codeset.FrequencyCode;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.InvestmentAccountService;
  * Specifies the reporting parameters that are included in the account contract
  * which specifies the services linked to the account..
  */
-public class ReportingService extends AccountService {
+public class ReportingService extends AccountService
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private FrequencyCode StatementFrequency;
 	private CurrencyAndAmount FloorNotificationAmount;

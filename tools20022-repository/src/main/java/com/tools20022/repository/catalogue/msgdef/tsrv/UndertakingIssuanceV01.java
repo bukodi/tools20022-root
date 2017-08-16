@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Undertaking3;
 import com.tools20022.repository.dict.datatype.Max2000Text;
 import java.util.List;
@@ -19,7 +21,9 @@ import java.util.Optional;
  * "an undertaking is an independent commitment, known in international practice as an independent guarantee or as a standby letter of credit, given by a bank or other institution or person ('guarantor/issuer') to pay to the beneficiary a certain or determinable amount upon simple demand or upon demand accompanied by other documents, in conformity with the terms and any documentary conditions of the undertaking, indicating, or from which it is to be inferred, that payment is due because of a default in the performance of an obligation, or because of another contingency, or for money borrowed or advanced, or on account of any mature indebtedness undertaken by the principal/applicant or another person"
  * .
  */
-public class UndertakingIssuanceV01 {
+public class UndertakingIssuanceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Undertaking3 UndertakingIssuanceDetails;
 	private List<Max2000Text> BankToBeneficiaryInformation;

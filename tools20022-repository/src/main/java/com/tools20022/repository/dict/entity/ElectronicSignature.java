@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Signature;
 import com.tools20022.repository.dict.entity.Undertaking;
 import com.tools20022.repository.dict.entity.SecurityCertificate;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.SecurityCertificate;
 /**
  * Additional security provisions, such as a digital signature.
  */
-public class ElectronicSignature extends Signature {
+public class ElectronicSignature extends Signature
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Undertaking Undertaking;
 	private SecurityCertificate RelatedSecurityCertificate;

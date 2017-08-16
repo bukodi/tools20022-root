@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Information about a subscription bulk order.
  */
-public class SubscriptionBulkOrderInstruction1 {
+public class SubscriptionBulkOrderInstruction1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

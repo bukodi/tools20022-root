@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.BaselineReSubmissionV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.tsmt.BaselineReSubmissionV05;
@@ -39,7 +41,9 @@ import com.tools20022.repository.dict.msg.ContactIdentification3;
  */
 @PreviousVersion(BaselineReSubmissionV03.class)
 @NextVersion(BaselineReSubmissionV05.class)
-public class BaselineReSubmissionV04 {
+public class BaselineReSubmissionV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 SubmissionIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

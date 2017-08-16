@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Index;
 import com.tools20022.repository.dict.entity.Portfolio;
 import com.tools20022.repository.dict.datatype.PercentageRate;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.datatype.Max350Text;
  * Security or other price against which the performance of the portfolio is
  * evaluated.
  */
-public class PortfolioBenchmark {
+public class PortfolioBenchmark extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Index Index;
 	private Portfolio Portfolio;

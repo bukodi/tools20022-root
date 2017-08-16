@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Payment;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.datatype.ISODateTime;
  * Provides information on the requested settlement time(s) of the payment
  * instruction.
  */
-public class SettlementTimeRequest {
+public class SettlementTimeRequest extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Payment Payment;
 	private ISODateTime CLSTime;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountRequestAcknowledgementV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.References5;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * business content has not yet been validated at this stage.
  */
 @PreviousVersion(AccountRequestAcknowledgementV01.class)
-public class AccountRequestAcknowledgementV02 {
+public class AccountRequestAcknowledgementV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References5 References;
 	private Optional<OrganisationIdentification8> From;

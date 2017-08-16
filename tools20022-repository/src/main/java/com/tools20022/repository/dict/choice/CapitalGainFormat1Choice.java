@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CapitalGainFormat3Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * capital gain.
  */
 @NextVersion(CapitalGainFormat3Choice.class)
-public class CapitalGainFormat1Choice {
+public class CapitalGainFormat1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

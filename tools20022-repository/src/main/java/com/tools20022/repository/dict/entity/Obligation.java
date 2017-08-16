@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.Max4AlphaNumericText;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.codeset.ExposureTypeV2Code;
  * Specifies the assets (quantity of securities, goods, services, and cash
  * amounts) that have to be delivered.
  */
-public class Obligation {
+public class Obligation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime RequestedSettlementDate;
 	private CurrencyAndAmount RequestedSettlementAmount;

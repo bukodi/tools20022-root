@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of cancellation rejection status.
  */
-public class CancellationRejectionStatus1Choice {
+public class CancellationRejectionStatus1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

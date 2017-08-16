@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.admi;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.Exact4AlphaNumericText;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * The StaticDataReport message is sent by a central system to the participant
  * to provide static data held in the system.
  */
-public class StaticDataReportV02 {
+public class StaticDataReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text MessageIdentification;
 	private Optional<Exact4AlphaNumericText> SettlementSessionIdentifier;

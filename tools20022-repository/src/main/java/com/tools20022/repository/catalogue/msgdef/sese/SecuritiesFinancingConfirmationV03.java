@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesFinancingConfirmationV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesFinancingConfirmationV04;
@@ -46,7 +48,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesFinancingConfirmationV02.class)
 @NextVersion(SecuritiesFinancingConfirmationV04.class)
-public class SecuritiesFinancingConfirmationV03 {
+public class SecuritiesFinancingConfirmationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionTypeAndAdditionalParameters3 TransactionIdentificationDetails;
 	private Optional<AdditionalParameters12> AdditionalParameters;

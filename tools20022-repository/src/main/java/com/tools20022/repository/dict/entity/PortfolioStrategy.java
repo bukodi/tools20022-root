@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Portfolio;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.entity.PortfolioStrategyDefinition;
 /**
  * Rough allocation of the portfolio.
  */
-public class PortfolioStrategy {
+public class PortfolioStrategy extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Portfolio Portfolio;
 	private YesNoIndicator InclusionIndicator;

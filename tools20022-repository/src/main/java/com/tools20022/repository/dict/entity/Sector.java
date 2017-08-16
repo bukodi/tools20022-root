@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.entity.Scheme;
 import com.tools20022.repository.dict.entity.Organisation;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.SectorStrategy;
 /**
  * Type of business of the organisation, for example, pharmaceutical.
  */
-public class Sector {
+public class Sector extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Security Security;
 	private Scheme Scheme;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.PaymentTransaction47;
 import com.tools20022.core.repo.NextVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.NextVersion;
  * cancellation request message applies.
  */
 @NextVersion(PaymentTransaction47.class)
-public class PaymentTransaction37 {
+public class PaymentTransaction37
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.codeset.FinancialCaptureCode;
 import com.tools20022.repository.dict.codeset.BatchTransactionTypeCode;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.entity.TerminalManagementSystem;
 /**
  * Acceptor parameters to be downloaded from the terminal management system.
  */
-public class AcceptorConfiguration {
+public class AcceptorConfiguration extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text ApplicationIdentification;
 	private FinancialCaptureCode FinancialCapture;

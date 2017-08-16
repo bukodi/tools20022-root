@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsin;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.OriginalRequestInformation1;
 import com.tools20022.repository.dict.msg.FinancingInformationAndStatus1;
@@ -34,7 +36,9 @@ import java.util.Optional;
  * request(s) by means of references and a set of data elements included into
  * the original request.
  */
-public class InvoiceFinancingRequestStatusV01 {
+public class InvoiceFinancingRequestStatusV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 StatusIdentification;
 	private OriginalRequestInformation1 OriginalRequestInformationAndStatus;

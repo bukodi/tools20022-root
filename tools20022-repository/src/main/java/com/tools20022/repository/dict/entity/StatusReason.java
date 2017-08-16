@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.codeset.NoReasonCode;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.entity.RegisteredContract;
 /**
  * Specifies the underlying reason for the status of an object.
  */
-public class StatusReason {
+public class StatusReason extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Status Status;
 	private Max35Text Reason;

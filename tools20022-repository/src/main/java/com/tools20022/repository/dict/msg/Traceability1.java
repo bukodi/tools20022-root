@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Traceability2;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * issuer, with the relative timestamp of their exchanges.
  */
 @NextVersion(Traceability2.class)
-public class Traceability1 {
+public class Traceability1 implements GeneratedRepoBean<MMMessageComponent> {
 }

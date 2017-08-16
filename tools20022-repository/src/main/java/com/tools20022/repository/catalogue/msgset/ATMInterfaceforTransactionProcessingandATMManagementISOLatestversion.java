@@ -1,4 +1,8 @@
 package com.tools20022.repository.catalogue.msgset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageSet;
+
 /**
  * Messages that support any card related Automated Teller Machine (ATM)
  * transactions, card related terminal management services and services between
@@ -9,5 +13,7 @@ package com.tools20022.repository.catalogue.msgset;
  * Cards Standards Evaluation Group as ISO 20022 MessageDefinitions on 6 April
  * 2016.
  */
-public class ATMInterfaceforTransactionProcessingandATMManagementISOLatestversion {
+public class ATMInterfaceforTransactionProcessingandATMManagementISOLatestversion
+		implements
+			GeneratedRepoBean<MMMessageSet> {
 }

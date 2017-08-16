@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ObligationFulfilment;
 import com.tools20022.repository.dict.entity.PaymentObligation;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
@@ -34,7 +36,9 @@ import com.tools20022.repository.dict.entity.RegisteredContract;
  * Payment information and processes required to transfer cash end to end from
  * the debtor to the creditor.
  */
-public class Payment extends ObligationFulfilment {
+public class Payment extends ObligationFulfilment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PaymentObligation PaymentObligation;
 	private CurrencyCode CurrencyOfTransfer;

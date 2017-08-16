@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.BenchmarkCurveNameCode;
 import com.tools20022.repository.dict.datatype.Max256Text;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.FinancialInstrumentSwap;
  * Contains the details of one of the legs of a swap, both in time (spot versus
  * [partial] forward details) and the side (sell versus buy).
  */
-public class SecuritiesSwapLeg {
+public class SecuritiesSwapLeg extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount Amount;
 	private BenchmarkCurveNameCode Benchmark;

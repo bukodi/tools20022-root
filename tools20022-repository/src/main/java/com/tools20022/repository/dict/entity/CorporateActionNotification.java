@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CorporateActionServicing;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.codeset.CorporateActionNotificationTypeCode;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.datatype.ISODateTime;
  * The process of notifying of an upcoming corporate action. It provides
  * corporate action details including the different options.
  */
-public class CorporateActionNotification {
+public class CorporateActionNotification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CorporateActionServicing RelatedServicing;
 	private Max35Text CorporateActionNotificationIdentification;

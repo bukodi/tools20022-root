@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsin;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.RequestGroupInformation1;
 import com.tools20022.repository.dict.msg.InvoiceRequestInformation1;
 
@@ -36,7 +38,9 @@ import com.tools20022.repository.dict.msg.InvoiceRequestInformation1;
  * access point that will forward the InvoiceFinancingRequest message to the
  * First Agent.
  */
-public class InvoiceFinancingRequestV01 {
+public class InvoiceFinancingRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private RequestGroupInformation1 RequestGroupInformation;
 	private InvoiceRequestInformation1 InvoiceRequestInformation;

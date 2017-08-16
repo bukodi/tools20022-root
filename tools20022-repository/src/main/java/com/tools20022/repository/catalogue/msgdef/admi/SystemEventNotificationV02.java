@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.admi;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Event2;
 
 /**
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.msg.Event2;
  * that is going to occur in the system, for instance that the system will be
  * down at a certain time, etc.
  */
-public class SystemEventNotificationV02 {
+public class SystemEventNotificationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Event2 EventInformation;
 

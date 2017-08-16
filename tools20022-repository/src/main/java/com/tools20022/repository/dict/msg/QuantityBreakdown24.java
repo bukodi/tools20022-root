@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.QuantityBreakdown14;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.QuantityBreakdown28;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(QuantityBreakdown14.class)
 @NextVersion(QuantityBreakdown28.class)
-public class QuantityBreakdown24 {
+public class QuantityBreakdown24
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

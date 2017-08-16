@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AdditionalReference8;
 import com.tools20022.core.repo.NextVersion;
 
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  * the Sender.
  */
 @NextVersion(AdditionalReference8.class)
-public class AdditionalReference3 {
+public class AdditionalReference3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

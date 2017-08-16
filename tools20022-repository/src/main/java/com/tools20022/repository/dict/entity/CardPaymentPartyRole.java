@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.entity.CardPayment;
 import com.tools20022.repository.dict.codeset.PartyTypeCode;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.codeset.PartyTypeCode;
 /**
  * Role played by a party in the context of a payment by card.
  */
-public class CardPaymentPartyRole extends Role {
+public class CardPaymentPartyRole extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CardPayment CardPayment;
 	private PartyTypeCode PartyType;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesTransactionPostingReportV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesTransactionPostingReportV06;
@@ -41,7 +43,9 @@ import com.tools20022.repository.dict.msg.SubAccountIdentification34;
  */
 @PreviousVersion(SecuritiesTransactionPostingReportV04.class)
 @NextVersion(SecuritiesTransactionPostingReportV06.class)
-public class SecuritiesTransactionPostingReportV05 {
+public class SecuritiesTransactionPostingReportV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement11 StatementGeneralDetails;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AcceptorCompletionAdviceResponse3;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.AcceptorCompletionAdviceResponse5;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(AcceptorCompletionAdviceResponse3.class)
 @NextVersion(AcceptorCompletionAdviceResponse5.class)
-public class AcceptorCompletionAdviceResponse4 {
+public class AcceptorCompletionAdviceResponse4
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

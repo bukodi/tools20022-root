@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
 
 /**
@@ -9,5 +11,7 @@ import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
  * to effect or liquidate selected investments in accordance with net flow of
  * capital into or out of the fund. Also called fund promoter or fund sponsor.
  */
-public class FundManagerRole extends InvestmentFundPartyRole {
+public class FundManagerRole extends InvestmentFundPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

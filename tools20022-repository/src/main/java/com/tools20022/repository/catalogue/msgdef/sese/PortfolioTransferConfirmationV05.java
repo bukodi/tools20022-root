@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.PortfolioTransferConfirmationV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.PortfolioTransferConfirmationV06;
@@ -34,7 +36,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(PortfolioTransferConfirmationV04.class)
 @NextVersion(PortfolioTransferConfirmationV06.class)
-public class PortfolioTransferConfirmationV05 {
+public class PortfolioTransferConfirmationV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageReference;
 	private Optional<AdditionalReference3> PoolReference;

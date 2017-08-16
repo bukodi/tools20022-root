@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.CollateralSubstitutionTypeCode;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.CollateralManagement;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.Collateral;
  * Substitution of collateral by specifying the collateral to be returned and
  * proposing the new type(s) of collateral to be delivered.
  */
-public class CollateralSubstitution {
+public class CollateralSubstitution extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CollateralSubstitutionTypeCode Type;
 	private CurrencyAndAmount AcceptedAmount;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catm.MaintenanceDelegationRequestV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header29;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType12;
  * by the master terminal manager.
  */
 @PreviousVersion(MaintenanceDelegationRequestV02.class)
-public class MaintenanceDelegationRequestV03 {
+public class MaintenanceDelegationRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<Header29> Header;
 	private MaintenanceDelegationRequest3 MaintenanceDelegationRequest;

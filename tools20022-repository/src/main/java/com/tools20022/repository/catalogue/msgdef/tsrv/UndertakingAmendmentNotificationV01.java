@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Amendment6;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
 import java.util.Optional;
@@ -15,7 +17,9 @@ import java.util.Optional;
  * supporting information from the sender. It may also be used to notify the
  * proposed termination or cancellation of the undertaking.
  */
-public class UndertakingAmendmentNotificationV01 {
+public class UndertakingAmendmentNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Amendment6 UndertakingAmendmentNotificationDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

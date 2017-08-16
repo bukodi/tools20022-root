@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InterestManagement;
 import com.tools20022.repository.dict.entity.CollateralManagement;
 import com.tools20022.repository.dict.entity.CollateralBalance;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.CollateralBalance;
 /**
  * Calculation and request of interest linked to collateral.
  */
-public class CollateralInterestAdministration extends InterestManagement {
+public class CollateralInterestAdministration extends InterestManagement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CollateralManagement CollateralManagement;
 	private CollateralBalance ClosingCollateralBalance;

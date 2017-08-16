@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Details of the instructions from the bank.
  */
-public class BankInstructions1 {
+public class BankInstructions1 implements GeneratedRepoBean<MMMessageComponent> {
 }

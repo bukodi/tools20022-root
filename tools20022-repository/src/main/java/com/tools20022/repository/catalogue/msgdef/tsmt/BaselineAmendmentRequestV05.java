@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.BaselineAmendmentRequestV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -32,7 +34,9 @@ import com.tools20022.repository.dict.msg.ContactIdentification3;
  * to the requester of the amendment.
  */
 @PreviousVersion(BaselineAmendmentRequestV04.class)
-public class BaselineAmendmentRequestV05 {
+public class BaselineAmendmentRequestV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RequestIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

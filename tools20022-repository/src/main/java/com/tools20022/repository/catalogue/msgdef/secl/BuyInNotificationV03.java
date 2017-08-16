@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.secl;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import java.util.Optional;
 import com.tools20022.repository.dict.choice.PartyIdentification35Choice;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * sent, as a warning, by the central counterparty to the clearing member some
  * days before the buy in process starts.
  */
-public class BuyInNotificationV03 {
+public class BuyInNotificationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<Max35Text> TransactionIdentification;
 	private PartyIdentification35Choice ClearingMember;

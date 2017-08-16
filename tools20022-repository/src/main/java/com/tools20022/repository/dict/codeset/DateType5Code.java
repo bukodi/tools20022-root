@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies a type of date.
  */
-public class DateType5Code {
+public class DateType5Code implements GeneratedRepoBean<MMCodeSet> {
 }

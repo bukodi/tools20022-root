@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catm.ManagementPlanReplacementV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header4;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType1;
  * time conditions and TMS addresses.
  */
 @NextVersion(ManagementPlanReplacementV02.class)
-public class ManagementPlanReplacementV01 {
+public class ManagementPlanReplacementV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header4 Header;
 	private ManagementPlan1 ManagementPlan;

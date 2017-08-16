@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SettlementPartyRole;
 import com.tools20022.repository.dict.entity.SecuritiesSettlement;
 import com.tools20022.repository.dict.entity.SecuritiesSettlementSystem;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.codeset.TaxLiabilityCode;
 /**
  * Role played by a party in the context of the settlement of securities.
  */
-public class SecuritiesSettlementPartyRole extends SettlementPartyRole {
+public class SecuritiesSettlementPartyRole extends SettlementPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesSettlement SecuritiesSettlement;
 	private SecuritiesSettlementSystem SecuritiesSettlementSystem;

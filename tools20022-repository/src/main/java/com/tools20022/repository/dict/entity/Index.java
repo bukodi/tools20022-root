@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.entity.RateAndAmount;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.entity.SecuritiesPricing;
 /**
  * Identifies the index.
  */
-public class Index {
+public class Index extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PercentageRate IndexRateBasis;
 	private RateAndAmount IndexFactor;

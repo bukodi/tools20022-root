@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.entity.DefaultFundContribution;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.codeset.MarginTypeCode;
  * Specifies the calculation and the resulting margin and independent amount
  * needed to cover the risk exposure of one party versus another.
  */
-public class MarginCall {
+public class MarginCall extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime MarginCallValuationDate;
 	private ActiveCurrencyAndAmount AgreedAmount;

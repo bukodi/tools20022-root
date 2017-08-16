@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingInstructionV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingInstructionV05;
@@ -28,7 +30,9 @@ import java.util.Optional;
  */
 @PreviousVersion(MeetingInstructionV03.class)
 @NextVersion(MeetingInstructionV05.class)
-public class MeetingInstructionV04 {
+public class MeetingInstructionV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 Identification;
 	private MeetingReference4 MeetingReference;

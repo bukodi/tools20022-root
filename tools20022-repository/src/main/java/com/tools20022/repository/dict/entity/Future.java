@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Derivative;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.entity.FutureRule;
  * Parameters for contracts which obligate the buyer to receive and the seller
  * to deliver in the future the assets specified at an agreed price.
  */
-public class Future extends Derivative {
+public class Future extends Derivative
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime FutureDate;
 	private CurrencyAndAmount MinimumSize;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionNarrativeV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionNarrativeV04;
@@ -32,7 +34,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(CorporateActionNarrativeV02.class)
 @NextVersion(CorporateActionNarrativeV04.class)
-public class CorporateActionNarrativeV03 {
+public class CorporateActionNarrativeV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AccountIdentification14Choice> AccountDetails;
 	private Optional<SecurityIdentification14> UnderlyingSecurity;

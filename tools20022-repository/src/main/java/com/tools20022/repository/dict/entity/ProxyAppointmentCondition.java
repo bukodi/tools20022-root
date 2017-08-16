@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.ContactPoint;
 import com.tools20022.repository.dict.entity.Meeting;
 import com.tools20022.repository.dict.datatype.Max350Text;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.codeset.ProxyTypeCode;
 /**
  * Conditions that must be met to appoint a proxy.
  */
-public class ProxyAppointmentCondition {
+public class ProxyAppointmentCondition extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ContactPoint NotificationAddress;
 	private Meeting Meeting;

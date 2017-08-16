@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.AccountingStatementOfHoldingsCancellation;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.AccountingStatementOfHoldings2;
  * recommended.
  */
 @PreviousVersion(AccountingStatementOfHoldingsCancellation.class)
-public class AccountingStatementOfHoldingsCancellationV02 {
+public class AccountingStatementOfHoldingsCancellationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference2> PreviousReference;

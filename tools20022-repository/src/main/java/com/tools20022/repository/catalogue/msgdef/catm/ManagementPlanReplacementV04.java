@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catm.ManagementPlanReplacementV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.catm.ManagementPlanReplacementV05;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType12;
  */
 @PreviousVersion(ManagementPlanReplacementV03.class)
 @NextVersion(ManagementPlanReplacementV05.class)
-public class ManagementPlanReplacementV04 {
+public class ManagementPlanReplacementV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header14 Header;
 	private ManagementPlan4 ManagementPlan;

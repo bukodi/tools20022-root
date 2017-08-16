@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Type of command performed by an ATM.
  */
-public class ATMCommandCode {
+public class ATMCommandCode implements GeneratedRepoBean<MMCodeSet> {
 }

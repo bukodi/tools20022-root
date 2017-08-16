@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.CommunicationCharacteristics2;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * component or an external entity.
  */
 @NextVersion(CommunicationCharacteristics2.class)
-public class CommunicationCharacteristics1 {
+public class CommunicationCharacteristics1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

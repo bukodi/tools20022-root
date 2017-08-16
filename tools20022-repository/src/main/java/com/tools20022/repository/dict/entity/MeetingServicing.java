@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CorporateActionServicing;
 import com.tools20022.repository.dict.entity.Meeting;
 import com.tools20022.repository.dict.entity.MeetingNotice;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.entity.MeetingResultDissemination;
  * in validating and relaying its instructions and in calculating its
  * entitlement based on its holdings.
  */
-public class MeetingServicing extends CorporateActionServicing {
+public class MeetingServicing extends CorporateActionServicing
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Meeting MeetingSpecification;
 	private MeetingNotice MeetingNotice;

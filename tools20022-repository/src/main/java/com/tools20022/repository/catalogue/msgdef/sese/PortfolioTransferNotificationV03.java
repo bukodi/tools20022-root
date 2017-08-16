@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.PortfolioTransferNotificationV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.PortfolioTransferNotificationV04;
@@ -44,7 +46,9 @@ import com.tools20022.repository.dict.msg.SecuritiesTradeDetails24;
  */
 @PreviousVersion(PortfolioTransferNotificationV02.class)
 @NextVersion(PortfolioTransferNotificationV04.class)
-public class PortfolioTransferNotificationV03 {
+public class PortfolioTransferNotificationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement19 StatementGeneralDetails;

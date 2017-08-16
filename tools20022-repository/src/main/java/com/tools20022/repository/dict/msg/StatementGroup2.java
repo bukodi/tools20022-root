@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.StatementGroup1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * billing statement.
  */
 @PreviousVersion(StatementGroup1.class)
-public class StatementGroup2 {
+public class StatementGroup2 implements GeneratedRepoBean<MMMessageComponent> {
 }

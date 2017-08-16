@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.ExposureType3Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.ExposureType12Choice;
@@ -12,5 +14,7 @@ import com.tools20022.repository.dict.choice.ExposureType16Choice;
 @PreviousVersion(ExposureType3Choice.class)
 @NextVersion(ExposureType12Choice.class)
 @NextVersion(ExposureType16Choice.class)
-public class ExposureType10Choice {
+public class ExposureType10Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

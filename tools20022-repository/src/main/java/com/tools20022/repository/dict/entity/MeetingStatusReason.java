@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.StatusReason;
 import com.tools20022.repository.dict.codeset.MeetingCancellationReasonCode;
 import com.tools20022.repository.dict.entity.MeetingStatus;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.codeset.RejectionReasonCode;
  * Specifies the underlying reason for a status of a meeting or related
  * instructions.
  */
-public class MeetingStatusReason extends StatusReason {
+public class MeetingStatusReason extends StatusReason
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private MeetingCancellationReasonCode MeetingCancellationReason;
 	private MeetingStatus MeetingStatus;

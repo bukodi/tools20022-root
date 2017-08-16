@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.SecuritiesFinancingTransactionType2Code;
 import com.tools20022.core.repo.NextVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.NextVersion;
  * Specifies the type of securities financing transaction.
  */
 @NextVersion(SecuritiesFinancingTransactionType2Code.class)
-public class SecuritiesFinancingTransactionType1Code {
+public class SecuritiesFinancingTransactionType1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

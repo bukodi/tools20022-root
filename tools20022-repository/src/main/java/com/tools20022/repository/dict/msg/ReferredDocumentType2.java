@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.GarnishmentType1;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.ReferredDocumentType4;
@@ -9,5 +11,7 @@ import com.tools20022.repository.dict.msg.ReferredDocumentType4;
  */
 @NextVersion(GarnishmentType1.class)
 @NextVersion(ReferredDocumentType4.class)
-public class ReferredDocumentType2 {
+public class ReferredDocumentType2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

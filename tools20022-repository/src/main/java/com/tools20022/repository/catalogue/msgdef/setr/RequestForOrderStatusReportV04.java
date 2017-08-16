@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.RequestForOrderStatusReportV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -38,7 +40,9 @@ import java.util.Optional;
  * an investment account, a transfer or the status of a financial instrument.
  */
 @PreviousVersion(RequestForOrderStatusReportV03.class)
-public class RequestForOrderStatusReportV04 {
+public class RequestForOrderStatusReportV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private MessageAndBusinessReference10 RequestDetails;

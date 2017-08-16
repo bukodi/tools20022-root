@@ -1,16 +1,17 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.CountryCode;
 import com.tools20022.repository.dict.datatype.Max35Text;
 
 /**
  * Entity that assigns the identification.
  */
-public class IdentificationIssuerRole
+public class IdentificationIssuerRole extends AbstractBusinessComponent
 		implements
-			InstanceOf<MMBusinessComponent> {
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CountryCode Country;
 	private Max35Text EntityName;

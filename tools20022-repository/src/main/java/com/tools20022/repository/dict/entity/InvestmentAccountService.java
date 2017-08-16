@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.AccountService;
 import com.tools20022.repository.dict.codeset.IncomePreferenceCode;
 import com.tools20022.repository.dict.codeset.TaxWithholdingMethodCode;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.entity.Reinvestment;
  * the holder of a mandate. The exercise of these services may be submitted to a
  * limit.
  */
-public class InvestmentAccountService extends AccountService {
+public class InvestmentAccountService extends AccountService
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private IncomePreferenceCode IncomePreference;
 	private TaxWithholdingMethodCode TaxWithholdingMethod;

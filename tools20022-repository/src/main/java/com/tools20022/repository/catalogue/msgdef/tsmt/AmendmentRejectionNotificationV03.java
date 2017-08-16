@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import com.tools20022.repository.dict.msg.DocumentIdentification3;
@@ -23,7 +25,9 @@ import java.util.Optional;
  * request the matching application sends an AmendmentAcceptanceNotification
  * message.
  */
-public class AmendmentRejectionNotificationV03 {
+public class AmendmentRejectionNotificationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 NotificationIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementConditionsModificationRequest002V06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.PartyIdentification119;
@@ -40,7 +42,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * market practice.
  */
 @PreviousVersion(SecuritiesSettlementConditionsModificationRequest002V06.class)
-public class SecuritiesSettlementConditionsModificationRequest002V07 {
+public class SecuritiesSettlementConditionsModificationRequest002V07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<PartyIdentification119> AccountOwner;
 	private SecuritiesAccount30 SafekeepingAccount;

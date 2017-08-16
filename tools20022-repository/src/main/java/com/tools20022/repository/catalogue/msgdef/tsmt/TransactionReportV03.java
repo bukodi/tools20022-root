@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.TransactionReportItems3;
 import java.util.Optional;
@@ -13,7 +15,9 @@ import java.util.Optional;
  * asked for. The message is sent in response to a TransactionReportRequest
  * message.
  */
-public class TransactionReportV03 {
+public class TransactionReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private MessageIdentification1 RelatedMessageReference;

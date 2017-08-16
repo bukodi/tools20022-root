@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.GenericIdentification35;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.GenericIdentification72;
@@ -12,5 +14,7 @@ import com.tools20022.repository.dict.msg.GenericIdentification92;
 @PreviousVersion(GenericIdentification35.class)
 @NextVersion(GenericIdentification72.class)
 @NextVersion(GenericIdentification92.class)
-public class GenericIdentification71 {
+public class GenericIdentification71
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catm.AcceptorConfigurationUpdateV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header27;
@@ -12,7 +14,9 @@ import java.util.Optional;
  * management system.
  */
 @PreviousVersion(AcceptorConfigurationUpdateV05.class)
-public class AcceptorConfigurationUpdateV06 {
+public class AcceptorConfigurationUpdateV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header27 Header;
 	private AcceptorConfiguration6 AcceptorConfiguration;

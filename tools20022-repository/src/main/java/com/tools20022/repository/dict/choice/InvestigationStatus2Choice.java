@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Specifies the status of an investigation case.
  */
-public class InvestigationStatus2Choice {
+public class InvestigationStatus2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

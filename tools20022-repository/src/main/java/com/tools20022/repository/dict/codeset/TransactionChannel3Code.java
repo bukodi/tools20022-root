@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.TransactionChannel1Code;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.codeset.TransactionChannel5Code;
@@ -11,5 +13,5 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(TransactionChannel1Code.class)
 @NextVersion(TransactionChannel5Code.class)
-public class TransactionChannel3Code {
+public class TransactionChannel3Code implements GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.MaintenanceDelegateAction2;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * management plan of the POI.
  */
 @PreviousVersion(MaintenanceDelegateAction2.class)
-public class MaintenanceDelegateAction3 {
+public class MaintenanceDelegateAction3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

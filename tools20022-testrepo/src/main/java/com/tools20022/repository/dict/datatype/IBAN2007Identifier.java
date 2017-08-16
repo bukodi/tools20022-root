@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMIdentifierSet;
 
 /**
@@ -10,5 +10,5 @@ import com.tools20022.metamodel.MMIdentifierSet;
  * "Banking and related financial services - International Bank Account Number (IBAN)"
  * .
  */
-public class IBAN2007Identifier implements InstanceOf<MMIdentifierSet> {
+public class IBAN2007Identifier implements GeneratedRepoBean<MMIdentifierSet> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.AllOrNoneIndicator;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.codeset.StayOnSideTypeCode;
@@ -9,7 +12,11 @@ import com.tools20022.repository.dict.entity.Discretion;
 /**
  * Identifies the instructions for order handling
  */
-public class SecuritiesOrderExecutionInstruction {
+public class SecuritiesOrderExecutionInstruction
+		extends
+			AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AllOrNoneIndicator AllOrNone;
 	private YesNoIndicator CallFirst;

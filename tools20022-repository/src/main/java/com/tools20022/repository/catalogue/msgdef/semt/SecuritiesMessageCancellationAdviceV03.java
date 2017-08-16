@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesMessageCancellationAdviceV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesMessageCancellationAdviceV04;
@@ -46,7 +48,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesMessageCancellationAdviceV02.class)
 @NextVersion(SecuritiesMessageCancellationAdviceV04.class)
-public class SecuritiesMessageCancellationAdviceV03 {
+public class SecuritiesMessageCancellationAdviceV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References18Choice Reference;
 	private Optional<PartyIdentification36Choice> AccountOwner;

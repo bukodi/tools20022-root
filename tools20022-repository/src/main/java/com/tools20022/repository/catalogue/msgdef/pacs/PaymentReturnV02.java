@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pacs.PaymentReturnV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pacs.PaymentReturnV03;
@@ -29,7 +31,7 @@ import com.tools20022.repository.dict.msg.PaymentTransactionInformation27;
  */
 @PreviousVersion(PaymentReturnV01.class)
 @NextVersion(PaymentReturnV03.class)
-public class PaymentReturnV02 {
+public class PaymentReturnV02 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader38 GroupHeader;
 	private Optional<OriginalGroupInformation21> OriginalGroupInformation;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.ReversalOfTransferOutConfirmationV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.ReversalOfTransferOutConfirmationV07;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.CopyInformation2;
  */
 @PreviousVersion(ReversalOfTransferOutConfirmationV05.class)
 @NextVersion(ReversalOfTransferOutConfirmationV07.class)
-public class ReversalOfTransferOutConfirmationV06 {
+public class ReversalOfTransferOutConfirmationV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<References15> References;

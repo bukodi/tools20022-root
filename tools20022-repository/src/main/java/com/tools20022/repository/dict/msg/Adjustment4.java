@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Adjustment6;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * discount, surcharge
  */
 @NextVersion(Adjustment6.class)
-public class Adjustment4 {
+public class Adjustment4 implements GeneratedRepoBean<MMMessageComponent> {
 }

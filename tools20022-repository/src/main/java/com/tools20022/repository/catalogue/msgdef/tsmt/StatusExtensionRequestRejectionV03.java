@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import java.util.Optional;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.Reason2;
  * extend the status of a transaction can be achieved by sending a
  * StatusExtensionRequestAcceptance message.
  */
-public class StatusExtensionRequestRejectionV03 {
+public class StatusExtensionRequestRejectionV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 RejectionIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

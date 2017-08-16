@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionStatementReportV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.DocumentIdentification11;
@@ -30,7 +32,9 @@ import com.tools20022.repository.dict.msg.Extension2;
  * “CoexistenceXxxxRule”.
  */
 @NextVersion(CorporateActionInstructionStatementReportV02.class)
-public class CorporateActionInstructionStatementReportV01 {
+public class CorporateActionInstructionStatementReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification11 Identification;
 	private Pagination Pagination;

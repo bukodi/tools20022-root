@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Account;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.entity.DateTimePeriod;
 /**
  * Restriction on capability or operations allowed.
  */
-public class AccountRestriction {
+public class AccountRestriction extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Account Account;
 	private Max35Text RestrictionType;

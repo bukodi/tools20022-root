@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.UnmatchedReason2Code;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.codeset.UnmatchedReason8Code;
@@ -11,5 +13,5 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(UnmatchedReason2Code.class)
 @NextVersion(UnmatchedReason8Code.class)
-public class UnmatchedReason5Code {
+public class UnmatchedReason5Code implements GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.TradingMethodCode;
 import com.tools20022.repository.dict.entity.Trade;
 import com.tools20022.repository.dict.entity.System;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.SecuritiesOrder;
 /**
  * Decision making on the transfer of a financial instrument.
  */
-public class Negotiation {
+public class Negotiation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TradingMethodCode TradingMethod;
 	private Trade TradeExecution;

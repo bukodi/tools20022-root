@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catp.ATMWithdrawalRequestV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header31;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * agent to request the approval of a withdrawal transaction at an ATM.
  */
 @PreviousVersion(ATMWithdrawalRequestV01.class)
-public class ATMWithdrawalRequestV02 {
+public class ATMWithdrawalRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header31 Header;
 	private Optional<ContentInformationType10> ProtectedATMWithdrawalRequest;

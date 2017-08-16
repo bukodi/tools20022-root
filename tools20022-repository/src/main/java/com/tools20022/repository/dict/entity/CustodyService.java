@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.FinancialService;
 
 /**
@@ -8,5 +10,7 @@ import com.tools20022.repository.dict.entity.FinancialService;
  * custody are not fungible for the brokerage because they remain on the
  * client's name.
  */
-public class CustodyService extends FinancialService {
+public class CustodyService extends FinancialService
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.datatype;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMDateTime;
+
 /**
  * A particular point in the progression of time defined by a mandatory date and
  * a mandatory time component, expressed in either UTC time format
@@ -12,5 +16,5 @@ package com.tools20022.repository.dict.datatype;
  * seconds may be included. In this case, the involved parties shall agree on
  * the maximum number of digits that are allowed.
  */
-public class ISODateTime {
+public class ISODateTime implements GeneratedRepoBean<MMDateTime> {
 }

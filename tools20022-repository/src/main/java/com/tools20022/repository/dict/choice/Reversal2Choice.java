@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.Reversal1Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.Reversal4Choice;
@@ -10,5 +12,5 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(Reversal1Choice.class)
 @NextVersion(Reversal4Choice.class)
-public class Reversal2Choice {
+public class Reversal2Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

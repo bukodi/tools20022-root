@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountClosingAmendmentRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.References4;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature1;
  * sent together with other related documents.
  */
 @NextVersion(AccountClosingAmendmentRequestV02.class)
-public class AccountClosingAmendmentRequestV01 {
+public class AccountClosingAmendmentRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References4 References;
 	private AccountForAction1 AccountIdentification;

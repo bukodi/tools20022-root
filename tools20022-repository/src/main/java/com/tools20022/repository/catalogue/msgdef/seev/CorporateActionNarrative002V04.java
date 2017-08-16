@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.choice.AccountIdentification37Choice;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.SecurityIdentification20;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * information (the sub-function of the message is Copy Duplicate), using the
  * relevant elements in the business application header (BAH).
  */
-public class CorporateActionNarrative002V04 {
+public class CorporateActionNarrative002V04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AccountIdentification37Choice> AccountDetails;
 	private Optional<SecurityIdentification20> UnderlyingSecurity;

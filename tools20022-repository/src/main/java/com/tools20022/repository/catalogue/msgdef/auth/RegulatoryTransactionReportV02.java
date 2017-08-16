@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.TransactionDetails3;
 import com.tools20022.repository.dict.choice.PartyIdentification23Choice;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * a trade by trade basis, to which authorities the transaction report(s) need
  * to be sent using the TransactionReportMarker.
  */
-public class RegulatoryTransactionReportV02 {
+public class RegulatoryTransactionReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private TransactionDetails3 TransactionDetails;

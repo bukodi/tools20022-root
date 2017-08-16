@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.CancellationReason1;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CancellationReason7;
@@ -12,5 +14,7 @@ import com.tools20022.repository.dict.msg.CancellationReason9;
 @PreviousVersion(CancellationReason1.class)
 @NextVersion(CancellationReason7.class)
 @NextVersion(CancellationReason9.class)
-public class CancellationReason5 {
+public class CancellationReason5
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

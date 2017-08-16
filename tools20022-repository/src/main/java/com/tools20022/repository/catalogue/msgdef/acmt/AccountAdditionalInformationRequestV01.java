@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountAdditionalInformationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.References3;
@@ -18,7 +20,9 @@ import java.util.Optional;
  * part of the account maintenance process.
  */
 @NextVersion(AccountAdditionalInformationRequestV02.class)
-public class AccountAdditionalInformationRequestV01 {
+public class AccountAdditionalInformationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References3 References;
 	private OrganisationIdentification6 OrganisationIdentification;

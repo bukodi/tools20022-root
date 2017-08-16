@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.DuplicateV04;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment2;
@@ -16,7 +18,7 @@ import com.tools20022.repository.dict.msg.ProprietaryData4;
  * way that is consistent with XML well-formedness criteria.
  */
 @NextVersion(DuplicateV04.class)
-public class DuplicateV03 {
+public class DuplicateV03 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment2 Assignment;
 	private Case2 Case;

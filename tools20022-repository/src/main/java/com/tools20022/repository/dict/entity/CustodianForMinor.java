@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentAccountPartyRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.InvestmentAccountPartyRole;
  * account is registered under the name of the minor, the custodian retains
  * control of the account.
  */
-public class CustodianForMinor extends InvestmentAccountPartyRole {
+public class CustodianForMinor extends InvestmentAccountPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.SwitchOrderStatusAndReason2;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * previously received.
  */
 @NextVersion(SwitchOrderStatusAndReason2.class)
-public class SwitchOrderStatusAndReason1 {
+public class SwitchOrderStatusAndReason1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

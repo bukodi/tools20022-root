@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of format for the model form identification.
  */
-public class ModelFormIdentification1Choice {
+public class ModelFormIdentification1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

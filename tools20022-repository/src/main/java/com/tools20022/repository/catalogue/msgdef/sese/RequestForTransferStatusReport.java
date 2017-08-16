@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.RequestForTransferStatusReportV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageAndBusinessReference1;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.MessageAndBusinessReference1;
  * instructions.
  */
 @NextVersion(RequestForTransferStatusReportV02.class)
-public class RequestForTransferStatusReport {
+public class RequestForTransferStatusReport
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageAndBusinessReference1 RequestDetails;
 

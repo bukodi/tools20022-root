@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caam;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caam.ATMReconciliationAdviceV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header32;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * function or as a response of a command sent by an agent or a server.
  */
 @PreviousVersion(ATMReconciliationAdviceV01.class)
-public class ATMReconciliationAdviceV02 {
+public class ATMReconciliationAdviceV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header32 Header;
 	private Optional<ContentInformationType10> ProtectedATMReconciliationAdvice;

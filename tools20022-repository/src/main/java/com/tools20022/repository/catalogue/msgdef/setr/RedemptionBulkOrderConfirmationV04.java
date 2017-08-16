@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.RedemptionBulkOrderConfirmationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -33,7 +35,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * contain both a confirmation amendment/s and a ‘new’ confirmation/s.
  */
 @PreviousVersion(RedemptionBulkOrderConfirmationV03.class)
-public class RedemptionBulkOrderConfirmationV04 {
+public class RedemptionBulkOrderConfirmationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference9> PoolReference;

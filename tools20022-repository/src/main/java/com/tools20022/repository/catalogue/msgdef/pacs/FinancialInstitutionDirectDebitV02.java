@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.GroupHeader63;
 import com.tools20022.repository.dict.msg.CreditTransferTransaction9;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -18,7 +20,9 @@ import java.util.Optional;
  * FinancialInstitutionDirectDebit message can be used in domestic and
  * cross-border scenarios.
  */
-public class FinancialInstitutionDirectDebitV02 {
+public class FinancialInstitutionDirectDebitV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader63 GroupHeader;
 	private CreditTransferTransaction9 CreditInstruction;

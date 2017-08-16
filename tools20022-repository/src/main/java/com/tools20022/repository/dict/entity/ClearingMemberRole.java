@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SystemPartyRole;
 import com.tools20022.repository.dict.entity.CashClearingSystemMember;
 import com.tools20022.repository.dict.codeset.ClearingSideCode;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.entity.ClearingMemberRole;
  * Member of an exchange's clearing corporation, responsible for executing
  * client trades and involved in the clearing of trades.
  */
-public class ClearingMemberRole extends SystemPartyRole {
+public class ClearingMemberRole extends SystemPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashClearingSystemMember ClearingSystemMemberIdentification;
 	private ClearingSideCode Side;

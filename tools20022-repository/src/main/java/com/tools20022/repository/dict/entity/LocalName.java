@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.entity.SecuritiesIdentification;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.codeset.LanguageCode;
 /**
  * Name of the security.
  */
-public class LocalName {
+public class LocalName extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max350Text FullName;
 	private SecuritiesIdentification RelatedSecurity;

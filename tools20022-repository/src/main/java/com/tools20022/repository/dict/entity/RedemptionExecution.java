@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentFundOrderExecution;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.ISODate;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.datatype.ISODate;
 /**
  * Execution of a redemption order.
  */
-public class RedemptionExecution extends InvestmentFundOrderExecution {
+public class RedemptionExecution extends InvestmentFundOrderExecution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount RedeemedNetAmount;
 	private CurrencyAndAmount PartialRedemptionWithholdingAmount;

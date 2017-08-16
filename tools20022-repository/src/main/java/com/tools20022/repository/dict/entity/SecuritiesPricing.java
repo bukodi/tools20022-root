@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.PriceMethodCode;
 import com.tools20022.repository.dict.codeset.TypeOfPriceCode;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -47,7 +50,9 @@ import com.tools20022.repository.dict.entity.Position;
 /**
  * Characteristics related to the price of the security.
  */
-public class SecuritiesPricing {
+public class SecuritiesPricing extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PriceMethodCode PriceMethod;
 	private TypeOfPriceCode PriceType;

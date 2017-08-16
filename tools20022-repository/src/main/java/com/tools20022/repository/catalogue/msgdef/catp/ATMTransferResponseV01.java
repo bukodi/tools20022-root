@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header31;
 import com.tools20022.repository.dict.msg.ContentInformationType10;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * The ATMTransferResponse message is sent by an acquirer or its agent to inform
  * the ATM of the approval or decline of the transfer transaction.
  */
-public class ATMTransferResponseV01 {
+public class ATMTransferResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header31 Header;
 	private Optional<ContentInformationType10> ProtectedATMTransferResponse;

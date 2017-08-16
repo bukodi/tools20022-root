@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CashSettlementInstructionPartyRole;
 import com.tools20022.repository.dict.entity.CashClearingSystem;
 
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.CashClearingSystem;
  */
 public class SettlementInstructionSystemRole
 		extends
-			CashSettlementInstructionPartyRole {
+			CashSettlementInstructionPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashClearingSystem System;
 

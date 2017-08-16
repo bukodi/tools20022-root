@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.RejectedConfirmationStatusReasonCode;
 import com.tools20022.repository.dict.codeset.OrderConfirmationStatusCode;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.codeset.OrderStatusCode;
 /**
  * Status of a securities order or of the processing of a securities order.
  */
-public class SecuritiesOrderStatus extends Status {
+public class SecuritiesOrderStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private RejectedConfirmationStatusReasonCode ConfirmationRejectedStatusReason;
 	private OrderConfirmationStatusCode ConfirmationStatus;

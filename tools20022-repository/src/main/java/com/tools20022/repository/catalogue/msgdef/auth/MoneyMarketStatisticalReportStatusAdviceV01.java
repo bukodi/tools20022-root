@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MoneyMarketStatusReportHeader1;
 import com.tools20022.repository.dict.msg.MoneyMarketTransactionStatus2;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * competent authority to the reporting agents to provide the status on the
  * reported transactions.
  */
-public class MoneyMarketStatisticalReportStatusAdviceV01 {
+public class MoneyMarketStatisticalReportStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MoneyMarketStatusReportHeader1 StatusReportHeader;
 	private Optional<MoneyMarketTransactionStatus2> TransactionStatus;

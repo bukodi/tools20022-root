@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.entity.VariableInterest;
 import com.tools20022.repository.dict.datatype.Number;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.DateTimePeriod;
  * Calculation of the price sensitivity of a fixed-income security to a change
  * in interest rates.
  */
-public class DurationCalculation {
+public class DurationCalculation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing RelatedSecuritiesPricing;
 	private VariableInterest VariableInterest;

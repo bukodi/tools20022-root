@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.ATMService1;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.ATMService4;
@@ -10,5 +12,5 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(ATMService1.class)
 @NextVersion(ATMService4.class)
-public class ATMService2 {
+public class ATMService2 implements GeneratedRepoBean<MMMessageComponent> {
 }

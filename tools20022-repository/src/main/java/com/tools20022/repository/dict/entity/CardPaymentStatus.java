@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.RejectReasonCode;
 import com.tools20022.repository.dict.codeset.FailureReasonCode;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.CardPayment;
 /**
  * Status of a payment by card.
  */
-public class CardPaymentStatus extends Status {
+public class CardPaymentStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private RejectReasonCode RejectionReason;
 	private FailureReasonCode FailureReason;

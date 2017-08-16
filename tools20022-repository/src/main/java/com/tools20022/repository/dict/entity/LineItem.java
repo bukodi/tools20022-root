@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Adjustment;
 import com.tools20022.repository.dict.entity.Charges;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.entity.Packaging;
  * Unit of information showing the related provision of products and/or services
  * and monetary summations reported as a discrete line item.
  */
-public class LineItem {
+public class LineItem extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Adjustment FinancialAdjustment;
 	private Charges LogisticsCharge;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.datatype.BaseOneRate;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.QuantityRatio;
  * Financial instrument that gives the holder the right to purchase shares or
  * bonds at a given price within a specified time.
  */
-public class Warrant extends Security {
+public class Warrant extends Security
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing SubscriptionPrice;
 	private BaseOneRate Multiplier;

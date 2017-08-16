@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of format to express a gross dividend.
  */
-public class GrossDividendRateFormat3Choice {
+public class GrossDividendRateFormat3Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

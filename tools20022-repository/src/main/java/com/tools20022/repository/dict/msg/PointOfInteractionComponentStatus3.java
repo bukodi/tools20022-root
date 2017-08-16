@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.PointOfInteractionComponentStatus2;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * Status of a POI component (Point of Interaction).
  */
 @PreviousVersion(PointOfInteractionComponentStatus2.class)
-public class PointOfInteractionComponentStatus3 {
+public class PointOfInteractionComponentStatus3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

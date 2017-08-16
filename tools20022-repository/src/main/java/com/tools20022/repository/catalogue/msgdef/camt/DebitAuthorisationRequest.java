@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CaseAssignment;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.msg.PaymentInstructionExtract;
@@ -24,7 +26,9 @@ import com.tools20022.repository.dict.msg.DebitAuthorisationDetails;
  * It must not be used in place of a Request To Modify Payment or Request To
  * Cancel Payment message between subsequent agents.
  */
-public class DebitAuthorisationRequest {
+public class DebitAuthorisationRequest
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case Case;

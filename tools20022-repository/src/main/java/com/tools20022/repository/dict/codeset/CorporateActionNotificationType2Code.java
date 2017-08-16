@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Type of notification cancellation request.
  */
-public class CorporateActionNotificationType2Code {
+public class CorporateActionNotificationType2Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

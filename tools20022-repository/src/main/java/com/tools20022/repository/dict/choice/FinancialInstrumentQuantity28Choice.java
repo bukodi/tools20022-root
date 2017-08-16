@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.FinancialInstrumentQuantity27Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * of money or percentage..
  */
 @PreviousVersion(FinancialInstrumentQuantity27Choice.class)
-public class FinancialInstrumentQuantity28Choice {
+public class FinancialInstrumentQuantity28Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

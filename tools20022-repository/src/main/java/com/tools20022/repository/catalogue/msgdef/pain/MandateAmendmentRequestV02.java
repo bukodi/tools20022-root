@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.MandateAmendmentRequestV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pain.MandateAmendmentRequestV03;
@@ -35,7 +37,9 @@ import java.util.Optional;
  */
 @PreviousVersion(MandateAmendmentRequestV01.class)
 @NextVersion(MandateAmendmentRequestV03.class)
-public class MandateAmendmentRequestV02 {
+public class MandateAmendmentRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader47 GroupHeader;
 	private MandateAmendment2 UnderlyingAmendmentDetails;

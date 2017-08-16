@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.TransactionOrError2Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * data cannot be retrieved.
  */
 @NextVersion(TransactionOrError2Choice.class)
-public class TransactionOrError1Choice {
+public class TransactionOrError1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

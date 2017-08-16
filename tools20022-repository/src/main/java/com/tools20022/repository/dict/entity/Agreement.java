@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.Jurisdiction;
 /**
  * Contractual details related to an agreement between parties.
  */
-public class Agreement {
+public class Agreement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODate DateSigned;
 	private Max350Text Description;

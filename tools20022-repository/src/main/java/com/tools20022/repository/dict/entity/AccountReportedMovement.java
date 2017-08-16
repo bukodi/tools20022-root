@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.CashAccount;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.CashAccount;
  * Provides statistical information on the number of movements and their value
  * for a particular account.
  */
-public class AccountReportedMovement {
+public class AccountReportedMovement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount MonthlyPaymentValue;
 	private CurrencyAndAmount MonthlyReceivedValue;

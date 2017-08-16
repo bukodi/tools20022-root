@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification48;
 import com.tools20022.repository.dict.msg.PartyIdentification109;
 import java.util.Optional;
@@ -23,7 +25,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * a third party a copy of a message for information using the relevant elements
  * in the Business Application Header.
  */
-public class SecuritiesStatusOrStatementQueryStatusAdvice002V04 {
+public class SecuritiesStatusOrStatementQueryStatusAdvice002V04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification48 QueryDetails;
 	private Optional<PartyIdentification109> AccountOwner;

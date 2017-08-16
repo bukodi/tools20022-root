@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.entity.Account;
 import com.tools20022.repository.dict.entity.Settlement;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.Settlement;
 /**
  * Role played by a party in a settlement process.
  */
-public class SettlementPartyRole extends Role {
+public class SettlementPartyRole extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Account SettlementAccount;
 	private Settlement Settlement;

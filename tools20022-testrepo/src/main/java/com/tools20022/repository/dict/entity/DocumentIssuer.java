@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 
 /**
  * Party that issues a document such as a bank guarantee or letter of /
@@ -9,5 +10,7 @@ import com.tools20022.metamodel.MMBusinessComponent;
  * certificate or the insurance company or its agent for an insurance
  * certificate.
  */
-public class DocumentIssuer implements InstanceOf<MMBusinessComponent> {
+public class DocumentIssuer extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

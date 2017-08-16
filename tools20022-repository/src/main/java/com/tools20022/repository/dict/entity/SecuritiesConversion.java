@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
@@ -25,7 +28,9 @@ import com.tools20022.repository.dict.codeset.PartyTypeCode;
  * Conversion exchange of securities, generally convertible bonds or preferred
  * equities, into another form of securities, usually common equities.
  */
-public class SecuritiesConversion {
+public class SecuritiesConversion extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing ConversionPrice;
 	private ISODateTime ConversionDate;

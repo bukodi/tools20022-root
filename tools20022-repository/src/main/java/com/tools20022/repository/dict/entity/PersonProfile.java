@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.ProvidedCode;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.codeset.KnowYourCustomerCheckTypeCode;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
 /**
  * Information to support Know Your Customer (KYC) processes.
  */
-public class PersonProfile {
+public class PersonProfile extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ProvidedCode ForeignStatusCertification;
 	private YesNoIndicator EmployeeTerminationIndicator;

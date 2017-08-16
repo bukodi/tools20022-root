@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Balance;
 import com.tools20022.repository.dict.entity.CashAccount;
 import com.tools20022.repository.dict.codeset.BalanceCounterpartyCode;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.entity.RegisteredContract;
  * a specific point in time. A cash balance is calculated from a sum of cash
  * credits minus a sum of cash debits.
  */
-public class CashBalance extends Balance {
+public class CashBalance extends Balance
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccount CashAccount;
 	private BalanceCounterpartyCode CalculationType;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CaseAssignment;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.msg.PaymentInstructionExtract;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.DebitAuthorisationDetails;
  * identification remains the same as in the original Request To Modify Payment
  * message and the element ReopenCaseIndication is set to 'Yes' or 'true'.
  */
-public class RequestToCancelPayment {
+public class RequestToCancelPayment
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case Case;

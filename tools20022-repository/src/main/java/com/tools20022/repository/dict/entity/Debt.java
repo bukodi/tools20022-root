@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.datatype.PaymentDirectionIndicator;
 import com.tools20022.repository.dict.datatype.ISODateTime;
@@ -25,7 +27,9 @@ import com.tools20022.repository.dict.codeset.DebtInstrumentSeniorityTypeCode;
  * Financial instruments evidencing moneys owed by the issuer to the holder on
  * terms as specified.
  */
-public class Debt extends Security {
+public class Debt extends Security
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PaymentDirectionIndicator PaymentDirectionIndicator;
 	private ISODateTime NextCallableDate;

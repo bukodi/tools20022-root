@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.entity.InvestmentFund;
 
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.InvestmentFund;
  * a company. It has several distinct sub-funds which in effect are traded as
  * individual investment funds.
  */
-public class UmbrellaFund {
+public class UmbrellaFund extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max350Text Name;
 	private InvestmentFund SubFund;

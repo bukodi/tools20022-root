@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.Cancellation2Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.Cancellation9Choice;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(Cancellation2Choice.class)
 @NextVersion(Cancellation9Choice.class)
-public class Cancellation5Choice {
+public class Cancellation5Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

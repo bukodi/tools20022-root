@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Pagination;
 import com.tools20022.repository.dict.msg.Report4;
 import com.tools20022.repository.dict.msg.SecuritiesAccount21;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * CopyDuplicate value is COPY), - re-send to a third party a copy of a message
  * for information (the CopyDuplicate value is CODU).
  */
-public class TotalPortfolioValuationReportV01 {
+public class TotalPortfolioValuationReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Report4 ReportGeneralDetails;

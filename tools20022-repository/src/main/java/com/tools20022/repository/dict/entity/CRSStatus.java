@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.CRSStatusCode;
 import com.tools20022.repository.dict.codeset.CountryCode;
 import com.tools20022.repository.dict.codeset.CRSSourceStatusCode;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.InvestmentAccountPartyRole;
 /**
  * Common Reporting Standard (CRS) status and the status source of the investor.
  */
-public class CRSStatus {
+public class CRSStatus extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CRSStatusCode CRSStatus;
 	private CountryCode ExceptionalReportingCountry;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.codeset.FlowDirectionTypeCode;
 import com.tools20022.repository.dict.entity.BookEntry;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.SecuritiesQuantity;
  * Cash movements from or to a fund as a result of investment funds
  * transactions, for example, subscriptions or redemptions.
  */
-public class FundsCashFlow {
+public class FundsCashFlow extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator ExceptionalCashFlowIndicator;
 	private FlowDirectionTypeCode FlowDirection;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Meeting;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
  * Information about the meeting, specifying the participation requirements and
  * the voting procedures.
  */
-public class IssuerMeeting extends Meeting {
+public class IssuerMeeting extends Meeting
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text IssuerMeetingIdentification;
 	private YesNoIndicator NomineePowerOfAttorneyIndicator;

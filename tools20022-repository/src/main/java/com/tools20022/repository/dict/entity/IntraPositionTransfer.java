@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesTransfer;
 import com.tools20022.repository.dict.entity.Reservation;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.SecuritiesBalance;
  * Transfer of securities from one sub-balance to another or from one balance
  * status to another.
  */
-public class IntraPositionTransfer extends SecuritiesTransfer {
+public class IntraPositionTransfer extends SecuritiesTransfer
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Reservation Reservation;
 	private CurrencyAndAmount CollateralAmount;

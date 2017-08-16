@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.InformationQualifier;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.Max350Text;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.System;
 /**
  * Details about business information related to a system.
  */
-public class SystemBusinessInformation {
+public class SystemBusinessInformation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InformationQualifier Qualifier;
 	private Max35Text Subject;

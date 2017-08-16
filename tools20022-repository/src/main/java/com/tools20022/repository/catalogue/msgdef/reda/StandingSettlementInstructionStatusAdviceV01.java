@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.reda;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.EffectiveDate1;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.AccountIdentification26;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * or, - a rejected status, or, - a pending processing status, or, - a
  * proprietary status.
  */
-public class StandingSettlementInstructionStatusAdviceV01 {
+public class StandingSettlementInstructionStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<EffectiveDate1> EffectiveDateDetails;
 	private AccountIdentification26 AccountIdentification;

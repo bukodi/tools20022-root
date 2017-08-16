@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.PaymentPartyRole;
 import com.tools20022.repository.dict.entity.IntermediaryAgentRole;
 import com.tools20022.repository.dict.datatype.Number;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.datatype.Number;
  * Agent between the debtor's agent and the creditor's agent. There can be
  * several intermediary agents specified for the execution of a payment.
  */
-public class IntermediaryAgentRole extends PaymentPartyRole {
+public class IntermediaryAgentRole extends PaymentPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private IntermediaryAgentRole IntermediaryAgentRole;
 	private IntermediaryAgentRole NextParty;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CaseAssignment;
 import com.tools20022.repository.dict.msg.Case;
 import com.tools20022.repository.dict.msg.PaymentInstructionExtract;
@@ -22,7 +24,7 @@ import java.util.Optional;
  * case will be assigned to the sender of the payment instruction, before
  * following the route of the payment instruction.
  */
-public class ClaimNonReceipt {
+public class ClaimNonReceipt implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case Case;

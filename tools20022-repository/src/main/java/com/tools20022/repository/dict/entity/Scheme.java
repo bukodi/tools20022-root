@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.GenericIdentification;
 import com.tools20022.repository.dict.entity.Rating;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.entity.AssetClassification;
 /**
  * Information regarding an enumerated code list and its owner.
  */
-public class Scheme {
+public class Scheme extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text NameShort;
 	private Max35Text Code;

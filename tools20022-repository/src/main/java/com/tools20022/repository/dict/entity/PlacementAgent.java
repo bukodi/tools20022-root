@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
  * partners such as fund of funds, pension funds, insurance companies and family
  * offices.
  */
-public class PlacementAgent extends InvestmentFundPartyRole {
+public class PlacementAgent extends InvestmentFundPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.RegisteredContract5;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * that involves foreign currency transactions with non residents.
  */
 @NextVersion(RegisteredContract5.class)
-public class RegisteredContract4 {
+public class RegisteredContract4
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

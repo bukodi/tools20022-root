@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Type of signature form.
  */
-public class SignatureTypeCode {
+public class SignatureTypeCode implements GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.System;
 import com.tools20022.repository.dict.entity.AcceptorConfiguration;
 import com.tools20022.repository.dict.entity.NetworkAccess;
@@ -15,7 +17,9 @@ import com.tools20022.repository.dict.entity.TerminalManagementAction;
  * terminal, including monitoring, software update, configuration parameters
  * management.
  */
-public class TerminalManagementSystem extends System {
+public class TerminalManagementSystem extends System
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AcceptorConfiguration AcceptorConfiguration;
 	private NetworkAccess NetworkAccess;

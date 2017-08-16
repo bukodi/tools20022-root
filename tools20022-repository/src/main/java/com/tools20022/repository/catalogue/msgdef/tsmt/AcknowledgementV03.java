@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import java.util.Optional;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.PendingActivity2;
  * The message is sent when the matching application does not send any other
  * message in response to a received message.
  */
-public class AcknowledgementV03 {
+public class AcknowledgementV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 AcknowledgementIdentification;
 	private Optional<SimpleIdentificationInformation> TransactionIdentification;

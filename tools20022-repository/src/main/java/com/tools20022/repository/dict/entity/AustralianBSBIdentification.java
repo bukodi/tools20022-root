@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ExtensiveBranchNetworkIdentifier;
 import com.tools20022.repository.dict.datatype.SmallNetworkIdentifier;
 import com.tools20022.repository.dict.entity.CashClearingSystemMember;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.CashClearingSystemMember;
  * institutions on the Australian national clearing system. The code is assigned
  * by the Australian Payments Clearing Association (APCA).
  */
-public class AustralianBSBIdentification {
+public class AustralianBSBIdentification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ExtensiveBranchNetworkIdentifier ExtensiveBranchNetworkIdentification;
 	private SmallNetworkIdentifier SmallNetworkIdentification;

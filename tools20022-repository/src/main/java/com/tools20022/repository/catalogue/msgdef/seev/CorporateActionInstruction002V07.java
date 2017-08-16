@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.DocumentIdentification37;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * message for information (the sub-function of the message is Copy Duplicate),
  * using the relevant elements in the business application header (BAH).
  */
-public class CorporateActionInstruction002V07 {
+public class CorporateActionInstruction002V07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<YesNoIndicator> ChangeInstructionIndicator;
 	private Optional<DocumentIdentification37> CancelledInstructionIdentification;

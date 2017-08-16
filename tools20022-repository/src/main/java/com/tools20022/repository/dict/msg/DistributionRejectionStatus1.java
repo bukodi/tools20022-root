@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides information about the rejection status of a global movement.
  */
-public class DistributionRejectionStatus1 {
+public class DistributionRejectionStatus1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

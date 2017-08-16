@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.secl;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Statement31;
 import com.tools20022.repository.dict.msg.Pagination;
 import com.tools20022.repository.dict.choice.PartyIdentification35Choice;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * Usage The TradeLegStatement message may be either sent: - during the day (to
  * report trades execution by batch) or - as an end of day report.
  */
-public class TradeLegStatementV03 {
+public class TradeLegStatementV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Statement31 StatementParameters;
 	private Pagination Pagination;

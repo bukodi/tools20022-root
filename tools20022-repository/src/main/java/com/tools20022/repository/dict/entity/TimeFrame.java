@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Number;
 import com.tools20022.repository.dict.entity.InvestmentFundClassProcessingCharacteristics;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.datatype.Max350Text;
  * TimeFrame or period concept that allows definition of a period as number of
  * days before or after a defined activity.
  */
-public class TimeFrame {
+public class TimeFrame extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Number TradeMinus;
 	private Number RenunciationMinus;

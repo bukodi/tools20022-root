@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.AmountType3Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -9,5 +11,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * initiating party.
  */
 @PreviousVersion(AmountType3Choice.class)
-public class AmountType4Choice {
+public class AmountType4Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

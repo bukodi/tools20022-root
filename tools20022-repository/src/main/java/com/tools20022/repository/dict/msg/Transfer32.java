@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Transfer21;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -7,5 +9,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * Parameters applied to the settlement of a security transfer.
  */
 @PreviousVersion(Transfer21.class)
-public class Transfer32 {
+public class Transfer32 implements GeneratedRepoBean<MMMessageComponent> {
 }

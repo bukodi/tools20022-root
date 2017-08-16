@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.InformationTypeFormat1Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * type format required.
  */
 @PreviousVersion(InformationTypeFormat1Choice.class)
-public class InformationTypeFormat4Choice {
+public class InformationTypeFormat4Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

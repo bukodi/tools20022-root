@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.AccountContract;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.InvestmentAccount;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.ManagedAccountProduct;
 /**
  * Contract defining the related investment account.
  */
-public class InvestmentAccountContract extends AccountContract {
+public class InvestmentAccountContract extends AccountContract
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text LetterIntentReference;
 	private Max35Text AccumulationRightReference;

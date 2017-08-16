@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMIdentifierSet;
 
 /**
@@ -9,5 +9,5 @@ import com.tools20022.metamodel.MMIdentifierSet;
  * European Association for Numbering (EAN) numbering scheme rules. The number
  * is used to retrieve the detailed information linked to it.
  */
-public class EANGLNIdentifier implements InstanceOf<MMIdentifierSet> {
+public class EANGLNIdentifier implements GeneratedRepoBean<MMIdentifierSet> {
 }

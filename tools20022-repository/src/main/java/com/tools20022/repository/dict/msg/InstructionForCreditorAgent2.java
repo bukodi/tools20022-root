@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.InstructionForCreditorAgent4;
 import com.tools20022.core.repo.NextVersion;
 
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  * the creditor's agent, or may be information required by the creditor's agent.
  */
 @NextVersion(InstructionForCreditorAgent4.class)
-public class InstructionForCreditorAgent2 {
+public class InstructionForCreditorAgent2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.ModelForm;
 import com.tools20022.repository.dict.codeset.GovernanceIdentificationCode;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.Jurisdiction;
  * Rules governing an undertaking such as a guarantee or standby letter of
  * credit.
  */
-public class GovernanceRules {
+public class GovernanceRules extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ModelForm ModelForm;
 	private GovernanceIdentificationCode Identification;

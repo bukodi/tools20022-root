@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CashInOrOut7Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -7,5 +9,5 @@ import com.tools20022.core.repo.NextVersion;
  * Choice of a payment instrument for the cash-in flow or cash-out flow.
  */
 @NextVersion(CashInOrOut7Choice.class)
-public class CashInOrOut5Choice {
+public class CashInOrOut5Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

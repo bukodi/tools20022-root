@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catm;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catm.AcceptorConfigurationUpdateV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header4;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType1;
  * parameters needed for the retailer protocol settings of the POI system.
  */
 @NextVersion(AcceptorConfigurationUpdateV02.class)
-public class AcceptorConfigurationUpdateV01 {
+public class AcceptorConfigurationUpdateV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header4 Header;
 	private AcceptorConfiguration1 AcceptorConfiguration;

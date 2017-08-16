@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Amendment3;
 import com.tools20022.repository.dict.datatype.Max2000Text;
 import java.util.List;
@@ -17,7 +19,9 @@ import java.util.Optional;
  * conditions. It may also be used to request termination or cancellation of the
  * undertaking.
  */
-public class UndertakingAmendmentRequestV01 {
+public class UndertakingAmendmentRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Amendment3 UndertakingAmendmentRequestDetails;
 	private List<Max2000Text> InstructionsToBank;

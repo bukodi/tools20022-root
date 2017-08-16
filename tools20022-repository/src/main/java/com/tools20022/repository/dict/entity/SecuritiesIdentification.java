@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.datatype.ISINOct2015Identifier;
 import com.tools20022.repository.dict.datatype.RICIdentifier;
@@ -27,7 +30,9 @@ import com.tools20022.repository.dict.datatype.Max70Text;
  * Unique and unambiguous identifier of a security, assigned under a formal or
  * proprietary identification scheme.
  */
-public class SecuritiesIdentification {
+public class SecuritiesIdentification extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Security IdentifiedSecurity;
 	private ISINOct2015Identifier SecurityIdentification;

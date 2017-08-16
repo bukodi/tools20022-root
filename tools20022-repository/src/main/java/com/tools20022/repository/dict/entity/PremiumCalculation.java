@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CurrencyOption;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.datatype.BaseOneRate;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.datatype.BaseOneRate;
  * Specifies the amount of a premium on a currency option together with its
  * calculation method.
  */
-public class PremiumCalculation {
+public class PremiumCalculation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyOption Option;
 	private PercentageRate PercentageOfCallAmount;

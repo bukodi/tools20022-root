@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.ATMCassetteCounters1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * Counters of media inside an ATM cassette.
  */
 @PreviousVersion(ATMCassetteCounters1.class)
-public class ATMCassetteCounters2 {
+public class ATMCassetteCounters2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

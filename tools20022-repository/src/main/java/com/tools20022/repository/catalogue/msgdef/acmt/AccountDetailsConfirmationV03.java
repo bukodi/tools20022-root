@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountDetailsConfirmationV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountDetailsConfirmationV04;
@@ -39,7 +41,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  */
 @PreviousVersion(AccountDetailsConfirmationV02.class)
 @NextVersion(AccountDetailsConfirmationV04.class)
-public class AccountDetailsConfirmationV03 {
+public class AccountDetailsConfirmationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<InvestmentFundOrder4> OrderReference;

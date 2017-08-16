@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.LinkedCorporateAction1;
 import com.tools20022.repository.dict.msg.CorporateActionNotification1;
@@ -29,7 +31,9 @@ import com.tools20022.repository.dict.msg.CorporateActionNarrative2;
  * line with both the ISO 15022 messages used in the flow between the CSD and
  * its clients, and the ISO 20022 proxy voting messages.
  */
-public class AgentCANotificationAdviceV01 {
+public class AgentCANotificationAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private LinkedCorporateAction1 NotificationTypeAndLinkage;

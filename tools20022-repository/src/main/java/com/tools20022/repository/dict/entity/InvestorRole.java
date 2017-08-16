@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.TradePartyRole;
 import com.tools20022.repository.dict.codeset.RankCode;
 import com.tools20022.repository.dict.codeset.EligibilityCode;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.codeset.InvestorTypeCode;
  * Party that makes investment decisions. Identifies the beneficiary or its
  * broker.
  */
-public class InvestorRole extends TradePartyRole {
+public class InvestorRole extends TradePartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private RankCode IndividualInvestor;
 	private RankCode CorporateInvestor;

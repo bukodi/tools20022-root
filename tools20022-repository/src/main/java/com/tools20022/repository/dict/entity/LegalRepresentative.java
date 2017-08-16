@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 
 /**
@@ -8,5 +10,7 @@ import com.tools20022.repository.dict.entity.Role;
  * assigned by the Board, identified in the by-laws of the organisation, be
  * publicly announced in the official journal of a country.
  */
-public class LegalRepresentative extends Role {
+public class LegalRepresentative extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

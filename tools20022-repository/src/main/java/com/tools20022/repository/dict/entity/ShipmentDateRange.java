@@ -1,12 +1,17 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.Transport;
 
 /**
  * Specifies a shipment period or a shipment date.
  */
-public class ShipmentDateRange {
+public class ShipmentDateRange extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime LatestShipmentDate;
 	private Transport RelatedTransport;

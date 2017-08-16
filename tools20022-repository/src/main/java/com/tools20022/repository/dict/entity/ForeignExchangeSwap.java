@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.TreasuryTrade;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.ForeignExchangeTrade;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.ForeignExchangeTrade;
  * Combination of two foreign exchange trades, in opposite directions, for
  * different value dates and for the same pair(s) of currencies.
  */
-public class ForeignExchangeSwap extends TreasuryTrade {
+public class ForeignExchangeSwap extends TreasuryTrade
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text LinkSwapIdentification;
 	private ForeignExchangeTrade SwapLeg;

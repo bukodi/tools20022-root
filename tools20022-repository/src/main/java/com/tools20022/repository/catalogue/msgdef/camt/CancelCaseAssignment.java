@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.CancelCaseAssignmentV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.Case;
  * context it is incorrect to use the Cancel Case Assignment message.
  */
 @NextVersion(CancelCaseAssignmentV02.class)
-public class CancelCaseAssignment {
+public class CancelCaseAssignment
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment Assignment;
 	private Case Case;

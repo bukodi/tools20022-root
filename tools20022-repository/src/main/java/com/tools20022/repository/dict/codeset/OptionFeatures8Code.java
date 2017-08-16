@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.OptionFeatures5Code;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.codeset.OptionFeatures10Code;
@@ -10,5 +12,5 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(OptionFeatures5Code.class)
 @NextVersion(OptionFeatures10Code.class)
-public class OptionFeatures8Code {
+public class OptionFeatures8Code implements GeneratedRepoBean<MMCodeSet> {
 }

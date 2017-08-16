@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentAccountService;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
 import com.tools20022.repository.dict.codeset.RoundingDirectionCode;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.SecuritiesPegOrderInstruction;
 /**
  * Parameters applied to a fractional number.
  */
-public class RoundingParameters {
+public class RoundingParameters extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InvestmentAccountService InvestmentAccountService;
 	private DecimalNumber RoundingModulus;

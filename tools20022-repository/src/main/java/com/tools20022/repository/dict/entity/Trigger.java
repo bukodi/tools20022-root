@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.AutomaticVariation;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
 /**
  * Trigger that causes the variation to come into effect.
  */
-public class Trigger {
+public class Trigger extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AutomaticVariation AutomaticVariation;
 	private ISODate TriggerDate;

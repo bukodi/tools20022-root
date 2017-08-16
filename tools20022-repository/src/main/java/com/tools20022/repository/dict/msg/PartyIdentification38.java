@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Identification of an entity involved in an activity.
  */
-public class PartyIdentification38 {
+public class PartyIdentification38
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

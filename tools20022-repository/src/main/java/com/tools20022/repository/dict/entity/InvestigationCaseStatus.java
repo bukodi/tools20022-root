@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.codeset.CaseStatusCode;
 import com.tools20022.repository.dict.entity.InvestigationCase;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.InvestigationCase;
 /**
  * Status of an investigation case.
  */
-public class InvestigationCaseStatus extends Status {
+public class InvestigationCaseStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CaseStatusCode CaseStatus;
 	private InvestigationCase InvestigationCase;

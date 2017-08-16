@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.ExtendOrPayQuery1;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * (applicant or obligor), to request the applicant's response to a beneficiary
  * request to extend or pay.
  */
-public class ExtendOrPayRequestV01 {
+public class ExtendOrPayRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ExtendOrPayQuery1 ExtendOrPayRequestDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

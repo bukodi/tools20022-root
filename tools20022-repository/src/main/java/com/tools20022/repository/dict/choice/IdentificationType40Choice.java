@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.IdentificationType43Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * alternate identification.
  */
 @NextVersion(IdentificationType43Choice.class)
-public class IdentificationType40Choice {
+public class IdentificationType40Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesSettlementTransactionAuditTrailReportV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.SecuritiesSettlementTransactionAuditTrailReportV03;
@@ -46,7 +48,9 @@ import com.tools20022.repository.dict.msg.StatusTrail4;
  */
 @PreviousVersion(SecuritiesSettlementTransactionAuditTrailReportV01.class)
 @NextVersion(SecuritiesSettlementTransactionAuditTrailReportV03.class)
-public class SecuritiesSettlementTransactionAuditTrailReportV02 {
+public class SecuritiesSettlementTransactionAuditTrailReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Optional<Identification1> QueryReference;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CardholderRole;
 import com.tools20022.repository.dict.codeset.AuthenticationMethodCode;
 import com.tools20022.repository.dict.codeset.AuthenticationEntityCode;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.codeset.AuthenticationResultCode;
 /**
  * Data related to the authentication of the cardholder.
  */
-public class Authentication {
+public class Authentication extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CardholderRole Cardholder;
 	private AuthenticationMethodCode AuthenticationMethod;

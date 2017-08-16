@@ -1,7 +1,13 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the result of the technical validation carried out by the receiver
  * (forwarding or first agent).
  */
-public class TechnicalValidationStatus1Code {
+public class TechnicalValidationStatus1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

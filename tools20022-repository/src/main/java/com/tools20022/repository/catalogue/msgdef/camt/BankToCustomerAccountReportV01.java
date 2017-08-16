@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.BankToCustomerAccountReportV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader23;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.AccountReport9;
  * Account Statement message should be used.
  */
 @NextVersion(BankToCustomerAccountReportV02.class)
-public class BankToCustomerAccountReportV01 {
+public class BankToCustomerAccountReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader23 GroupHeader;
 	private AccountReport9 Report;

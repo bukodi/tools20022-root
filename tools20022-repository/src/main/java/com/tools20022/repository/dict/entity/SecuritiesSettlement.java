@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Settlement;
 import com.tools20022.repository.dict.entity.SecuritiesTransfer;
 import com.tools20022.repository.dict.datatype.ISODateTime;
@@ -35,7 +37,9 @@ import com.tools20022.repository.dict.codeset.DeliveryReceiptTypeCode;
  * instruction to deliver or receive securities, involving the payment of an
  * amount of money or not.
  */
-public class SecuritiesSettlement extends Settlement {
+public class SecuritiesSettlement extends Settlement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesTransfer TransferOperation;
 	private ISODateTime SettlementDate;

@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Certificate record in which all currency control transactions are registered.
  */
-public class TransactionCertificateRecord1 {
+public class TransactionCertificateRecord1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

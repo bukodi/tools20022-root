@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Trade;
 import com.tools20022.repository.dict.entity.SecuritiesTradeIdentification;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.codeset.SecuritiesTransactionTypeV2Code;
  * securities, the lending of securities and the transactions related to
  * investment funds.
  */
-public class SecuritiesTrade extends Trade {
+public class SecuritiesTrade extends Trade
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesTradeIdentification SecuritiesTradeRelatedIdentifications;
 	private CurrencyAndAmount TradeAmount;

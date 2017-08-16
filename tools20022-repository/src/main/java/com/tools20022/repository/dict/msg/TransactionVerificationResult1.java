@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.TransactionVerificationResult2;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * authorisation.
  */
 @NextVersion(TransactionVerificationResult2.class)
-public class TransactionVerificationResult1 {
+public class TransactionVerificationResult1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

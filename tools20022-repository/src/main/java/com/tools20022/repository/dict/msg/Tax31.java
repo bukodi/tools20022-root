@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Tax14;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Tax32;
@@ -12,5 +14,5 @@ import com.tools20022.repository.dict.msg.Tax30;
 @PreviousVersion(Tax14.class)
 @NextVersion(Tax32.class)
 @NextVersion(Tax30.class)
-public class Tax31 {
+public class Tax31 implements GeneratedRepoBean<MMMessageComponent> {
 }

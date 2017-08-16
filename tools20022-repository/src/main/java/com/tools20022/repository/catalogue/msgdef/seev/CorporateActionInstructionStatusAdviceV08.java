@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionStatusAdviceV07;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.DocumentIdentification9;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * relevant elements in the business application header (BAH).
  */
 @PreviousVersion(CorporateActionInstructionStatusAdviceV07.class)
-public class CorporateActionInstructionStatusAdviceV08 {
+public class CorporateActionInstructionStatusAdviceV08
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<DocumentIdentification9> InstructionIdentification;
 	private Optional<DocumentIdentification33> OtherDocumentIdentification;

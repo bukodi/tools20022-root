@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.TerminalManagementDataSet4;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.TerminalManagementDataSet13;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(TerminalManagementDataSet4.class)
 @NextVersion(TerminalManagementDataSet13.class)
-public class TerminalManagementDataSet9 {
+public class TerminalManagementDataSet9
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

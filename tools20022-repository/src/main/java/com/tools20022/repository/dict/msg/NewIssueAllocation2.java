@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.NewIssueAllocation1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * allocation for a hedge fund.
  */
 @PreviousVersion(NewIssueAllocation1.class)
-public class NewIssueAllocation2 {
+public class NewIssueAllocation2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

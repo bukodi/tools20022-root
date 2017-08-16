@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.datatype;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMAmount;
+
 /**
  * A number of monetary units specified in an active or a historic currency
  * where the unit of currency is explicit and compliant with ISO 4217. The
@@ -6,5 +10,7 @@ package com.tools20022.repository.dict.datatype;
  * ISO 4217: It must be lesser than or equal to 13. Note: The decimal separator
  * is a dot.
  */
-public class RestrictedFINActiveOrHistoricCurrencyAnd13DecimalAmount {
+public class RestrictedFINActiveOrHistoricCurrencyAnd13DecimalAmount
+		implements
+			GeneratedRepoBean<MMAmount> {
 }

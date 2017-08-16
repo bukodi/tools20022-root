@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.FinancialDocument;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.codeset.DebitCreditCode;
  * General information about an invoice, such as number, issue date date and
  * monetary amounts.
  */
-public class Invoice extends FinancialDocument {
+public class Invoice extends FinancialDocument
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount CreditDebitNoteAmount;
 	private CurrencyAndAmount TotalTaxAmount;

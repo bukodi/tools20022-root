@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.PartyIdentification43;
 import java.util.Optional;
 import com.tools20022.repository.dict.datatype.ISODate;
@@ -21,7 +23,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature2;
  * confirmation details. It may also be used to advise the proposed termination
  * or cancellation of the undertaking.
  */
-public class UndertakingAmendmentAdviceV01 {
+public class UndertakingAmendmentAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private PartyIdentification43 AdvisingParty;
 	private Optional<PartyIdentification43> SecondAdvisingParty;

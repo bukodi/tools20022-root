@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.DecimalNumber;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.ContactPoint;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.entity.Meeting;
 /**
  * Specifies the different voting types, channels and premium.
  */
-public class VotingCondition {
+public class VotingCondition extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DecimalNumber SecuritiesQuantityRequiredToVote;
 	private YesNoIndicator PartialVoteAllowed;

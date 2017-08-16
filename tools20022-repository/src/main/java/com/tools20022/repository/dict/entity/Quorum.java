@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.Meeting;
  * Specifies whether a quorum is required or not together with the quorum
  * parameters.
  */
-public class Quorum {
+public class Quorum extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text Quantity;
 	private PercentageRate Percentage;

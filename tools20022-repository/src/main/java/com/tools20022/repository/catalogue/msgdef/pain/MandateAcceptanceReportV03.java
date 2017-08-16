@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.MandateAcceptanceReportV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.pain.MandateAcceptanceReportV04;
@@ -27,7 +29,9 @@ import java.util.Optional;
  */
 @PreviousVersion(MandateAcceptanceReportV02.class)
 @NextVersion(MandateAcceptanceReportV04.class)
-public class MandateAcceptanceReportV03 {
+public class MandateAcceptanceReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader47 GroupHeader;
 	private MandateAcceptance3 UnderlyingAcceptanceDetails;

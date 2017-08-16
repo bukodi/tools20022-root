@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.AdditionalBusinessProcessFormat3Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.AdditionalBusinessProcessFormat11Choice;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(AdditionalBusinessProcessFormat3Choice.class)
 @NextVersion(AdditionalBusinessProcessFormat11Choice.class)
-public class AdditionalBusinessProcessFormat7Choice {
+public class AdditionalBusinessProcessFormat7Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

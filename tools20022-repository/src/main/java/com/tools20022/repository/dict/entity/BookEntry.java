@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CreditInstrument;
 import com.tools20022.repository.dict.entity.CashEntry;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.CashSettlement;
  * Movement of cash between two accounts. One account is debited and the other
  * account is credited.
  */
-public class BookEntry extends CreditInstrument {
+public class BookEntry extends CreditInstrument
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashEntry CashEntry;
 	private CashEntry DebitEntry;

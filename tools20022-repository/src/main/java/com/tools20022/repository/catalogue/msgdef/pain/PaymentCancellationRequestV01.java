@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.CustomerPaymentCancellationRequestV01;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader7;
@@ -26,7 +28,9 @@ import java.util.Optional;
  * urn:iso:std:iso:20022:tech:xsd:pain.006.001.01
  */
 @NextVersion(CustomerPaymentCancellationRequestV01.class)
-public class PaymentCancellationRequestV01 {
+public class PaymentCancellationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader7 GroupHeader;
 	private OriginalGroupInformation4 OriginalGroupInformation;

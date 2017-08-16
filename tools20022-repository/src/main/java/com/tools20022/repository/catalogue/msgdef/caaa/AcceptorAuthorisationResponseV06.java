@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caaa;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caaa.AcceptorAuthorisationResponseV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header30;
@@ -13,7 +15,9 @@ import java.util.Optional;
  * made by issuer about the payment transaction.
  */
 @PreviousVersion(AcceptorAuthorisationResponseV05.class)
-public class AcceptorAuthorisationResponseV06 {
+public class AcceptorAuthorisationResponseV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header30 Header;
 	private AcceptorAuthorisationResponse6 AuthorisationResponse;

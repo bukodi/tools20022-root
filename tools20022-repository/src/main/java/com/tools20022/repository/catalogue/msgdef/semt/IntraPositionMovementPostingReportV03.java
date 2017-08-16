@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementPostingReportV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementPostingReportV04;
@@ -36,7 +38,9 @@ import com.tools20022.repository.dict.msg.FinancialInstrumentDetails10;
  */
 @PreviousVersion(IntraPositionMovementPostingReportV02.class)
 @NextVersion(IntraPositionMovementPostingReportV04.class)
-public class IntraPositionMovementPostingReportV03 {
+public class IntraPositionMovementPostingReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement15 StatementGeneralDetails;

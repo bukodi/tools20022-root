@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.entity.Account;
 import com.tools20022.repository.dict.codeset.TradingCapacityCode;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.Trade;
  * Trading party in a commercial, securities, treasury trade. This role may also
  * represent parties which play different intermediary roles in a trade.
  */
-public class TradePartyRole extends Role {
+public class TradePartyRole extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Account Account;
 	private TradingCapacityCode TradingPartyCapacity;

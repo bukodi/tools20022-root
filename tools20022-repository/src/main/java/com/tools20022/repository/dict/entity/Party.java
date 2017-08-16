@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.RolePlayer;
 import com.tools20022.repository.dict.entity.ContactPoint;
 import com.tools20022.repository.dict.entity.PartyIdentificationInformation;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.entity.Security;
 /**
  * Entity involved in an activity.
  */
-public class Party extends RolePlayer {
+public class Party extends RolePlayer
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ContactPoint ContactPoint;
 	private PartyIdentificationInformation Identification;

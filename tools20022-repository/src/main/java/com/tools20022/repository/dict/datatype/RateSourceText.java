@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.datatype;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMText;
+
 /**
  * Specifies a rate source.
  * 
@@ -8,5 +12,5 @@ package com.tools20022.repository.dict.datatype;
  * Emerging Markets Traders Association and the Foreign Exchange Committee) as
  * amended and supplemented from time to time.
  */
-public class RateSourceText {
+public class RateSourceText implements GeneratedRepoBean<MMText> {
 }

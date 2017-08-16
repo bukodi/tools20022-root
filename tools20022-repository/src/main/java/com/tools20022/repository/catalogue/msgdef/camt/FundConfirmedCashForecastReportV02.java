@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.FundConfirmedCashForecastReportV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference3;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * after the cut-off time and/or the price valuation of the fund.
  */
 @NextVersion(FundConfirmedCashForecastReportV03.class)
-public class FundConfirmedCashForecastReportV02 {
+public class FundConfirmedCashForecastReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AdditionalReference3> PoolReference;
 	private Optional<AdditionalReference3> PreviousReference;

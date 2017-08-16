@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.FinancialService;
 import com.tools20022.repository.dict.entity.AccountContract;
 import com.tools20022.repository.dict.entity.Reservation;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.Charges;
  * Services linked to an account which are available to the account owner or to
  * the holder of a mandate.
  */
-public class AccountService extends FinancialService {
+public class AccountService extends FinancialService
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AccountContract AccountContract;
 	private Reservation Reservation;

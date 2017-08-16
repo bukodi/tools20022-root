@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.AggregateBalanceInformation13;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.AggregateBalanceInformation22;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(AggregateBalanceInformation13.class)
 @NextVersion(AggregateBalanceInformation22.class)
-public class AggregateBalanceInformation17 {
+public class AggregateBalanceInformation17
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.UndertakingDemandWithdrawal1;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
 import java.util.Optional;
@@ -11,7 +13,9 @@ import java.util.Optional;
  * to withdraw its demand under the demand guarantee or standby letter of
  * credit.
  */
-public class DemandWithdrawalNotificationV01 {
+public class DemandWithdrawalNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private UndertakingDemandWithdrawal1 DemandWithdrawalNotificationDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.StandingSettlementInstruction;
 import com.tools20022.repository.dict.codeset.StandingInstructionTypeCode;
 import com.tools20022.repository.dict.codeset.StandingInstructionGrossNetCode;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.entity.Security;
  */
 public class AgentCorporateActionStandingInstruction
 		extends
-			StandingSettlementInstruction {
+			StandingSettlementInstruction
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private StandingInstructionTypeCode StandingInstructionType;
 	private StandingInstructionGrossNetCode GrossOrNetIndicator;

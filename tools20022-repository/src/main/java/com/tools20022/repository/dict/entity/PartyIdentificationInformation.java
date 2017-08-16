@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.GenericIdentification;
 import com.tools20022.repository.dict.entity.Party;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.datatype.LEIIdentifier;
 /**
  * Unique and unambiguous way to identify a party
  */
-public class PartyIdentificationInformation {
+public class PartyIdentificationInformation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private GenericIdentification OtherIdentification;
 	private Party IdentifiedParty;

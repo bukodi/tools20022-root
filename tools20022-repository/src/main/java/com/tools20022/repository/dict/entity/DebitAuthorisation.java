@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.entity.PaymentInvestigationCaseResolution;
  * cancelled payment. The authoriser is the party whose account was credited as
  * the result of a payment instruction.
  */
-public class DebitAuthorisation {
+public class DebitAuthorisation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODate ValueDateToDebit;
 	private YesNoIndicator DebitAuthorisationDecision;

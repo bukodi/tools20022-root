@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.NewSecuritiesIssuanceType3Code;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * non-defeased.
  */
 @PreviousVersion(NewSecuritiesIssuanceType3Code.class)
-public class NewSecuritiesIssuanceType6Code {
+public class NewSecuritiesIssuanceType6Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

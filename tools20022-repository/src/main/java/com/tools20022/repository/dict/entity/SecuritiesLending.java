@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesFinancing;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.entity.SecuritiesDeliveryObligation;
  * payment for the loan, the parties negotiate a fee, quoted as an annualised
  * percentage of the value of the loaned securities.
  */
-public class SecuritiesLending extends SecuritiesFinancing {
+public class SecuritiesLending extends SecuritiesFinancing
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount BorrowingFee;
 	private YesNoIndicator CallableTradeIndicator;

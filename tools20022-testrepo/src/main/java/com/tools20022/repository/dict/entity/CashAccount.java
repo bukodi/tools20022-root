@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.CashAccountTypeCode;
 import com.tools20022.repository.dict.codeset.AccountLevelCode;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
@@ -9,7 +10,9 @@ import com.tools20022.repository.dict.codeset.CurrencyCode;
 /**
  * Account to or from which a cash entry is made.
  */
-public class CashAccount implements InstanceOf<MMBusinessComponent> {
+public class CashAccount extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccountTypeCode CashAccountType;
 	private AccountLevelCode Level;

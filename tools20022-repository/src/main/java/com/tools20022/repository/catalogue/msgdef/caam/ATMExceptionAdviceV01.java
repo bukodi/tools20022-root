@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caam;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header32;
 import com.tools20022.repository.dict.msg.ContentInformationType10;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * The ATMExceptionAdvice message is sent by an ATM to an acquirer or its agent
  * to inform of that an exception occurred outside a service.
  */
-public class ATMExceptionAdviceV01 {
+public class ATMExceptionAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header32 Header;
 	private Optional<ContentInformationType10> ProtectedATMExceptionAdvice;

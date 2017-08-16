@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.codeset.ChoiceCode;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.datatype.ISODateTime;
  * Security which forms a component of another security, for example,
  * underlying.
  */
-public class ComponentSecurity {
+public class ComponentSecurity extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DateTimePeriod SeparationPeriod;
 	private Security Security;

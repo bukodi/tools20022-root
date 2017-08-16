@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Agreement;
 import com.tools20022.repository.dict.entity.CollateralAgreement;
 import com.tools20022.repository.dict.codeset.AgreementFrameworkCode;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.codeset.CountryCode;
  * Agreement which defines the framework of a contract between two trading
  * parties in different domains such as collateral, derivatives, trade..
  */
-public class MasterAgreement extends Agreement {
+public class MasterAgreement extends Agreement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CollateralAgreement CollateralAgreement;
 	private AgreementFrameworkCode MasterAgreementType;

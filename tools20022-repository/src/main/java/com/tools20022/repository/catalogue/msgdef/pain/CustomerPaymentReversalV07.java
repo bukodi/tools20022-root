@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.CustomerPaymentReversalV06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.GroupHeader56;
@@ -21,7 +23,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * cross-border scenarios.
  */
 @PreviousVersion(CustomerPaymentReversalV06.class)
-public class CustomerPaymentReversalV07 {
+public class CustomerPaymentReversalV07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader56 GroupHeader;
 	private OriginalGroupHeader3 OriginalGroupInformation;

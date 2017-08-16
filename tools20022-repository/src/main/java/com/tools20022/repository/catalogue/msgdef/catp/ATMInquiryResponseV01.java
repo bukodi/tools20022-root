@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catp.ATMInquiryResponseV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.Header20;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType15;
  * in the ATMInquiryRequest.
  */
 @NextVersion(ATMInquiryResponseV02.class)
-public class ATMInquiryResponseV01 {
+public class ATMInquiryResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header20 Header;
 	private Optional<ContentInformationType10> ProtectedATMInquiryResponse;

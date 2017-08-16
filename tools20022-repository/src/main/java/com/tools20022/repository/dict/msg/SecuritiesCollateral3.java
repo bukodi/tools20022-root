@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.SecuritiesCollateral2;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.SecuritiesCollateral4;
@@ -12,5 +14,7 @@ import com.tools20022.repository.dict.msg.SecuritiesCollateral5;
 @PreviousVersion(SecuritiesCollateral2.class)
 @NextVersion(SecuritiesCollateral4.class)
 @NextVersion(SecuritiesCollateral5.class)
-public class SecuritiesCollateral3 {
+public class SecuritiesCollateral3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

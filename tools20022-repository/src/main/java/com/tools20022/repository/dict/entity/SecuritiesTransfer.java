@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ObligationFulfilment;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.entity.SecuritiesTradeStatus;
  * delivered/debited from a securities account and received/credited to the
  * designated securities account.
  */
-public class SecuritiesTransfer extends ObligationFulfilment {
+public class SecuritiesTransfer extends ObligationFulfilment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text Identification;
 	private SecuritiesQuantity TransferredQuantity;

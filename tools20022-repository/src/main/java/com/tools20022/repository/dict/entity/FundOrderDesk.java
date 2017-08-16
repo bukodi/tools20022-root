@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.InvestmentAccount;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.InvestmentAccount;
 /**
  * Principal entity appointed by the fund to which orders should be submitted.
  */
-public class FundOrderDesk extends InvestmentFundPartyRole {
+public class FundOrderDesk extends InvestmentFundPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator MainFundOrderDeskIndicator;
 	private InvestmentAccount MainFundOrderDeskAccount;

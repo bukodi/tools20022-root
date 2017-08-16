@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.pain.MandateCancellationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader31;
@@ -23,7 +25,9 @@ import com.tools20022.repository.dict.msg.MandateCancellation1;
  * scenarios.
  */
 @NextVersion(MandateCancellationRequestV02.class)
-public class MandateCancellationRequestV01 {
+public class MandateCancellationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader31 GroupHeader;
 	private MandateCancellation1 UnderlyingCancellationDetails;

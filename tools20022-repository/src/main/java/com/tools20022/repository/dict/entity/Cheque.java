@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.FinancialDocument;
 import com.tools20022.repository.dict.entity.ChequeIssue;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.entity.CashAccount;
  * amount of a specific currency from the account of the drawer with that
  * institution.
  */
-public class Cheque extends FinancialDocument {
+public class Cheque extends FinancialDocument
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ChequeIssue ChequeDelivery;
 	private Max35Text Number;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max105Text;
 import com.tools20022.repository.dict.entity.MeetingAttendance;
 import com.tools20022.repository.dict.codeset.DeliveryPlaceCode;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.entity.ContactPoint;
  * instructing party can specify which information must be indicated on the
  * attendance card and to which location the attendance card must be delivered.
  */
-public class AttendanceCard {
+public class AttendanceCard extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max105Text AttendanceCardLabelling;
 	private MeetingAttendance MeetingAttendance;

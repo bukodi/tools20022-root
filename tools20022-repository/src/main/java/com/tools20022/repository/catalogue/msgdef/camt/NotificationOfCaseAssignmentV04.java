@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.NotificationOfCaseAssignmentV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.ReportHeader4;
@@ -33,7 +35,9 @@ import java.util.Optional;
  * received in the original query.
  */
 @PreviousVersion(NotificationOfCaseAssignmentV03.class)
-public class NotificationOfCaseAssignmentV04 {
+public class NotificationOfCaseAssignmentV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportHeader4 Header;
 	private Case3 Case;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Tax;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.TaxableIncomePerShareCalculatedCode;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.entity.Jurisdiction;
  * Amount of money due to the government or tax authority, according to various
  * pre-defined parameters such as thresholds or income.
  */
-public class SecuritiesTax extends Tax {
+public class SecuritiesTax extends Tax
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ActiveCurrencyAndAmount TaxableIncomePerShare;
 	private TaxableIncomePerShareCalculatedCode TaxableIncomePerShareCalculated;

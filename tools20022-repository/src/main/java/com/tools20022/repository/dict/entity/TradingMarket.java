@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Market;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.codeset.MarketTypeCode;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.entity.PlaceOfSettlement;
  * to negotiate and execute trades among themselves. It also identifies the
  * primary market where an asset is issued.
  */
-public class TradingMarket extends Market {
+public class TradingMarket extends Market
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Security TradedSecurity;
 	private MarketTypeCode Type;

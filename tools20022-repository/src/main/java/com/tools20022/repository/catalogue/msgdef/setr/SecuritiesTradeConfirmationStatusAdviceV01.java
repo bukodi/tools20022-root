@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SecuritiesTradeConfirmationStatusAdviceV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.TransactiontIdentification4;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * needed by the recipient of the message.
  */
 @NextVersion(SecuritiesTradeConfirmationStatusAdviceV02.class)
-public class SecuritiesTradeConfirmationStatusAdviceV01 {
+public class SecuritiesTradeConfirmationStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactiontIdentification4 Identification;
 	private Linkages18 References;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.caam;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.caam.ATMDeviceReportV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header31;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.msg.ContentInformationType13;
  * ATM, - The components of the ATM, - The status of the ATM components
  */
 @PreviousVersion(ATMDeviceReportV01.class)
-public class ATMDeviceReportV02 {
+public class ATMDeviceReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header31 Header;
 	private Optional<ContentInformationType10> ProtectedATMDeviceReport;

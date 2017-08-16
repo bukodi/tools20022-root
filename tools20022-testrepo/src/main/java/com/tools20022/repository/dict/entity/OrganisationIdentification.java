@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.BICFIIdentifier;
 import com.tools20022.repository.dict.datatype.AnyBICIdentifier;
 import com.tools20022.repository.dict.entity.CashClearingSystemMember;
@@ -15,9 +16,9 @@ import com.tools20022.repository.dict.datatype.MICIdentifier;
 /**
  * Unique and unambiguous way to identify an organisation.
  */
-public class OrganisationIdentification
+public class OrganisationIdentification extends AbstractBusinessComponent
 		implements
-			InstanceOf<MMBusinessComponent> {
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private BICFIIdentifier BICFI;
 	private AnyBICIdentifier AnyBIC;

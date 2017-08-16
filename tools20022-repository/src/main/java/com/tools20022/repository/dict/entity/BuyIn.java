@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ObligationFulfilment;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 import com.tools20022.repository.dict.datatype.ISODate;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.entity.SecuritiesClearing;
  * fashion. The seller has to make up the price difference if the new shares are
  * more expensive than originally agreed to.
  */
-public class BuyIn extends ObligationFulfilment {
+public class BuyIn extends ObligationFulfilment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesQuantity SecuritiesCompensation;
 	private ISODate BuyinDate;

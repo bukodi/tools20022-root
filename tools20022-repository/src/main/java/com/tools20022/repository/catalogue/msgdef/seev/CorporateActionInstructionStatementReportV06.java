@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionInstructionStatementReportV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Pagination;
@@ -21,7 +23,9 @@ import java.util.Optional;
  * in the business application header (BAH).
  */
 @PreviousVersion(CorporateActionInstructionStatementReportV05.class)
-public class CorporateActionInstructionStatementReportV06 {
+public class CorporateActionInstructionStatementReportV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement47 StatementGeneralDetails;

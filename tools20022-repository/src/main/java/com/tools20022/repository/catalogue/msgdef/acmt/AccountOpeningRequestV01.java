@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountOpeningRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.References4;
@@ -21,7 +23,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature1;
  * other related documents.
  */
 @NextVersion(AccountOpeningRequestV02.class)
-public class AccountOpeningRequestV01 {
+public class AccountOpeningRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References4 References;
 	private CustomerAccount1 Account;

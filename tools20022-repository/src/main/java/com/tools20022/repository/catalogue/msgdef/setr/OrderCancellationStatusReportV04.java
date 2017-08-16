@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.OrderCancellationStatusReportV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -36,7 +38,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * rejected, the reason for the rejection must be specified.
  */
 @PreviousVersion(OrderCancellationStatusReportV03.class)
-public class OrderCancellationStatusReportV04 {
+public class OrderCancellationStatusReportV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<References61Choice> Reference;

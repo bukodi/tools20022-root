@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.remt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.GroupHeader62;
 import com.tools20022.repository.dict.msg.RemittanceLocation3;
 import com.tools20022.repository.dict.msg.SupplementaryData1;
@@ -9,7 +11,9 @@ import java.util.Optional;
  * The RemittanceLocationAdvice message allows the originator of the message to
  * identify where the remittance advice is located for a related payment.
  */
-public class RemittanceLocationAdviceV01 {
+public class RemittanceLocationAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader62 GroupHeader;
 	private RemittanceLocation3 RemittanceLocation;

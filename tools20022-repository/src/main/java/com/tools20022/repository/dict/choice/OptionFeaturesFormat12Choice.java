@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.OptionFeaturesFormat9Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.OptionFeaturesFormat16Choice;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(OptionFeaturesFormat9Choice.class)
 @NextVersion(OptionFeaturesFormat16Choice.class)
-public class OptionFeaturesFormat12Choice {
+public class OptionFeaturesFormat12Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

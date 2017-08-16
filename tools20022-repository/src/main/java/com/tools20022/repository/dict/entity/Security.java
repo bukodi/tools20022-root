@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Asset;
 import com.tools20022.repository.dict.entity.SecuritiesIdentification;
 import com.tools20022.repository.dict.codeset.CountryCode;
@@ -51,7 +53,9 @@ import com.tools20022.repository.dict.entity.Party;
  * Financial instruments representing a sum of rights of the investor vis-a-vis
  * the issuer.
  */
-public class Security extends Asset {
+public class Security extends Asset
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesIdentification Identification;
 	private CountryCode RegisteredDistributionCountry;

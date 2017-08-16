@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISOYear;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.InvestmentAccount;
@@ -18,7 +21,9 @@ import com.tools20022.repository.dict.codeset.ISATypeCode;
  * grouping of investments, for example stocks, bonds, options, warrants. held
  * by an institution or an individual.
  */
-public class PortfolioTransfer {
+public class PortfolioTransfer extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISOYear TransferredYear;
 	private YesNoIndicator CashComponentIndicator;

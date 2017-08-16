@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.ReportData5;
 import com.tools20022.core.repo.NextVersion;
 
@@ -9,5 +11,5 @@ import com.tools20022.core.repo.NextVersion;
  * credits minus a sum of cash debits.
  */
 @NextVersion(ReportData5.class)
-public class ReportData1 {
+public class ReportData1 implements GeneratedRepoBean<MMMessageComponent> {
 }

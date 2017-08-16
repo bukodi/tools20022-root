@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Security;
 import com.tools20022.repository.dict.codeset.LegalRestrictionsCode;
 import com.tools20022.repository.dict.entity.Jurisdiction;
@@ -12,7 +15,9 @@ import com.tools20022.repository.dict.codeset.InvestorTypeCode;
 /**
  * Restrictions applicable to the security.
  */
-public class SecuritiesRestriction {
+public class SecuritiesRestriction extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Security Security;
 	private LegalRestrictionsCode LegalRestrictionType;

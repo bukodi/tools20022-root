@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.ClaimNonReceiptV04;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment3;
@@ -63,7 +65,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * underlying payment instruction for which the cover is issued.
  */
 @PreviousVersion(ClaimNonReceiptV04.class)
-public class ClaimNonReceiptV05 {
+public class ClaimNonReceiptV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

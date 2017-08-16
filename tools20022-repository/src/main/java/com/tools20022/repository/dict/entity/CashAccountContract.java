@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.AccountContract;
 import com.tools20022.repository.dict.entity.CashAccount;
 import com.tools20022.repository.dict.entity.CashAccountService;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.CashAccountMandate;
  * Account contract established between the organisation or the group to which
  * the organisation belongs, and the account servicer.
  */
-public class CashAccountContract extends AccountContract {
+public class CashAccountContract extends AccountContract
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccount CashAccount;
 	private CashAccount TransferCashAccount;

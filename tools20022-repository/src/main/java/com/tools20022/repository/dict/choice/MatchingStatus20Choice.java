@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.MatchingStatus12Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.MatchingStatus26Choice;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(MatchingStatus12Choice.class)
 @NextVersion(MatchingStatus26Choice.class)
-public class MatchingStatus20Choice {
+public class MatchingStatus20Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

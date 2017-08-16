@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountReportV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.References5;
@@ -18,7 +20,7 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * AccountReportRequest message.
  */
 @PreviousVersion(AccountReportV01.class)
-public class AccountReportV02 {
+public class AccountReportV02 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private References5 References;
 	private Optional<OrganisationIdentification8> From;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountAdditionalInformationRequestV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.References3;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * if the business content is valid, but additional information is required.
  */
 @PreviousVersion(AccountAdditionalInformationRequestV01.class)
-public class AccountAdditionalInformationRequestV02 {
+public class AccountAdditionalInformationRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References3 References;
 	private Optional<OrganisationIdentification8> From;

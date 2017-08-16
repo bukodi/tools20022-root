@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.CardPaymentValidation;
 import com.tools20022.repository.dict.codeset.ResponseCode;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.codeset.ResponseCode;
 /**
  * Response of a requested service.
  */
-public class Response {
+public class Response extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text ResponseReason;
 	private CardPaymentValidation RelatedCardPaymentValidation;

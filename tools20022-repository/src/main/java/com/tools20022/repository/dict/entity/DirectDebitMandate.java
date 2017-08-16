@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Mandate;
 import com.tools20022.repository.dict.entity.DirectDebit;
 import com.tools20022.repository.dict.datatype.ISODate;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.codeset.MandateClassificationCode;
  * Authorisation in favour of the creditor given by the debtor to debit its own
  * account.
  */
-public class DirectDebitMandate extends Mandate {
+public class DirectDebitMandate extends Mandate
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DirectDebit RelatedDirectDebit;
 	private ISODate FinalCollectionDate;

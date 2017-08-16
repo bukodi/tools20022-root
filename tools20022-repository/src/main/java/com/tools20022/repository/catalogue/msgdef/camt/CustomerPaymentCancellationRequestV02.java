@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.CustomerPaymentCancellationRequestV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.CustomerPaymentCancellationRequestV03;
@@ -72,7 +74,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(CustomerPaymentCancellationRequestV01.class)
 @NextVersion(CustomerPaymentCancellationRequestV03.class)
-public class CustomerPaymentCancellationRequestV02 {
+public class CustomerPaymentCancellationRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Optional<Case3> Case;

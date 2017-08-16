@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.codeset.StatusResponse1Code;
 import com.tools20022.repository.dict.choice.SearchCriteria1Choice;
@@ -18,7 +20,9 @@ import java.util.Optional;
  * provided in part or in full within the response message itself, or • only
  * referred to in the response message
  */
-public class InformationRequestResponseV01 {
+public class InformationRequestResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Max35Text ResponseIdentification;
 	private Max35Text InvestigationIdentification;

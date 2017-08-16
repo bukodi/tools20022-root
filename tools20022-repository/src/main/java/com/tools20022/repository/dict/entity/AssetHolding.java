@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ActiveOrHistoricCurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
@@ -16,7 +19,9 @@ import com.tools20022.repository.dict.codeset.BlockedReasonCode;
 /**
  * Specifies in terms of value and quantity the assets.
  */
-public class AssetHolding {
+public class AssetHolding extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ActiveOrHistoricCurrencyAndAmount HoldingValue;
 	private CurrencyAndAmount BookValue;

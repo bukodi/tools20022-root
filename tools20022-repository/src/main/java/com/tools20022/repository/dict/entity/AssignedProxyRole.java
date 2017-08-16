@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.MeetingPartyRole;
 import com.tools20022.repository.dict.entity.Person;
 
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.Person;
  * holder. The proxy can be assigned by a specific instruction or pre-assigned
  * by the issuer of the meeting.
  */
-public class AssignedProxyRole extends MeetingPartyRole {
+public class AssignedProxyRole extends MeetingPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Person ProxyPerson;
 	private Person PreAssignedProxyRole;

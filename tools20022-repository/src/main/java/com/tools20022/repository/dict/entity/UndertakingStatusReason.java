@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.StatusReason;
 import com.tools20022.repository.dict.entity.Discrepancy;
 import com.tools20022.repository.dict.entity.UndertakingStatus;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.codeset.SettlementAdviceTypeCode;
  * Specifies the reason for the status or for the action (for instance
  * settlement reason).
  */
-public class UndertakingStatusReason extends StatusReason {
+public class UndertakingStatusReason extends StatusReason
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Discrepancy Discrepancy;
 	private UndertakingStatus UndertakingStatus;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.TransactionTypeAndAdditionalParameters3;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.TransactionTypeAndAdditionalParameters16;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(TransactionTypeAndAdditionalParameters3.class)
 @NextVersion(TransactionTypeAndAdditionalParameters16.class)
-public class TransactionTypeAndAdditionalParameters10 {
+public class TransactionTypeAndAdditionalParameters10
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

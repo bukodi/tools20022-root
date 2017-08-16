@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.ExposureCalculation;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
  * Amount of expected margin required by any of the parties of the margin
  * calculation.
  */
-public class MarginAmountRequirement {
+public class MarginAmountRequirement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ExposureCalculation VariationMarginAmountRequirementCalculation;
 	private ActiveCurrencyAndAmount DeliverMarginAmount;

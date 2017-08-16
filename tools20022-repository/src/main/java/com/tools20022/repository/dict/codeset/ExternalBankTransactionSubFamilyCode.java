@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the external sub-family code of the bank transaction code in the
  * format of character string with a maximum length of 4 characters. The list of
@@ -6,5 +10,7 @@ package com.tools20022.repository.dict.codeset;
  * of the bank transaction family code list. External code sets can be
  * downloaded from www.iso20022.org.
  */
-public class ExternalBankTransactionSubFamilyCode {
+public class ExternalBankTransactionSubFamilyCode
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

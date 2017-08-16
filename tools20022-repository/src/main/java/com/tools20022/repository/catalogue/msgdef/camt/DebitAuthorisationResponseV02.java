@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.DebitAuthorisationResponse;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.DebitAuthorisationResponseV03;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.msg.DebitAuthorisationConfirmation2;
  */
 @PreviousVersion(DebitAuthorisationResponse.class)
 @NextVersion(DebitAuthorisationResponseV03.class)
-public class DebitAuthorisationResponseV02 {
+public class DebitAuthorisationResponseV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment2 Assignment;
 	private Case2 Case;

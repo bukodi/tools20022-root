@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.entity.SecuritiesTax;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -17,7 +20,9 @@ import com.tools20022.repository.dict.entity.ForeignExchangeTrade;
  * credit to which the recipient is entitled in respect of that distribution; or
  * the amount of tax deducted from the distribution.
  */
-public class TaxVoucher {
+public class TaxVoucher extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PercentageRate RequestedTaxationRate;
 	private PercentageRate CreditRate;

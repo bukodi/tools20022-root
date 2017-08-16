@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.ForwardDataSetSubmissionReportV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.tsmt.ForwardDataSetSubmissionReportV05;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.msg.PendingActivity2;
  */
 @PreviousVersion(ForwardDataSetSubmissionReportV03.class)
 @NextVersion(ForwardDataSetSubmissionReportV05.class)
-public class ForwardDataSetSubmissionReportV04 {
+public class ForwardDataSetSubmissionReportV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private DataSetSubmissionReferences4 RelatedTransactionReferences;

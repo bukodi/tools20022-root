@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.PegTypeCode;
 import com.tools20022.repository.dict.codeset.MoveTypeCode;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.entity.RoundingParameters;
  * Instructions specific to pegged orders, which consist in an investor buying
  * large amounts of the underlying asset of a derivative it holds.
  */
-public class SecuritiesPegOrderInstruction {
+public class SecuritiesPegOrderInstruction extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount Offset;
 	private PegTypeCode PriceType;

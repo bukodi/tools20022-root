@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.IndividualOrderStatusAndReason2;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * previously received.
  */
 @PreviousVersion(IndividualOrderStatusAndReason2.class)
-public class IndividualOrderStatusAndReason7 {
+public class IndividualOrderStatusAndReason7
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

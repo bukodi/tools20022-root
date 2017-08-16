@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CreditInstrument;
 import com.tools20022.repository.dict.entity.Cheque;
 import com.tools20022.repository.dict.codeset.ChequeDeliveryCode;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
 /**
  * Action to issue a cheque in order to settle an amount due to a creditor.
  */
-public class ChequeIssue extends CreditInstrument {
+public class ChequeIssue extends CreditInstrument
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Cheque Cheque;
 	private ChequeDeliveryCode DeliveryMethod;

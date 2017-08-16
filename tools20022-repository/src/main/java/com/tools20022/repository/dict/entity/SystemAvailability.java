@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.TimePeriod;
 import com.tools20022.repository.dict.entity.System;
 import com.tools20022.repository.dict.entity.SystemClosureInformation;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.DateTimePeriod;
 /**
  * information about the periods of activity and non-activity of a system.
  */
-public class SystemAvailability {
+public class SystemAvailability extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TimePeriod AvailableSessionPeriod;
 	private System System;

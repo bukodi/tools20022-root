@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CorporateActionPartyRole;
 import com.tools20022.repository.dict.codeset.AgentRoleCode;
 
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.codeset.AgentRoleCode;
  * It takes care of the needs of the shareholders such as reporting, inquiries
  * and regulatory compliance.
  */
-public class CorporateActionAgent extends CorporateActionPartyRole {
+public class CorporateActionAgent extends CorporateActionPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AgentRoleCode AgentRole;
 

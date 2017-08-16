@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.DocumentIdentification8;
 import com.tools20022.repository.dict.msg.CorporateActionInformation1;
 import com.tools20022.repository.dict.msg.EntitlementAdvice1;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.msg.EntitlementAdvice1;
  * Note: the delivery details are sent through the Agent Corporate Action
  * Information Advice.
  */
-public class AgentCADistributionBreakdownAdviceV01 {
+public class AgentCADistributionBreakdownAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification8 Identification;
 	private CorporateActionInformation1 CorporateActionGeneralInformation;

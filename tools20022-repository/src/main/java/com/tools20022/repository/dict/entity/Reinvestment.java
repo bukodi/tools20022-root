@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentAccountService;
 import com.tools20022.repository.dict.entity.InvestmentFundClass;
 import com.tools20022.repository.dict.datatype.PercentageRate;
@@ -7,7 +10,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
 /**
  * Parameters of the reinvestment of the income on the fund.
  */
-public class Reinvestment {
+public class Reinvestment extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InvestmentAccountService RelatedinvestmentAccountService;
 	private InvestmentFundClass InvestmentFundClass;

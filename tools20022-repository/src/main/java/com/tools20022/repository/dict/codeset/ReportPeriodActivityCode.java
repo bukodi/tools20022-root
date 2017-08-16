@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the type of report activity for a specific period.
  */
-public class ReportPeriodActivityCode {
+public class ReportPeriodActivityCode implements GeneratedRepoBean<MMCodeSet> {
 }

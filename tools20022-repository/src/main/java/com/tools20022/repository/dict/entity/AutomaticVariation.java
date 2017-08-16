@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Undertaking;
 import com.tools20022.repository.dict.codeset.VariationTypeCode;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.Trigger;
  * Predefined variations that may be attributable to an undertaking such as a
  * guarantee or standby letter of credit.
  */
-public class AutomaticVariation {
+public class AutomaticVariation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Undertaking Undertaking;
 	private VariationTypeCode Type;

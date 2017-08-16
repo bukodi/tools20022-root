@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
 import com.tools20022.repository.dict.entity.Tax;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.codeset.CurrencyCode;
 /**
  * Distributions in cash and/or securities following a corporate event.
  */
-public class Distribution {
+public class Distribution extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DateTimePeriod ExercisePeriod;
 	private DateTimePeriod OfferPeriod;

@@ -1,12 +1,17 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesConversion;
 import com.tools20022.repository.dict.entity.SecuritiesQuantity;
 
 /**
  * Related financial instrument into which the security can be converted.
  */
-public class UnderlyingRatio {
+public class UnderlyingRatio extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesConversion SecuritiesConversion;
 	private SecuritiesQuantity UnderlyingQuantityDenominator;

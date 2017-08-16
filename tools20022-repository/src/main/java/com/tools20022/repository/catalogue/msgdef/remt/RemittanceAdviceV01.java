@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.remt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.remt.RemittanceAdviceV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader62;
@@ -12,7 +14,9 @@ import java.util.Optional;
  * details that can be associated with a payment.
  */
 @NextVersion(RemittanceAdviceV02.class)
-public class RemittanceAdviceV01 {
+public class RemittanceAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader62 GroupHeader;
 	private RemittanceInformation8 RemittanceInformation;

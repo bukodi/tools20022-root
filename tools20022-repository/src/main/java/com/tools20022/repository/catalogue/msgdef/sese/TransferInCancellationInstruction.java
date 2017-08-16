@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferInCancellationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference2;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.TransferIn2;
  * this is not recommended.
  */
 @NextVersion(TransferInCancellationRequestV02.class)
-public class TransferInCancellationInstruction {
+public class TransferInCancellationInstruction
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private AdditionalReference2 PreviousReference;
 	private Optional<AdditionalReference2> PoolReference;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.LineItem14;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * submission of a commercial data set.
  */
 @NextVersion(LineItem14.class)
-public class LineItem8 {
+public class LineItem8 implements GeneratedRepoBean<MMMessageComponent> {
 }

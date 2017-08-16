@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.VoteInstructionRequest;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.MeetingServicing;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.entity.SecuritiesAccount;
  * Identifies the position of the instructing party and the actions that it
  * wants to take in relation with the meeting.
  */
-public class InstructionForMeeting {
+public class InstructionForMeeting extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private VoteInstructionRequest VoteInstruction;
 	private ISODateTime RequestedExecutionDate;

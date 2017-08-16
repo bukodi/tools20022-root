@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.AuthenticationMethodCode;
 import com.tools20022.repository.dict.codeset.AuthenticationEntityCode;
 import com.tools20022.repository.dict.datatype.Max70Text;
@@ -13,7 +14,9 @@ import com.tools20022.repository.dict.codeset.AuthenticationResultCode;
 /**
  * Data related to the authentication of the cardholder.
  */
-public class Authentication implements InstanceOf<MMBusinessComponent> {
+public class Authentication extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private AuthenticationMethodCode AuthenticationMethod;
 	private AuthenticationEntityCode AuthenticationEntity;

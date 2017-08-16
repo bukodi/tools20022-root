@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Agreement;
 import com.tools20022.repository.dict.entity.SecuritiesFinancing;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
 /**
  * Contractual details related to the agreement between parties.
  */
-public class SecuritiesFinancingAgreement extends Agreement {
+public class SecuritiesFinancingAgreement extends Agreement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesFinancing SecuritiesFinancingTrade;
 	private CurrencyCode Currency;

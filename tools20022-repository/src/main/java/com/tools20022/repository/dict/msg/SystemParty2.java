@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides the definition of a party within a system. A party shall denote any
  * legal or organisational entity required in the system. This entity shall
@@ -6,5 +10,5 @@ package com.tools20022.repository.dict.msg;
  * central securities depositaries, the participants of the central securities
  * depositaries, the national central banks and payment banks.
  */
-public class SystemParty2 {
+public class SystemParty2 implements GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
 
 /**
@@ -13,5 +15,7 @@ import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
  * intermediary. It responds to inquiries concerning account status, and
  * processes the income distribution.
  */
-public class TransferAgentRole extends InvestmentFundPartyRole {
+public class TransferAgentRole extends InvestmentFundPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

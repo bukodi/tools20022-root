@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.PaymentObligation;
 import com.tools20022.repository.dict.datatype.Number;
 import com.tools20022.repository.dict.codeset.FrequencyCode;
@@ -13,7 +15,9 @@ import com.tools20022.repository.dict.datatype.ISODateTime;
  * Specifies the details of each successive payment in settlement of a debt or
  * in an investment plan.
  */
-public class Instalment extends PaymentObligation {
+public class Instalment extends PaymentObligation
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Number InitialNumberOfInstalment;
 	private Number TotalNumberOfInstalment;

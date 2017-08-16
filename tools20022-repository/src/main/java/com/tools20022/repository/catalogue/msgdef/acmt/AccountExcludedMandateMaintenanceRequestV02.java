@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountExcludedMandateMaintenanceRequestV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.References4;
@@ -27,7 +29,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * elements must be added, deleted, modified, or if they are unchanged.
  */
 @PreviousVersion(AccountExcludedMandateMaintenanceRequestV01.class)
-public class AccountExcludedMandateMaintenanceRequestV02 {
+public class AccountExcludedMandateMaintenanceRequestV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References4 References;
 	private Optional<OrganisationIdentification8> From;

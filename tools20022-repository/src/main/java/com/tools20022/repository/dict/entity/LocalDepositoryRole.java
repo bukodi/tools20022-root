@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.DepositoryRole;
 
 /**
@@ -7,5 +9,7 @@ import com.tools20022.repository.dict.entity.DepositoryRole;
  * that holds and facilitates the exchange of securities at a local/national
  * level.
  */
-public class LocalDepositoryRole extends DepositoryRole {
+public class LocalDepositoryRole extends DepositoryRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.UndertakingNonExtensionRequest1;
 import com.tools20022.repository.dict.msg.PartyAndSignature2;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import java.util.Optional;
  * that issued the undertaking. It is used to request no further automatic
  * extensions to the expiry of the referenced undertaking.
  */
-public class UndertakingNonExtensionRequestV01 {
+public class UndertakingNonExtensionRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private UndertakingNonExtensionRequest1 UndertakingNonExtensionRequestDetails;
 	private Optional<PartyAndSignature2> DigitalSignature;

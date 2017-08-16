@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SubscriptionBulkOrderCancellationInstructionV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.setr.SubscriptionBulkOrderCancellationRequestV04;
@@ -47,7 +49,9 @@ import com.tools20022.repository.dict.msg.CopyInformation2;
  */
 @PreviousVersion(SubscriptionBulkOrderCancellationInstructionV02.class)
 @NextVersion(SubscriptionBulkOrderCancellationRequestV04.class)
-public class SubscriptionBulkOrderCancellationRequestV03 {
+public class SubscriptionBulkOrderCancellationRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

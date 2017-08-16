@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.ShipmentSchedule1Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.PaymentSchedule1Choice;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(ShipmentSchedule1Choice.class)
 @NextVersion(PaymentSchedule1Choice.class)
-public class ShipmentSchedule2Choice {
+public class ShipmentSchedule2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.CorporateActionOption;
 import com.tools20022.repository.dict.entity.CashAccount;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.CorporateActionServicing;
 /**
  * Decision taken by the account holder regarding the corporate action event.
  */
-public class CorporateActionElection {
+public class CorporateActionElection extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime ExecutionRequestedDateTime;
 	private CorporateActionOption Option;

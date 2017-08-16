@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.FundConfirmedCashForecastReportCancellationV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.FundConfirmedCashForecastReportCancellationV03;
@@ -23,7 +25,9 @@ import com.tools20022.repository.dict.msg.FundConfirmedCashForecastReport2;
  */
 @PreviousVersion(FundConfirmedCashForecastReportCancellationV01.class)
 @NextVersion(FundConfirmedCashForecastReportCancellationV03.class)
-public class FundConfirmedCashForecastReportCancellationV02 {
+public class FundConfirmedCashForecastReportCancellationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference3> PoolReference;

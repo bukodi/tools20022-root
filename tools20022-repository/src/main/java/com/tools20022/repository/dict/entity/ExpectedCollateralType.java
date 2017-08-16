@@ -1,12 +1,17 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.MarginCall;
 import com.tools20022.repository.dict.codeset.CollateralTypeCode;
 
 /**
  * Expected collateral type.
  */
-public class ExpectedCollateralType {
+public class ExpectedCollateralType extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private MarginCall VariationMarginRelatedCall;
 	private CollateralTypeCode Delivery;

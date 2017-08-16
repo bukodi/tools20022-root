@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.codeset;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.repository.dict.codeset.FailingReason2Code;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.codeset.FailingReason3Code;
@@ -10,5 +12,5 @@ import com.tools20022.repository.dict.codeset.FailingReason3Code;
  */
 @NextVersion(FailingReason2Code.class)
 @NextVersion(FailingReason3Code.class)
-public class FailingReason1Code {
+public class FailingReason1Code implements GeneratedRepoBean<MMCodeSet> {
 }

@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Cash management feature limiting the maximum risk a party accepts to take
  * with respect to a counterparty or a set of counterparties. A risk management
@@ -9,5 +13,7 @@ package com.tools20022.repository.dict.msg;
  * expressed as a credit or debit limit, from the point of view of the party
  * setting the limit.
  */
-public class LimitIdentificationDetails2 {
+public class LimitIdentificationDetails2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

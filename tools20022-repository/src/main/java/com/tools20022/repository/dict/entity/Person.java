@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Party;
 import com.tools20022.repository.dict.codeset.GenderCode;
 import com.tools20022.repository.dict.codeset.LanguageCode;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.codeset.CivilStatusCode;
  * Human entity, as distinguished from a corporate entity (which is sometimes
  * referred to as an 'artificial person').
  */
-public class Person extends Party {
+public class Person extends Party
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private GenderCode Gender;
 	private LanguageCode Language;

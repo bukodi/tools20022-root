@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.PartyIdentification100;
 import java.util.Optional;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * (Accepted), partially accept (Accepted With Exception) or reject (Rejected) a
  * previously received SecuritiesBalanceTransparencyReport.
  */
-public class SecuritiesBalanceTransparencyReportStatusAdviceV01 {
+public class SecuritiesBalanceTransparencyReportStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private PartyIdentification100 SenderIdentification;

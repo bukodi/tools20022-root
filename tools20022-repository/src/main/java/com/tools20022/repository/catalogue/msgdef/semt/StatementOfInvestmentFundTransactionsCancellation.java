@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.StatementOfInvestmentFundTransactionsCancellationV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference2;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.StatementOfInvestmentFundTransactions1
  * the details of the message to be cancelled, but this is not recommended.
  */
 @NextVersion(StatementOfInvestmentFundTransactionsCancellationV02.class)
-public class StatementOfInvestmentFundTransactionsCancellation {
+public class StatementOfInvestmentFundTransactionsCancellation
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private AdditionalReference2 PreviousReference;
 	private Optional<AdditionalReference2> RelatedReference;

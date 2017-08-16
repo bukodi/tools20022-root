@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.IndividualPayment;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.DirectDebitMandate;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.datatype.ISODate;
  * the creditor. A direct debit can be pre-authorised or not. In most countries,
  * authorisation is in the form of a mandate between the debtor and creditor.
  */
-public class DirectDebit extends IndividualPayment {
+public class DirectDebit extends IndividualPayment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text RegistrationIdentification;
 	private DirectDebitMandate DirectDebitMandate;

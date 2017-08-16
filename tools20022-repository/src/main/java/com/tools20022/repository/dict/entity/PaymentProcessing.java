@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.PriorityCode;
 import com.tools20022.repository.dict.entity.ServiceLevel;
 import com.tools20022.repository.dict.codeset.ClearingChannelCode;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.entity.ContactPoint;
  * Specifies how a payment must be processed, for instance through which
  * specific clearing channel.
  */
-public class PaymentProcessing {
+public class PaymentProcessing extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PriorityCode Priority;
 	private ServiceLevel ServiceLevel;

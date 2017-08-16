@@ -1,12 +1,16 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ContactPoint;
 import com.tools20022.repository.dict.datatype.Max35Text;
 
 /**
  * Collection of information that identifies a phone address.
  */
-public class PhoneAddress extends ContactPoint {
+public class PhoneAddress extends ContactPoint
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text PhoneNumber;
 	private Max35Text FaxNumber;

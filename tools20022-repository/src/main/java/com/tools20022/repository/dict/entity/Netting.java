@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ObligationFulfilment;
 import com.tools20022.repository.dict.entity.Price;
 import com.tools20022.repository.dict.entity.SecuritiesClearing;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
  * Offset of payables against receivables to reduce credit exposure to a
  * counterparty.
  */
-public class Netting extends ObligationFulfilment {
+public class Netting extends ObligationFulfilment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Price AverageDealPrice;
 	private SecuritiesClearing RelatedSecuritiesClearingProcess;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.secl;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.choice.PartyIdentification35Choice;
 import com.tools20022.repository.dict.msg.SecuritiesAccount18;
 import com.tools20022.repository.dict.msg.SecuritiesAccount19;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * 
  * Usage The previously sent message must be the Trade Leg Notification message.
  */
-public class TradeLegNotificationCancellationV03 {
+public class TradeLegNotificationCancellationV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private PartyIdentification35Choice ClearingMember;
 	private SecuritiesAccount18 ClearingAccount;

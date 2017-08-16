@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the reason of a rejection of an information advice.
  */
-public class RejectionReason15Code {
+public class RejectionReason15Code implements GeneratedRepoBean<MMCodeSet> {
 }

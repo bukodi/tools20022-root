@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ListTrading;
 import com.tools20022.repository.dict.entity.SecuritiesAccount;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.codeset.SettlementDateCode;
  * quantities in the portfolio during the bidding phase regardless of whether or
  * not they win the business.
  */
-public class DisclosedListTrading extends ListTrading {
+public class DisclosedListTrading extends ListTrading
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesAccount DisclosedListTradingAccount;
 	private CurrencyAndAmount BuyAmount;

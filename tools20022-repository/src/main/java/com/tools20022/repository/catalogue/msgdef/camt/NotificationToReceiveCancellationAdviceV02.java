@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.NotificationToReceiveCancellationAdviceV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.GroupHeader43;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.OriginalNotification4;
  * be used in either a direct or a relay scenario.
  */
 @NextVersion(NotificationToReceiveCancellationAdviceV03.class)
-public class NotificationToReceiveCancellationAdviceV02 {
+public class NotificationToReceiveCancellationAdviceV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader43 GroupHeader;
 	private OriginalNotification4 OriginalNotification;

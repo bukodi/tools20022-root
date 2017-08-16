@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.FinancialInstrument11;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * investment fund policy, eg, dividend option or valuation currency.
  */
 @PreviousVersion(FinancialInstrument11.class)
-public class FinancialInstrument25 {
+public class FinancialInstrument25
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.InvestmentFundTransaction3;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * designated agent, as a result of executing an investment fund order.
  */
 @PreviousVersion(InvestmentFundTransaction3.class)
-public class InvestmentFundTransaction4 {
+public class InvestmentFundTransaction4
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.fxtr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.TradeData14;
 import com.tools20022.repository.dict.msg.TradeAgreement12;
 import com.tools20022.repository.dict.msg.TradePartyIdentification6;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * settlement system to the two trading parties after it has received foreign
  * exchange trade instructions from both.
  */
-public class ForeignExchangeTradeStatusAndDetailsNotificationV04 {
+public class ForeignExchangeTradeStatusAndDetailsNotificationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TradeData14 StatusDetails;
 	private TradeAgreement12 TradeInformation;

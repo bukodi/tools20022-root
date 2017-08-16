@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsin;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.CancellationRequestInformation1;
 
@@ -21,7 +23,9 @@ import com.tools20022.repository.dict.msg.CancellationRequestInformation1;
  * Intermediary Agent forwards the InvoiceFinancingCancellingRequest message to
  * the First Agent.
  */
-public class InvoiceFinancingCancellationRequestV01 {
+public class InvoiceFinancingCancellationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 CancellationRequestIdentification;
 	private CancellationRequestInformation1 CancellationRequestInformation;

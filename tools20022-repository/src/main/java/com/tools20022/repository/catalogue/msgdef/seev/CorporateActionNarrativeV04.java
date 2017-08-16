@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.CorporateActionNarrativeV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.AccountIdentification33Choice;
@@ -21,7 +23,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * relevant elements in the business application header (BAH).
  */
 @PreviousVersion(CorporateActionNarrativeV03.class)
-public class CorporateActionNarrativeV04 {
+public class CorporateActionNarrativeV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AccountIdentification33Choice> AccountDetails;
 	private Optional<SecurityIdentification19> UnderlyingSecurity;

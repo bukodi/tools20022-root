@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.PortfolioValuation;
 import com.tools20022.repository.dict.entity.PortfolioTransfer;
 import com.tools20022.repository.dict.entity.Asset;
@@ -14,7 +17,9 @@ import com.tools20022.repository.dict.entity.InvestmentAccount;
  * Wrapper for a specific product or a specific sub-product owned by a set of
  * beneficial owners.
  */
-public class Portfolio {
+public class Portfolio extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PortfolioValuation Valuation;
 	private PortfolioTransfer Transfer;

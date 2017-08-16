@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import com.tools20022.repository.dict.msg.DocumentIdentification3;
@@ -31,7 +33,7 @@ import java.util.Optional;
  * and to list the differences between the amended baseline and the baseline
  * established earlier.
  */
-public class DeltaReportV03 {
+public class DeltaReportV03 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

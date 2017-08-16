@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.msg.SimpleIdentificationInformation;
 import com.tools20022.repository.dict.msg.DocumentIdentification3;
@@ -31,7 +33,9 @@ import com.tools20022.repository.dict.msg.PendingActivity2;
  * outlined scenario the message is used to inform about the successful
  * establishment of a transaction in the matching application.
  */
-public class BaselineMatchReportV03 {
+public class BaselineMatchReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 ReportIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

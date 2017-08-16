@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.PartyName;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.codeset.NamePrefix1Code;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.entity.PersonIdentification;
  * Name by which a person is known and that is usually used to identify that
  * person.
  */
-public class PersonName extends PartyName {
+public class PersonName extends PartyName
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text BirthName;
 	private NamePrefix1Code NamePrefix;

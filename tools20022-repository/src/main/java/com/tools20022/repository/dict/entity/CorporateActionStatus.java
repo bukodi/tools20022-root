@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.codeset.ProcessingStatusCode;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.codeset.EventCompletenessStatusCode;
 /**
  * Status of the corporate action process.
  */
-public class CorporateActionStatus extends Status {
+public class CorporateActionStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max350Text AgentStandingInstructionStatus;
 	private ProcessingStatusCode ProcessingStatus;

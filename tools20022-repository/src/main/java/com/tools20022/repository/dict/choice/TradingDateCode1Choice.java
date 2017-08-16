@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Choice of format for the trading date code.
  */
-public class TradingDateCode1Choice {
+public class TradingDateCode1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

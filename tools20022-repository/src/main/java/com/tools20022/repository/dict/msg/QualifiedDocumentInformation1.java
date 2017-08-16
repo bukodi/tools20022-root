@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Specifies an identification of a document assigned by and relative to the
  * issuing party (of the identification). Optionally, the component can contain
@@ -11,5 +15,7 @@ package com.tools20022.repository.dict.msg;
  * item in several lists. The element identification is of schema type ID, it
  * can be referenced by IDREF typed elements (composite=false).
  */
-public class QualifiedDocumentInformation1 {
+public class QualifiedDocumentInformation1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

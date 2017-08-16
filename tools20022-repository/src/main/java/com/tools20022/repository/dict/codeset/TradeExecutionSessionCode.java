@@ -1,4 +1,8 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Represents a specific market trading session. It is used to identify a
  * portion of the session where the execution might take place ("after market",
@@ -9,5 +13,5 @@ package com.tools20022.repository.dict.codeset;
  * open-outcry trading, or to differentiate block and/or oddlot trading. It is
  * used by Exchanges, ECN's, and ATS's.
  */
-public class TradeExecutionSessionCode {
+public class TradeExecutionSessionCode implements GeneratedRepoBean<MMCodeSet> {
 }

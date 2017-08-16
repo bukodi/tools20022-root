@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.entity.AnalyticsValue;
 import com.tools20022.repository.dict.codeset.CalculationTypeCode;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.datatype.PercentageRate;
 /**
  * Characteristics related to the analytics.
  */
-public class AnalyticsCalculation {
+public class AnalyticsCalculation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing SecuritiesPricing;
 	private AnalyticsValue Value;

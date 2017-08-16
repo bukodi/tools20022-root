@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Status;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.codeset.ExternalCode;
@@ -9,7 +11,9 @@ import com.tools20022.repository.dict.codeset.ExternalMandateReason1Code;
 /**
  * Specifies whether a mandate is accepted or rejected.
  */
-public class MandateStatus extends Status {
+public class MandateStatus extends Status
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator Accepted;
 	private ExternalCode RejectReason;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.TMSProtocolParameters1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * manager.
  */
 @PreviousVersion(TMSProtocolParameters1.class)
-public class TMSProtocolParameters2 {
+public class TMSProtocolParameters2
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.SwitchOrderCancellationRequestV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.CopyInformation4;
  * made using an OrderCancellationStatusReport message.
  */
 @PreviousVersion(SwitchOrderCancellationRequestV03.class)
-public class SwitchOrderCancellationRequestV04 {
+public class SwitchOrderCancellationRequestV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference9> PoolReference;

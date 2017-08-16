@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.TradeIdentification;
 import com.tools20022.repository.dict.datatype.Max35Text;
 import com.tools20022.repository.dict.entity.Payment;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.Payment;
  * Specifies the different identifications associated with a payment
  * transaction.
  */
-public class PaymentIdentification extends TradeIdentification {
+public class PaymentIdentification extends TradeIdentification
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max35Text ExecutionIdentification;
 	private Max35Text EndToEndIdentification;

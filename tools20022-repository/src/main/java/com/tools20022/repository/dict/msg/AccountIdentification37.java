@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Provides account identification information.
  */
-public class AccountIdentification37 {
+public class AccountIdentification37
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

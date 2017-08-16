@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.InterestComputationMethodCode;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.entity.Interest;
@@ -21,7 +24,9 @@ import com.tools20022.repository.dict.entity.InterestManagement;
 /**
  * Set of parameters used to calculate an interest amount.
  */
-public class InterestCalculation {
+public class InterestCalculation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InterestComputationMethodCode DayCountBasis;
 	private PercentageRate Rate;

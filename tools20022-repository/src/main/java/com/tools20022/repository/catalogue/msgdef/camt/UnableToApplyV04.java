@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.UnableToApplyV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.camt.UnableToApplyV05;
@@ -56,7 +58,7 @@ import java.util.Optional;
  */
 @PreviousVersion(UnableToApplyV03.class)
 @NextVersion(UnableToApplyV05.class)
-public class UnableToApplyV04 {
+public class UnableToApplyV04 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

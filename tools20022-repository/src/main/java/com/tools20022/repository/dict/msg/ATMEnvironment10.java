@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.ATMEnvironment6;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -7,5 +9,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * Environment of the transaction.
  */
 @PreviousVersion(ATMEnvironment6.class)
-public class ATMEnvironment10 {
+public class ATMEnvironment10 implements GeneratedRepoBean<MMMessageComponent> {
 }

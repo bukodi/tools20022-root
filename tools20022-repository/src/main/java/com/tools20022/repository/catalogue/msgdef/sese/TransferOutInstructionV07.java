@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.TransferOutInstructionV06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -26,7 +28,9 @@ import com.tools20022.repository.dict.msg.Extension1;
  * and deliver it to either another account or to a third party.
  */
 @PreviousVersion(TransferOutInstructionV06.class)
-public class TransferOutInstructionV07 {
+public class TransferOutInstructionV07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private Optional<AdditionalReference6> PoolReference;

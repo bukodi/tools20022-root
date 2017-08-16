@@ -1,7 +1,11 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Code defining the dvidend / distribution class where this franking
  * information applies to.
  */
-public class FrankingClass1Code {
+public class FrankingClass1Code implements GeneratedRepoBean<MMCodeSet> {
 }

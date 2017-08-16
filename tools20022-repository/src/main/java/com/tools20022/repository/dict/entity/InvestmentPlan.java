@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.FrequencyCode;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.Asset;
@@ -17,7 +20,9 @@ import com.tools20022.repository.dict.codeset.PlanStatusCode;
  * Plan that allows investors to schedule periodical investments or divestments,
  * according to pre-defined criteria.
  */
-public class InvestmentPlan {
+public class InvestmentPlan extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private FrequencyCode Frequency;
 	private CurrencyAndAmount Amount;

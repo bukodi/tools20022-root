@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Pagination;
 import com.tools20022.repository.dict.msg.Statement48;
 import com.tools20022.repository.dict.msg.AccountIdentification41;
@@ -18,7 +20,9 @@ import java.util.Optional;
  * sub-function of the message is Copy Duplicate), using the relevant elements
  * in the business application header (BAH).
  */
-public class CorporateActionInstructionStatementReport002V06 {
+public class CorporateActionInstructionStatementReport002V06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement48 StatementGeneralDetails;

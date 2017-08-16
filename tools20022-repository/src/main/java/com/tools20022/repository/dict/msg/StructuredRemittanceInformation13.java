@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.StructuredRemittanceInformation12;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -9,5 +11,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * in an accounts' receivable system, in a structured form.
  */
 @PreviousVersion(StructuredRemittanceInformation12.class)
-public class StructuredRemittanceInformation13 {
+public class StructuredRemittanceInformation13
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

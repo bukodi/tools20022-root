@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.VoteInstructionRequest;
 import com.tools20022.repository.dict.datatype.Number;
 import com.tools20022.repository.dict.entity.Resolution;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.datatype.YesNoIndicator;
 /**
  * Number of votes assigned to each voting option.
  */
-public class Vote {
+public class Vote extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private VoteInstructionRequest VoteRequest;
 	private Number For;

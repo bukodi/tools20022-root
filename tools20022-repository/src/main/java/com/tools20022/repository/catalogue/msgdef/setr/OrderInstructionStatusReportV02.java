@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.OrderInstructionStatusReportV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.AdditionalReference3;
@@ -32,7 +34,9 @@ import com.tools20022.repository.dict.msg.IndividualOrderStatusAndReason1;
  * causing a problem, the redemption or subscription leg identification is used.
  */
 @NextVersion(OrderInstructionStatusReportV03.class)
-public class OrderInstructionStatusReportV02 {
+public class OrderInstructionStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private List<AdditionalReference3> OtherReference;
 	private List<AdditionalReference3> RelatedReference;

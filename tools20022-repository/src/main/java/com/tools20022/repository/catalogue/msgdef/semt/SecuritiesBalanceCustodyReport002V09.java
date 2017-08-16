@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Pagination;
 import com.tools20022.repository.dict.msg.Statement52;
 import com.tools20022.repository.dict.msg.PartyIdentification109;
@@ -40,7 +42,9 @@ import com.tools20022.repository.dict.msg.TotalValueInPageAndStatement3;
  * a third party a copy of a message for information using the relevant elements
  * in the Business Application Header.
  */
-public class SecuritiesBalanceCustodyReport002V09 {
+public class SecuritiesBalanceCustodyReport002V09
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Pagination Pagination;
 	private Statement52 StatementGeneralDetails;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.pacs;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.GroupHeader53;
 import com.tools20022.repository.dict.msg.OriginalGroupInformation27;
 import java.util.Optional;
@@ -24,7 +26,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * The FIToFIPaymentStatusRequest message can be used in domestic and
  * cross-border scenarios.
  */
-public class FIToFIPaymentStatusRequestV01 {
+public class FIToFIPaymentStatusRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader53 GroupHeader;
 	private Optional<OriginalGroupInformation27> OriginalGroupInformation;

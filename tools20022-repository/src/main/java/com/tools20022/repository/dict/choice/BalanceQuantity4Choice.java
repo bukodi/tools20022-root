@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.BalanceQuantity9Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -7,5 +9,7 @@ import com.tools20022.core.repo.NextVersion;
  * Choice between quantity formats for the balance information.
  */
 @NextVersion(BalanceQuantity9Choice.class)
-public class BalanceQuantity4Choice {
+public class BalanceQuantity4Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

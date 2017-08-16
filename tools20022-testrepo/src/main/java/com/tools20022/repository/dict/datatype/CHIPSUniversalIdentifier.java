@@ -1,6 +1,6 @@
 package com.tools20022.repository.dict.datatype;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMIdentifierSet;
 
 /**
@@ -9,5 +9,7 @@ import com.tools20022.metamodel.MMIdentifierSet;
  * participating financial institutions, through which CHIPS payments are
  * effected. The CHIPS UID is assigned by the New York Clearing House.
  */
-public class CHIPSUniversalIdentifier implements InstanceOf<MMIdentifierSet> {
+public class CHIPSUniversalIdentifier
+		implements
+			GeneratedRepoBean<MMIdentifierSet> {
 }

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
 import com.tools20022.repository.dict.entity.AccountIdentification;
 import com.tools20022.repository.dict.entity.Account;
@@ -36,7 +39,9 @@ import com.tools20022.repository.dict.entity.ManagedAccountProduct;
  * party on behalf of one or more owning parties. Business relationship between
  * an account servicer and one or more account owners.
  */
-public class Account {
+public class Account extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyCode BaseCurrency;
 	private AccountIdentification Identification;

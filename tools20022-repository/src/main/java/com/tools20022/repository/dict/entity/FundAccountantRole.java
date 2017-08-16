@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
 
 /**
@@ -8,5 +10,7 @@ import com.tools20022.repository.dict.entity.InvestmentFundPartyRole;
  * and may provide fund performance and tax data. Can be sub-contracted by the
  * fund administrator.
  */
-public class FundAccountantRole extends InvestmentFundPartyRole {
+public class FundAccountantRole extends InvestmentFundPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 }

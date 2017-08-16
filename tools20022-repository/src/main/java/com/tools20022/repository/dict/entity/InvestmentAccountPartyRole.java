@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.AccountPartyRole;
 import com.tools20022.repository.dict.datatype.PercentageRate;
 import com.tools20022.repository.dict.entity.InvestmentAccount;
@@ -10,7 +12,9 @@ import com.tools20022.repository.dict.entity.CRSStatus;
 /**
  * Specifies roles played by a party that are related to an investment account.
  */
-public class InvestmentAccountPartyRole extends AccountPartyRole {
+public class InvestmentAccountPartyRole extends AccountPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PercentageRate OwnershipBeneficiaryRate;
 	private InvestmentAccount InvestmentAccount;

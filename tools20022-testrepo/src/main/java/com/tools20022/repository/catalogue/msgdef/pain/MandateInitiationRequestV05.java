@@ -1,6 +1,6 @@
 package com.tools20022.repository.catalogue.msgdef.pain;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.GroupHeader47;
 import com.tools20022.repository.dict.msg.Mandate10;
@@ -24,7 +24,7 @@ import java.util.Optional;
  */
 public class MandateInitiationRequestV05
 		implements
-			InstanceOf<MMMessageDefinition> {
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader47 GroupHeader;
 	private Mandate10 Mandate;

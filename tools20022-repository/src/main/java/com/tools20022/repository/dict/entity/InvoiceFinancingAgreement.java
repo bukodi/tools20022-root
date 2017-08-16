@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Agreement;
 import com.tools20022.repository.dict.datatype.Max128Text;
 import com.tools20022.repository.dict.datatype.Max350Text;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.entity.Assignment;
  * allows to transfer a payment obligation that exists between the client and a
  * third party from the client to the factor.
  */
-public class InvoiceFinancingAgreement extends Agreement {
+public class InvoiceFinancingAgreement extends Agreement
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max128Text Authorisation;
 	private Max350Text FinancingMethod;

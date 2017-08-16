@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.TaxRecord;
 import com.tools20022.repository.dict.datatype.ISODate;
 import com.tools20022.repository.dict.codeset.TaxRecordPeriodCode;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.DateTimePeriod;
 /**
  * Period of time details related to the tax payment.
  */
-public class TaxPeriod {
+public class TaxPeriod extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private TaxRecord TaxRecord;
 	private ISODate Year;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.ObligationFulfilment;
 import com.tools20022.repository.dict.entity.DateTimePeriod;
 import com.tools20022.repository.dict.entity.Transport;
@@ -12,7 +14,9 @@ import com.tools20022.repository.dict.entity.Product;
 /**
  * Arrangements for delivery of invoiced products and/or services.
  */
-public class ProductDelivery extends ObligationFulfilment {
+public class ProductDelivery extends ObligationFulfilment
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private DateTimePeriod DeliveryPeriod;
 	private Transport Routing;

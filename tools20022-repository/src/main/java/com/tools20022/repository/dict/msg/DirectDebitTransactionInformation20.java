@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.DirectDebitTransactionInformation17;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.DirectDebitTransactionInformation21;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(DirectDebitTransactionInformation17.class)
 @NextVersion(DirectDebitTransactionInformation21.class)
-public class DirectDebitTransactionInformation20 {
+public class DirectDebitTransactionInformation20
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

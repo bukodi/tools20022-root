@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.ProformaStatusReason1;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.ClosurePendingStatusReason1;
@@ -10,5 +12,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(ProformaStatusReason1.class)
 @NextVersion(ClosurePendingStatusReason1.class)
-public class ClosedStatusReason1 {
+public class ClosedStatusReason1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

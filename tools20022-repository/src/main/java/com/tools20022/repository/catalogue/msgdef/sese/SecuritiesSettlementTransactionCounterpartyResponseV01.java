@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionCounterpartyResponseV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.TransactionIdentification2;
@@ -41,7 +43,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * identified as follows: “CoexistenceXxxxRule”.
  */
 @NextVersion(SecuritiesSettlementTransactionCounterpartyResponseV02.class)
-public class SecuritiesSettlementTransactionCounterpartyResponseV01 {
+public class SecuritiesSettlementTransactionCounterpartyResponseV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionIdentification2 TransactionIdentification;
 	private ResponseStatus3Choice ResponseStatus;

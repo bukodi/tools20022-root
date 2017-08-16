@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesPricing;
 import com.tools20022.repository.dict.entity.VariableInterest;
 import com.tools20022.repository.dict.datatype.Number;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.DateTimePeriod;
  * Estimate of the number of terms to maturity, taking the possibility of early
  * payments into account.
  */
-public class LifeCalculation {
+public class LifeCalculation extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesPricing SecuritiesPricing;
 	private VariableInterest VariableInterest;

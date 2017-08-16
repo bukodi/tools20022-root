@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.codeset.DebitCreditCode;
 import com.tools20022.repository.dict.datatype.ISODateTime;
@@ -13,7 +16,9 @@ import com.tools20022.repository.dict.codeset.CountryCode;
  * Definition of exchanges of cash and/or securities available in the processing
  * of corporate actions.
  */
-public class ProceedsDefinition {
+public class ProceedsDefinition extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount SpecialConcessionAmount;
 	private DebitCreditCode CreditDebitIndicator;

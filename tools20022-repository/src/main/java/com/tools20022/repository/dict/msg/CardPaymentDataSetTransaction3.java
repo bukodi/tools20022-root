@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.CardPaymentDataSetTransaction1;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CardPaymentDataSetTransaction4;
@@ -12,5 +14,7 @@ import com.tools20022.repository.dict.msg.CardPaymentDataSetTransaction7;
 @PreviousVersion(CardPaymentDataSetTransaction1.class)
 @NextVersion(CardPaymentDataSetTransaction4.class)
 @NextVersion(CardPaymentDataSetTransaction7.class)
-public class CardPaymentDataSetTransaction3 {
+public class CardPaymentDataSetTransaction3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

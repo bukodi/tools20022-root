@@ -1,7 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
-import com.tools20022.core.repo.InstanceOf;
+import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.ServiceLevelCode;
 import com.tools20022.repository.dict.codeset.SWIFTServiceLevelCode;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -10,7 +11,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
  * Agreement under which or rules under which the transaction should be
  * processed.
  */
-public class ServiceLevel implements InstanceOf<MMBusinessComponent> {
+public class ServiceLevel extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ServiceLevelCode Code;
 	private SWIFTServiceLevelCode Other;

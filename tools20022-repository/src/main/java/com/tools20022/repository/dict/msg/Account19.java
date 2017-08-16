@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.Account15;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -9,5 +11,5 @@ import com.tools20022.core.repo.PreviousVersion;
  * distributed) by the fund manager, within the same fund family.
  */
 @PreviousVersion(Account15.class)
-public class Account19 {
+public class Account19 implements GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionModificationRequestV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionModificationRequestV04;
@@ -38,7 +40,9 @@ import java.util.List;
  */
 @PreviousVersion(SecuritiesSettlementTransactionModificationRequestV02.class)
 @NextVersion(SecuritiesSettlementTransactionModificationRequestV04.class)
-public class SecuritiesSettlementTransactionModificationRequestV03 {
+public class SecuritiesSettlementTransactionModificationRequestV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private TransactionDetails64 ModifiedTransactionDetails;
 	private List<UpdateType11Choice> UpdateType;

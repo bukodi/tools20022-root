@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Entry;
 import com.tools20022.repository.dict.entity.CashAccount;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.datatype.ChargeIncludedIndicator;
  * Posting of an item to a cash account, in the context of a cash transaction,
  * that results in an increase or decrease to the balance of the account.
  */
-public class CashEntry extends Entry {
+public class CashEntry extends Entry
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashAccount CashAccount;
 	private CurrencyAndAmount Amount;

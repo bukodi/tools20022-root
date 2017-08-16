@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.ProprietaryFormatInvestigationV03;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment2;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.ProprietaryData4;
  * or capability of any other formatted message.
  */
 @NextVersion(ProprietaryFormatInvestigationV03.class)
-public class ProprietaryFormatInvestigationV02 {
+public class ProprietaryFormatInvestigationV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment2 Assignment;
 	private Case2 Case;

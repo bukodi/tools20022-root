@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Person;
 import com.tools20022.repository.dict.entity.System;
 import com.tools20022.repository.dict.entity.Party;
@@ -17,7 +20,9 @@ import com.tools20022.repository.dict.entity.UTCOffset;
 /**
  * Specifies a place.
  */
-public class Location {
+public class Location extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Person NativePerson;
 	private System System;

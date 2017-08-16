@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.cain;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Header18;
 import com.tools20022.repository.dict.msg.AcquirerReversalResponse1;
 import com.tools20022.repository.dict.msg.ContentInformationType15;
@@ -9,7 +11,9 @@ import java.util.Optional;
  * The AcquirerReversalResponse message is sent by an issuer or an agent to
  * answer to an AcquirerReversalInitiation message.
  */
-public class AcquirerReversalResponse {
+public class AcquirerReversalResponse
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header18 Header;
 	private AcquirerReversalResponse1 ReversalResponse;

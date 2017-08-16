@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsin;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Undertaking1;
 import com.tools20022.repository.dict.datatype.Max2000Text;
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.Optional;
  * the applicable rules, terms, conditions and content of the undertaking to be
  * issued.
  */
-public class UndertakingApplicationV01 {
+public class UndertakingApplicationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Undertaking1 UndertakingApplicationDetails;
 	private List<Max2000Text> InstructionsToBank;

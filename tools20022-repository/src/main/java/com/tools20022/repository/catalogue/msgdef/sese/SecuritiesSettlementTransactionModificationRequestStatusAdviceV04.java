@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementTransactionModificationRequestStatusAdviceV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Identification14;
@@ -27,7 +29,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * information using the relevant elements in the Business Application Header.
  */
 @PreviousVersion(SecuritiesSettlementTransactionModificationRequestStatusAdviceV03.class)
-public class SecuritiesSettlementTransactionModificationRequestStatusAdviceV04 {
+public class SecuritiesSettlementTransactionModificationRequestStatusAdviceV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Identification14 ModificationRequestReference;
 	private Optional<PartyIdentification98> AccountOwner;

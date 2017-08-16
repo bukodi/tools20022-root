@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesTransfer;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.SecuritiesCertificate;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.codeset.PhysicalTransferTypeCode;
 /**
  * Parameters of a physical delivery.
  */
-public class PhysicalDelivery {
+public class PhysicalDelivery extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private SecuritiesTransfer RelatedTransfer;
 	private YesNoIndicator RegisteredAddressIndicator;

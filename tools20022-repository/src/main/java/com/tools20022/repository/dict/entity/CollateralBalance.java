@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Collateral;
 import com.tools20022.repository.dict.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.dict.entity.ExposureCalculation;
@@ -9,7 +12,9 @@ import com.tools20022.repository.dict.entity.CollateralInterestAdministration;
  * Specifies the different values taken into account to calculate the current
  * collateral.
  */
-public class CollateralBalance {
+public class CollateralBalance extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Collateral CollateralDescription;
 	private ActiveCurrencyAndAmount HeldAmount;

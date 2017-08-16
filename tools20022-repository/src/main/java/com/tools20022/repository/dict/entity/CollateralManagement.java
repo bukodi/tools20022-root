@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CollateralProposal;
 import com.tools20022.repository.dict.entity.CollateralValuation;
 import com.tools20022.repository.dict.entity.Adjustment;
@@ -16,7 +19,9 @@ import com.tools20022.repository.dict.entity.ClearingSystem;
  * Set of operations relative to the management of collateral, variation
  * margins, default fund participation and independent amount.
  */
-public class CollateralManagement {
+public class CollateralManagement extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CollateralProposal CollateralProposal;
 	private CollateralValuation CollateralValuation;

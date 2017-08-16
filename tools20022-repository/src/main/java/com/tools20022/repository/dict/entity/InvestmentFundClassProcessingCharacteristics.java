@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.EventFrequencyCode;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.datatype.Max350Text;
@@ -23,7 +26,11 @@ import com.tools20022.repository.dict.datatype.Max70Text;
 /**
  * Processing characteristics linked to the instrument, ie, not to the market.
  */
-public class InvestmentFundClassProcessingCharacteristics {
+public class InvestmentFundClassProcessingCharacteristics
+		extends
+			AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private EventFrequencyCode ReinvestmentFrequency;
 	private YesNoIndicator FrontEndLoadIndicator;

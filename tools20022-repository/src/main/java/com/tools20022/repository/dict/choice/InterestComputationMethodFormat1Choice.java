@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.InterestComputationMethodFormat4Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * interest computation method.
  */
 @NextVersion(InterestComputationMethodFormat4Choice.class)
-public class InterestComputationMethodFormat1Choice {
+public class InterestComputationMethodFormat1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesTransactionCancellationRequestStatusAdviceV02;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesTransactionCancellationRequestStatusAdviceV04;
@@ -37,7 +39,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesTransactionCancellationRequestStatusAdviceV02.class)
 @NextVersion(SecuritiesTransactionCancellationRequestStatusAdviceV04.class)
-public class SecuritiesTransactionCancellationRequestStatusAdviceV03 {
+public class SecuritiesTransactionCancellationRequestStatusAdviceV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Identification1 CancellationRequestReference;
 	private Optional<TransactionIdentifications17> TransactionIdentification;

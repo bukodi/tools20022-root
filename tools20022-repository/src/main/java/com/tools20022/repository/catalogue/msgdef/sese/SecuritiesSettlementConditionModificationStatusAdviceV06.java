@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementConditionModificationStatusAdviceV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesSettlementConditionModificationStatusAdviceV07;
@@ -43,7 +45,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(SecuritiesSettlementConditionModificationStatusAdviceV05.class)
 @NextVersion(SecuritiesSettlementConditionModificationStatusAdviceV07.class)
-public class SecuritiesSettlementConditionModificationStatusAdviceV06 {
+public class SecuritiesSettlementConditionModificationStatusAdviceV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Identification1 RequestReference;
 	private Optional<PartyIdentification36Choice> AccountOwner;

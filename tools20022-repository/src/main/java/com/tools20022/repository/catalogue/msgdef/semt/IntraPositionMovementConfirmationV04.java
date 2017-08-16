@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementConfirmationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.semt.IntraPositionMovementConfirmationV05;
@@ -40,7 +42,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  */
 @PreviousVersion(IntraPositionMovementConfirmationV03.class)
 @NextVersion(IntraPositionMovementConfirmationV05.class)
-public class IntraPositionMovementConfirmationV04 {
+public class IntraPositionMovementConfirmationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<AdditionalParameters10> AdditionalParameters;
 	private Optional<PartyIdentification36Choice> AccountOwner;

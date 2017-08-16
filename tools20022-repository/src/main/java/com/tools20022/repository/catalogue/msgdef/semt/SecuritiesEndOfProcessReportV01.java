@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.semt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Pagination;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.Report3;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * Initiator: Executing Party, CMU or Instructing Party Respondent: Custodian or
  * an affirming party does not need to respond.
  */
-public class SecuritiesEndOfProcessReportV01 {
+public class SecuritiesEndOfProcessReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<Pagination> Pagination;
 	private Report3 ReportGeneralDetails;

@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.RateAndAmount;
@@ -18,7 +21,9 @@ import com.tools20022.repository.dict.entity.DateTimePeriod;
  * Preparation/bringing to market of a security (also known as primary market or
  * Initial Public Offering (IPO) issuance).
  */
-public class Issuance {
+public class Issuance extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime IssueDate;
 	private CurrencyAndAmount IssueDiscountAllowance;

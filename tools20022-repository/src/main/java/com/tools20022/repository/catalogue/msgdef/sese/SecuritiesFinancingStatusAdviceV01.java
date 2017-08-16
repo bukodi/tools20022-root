@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.sese;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.sese.SecuritiesFinancingStatusAdviceV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.DocumentIdentification11;
@@ -39,7 +41,9 @@ import com.tools20022.repository.dict.msg.Extension2;
  * “CoexistenceXxxxRule”.
  */
 @NextVersion(SecuritiesFinancingStatusAdviceV02.class)
-public class SecuritiesFinancingStatusAdviceV01 {
+public class SecuritiesFinancingStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private DocumentIdentification11 Identification;
 	private TransactionIdentifications1 TransactionIdentification;

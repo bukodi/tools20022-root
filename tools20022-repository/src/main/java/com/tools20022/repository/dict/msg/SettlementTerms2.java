@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.SettlementTerms3;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * purchase of goods or services.
  */
 @NextVersion(SettlementTerms3.class)
-public class SettlementTerms2 {
+public class SettlementTerms2 implements GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Role;
 import com.tools20022.repository.dict.entity.InvestigationCase;
 import com.tools20022.repository.dict.entity.Status;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.entity.Status;
 /**
  * Role played by a party in the context of an investigation process.
  */
-public class InvestigationPartyRole extends Role {
+public class InvestigationPartyRole extends Role
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InvestigationCase InvestigationCase;
 	private Status Status;

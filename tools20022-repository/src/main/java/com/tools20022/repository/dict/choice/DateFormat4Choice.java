@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.choice;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
+
 /**
  * Specifies the value of a date.
  */
-public class DateFormat4Choice {
+public class DateFormat4Choice implements GeneratedRepoBean<MMChoiceComponent> {
 }

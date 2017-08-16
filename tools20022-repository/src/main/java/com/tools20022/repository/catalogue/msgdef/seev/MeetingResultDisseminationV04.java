@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingResultDisseminationV03;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.catalogue.msgdef.seev.MeetingResultDisseminationV05;
@@ -28,7 +30,9 @@ import com.tools20022.repository.dict.msg.Extension2;
  */
 @PreviousVersion(MeetingResultDisseminationV03.class)
 @NextVersion(MeetingResultDisseminationV05.class)
-public class MeetingResultDisseminationV04 {
+public class MeetingResultDisseminationV04
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 Identification;
 	private Optional<AmendInformation2> Amendment;

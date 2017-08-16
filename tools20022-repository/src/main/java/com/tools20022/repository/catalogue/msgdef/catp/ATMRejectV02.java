@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.catp;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.catp.ATMRejectV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.Header33;
@@ -9,7 +11,7 @@ import com.tools20022.repository.dict.msg.ATMReject2;
  * The ATMReject message is sent by any entity to reject a received message.
  */
 @PreviousVersion(ATMRejectV01.class)
-public class ATMRejectV02 {
+public class ATMRejectV02 implements GeneratedRepoBean<MMMessageDefinition> {
 
 	private Header33 Header;
 	private ATMReject2 ATMReject;

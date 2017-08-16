@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.ISODateTime;
 import com.tools20022.repository.dict.entity.Commission;
 import com.tools20022.repository.dict.datatype.ISODate;
@@ -25,7 +28,9 @@ import com.tools20022.repository.dict.entity.Reconciliation;
  * Result of an order between at least two parties. A trade relates to the
  * delivery of goods and services, cash or securities.
  */
-public class Trade {
+public class Trade extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private ISODateTime TradeDateTime;
 	private Commission TradeCommission;

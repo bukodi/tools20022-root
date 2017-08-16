@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.FractionDispositionType15Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * fraction disposition.
  */
 @PreviousVersion(FractionDispositionType15Choice.class)
-public class FractionDispositionType25Choice {
+public class FractionDispositionType25Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

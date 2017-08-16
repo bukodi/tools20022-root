@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.NumberOfItemsPerStatus1;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.NumberOfTransactionsPerStatus5;
@@ -10,5 +12,7 @@ import com.tools20022.repository.dict.msg.NumberOfTransactionsPerStatus5;
  */
 @NextVersion(NumberOfItemsPerStatus1.class)
 @NextVersion(NumberOfTransactionsPerStatus5.class)
-public class NumberOfTransactionsPerStatus3 {
+public class NumberOfTransactionsPerStatus3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

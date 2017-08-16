@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SecuritiesTrade;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.codeset.SecuritiesTransactionTypeV2Code;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.entity.BuyOrSellIndicationOfInterest;
  * collateral. It aims at optimising liquidity, support a trading strategy, or
  * increase settlement efficiency.
  */
-public class SecuritiesFinancing extends SecuritiesTrade {
+public class SecuritiesFinancing extends SecuritiesTrade
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private YesNoIndicator ReturnLegInstruction;
 	private SecuritiesTransactionTypeV2Code Type;

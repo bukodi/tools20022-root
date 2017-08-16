@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.PointOfInteractionComponentCharacteristics2;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * Interaction).
  */
 @PreviousVersion(PointOfInteractionComponentCharacteristics2.class)
-public class PointOfInteractionComponentCharacteristics3 {
+public class PointOfInteractionComponentCharacteristics3
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Specifies the type of certification completion required for a beneficiary.
  */
-public class BeneficiaryCertificationCompletion1Code {
+public class BeneficiaryCertificationCompletion1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

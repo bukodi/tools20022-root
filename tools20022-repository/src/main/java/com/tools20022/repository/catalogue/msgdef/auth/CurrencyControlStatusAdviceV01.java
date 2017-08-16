@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.auth;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.CurrencyControlHeader2;
 import com.tools20022.repository.dict.msg.CurrencyControlGroupStatus1;
 import com.tools20022.repository.dict.msg.CurrencyControlPackageStatus1;
@@ -16,7 +18,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * the currency control contract, supporting document or on the payment
  * regulatory information notification.
  */
-public class CurrencyControlStatusAdviceV01 {
+public class CurrencyControlStatusAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CurrencyControlHeader2 GroupHeader;
 	private CurrencyControlGroupStatus1 GroupStatus;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestigationCase;
 import com.tools20022.repository.dict.entity.PaymentStatus;
 import com.tools20022.repository.dict.codeset.CancellationReasonCode;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
  * been received but is incorrect. - a payment must be corrected or cancelled
  * (requested by the party which ordered the payment).
  */
-public class PaymentInvestigationCase extends InvestigationCase {
+public class PaymentInvestigationCase extends InvestigationCase
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PaymentStatus PaymentStatus;
 	private CancellationReasonCode CancellationReason;

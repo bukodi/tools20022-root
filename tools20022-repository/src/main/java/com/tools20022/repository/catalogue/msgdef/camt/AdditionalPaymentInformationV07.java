@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.AdditionalPaymentInformationV06;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.CaseAssignment3;
@@ -52,7 +54,9 @@ import java.util.Optional;
  * problem does not go away, a party can re-open the case.
  */
 @PreviousVersion(AdditionalPaymentInformationV06.class)
-public class AdditionalPaymentInformationV07 {
+public class AdditionalPaymentInformationV07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private CaseAssignment3 Assignment;
 	private Case3 Case;

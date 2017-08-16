@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.AccountOpeningAdditionalInformationRequestV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.References3;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.PartyAndSignature1;
  * information is required as part of the account opening process.
  */
 @NextVersion(AccountOpeningAdditionalInformationRequestV02.class)
-public class AccountOpeningAdditionalInformationRequestV01 {
+public class AccountOpeningAdditionalInformationRequestV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private References3 References;
 	private OrganisationIdentification6 OrganisationIdentification;

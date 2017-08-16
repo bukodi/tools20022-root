@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Mandate;
 import com.tools20022.repository.dict.entity.Party;
 import com.tools20022.repository.dict.entity.PowerOfAttorneyRequirements;
@@ -8,7 +10,9 @@ import com.tools20022.repository.dict.entity.SecuritiesAccount;
 /**
  * Document that transfers specific rights from a party to another party.
  */
-public class PowerOfAttorney extends Mandate {
+public class PowerOfAttorney extends Mandate
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Party AuthorisedParty;
 	private PowerOfAttorneyRequirements PowerOfAttorneyRequirements;

@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.SystemPartyRole;
 import com.tools20022.repository.dict.entity.CashClearingSystem;
 import com.tools20022.repository.dict.codeset.CurrencyCode;
@@ -11,7 +13,9 @@ import com.tools20022.repository.dict.entity.CashSettlement;
  * Set of integrated applications that provides centralised services such as
  * clearing and settlement.
  */
-public class TransactionAdministrator extends SystemPartyRole {
+public class TransactionAdministrator extends SystemPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CashClearingSystem CashClearingSystem;
 	private CurrencyCode Currency;

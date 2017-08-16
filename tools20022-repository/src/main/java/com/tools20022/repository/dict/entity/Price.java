@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.CurrencyAndAmount;
 import com.tools20022.repository.dict.entity.Option;
 import com.tools20022.repository.dict.entity.Product;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.entity.SecuritiesPricing;
  * Amount of money for which goods, services or assets are offered, sold, or
  * bought.
  */
-public class Price {
+public class Price extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CurrencyAndAmount Amount;
 	private Option Option;

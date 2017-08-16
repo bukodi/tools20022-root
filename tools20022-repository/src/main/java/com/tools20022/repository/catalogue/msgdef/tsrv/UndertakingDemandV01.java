@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsrv;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Demand1;
 import com.tools20022.repository.dict.datatype.Max2000Text;
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.Optional;
  * narrative text within the message. It may contain other required documents in
  * addition to the demand.
  */
-public class UndertakingDemandV01 {
+public class UndertakingDemandV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Demand1 UndertakingDemandDetails;
 	private List<Max2000Text> BankToBankInformation;

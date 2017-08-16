@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.Transport;
 import com.tools20022.repository.dict.codeset.IncotermsCode;
 import com.tools20022.repository.dict.entity.Location;
@@ -15,7 +18,9 @@ import com.tools20022.repository.dict.entity.Location;
  * transaction costs and responsibilities between buyer and seller and reflect
  * state-of-the-art transportation practices.
  */
-public class Incoterms {
+public class Incoterms extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Transport Transport;
 	private IncotermsCode Code;

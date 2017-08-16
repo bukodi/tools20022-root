@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Transport;
 import com.tools20022.repository.dict.datatype.Max6Text;
 import com.tools20022.repository.dict.datatype.Max35Text;
@@ -7,7 +9,9 @@ import com.tools20022.repository.dict.datatype.Max35Text;
 /**
  * Information related to the transportation of goods by air.
  */
-public class TransportByAir extends Transport {
+public class TransportByAir extends Transport
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Max6Text AirportName;
 	private Max35Text FlightNumber;

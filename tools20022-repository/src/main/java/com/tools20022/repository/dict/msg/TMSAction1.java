@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.TMSAction2;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,5 @@ import com.tools20022.core.repo.NextVersion;
  * interaction.
  */
 @NextVersion(TMSAction2.class)
-public class TMSAction1 {
+public class TMSAction1 implements GeneratedRepoBean<MMMessageComponent> {
 }

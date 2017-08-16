@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.datatype.Number;
 import com.tools20022.repository.dict.datatype.YesNoIndicator;
 import com.tools20022.repository.dict.entity.Mandate;
@@ -10,7 +13,9 @@ import com.tools20022.repository.dict.entity.Signature;
 /**
  * Specifies the signature requirements for managing an account.
  */
-public class SignatureCondition {
+public class SignatureCondition extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Number RequiredSignatureNumber;
 	private YesNoIndicator SignatoryRightIndicator;

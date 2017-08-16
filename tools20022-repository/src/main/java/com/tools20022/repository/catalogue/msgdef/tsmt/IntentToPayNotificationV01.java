@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.tsmt.IntentToPayNotificationV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -19,7 +21,9 @@ import com.tools20022.repository.dict.msg.IntentToPay1;
  * response to another message.
  */
 @NextVersion(IntentToPayNotificationV02.class)
-public class IntentToPayNotificationV01 {
+public class IntentToPayNotificationV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 NotificationIdentification;
 	private SimpleIdentificationInformation TransactionIdentification;

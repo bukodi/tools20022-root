@@ -1,12 +1,16 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.CorporateActionPartyRole;
 import com.tools20022.repository.dict.entity.Meeting;
 
 /**
  * Role played by a party in the context of a meeting.
  */
-public class MeetingPartyRole extends CorporateActionPartyRole {
+public class MeetingPartyRole extends CorporateActionPartyRole
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Meeting Meeting;
 

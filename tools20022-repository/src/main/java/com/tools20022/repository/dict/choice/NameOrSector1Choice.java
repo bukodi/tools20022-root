@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.msg.SectorAndLocation1;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * sector.
  */
 @PreviousVersion(SectorAndLocation1.class)
-public class NameOrSector1Choice {
+public class NameOrSector1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

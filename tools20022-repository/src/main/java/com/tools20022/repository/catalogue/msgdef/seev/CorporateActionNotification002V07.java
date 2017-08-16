@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.seev;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.Pagination;
 import java.util.Optional;
 import com.tools20022.repository.dict.msg.CorporateActionNotification6;
@@ -34,7 +36,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * Duplicate), using the relevant elements in the business application header
  * (BAH).
  */
-public class CorporateActionNotification002V07 {
+public class CorporateActionNotification002V07
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private Optional<Pagination> Pagination;
 	private CorporateActionNotification6 NotificationGeneralInformation;

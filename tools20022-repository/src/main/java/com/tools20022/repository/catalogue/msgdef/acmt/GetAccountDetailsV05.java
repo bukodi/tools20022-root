@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
 import com.tools20022.repository.dict.choice.AccountSelection2Choice;
 import com.tools20022.repository.dict.msg.InvestmentAccountInformationType1;
@@ -17,7 +19,9 @@ import com.tools20022.repository.dict.msg.InvestmentAccountInformationType1;
  * purposes. The response to a GetAccountDetails message is via an
  * AccountDetailsConfirmation message.
  */
-public class GetAccountDetailsV05 {
+public class GetAccountDetailsV05
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private AccountSelection2Choice InvestmentAccountSelection;

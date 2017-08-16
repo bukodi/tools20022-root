@@ -1,6 +1,10 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Additional references linked to the quote.
  */
-public class Reference3 {
+public class Reference3 implements GeneratedRepoBean<MMMessageComponent> {
 }

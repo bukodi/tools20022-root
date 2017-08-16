@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.camt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.camt.BankToCustomerDebitCreditNotificationV05;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.GroupHeader58;
@@ -24,7 +26,9 @@ import java.util.Optional;
  * It does not contain balance information.
  */
 @PreviousVersion(BankToCustomerDebitCreditNotificationV05.class)
-public class BankToCustomerDebitCreditNotificationV06 {
+public class BankToCustomerDebitCreditNotificationV06
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private GroupHeader58 GroupHeader;
 	private AccountNotification12 Notification;

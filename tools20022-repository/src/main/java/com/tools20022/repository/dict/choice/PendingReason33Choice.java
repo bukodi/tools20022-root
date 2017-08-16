@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.PendingReason24Choice;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.choice.PendingReason48Choice;
@@ -11,5 +13,7 @@ import com.tools20022.core.repo.NextVersion;
  */
 @PreviousVersion(PendingReason24Choice.class)
 @NextVersion(PendingReason48Choice.class)
-public class PendingReason33Choice {
+public class PendingReason33Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.setr;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.setr.RequestForOrderConfirmationStatusReportV01;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.MessageIdentification1;
@@ -31,7 +33,9 @@ import java.util.Optional;
  * PreviousReference.
  */
 @PreviousVersion(RequestForOrderConfirmationStatusReportV01.class)
-public class RequestForOrderConfirmationStatusReportV02 {
+public class RequestForOrderConfirmationStatusReportV02
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private MessageIdentification1 MessageIdentification;
 	private MessageAndBusinessReference10 RequestDetails;

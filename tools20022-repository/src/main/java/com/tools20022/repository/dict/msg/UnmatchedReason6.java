@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.msg;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.repository.dict.msg.UnmatchedReason1;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.repository.dict.msg.UnmatchedReason11;
@@ -12,5 +14,5 @@ import com.tools20022.repository.dict.msg.UnmatchedReason16;
 @PreviousVersion(UnmatchedReason1.class)
 @NextVersion(UnmatchedReason11.class)
 @NextVersion(UnmatchedReason16.class)
-public class UnmatchedReason6 {
+public class UnmatchedReason6 implements GeneratedRepoBean<MMMessageComponent> {
 }

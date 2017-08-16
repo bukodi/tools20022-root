@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CancelledReason8Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * the instruction or cancellation request is cancelled.
  */
 @NextVersion(CancelledReason8Choice.class)
-public class CancelledReason1Choice {
+public class CancelledReason1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

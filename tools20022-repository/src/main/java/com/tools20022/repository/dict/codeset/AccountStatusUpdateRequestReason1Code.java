@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.codeset;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMCodeSet;
+
 /**
  * Sepcifes the reason for a request for a change to an account status.
  */
-public class AccountStatusUpdateRequestReason1Code {
+public class AccountStatusUpdateRequestReason1Code
+		implements
+			GeneratedRepoBean<MMCodeSet> {
 }

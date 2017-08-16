@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.BeneficiaryCertificationType5Choice;
 import com.tools20022.core.repo.NextVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.NextVersion;
  * beneficiary certification required.
  */
 @NextVersion(BeneficiaryCertificationType5Choice.class)
-public class BeneficiaryCertificationType1Choice {
+public class BeneficiaryCertificationType1Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

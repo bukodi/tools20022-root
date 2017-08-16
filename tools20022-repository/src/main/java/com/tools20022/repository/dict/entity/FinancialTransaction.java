@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.entity.CorporateActionDistribution;
 import com.tools20022.repository.dict.entity.InterestManagement;
 import com.tools20022.repository.dict.entity.Trade;
@@ -11,7 +14,9 @@ import com.tools20022.repository.dict.entity.RegulatoryReport;
  * Process which includes the order, the execution, the settlement of trades in
  * the financial domain.
  */
-public class FinancialTransaction {
+public class FinancialTransaction extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private CorporateActionDistribution CorporateActionDistribution;
 	private InterestManagement InterestManagement;

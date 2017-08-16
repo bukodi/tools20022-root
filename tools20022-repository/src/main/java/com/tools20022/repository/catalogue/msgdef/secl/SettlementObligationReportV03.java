@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.secl;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.ReportParameters4;
 import com.tools20022.repository.dict.msg.Pagination;
 import com.tools20022.repository.dict.choice.PartyIdentification35Choice;
@@ -24,7 +26,9 @@ import com.tools20022.repository.dict.msg.SupplementaryData1;
  * specific delivering party or one specific receiving party. It can also be
  * generated per non clearing member.
  */
-public class SettlementObligationReportV03 {
+public class SettlementObligationReportV03
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private ReportParameters4 ReportParameters;
 	private Pagination Pagination;

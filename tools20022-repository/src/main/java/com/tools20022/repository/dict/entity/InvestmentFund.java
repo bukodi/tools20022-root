@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.FinancialProduct;
 import com.tools20022.repository.dict.entity.Country;
 import com.tools20022.repository.dict.entity.ContactPoint;
@@ -22,7 +24,9 @@ import com.tools20022.repository.dict.codeset.CountryCode;
  * May or not be part of an umbrella fund. The pool is issued in at least one
  * investment fund class.
  */
-public class InvestmentFund extends FinancialProduct {
+public class InvestmentFund extends FinancialProduct
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private Country DomicileCountry;
 	private ContactPoint OrderDesk;

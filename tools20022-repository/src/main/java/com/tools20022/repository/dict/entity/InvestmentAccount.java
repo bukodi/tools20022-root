@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.Account;
 import com.tools20022.repository.dict.codeset.FundCashAccountCode;
 import com.tools20022.repository.dict.codeset.AccountOwnershipTypeCode;
@@ -24,7 +26,9 @@ import com.tools20022.repository.dict.entity.Portfolio;
  * contain holdings in any investment fund or investment fund class managed (or
  * distributed) by the fund manager, within the same fund family.
  */
-public class InvestmentAccount extends Account {
+public class InvestmentAccount extends Account
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private FundCashAccountCode InvestmentAccountType;
 	private AccountOwnershipTypeCode OwnershipType;

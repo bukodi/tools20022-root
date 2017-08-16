@@ -1,6 +1,12 @@
 package com.tools20022.repository.dict.msg;
+
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageComponent;
+
 /**
  * Investment fund transactions for a specific financial instrument.
  */
-public class InvestmentFundTransactionsByFund1 {
+public class InvestmentFundTransactionsByFund1
+		implements
+			GeneratedRepoBean<MMMessageComponent> {
 }

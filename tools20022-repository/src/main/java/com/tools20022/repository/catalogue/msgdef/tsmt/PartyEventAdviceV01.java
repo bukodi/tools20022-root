@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.tsmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.dict.msg.BusinessLetter1;
 import com.tools20022.repository.dict.msg.EventDescription1;
 import com.tools20022.repository.dict.datatype.Max15NumericText;
@@ -18,7 +20,9 @@ import com.tools20022.repository.dict.msg.EncapsulatedBusinessMessage1;
  * message can report several events. The message can carry digital signatures
  * if required by context.
  */
-public class PartyEventAdviceV01 {
+public class PartyEventAdviceV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private BusinessLetter1 Header;
 	private EventDescription1 EventNotice;

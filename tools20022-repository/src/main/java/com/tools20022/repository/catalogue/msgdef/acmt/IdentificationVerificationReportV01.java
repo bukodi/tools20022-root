@@ -1,5 +1,7 @@
 package com.tools20022.repository.catalogue.msgdef.acmt;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.repository.catalogue.msgdef.acmt.IdentificationVerificationReportV02;
 import com.tools20022.core.repo.NextVersion;
 import com.tools20022.repository.dict.msg.IdentificationAssignment1;
@@ -20,7 +22,9 @@ import com.tools20022.repository.dict.msg.VerificationReport1;
  * correct party and/or account identification information.
  */
 @NextVersion(IdentificationVerificationReportV02.class)
-public class IdentificationVerificationReportV01 {
+public class IdentificationVerificationReportV01
+		implements
+			GeneratedRepoBean<MMMessageDefinition> {
 
 	private IdentificationAssignment1 Assignment;
 	private Optional<MessageIdentification4> OriginalAssignment;

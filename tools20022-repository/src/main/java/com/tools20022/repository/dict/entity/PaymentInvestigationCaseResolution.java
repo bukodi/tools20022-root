@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.repository.dict.entity.InvestigationResolution;
 import com.tools20022.repository.dict.codeset.InvestigationExecutionConfirmationCode;
 import com.tools20022.repository.dict.entity.DebitAuthorisation;
@@ -14,7 +16,9 @@ import com.tools20022.repository.dict.entity.DuplicateCase;
  * Specifies the status of an investigation case and the actions taken as a
  * result of this status.
  */
-public class PaymentInvestigationCaseResolution extends InvestigationResolution {
+public class PaymentInvestigationCaseResolution extends InvestigationResolution
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private InvestigationExecutionConfirmationCode InvestigationStatus;
 	private DebitAuthorisation DebitAuthorisationConfirmation;

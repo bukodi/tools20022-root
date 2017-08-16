@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.PendingReason4Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * why the instruction/event has a pending status.
  */
 @PreviousVersion(PendingReason4Choice.class)
-public class PendingReason32Choice {
+public class PendingReason32Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

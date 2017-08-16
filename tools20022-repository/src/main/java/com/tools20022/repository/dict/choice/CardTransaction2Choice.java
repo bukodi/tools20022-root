@@ -1,5 +1,7 @@
 package com.tools20022.repository.dict.choice;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.repository.dict.choice.CardTransaction1Choice;
 import com.tools20022.core.repo.PreviousVersion;
 
@@ -8,5 +10,7 @@ import com.tools20022.core.repo.PreviousVersion;
  * transaction.
  */
 @PreviousVersion(CardTransaction1Choice.class)
-public class CardTransaction2Choice {
+public class CardTransaction2Choice
+		implements
+			GeneratedRepoBean<MMChoiceComponent> {
 }

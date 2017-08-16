@@ -1,5 +1,8 @@
 package com.tools20022.repository.dict.entity;
 
+import com.tools20022.core.repo.GeneratedRepoBean;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.repository.dict.codeset.PowerOfAttorneyLegalisationCode;
 import com.tools20022.repository.dict.datatype.Max350Text;
 import com.tools20022.repository.dict.entity.PowerOfAttorney;
@@ -8,7 +11,9 @@ import com.tools20022.repository.dict.entity.Meeting;
 /**
  * Specifies the conditions to be filled in to obtain a valid power of attorney.
  */
-public class PowerOfAttorneyRequirements {
+public class PowerOfAttorneyRequirements extends AbstractBusinessComponent
+		implements
+			GeneratedRepoBean<MMBusinessComponent> {
 
 	private PowerOfAttorneyLegalisationCode LegalRequirement;
 	private Max350Text OtherDocumentation;
