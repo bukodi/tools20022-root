@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.junit.Test;
 
@@ -19,7 +18,6 @@ public class TestFileIOHelper {
 			Path customFile = Files.write(customDir.resolve("MyFile.java"), "class MyFile{}".getBytes());
 			Path generatedFile = Files.write(generatedDir.resolve("GenFile.java"), "class GenFile{}".getBytes());
 			FileIOHelper.deleteAllExcept(src, p -> p.toString().contains("/custom/"));
-			// TODO assert
 			assertTrue(Files.exists(customFile));
 			assertFalse(Files.exists(generatedFile));
 		} finally {
