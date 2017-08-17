@@ -12,7 +12,10 @@ import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMMessageElement;
 import java.util.List;
 import com.tools20022.metamodel.MMBusinessElementType;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMBusinessAssociationEnd_businessElementType;
 import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.metamodel.constraints.DeriveMMBusinessAssociationEnd_memberType;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
@@ -32,9 +35,7 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 	protected MMBusinessComponent type;
 	protected boolean isDerived;
 	protected List<MMMessageElement> derivation;
-	protected MMBusinessElementType businessElementType;
 	protected MMBusinessComponent elementContext;
-	protected MMRepositoryType memberType;
 	protected String name;
 	protected Optional<String> definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -102,9 +103,11 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 		return derivation;
 	}
 
+	@Derived
 	@Override
 	public MMBusinessElementType getBusinessElementType() {
-		return businessElementType;
+		return (new DeriveMMBusinessAssociationEnd_businessElementType())
+				.apply(this);
 	}
 
 	@Override
@@ -112,9 +115,10 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 		return elementContext;
 	}
 
+	@Derived
 	@Override
 	public MMRepositoryType getMemberType() {
-		return memberType;
+		return (new DeriveMMBusinessAssociationEnd_memberType()).apply(this);
 	}
 
 	@Override

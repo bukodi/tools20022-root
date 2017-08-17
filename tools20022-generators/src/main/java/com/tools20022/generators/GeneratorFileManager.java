@@ -1,9 +1,11 @@
 package com.tools20022.generators;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.io.StringWriter;
 import java.io.UncheckedIOException;
 import java.io.Writer;
 import java.net.URI;
@@ -13,12 +15,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.nio.file.attribute.FileAttribute;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import javax.lang.model.element.Modifier;
@@ -31,17 +32,24 @@ import javax.tools.StandardLocation;
 
 /**
  * TODO: convert to maven layout file manager
+ * 
  * @author bukodi
  *
  */
 public class GeneratorFileManager implements JavaFileManager {
 
 	private Map<Location, Path> rootPaths = new HashMap<>();
+	private Predicate<Path> dontChangeIfExists;
 
-	public GeneratorFileManager(Path srcRoot) {
+	public GeneratorFileManager(Path srcRoot, Predicate<Path> dontChangeIfExists) {
 		rootPaths.put(StandardLocation.SOURCE_OUTPUT, srcRoot);
+		this.dontChangeIfExists = dontChangeIfExists;
 	}
 
+	public void dontChangeIfExists( Predicate<Path> predicate) {
+		this.dontChangeIfExists = predicate;
+	}
+	
 	@Override
 	public int isSupportedOption(String option) {
 		return -1;
@@ -57,22 +65,22 @@ public class GeneratorFileManager implements JavaFileManager {
 			throws IOException {
 		return () -> {
 			Path startPath = rootPaths.get(location).resolve(packageName.replace('.', '/'));
-			Stream<Path> filePathStream = listFiles( startPath, recurse );
+			Stream<Path> filePathStream = listFiles(startPath, recurse);
 			Stream<JavaFileObject> jfoStream = filePathStream.map(p -> new GeneratorJavaFileObject(location, p));
 			// TODO: filter by kinds
 			return jfoStream.iterator();
 		};
 	}
-	
+
 	@SuppressWarnings("resource")
-	private Stream<Path> listFiles( Path path, boolean recurse ) {
-		Stream<Path> content; 
+	private Stream<Path> listFiles(Path path, boolean recurse) {
+		Stream<Path> content;
 		try {
 			content = Files.list(path);
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
 		}
-		
+
 		return content.flatMap(p -> {
 			if (Files.isDirectory(p) && recurse) {
 				return listFiles(p, recurse);
@@ -107,9 +115,9 @@ public class GeneratorFileManager implements JavaFileManager {
 	@Override
 	public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind) throws IOException {
 		String ext;
-		if( Kind.SOURCE.equals(kind)) {
+		if (Kind.SOURCE.equals(kind)) {
 			ext = ".java";
-		} else if ( Kind.CLASS.equals(kind)) {
+		} else if (Kind.CLASS.equals(kind)) {
 			ext = ".class";
 		} else {
 			throw new IllegalArgumentException("Invalid kind: " + kind);
@@ -122,9 +130,9 @@ public class GeneratorFileManager implements JavaFileManager {
 	public JavaFileObject getJavaFileForOutput(Location location, String className, Kind kind, FileObject sibling)
 			throws IOException {
 		String ext;
-		if( Kind.SOURCE.equals(kind)) {
+		if (Kind.SOURCE.equals(kind)) {
 			ext = ".java";
-		} else if ( Kind.CLASS.equals(kind)) {
+		} else if (Kind.CLASS.equals(kind)) {
 			ext = ".class";
 		} else {
 			throw new IllegalArgumentException("Invalid kind: " + kind);
@@ -158,10 +166,12 @@ public class GeneratorFileManager implements JavaFileManager {
 
 		private final Location location;
 		private final Path path;
+		private final boolean isProtected;
 
 		GeneratorFileObject(Location location, Path path) {
 			this.location = location;
 			this.path = path;
+			this.isProtected = Files.exists(path) && dontChangeIfExists.test(path);
 		}
 
 		private Charset charset = StandardCharsets.UTF_8;
@@ -183,8 +193,12 @@ public class GeneratorFileManager implements JavaFileManager {
 
 		@Override
 		public OutputStream openOutputStream() throws IOException {
-			Files.createDirectories(path.getParent() );
-			return Files.newOutputStream(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+			if (isProtected) {
+				return new ByteArrayOutputStream();
+			} else {
+				Files.createDirectories(path.getParent());
+				return Files.newOutputStream(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+			}
 		}
 
 		@Override
@@ -203,9 +217,13 @@ public class GeneratorFileManager implements JavaFileManager {
 
 		@Override
 		public Writer openWriter() throws IOException {
-			Files.createDirectories(path.getParent() );
-			return Files.newBufferedWriter(path, charset, StandardOpenOption.CREATE,
-					StandardOpenOption.TRUNCATE_EXISTING);
+			if (isProtected) {
+				return new StringWriter();
+			} else {
+				Files.createDirectories(path.getParent());
+				return Files.newBufferedWriter(path, charset, StandardOpenOption.CREATE,
+						StandardOpenOption.TRUNCATE_EXISTING);
+			}
 		}
 
 		@Override
@@ -215,6 +233,8 @@ public class GeneratorFileManager implements JavaFileManager {
 
 		@Override
 		public boolean delete() {
+			if( isProtected )
+				return false;
 			try {
 				return Files.deleteIfExists(path);
 			} catch (IOException e) {

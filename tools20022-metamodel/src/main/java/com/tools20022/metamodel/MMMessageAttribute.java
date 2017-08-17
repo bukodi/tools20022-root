@@ -7,11 +7,15 @@ import com.tools20022.metamodel.MMMessageElement;
 import com.tools20022.metamodel.MMDataType;
 import java.util.Optional;
 import com.tools20022.metamodel.MMMessageComponentType;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMMessageAttribute_isTechnical;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMMessageElementContainer;
 import com.tools20022.metamodel.MMLogicalType;
+import com.tools20022.metamodel.constraints.DeriveMMMessageAttribute_xmlMemberType;
 import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.metamodel.constraints.DeriveMMMessageAttribute_memberType;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
 import com.tools20022.metamodel.MMDoclet;
@@ -28,14 +32,11 @@ public class MMMessageAttribute implements MMMessageElement {
 	private GeneratedMetamodelBean container;
 	protected Optional<MMDataType> simpleType;
 	protected Optional<MMMessageComponentType> complexType;
-	protected boolean isTechnical;
 	protected Optional<MMBusinessComponent> businessComponentTrace;
 	protected Optional<MMBusinessElement> businessElementTrace;
 	protected MMMessageElementContainer componentContext;
 	protected boolean isDerived;
 	protected Optional<String> xmlTag;
-	protected MMLogicalType xmlMemberType;
-	protected MMRepositoryType memberType;
 	protected String name;
 	protected Optional<String> definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -81,9 +82,10 @@ public class MMMessageAttribute implements MMMessageElement {
 		return complexType;
 	}
 
+	@Derived
 	@Override
 	public boolean isIsTechnical() {
-		return isTechnical;
+		return (new DeriveMMMessageAttribute_isTechnical()).apply(this);
 	}
 
 	@Override
@@ -111,14 +113,16 @@ public class MMMessageAttribute implements MMMessageElement {
 		return xmlTag;
 	}
 
+	@Derived
 	@Override
 	public MMLogicalType getXmlMemberType() {
-		return xmlMemberType;
+		return (new DeriveMMMessageAttribute_xmlMemberType()).apply(this);
 	}
 
+	@Derived
 	@Override
 	public MMRepositoryType getMemberType() {
-		return memberType;
+		return (new DeriveMMMessageAttribute_memberType()).apply(this);
 	}
 
 	@Override

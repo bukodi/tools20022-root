@@ -4,6 +4,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMConstruct;
 import java.util.Optional;
 import com.tools20022.metamodel.MMLogicalType;
+import com.tools20022.core.metamodel.Derived;
 
 /**
  * Abstract layer : Abstract meta class for representing a MessageElement or a
@@ -24,5 +25,6 @@ public interface MMMessageConstruct extends MMConstruct {
 	/**
 	 * Direct reference to the type of a MessageElement or MessageBuildingBlock
 	 */
+	@Derived
 	MMLogicalType getXmlMemberType();
 }

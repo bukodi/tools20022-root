@@ -10,7 +10,10 @@ import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMMessageElement;
 import java.util.List;
 import com.tools20022.metamodel.MMBusinessElementType;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMBusinessAttribute_businessElementType;
 import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.metamodel.constraints.DeriveMMBusinessAttribute_memberType;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
@@ -29,9 +32,7 @@ public class MMBusinessAttribute implements MMBusinessElement {
 	protected Optional<MMBusinessComponent> complexType;
 	protected boolean isDerived;
 	protected List<MMMessageElement> derivation;
-	protected MMBusinessElementType businessElementType;
 	protected MMBusinessComponent elementContext;
-	protected MMRepositoryType memberType;
 	protected String name;
 	protected Optional<String> definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -87,9 +88,11 @@ public class MMBusinessAttribute implements MMBusinessElement {
 		return derivation;
 	}
 
+	@Derived
 	@Override
 	public MMBusinessElementType getBusinessElementType() {
-		return businessElementType;
+		return (new DeriveMMBusinessAttribute_businessElementType())
+				.apply(this);
 	}
 
 	@Override
@@ -97,9 +100,10 @@ public class MMBusinessAttribute implements MMBusinessElement {
 		return elementContext;
 	}
 
+	@Derived
 	@Override
 	public MMRepositoryType getMemberType() {
-		return memberType;
+		return (new DeriveMMBusinessAttribute_memberType()).apply(this);
 	}
 
 	@Override

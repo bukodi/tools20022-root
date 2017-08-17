@@ -7,6 +7,7 @@ import com.tools20022.metamodel.MMMessageConcept;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public interface MMMessageComponentType
 	 * A property indicating the absense of a semantic relationship to a
 	 * BusinessComponent, i.e. it is not derived from a BusinessComponent
 	 */
+	@Derived
 	boolean isIsTechnical();
 
 	/**

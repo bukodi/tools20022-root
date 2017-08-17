@@ -7,6 +7,8 @@ import com.tools20022.metamodel.MMMessageElementContainer;
 import com.tools20022.metamodel.MMMessageElement;
 import java.util.List;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMChoiceComponent_isTechnical;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.Optional;
 import com.tools20022.metamodel.MMDataDictionary;
@@ -26,7 +28,6 @@ public class MMChoiceComponent implements MMMessageElementContainer {
 	private GeneratedMetamodelBean container;
 	protected List<MMMessageElement> messageElement;
 	protected List<MMMessageBuildingBlock> messageBuildingBlock;
-	protected boolean isTechnical;
 	protected Optional<MMBusinessComponent> trace;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
@@ -66,9 +67,10 @@ public class MMChoiceComponent implements MMMessageElementContainer {
 		return messageBuildingBlock;
 	}
 
+	@Derived
 	@Override
 	public boolean isIsTechnical() {
-		return isTechnical;
+		return (new DeriveMMChoiceComponent_isTechnical()).apply(this);
 	}
 
 	@Override

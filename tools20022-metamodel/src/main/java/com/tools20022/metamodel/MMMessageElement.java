@@ -3,6 +3,7 @@ package com.tools20022.metamodel;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageConcept;
+import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.Optional;
 import com.tools20022.core.metamodel.Opposite;
@@ -26,6 +27,7 @@ public interface MMMessageElement extends MMMessageConstruct, MMMessageConcept {
 	 * relationship to a BusinessComponent / BusinessElement, i.e. whether it is
 	 * derived from a BusinessComponent / BusinessElement
 	 */
+	@Derived
 	boolean isIsTechnical();
 
 	/**

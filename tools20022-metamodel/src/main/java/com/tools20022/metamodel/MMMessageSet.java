@@ -6,7 +6,9 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMSyntax;
 import java.util.List;
+import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.metamodel.constraints.DeriveMMMessageSet_generatedSyntax;
 import com.tools20022.metamodel.MMEncoding;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
@@ -24,7 +26,6 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	private GeneratedMetamodelBean container;
-	protected List<MMSyntax> generatedSyntax;
 	protected List<MMEncoding> validEncoding;
 	protected List<MMMessageDefinition> messageDefinition;
 	protected MMBusinessProcessCatalogue businessProcessCatalogue;
@@ -60,9 +61,10 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	 * 
 	 * @see MMSyntax#getGeneratedFor()
 	 */
+	@Derived
 	@Opposite(bean = MMSyntax.class, attribute = "generatedFor")
 	public List<MMSyntax> getGeneratedSyntax() {
-		return generatedSyntax;
+		return (new DeriveMMMessageSet_generatedSyntax()).apply(this);
 	}
 
 	/**

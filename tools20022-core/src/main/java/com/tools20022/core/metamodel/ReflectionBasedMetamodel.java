@@ -498,6 +498,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		public String toString() {
 			return "[" + getClass().getSimpleName() + "]:" + metaType.getName() + "." + getName();
 		}
+		
+		@Override
+		public boolean isDerived() {
+			return getterMethod.getAnnotation(Derived.class) != null;
+		}
 
 		@Override
 		public boolean isOptional() {

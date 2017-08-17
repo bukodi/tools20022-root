@@ -7,6 +7,8 @@ import com.tools20022.metamodel.MMMessageComponentType;
 import java.util.List;
 import com.tools20022.metamodel.MMProcessContent;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMExternalSchema_isTechnical;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.Optional;
 import com.tools20022.metamodel.MMDataDictionary;
@@ -27,7 +29,6 @@ public class MMExternalSchema implements MMMessageComponentType {
 	protected List<String> namespaceList;
 	protected MMProcessContent processContent;
 	protected List<MMMessageBuildingBlock> messageBuildingBlock;
-	protected boolean isTechnical;
 	protected Optional<MMBusinessComponent> trace;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
@@ -78,9 +79,10 @@ public class MMExternalSchema implements MMMessageComponentType {
 		return messageBuildingBlock;
 	}
 
+	@Derived
 	@Override
 	public boolean isIsTechnical() {
-		return isTechnical;
+		return (new DeriveMMExternalSchema_isTechnical()).apply(this);
 	}
 
 	@Override

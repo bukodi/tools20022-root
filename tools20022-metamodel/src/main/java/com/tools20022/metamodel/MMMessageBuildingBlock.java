@@ -9,7 +9,10 @@ import java.util.Optional;
 import com.tools20022.metamodel.MMMessageComponentType;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMLogicalType;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMMessageBuildingBlock_xmlMemberType;
 import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.metamodel.constraints.DeriveMMMessageBuildingBlock_memberType;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
 import com.tools20022.metamodel.MMDoclet;
@@ -28,8 +31,6 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 	protected Optional<MMDataType> simpleType;
 	protected Optional<MMMessageComponentType> complexType;
 	protected Optional<String> xmlTag;
-	protected MMLogicalType xmlMemberType;
-	protected MMRepositoryType memberType;
 	protected String name;
 	protected Optional<String> definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -83,14 +84,16 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 		return xmlTag;
 	}
 
+	@Derived
 	@Override
 	public MMLogicalType getXmlMemberType() {
-		return xmlMemberType;
+		return (new DeriveMMMessageBuildingBlock_xmlMemberType()).apply(this);
 	}
 
+	@Derived
 	@Override
 	public MMRepositoryType getMemberType() {
-		return memberType;
+		return (new DeriveMMMessageBuildingBlock_memberType()).apply(this);
 	}
 
 	@Override

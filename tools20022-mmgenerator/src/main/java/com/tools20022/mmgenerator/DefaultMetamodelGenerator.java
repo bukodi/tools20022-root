@@ -1,16 +1,13 @@
 package com.tools20022.mmgenerator;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.ecore.EPackage;
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.AnnotationTargetSource;
 import org.jboss.forge.roaster.model.source.EnumConstantSource;
@@ -28,13 +25,13 @@ import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.core.metamodel.StaticMemembersBuilder;
-import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.JavaName;
 import com.tools20022.generators.RoasterHelper;
@@ -45,12 +42,12 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnum;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
-public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,GenerationContext<RawMetamodel>>  {
+public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, GenerationContext<RawMetamodel>> {
 
 	private final static String CLASS_NAME_PREFIX = "MM";
 
 	protected boolean generateStaticStructs = true;
-	
+
 	protected RawMetamodel metamodel;
 	protected String basePackageName = "com.tools20022.metamodel";
 	protected String mainClassSimpleName = "StandardMetamodel2013";
@@ -59,22 +56,22 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 
 	@Override
 	public void accept(RawMetamodel metamodel, GenerationContext<RawMetamodel> ctx) {
+		ctx.dontChangeIfExists(p -> p.toString().contains("/constraints/"));
+
 		this.metamodel = metamodel;
 		this.ctx = ctx;
 		// Create metamodel model skeleton
-		JavaName mmName = JavaName.primaryType(basePackageName, mainClassSimpleName );
+		JavaName mmName = JavaName.primaryType(basePackageName, mainClassSimpleName);
 		JavaClassSource srcMetamodelMain = ctx.createSourceFile(JavaClassSource.class, mmName);
 		srcMetamodelMain.addImport(ReflectionBasedMetamodel.class);
 		srcMetamodelMain.setSuperType(ReflectionBasedMetamodel.class);
-	
+
 		// Add domain model classes and enums
 		metamodel.listEnums().forEachOrdered(e -> generateMMEnum(srcMetamodelMain, e));
-	
-		metamodel.listTypes().filter(c -> !c.isAbstract())
-				.forEachOrdered(t -> generateMMClass(srcMetamodelMain, t));
-		metamodel.listTypes().filter(c -> c.isAbstract())
-				.forEachOrdered(t -> generateMMInterface(srcMetamodelMain, t));
-	
+
+		metamodel.listTypes().filter(c -> !c.isAbstract()).forEachOrdered(t -> generateMMClass(srcMetamodelMain, t));
+		metamodel.listTypes().filter(c -> c.isAbstract()).forEachOrdered(t -> generateMMInterface(srcMetamodelMain, t));
+
 		{
 			// Add constructor
 			StringJoiner sjEnums = new StringJoiner(",\n", "registerEnumsFromClasses( \n", ");\n");
@@ -82,24 +79,24 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 				addImport(srcMetamodelMain, mmEnum);
 				sjEnums.add(getJavaName(mmEnum).getSimpleName() + ".class");
 			});
-	
+
 			StringJoiner sjTypes = new StringJoiner(",\n", "registerTypesFromClasses( \n", ");\n");
 			metamodel.listTypes().forEachOrdered(mmType -> {
 				addImport(srcMetamodelMain, mmType);
 				sjTypes.add(getJavaName(mmType).getSimpleName() + ".class");
 			});
-	
+
 			MethodSource<JavaClassSource> constructor = srcMetamodelMain.addMethod().setConstructor(true).setPrivate();
 			constructor.setBody(sjEnums.toString() + "\n" + sjTypes.toString());
 		}
-	
+
 		{
 			// Add static metamodel field;
 			FieldSource<JavaClassSource> fieldMetamodel = srcMetamodelMain.addField().setName("metamodel");
 			fieldMetamodel.setPrivate().setStatic(true).setFinal(true).setType(srcMetamodelMain);
 			fieldMetamodel.setLiteralInitializer("new " + srcMetamodelMain.getName() + "()");
 		}
-	
+
 		{
 			// Create static metaType()
 			MethodSource<JavaClassSource> method = srcMetamodelMain.addMethod();
@@ -140,7 +137,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 		return JavaName.member(parentName, memberName);
 
 	}
-	
+
 	void generateMMEnum(JavaClassSource srcMetamodelMain, MetamodelEnum mmEnum) {
 		JavaEnumSource src = ctx.createSourceFile(JavaEnumSource.class, getJavaName(mmEnum));
 		setMMDoc(src, mmEnum);
@@ -214,8 +211,8 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 
 	};
 
-	<T extends JavaSource<?>> void generateStaticStructInterface(
-			JavaClassSource srcMetamodelMain, T mmTypeSrc, MetamodelType mmType) {
+	<T extends JavaSource<?>> void generateStaticStructInterface(JavaClassSource srcMetamodelMain, T mmTypeSrc,
+			MetamodelType mmType) {
 		JavaName structJavaName = getStructJavaName(mmType);
 		JavaInterfaceSource src = ctx.createSourceFile(JavaInterfaceSource.class, structJavaName);
 		for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
@@ -232,8 +229,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 			fieldtype = "<" + mmTypeSrc.getName() + ", " + fieldtype + ">";
 			fieldtype = Metamodel.MetamodelAttribute.class.getSimpleName() + fieldtype;
 
-			FieldSource<JavaInterfaceSource> metaField = src.addField()
-					.setName(getJavaName(mmAttr).getSimpleName());
+			FieldSource<JavaInterfaceSource> metaField = src.addField().setName(getJavaName(mmAttr).getSimpleName());
 			metaField.setType(fieldtype);
 			src.addImport(StaticMemembersBuilder.class.getName() + ".newAttribute").setStatic(true);
 			metaField.setLiteralInitializer("newAttribute()");
@@ -243,8 +239,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 		// Add declared constraints
 		for (MetamodelConstraint mmConstr : mmType.getDeclaredConstraints()) {
 			src.addImport(Metamodel.MetamodelConstraint.class);
-			FieldSource<JavaInterfaceSource> metaField = src.addField()
-					.setName(getJavaName(mmConstr).getSimpleName());
+			FieldSource<JavaInterfaceSource> metaField = src.addField().setName(getJavaName(mmConstr).getSimpleName());
 			metaField.setType(Metamodel.MetamodelConstraint.class.getSimpleName() + "<" + mmTypeSrc.getName() + ">");
 			src.addImport(StaticMemembersBuilder.class.getName() + ".newConstraint").setStatic(true);
 			setMMDoc(metaField, mmConstr);
@@ -257,6 +252,11 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 
 	protected <O extends JavaSource<O>> void annotateProperty(O srcType, PropertySource<O> srcProp,
 			MetamodelAttribute mmMember) {
+		if (mmMember.isDerived()) {
+			srcType.addImport(Derived.class);
+			srcProp.getAccessor().addAnnotation(Derived.class);
+		}
+
 		if (srcType.getQualifiedName().equals(getJavaName(mmMember.getDeclaringType()).getFullName())) {
 			// Declared in this type
 			setMMDoc(srcProp.getAccessor(), mmMember);
@@ -333,13 +333,42 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 			MetamodelAttribute mmAttr) {
 		String valueType = generateSourceType(mmAttr, srcMMType, true);
 
-		PropertySource<T> srcProp = srcMMType.addProperty(valueType, getJavaName(mmAttr).getSimpleName());		
+
+		PropertySource<T> srcProp = srcMMType.addProperty(valueType, getJavaName(mmAttr).getSimpleName());
 		srcProp.setMutable(false);
 		if (srcProp.getField() != null) {
 			srcProp.getField().setProtected().setFinal(false);
 		}
 		annotateProperty(srcMMType, srcProp, mmAttr);
+		
+		// If attribute is derived
+		if ( srcProp.getField() != null && mmAttr.isDerived()) {
+			JavaName javaName = JavaName.primaryType(basePackageName + ".constraints",
+					"Derive" + srcMMType.getName() + "_" +  mmAttr.getName());
+			JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
+			srcDerive.addImport(srcMMType);
+			srcDerive.addImport(Function.class);
+			String valueType2 = generateSourceType(mmAttr, srcDerive, false);
+			String ifName = Function.class.getSimpleName() + "<" + srcMMType.getName() + "," + valueType2 + ">";
+			srcDerive.addInterface( ifName);
+			MethodSource<JavaClassSource> methodApply = srcDerive.addMethod("public " + valueType2 + " apply(" + srcMMType.getName() + " mmBean ) {\n" + 
+					"			throw new RuntimeException(\"Not implemented!\");\n" + 
+					"		}");
+			methodApply.addAnnotation(Override.class);
+			setMMDoc(methodApply, mmAttr);			
+
+			srcMMType.removeField(srcProp.getField());
+			srcMMType.addImport(srcDerive);
+			String body = "return (new " + srcDerive.getName() + "()).apply(this);";
+			srcProp.getAccessor().setBody(body);
+			
+			String javaDocText = "Calculate derived attribute ";
+			javaDocText += "{@link " + srcMMType.getName() + "#" + srcProp.getAccessor().getName() + "()}"; 
+			srcDerive.getJavaDoc().setText(javaDocText);
+		}
+
 	};
+	
 
 	private String generateSourceType(MetamodelAttribute mmAttr, Importer<? extends JavaSource<?>> src,
 			boolean allowPrimitiveTypes) {
@@ -354,7 +383,8 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 
 			if (mmAttr.getValueJavaClass().isPrimitive()
 					&& (!allowPrimitiveTypes || mmAttr.isMultiple() || mmAttr.isOptional())) {
-				Class<?> wrapper = RoasterHelper.JAVA_PRIMITIVE_TYPE_WRAPPERS.get(mmAttr.getValueJavaClass().getSimpleName());
+				Class<?> wrapper = RoasterHelper.JAVA_PRIMITIVE_TYPE_WRAPPERS
+						.get(mmAttr.getValueJavaClass().getSimpleName());
 				simplifiedTypeName = wrapper.getSimpleName();
 			} else {
 				simplifiedTypeName = mmAttr.getValueJavaClass().getSimpleName();
@@ -391,6 +421,5 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel,Genera
 		String javaDoc = originalDoc.replaceAll("&", "	&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
 		return javaDoc;
 	}
-
 
 }

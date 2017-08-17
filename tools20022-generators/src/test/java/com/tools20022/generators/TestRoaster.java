@@ -91,7 +91,7 @@ public class TestRoaster {
 	public void testName() throws Exception {
 		Path root = Paths.get("C:\\My\\git\\iso20022\\src\\test\\java\\");
 
-		GeneratorFileManager fm = new GeneratorFileManager(root);
+		GeneratorFileManager fm = new GeneratorFileManager(root, x->false);
 		Iterable<JavaFileObject> it = fm.list(StandardLocation.SOURCE_OUTPUT, "com.bukodi", Collections.emptySet(),
 				true);
 

@@ -79,6 +79,12 @@ public class StaticMemembersBuilder {
 			return impl().getDeclaringType();
 		}
 
+		@Override
+		public boolean isDerived() {
+			return impl().isDerived();
+		}
+		
+		@Override
 		public boolean isOptional() {
 			return impl().isOptional();
 		}

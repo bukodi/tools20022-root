@@ -8,6 +8,8 @@ import com.tools20022.metamodel.MMEncoding;
 import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMSyntax_generatedFor;
 import java.util.Optional;
 
 /**
@@ -17,7 +19,6 @@ public class MMSyntax implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
 	protected List<MMEncoding> possibleEncodings;
-	protected List<MMMessageSet> generatedFor;
 	protected List<MMModelEntity> nextVersions;
 	protected Optional<MMModelEntity> previousVersion;
 	protected Optional<String> objectIdentifier;
@@ -51,9 +52,10 @@ public class MMSyntax implements MMModelEntity {
 	 * 
 	 * @see MMMessageSet#getGeneratedSyntax()
 	 */
+	@Derived
 	@Opposite(bean = MMMessageSet.class, attribute = "generatedSyntax")
 	public List<MMMessageSet> getGeneratedFor() {
-		return generatedFor;
+		return (new DeriveMMSyntax_generatedFor()).apply(this);
 	}
 
 	@Override

@@ -184,6 +184,8 @@ public class XMILoader {
 			
 			MetamodelType<?> mmType = repoObj.getMetamodel();
 			for (MetamodelAttribute mmAttr : mmType.getAllAttributes()) {
+				if( mmAttr.isDerived() )
+					continue;
 				EStructuralFeature eSF = mapping.eSFsBymmAttr.get(mmAttr);
 				Object value = eObj.eGet(eSF);
 				setAttributeValue(mmAttr, repoObj, value, repoObjsByEObj);

@@ -7,6 +7,7 @@ import com.tools20022.metamodel.MMMessageElement;
 import java.util.List;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMBusinessElementType;
+import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.core.metamodel.Container;
 
@@ -40,6 +41,7 @@ public interface MMBusinessElement extends MMConstruct, MMBusinessConcept {
 	/**
 	 * Derived direct reference to the type of the BusinessElement.
 	 */
+	@Derived
 	MMBusinessElementType getBusinessElementType();
 
 	/**

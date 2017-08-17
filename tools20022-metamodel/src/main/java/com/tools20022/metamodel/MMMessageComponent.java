@@ -10,6 +10,8 @@ import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.metamodel.MMMessageElement;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMMessageComponent_isTechnical;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.Optional;
 import com.tools20022.metamodel.MMDataDictionary;
@@ -30,7 +32,6 @@ public class MMMessageComponent implements MMMessageElementContainer {
 	protected List<MMXor> xors;
 	protected List<MMMessageElement> messageElement;
 	protected List<MMMessageBuildingBlock> messageBuildingBlock;
-	protected boolean isTechnical;
 	protected Optional<MMBusinessComponent> trace;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
@@ -81,9 +82,10 @@ public class MMMessageComponent implements MMMessageElementContainer {
 		return messageBuildingBlock;
 	}
 
+	@Derived
 	@Override
 	public boolean isIsTechnical() {
-		return isTechnical;
+		return (new DeriveMMMessageComponent_isTechnical()).apply(this);
 	}
 
 	@Override

@@ -9,6 +9,8 @@ import java.util.Optional;
 import com.tools20022.metamodel.MMProcessContent;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import java.util.List;
+import com.tools20022.core.metamodel.Derived;
+import com.tools20022.metamodel.constraints.DeriveMMUserDefined_isTechnical;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -29,7 +31,6 @@ public class MMUserDefined implements MMMessageComponentType {
 	protected Optional<String> namespaceList;
 	protected MMProcessContent processContents;
 	protected List<MMMessageBuildingBlock> messageBuildingBlock;
-	protected boolean isTechnical;
 	protected Optional<MMBusinessComponent> trace;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
@@ -88,9 +89,10 @@ public class MMUserDefined implements MMMessageComponentType {
 		return messageBuildingBlock;
 	}
 
+	@Derived
 	@Override
 	public boolean isIsTechnical() {
-		return isTechnical;
+		return (new DeriveMMUserDefined_isTechnical()).apply(this);
 	}
 
 	@Override

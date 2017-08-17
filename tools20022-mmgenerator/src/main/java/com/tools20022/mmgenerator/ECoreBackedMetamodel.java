@@ -295,6 +295,11 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 		}
 
 		@Override
+		public boolean isDerived() {
+			return eSF().isDerived();
+		}
+
+		@Override
 		public boolean isOptional() {
 			return eSF().getLowerBound() == 0;
 		}

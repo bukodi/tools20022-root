@@ -50,7 +50,7 @@ public class InspectLoadedRepository {
 	}
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void groupEntitiesByBusinessArea() throws Exception {
 		//MMMessageComponentType_.trace;
 		//MMMessageElement_.businessComponentTrace;

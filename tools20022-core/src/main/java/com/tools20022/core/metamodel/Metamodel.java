@@ -83,6 +83,7 @@ public interface Metamodel {
 
 	public interface MetamodelAttribute<B extends GeneratedMetamodelBean,T> extends MetamodelElement {
 		MetamodelType<B> getDeclaringType();
+		boolean isDerived();
 		boolean isOptional();
 		boolean isMultiple();
 		boolean isUnique();

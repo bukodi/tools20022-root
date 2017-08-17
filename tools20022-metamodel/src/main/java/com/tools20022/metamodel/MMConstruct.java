@@ -4,6 +4,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMMultiplicityEntity;
 import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.core.metamodel.Derived;
 
 /**
  * Abstract layer : Abstract meta class for representing a BusinessElement, a
@@ -19,5 +20,6 @@ public interface MMConstruct extends MMRepositoryConcept, MMMultiplicityEntity {
 	/**
 	 * The type of this Member
 	 */
+	@Derived
 	MMRepositoryType getMemberType();
 }

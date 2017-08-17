@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.Properties;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.function.Predicate;
 
 import javax.tools.FileObject;
 import javax.tools.JavaFileManager;
@@ -26,7 +27,7 @@ import org.jboss.forge.roaster.model.util.Formatter;
 public class GenerationContext<M> {
 
 	Set<JavaSource<?>> allSources = new LinkedHashSet<>();
-	private JavaFileManager fileManager;
+	private GeneratorFileManager fileManager;
 	private Properties formatterOptions;
 
 	public GenerationContext(Class<M> modelltype ) {
@@ -53,7 +54,14 @@ public class GenerationContext<M> {
 		this.formatterOptions = formatterOptions;
 	}
 
-	protected JavaFileManager getFileManager() {
+	public void dontChangeIfExists( Predicate<Path> filter) {
+		getFileManager().dontChangeIfExists(filter);
+		if( this.formatterOptions != null )
+			throw new IllegalStateException("formatterOptions already set");
+		this.formatterOptions = formatterOptions;
+	}
+
+	protected GeneratorFileManager getFileManager() {
 		if (fileManager == null) {
 			try {
 				// TODO: use jimfs instead of tmp dir
@@ -66,14 +74,14 @@ public class GenerationContext<M> {
 		return fileManager;
 	}
 
-	protected void setFileManager(JavaFileManager fileManager) {
+	protected void setFileManager(GeneratorFileManager fileManager) {
 		if( this.fileManager != null )
 			throw new IllegalStateException("fileManager already set");
 		this.fileManager = fileManager;
 	}
 
 	public void setFileManagerRoot(Path srcRoot) {
-		GeneratorFileManager fm = new GeneratorFileManager(srcRoot);
+		GeneratorFileManager fm = new GeneratorFileManager(srcRoot, x->false);
 		setFileManager(fm);
 	}
 
@@ -90,12 +98,12 @@ public class GenerationContext<M> {
 	}
 
 	public final void generate( M model, BiConsumer<M,GenerationContext<M>> generator ) {
-		long start = System.currentTimeMillis();
-		
+		long start = System.currentTimeMillis();		
 		generator.accept( model, this );
-
 		System.out.println("Generation time:" + (System.currentTimeMillis() - start) + " ms");
 		start = System.currentTimeMillis();
+		
+		
 		for (JavaSource<?> src : allSources) {
 			try {
 				JavaFileObject jf = getFileManager().getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,

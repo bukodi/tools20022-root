@@ -1,22 +1,24 @@
 package com.tools20022.generators;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Predicate;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class FileIOHelper {
-	
-	
+
 	public static byte[] createZip(Path... filesOrDirs) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try (ZipOutputStream zos = new ZipOutputStream(baos)) {
@@ -113,4 +115,23 @@ public class FileIOHelper {
 		return baos.toByteArray();
 	}
 
+	public static void deleteAllExcept(Path startPath, Predicate<Path> filter) throws IOException {
+		Files.walkFileTree(startPath, new SimpleFileVisitor<Path>() {
+			@Override
+			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+				if (!filter.test(file))
+					Files.delete(file);
+				return FileVisitResult.CONTINUE;
+			}
+
+			@Override
+			public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException {
+				if (e != null)
+					throw e;
+				if( !filter.test(dir) && Files.list(dir).count() == 0 && !dir.equals(startPath))
+					Files.delete(dir);
+				return FileVisitResult.CONTINUE;
+			}
+		});
+	}
 }

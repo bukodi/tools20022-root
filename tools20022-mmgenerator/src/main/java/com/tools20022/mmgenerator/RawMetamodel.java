@@ -92,6 +92,7 @@ interface RawMetamodel {
 	}
 
 	public interface MetamodelAttribute extends MetamodelElement {
+		boolean isDerived();
 		boolean isOptional();
 		boolean isMultiple();
 		boolean isUnique();
