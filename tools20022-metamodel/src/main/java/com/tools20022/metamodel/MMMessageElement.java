@@ -28,7 +28,7 @@ public interface MMMessageElement extends MMMessageConstruct, MMMessageConcept {
 	 * derived from a BusinessComponent / BusinessElement
 	 */
 	@Derived
-	boolean isIsTechnical();
+	public boolean isIsTechnical();
 
 	/**
 	 * the trace of a MessageElement to the BusinessComponent from which it is
@@ -37,7 +37,7 @@ public interface MMMessageElement extends MMMessageConstruct, MMMessageConcept {
 	 * @see MMBusinessComponent#getDerivationElement()
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "derivationElement")
-	Optional<MMBusinessComponent> getBusinessComponentTrace();
+	public Optional<MMBusinessComponent> getBusinessComponentTrace();
 
 	/**
 	 * The trace of a MessageElement to the BusinessElement from which the
@@ -46,7 +46,7 @@ public interface MMMessageElement extends MMMessageConstruct, MMMessageConcept {
 	 * @see MMBusinessElement#getDerivation()
 	 */
 	@Opposite(bean = MMBusinessElement.class, attribute = "derivation")
-	Optional<MMBusinessElement> getBusinessElementTrace();
+	public Optional<MMBusinessElement> getBusinessElementTrace();
 
 	/**
 	 * the MessageComponent that describes the context within which the
@@ -56,12 +56,12 @@ public interface MMMessageElement extends MMMessageConstruct, MMMessageConcept {
 	 */
 	@Opposite(bean = MMMessageElementContainer.class, attribute = "messageElement")
 	@Container
-	MMMessageElementContainer getComponentContext();
+	public MMMessageElementContainer getComponentContext();
 
 	/**
 	 * a Property of a MessageElement specifying whether a MessageElement can be
 	 * computed using other MessageElements, but that is shown for clarity even
 	 * though it adds no semantic information
 	 */
-	boolean isIsDerived();
+	public boolean isIsDerived();
 }

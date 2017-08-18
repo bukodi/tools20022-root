@@ -20,11 +20,11 @@ public interface MMMessageConstruct extends MMConstruct {
 	/**
 	 * XML schema tag name for the element.
 	 */
-	Optional<String> getXmlTag();
+	public Optional<String> getXmlTag();
 
 	/**
 	 * Direct reference to the type of a MessageElement or MessageBuildingBlock
 	 */
 	@Derived
-	MMLogicalType getXmlMemberType();
+	public MMLogicalType getXmlMemberType();
 }

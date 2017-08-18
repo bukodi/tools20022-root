@@ -5,6 +5,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -14,8 +15,8 @@ public class MMConversation implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -34,16 +35,16 @@ public class MMConversation implements MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

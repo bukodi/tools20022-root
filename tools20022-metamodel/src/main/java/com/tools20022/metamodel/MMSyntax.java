@@ -6,10 +6,11 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMEncoding;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMMessageSet;
-import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.constraints.DeriveMMSyntax_generatedFor;
+import com.tools20022.core.metamodel.Derived;
 import java.util.Optional;
 
 /**
@@ -20,8 +21,8 @@ public class MMSyntax implements MMModelEntity {
 	private GeneratedMetamodelBean container;
 	protected List<MMEncoding> possibleEncodings;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -44,7 +45,9 @@ public class MMSyntax implements MMModelEntity {
 	 */
 	@Opposite(bean = MMEncoding.class, attribute = "syntax")
 	public List<MMEncoding> getPossibleEncodings() {
-		return possibleEncodings;
+		return possibleEncodings == null
+				? Collections.emptyList()
+				: possibleEncodings;
 	}
 
 	/**
@@ -60,16 +63,16 @@ public class MMSyntax implements MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

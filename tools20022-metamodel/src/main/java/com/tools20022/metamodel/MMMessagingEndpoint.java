@@ -9,6 +9,7 @@ import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMTransportMessage;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.metamodel.MMAddress;
 import java.util.Optional;
 
@@ -24,8 +25,8 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	protected List<MMTransportMessage> sentMessage;
 	protected List<MMAddress> location;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -60,7 +61,9 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "receiver")
 	public List<MMTransportMessage> getReceivedMessage() {
-		return receivedMessage;
+		return receivedMessage == null
+				? Collections.emptyList()
+				: receivedMessage;
 	}
 
 	/**
@@ -70,7 +73,7 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "sender")
 	public List<MMTransportMessage> getSentMessage() {
-		return sentMessage;
+		return sentMessage == null ? Collections.emptyList() : sentMessage;
 	}
 
 	/**
@@ -80,21 +83,21 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 */
 	@Opposite(bean = MMAddress.class, attribute = "endpoint")
 	public List<MMAddress> getLocation() {
-		return location;
+		return location == null ? Collections.emptyList() : location;
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

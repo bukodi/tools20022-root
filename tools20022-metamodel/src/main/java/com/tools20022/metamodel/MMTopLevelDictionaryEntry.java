@@ -24,5 +24,5 @@ public interface MMTopLevelDictionaryEntry extends MMRepositoryConcept {
 	 */
 	@Opposite(bean = MMDataDictionary.class, attribute = "topLevelDictionaryEntry")
 	@Container
-	MMDataDictionary getDataDictionary();
+	public MMDataDictionary getDataDictionary();
 }

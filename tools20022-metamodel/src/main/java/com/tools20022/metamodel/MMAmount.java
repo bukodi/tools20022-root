@@ -9,6 +9,7 @@ import java.util.Optional;
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -22,26 +23,26 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMAmount extends MMDecimal {
 
 	private GeneratedMetamodelBean container;
-	protected Optional<MMDataType> currencyIdentifierSet;
-	protected Optional<String> minInclusive;
-	protected Optional<String> minExclusive;
-	protected Optional<String> maxInclusive;
-	protected Optional<String> maxExclusive;
-	protected Optional<Integer> totalDigits;
-	protected Optional<Integer> fractionDigits;
-	protected Optional<String> pattern;
+	protected MMDataType currencyIdentifierSet;
+	protected String minInclusive;
+	protected String minExclusive;
+	protected String maxInclusive;
+	protected String maxExclusive;
+	protected Integer totalDigits;
+	protected Integer fractionDigits;
+	protected String pattern;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
-	protected Optional<String> definition;
+	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
 	protected List<MMDoclet> doclet;
 	protected List<String> example;
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
-	protected Optional<Date> removalDate;
+	protected Date removalDate;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -61,42 +62,42 @@ public class MMAmount extends MMDecimal {
 	 * specifies the allowed currencies that can be used to qualify this amount
 	 */
 	public Optional<MMDataType> getCurrencyIdentifierSet() {
-		return currencyIdentifierSet;
+		return Optional.ofNullable(currencyIdentifierSet);
 	}
 
 	@Override
 	public Optional<String> getMinInclusive() {
-		return minInclusive;
+		return Optional.ofNullable(minInclusive);
 	}
 
 	@Override
 	public Optional<String> getMinExclusive() {
-		return minExclusive;
+		return Optional.ofNullable(minExclusive);
 	}
 
 	@Override
 	public Optional<String> getMaxInclusive() {
-		return maxInclusive;
+		return Optional.ofNullable(maxInclusive);
 	}
 
 	@Override
 	public Optional<String> getMaxExclusive() {
-		return maxExclusive;
+		return Optional.ofNullable(maxExclusive);
 	}
 
 	@Override
 	public Optional<Integer> getTotalDigits() {
-		return totalDigits;
+		return Optional.ofNullable(totalDigits);
 	}
 
 	@Override
 	public Optional<Integer> getFractionDigits() {
-		return fractionDigits;
+		return Optional.ofNullable(fractionDigits);
 	}
 
 	@Override
 	public Optional<String> getPattern() {
-		return pattern;
+		return Optional.ofNullable(pattern);
 	}
 
 	@Override
@@ -111,27 +112,29 @@ public class MMAmount extends MMDecimal {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return definition;
+		return Optional.ofNullable(definition);
 	}
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup;
+		return semanticMarkup == null
+				? Collections.emptyList()
+				: semanticMarkup;
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet;
+		return doclet == null ? Collections.emptyList() : doclet;
 	}
 
 	@Override
 	public List<String> getExample() {
-		return example;
+		return example == null ? Collections.emptyList() : example;
 	}
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint;
+		return constraint == null ? Collections.emptyList() : constraint;
 	}
 
 	@Override
@@ -141,21 +144,21 @@ public class MMAmount extends MMDecimal {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate;
+		return Optional.ofNullable(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

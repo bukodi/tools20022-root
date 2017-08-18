@@ -9,8 +9,9 @@ import java.util.Optional;
 import com.tools20022.metamodel.MMProcessContent;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import java.util.List;
-import com.tools20022.core.metamodel.Derived;
+import java.util.Collections;
 import com.tools20022.metamodel.constraints.DeriveMMUserDefined_isTechnical;
+import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -28,22 +29,22 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	private GeneratedMetamodelBean container;
 	protected MMNamespace namespace;
-	protected Optional<String> namespaceList;
+	protected String namespaceList;
 	protected MMProcessContent processContents;
 	protected List<MMMessageBuildingBlock> messageBuildingBlock;
-	protected Optional<MMBusinessComponent> trace;
+	protected MMBusinessComponent trace;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
-	protected Optional<String> definition;
+	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
 	protected List<MMDoclet> doclet;
 	protected List<String> example;
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
-	protected Optional<Date> removalDate;
+	protected Date removalDate;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -73,7 +74,7 @@ public class MMUserDefined implements MMMessageComponentType {
 	 * A list of URN namespaces.
 	 */
 	public Optional<String> getNamespaceList() {
-		return namespaceList;
+		return Optional.ofNullable(namespaceList);
 	}
 
 	/**
@@ -86,7 +87,9 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	@Override
 	public List<MMMessageBuildingBlock> getMessageBuildingBlock() {
-		return messageBuildingBlock;
+		return messageBuildingBlock == null
+				? Collections.emptyList()
+				: messageBuildingBlock;
 	}
 
 	@Derived
@@ -97,7 +100,7 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	@Override
 	public Optional<MMBusinessComponent> getTrace() {
-		return trace;
+		return Optional.ofNullable(trace);
 	}
 
 	@Override
@@ -112,27 +115,29 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return definition;
+		return Optional.ofNullable(definition);
 	}
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup;
+		return semanticMarkup == null
+				? Collections.emptyList()
+				: semanticMarkup;
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet;
+		return doclet == null ? Collections.emptyList() : doclet;
 	}
 
 	@Override
 	public List<String> getExample() {
-		return example;
+		return example == null ? Collections.emptyList() : example;
 	}
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint;
+		return constraint == null ? Collections.emptyList() : constraint;
 	}
 
 	@Override
@@ -142,21 +147,21 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate;
+		return Optional.ofNullable(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

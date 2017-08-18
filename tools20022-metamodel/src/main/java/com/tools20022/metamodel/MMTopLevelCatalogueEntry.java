@@ -25,5 +25,5 @@ public interface MMTopLevelCatalogueEntry extends MMRepositoryConcept {
 	 */
 	@Opposite(bean = MMBusinessProcessCatalogue.class, attribute = "topLevelCatalogueEntry")
 	@Container
-	MMBusinessProcessCatalogue getBusinessProcessCatalogue();
+	public MMBusinessProcessCatalogue getBusinessProcessCatalogue();
 }

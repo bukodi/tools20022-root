@@ -5,10 +5,11 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMMessageComponentType;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.metamodel.MMProcessContent;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.constraints.DeriveMMExternalSchema_isTechnical;
+import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.Optional;
 import com.tools20022.metamodel.MMDataDictionary;
@@ -29,19 +30,19 @@ public class MMExternalSchema implements MMMessageComponentType {
 	protected List<String> namespaceList;
 	protected MMProcessContent processContent;
 	protected List<MMMessageBuildingBlock> messageBuildingBlock;
-	protected Optional<MMBusinessComponent> trace;
+	protected MMBusinessComponent trace;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
-	protected Optional<String> definition;
+	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
 	protected List<MMDoclet> doclet;
 	protected List<String> example;
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
-	protected Optional<Date> removalDate;
+	protected Date removalDate;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -63,7 +64,7 @@ public class MMExternalSchema implements MMMessageComponentType {
 	 * through (a set of) URI.
 	 */
 	public List<String> getNamespaceList() {
-		return namespaceList;
+		return namespaceList == null ? Collections.emptyList() : namespaceList;
 	}
 
 	/**
@@ -76,7 +77,9 @@ public class MMExternalSchema implements MMMessageComponentType {
 
 	@Override
 	public List<MMMessageBuildingBlock> getMessageBuildingBlock() {
-		return messageBuildingBlock;
+		return messageBuildingBlock == null
+				? Collections.emptyList()
+				: messageBuildingBlock;
 	}
 
 	@Derived
@@ -87,7 +90,7 @@ public class MMExternalSchema implements MMMessageComponentType {
 
 	@Override
 	public Optional<MMBusinessComponent> getTrace() {
-		return trace;
+		return Optional.ofNullable(trace);
 	}
 
 	@Override
@@ -102,27 +105,29 @@ public class MMExternalSchema implements MMMessageComponentType {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return definition;
+		return Optional.ofNullable(definition);
 	}
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup;
+		return semanticMarkup == null
+				? Collections.emptyList()
+				: semanticMarkup;
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet;
+		return doclet == null ? Collections.emptyList() : doclet;
 	}
 
 	@Override
 	public List<String> getExample() {
-		return example;
+		return example == null ? Collections.emptyList() : example;
 	}
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint;
+		return constraint == null ? Collections.emptyList() : constraint;
 	}
 
 	@Override
@@ -132,21 +137,21 @@ public class MMExternalSchema implements MMMessageComponentType {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate;
+		return Optional.ofNullable(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

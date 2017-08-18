@@ -10,6 +10,7 @@ import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMReceive;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.metamodel.MMSend;
 import com.tools20022.metamodel.MMBusinessRole;
 import java.util.Optional;
@@ -31,18 +32,18 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	protected List<MMSend> sends;
 	protected MMBusinessRole businessRoleTrace;
 	protected String name;
-	protected Optional<String> definition;
+	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
 	protected List<MMDoclet> doclet;
 	protected List<String> example;
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
-	protected Optional<Date> removalDate;
+	protected Date removalDate;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
-	protected Optional<Integer> maxOccurs;
-	protected Optional<Integer> minOccurs;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
+	protected Integer maxOccurs;
+	protected Integer minOccurs;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -77,7 +78,7 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	 */
 	@Opposite(bean = MMReceive.class, attribute = "receiver")
 	public List<MMReceive> getReceives() {
-		return receives;
+		return receives == null ? Collections.emptyList() : receives;
 	}
 
 	/**
@@ -88,7 +89,7 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	 */
 	@Opposite(bean = MMSend.class, attribute = "sender")
 	public List<MMSend> getSends() {
-		return sends;
+		return sends == null ? Collections.emptyList() : sends;
 	}
 
 	/**
@@ -108,27 +109,29 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	@Override
 	public Optional<String> getDefinition() {
-		return definition;
+		return Optional.ofNullable(definition);
 	}
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup;
+		return semanticMarkup == null
+				? Collections.emptyList()
+				: semanticMarkup;
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet;
+		return doclet == null ? Collections.emptyList() : doclet;
 	}
 
 	@Override
 	public List<String> getExample() {
-		return example;
+		return example == null ? Collections.emptyList() : example;
 	}
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint;
+		return constraint == null ? Collections.emptyList() : constraint;
 	}
 
 	@Override
@@ -138,31 +141,31 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate;
+		return Optional.ofNullable(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 
 	@Override
 	public Optional<Integer> getMaxOccurs() {
-		return maxOccurs;
+		return Optional.ofNullable(maxOccurs);
 	}
 
 	@Override
 	public Optional<Integer> getMinOccurs() {
-		return minOccurs;
+		return Optional.ofNullable(minOccurs);
 	}
 }

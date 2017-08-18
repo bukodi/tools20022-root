@@ -7,6 +7,7 @@ import com.tools20022.metamodel.MMModelEntity;
 import java.util.Optional;
 import com.tools20022.metamodel.MMSemanticMarkupElement;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.core.metamodel.Containment;
 
 /**
@@ -16,11 +17,11 @@ import com.tools20022.core.metamodel.Containment;
 public class MMSemanticMarkup implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	protected Optional<String> type;
+	protected String type;
 	protected List<MMSemanticMarkupElement> elements;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -41,7 +42,7 @@ public class MMSemanticMarkup implements MMModelEntity {
 	 * The type of semantic mark-up e.g. "synonym".
 	 */
 	public Optional<String> getType() {
-		return type;
+		return Optional.ofNullable(type);
 	}
 
 	/**
@@ -49,21 +50,21 @@ public class MMSemanticMarkup implements MMModelEntity {
 	 */
 	@Containment
 	public List<MMSemanticMarkupElement> getElements() {
-		return elements;
+		return elements == null ? Collections.emptyList() : elements;
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

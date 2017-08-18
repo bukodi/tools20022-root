@@ -18,27 +18,27 @@ public interface MMAbstractDateTimeConcept extends MMDataType {
 	/**
 	 * the lowest value in the allowed set of values
 	 */
-	Optional<String> getMinInclusive();
+	public Optional<String> getMinInclusive();
 
 	/**
 	 * the lowest but one value in the allowed set of values
 	 */
-	Optional<String> getMinExclusive();
+	public Optional<String> getMinExclusive();
 
 	/**
 	 * the highest value in the allowed set of values
 	 */
-	Optional<String> getMaxInclusive();
+	public Optional<String> getMaxInclusive();
 
 	/**
 	 * the highest but one value in the allowed set of values
 	 */
-	Optional<String> getMaxExclusive();
+	public Optional<String> getMaxExclusive();
 
 	/**
 	 * A constraint on the value space of a datatype which is achieved by
 	 * constraining the lexical space to literals which match a specific
 	 * pattern.
 	 */
-	Optional<String> getPattern();
+	public Optional<String> getPattern();
 }

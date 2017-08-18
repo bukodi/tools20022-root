@@ -8,6 +8,7 @@ import com.tools20022.metamodel.MMBusinessElementType;
 import com.tools20022.metamodel.MMBusinessConcept;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.Optional;
 import com.tools20022.metamodel.MMBusinessElement;
@@ -35,23 +36,23 @@ public class MMBusinessComponent
 
 	private GeneratedMetamodelBean container;
 	protected List<MMBusinessComponent> subType;
-	protected Optional<MMBusinessComponent> superType;
+	protected MMBusinessComponent superType;
 	protected List<MMBusinessElement> element;
 	protected List<MMMessageComponentType> derivationComponent;
 	protected List<MMBusinessAssociationEnd> associationDomain;
 	protected List<MMMessageElement> derivationElement;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
-	protected Optional<String> definition;
+	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
 	protected List<MMDoclet> doclet;
 	protected List<String> example;
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
-	protected Optional<Date> removalDate;
+	protected Date removalDate;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -75,7 +76,7 @@ public class MMBusinessComponent
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "superType")
 	public List<MMBusinessComponent> getSubType() {
-		return subType;
+		return subType == null ? Collections.emptyList() : subType;
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class MMBusinessComponent
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "subType")
 	public Optional<MMBusinessComponent> getSuperType() {
-		return superType;
+		return Optional.ofNullable(superType);
 	}
 
 	/**
@@ -96,7 +97,7 @@ public class MMBusinessComponent
 	@Opposite(bean = MMBusinessElement.class, attribute = "elementContext")
 	@Containment
 	public List<MMBusinessElement> getElement() {
-		return element;
+		return element == null ? Collections.emptyList() : element;
 	}
 
 	/**
@@ -106,7 +107,9 @@ public class MMBusinessComponent
 	 */
 	@Opposite(bean = MMMessageComponentType.class, attribute = "trace")
 	public List<MMMessageComponentType> getDerivationComponent() {
-		return derivationComponent;
+		return derivationComponent == null
+				? Collections.emptyList()
+				: derivationComponent;
 	}
 
 	/**
@@ -117,7 +120,9 @@ public class MMBusinessComponent
 	 */
 	@Opposite(bean = MMBusinessAssociationEnd.class, attribute = "type")
 	public List<MMBusinessAssociationEnd> getAssociationDomain() {
-		return associationDomain;
+		return associationDomain == null
+				? Collections.emptyList()
+				: associationDomain;
 	}
 
 	/**
@@ -127,7 +132,9 @@ public class MMBusinessComponent
 	 */
 	@Opposite(bean = MMMessageElement.class, attribute = "businessComponentTrace")
 	public List<MMMessageElement> getDerivationElement() {
-		return derivationElement;
+		return derivationElement == null
+				? Collections.emptyList()
+				: derivationElement;
 	}
 
 	@Override
@@ -142,27 +149,29 @@ public class MMBusinessComponent
 
 	@Override
 	public Optional<String> getDefinition() {
-		return definition;
+		return Optional.ofNullable(definition);
 	}
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup;
+		return semanticMarkup == null
+				? Collections.emptyList()
+				: semanticMarkup;
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet;
+		return doclet == null ? Collections.emptyList() : doclet;
 	}
 
 	@Override
 	public List<String> getExample() {
-		return example;
+		return example == null ? Collections.emptyList() : example;
 	}
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint;
+		return constraint == null ? Collections.emptyList() : constraint;
 	}
 
 	@Override
@@ -172,21 +181,21 @@ public class MMBusinessComponent
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate;
+		return Optional.ofNullable(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

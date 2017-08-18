@@ -32,14 +32,14 @@ public interface MMMessageComponentType
 	 * @see MMMessageBuildingBlock#getComplexType()
 	 */
 	@Opposite(bean = MMMessageBuildingBlock.class, attribute = "complexType")
-	List<MMMessageBuildingBlock> getMessageBuildingBlock();
+	public List<MMMessageBuildingBlock> getMessageBuildingBlock();
 
 	/**
 	 * A property indicating the absense of a semantic relationship to a
 	 * BusinessComponent, i.e. it is not derived from a BusinessComponent
 	 */
 	@Derived
-	boolean isIsTechnical();
+	public boolean isIsTechnical();
 
 	/**
 	 * The BusinessComponent that this MessageComponentType is derived from.
@@ -47,5 +47,5 @@ public interface MMMessageComponentType
 	 * @see MMBusinessComponent#getDerivationComponent()
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "derivationComponent")
-	Optional<MMBusinessComponent> getTrace();
+	public Optional<MMBusinessComponent> getTrace();
 }

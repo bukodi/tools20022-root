@@ -16,12 +16,6 @@ public class DeriveMMMessageAttribute_memberType
 	 */
 	@Override
 	public MMRepositoryType apply(MMMessageAttribute mmBean) {
-		if( mmBean.getSimpleType().isPresent() ) {
-			return mmBean.getSimpleType().get();			
-		} else if( mmBean.getComplexType().isPresent() ) {
-			return mmBean.getComplexType().get();			
-		} else {
-			throw new IllegalStateException("Both simpleType and complexType absent");
-		}
+		throw new RuntimeException("Not implemented!");
 	}
 }

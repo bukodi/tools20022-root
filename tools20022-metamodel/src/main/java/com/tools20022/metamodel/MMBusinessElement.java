@@ -27,7 +27,7 @@ public interface MMBusinessElement extends MMConstruct, MMBusinessConcept {
 	 * BusinessElements, but that is shown for clarity even though it adds no
 	 * semantic information.
 	 */
-	boolean isIsDerived();
+	public boolean isIsDerived();
 
 	/**
 	 * All of the MessageElements that derive from one BusinessElement in a
@@ -36,13 +36,13 @@ public interface MMBusinessElement extends MMConstruct, MMBusinessConcept {
 	 * @see MMMessageElement#getBusinessElementTrace()
 	 */
 	@Opposite(bean = MMMessageElement.class, attribute = "businessElementTrace")
-	List<MMMessageElement> getDerivation();
+	public List<MMMessageElement> getDerivation();
 
 	/**
 	 * Derived direct reference to the type of the BusinessElement.
 	 */
 	@Derived
-	MMBusinessElementType getBusinessElementType();
+	public MMBusinessElementType getBusinessElementType();
 
 	/**
 	 * The business context in which the BusinessElement is used
@@ -51,5 +51,5 @@ public interface MMBusinessElement extends MMConstruct, MMBusinessConcept {
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "element")
 	@Container
-	MMBusinessComponent getElementContext();
+	public MMBusinessComponent getElementContext();
 }

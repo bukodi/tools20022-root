@@ -8,6 +8,7 @@ import com.tools20022.metamodel.MMCodeSet;
 import java.util.Optional;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.metamodel.MMDataDictionary;
@@ -24,26 +25,26 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMCodeSet extends MMString {
 
 	private GeneratedMetamodelBean container;
-	protected Optional<MMCodeSet> trace;
+	protected MMCodeSet trace;
 	protected List<MMCodeSet> derivation;
-	protected Optional<String> identificationScheme;
+	protected String identificationScheme;
 	protected List<MMCode> code;
-	protected Optional<Integer> minLength;
-	protected Optional<Integer> maxLength;
-	protected Optional<Integer> length;
-	protected Optional<String> pattern;
+	protected Integer minLength;
+	protected Integer maxLength;
+	protected Integer length;
+	protected String pattern;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
-	protected Optional<String> definition;
+	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
 	protected List<MMDoclet> doclet;
 	protected List<String> example;
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
-	protected Optional<Date> removalDate;
+	protected Date removalDate;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -67,7 +68,7 @@ public class MMCodeSet extends MMString {
 	 */
 	@Opposite(bean = MMCodeSet.class, attribute = "derivation")
 	public Optional<MMCodeSet> getTrace() {
-		return trace;
+		return Optional.ofNullable(trace);
 	}
 
 	/**
@@ -77,7 +78,7 @@ public class MMCodeSet extends MMString {
 	 */
 	@Opposite(bean = MMCodeSet.class, attribute = "trace")
 	public List<MMCodeSet> getDerivation() {
-		return derivation;
+		return derivation == null ? Collections.emptyList() : derivation;
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class MMCodeSet extends MMString {
 	 * (URI).
 	 */
 	public Optional<String> getIdentificationScheme() {
-		return identificationScheme;
+		return Optional.ofNullable(identificationScheme);
 	}
 
 	/**
@@ -96,27 +97,27 @@ public class MMCodeSet extends MMString {
 	@Opposite(bean = MMCode.class, attribute = "owner")
 	@Containment
 	public List<MMCode> getCode() {
-		return code;
+		return code == null ? Collections.emptyList() : code;
 	}
 
 	@Override
 	public Optional<Integer> getMinLength() {
-		return minLength;
+		return Optional.ofNullable(minLength);
 	}
 
 	@Override
 	public Optional<Integer> getMaxLength() {
-		return maxLength;
+		return Optional.ofNullable(maxLength);
 	}
 
 	@Override
 	public Optional<Integer> getLength() {
-		return length;
+		return Optional.ofNullable(length);
 	}
 
 	@Override
 	public Optional<String> getPattern() {
-		return pattern;
+		return Optional.ofNullable(pattern);
 	}
 
 	@Override
@@ -131,27 +132,29 @@ public class MMCodeSet extends MMString {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return definition;
+		return Optional.ofNullable(definition);
 	}
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup;
+		return semanticMarkup == null
+				? Collections.emptyList()
+				: semanticMarkup;
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet;
+		return doclet == null ? Collections.emptyList() : doclet;
 	}
 
 	@Override
 	public List<String> getExample() {
-		return example;
+		return example == null ? Collections.emptyList() : example;
 	}
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint;
+		return constraint == null ? Collections.emptyList() : constraint;
 	}
 
 	@Override
@@ -161,21 +164,21 @@ public class MMCodeSet extends MMString {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate;
+		return Optional.ofNullable(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

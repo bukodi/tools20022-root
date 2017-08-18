@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
+import org.jboss.forge.roaster.model.source.MethodSource;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -62,8 +63,8 @@ public class GenerateSources {
 
 		start = System.currentTimeMillis();
 		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
-		//genCtx.generate( repo, new TestRepoGenerator() );
-		genCtx.generate( repo, new DefaultRepoGenerator() );
+		genCtx.generate( repo, new TestRepoGenerator() );
+		//genCtx.generate( repo, new DefaultRepoGenerator() );
 		System.out.println("Generation time : " + (System.currentTimeMillis() - start) + " ms ");
 	}
 	
@@ -87,12 +88,24 @@ public class GenerateSources {
 		}
 		
 		JavaResult<JavaClassSource> getOrCreateSingelonClass( GeneratedMetamodelBean mmBean ) {
-			JavaName javaName = JavaName.primaryType(basePackageName, mainClassSimpleName );
-			if( javaName.getMemberName() != null || javaName.getNestedTypeName() != null )
-				throw new IllegalArgumentException("Not a compilation unit name: " + javaName );
+			JavaName javaName = getJavaName(mmBean);
+			if( javaName == null || javaName.getMemberName() != null || javaName.getNestedTypeName() != null ) {
+				return null;
+				//throw new IllegalArgumentException("Not a compilation unit name: " + javaName );				
+			}
 			
 			
 			JavaClassSource src = ctx.createSourceFile(JavaClassSource.class, javaName);
+			
+			// Constructor
+			MethodSource<JavaClassSource> strConstr = src.addMethod().setConstructor(true);
+			strConstr.setPrivate();
+			
+			String body = "";
+			for( MetamodelAttribute<?, ?> mmAttr : mmBean.getMetamodel().getAllAttributes() ) {
+				 //mmAttr.get(mmBean);
+			}
+			
 			
 			MetamodelType<?> metamodelType = repo.getMetamodel().getTypeByClass(mmBean.getClass());
 			src.addImport(mmBean.getClass());

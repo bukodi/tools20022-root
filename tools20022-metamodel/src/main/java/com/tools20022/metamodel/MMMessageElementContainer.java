@@ -25,5 +25,5 @@ public interface MMMessageElementContainer extends MMMessageComponentType {
 	 */
 	@Opposite(bean = MMMessageElement.class, attribute = "componentContext")
 	@Containment
-	List<MMMessageElement> getMessageElement();
+	public List<MMMessageElement> getMessageElement();
 }

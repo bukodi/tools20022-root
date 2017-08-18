@@ -27,30 +27,30 @@ public interface MMRepositoryConcept extends MMModelEntity {
 	 * a word or set of words by which a RepositoryConcept is known, addressed
 	 * or referred to
 	 */
-	String getName();
+	public String getName();
 
 	/**
 	 * describes the semantic meaning of a RepositoryConcept
 	 */
-	Optional<String> getDefinition();
+	public Optional<String> getDefinition();
 
 	/**
 	 * Enables modelers to markup elements of the Repository with semantic
 	 * metadata.
 	 */
 	@Containment
-	List<MMSemanticMarkup> getSemanticMarkup();
+	public List<MMSemanticMarkup> getSemanticMarkup();
 
 	/**
 	 * Doclets of the entity, used for documentation.
 	 */
 	@Containment
-	List<MMDoclet> getDoclet();
+	public List<MMDoclet> getDoclet();
 
 	/**
 	 * provides a representative instance of a RepositoryConcept
 	 */
-	List<String> getExample();
+	public List<String> getExample();
 
 	/**
 	 * a property of a RepositoryConcept specifying a semantic condition or
@@ -61,17 +61,17 @@ public interface MMRepositoryConcept extends MMModelEntity {
 	 */
 	@Opposite(bean = MMConstraint.class, attribute = "owner")
 	@Containment
-	List<MMConstraint> getConstraint();
+	public List<MMConstraint> getConstraint();
 
 	/**
 	 * specifies in which stage of the registration lifecycle a
 	 * RepositoryConcept is in
 	 */
-	MMRegistrationStatus getRegistrationStatus();
+	public MMRegistrationStatus getRegistrationStatus();
 
 	/**
 	 * specifies the date at which a RepositoryConcept will cease or has ceased
 	 * to be part of the Repository
 	 */
-	Optional<Date> getRemovalDate();
+	public Optional<Date> getRemovalDate();
 }

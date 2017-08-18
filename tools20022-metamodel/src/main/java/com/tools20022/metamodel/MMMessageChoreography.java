@@ -9,6 +9,7 @@ import java.util.Optional;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMMessageDefinition;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMDoclet;
@@ -26,20 +27,20 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMMessageChoreography implements MMTopLevelCatalogueEntry {
 
 	private GeneratedMetamodelBean container;
-	protected Optional<MMBusinessTransaction> businessTransactionTrace;
+	protected MMBusinessTransaction businessTransactionTrace;
 	protected List<MMMessageDefinition> messageDefinition;
 	protected MMBusinessProcessCatalogue businessProcessCatalogue;
 	protected String name;
-	protected Optional<String> definition;
+	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
 	protected List<MMDoclet> doclet;
 	protected List<String> example;
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
-	protected Optional<Date> removalDate;
+	protected Date removalDate;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -64,7 +65,7 @@ public class MMMessageChoreography implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "trace")
 	public Optional<MMBusinessTransaction> getBusinessTransactionTrace() {
-		return businessTransactionTrace;
+		return Optional.ofNullable(businessTransactionTrace);
 	}
 
 	/**
@@ -74,7 +75,9 @@ public class MMMessageChoreography implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMMessageDefinition.class, attribute = "choreography")
 	public List<MMMessageDefinition> getMessageDefinition() {
-		return messageDefinition;
+		return messageDefinition == null
+				? Collections.emptyList()
+				: messageDefinition;
 	}
 
 	@Override
@@ -89,27 +92,29 @@ public class MMMessageChoreography implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return definition;
+		return Optional.ofNullable(definition);
 	}
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup;
+		return semanticMarkup == null
+				? Collections.emptyList()
+				: semanticMarkup;
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet;
+		return doclet == null ? Collections.emptyList() : doclet;
 	}
 
 	@Override
 	public List<String> getExample() {
-		return example;
+		return example == null ? Collections.emptyList() : example;
 	}
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint;
+		return constraint == null ? Collections.emptyList() : constraint;
 	}
 
 	@Override
@@ -119,21 +124,21 @@ public class MMMessageChoreography implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate;
+		return Optional.ofNullable(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

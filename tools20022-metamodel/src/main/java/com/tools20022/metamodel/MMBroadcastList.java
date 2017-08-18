@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMAddress;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.Optional;
 
@@ -18,8 +19,8 @@ public class MMBroadcastList implements MMModelEntity {
 	private GeneratedMetamodelBean container;
 	protected List<MMAddress> address;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -43,21 +44,21 @@ public class MMBroadcastList implements MMModelEntity {
 	 */
 	@Opposite(bean = MMAddress.class, attribute = "broadCastList")
 	public List<MMAddress> getAddress() {
-		return address;
+		return address == null ? Collections.emptyList() : address;
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

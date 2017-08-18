@@ -7,6 +7,7 @@ import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMSyntaxMessageScheme;
 import com.tools20022.metamodel.MMTransportMessage;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.Optional;
 
@@ -20,8 +21,8 @@ public class MMMessageInstance implements MMModelEntity {
 	protected MMSyntaxMessageScheme specification;
 	protected List<MMTransportMessage> transportMessage;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -52,21 +53,23 @@ public class MMMessageInstance implements MMModelEntity {
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "messageInstance")
 	public List<MMTransportMessage> getTransportMessage() {
-		return transportMessage;
+		return transportMessage == null
+				? Collections.emptyList()
+				: transportMessage;
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

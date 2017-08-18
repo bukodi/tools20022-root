@@ -1,5 +1,6 @@
 package com.tools20022.mmgenerator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
@@ -225,7 +226,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		// Add declared attributes
 		for (MetamodelAttribute mmAttr : mmType.getDeclaredAttributes()) {
 			src.addImport(Metamodel.MetamodelAttribute.class);
-			String fieldtype = generateSourceType(mmAttr, src, false);
+			String fieldtype = generateSourceType(mmAttr, src, false, true);
 			fieldtype = "<" + mmTypeSrc.getName() + ", " + fieldtype + ">";
 			fieldtype = Metamodel.MetamodelAttribute.class.getSimpleName() + fieldtype;
 
@@ -250,45 +251,39 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	}
 
-	protected <O extends JavaSource<O>> void annotateProperty(O srcType, PropertySource<O> srcProp,
+	protected <O extends JavaSource<O>> void annotateProperty(O srcType, MethodSource<O> srcGetter,
 			MetamodelAttribute mmMember) {
 		if (mmMember.isDerived()) {
 			srcType.addImport(Derived.class);
-			srcProp.getAccessor().addAnnotation(Derived.class);
+			srcGetter.addAnnotation(Derived.class);
 		}
 
 		if (srcType.getQualifiedName().equals(getJavaName(mmMember.getDeclaringType()).getFullName())) {
 			// Declared in this type
-			setMMDoc(srcProp.getAccessor(), mmMember);
+			setMMDoc(srcGetter, mmMember);
 
 			// Add opposite, container and containment anots
 			if (mmMember.getOpposite() != null) {
 				srcType.addImport(Opposite.class);
-				AnnotationSource<O> annotOpp = srcProp.getAccessor().addAnnotation(Opposite.class);
+				AnnotationSource<O> annotOpp = srcGetter.addAnnotation(Opposite.class);
 				String opBeanName = getJavaName(mmMember.getOpposite().getDeclaringType()).getSimpleName();
 				String opAttrName = mmMember.getOpposite().getName();
 				annotOpp.setLiteralValue("bean", opBeanName + ".class");
 				annotOpp.setStringValue("attribute", opAttrName);
 				String opGetterName = "get" + opAttrName.substring(0, 1).toUpperCase() + opAttrName.substring(1);
-				srcProp.getAccessor().getJavaDoc().addTagValue("@see", opBeanName + "#" + opGetterName + "()");
+				srcGetter.getJavaDoc().addTagValue("@see", opBeanName + "#" + opGetterName + "()");
 			}
 			if (mmMember.isContainer()) {
 				srcType.addImport(Container.class);
-				srcProp.getAccessor().addAnnotation(Container.class);
+				srcGetter.addAnnotation(Container.class);
 			}
 			if (mmMember.isContainment()) {
 				srcType.addImport(Containment.class);
-				srcProp.getAccessor().addAnnotation(Containment.class);
-			}
-			if (srcProp.getMutator() != null) {
-				JavaDocSource<?> srcJavaDoc = srcProp.getMutator().getJavaDoc();
-				srcJavaDoc.setFullText("@see #" + srcProp.getAccessor().getName() + "()");
+				srcGetter.addAnnotation(Containment.class);
 			}
 		} else {
 			// Inherited property
-			srcProp.getAccessor().addAnnotation(Override.class);
-			if (srcProp.getMutator() != null)
-				srcProp.getMutator().addAnnotation(Override.class);
+			srcGetter.addAnnotation(Override.class);
 		}
 	}
 
@@ -331,47 +326,76 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	<T extends JavaSource<T> & PropertyHolderSource<T>> void generateMMAttribute(T srcMMType,
 			MetamodelAttribute mmAttr) {
-		String valueType = generateSourceType(mmAttr, srcMMType, true);
-
-
-		PropertySource<T> srcProp = srcMMType.addProperty(valueType, getJavaName(mmAttr).getSimpleName());
-		srcProp.setMutable(false);
-		if (srcProp.getField() != null) {
-			srcProp.getField().setProtected().setFinal(false);
+		String getterReturnType = generateSourceType(mmAttr, srcMMType, true, true);
+		String fieldValueType = generateSourceType(mmAttr, srcMMType, true, false);
+		JavaName attrName = getJavaName(mmAttr);
+				
+		// Create getter
+		MethodSource<T> srcGetter;
+		{
+			boolean isBool = mmAttr.getValueJavaClass() !=null && (mmAttr.getValueJavaClass().equals(Boolean.TYPE) || mmAttr.getValueJavaClass().equals(Boolean.class));  
+			String getterName = (isBool ? "is" : "get") + mmAttr.getName().substring(0, 1).toUpperCase()+mmAttr.getName().substring(1); 
+			srcGetter = srcMMType.addMethod().setName(getterName );
+			srcGetter.setReturnType(getterReturnType);
+			srcGetter.setPublic();
 		}
-		annotateProperty(srcMMType, srcProp, mmAttr);
 		
-		// If attribute is derived
-		if ( srcProp.getField() != null && mmAttr.isDerived()) {
-			JavaName javaName = JavaName.primaryType(basePackageName + ".constraints",
-					"Derive" + srcMMType.getName() + "_" +  mmAttr.getName());
-			JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
-			srcDerive.addImport(srcMMType);
-			srcDerive.addImport(Function.class);
-			String valueType2 = generateSourceType(mmAttr, srcDerive, false);
-			String ifName = Function.class.getSimpleName() + "<" + srcMMType.getName() + "," + valueType2 + ">";
-			srcDerive.addInterface( ifName);
-			MethodSource<JavaClassSource> methodApply = srcDerive.addMethod("public " + valueType2 + " apply(" + srcMMType.getName() + " mmBean ) {\n" + 
-					"			throw new RuntimeException(\"Not implemented!\");\n" + 
-					"		}");
-			methodApply.addAnnotation(Override.class);
-			setMMDoc(methodApply, mmAttr);			
+		// Create field
+		FieldSource<T> srcField;
+		if( (srcMMType instanceof JavaClassSource) && !mmAttr.isDerived()) {
+			// Normal attribute
+			srcField = srcMMType.addField().setName(attrName.getSimpleName());
+			srcField.setType(fieldValueType);
+			srcField.setProtected();
+			
+			if( getterReturnType.startsWith(Optional.class.getSimpleName() + "<") ) {
+				srcGetter.setBody("return " +  Optional.class.getSimpleName() + ".ofNullable(" + srcField.getName() + ");");				
+			} else if( getterReturnType.startsWith(List.class.getSimpleName() + "<") ) {
+				srcMMType.addImport(Collections.class);
+				srcGetter.setBody("return " + srcField.getName() + "== null ? "+ Collections.class.getSimpleName() +".emptyList() : "+ srcField.getName() + ";");				
+			} else {
+				srcGetter.setBody("return " + srcField.getName() + ";");				
+			}
+		} else if( (srcMMType instanceof JavaClassSource) && mmAttr.isDerived()) {
+			// Derived attribute
+			JavaClassSource srcDerive = generateAttributeCalulatorClass(mmAttr, (JavaClassSource) srcMMType);
 
-			srcMMType.removeField(srcProp.getField());
 			srcMMType.addImport(srcDerive);
 			String body = "return (new " + srcDerive.getName() + "()).apply(this);";
-			srcProp.getAccessor().setBody(body);
+			srcGetter.setBody(body);
 			
 			String javaDocText = "Calculate derived attribute ";
-			javaDocText += "{@link " + srcMMType.getName() + "#" + srcProp.getAccessor().getName() + "()}"; 
-			srcDerive.getJavaDoc().setText(javaDocText);
+			javaDocText += "{@link " + srcMMType.getName() + "#" + srcGetter.getName() + "()}"; 
+			srcDerive.getJavaDoc().setText(javaDocText);			
+		} else {
+			// Interface
+			srcField = null;
 		}
 
+		annotateProperty(srcMMType, srcGetter, mmAttr);
+		
 	};
+	
+	protected JavaClassSource generateAttributeCalulatorClass( MetamodelAttribute mmAttr, JavaClassSource srcMMType ) {
+		JavaName javaName = JavaName.primaryType(basePackageName + ".constraints",
+				"Derive" + srcMMType.getName() + "_" +  mmAttr.getName());
+		JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
+		srcDerive.addImport(srcMMType);
+		srcDerive.addImport(Function.class);
+		String valueType2 = generateSourceType(mmAttr, srcDerive, false, true);
+		String ifName = Function.class.getSimpleName() + "<" + srcMMType.getName() + "," + valueType2 + ">";
+		srcDerive.addInterface( ifName);
+		MethodSource<JavaClassSource> methodApply = srcDerive.addMethod("public " + valueType2 + " apply(" + srcMMType.getName() + " mmBean ) {\n" + 
+				"			throw new RuntimeException(\"Not implemented!\");\n" + 
+				"		}");
+		methodApply.addAnnotation(Override.class);
+		setMMDoc(methodApply, mmAttr);			
+		return srcDerive; 
+	}
 	
 
 	private String generateSourceType(MetamodelAttribute mmAttr, Importer<? extends JavaSource<?>> src,
-			boolean allowPrimitiveTypes) {
+			boolean allowPrimitiveTypes, boolean allowOptional) {
 		String simplifiedTypeName;
 		if (mmAttr.getEnumType() != null) {
 			addImport(src, mmAttr.getEnumType());
@@ -398,7 +422,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		if (mmAttr.isMultiple()) {
 			src.addImport(List.class);
 			simplifiedTypeName = "List<" + simplifiedTypeName + ">";
-		} else if (mmAttr.isOptional()) {
+		} else if (mmAttr.isOptional() && allowOptional ) {
 			src.addImport(Optional.class);
 			simplifiedTypeName = "Optional<" + simplifiedTypeName + ">";
 		}

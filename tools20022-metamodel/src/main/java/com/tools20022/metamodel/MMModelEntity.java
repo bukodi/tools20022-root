@@ -25,7 +25,7 @@ public interface MMModelEntity extends GeneratedMetamodelBean {
 	 * @see MMModelEntity#getPreviousVersion()
 	 */
 	@Opposite(bean = MMModelEntity.class, attribute = "previousVersion")
-	List<MMModelEntity> getNextVersions();
+	public List<MMModelEntity> getNextVersions();
 
 	/**
 	 * Previous version of a ModelEntity that this ModelEntity stems from.
@@ -34,10 +34,10 @@ public interface MMModelEntity extends GeneratedMetamodelBean {
 	 * @see MMModelEntity#getNextVersions()
 	 */
 	@Opposite(bean = MMModelEntity.class, attribute = "nextVersions")
-	Optional<MMModelEntity> getPreviousVersion();
+	public Optional<MMModelEntity> getPreviousVersion();
 
 	/**
 	 * Uniquely identifies the RepositoryConcept
 	 */
-	Optional<String> getObjectIdentifier();
+	public Optional<String> getObjectIdentifier();
 }

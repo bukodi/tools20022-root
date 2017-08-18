@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import java.util.Optional;
 import java.util.List;
+import java.util.Collections;
 
 /**
  * A Doclet provides a way of adding categorised documentation to an model
@@ -14,11 +15,11 @@ import java.util.List;
 public class MMDoclet implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	protected Optional<String> type;
-	protected Optional<String> content;
+	protected String type;
+	protected String content;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -40,28 +41,28 @@ public class MMDoclet implements MMModelEntity {
 	 * to the meta-model.
 	 */
 	public Optional<String> getType() {
-		return type;
+		return Optional.ofNullable(type);
 	}
 
 	/**
 	 * The content for the documentation.
 	 */
 	public Optional<String> getContent() {
-		return content;
+		return Optional.ofNullable(content);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

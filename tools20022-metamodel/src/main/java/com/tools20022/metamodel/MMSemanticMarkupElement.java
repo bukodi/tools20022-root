@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import java.util.Optional;
 import java.util.List;
+import java.util.Collections;
 
 /**
  * A semantic mark-up element defines a name + value pair for content. E.g. for
@@ -15,11 +16,11 @@ import java.util.List;
 public class MMSemanticMarkupElement implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	protected Optional<String> name;
-	protected Optional<String> value;
+	protected String name;
+	protected String value;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -40,28 +41,28 @@ public class MMSemanticMarkupElement implements MMModelEntity {
 	 * Name of the semantic mark-up element.
 	 */
 	public Optional<String> getName() {
-		return name;
+		return Optional.ofNullable(name);
 	}
 
 	/**
 	 * Value of the semantic mark-up element.
 	 */
 	public Optional<String> getValue() {
-		return value;
+		return Optional.ofNullable(value);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

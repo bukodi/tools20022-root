@@ -18,11 +18,11 @@ public interface MMMultiplicityEntity extends GeneratedMetamodelBean {
 	 * MaxOccurs is an integer with a value greater than or equal to the lower
 	 * limit. If undefined an unlimited upper value is assumed.
 	 */
-	Optional<Integer> getMaxOccurs();
+	public Optional<Integer> getMaxOccurs();
 
 	/**
 	 * MinOccurs is an integer with value greater than or equal to zero. If
 	 * undefined a value of zero is assumed.
 	 */
-	Optional<Integer> getMinOccurs();
+	public Optional<Integer> getMinOccurs();
 }

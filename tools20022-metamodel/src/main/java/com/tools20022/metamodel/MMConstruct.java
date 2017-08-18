@@ -21,5 +21,5 @@ public interface MMConstruct extends MMRepositoryConcept, MMMultiplicityEntity {
 	 * The type of this Member
 	 */
 	@Derived
-	MMRepositoryType getMemberType();
+	public MMRepositoryType getMemberType();
 }

@@ -39,7 +39,6 @@ public class XMILoader {
 
 	final LinkedHashSet<GeneratedMetamodelBean> loadedObjects = new LinkedHashSet();
 
-
 	private class ECoreToMetamodelMapping {
 		final Map<EClass, MetamodelType<?>> mmTypesByEClass = new HashMap<>();
 		final Map<EEnum, MetamodelEnum<?>> mmEnumsByEEnum = new HashMap<>();
@@ -113,26 +112,23 @@ public class XMILoader {
 
 	private void setAttributeValue(MetamodelAttribute mmAttr, GeneratedMetamodelBean repoObj, Object value,
 			Map<EObject, GeneratedMetamodelBean> repoObjsByEObj) {
+		if (value == null)
+			return;
+		if (value instanceof EList<?> && ((EList<?>) value).isEmpty())
+			return;
 		try {
 			if (mmAttr.getValueJavaClass() != null && !mmAttr.isMultiple()) {
 				/*** Singular basic value ***/
-				if (mmAttr.isOptional()) {
-					value = value == null ? Optional.empty() : Optional.of(value);
-				}
 				mmAttr.set(repoObj, value);
 
 			} else if (mmAttr.getValueJavaClass() != null && mmAttr.isMultiple()) {
 				/*** Multiple basic value ***/
-				List<Object> valueList = new ArrayList<>( (EList) value );				
-				mmAttr.set(repoObj, valueList);			} else if (mmAttr.getReferencedType() != null && !mmAttr.isMultiple()) {
+				mmAttr.set(repoObj, new ArrayList<>((EList) value));
+			} else if (mmAttr.getReferencedType() != null && !mmAttr.isMultiple()) {
 				/*** Singular reference ***/
 				EObject refObj = (EObject) value;
 				GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(refObj);
-				value = refIsoObj;
-				if (mmAttr.isOptional()) {
-					value = value == null ? Optional.empty() : Optional.of(value);
-				}
-				mmAttr.set(repoObj, value);
+				mmAttr.set(repoObj, refIsoObj);
 			} else if (mmAttr.getReferencedType() != null && mmAttr.isMultiple()) {
 				/*** Multiple reference ***/
 				List<GeneratedMetamodelBean> isoList = new ArrayList<>();
@@ -143,22 +139,14 @@ public class XMILoader {
 				mmAttr.set(repoObj, isoList);
 			} else if (mmAttr.getEnumType() != null) {
 				/*** Enum literal ***/
-				if (mmAttr.isOptional() && value == null) {
-					value = Optional.empty();
-				} else {
-					String enumName = ((EEnumLiteral) value).getName();
-					MetamodelEnumLiteral<?> mmEnumLit = mmAttr.getEnumType().getEnumLiteral(enumName);
-					if (mmEnumLit == null) {
-						// For java reserved words the enum const suffixed by an
-						// underscore
-						mmEnumLit = mmAttr.getEnumType().getEnumLiteral(enumName + "_");
-					}
-					value = mmEnumLit.getValue();
-					if (mmAttr.isOptional()) {
-						value = value == null ? Optional.empty() : Optional.of(value);
-					}
+				String enumName = ((EEnumLiteral) value).getName();
+				MetamodelEnumLiteral<?> mmEnumLit = mmAttr.getEnumType().getEnumLiteral(enumName);
+				if (mmEnumLit == null) {
+					// For java reserved words the enum const suffixed by an
+					// underscore
+					mmEnumLit = mmAttr.getEnumType().getEnumLiteral(enumName + "_");
 				}
-				mmAttr.set(repoObj, value);
+				mmAttr.set(repoObj, mmEnumLit.getValue());
 			} else {
 				throw new RuntimeException("Invalid MetamodelAttribute: " + mmAttr);
 			}
@@ -181,10 +169,10 @@ public class XMILoader {
 		for (Entry<EObject, GeneratedMetamodelBean> entry : repoObjsByEObj.entrySet()) {
 			GeneratedMetamodelBean repoObj = entry.getValue();
 			EObject eObj = entry.getKey();
-			
+
 			MetamodelType<?> mmType = repoObj.getMetamodel();
 			for (MetamodelAttribute mmAttr : mmType.getAllAttributes()) {
-				if( mmAttr.isDerived() )
+				if (mmAttr.isDerived())
 					continue;
 				EStructuralFeature eSF = mapping.eSFsBymmAttr.get(mmAttr);
 				Object value = eObj.eGet(eSF);
@@ -192,8 +180,8 @@ public class XMILoader {
 			}
 		}
 		GeneratedMetamodelBean rootRepoObj = repoObjsByEObj.get(rootEObj);
-		RawRepository rawRepo = new RawRepository(metamodel, (MMRepository) rootRepoObj ); 
-		loadedObjects.forEach(o->rawRepo.addObject(o));
+		RawRepository rawRepo = new RawRepository(metamodel, (MMRepository) rootRepoObj);
+		loadedObjects.forEach(o -> rawRepo.addObject(o));
 		return rawRepo;
 	}
 

@@ -8,6 +8,7 @@ import java.util.Optional;
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
+import java.util.Collections;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -21,25 +22,25 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMDecimal implements MMDataType {
 
 	private GeneratedMetamodelBean container;
-	protected Optional<String> minInclusive;
-	protected Optional<String> minExclusive;
-	protected Optional<String> maxInclusive;
-	protected Optional<String> maxExclusive;
-	protected Optional<Integer> totalDigits;
-	protected Optional<Integer> fractionDigits;
-	protected Optional<String> pattern;
+	protected String minInclusive;
+	protected String minExclusive;
+	protected String maxInclusive;
+	protected String maxExclusive;
+	protected Integer totalDigits;
+	protected Integer fractionDigits;
+	protected String pattern;
 	protected MMDataDictionary dataDictionary;
 	protected String name;
-	protected Optional<String> definition;
+	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
 	protected List<MMDoclet> doclet;
 	protected List<String> example;
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
-	protected Optional<Date> removalDate;
+	protected Date removalDate;
 	protected List<MMModelEntity> nextVersions;
-	protected Optional<MMModelEntity> previousVersion;
-	protected Optional<String> objectIdentifier;
+	protected MMModelEntity previousVersion;
+	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
@@ -60,42 +61,42 @@ public class MMDecimal implements MMDataType {
 	 * the lowest value in the allowed set of values
 	 */
 	public Optional<String> getMinInclusive() {
-		return minInclusive;
+		return Optional.ofNullable(minInclusive);
 	}
 
 	/**
 	 * the lowest but one value in the allowed set of values
 	 */
 	public Optional<String> getMinExclusive() {
-		return minExclusive;
+		return Optional.ofNullable(minExclusive);
 	}
 
 	/**
 	 * the highest value in the allowed set of values
 	 */
 	public Optional<String> getMaxInclusive() {
-		return maxInclusive;
+		return Optional.ofNullable(maxInclusive);
 	}
 
 	/**
 	 * the highest but one value in the allowed set of values
 	 */
 	public Optional<String> getMaxExclusive() {
-		return maxExclusive;
+		return Optional.ofNullable(maxExclusive);
 	}
 
 	/**
 	 * the maximum number of allowed digits in a Decimal number
 	 */
 	public Optional<Integer> getTotalDigits() {
-		return totalDigits;
+		return Optional.ofNullable(totalDigits);
 	}
 
 	/**
 	 * the fractional part of a Decimal number
 	 */
 	public Optional<Integer> getFractionDigits() {
-		return fractionDigits;
+		return Optional.ofNullable(fractionDigits);
 	}
 
 	/**
@@ -104,7 +105,7 @@ public class MMDecimal implements MMDataType {
 	 * pattern.
 	 */
 	public Optional<String> getPattern() {
-		return pattern;
+		return Optional.ofNullable(pattern);
 	}
 
 	@Override
@@ -119,27 +120,29 @@ public class MMDecimal implements MMDataType {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return definition;
+		return Optional.ofNullable(definition);
 	}
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup;
+		return semanticMarkup == null
+				? Collections.emptyList()
+				: semanticMarkup;
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet;
+		return doclet == null ? Collections.emptyList() : doclet;
 	}
 
 	@Override
 	public List<String> getExample() {
-		return example;
+		return example == null ? Collections.emptyList() : example;
 	}
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint;
+		return constraint == null ? Collections.emptyList() : constraint;
 	}
 
 	@Override
@@ -149,21 +152,21 @@ public class MMDecimal implements MMDataType {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate;
+		return Optional.ofNullable(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions;
+		return nextVersions == null ? Collections.emptyList() : nextVersions;
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion;
+		return Optional.ofNullable(previousVersion);
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier;
+		return Optional.ofNullable(objectIdentifier);
 	}
 }

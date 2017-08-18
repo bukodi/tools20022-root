@@ -16,6 +16,6 @@ public class DeriveMMBusinessAssociationEnd_memberType
 	 */
 	@Override
 	public MMRepositoryType apply(MMBusinessAssociationEnd mmBean) {
-		return mmBean.getType();
+		throw new RuntimeException("Not implemented!");
 	}
 }
