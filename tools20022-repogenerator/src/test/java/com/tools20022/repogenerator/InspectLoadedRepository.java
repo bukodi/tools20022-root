@@ -21,6 +21,8 @@ import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMCode;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
@@ -47,6 +49,20 @@ public class InspectLoadedRepository {
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		System.out.println("Model load: " + (System.currentTimeMillis() - start) + " ms, "
 				+ ((usedMem2 - usedMem) / (1024 * 1024)) + " MB");
+	}
+
+	@Test
+	@Ignore
+	public void codeSetRelations() throws Exception {
+		for( MMCodeSet mmCodeSet : repo.listObjects(MMCodeSet.class).filter(cs->cs.getName().startsWith("Repurchase")).collect(Collectors.toList())) {
+			System.out.println(mmCodeSet.getName() + " derivation: " + mmCodeSet.getDerivation().stream().map(cs->cs.getName()).collect(Collectors.joining(", ")) + "");
+			for(MMCode c : mmCodeSet.getCode() ) {
+				System.out.println( " - " + c.getCodeName() + " - " + c.getName() );
+			}
+			System.out.println();
+			
+		}
+		
 	}
 
 	@Test
