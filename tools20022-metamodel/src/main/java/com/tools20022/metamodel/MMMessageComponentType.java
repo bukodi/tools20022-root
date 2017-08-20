@@ -6,6 +6,7 @@ import com.tools20022.metamodel.MMLogicalType;
 import com.tools20022.metamodel.MMMessageConcept;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import java.util.List;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;

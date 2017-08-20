@@ -10,6 +10,7 @@ import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.metamodel.MMRepository;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Container;
 import java.util.Optional;
 
@@ -21,9 +22,9 @@ public class MMDataDictionary implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
 	protected List<MMTopLevelDictionaryEntry> topLevelDictionaryEntry;
-	protected MMRepository repository;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<MMRepository> repository_lazy;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -62,21 +63,25 @@ public class MMDataDictionary implements MMModelEntity {
 	@Opposite(bean = MMRepository.class, attribute = "dataDictionary")
 	@Container
 	public MMRepository getRepository() {
-		return repository;
+		return repository_lazy.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

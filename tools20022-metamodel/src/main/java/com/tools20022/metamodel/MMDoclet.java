@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import java.util.Optional;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.Collections;
 
 /**
@@ -17,8 +18,8 @@ public class MMDoclet implements MMModelEntity {
 	private GeneratedMetamodelBean container;
 	protected String type;
 	protected String content;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -41,28 +42,32 @@ public class MMDoclet implements MMModelEntity {
 	 * to the meta-model.
 	 */
 	public Optional<String> getType() {
-		return Optional.ofNullable(type);
+		return type == null ? Optional.empty() : Optional.of(type);
 	}
 
 	/**
 	 * The content for the documentation.
 	 */
 	public Optional<String> getContent() {
-		return Optional.ofNullable(content);
+		return content == null ? Optional.empty() : Optional.of(content);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

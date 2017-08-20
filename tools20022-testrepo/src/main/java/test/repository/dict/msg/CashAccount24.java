@@ -1,12 +1,19 @@
 package test.repository.dict.msg;
 
 import com.tools20022.metamodel.MMMessageComponent;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CashAccount24 extends MMMessageComponent {
 
-	private final static CashAccount24 INSTANCE = new CashAccount24();
+	private final static AtomicReference<CashAccount24> repoTypeRef = new AtomicReference<>();
 
-	public static CashAccount24 instance() {
-		return INSTANCE;
+	public static CashAccount24 repoType() {
+		repoTypeRef.compareAndSet(null, new CashAccount24());
+		return repoTypeRef.get();
+	}
+
+	private CashAccount24() {
+		super.name = "CashAccount24";
+		super.definition = "Provides the details to identify an account.";
 	}
 }

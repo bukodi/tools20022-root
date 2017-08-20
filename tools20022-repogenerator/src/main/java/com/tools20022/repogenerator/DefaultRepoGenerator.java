@@ -25,6 +25,7 @@ import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMChoiceComponent;
+import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
@@ -276,6 +277,13 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 		String pkg;
 		String cuName;
 
+		if( mmElem instanceof MMCode ) {
+			MMCode mmCode = ((MMCode)mmElem);
+			JavaName containerName = getJavaName( mmCode.getOwner() );
+			JavaName nestedName = JavaName.nestedType(containerName, mmCode.getName() );
+			return nestedName;
+		}
+		
 		// CU name
 		if (mmElem instanceof MMRepositoryConcept) {
 			cuName = (((MMRepositoryConcept) mmElem).getName()).toString();

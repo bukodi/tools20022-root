@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import java.util.Optional;
 import com.tools20022.metamodel.MMCodeSet;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -26,7 +27,7 @@ public class MMCode implements MMRepositoryConcept {
 
 	private GeneratedMetamodelBean container;
 	protected String codeName;
-	protected MMCodeSet owner;
+	protected Supplier<MMCodeSet> owner_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -35,8 +36,8 @@ public class MMCode implements MMRepositoryConcept {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -57,7 +58,7 @@ public class MMCode implements MMRepositoryConcept {
 	 * Provides the full, non-abbreviated name of the Code
 	 */
 	public Optional<String> getCodeName() {
-		return Optional.ofNullable(codeName);
+		return codeName == null ? Optional.empty() : Optional.of(codeName);
 	}
 
 	/**
@@ -68,7 +69,7 @@ public class MMCode implements MMRepositoryConcept {
 	@Opposite(bean = MMCodeSet.class, attribute = "code")
 	@Container
 	public MMCodeSet getOwner() {
-		return owner;
+		return owner_lazy.get();
 	}
 
 	@Override
@@ -78,7 +79,7 @@ public class MMCode implements MMRepositoryConcept {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -110,21 +111,26 @@ public class MMCode implements MMRepositoryConcept {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

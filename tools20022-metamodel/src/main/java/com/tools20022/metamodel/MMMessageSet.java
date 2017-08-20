@@ -10,6 +10,7 @@ import com.tools20022.metamodel.constraints.DeriveMMMessageSet_generatedSyntax;
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMEncoding;
+import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
@@ -27,9 +28,9 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	private GeneratedMetamodelBean container;
-	protected List<MMEncoding> validEncoding;
-	protected List<MMMessageDefinition> messageDefinition;
-	protected MMBusinessProcessCatalogue businessProcessCatalogue;
+	protected Supplier<List<MMEncoding>> validEncoding_lazy;
+	protected Supplier<List<MMMessageDefinition>> messageDefinition_lazy;
+	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -38,8 +39,8 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -75,7 +76,9 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMEncoding.class, attribute = "messageSet")
 	public List<MMEncoding> getValidEncoding() {
-		return validEncoding == null ? Collections.emptyList() : validEncoding;
+		return validEncoding_lazy == null
+				? Collections.emptyList()
+				: validEncoding_lazy.get();
 	}
 
 	/**
@@ -85,14 +88,14 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMMessageDefinition.class, attribute = "messageSet")
 	public List<MMMessageDefinition> getMessageDefinition() {
-		return messageDefinition == null
+		return messageDefinition_lazy == null
 				? Collections.emptyList()
-				: messageDefinition;
+				: messageDefinition_lazy.get();
 	}
 
 	@Override
 	public MMBusinessProcessCatalogue getBusinessProcessCatalogue() {
-		return businessProcessCatalogue;
+		return businessProcessCatalogue_lazy.get();
 	}
 
 	@Override
@@ -102,7 +105,7 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -134,21 +137,26 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

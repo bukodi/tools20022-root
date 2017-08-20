@@ -7,7 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -128,7 +128,13 @@ public class XMILoader {
 				/*** Singular reference ***/
 				EObject refObj = (EObject) value;
 				GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(refObj);
-				mmAttr.set(repoObj, refIsoObj);
+				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment();				
+				if( !isLazyReference) {
+					mmAttr.set(repoObj, refIsoObj);
+				} else {
+					Supplier<?> supplier = ()->refIsoObj;
+					mmAttr.set(repoObj, supplier );					
+				}
 			} else if (mmAttr.getReferencedType() != null && mmAttr.isMultiple()) {
 				/*** Multiple reference ***/
 				List<GeneratedMetamodelBean> isoList = new ArrayList<>();
@@ -136,7 +142,13 @@ public class XMILoader {
 					GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(x);
 					isoList.add(refIsoObj);
 				}
-				mmAttr.set(repoObj, isoList);
+				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment();				
+				if( !isLazyReference) {
+					mmAttr.set(repoObj, isoList);
+				} else {
+					Supplier<?> supplier = ()->isoList;
+					mmAttr.set(repoObj, supplier);
+				}
 			} else if (mmAttr.getEnumType() != null) {
 				/*** Enum literal ***/
 				String enumName = ((EEnumLiteral) value).getName();

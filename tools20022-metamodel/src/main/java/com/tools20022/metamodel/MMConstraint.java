@@ -5,6 +5,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import java.util.Optional;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -25,7 +26,7 @@ public class MMConstraint implements MMRepositoryConcept {
 	private GeneratedMetamodelBean container;
 	protected String expression;
 	protected String expressionLanguage;
-	protected MMRepositoryConcept owner;
+	protected Supplier<MMRepositoryConcept> owner_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -34,8 +35,8 @@ public class MMConstraint implements MMRepositoryConcept {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -58,14 +59,15 @@ public class MMConstraint implements MMRepositoryConcept {
 	 * expressionLanguage
 	 */
 	public Optional<String> getExpression() {
-		return Optional.ofNullable(expression);
+		return expression == null ? Optional.empty() : Optional.of(expression);
 	}
 
 	/**
 	 * The language in which a Constraint in expressed.
 	 */
 	public Optional<String> getExpressionLanguage() {
-		return Optional.ofNullable(expressionLanguage);
+		return expressionLanguage == null ? Optional.empty() : Optional
+				.of(expressionLanguage);
 	}
 
 	/**
@@ -76,7 +78,7 @@ public class MMConstraint implements MMRepositoryConcept {
 	@Opposite(bean = MMRepositoryConcept.class, attribute = "constraint")
 	@Container
 	public MMRepositoryConcept getOwner() {
-		return owner;
+		return owner_lazy.get();
 	}
 
 	@Override
@@ -86,7 +88,7 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -118,21 +120,26 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

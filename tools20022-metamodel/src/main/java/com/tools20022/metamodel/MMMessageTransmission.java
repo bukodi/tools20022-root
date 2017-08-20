@@ -5,6 +5,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMBusinessTransaction;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMMessageDefinition;
@@ -28,8 +29,8 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMMessageTransmission implements MMRepositoryConcept {
 
 	private GeneratedMetamodelBean container;
-	protected MMBusinessTransaction businessTransaction;
-	protected List<MMMessageDefinition> derivation;
+	protected Supplier<MMBusinessTransaction> businessTransaction_lazy;
+	protected Supplier<List<MMMessageDefinition>> derivation_lazy;
 	protected String messageTypeDescription;
 	protected MMSend send;
 	protected List<MMReceive> receive;
@@ -41,8 +42,8 @@ public class MMMessageTransmission implements MMRepositoryConcept {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -68,7 +69,7 @@ public class MMMessageTransmission implements MMRepositoryConcept {
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "transmission")
 	@Container
 	public MMBusinessTransaction getBusinessTransaction() {
-		return businessTransaction;
+		return businessTransaction_lazy.get();
 	}
 
 	/**
@@ -79,7 +80,9 @@ public class MMMessageTransmission implements MMRepositoryConcept {
 	 */
 	@Opposite(bean = MMMessageDefinition.class, attribute = "trace")
 	public List<MMMessageDefinition> getDerivation() {
-		return derivation == null ? Collections.emptyList() : derivation;
+		return derivation_lazy == null
+				? Collections.emptyList()
+				: derivation_lazy.get();
 	}
 
 	/**
@@ -120,7 +123,7 @@ public class MMMessageTransmission implements MMRepositoryConcept {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -152,21 +155,26 @@ public class MMMessageTransmission implements MMRepositoryConcept {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

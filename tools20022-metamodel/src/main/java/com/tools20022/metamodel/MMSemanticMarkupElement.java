@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import java.util.Optional;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.Collections;
 
 /**
@@ -18,8 +19,8 @@ public class MMSemanticMarkupElement implements MMModelEntity {
 	private GeneratedMetamodelBean container;
 	protected String name;
 	protected String value;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -41,28 +42,32 @@ public class MMSemanticMarkupElement implements MMModelEntity {
 	 * Name of the semantic mark-up element.
 	 */
 	public Optional<String> getName() {
-		return Optional.ofNullable(name);
+		return name == null ? Optional.empty() : Optional.of(name);
 	}
 
 	/**
 	 * Value of the semantic mark-up element.
 	 */
 	public Optional<String> getValue() {
-		return Optional.ofNullable(value);
+		return value == null ? Optional.empty() : Optional.of(value);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

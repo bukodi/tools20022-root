@@ -1,12 +1,23 @@
 package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMIdentifierSet;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
 
 public class PortugueseNCCIdentifier extends MMIdentifierSet {
 
-	private final static PortugueseNCCIdentifier INSTANCE = new PortugueseNCCIdentifier();
+	private final static AtomicReference<PortugueseNCCIdentifier> repoTypeRef = new AtomicReference<>();
 
-	public static PortugueseNCCIdentifier instance() {
-		return INSTANCE;
+	public static PortugueseNCCIdentifier repoType() {
+		repoTypeRef.compareAndSet(null, new PortugueseNCCIdentifier());
+		return repoTypeRef.get();
+	}
+
+	private PortugueseNCCIdentifier() {
+		super.identificationScheme = "Banco de Portugal; PortugueseNCC";
+		super.pattern = "PT[0-9]{8,8}";
+		super.name = "PortugueseNCCIdentifier";
+		super.definition = "Portuguese National Clearing Code. Identifies Portuguese financial institutions on the Portuguese national clearing system.";
+		super.example = Arrays.asList("PT12345678");
 	}
 }

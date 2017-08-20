@@ -1,12 +1,20 @@
 package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMText;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Exact2NumericText extends MMText {
 
-	private final static Exact2NumericText INSTANCE = new Exact2NumericText();
+	private final static AtomicReference<Exact2NumericText> repoTypeRef = new AtomicReference<>();
 
-	public static Exact2NumericText instance() {
-		return INSTANCE;
+	public static Exact2NumericText repoType() {
+		repoTypeRef.compareAndSet(null, new Exact2NumericText());
+		return repoTypeRef.get();
+	}
+
+	private Exact2NumericText() {
+		super.pattern = "[0-9]{2}";
+		super.name = "Exact2NumericText";
+		super.definition = "Specifies a numeric string with an exact length of 2 digits.";
 	}
 }

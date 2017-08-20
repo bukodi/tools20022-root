@@ -459,21 +459,22 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		@Override
-		public T get(B obj) {
+		public Object get(GeneratedMetamodelBean repoObj) {
 			try {
-				return (T) getterMethod.invoke(obj);
+				return getterMethod.invoke(repoObj);
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				throw new RuntimeException(e);
 			}
 		}
 
 		@Override
-		public void set(B obj, T value) {
+		public void set(GeneratedMetamodelBean repoObj, Object value) {
 			try {
 				Field field = null;
-				for (Class<?> declClass = obj.getClass(); field == null && declClass != null;) {
+				for (Class<?> declClass = repoObj.getClass(); field == null && declClass != null;) {
 					try {
-						field = declClass.getDeclaredField(name);
+						String fieldName = name + (getReferencedType() != null && !isDerived() && !isContainment() ? "_lazy":"");
+						field = declClass.getDeclaredField(fieldName);
 					} catch (NoSuchFieldException nsfe) {
 						// No problem, continue with superclass
 						declClass = declClass.getSuperclass();
@@ -483,7 +484,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				if (!isAccessible) {
 					field.setAccessible(true);
 				}
-				field.set(obj, value);
+				field.set(repoObj, value);
 			} catch (IllegalAccessException | IllegalArgumentException | SecurityException e) {
 				throw new RuntimeException(e);
 			}

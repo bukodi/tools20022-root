@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryType;
 import com.tools20022.metamodel.MMMessageSet;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.Optional;
@@ -31,17 +32,17 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMMessageDefinition implements MMRepositoryType {
 
 	private GeneratedMetamodelBean container;
-	protected List<MMMessageSet> messageSet;
+	protected Supplier<List<MMMessageSet>> messageSet_lazy;
 	protected String xmlName;
 	protected String xmlTag;
-	protected MMBusinessArea businessArea;
+	protected Supplier<MMBusinessArea> businessArea_lazy;
 	protected List<MMXor> xors;
 	protected String rootElement;
 	protected List<MMMessageBuildingBlock> messageBuildingBlock;
-	protected List<MMMessageChoreography> choreography;
-	protected List<MMMessageTransmission> trace;
+	protected Supplier<List<MMMessageChoreography>> choreography_lazy;
+	protected Supplier<List<MMMessageTransmission>> trace_lazy;
 	protected MMMessageDefinitionIdentifier messageDefinitionIdentifier;
-	protected List<MMSyntaxMessageScheme> derivation;
+	protected Supplier<List<MMSyntaxMessageScheme>> derivation_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -50,8 +51,8 @@ public class MMMessageDefinition implements MMRepositoryType {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -76,7 +77,9 @@ public class MMMessageDefinition implements MMRepositoryType {
 	 */
 	@Opposite(bean = MMMessageSet.class, attribute = "messageDefinition")
 	public List<MMMessageSet> getMessageSet() {
-		return messageSet == null ? Collections.emptyList() : messageSet;
+		return messageSet_lazy == null
+				? Collections.emptyList()
+				: messageSet_lazy.get();
 	}
 
 	/**
@@ -84,7 +87,7 @@ public class MMMessageDefinition implements MMRepositoryType {
 	 * Definition.
 	 */
 	public Optional<String> getXmlName() {
-		return Optional.ofNullable(xmlName);
+		return xmlName == null ? Optional.empty() : Optional.of(xmlName);
 	}
 
 	/**
@@ -92,7 +95,7 @@ public class MMMessageDefinition implements MMRepositoryType {
 	 * of a Message Definition.
 	 */
 	public Optional<String> getXmlTag() {
-		return Optional.ofNullable(xmlTag);
+		return xmlTag == null ? Optional.empty() : Optional.of(xmlTag);
 	}
 
 	/**
@@ -103,7 +106,7 @@ public class MMMessageDefinition implements MMRepositoryType {
 	@Opposite(bean = MMBusinessArea.class, attribute = "messageDefinition")
 	@Container
 	public MMBusinessArea getBusinessArea() {
-		return businessArea;
+		return businessArea_lazy.get();
 	}
 
 	/**
@@ -142,7 +145,9 @@ public class MMMessageDefinition implements MMRepositoryType {
 	 */
 	@Opposite(bean = MMMessageChoreography.class, attribute = "messageDefinition")
 	public List<MMMessageChoreography> getChoreography() {
-		return choreography == null ? Collections.emptyList() : choreography;
+		return choreography_lazy == null
+				? Collections.emptyList()
+				: choreography_lazy.get();
 	}
 
 	/**
@@ -153,7 +158,7 @@ public class MMMessageDefinition implements MMRepositoryType {
 	 */
 	@Opposite(bean = MMMessageTransmission.class, attribute = "derivation")
 	public List<MMMessageTransmission> getTrace() {
-		return trace == null ? Collections.emptyList() : trace;
+		return trace_lazy == null ? Collections.emptyList() : trace_lazy.get();
 	}
 
 	/**
@@ -172,7 +177,9 @@ public class MMMessageDefinition implements MMRepositoryType {
 	 */
 	@Opposite(bean = MMSyntaxMessageScheme.class, attribute = "messageDefinitionTrace")
 	public List<MMSyntaxMessageScheme> getDerivation() {
-		return derivation == null ? Collections.emptyList() : derivation;
+		return derivation_lazy == null
+				? Collections.emptyList()
+				: derivation_lazy.get();
 	}
 
 	@Override
@@ -182,7 +189,7 @@ public class MMMessageDefinition implements MMRepositoryType {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -214,21 +221,26 @@ public class MMMessageDefinition implements MMRepositoryType {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

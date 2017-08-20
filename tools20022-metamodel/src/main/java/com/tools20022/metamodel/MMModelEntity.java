@@ -4,6 +4,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.MMModelEntity;
 import java.util.List;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.Optional;
 

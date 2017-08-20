@@ -5,6 +5,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMSyntaxMessageScheme;
+import java.util.function.Supplier;
 import com.tools20022.metamodel.MMTransportMessage;
 import java.util.List;
 import java.util.Collections;
@@ -18,10 +19,10 @@ import java.util.Optional;
 public class MMMessageInstance implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	protected MMSyntaxMessageScheme specification;
-	protected List<MMTransportMessage> transportMessage;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<MMSyntaxMessageScheme> specification_lazy;
+	protected Supplier<List<MMTransportMessage>> transportMessage_lazy;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -43,7 +44,7 @@ public class MMMessageInstance implements MMModelEntity {
 	 * the SyntaxScheme instantiated by this MessageInstance
 	 */
 	public MMSyntaxMessageScheme getSpecification() {
-		return specification;
+		return specification_lazy.get();
 	}
 
 	/**
@@ -53,23 +54,27 @@ public class MMMessageInstance implements MMModelEntity {
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "messageInstance")
 	public List<MMTransportMessage> getTransportMessage() {
-		return transportMessage == null
+		return transportMessage_lazy == null
 				? Collections.emptyList()
-				: transportMessage;
+				: transportMessage_lazy.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

@@ -5,6 +5,7 @@ import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMBusinessConcept;
 import com.tools20022.metamodel.MMMessageElement;
 import java.util.List;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMBusinessElementType;
 import com.tools20022.core.metamodel.Derived;

@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMMultiplicityEntity;
 import com.tools20022.metamodel.MMBusinessTransaction;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMReceive;
@@ -27,10 +28,10 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity {
 
 	private GeneratedMetamodelBean container;
-	protected MMBusinessTransaction businessTransaction;
-	protected List<MMReceive> receives;
-	protected List<MMSend> sends;
-	protected MMBusinessRole businessRoleTrace;
+	protected Supplier<MMBusinessTransaction> businessTransaction_lazy;
+	protected Supplier<List<MMReceive>> receives_lazy;
+	protected Supplier<List<MMSend>> sends_lazy;
+	protected Supplier<MMBusinessRole> businessRoleTrace_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -39,8 +40,8 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 	protected Integer maxOccurs;
 	protected Integer minOccurs;
@@ -68,7 +69,7 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "participant")
 	@Container
 	public MMBusinessTransaction getBusinessTransaction() {
-		return businessTransaction;
+		return businessTransaction_lazy.get();
 	}
 
 	/**
@@ -78,7 +79,8 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	 */
 	@Opposite(bean = MMReceive.class, attribute = "receiver")
 	public List<MMReceive> getReceives() {
-		return receives == null ? Collections.emptyList() : receives;
+		return receives_lazy == null ? Collections.emptyList() : receives_lazy
+				.get();
 	}
 
 	/**
@@ -89,7 +91,7 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	 */
 	@Opposite(bean = MMSend.class, attribute = "sender")
 	public List<MMSend> getSends() {
-		return sends == null ? Collections.emptyList() : sends;
+		return sends_lazy == null ? Collections.emptyList() : sends_lazy.get();
 	}
 
 	/**
@@ -99,7 +101,7 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	 */
 	@Opposite(bean = MMBusinessRole.class, attribute = "businessRoleTrace")
 	public MMBusinessRole getBusinessRoleTrace() {
-		return businessRoleTrace;
+		return businessRoleTrace_lazy.get();
 	}
 
 	@Override
@@ -109,7 +111,7 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -141,31 +143,36 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 
 	@Override
 	public Optional<Integer> getMaxOccurs() {
-		return Optional.ofNullable(maxOccurs);
+		return maxOccurs == null ? Optional.empty() : Optional.of(maxOccurs);
 	}
 
 	@Override
 	public Optional<Integer> getMinOccurs() {
-		return Optional.ofNullable(minOccurs);
+		return minOccurs == null ? Optional.empty() : Optional.of(minOccurs);
 	}
 }

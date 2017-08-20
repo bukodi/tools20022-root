@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMBusinessProcess;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMBusinessRole;
@@ -29,13 +30,13 @@ import com.tools20022.metamodel.MMModelEntity;
 public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	private GeneratedMetamodelBean container;
-	protected List<MMBusinessProcess> extender;
-	protected List<MMBusinessProcess> extended;
-	protected List<MMBusinessProcess> included;
-	protected List<MMBusinessProcess> includer;
+	protected Supplier<List<MMBusinessProcess>> extender_lazy;
+	protected Supplier<List<MMBusinessProcess>> extended_lazy;
+	protected Supplier<List<MMBusinessProcess>> included_lazy;
+	protected Supplier<List<MMBusinessProcess>> includer_lazy;
 	protected List<MMBusinessRole> businessRole;
-	protected List<MMBusinessTransaction> businessProcessTrace;
-	protected MMBusinessProcessCatalogue businessProcessCatalogue;
+	protected Supplier<List<MMBusinessTransaction>> businessProcessTrace_lazy;
+	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -44,8 +45,8 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -70,7 +71,8 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "extended")
 	public List<MMBusinessProcess> getExtender() {
-		return extender == null ? Collections.emptyList() : extender;
+		return extender_lazy == null ? Collections.emptyList() : extender_lazy
+				.get();
 	}
 
 	/**
@@ -80,7 +82,8 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "extender")
 	public List<MMBusinessProcess> getExtended() {
-		return extended == null ? Collections.emptyList() : extended;
+		return extended_lazy == null ? Collections.emptyList() : extended_lazy
+				.get();
 	}
 
 	/**
@@ -90,7 +93,8 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "includer")
 	public List<MMBusinessProcess> getIncluded() {
-		return included == null ? Collections.emptyList() : included;
+		return included_lazy == null ? Collections.emptyList() : included_lazy
+				.get();
 	}
 
 	/**
@@ -100,7 +104,8 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "included")
 	public List<MMBusinessProcess> getIncluder() {
-		return includer == null ? Collections.emptyList() : includer;
+		return includer_lazy == null ? Collections.emptyList() : includer_lazy
+				.get();
 	}
 
 	/**
@@ -119,14 +124,14 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "businessProcessTrace")
 	public List<MMBusinessTransaction> getBusinessProcessTrace() {
-		return businessProcessTrace == null
+		return businessProcessTrace_lazy == null
 				? Collections.emptyList()
-				: businessProcessTrace;
+				: businessProcessTrace_lazy.get();
 	}
 
 	@Override
 	public MMBusinessProcessCatalogue getBusinessProcessCatalogue() {
-		return businessProcessCatalogue;
+		return businessProcessCatalogue_lazy.get();
 	}
 
 	@Override
@@ -136,7 +141,7 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -168,21 +173,26 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

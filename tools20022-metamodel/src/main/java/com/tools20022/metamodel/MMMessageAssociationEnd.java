@@ -5,6 +5,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMMessageElement;
 import com.tools20022.metamodel.MMMessageComponentType;
+import java.util.function.Supplier;
 import com.tools20022.metamodel.constraints.DeriveMMMessageAssociationEnd_isTechnical;
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
@@ -31,10 +32,10 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 
 	private GeneratedMetamodelBean container;
 	protected boolean isComposite;
-	protected MMMessageComponentType type;
-	protected MMBusinessComponent businessComponentTrace;
-	protected MMBusinessElement businessElementTrace;
-	protected MMMessageElementContainer componentContext;
+	protected Supplier<MMMessageComponentType> type_lazy;
+	protected Supplier<MMBusinessComponent> businessComponentTrace_lazy;
+	protected Supplier<MMBusinessElement> businessElementTrace_lazy;
+	protected Supplier<MMMessageElementContainer> componentContext_lazy;
 	protected boolean isDerived;
 	protected String xmlTag;
 	protected String name;
@@ -45,8 +46,8 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 	protected Integer maxOccurs;
 	protected Integer minOccurs;
@@ -78,7 +79,7 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 	 * MessageAssociationEnd.
 	 */
 	public MMMessageComponentType getType() {
-		return type;
+		return type_lazy.get();
 	}
 
 	@Derived
@@ -89,17 +90,20 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 
 	@Override
 	public Optional<MMBusinessComponent> getBusinessComponentTrace() {
-		return Optional.ofNullable(businessComponentTrace);
+		return businessComponentTrace_lazy == null
+				? Optional.empty()
+				: Optional.of(businessComponentTrace_lazy.get());
 	}
 
 	@Override
 	public Optional<MMBusinessElement> getBusinessElementTrace() {
-		return Optional.ofNullable(businessElementTrace);
+		return businessElementTrace_lazy == null ? Optional.empty() : Optional
+				.of(businessElementTrace_lazy.get());
 	}
 
 	@Override
 	public MMMessageElementContainer getComponentContext() {
-		return componentContext;
+		return componentContext_lazy.get();
 	}
 
 	@Override
@@ -109,7 +113,7 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 
 	@Override
 	public Optional<String> getXmlTag() {
-		return Optional.ofNullable(xmlTag);
+		return xmlTag == null ? Optional.empty() : Optional.of(xmlTag);
 	}
 
 	@Derived
@@ -131,7 +135,7 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -163,31 +167,36 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 
 	@Override
 	public Optional<Integer> getMaxOccurs() {
-		return Optional.ofNullable(maxOccurs);
+		return maxOccurs == null ? Optional.empty() : Optional.of(maxOccurs);
 	}
 
 	@Override
 	public Optional<Integer> getMinOccurs() {
-		return Optional.ofNullable(minOccurs);
+		return minOccurs == null ? Optional.empty() : Optional.of(minOccurs);
 	}
 }

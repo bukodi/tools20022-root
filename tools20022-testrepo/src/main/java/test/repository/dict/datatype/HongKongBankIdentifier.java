@@ -1,12 +1,23 @@
 package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMIdentifierSet;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
 
 public class HongKongBankIdentifier extends MMIdentifierSet {
 
-	private final static HongKongBankIdentifier INSTANCE = new HongKongBankIdentifier();
+	private final static AtomicReference<HongKongBankIdentifier> repoTypeRef = new AtomicReference<>();
 
-	public static HongKongBankIdentifier instance() {
-		return INSTANCE;
+	public static HongKongBankIdentifier repoType() {
+		repoTypeRef.compareAndSet(null, new HongKongBankIdentifier());
+		return repoTypeRef.get();
+	}
+
+	private HongKongBankIdentifier() {
+		super.identificationScheme = "Hong Kong Interbank Clearing Ltd (HKICL); Bank Code of Hong Kong";
+		super.pattern = "HK[0-9]{3,3}";
+		super.name = "HongKongBankIdentifier";
+		super.definition = "Hong Kong Bank Code. Identifies Hong Kong financial institutions on the Hong Kong local clearing system.";
+		super.example = Arrays.asList("HK123");
 	}
 }

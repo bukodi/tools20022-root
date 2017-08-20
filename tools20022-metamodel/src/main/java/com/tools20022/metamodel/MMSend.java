@@ -5,6 +5,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMParticipant;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMMessageTransmission;
 import com.tools20022.core.metamodel.Container;
@@ -18,10 +19,10 @@ import java.util.Optional;
 public class MMSend implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	protected MMParticipant sender;
-	protected MMMessageTransmission messageTransmission;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<MMParticipant> sender_lazy;
+	protected Supplier<MMMessageTransmission> messageTransmission_lazy;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -45,7 +46,7 @@ public class MMSend implements MMModelEntity {
 	 */
 	@Opposite(bean = MMParticipant.class, attribute = "sends")
 	public MMParticipant getSender() {
-		return sender;
+		return sender_lazy.get();
 	}
 
 	/**
@@ -56,21 +57,25 @@ public class MMSend implements MMModelEntity {
 	@Opposite(bean = MMMessageTransmission.class, attribute = "send")
 	@Container
 	public MMMessageTransmission getMessageTransmission() {
-		return messageTransmission;
+		return messageTransmission_lazy.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

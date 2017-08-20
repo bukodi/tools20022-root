@@ -1,12 +1,19 @@
 package test.repository.dict.msg;
 
 import com.tools20022.metamodel.MMMessageComponent;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class FrequencyAndMoment1 extends MMMessageComponent {
 
-	private final static FrequencyAndMoment1 INSTANCE = new FrequencyAndMoment1();
+	private final static AtomicReference<FrequencyAndMoment1> repoTypeRef = new AtomicReference<>();
 
-	public static FrequencyAndMoment1 instance() {
-		return INSTANCE;
+	public static FrequencyAndMoment1 repoType() {
+		repoTypeRef.compareAndSet(null, new FrequencyAndMoment1());
+		return repoTypeRef.get();
+	}
+
+	private FrequencyAndMoment1() {
+		super.name = "FrequencyAndMoment1";
+		super.definition = "Defines a frequency in terms a specific moment within a specified period type.";
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Optional;
 import com.tools20022.metamodel.MMProcessContent;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.metamodel.constraints.DeriveMMUserDefined_isTechnical;
 import com.tools20022.core.metamodel.Derived;
@@ -31,9 +32,9 @@ public class MMUserDefined implements MMMessageComponentType {
 	protected MMNamespace namespace;
 	protected String namespaceList;
 	protected MMProcessContent processContents;
-	protected List<MMMessageBuildingBlock> messageBuildingBlock;
-	protected MMBusinessComponent trace;
-	protected MMDataDictionary dataDictionary;
+	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlock_lazy;
+	protected Supplier<MMBusinessComponent> trace_lazy;
+	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -42,8 +43,8 @@ public class MMUserDefined implements MMMessageComponentType {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -74,7 +75,8 @@ public class MMUserDefined implements MMMessageComponentType {
 	 * A list of URN namespaces.
 	 */
 	public Optional<String> getNamespaceList() {
-		return Optional.ofNullable(namespaceList);
+		return namespaceList == null ? Optional.empty() : Optional
+				.of(namespaceList);
 	}
 
 	/**
@@ -87,9 +89,9 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	@Override
 	public List<MMMessageBuildingBlock> getMessageBuildingBlock() {
-		return messageBuildingBlock == null
+		return messageBuildingBlock_lazy == null
 				? Collections.emptyList()
-				: messageBuildingBlock;
+				: messageBuildingBlock_lazy.get();
 	}
 
 	@Derived
@@ -100,12 +102,13 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	@Override
 	public Optional<MMBusinessComponent> getTrace() {
-		return Optional.ofNullable(trace);
+		return trace_lazy == null ? Optional.empty() : Optional.of(trace_lazy
+				.get());
 	}
 
 	@Override
 	public MMDataDictionary getDataDictionary() {
-		return dataDictionary;
+		return dataDictionary_lazy.get();
 	}
 
 	@Override
@@ -115,7 +118,7 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -147,21 +150,26 @@ public class MMUserDefined implements MMMessageComponentType {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

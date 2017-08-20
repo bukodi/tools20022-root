@@ -5,6 +5,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMMessageTransportSystem;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMTransportMessage;
@@ -20,12 +21,12 @@ import java.util.Optional;
 public class MMMessagingEndpoint implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	protected MMMessageTransportSystem transportSystem;
-	protected List<MMTransportMessage> receivedMessage;
-	protected List<MMTransportMessage> sentMessage;
-	protected List<MMAddress> location;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<MMMessageTransportSystem> transportSystem_lazy;
+	protected Supplier<List<MMTransportMessage>> receivedMessage_lazy;
+	protected Supplier<List<MMTransportMessage>> sentMessage_lazy;
+	protected Supplier<List<MMAddress>> location_lazy;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -51,7 +52,7 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	@Opposite(bean = MMMessageTransportSystem.class, attribute = "endpoint")
 	@Container
 	public MMMessageTransportSystem getTransportSystem() {
-		return transportSystem;
+		return transportSystem_lazy.get();
 	}
 
 	/**
@@ -61,9 +62,9 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "receiver")
 	public List<MMTransportMessage> getReceivedMessage() {
-		return receivedMessage == null
+		return receivedMessage_lazy == null
 				? Collections.emptyList()
-				: receivedMessage;
+				: receivedMessage_lazy.get();
 	}
 
 	/**
@@ -73,7 +74,9 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "sender")
 	public List<MMTransportMessage> getSentMessage() {
-		return sentMessage == null ? Collections.emptyList() : sentMessage;
+		return sentMessage_lazy == null
+				? Collections.emptyList()
+				: sentMessage_lazy.get();
 	}
 
 	/**
@@ -83,21 +86,26 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 */
 	@Opposite(bean = MMAddress.class, attribute = "endpoint")
 	public List<MMAddress> getLocation() {
-		return location == null ? Collections.emptyList() : location;
+		return location_lazy == null ? Collections.emptyList() : location_lazy
+				.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

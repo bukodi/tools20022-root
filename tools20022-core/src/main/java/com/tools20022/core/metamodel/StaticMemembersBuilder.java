@@ -130,13 +130,13 @@ public class StaticMemembersBuilder {
 		}
 
 		@Override
-		public T get(B obj) {
-			return impl().get(obj);
+		public Object get(GeneratedMetamodelBean repoObj) {
+			return impl().get(repoObj);
 		}
 
 		@Override
-		public void set(B obj, T value) {
-			impl().set(obj, value);
+		public void set(GeneratedMetamodelBean repoObj, Object value) {
+			impl().set(repoObj, value);
 			
 		}
 	}

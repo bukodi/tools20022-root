@@ -1,12 +1,19 @@
 package test.repository.dict.msg;
 
 import com.tools20022.metamodel.MMMessageComponent;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class PostalAddress6 extends MMMessageComponent {
 
-	private final static PostalAddress6 INSTANCE = new PostalAddress6();
+	private final static AtomicReference<PostalAddress6> repoTypeRef = new AtomicReference<>();
 
-	public static PostalAddress6 instance() {
-		return INSTANCE;
+	public static PostalAddress6 repoType() {
+		repoTypeRef.compareAndSet(null, new PostalAddress6());
+		return repoTypeRef.get();
+	}
+
+	private PostalAddress6() {
+		super.name = "PostalAddress6";
+		super.definition = "Information that locates and identifies a specific address, as defined by postal services.";
 	}
 }

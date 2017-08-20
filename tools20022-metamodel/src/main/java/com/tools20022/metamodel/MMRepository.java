@@ -9,6 +9,7 @@ import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -20,8 +21,8 @@ public class MMRepository implements MMModelEntity {
 	private GeneratedMetamodelBean container;
 	protected MMDataDictionary dataDictionary;
 	protected MMBusinessProcessCatalogue businessProcessCatalogue;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -63,16 +64,20 @@ public class MMRepository implements MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

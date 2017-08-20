@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -328,71 +329,97 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 			MetamodelAttribute mmAttr) {
 		String getterReturnType = generateSourceType(mmAttr, srcMMType, true, true);
 		String fieldValueType = generateSourceType(mmAttr, srcMMType, true, false);
+
+		boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment();
+		if (isLazyReference) {
+			srcMMType.addImport(Supplier.class);
+			fieldValueType = Supplier.class.getSimpleName() + "<" + fieldValueType + ">";
+		}
 		JavaName attrName = getJavaName(mmAttr);
-				
+
 		// Create getter
 		MethodSource<T> srcGetter;
 		{
-			boolean isBool = mmAttr.getValueJavaClass() !=null && (mmAttr.getValueJavaClass().equals(Boolean.TYPE) || mmAttr.getValueJavaClass().equals(Boolean.class));  
-			String getterName = (isBool ? "is" : "get") + mmAttr.getName().substring(0, 1).toUpperCase()+mmAttr.getName().substring(1); 
-			srcGetter = srcMMType.addMethod().setName(getterName );
+			boolean isBool = mmAttr.getValueJavaClass() != null && (mmAttr.getValueJavaClass().equals(Boolean.TYPE)
+					|| mmAttr.getValueJavaClass().equals(Boolean.class));
+			String getterName = (isBool ? "is" : "get") + mmAttr.getName().substring(0, 1).toUpperCase()
+					+ mmAttr.getName().substring(1);
+			srcGetter = srcMMType.addMethod().setName(getterName);
 			srcGetter.setReturnType(getterReturnType);
 			srcGetter.setPublic();
 		}
-		
+
 		// Create field
 		FieldSource<T> srcField;
-		if( (srcMMType instanceof JavaClassSource) && !mmAttr.isDerived()) {
+		if ((srcMMType instanceof JavaClassSource) && !mmAttr.isDerived()) {
 			// Normal attribute
-			srcField = srcMMType.addField().setName(attrName.getSimpleName());
+			srcField = srcMMType.addField();
+			srcField.setName(attrName.getSimpleName() + (isLazyReference ? "_lazy" : ""));
 			srcField.setType(fieldValueType);
 			srcField.setProtected();
-			
-			if( getterReturnType.startsWith(Optional.class.getSimpleName() + "<") ) {
-				srcGetter.setBody("return " +  Optional.class.getSimpleName() + ".ofNullable(" + srcField.getName() + ");");				
-			} else if( getterReturnType.startsWith(List.class.getSimpleName() + "<") ) {
+
+			if (getterReturnType.startsWith(Optional.class.getSimpleName() + "<")) {
+				if (!isLazyReference) {
+					srcGetter.setBody("return " + srcField.getName() + "== null ? " + Optional.class.getSimpleName()
+							+ ".empty() : " + Optional.class.getSimpleName() + ".of(" + srcField.getName() + ");");
+				} else {
+					srcGetter.setBody("return " + srcField.getName() + "== null ? " + Optional.class.getSimpleName()
+							+ ".empty() : " + Optional.class.getSimpleName() + ".of(" + srcField.getName()
+							+ ".get());");
+				}
+			} else if (getterReturnType.startsWith(List.class.getSimpleName() + "<")) {
 				srcMMType.addImport(Collections.class);
-				srcGetter.setBody("return " + srcField.getName() + "== null ? "+ Collections.class.getSimpleName() +".emptyList() : "+ srcField.getName() + ";");				
+				if (!isLazyReference) {
+					srcGetter.setBody("return " + srcField.getName() + "== null ? " + Collections.class.getSimpleName()
+							+ ".emptyList() : " + srcField.getName() + ";");
+				} else {
+					srcGetter.setBody("return " + srcField.getName() + "== null ? " + Collections.class.getSimpleName()
+							+ ".emptyList() : " + srcField.getName() + ".get();");
+				}
 			} else {
-				srcGetter.setBody("return " + srcField.getName() + ";");				
+				if (!isLazyReference) {
+					srcGetter.setBody("return " + srcField.getName() + ";");
+				} else {
+					srcGetter.setBody("return " + srcField.getName() + ".get();");
+				}
 			}
-		} else if( (srcMMType instanceof JavaClassSource) && mmAttr.isDerived()) {
+		} else if ((srcMMType instanceof JavaClassSource) && mmAttr.isDerived()) {
 			// Derived attribute
-			JavaClassSource srcDerive = generateAttributeCalulatorClass(mmAttr, (JavaClassSource) srcMMType);
+			JavaClassSource srcDerive = generateDerivedAttributeCalulatorClass(mmAttr, (JavaClassSource) srcMMType);
 
 			srcMMType.addImport(srcDerive);
 			String body = "return (new " + srcDerive.getName() + "()).apply(this);";
 			srcGetter.setBody(body);
-			
+
 			String javaDocText = "Calculate derived attribute ";
-			javaDocText += "{@link " + srcMMType.getName() + "#" + srcGetter.getName() + "()}"; 
-			srcDerive.getJavaDoc().setText(javaDocText);			
+			javaDocText += "{@link " + srcMMType.getName() + "#" + srcGetter.getName() + "()}";
+			srcDerive.getJavaDoc().setText(javaDocText);
 		} else {
 			// Interface
 			srcField = null;
 		}
 
 		annotateProperty(srcMMType, srcGetter, mmAttr);
-		
+
 	};
-	
-	protected JavaClassSource generateAttributeCalulatorClass( MetamodelAttribute mmAttr, JavaClassSource srcMMType ) {
+
+	protected JavaClassSource generateDerivedAttributeCalulatorClass(MetamodelAttribute mmAttr,
+			JavaClassSource srcMMType) {
 		JavaName javaName = JavaName.primaryType(basePackageName + ".constraints",
-				"Derive" + srcMMType.getName() + "_" +  mmAttr.getName());
+				"Derive" + srcMMType.getName() + "_" + mmAttr.getName());
 		JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
 		srcDerive.addImport(srcMMType);
 		srcDerive.addImport(Function.class);
 		String valueType2 = generateSourceType(mmAttr, srcDerive, false, true);
 		String ifName = Function.class.getSimpleName() + "<" + srcMMType.getName() + "," + valueType2 + ">";
-		srcDerive.addInterface( ifName);
-		MethodSource<JavaClassSource> methodApply = srcDerive.addMethod("public " + valueType2 + " apply(" + srcMMType.getName() + " mmBean ) {\n" + 
-				"			throw new RuntimeException(\"Not implemented!\");\n" + 
-				"		}");
+		srcDerive.addInterface(ifName);
+		MethodSource<JavaClassSource> methodApply = srcDerive
+				.addMethod("public " + valueType2 + " apply(" + srcMMType.getName() + " mmBean ) {\n"
+						+ "			throw new RuntimeException(\"Not implemented!\");\n" + "		}");
 		methodApply.addAnnotation(Override.class);
-		setMMDoc(methodApply, mmAttr);			
-		return srcDerive; 
+		setMMDoc(methodApply, mmAttr);
+		return srcDerive;
 	}
-	
 
 	private String generateSourceType(MetamodelAttribute mmAttr, Importer<? extends JavaSource<?>> src,
 			boolean allowPrimitiveTypes, boolean allowOptional) {
@@ -422,7 +449,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		if (mmAttr.isMultiple()) {
 			src.addImport(List.class);
 			simplifiedTypeName = "List<" + simplifiedTypeName + ">";
-		} else if (mmAttr.isOptional() && allowOptional ) {
+		} else if (mmAttr.isOptional() && allowOptional) {
 			src.addImport(Optional.class);
 			simplifiedTypeName = "Optional<" + simplifiedTypeName + ">";
 		}

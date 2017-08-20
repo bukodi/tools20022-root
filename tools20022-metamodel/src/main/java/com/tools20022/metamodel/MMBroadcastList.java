@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMAddress;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.Optional;
@@ -17,9 +18,9 @@ import java.util.Optional;
 public class MMBroadcastList implements MMModelEntity {
 
 	private GeneratedMetamodelBean container;
-	protected List<MMAddress> address;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMAddress>> address_lazy;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -44,21 +45,26 @@ public class MMBroadcastList implements MMModelEntity {
 	 */
 	@Opposite(bean = MMAddress.class, attribute = "broadCastList")
 	public List<MMAddress> getAddress() {
-		return address == null ? Collections.emptyList() : address;
+		return address_lazy == null ? Collections.emptyList() : address_lazy
+				.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

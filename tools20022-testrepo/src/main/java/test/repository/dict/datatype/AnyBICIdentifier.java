@@ -1,12 +1,23 @@
 package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMIdentifierSet;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
 
 public class AnyBICIdentifier extends MMIdentifierSet {
 
-	private final static AnyBICIdentifier INSTANCE = new AnyBICIdentifier();
+	private final static AtomicReference<AnyBICIdentifier> repoTypeRef = new AtomicReference<>();
 
-	public static AnyBICIdentifier instance() {
-		return INSTANCE;
+	public static AnyBICIdentifier repoType() {
+		repoTypeRef.compareAndSet(null, new AnyBICIdentifier());
+		return repoTypeRef.get();
+	}
+
+	private AnyBICIdentifier() {
+		super.identificationScheme = "SWIFT; AnyBICIdentifier";
+		super.pattern = "[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}";
+		super.name = "AnyBICIdentifier";
+		super.definition = "Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362 \"Banking - Banking telecommunication messages - Business identifier code (BIC)\".";
+		super.example = Arrays.asList("CHASUS33");
 	}
 }

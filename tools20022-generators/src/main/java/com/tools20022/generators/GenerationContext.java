@@ -6,21 +6,25 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
 import javax.tools.FileObject;
-import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardLocation;
 
+import org.jboss.forge.roaster.ParserException;
 import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.JavaCore;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.CompilationUnit;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.internal.compiler.impl.CompilerOptions;
+import org.jboss.forge.roaster._shade.org.eclipse.jface.text.Document;
+import org.jboss.forge.roaster._shade.org.eclipse.text.edits.TextEdit;
 import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.util.Formatter;
 
@@ -30,7 +34,7 @@ public class GenerationContext<M> {
 	private GeneratorFileManager fileManager;
 	private Properties formatterOptions;
 
-	public GenerationContext(Class<M> modelltype ) {
+	public GenerationContext(Class<M> modelltype) {
 	}
 
 	protected Properties getFormatterOptions() {
@@ -49,14 +53,14 @@ public class GenerationContext<M> {
 	}
 
 	public void setFormatterOptions(Properties formatterOptions) {
-		if( this.formatterOptions != null )
+		if (this.formatterOptions != null)
 			throw new IllegalStateException("formatterOptions already set");
 		this.formatterOptions = formatterOptions;
 	}
 
-	public void dontChangeIfExists( Predicate<Path> filter) {
+	public void dontChangeIfExists(Predicate<Path> filter) {
 		getFileManager().dontChangeIfExists(filter);
-		if( this.formatterOptions != null )
+		if (this.formatterOptions != null)
 			throw new IllegalStateException("formatterOptions already set");
 		this.formatterOptions = formatterOptions;
 	}
@@ -75,13 +79,13 @@ public class GenerationContext<M> {
 	}
 
 	protected void setFileManager(GeneratorFileManager fileManager) {
-		if( this.fileManager != null )
+		if (this.fileManager != null)
 			throw new IllegalStateException("fileManager already set");
 		this.fileManager = fileManager;
 	}
 
 	public void setFileManagerRoot(Path srcRoot) {
-		GeneratorFileManager fm = new GeneratorFileManager(srcRoot, x->false);
+		GeneratorFileManager fm = new GeneratorFileManager(srcRoot, x -> false);
 		setFileManager(fm);
 	}
 
@@ -97,13 +101,12 @@ public class GenerationContext<M> {
 		return src;
 	}
 
-	public final void generate( M model, BiConsumer<M,GenerationContext<M>> generator ) {
-		long start = System.currentTimeMillis();		
-		generator.accept( model, this );
+	public final void generate(M model, BiConsumer<M, GenerationContext<M>> generator) {
+		long start = System.currentTimeMillis();
+		generator.accept(model, this);
 		System.out.println("Generation time:" + (System.currentTimeMillis() - start) + " ms");
 		start = System.currentTimeMillis();
-		
-		
+
 		for (JavaSource<?> src : allSources) {
 			try {
 				JavaFileObject jf = getFileManager().getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,
@@ -119,5 +122,21 @@ public class GenerationContext<M> {
 		System.out.println("Save and format time:" + (System.currentTimeMillis() - start) + " ms");
 	}
 
+	private String toUnformattedString(CompilationUnit unit) {
+		Document documentLocal = new Document();
+
+		try {
+			@SuppressWarnings("rawtypes")
+			Map options = JavaCore.getOptions();
+			options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_1_8);
+			options.put(CompilerOptions.OPTION_Encoding, "UTF-8");
+			TextEdit edit = unit.rewrite(documentLocal, options);
+			edit.apply(documentLocal);
+		} catch (Exception e) {
+			throw new ParserException("Could not modify source: " + unit.toString(), e);
+		}
+
+		return documentLocal.get();
+	}
 
 }

@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMDataType;
 import java.util.Optional;
 import com.tools20022.metamodel.MMDataDictionary;
+import java.util.function.Supplier;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
 import java.util.Collections;
@@ -29,7 +30,7 @@ public class MMDecimal implements MMDataType {
 	protected Integer totalDigits;
 	protected Integer fractionDigits;
 	protected String pattern;
-	protected MMDataDictionary dataDictionary;
+	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -38,8 +39,8 @@ public class MMDecimal implements MMDataType {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -61,42 +62,48 @@ public class MMDecimal implements MMDataType {
 	 * the lowest value in the allowed set of values
 	 */
 	public Optional<String> getMinInclusive() {
-		return Optional.ofNullable(minInclusive);
+		return minInclusive == null ? Optional.empty() : Optional
+				.of(minInclusive);
 	}
 
 	/**
 	 * the lowest but one value in the allowed set of values
 	 */
 	public Optional<String> getMinExclusive() {
-		return Optional.ofNullable(minExclusive);
+		return minExclusive == null ? Optional.empty() : Optional
+				.of(minExclusive);
 	}
 
 	/**
 	 * the highest value in the allowed set of values
 	 */
 	public Optional<String> getMaxInclusive() {
-		return Optional.ofNullable(maxInclusive);
+		return maxInclusive == null ? Optional.empty() : Optional
+				.of(maxInclusive);
 	}
 
 	/**
 	 * the highest but one value in the allowed set of values
 	 */
 	public Optional<String> getMaxExclusive() {
-		return Optional.ofNullable(maxExclusive);
+		return maxExclusive == null ? Optional.empty() : Optional
+				.of(maxExclusive);
 	}
 
 	/**
 	 * the maximum number of allowed digits in a Decimal number
 	 */
 	public Optional<Integer> getTotalDigits() {
-		return Optional.ofNullable(totalDigits);
+		return totalDigits == null ? Optional.empty() : Optional
+				.of(totalDigits);
 	}
 
 	/**
 	 * the fractional part of a Decimal number
 	 */
 	public Optional<Integer> getFractionDigits() {
-		return Optional.ofNullable(fractionDigits);
+		return fractionDigits == null ? Optional.empty() : Optional
+				.of(fractionDigits);
 	}
 
 	/**
@@ -105,12 +112,12 @@ public class MMDecimal implements MMDataType {
 	 * pattern.
 	 */
 	public Optional<String> getPattern() {
-		return Optional.ofNullable(pattern);
+		return pattern == null ? Optional.empty() : Optional.of(pattern);
 	}
 
 	@Override
 	public MMDataDictionary getDataDictionary() {
-		return dataDictionary;
+		return dataDictionary_lazy.get();
 	}
 
 	@Override
@@ -120,7 +127,7 @@ public class MMDecimal implements MMDataType {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -152,21 +159,26 @@ public class MMDecimal implements MMDataType {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

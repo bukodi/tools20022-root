@@ -6,6 +6,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMDecimal;
 import java.util.Optional;
 import com.tools20022.metamodel.MMDataDictionary;
+import java.util.function.Supplier;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
 import java.util.Collections;
@@ -31,7 +32,7 @@ public class MMRate extends MMDecimal {
 	protected Integer totalDigits;
 	protected Integer fractionDigits;
 	protected String pattern;
-	protected MMDataDictionary dataDictionary;
+	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
 	protected String definition;
 	protected List<MMSemanticMarkup> semanticMarkup;
@@ -40,8 +41,8 @@ public class MMRate extends MMDecimal {
 	protected List<MMConstraint> constraint;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
-	protected List<MMModelEntity> nextVersions;
-	protected MMModelEntity previousVersion;
+	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
+	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
@@ -69,47 +70,54 @@ public class MMRate extends MMDecimal {
 	 * specifies unit code required to qualify this rate
 	 */
 	public Optional<String> getBaseUnitCode() {
-		return Optional.ofNullable(baseUnitCode);
+		return baseUnitCode == null ? Optional.empty() : Optional
+				.of(baseUnitCode);
 	}
 
 	@Override
 	public Optional<String> getMinInclusive() {
-		return Optional.ofNullable(minInclusive);
+		return minInclusive == null ? Optional.empty() : Optional
+				.of(minInclusive);
 	}
 
 	@Override
 	public Optional<String> getMinExclusive() {
-		return Optional.ofNullable(minExclusive);
+		return minExclusive == null ? Optional.empty() : Optional
+				.of(minExclusive);
 	}
 
 	@Override
 	public Optional<String> getMaxInclusive() {
-		return Optional.ofNullable(maxInclusive);
+		return maxInclusive == null ? Optional.empty() : Optional
+				.of(maxInclusive);
 	}
 
 	@Override
 	public Optional<String> getMaxExclusive() {
-		return Optional.ofNullable(maxExclusive);
+		return maxExclusive == null ? Optional.empty() : Optional
+				.of(maxExclusive);
 	}
 
 	@Override
 	public Optional<Integer> getTotalDigits() {
-		return Optional.ofNullable(totalDigits);
+		return totalDigits == null ? Optional.empty() : Optional
+				.of(totalDigits);
 	}
 
 	@Override
 	public Optional<Integer> getFractionDigits() {
-		return Optional.ofNullable(fractionDigits);
+		return fractionDigits == null ? Optional.empty() : Optional
+				.of(fractionDigits);
 	}
 
 	@Override
 	public Optional<String> getPattern() {
-		return Optional.ofNullable(pattern);
+		return pattern == null ? Optional.empty() : Optional.of(pattern);
 	}
 
 	@Override
 	public MMDataDictionary getDataDictionary() {
-		return dataDictionary;
+		return dataDictionary_lazy.get();
 	}
 
 	@Override
@@ -119,7 +127,7 @@ public class MMRate extends MMDecimal {
 
 	@Override
 	public Optional<String> getDefinition() {
-		return Optional.ofNullable(definition);
+		return definition == null ? Optional.empty() : Optional.of(definition);
 	}
 
 	@Override
@@ -151,21 +159,26 @@ public class MMRate extends MMDecimal {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return Optional.ofNullable(removalDate);
+		return removalDate == null ? Optional.empty() : Optional
+				.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions == null ? Collections.emptyList() : nextVersions;
+		return nextVersions_lazy == null
+				? Collections.emptyList()
+				: nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return Optional.ofNullable(previousVersion);
+		return previousVersion_lazy == null ? Optional.empty() : Optional
+				.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return Optional.ofNullable(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional
+				.of(objectIdentifier);
 	}
 }

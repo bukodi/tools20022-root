@@ -95,8 +95,8 @@ public interface Metamodel {
 		MetamodelType<?> getReferencedType();
 		MetamodelEnum<?> getEnumType();
 
-		T get(B obj);
-		void set(B obj,T value);
+		Object get(GeneratedMetamodelBean repoObj);
+		void set(GeneratedMetamodelBean repoObj,Object value);
 	}
 
 	public interface MetamodelConstraint<B extends GeneratedMetamodelBean> extends MetamodelElement {

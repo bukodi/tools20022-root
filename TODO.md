@@ -1,4 +1,5 @@
-
+# Core
+- [ ] Convert MMModelEntity, MMRepositoryConcept from interface to abstract tpye
 # Generators
 - [ ] Split AbstractGenerator and GenerationContext
 - [ ] GeneratorDebugProxy 
