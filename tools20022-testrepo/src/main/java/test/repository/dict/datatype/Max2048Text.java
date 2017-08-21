@@ -2,6 +2,7 @@ package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMText;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class Max2048Text extends MMText {
 
@@ -13,8 +14,9 @@ public class Max2048Text extends MMText {
 	}
 
 	private Max2048Text() {
-		super.maxLength = 2048;
 		super.minLength = 1;
+		super.maxLength = 2048;
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "Max2048Text";
 		super.definition = "Specifies a character string with a maximum length of 2048 characters.";
 	}

@@ -2,6 +2,8 @@ package test.repository.dict.entity;
 
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class PartyName extends MMBusinessComponent {
 
@@ -13,6 +15,8 @@ public class PartyName extends MMBusinessComponent {
 	}
 
 	private PartyName() {
+		super.element = Arrays.asList();
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "PartyName";
 		super.definition = "Name by which a party is known and which is usually used to identify that party.";
 	}

@@ -2,6 +2,8 @@ package test.repository.dict.entity;
 
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class PaymentPartyRole extends MMBusinessComponent {
 
@@ -13,6 +15,8 @@ public class PaymentPartyRole extends MMBusinessComponent {
 	}
 
 	private PaymentPartyRole() {
+		super.element = Arrays.asList();
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "PaymentPartyRole";
 		super.definition = "Role played by a party in the context of a payment.";
 	}

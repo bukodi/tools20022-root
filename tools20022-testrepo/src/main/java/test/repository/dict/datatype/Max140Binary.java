@@ -2,6 +2,7 @@ package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMBinary;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class Max140Binary extends MMBinary {
 
@@ -13,8 +14,9 @@ public class Max140Binary extends MMBinary {
 	}
 
 	private Max140Binary() {
-		super.maxLength = 140;
 		super.minLength = 1;
+		super.maxLength = 140;
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "Max140Binary";
 		super.definition = "Specifies a binary string with a maximum length of 140 binary bytes.";
 	}

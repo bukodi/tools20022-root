@@ -2,6 +2,7 @@ package test.repository.dict.codeset;
 
 import com.tools20022.metamodel.MMCodeSet;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 import java.util.Arrays;
 
 public class LanguageCode extends MMCodeSet {
@@ -14,8 +15,10 @@ public class LanguageCode extends MMCodeSet {
 	}
 
 	private LanguageCode() {
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
+		super.example = Arrays.asList("ENG");
+		super.constraint = Arrays.asList();
 		super.name = "LanguageCode";
 		super.definition = "Specifies a language.";
-		super.example = Arrays.asList("ENG");
 	}
 }

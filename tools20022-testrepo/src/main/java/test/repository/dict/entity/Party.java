@@ -2,6 +2,8 @@ package test.repository.dict.entity;
 
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class Party extends MMBusinessComponent {
 
@@ -13,6 +15,8 @@ public class Party extends MMBusinessComponent {
 	}
 
 	private Party() {
+		super.element = Arrays.asList();
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "Party";
 		super.definition = "Entity involved in an activity.";
 	}

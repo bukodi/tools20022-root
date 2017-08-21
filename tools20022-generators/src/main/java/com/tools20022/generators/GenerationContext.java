@@ -60,9 +60,6 @@ public class GenerationContext<M> {
 
 	public void dontChangeIfExists(Predicate<Path> filter) {
 		getFileManager().dontChangeIfExists(filter);
-		if (this.formatterOptions != null)
-			throw new IllegalStateException("formatterOptions already set");
-		this.formatterOptions = formatterOptions;
 	}
 
 	protected GeneratorFileManager getFileManager() {
@@ -106,7 +103,6 @@ public class GenerationContext<M> {
 		generator.accept(model, this);
 		System.out.println("Generation time:" + (System.currentTimeMillis() - start) + " ms");
 		start = System.currentTimeMillis();
-
 		for (JavaSource<?> src : allSources) {
 			try {
 				JavaFileObject jf = getFileManager().getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,

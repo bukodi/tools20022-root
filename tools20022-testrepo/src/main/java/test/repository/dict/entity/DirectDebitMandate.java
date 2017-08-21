@@ -2,6 +2,8 @@ package test.repository.dict.entity;
 
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class DirectDebitMandate extends MMBusinessComponent {
 
@@ -13,6 +15,8 @@ public class DirectDebitMandate extends MMBusinessComponent {
 	}
 
 	private DirectDebitMandate() {
+		super.element = Arrays.asList();
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "DirectDebitMandate";
 		super.definition = "Authorisation in favour of the creditor given by the debtor to debit its own account.";
 	}

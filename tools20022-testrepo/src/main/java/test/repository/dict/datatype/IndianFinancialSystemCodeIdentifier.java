@@ -2,6 +2,7 @@ package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMIdentifierSet;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 import java.util.Arrays;
 
 public class IndianFinancialSystemCodeIdentifier extends MMIdentifierSet {
@@ -17,8 +18,9 @@ public class IndianFinancialSystemCodeIdentifier extends MMIdentifierSet {
 	private IndianFinancialSystemCodeIdentifier() {
 		super.identificationScheme = "Indian Financial System; Payment Routing Number";
 		super.pattern = "IN[a-zA-Z0-9]{11,11}";
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
+		super.example = Arrays.asList("IN12azBX12345");
 		super.name = "IndianFinancialSystemCodeIdentifier";
 		super.definition = "Indian Financial System Code Identifier. Identifies Indian financial institutions on the Indian national clearing system.";
-		super.example = Arrays.asList("IN12azBX12345");
 	}
 }

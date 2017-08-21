@@ -2,6 +2,7 @@ package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMIdentifierSet;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 import java.util.Arrays;
 
 public class DunsIdentifier extends MMIdentifierSet {
@@ -16,8 +17,9 @@ public class DunsIdentifier extends MMIdentifierSet {
 	private DunsIdentifier() {
 		super.identificationScheme = "Dun & Bradstreet; DunsIdentifier";
 		super.pattern = "[0-9]{9,9}";
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
+		super.example = Arrays.asList("578942538");
 		super.name = "DunsIdentifier";
 		super.definition = "Data Universal Numbering System. A unique identification number provided by Dun & Bradstreet to identify an organization.";
-		super.example = Arrays.asList("578942538");
 	}
 }

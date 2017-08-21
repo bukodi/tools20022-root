@@ -2,6 +2,8 @@ package test.repository.dict.choice;
 
 import com.tools20022.metamodel.MMChoiceComponent;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class Authorisation1Choice extends MMChoiceComponent {
 
@@ -13,6 +15,8 @@ public class Authorisation1Choice extends MMChoiceComponent {
 	}
 
 	private Authorisation1Choice() {
+		super.messageElement = Arrays.asList();
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "Authorisation1Choice";
 		super.definition = "Provides the details on the user identification or any user key that allows to check if the initiating party is allowed to issue the transaction.";
 	}

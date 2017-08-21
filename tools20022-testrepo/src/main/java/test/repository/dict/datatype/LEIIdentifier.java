@@ -2,6 +2,7 @@ package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMIdentifierSet;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 import java.util.Arrays;
 
 public class LEIIdentifier extends MMIdentifierSet {
@@ -16,8 +17,9 @@ public class LEIIdentifier extends MMIdentifierSet {
 	private LEIIdentifier() {
 		super.identificationScheme = "SWIFT and DTCC; LEIIdentifier";
 		super.pattern = "[A-Z0-9]{18,18}[0-9]{2,2}";
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
+		super.example = Arrays.asList("123456789012345678");
 		super.name = "LEIIdentifier";
 		super.definition = "Legal Entity Identifier is a code allocated to a party as described in ISO 17442 \"Financial Services - Legal Entity Identifier (LEI)\".";
-		super.example = Arrays.asList("123456789012345678");
 	}
 }

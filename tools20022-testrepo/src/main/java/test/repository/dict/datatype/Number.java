@@ -2,6 +2,7 @@ package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMQuantity;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 import java.util.Arrays;
 
 public class Number extends MMQuantity {
@@ -16,8 +17,9 @@ public class Number extends MMQuantity {
 	private Number() {
 		super.totalDigits = 18;
 		super.fractionDigits = 0;
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
+		super.example = Arrays.asList("123456789012345678");
 		super.name = "Number";
 		super.definition = "Number of objects represented as an integer.";
-		super.example = Arrays.asList("123456789012345678");
 	}
 }

@@ -2,6 +2,7 @@ package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMText;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class Max128Text extends MMText {
 
@@ -13,8 +14,9 @@ public class Max128Text extends MMText {
 	}
 
 	private Max128Text() {
-		super.maxLength = 128;
 		super.minLength = 1;
+		super.maxLength = 128;
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "Max128Text";
 		super.definition = "Specifies a character string with a maximum length of 128 characters.";
 	}

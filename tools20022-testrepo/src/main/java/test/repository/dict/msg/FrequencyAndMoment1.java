@@ -2,6 +2,8 @@ package test.repository.dict.msg;
 
 import com.tools20022.metamodel.MMMessageComponent;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Arrays;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class FrequencyAndMoment1 extends MMMessageComponent {
 
@@ -13,6 +15,8 @@ public class FrequencyAndMoment1 extends MMMessageComponent {
 	}
 
 	private FrequencyAndMoment1() {
+		super.messageElement = Arrays.asList();
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "FrequencyAndMoment1";
 		super.definition = "Defines a frequency in terms a specific moment within a specified period type.";
 	}

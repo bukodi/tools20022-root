@@ -2,6 +2,7 @@ package test.repository.dict.datatype;
 
 import com.tools20022.metamodel.MMText;
 import java.util.concurrent.atomic.AtomicReference;
+import test.repository.GeneratedRepository.DataDictionary;
 
 public class Max35NumericText extends MMText {
 
@@ -14,6 +15,7 @@ public class Max35NumericText extends MMText {
 
 	private Max35NumericText() {
 		super.pattern = "[0-9]{1,35}";
+		super.dataDictionary_lazy = () -> DataDictionary.repoType();
 		super.name = "Max35NumericText";
 		super.definition = "Specifies a numeric string with a maximum length of 35 digits.";
 	}

@@ -4,9 +4,8 @@ import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -29,7 +28,22 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.GenerationResult.JavaResult;
 import com.tools20022.generators.JavaName;
+import com.tools20022.generators.RoasterHelper;
+import com.tools20022.metamodel.MMBusinessArea;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.metamodel.MMBusinessProcessCatalogue;
+import com.tools20022.metamodel.MMChoiceComponent;
+import com.tools20022.metamodel.MMCode;
+import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMDataType;
+import com.tools20022.metamodel.MMMessageComponent;
+import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
+import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.repogenerator.DefaultRepoGenerator;
 import com.tools20022.repogenerator.RawRepository;
@@ -87,31 +101,41 @@ public class GenerateSources {
 			repo.getRootObject();
 
 			this.genRepoMain = generateMMRepository(null, repo.getRootObject());
-
-			Collection<? extends GeneratedMetamodelBean> allObjects = repo.listObjects()
-					.collect(Collectors.toCollection(LinkedHashSet::new));
-			for (GeneratedMetamodelBean obj : allObjects) {
-				getOrCreateSingelonClass(obj);
-			}
+			//
+			// Collection<? extends GeneratedMetamodelBean> allObjects = repo.listObjects()
+			// .collect(Collectors.toCollection(LinkedHashSet::new));
+			// for (GeneratedMetamodelBean obj : allObjects) {
+			// getOrCreateSingelonClass(obj, null);
+			// }
 
 		}
 
-		JavaResult<JavaClassSource> getOrCreateSingelonClass(GeneratedMetamodelBean mmBean) {
+		JavaResult<JavaClassSource> getOrCreateSingelonClass(GeneratedMetamodelBean mmBean,
+				JavaClassSource srcImportHolder) {
 			JavaName javaName = getJavaName(mmBean);
-			if (javaName == null || javaName.getMemberName() != null || javaName.getNestedTypeName() != null) {
+			if (javaName == null || javaName.getMemberName() != null) {
 				return null;
 				// throw new IllegalArgumentException("Not a compilation unit name: " + javaName
 				// );
 			}
 
-			JavaClassSource src = ctx.createSourceFile(JavaClassSource.class, javaName);
+			JavaClassSource src;
+			if (javaName.getNestedTypeName() == null) {
+				src = ctx.createSourceFile(JavaClassSource.class, javaName);
+				srcImportHolder = src;
+			} else {
+				src = srcImportHolder.addNestedType(JavaClassSource.class);
+				src.setName(javaName.getNestedTypeName());
+				src.setStatic(true);
+				src.setPublic();
+			}
 
 			// repoType field and method
 			MetamodelType<?> metamodelType = repo.getMetamodel().getTypeByClass(mmBean.getClass());
-			src.addImport(mmBean.getClass());
+			srcImportHolder.addImport(mmBean.getClass());
 			src.setSuperType(mmBean.getClass());
 
-			src.addImport(AtomicReference.class);
+			srcImportHolder.addImport(AtomicReference.class);
 			src.addField(
 					"private final static " + AtomicReference.class.getSimpleName() + "<" + javaName.getSimpleName()
 							+ "> repoTypeRef = new " + AtomicReference.class.getSimpleName() + "<>();");
@@ -126,59 +150,68 @@ public class GenerateSources {
 			// Init atributes in constructor
 			String body = "";
 			for (MetamodelAttribute<?, ?> mmAttr : mmBean.getMetamodel().getAllAttributes()) {
-				if( "code".equals( mmAttr.getName())) {
-					System.out.println( mmAttr);
-				}
 				if (mmAttr.getValueJavaClass() != null && !mmAttr.isDerived()) {
 					// Simple attributes
 					Object value = mmAttr.get(mmBean);
-					String valueAsSrc = convertAttributeValueToSource(src, value, false);
+					String valueAsSrc = convertAttributeValueToSource(srcImportHolder, value, false);
 					if (valueAsSrc != null) {
 						body += "super." + mmAttr.getName() + " = " + valueAsSrc + ";";
 					}
 				} else if (mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment()) {
 					// Reference attributes with lazy inti
 					Object value = mmAttr.get(mmBean);
-					String valueAsSrc = convertAttributeValueToSource(src, value, false);
+					String valueAsSrc = convertAttributeValueToSource(srcImportHolder, value, false);
 					if (valueAsSrc != null) {
 						body += "super." + mmAttr.getName() + "_lazy = ()->" + valueAsSrc + ";";
 					}
 				} else if (mmAttr.getReferencedType() != null && !mmAttr.isDerived() && mmAttr.isContainment()) {
+					// Containment attribute
 					Object value = mmAttr.get(mmBean);
-					if( value == null )
+					if (value == null)
 						continue;
 					GeneratedMetamodelBean valueBean;
-					if( value instanceof Optional ) {
-						if( !((Optional<?>)value).isPresent()) 
+					if (value instanceof Optional) {
+						if (!((Optional<?>) value).isPresent())
 							continue;
-						valueBean = (GeneratedMetamodelBean) ((Optional<?>)value).get();
-					} else if( value instanceof List ) {
-						if(((List)value).isEmpty())
-							continue;						
-						valueBean = (GeneratedMetamodelBean) ((List<?>)value).get(0);
-						continue;
-					} else if( value instanceof GeneratedMetamodelBean ) {
-						valueBean = (GeneratedMetamodelBean)value;
+						valueBean = (GeneratedMetamodelBean) ((Optional<?>) value).get();
+						JavaResult<JavaClassSource> srcContainedElem = getOrCreateSingelonClass(valueBean, src);
+						if (srcContainedElem != null) {
+							body += "super." + mmAttr.getName() + " = " + srcContainedElem.src.getName() + ".repoType();";
+						}
+					} else if (value instanceof List) {
+						if (((List) value).isEmpty())
+							continue;
+						List<String> listSrcElems = new ArrayList<>(); 
+						for (Object e : ((List<?>) value)) {
+							valueBean = (GeneratedMetamodelBean) e;
+							JavaResult<JavaClassSource> srcContainedElem = getOrCreateSingelonClass(valueBean, src);
+							if (srcContainedElem == null)
+								continue;
+							if( ! srcImportHolder.equals( srcContainedElem.src.getEnclosingType() ) ) {
+								srcImportHolder.addImport(srcContainedElem.src);
+							}
+							listSrcElems.add(srcContainedElem.src.getName() + ".repoType()");
+						}
+						srcImportHolder.addImport(Arrays.class);
+						body += "super." + mmAttr.getName() + " = " + Arrays.class.getSimpleName() + ".asList(\n";
+						body += String.join(",\n", listSrcElems );
+						body += ");\n";
+
+						// continue;
+					} else if (value instanceof GeneratedMetamodelBean) {
+						valueBean = (GeneratedMetamodelBean) value;
+						JavaResult<JavaClassSource> srcContainedElem = getOrCreateSingelonClass(valueBean, src);
+						if (srcContainedElem != null) {
+							body += "super." + mmAttr.getName() + " = " + srcContainedElem.src.getName() + ".repoType();";
+						}
 					} else {
-						throw new RuntimeException("Unsupported type: " + value.getClass() );
+						throw new RuntimeException("Unsupported type: " + value.getClass());
 					}
-					
-					JavaName nestedJavaName = getJavaName(valueBean);
-					if( nestedJavaName == null )
-						continue;
-					
-					if( nestedJavaName.getNestedTypeName() != null  ) {
-						// Generate nested class
-						JavaClassSource srcNestedType = src.addNestedType("public static class " + nestedJavaName.getNestedTypeName() + "{}");
-						System.out.println( srcNestedType );
-					} else {
-						// Contains a main type, shouldn't generate nested class 
-					}					
-					
-//					String valueAsSrc = convertAttributeValueToSource(src, value, true);
-//					if (valueAsSrc != null) {
-//						body += "super." + mmAttr.getName() + "_lazy = ()->" + valueAsSrc + ";";
-//					}
+
+					// String valueAsSrc = convertAttributeValueToSource(src, value, true);
+					// if (valueAsSrc != null) {
+					// body += "super." + mmAttr.getName() + "_lazy = ()->" + valueAsSrc + ";";
+					// }
 				} else {
 					// TODOD enum
 				}
@@ -193,7 +226,7 @@ public class GenerateSources {
 		}
 
 		JavaResult<JavaClassSource> generateMMRepository(GenerationResult container, MMRepository mmBean) {
-			JavaResult<JavaClassSource> srcRepoMain = getOrCreateSingelonClass(mmBean);
+			JavaResult<JavaClassSource> srcRepoMain = getOrCreateSingelonClass(mmBean, null);
 
 			return srcRepoMain;
 		}
@@ -245,15 +278,101 @@ public class GenerateSources {
 					return null;
 				addImportsTo.addImport(javaName.getFullName());
 				return javaName.getSimpleName() + ".repoType()";
-//			} else if (value instanceof GeneratedMetamodelBean && isContainment) {
-//				JavaName javaName = getJavaName((GeneratedMetamodelBean) value);
-//				if (javaName == null || javaName.getNestedTypeName() == null )
-//					return null;				
-//				addImportsTo.addImport(javaName.getFullName());
-//				return javaName.getSimpleName() + ".repoType()";
+				// } else if (value instanceof GeneratedMetamodelBean && isContainment) {
+				// JavaName javaName = getJavaName((GeneratedMetamodelBean) value);
+				// if (javaName == null || javaName.getNestedTypeName() == null )
+				// return null;
+				// addImportsTo.addImport(javaName.getFullName());
+				// return javaName.getSimpleName() + ".repoType()";
 			} else {
 				throw new RuntimeException("Unimplemented value type: " + value.getClass());
 			}
+		}
+
+		@Override
+		protected JavaName getJavaName(GeneratedMetamodelBean mmElem) {
+			String pkg;
+			String cuName;
+
+			if (mmElem instanceof MMRepository) {
+				return JavaName.primaryType(basePackageName, mainClassSimpleName);
+			} else if (mmElem instanceof MMDataDictionary) {
+				JavaName containerJavaName = getJavaName(((MMDataDictionary) mmElem).getRepository());
+				return JavaName.nestedType(containerJavaName, mmElem.getMetamodel().getName());
+			} else if (mmElem instanceof MMBusinessProcessCatalogue) {
+				JavaName containerJavaName = getJavaName(((MMBusinessProcessCatalogue) mmElem).getRepository());
+				return JavaName.nestedType(containerJavaName, mmElem.getMetamodel().getName());
+			}
+
+			if (mmElem instanceof MMCode) {
+				MMCode mmCode = ((MMCode) mmElem);
+				JavaName containerName = getJavaName(mmCode.getOwner());
+				JavaName nestedName = JavaName.nestedType(containerName, mmCode.getName());
+				return nestedName;
+			}
+
+			// CU name
+			if (mmElem instanceof MMRepositoryConcept) {
+				cuName = (((MMRepositoryConcept) mmElem).getName()).toString();
+			} else {
+				cuName = null;
+			}
+
+			// Package
+			if (mmElem instanceof MMMessageDefinition) {
+				MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
+				String areaCode = msgDef.getBusinessArea() == null ? "other"
+						: msgDef.getBusinessArea().getCode() == null ? "other" : msgDef.getBusinessArea().getCode();
+				pkg = "catalogue.msgdef." + areaCode;
+			} else if (mmElem instanceof MMTopLevelCatalogueEntry) {
+				if (mmElem instanceof MMMessageSet) {
+					pkg = "catalogue.msgset";
+				} else if (mmElem instanceof MMBusinessArea) {
+					pkg = "catalogue.area";
+				} else {
+					pkg = "catalogue.other";
+				}
+			} else if (mmElem instanceof MMTopLevelDictionaryEntry) {
+				if (mmElem instanceof MMCodeSet) {
+					pkg = "dict.codeset";
+				} else if (mmElem instanceof MMDataType) {
+					pkg = "dict.datatype";
+				} else if (mmElem instanceof MMBusinessComponent) {
+					pkg = "dict.entity";
+				} else if (mmElem instanceof MMMessageComponent) {
+					pkg = "dict.msg";
+				} else if (mmElem instanceof MMChoiceComponent) {
+					pkg = "dict.choice";
+				} else {
+					pkg = "dict.other";
+				}
+			} else {
+				return null;
+			}
+			pkg = basePackageName + "." + pkg;
+
+			if (cuName == null) {
+				return null;
+			}
+
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < cuName.length(); i++) {
+				char ch = cuName.charAt(i);
+				if (Character.isJavaIdentifierPart(ch))
+					sb.append(ch);
+			}
+			cuName = sb.toString();
+			if (RoasterHelper.JAVA_RESERVED_WORDS.contains(cuName))
+				cuName = cuName + "_";
+
+			if (mmElem instanceof MMBusinessArea) {
+				if (cuName.endsWith("master"))
+					cuName = cuName.substring(0, cuName.length() - "master".length());
+				if (cuName.endsWith("version"))
+					cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
+			}
+
+			return JavaName.primaryType(pkg, cuName);
 		}
 
 	}
