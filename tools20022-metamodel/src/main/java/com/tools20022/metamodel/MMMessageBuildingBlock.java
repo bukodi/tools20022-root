@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMMessageConstruct;
@@ -29,7 +29,7 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMMessageBuildingBlock implements MMMessageConstruct {
 
-	private GeneratedMetamodelBean container;
+	protected MMMessageDefinition container;
 	protected Supplier<MMDataType> simpleType_lazy;
 	protected Supplier<MMMessageComponentType> complexType_lazy;
 	protected String xmlTag;
@@ -48,7 +48,7 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 	protected Integer minOccurs;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
+	public MMMessageDefinition getContainer() {
 		return container;
 	}
 

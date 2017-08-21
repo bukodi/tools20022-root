@@ -30,18 +30,23 @@ import com.tools20022.generators.GenerationResult.JavaResult;
 import com.tools20022.generators.JavaName;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.metamodel.MMBusinessArea;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMDataType;
+import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -293,7 +298,7 @@ public class GenerateSources {
 		protected JavaName getJavaName(GeneratedMetamodelBean mmElem) {
 			String pkg;
 			String cuName;
-
+								
 			if (mmElem instanceof MMRepository) {
 				return JavaName.primaryType(basePackageName, mainClassSimpleName);
 			} else if (mmElem instanceof MMDataDictionary) {
@@ -302,6 +307,12 @@ public class GenerateSources {
 			} else if (mmElem instanceof MMBusinessProcessCatalogue) {
 				JavaName containerJavaName = getJavaName(((MMBusinessProcessCatalogue) mmElem).getRepository());
 				return JavaName.nestedType(containerJavaName, mmElem.getMetamodel().getName());
+			} else if (mmElem instanceof MMBusinessAssociationEnd) {
+				JavaName containerJavaName = getJavaName(((MMBusinessAssociationEnd) mmElem).getElementContext());
+				return JavaName.nestedType(containerJavaName, ((MMBusinessAssociationEnd) mmElem).getName());
+			} else if (mmElem instanceof MMBusinessAttribute) {
+				JavaName containerJavaName = getJavaName(((MMBusinessAttribute) mmElem).getElementContext());
+				return JavaName.nestedType(containerJavaName, ((MMBusinessAttribute) mmElem).getName());
 			}
 
 			if (mmElem instanceof MMCode) {
@@ -361,7 +372,7 @@ public class GenerateSources {
 				if (Character.isJavaIdentifierPart(ch))
 					sb.append(ch);
 			}
-			cuName = sb.toString();
+			cuName = "RT" + sb.toString();
 			if (RoasterHelper.JAVA_RESERVED_WORDS.contains(cuName))
 				cuName = cuName + "_";
 

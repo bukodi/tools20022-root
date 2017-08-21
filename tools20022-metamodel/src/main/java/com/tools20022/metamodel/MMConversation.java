@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -12,16 +13,15 @@ import java.util.Optional;
 /**
  * exchange of one or more MessageInstances amongst MessagingEndpoints
  */
-public class MMConversation implements MMModelEntity {
+public class MMConversation implements OrphanMetamodelType, MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
-		return container;
+		return null;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -15,9 +16,8 @@ import java.util.Optional;
 /**
  * A particular set of encoding rules for a MessageInstance.
  */
-public class MMEncoding implements MMModelEntity {
+public class MMEncoding implements OrphanMetamodelType, MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMMessageSet>> messageSet_lazy;
 	protected Supplier<MMSyntax> syntax_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -26,7 +26,7 @@ public class MMEncoding implements MMModelEntity {
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
-		return container;
+		return null;
 	}
 
 	@Override

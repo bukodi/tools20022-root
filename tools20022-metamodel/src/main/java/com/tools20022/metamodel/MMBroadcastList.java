@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -15,9 +16,8 @@ import java.util.Optional;
  * set of references to MessagingEndpoints (identified by their Address), that
  * is used for message broadcasting
  */
-public class MMBroadcastList implements MMModelEntity {
+public class MMBroadcastList implements OrphanMetamodelType, MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMAddress>> address_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
@@ -25,7 +25,7 @@ public class MMBroadcastList implements MMModelEntity {
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
-		return container;
+		return null;
 	}
 
 	@Override

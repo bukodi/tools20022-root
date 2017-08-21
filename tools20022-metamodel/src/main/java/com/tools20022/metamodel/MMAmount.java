@@ -1,13 +1,12 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMDecimal;
 import com.tools20022.metamodel.MMDataType;
 import java.util.Optional;
 import java.util.function.Supplier;
-import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
 import java.util.Collections;
@@ -23,7 +22,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMAmount extends MMDecimal {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMDataType> currencyIdentifierSet_lazy;
 	protected String minInclusive;
 	protected String minExclusive;
@@ -46,8 +44,8 @@ public class MMAmount extends MMDecimal {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMDataDictionary getContainer() {
+		return getDataDictionary();
 	}
 
 	@Override

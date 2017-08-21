@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryType;
@@ -10,7 +10,6 @@ import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import java.util.Optional;
-import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.core.metamodel.Containment;
@@ -31,7 +30,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMMessageDefinition implements MMRepositoryType {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMMessageSet>> messageSet_lazy;
 	protected String xmlName;
 	protected String xmlTag;
@@ -56,8 +54,8 @@ public class MMMessageDefinition implements MMRepositoryType {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMBusinessArea getContainer() {
+		return getBusinessArea();
 	}
 
 	@Override

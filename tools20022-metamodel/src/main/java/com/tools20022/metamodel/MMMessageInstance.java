@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -16,9 +17,8 @@ import java.util.Optional;
  * instance of MessageDefinition, containing a set of structured information
  * exchanged between BusinessRoles, in the scope of a BusinessTransaction
  */
-public class MMMessageInstance implements MMModelEntity {
+public class MMMessageInstance implements OrphanMetamodelType, MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMSyntaxMessageScheme> specification_lazy;
 	protected Supplier<List<MMTransportMessage>> transportMessage_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -27,7 +27,7 @@ public class MMMessageInstance implements MMModelEntity {
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
-		return container;
+		return null;
 	}
 
 	@Override

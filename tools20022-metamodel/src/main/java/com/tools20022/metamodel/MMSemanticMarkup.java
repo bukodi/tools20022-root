@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
  */
 public class MMSemanticMarkup implements MMModelEntity {
 
-	private GeneratedMetamodelBean container;
+	protected MMRepositoryConcept container;
 	protected String type;
 	protected List<MMSemanticMarkupElement> elements;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -25,7 +25,7 @@ public class MMSemanticMarkup implements MMModelEntity {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
+	public MMRepositoryConcept getContainer() {
 		return container;
 	}
 

@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMRepositoryType;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
@@ -27,7 +27,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMXor implements MMRepositoryConcept {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMMessageElement>> impactedElements_lazy;
 	protected Supplier<MMMessageComponent> messageComponent_lazy;
 	protected Supplier<List<MMMessageBuildingBlock>> impactedMessageBuildingBlocks_lazy;
@@ -45,8 +44,13 @@ public class MMXor implements MMRepositoryConcept {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMRepositoryType getContainer() {
+		if (getMessageComponent().isPresent())
+			return getMessageComponent().get();
+		if (getMessageDefinition().isPresent())
+			return getMessageDefinition().get();
+		throw new IllegalStateException("The " + toString()
+				+ " hasn't container!");
 	}
 
 	@Override

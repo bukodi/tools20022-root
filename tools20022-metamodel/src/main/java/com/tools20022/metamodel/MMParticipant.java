@@ -1,11 +1,10 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMBusinessTransaction;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMMultiplicityEntity;
-import com.tools20022.metamodel.MMBusinessTransaction;
 import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
@@ -27,7 +26,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMBusinessTransaction> businessTransaction_lazy;
 	protected Supplier<List<MMReceive>> receives_lazy;
 	protected Supplier<List<MMSend>> sends_lazy;
@@ -47,8 +45,8 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	protected Integer minOccurs;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMBusinessTransaction getContainer() {
+		return getBusinessTransaction();
 	}
 
 	@Override

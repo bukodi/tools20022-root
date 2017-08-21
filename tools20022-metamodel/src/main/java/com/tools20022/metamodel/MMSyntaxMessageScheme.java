@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
@@ -8,7 +8,6 @@ import com.tools20022.metamodel.MMMessageDefinition;
 import java.util.Optional;
 import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
 import java.util.Collections;
@@ -24,7 +23,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMSyntaxMessageScheme implements MMTopLevelCatalogueEntry {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMMessageDefinition> messageDefinitionTrace_lazy;
 	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
@@ -40,8 +38,8 @@ public class MMSyntaxMessageScheme implements MMTopLevelCatalogueEntry {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMBusinessProcessCatalogue getContainer() {
+		return getBusinessProcessCatalogue();
 	}
 
 	@Override

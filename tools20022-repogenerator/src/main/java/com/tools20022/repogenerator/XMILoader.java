@@ -94,9 +94,14 @@ public class XMILoader {
 			loadedObjects.add(repoObj);
 			repoObjectsByEObj.put(eObj, repoObj);
 			if (container != null) {
-				Field f = repoObj.getClass().getDeclaredField("container");
-				f.setAccessible(true);
-				f.set(repoObj, container);
+				try {
+					Field f = repoObj.getClass().getDeclaredField("container");
+					f.setAccessible(true);
+					f.set(repoObj, container);
+				} catch (NoSuchFieldException nsfe) {
+					// Intentionally ignored, because the type has a dedicated reference to the
+					// container.
+				}
 			}
 
 		} catch (Exception e) {
@@ -128,12 +133,13 @@ public class XMILoader {
 				/*** Singular reference ***/
 				EObject refObj = (EObject) value;
 				GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(refObj);
-				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment();				
-				if( !isLazyReference) {
+				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived()
+						&& !mmAttr.isContainment();
+				if (!isLazyReference) {
 					mmAttr.set(repoObj, refIsoObj);
 				} else {
-					Supplier<?> supplier = ()->refIsoObj;
-					mmAttr.set(repoObj, supplier );					
+					Supplier<?> supplier = () -> refIsoObj;
+					mmAttr.set(repoObj, supplier);
 				}
 			} else if (mmAttr.getReferencedType() != null && mmAttr.isMultiple()) {
 				/*** Multiple reference ***/
@@ -142,11 +148,12 @@ public class XMILoader {
 					GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(x);
 					isoList.add(refIsoObj);
 				}
-				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment();				
-				if( !isLazyReference) {
+				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived()
+						&& !mmAttr.isContainment();
+				if (!isLazyReference) {
 					mmAttr.set(repoObj, isoList);
 				} else {
-					Supplier<?> supplier = ()->isoList;
+					Supplier<?> supplier = () -> isoList;
 					mmAttr.set(repoObj, supplier);
 				}
 			} else if (mmAttr.getEnumType() != null) {

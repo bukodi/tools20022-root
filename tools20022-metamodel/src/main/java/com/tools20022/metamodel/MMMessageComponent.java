@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMMessageElementContainer;
@@ -16,7 +16,6 @@ import com.tools20022.metamodel.constraints.DeriveMMMessageComponent_isTechnical
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.Optional;
-import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
@@ -30,7 +29,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMMessageComponent implements MMMessageElementContainer {
 
-	private GeneratedMetamodelBean container;
 	protected List<MMXor> xors;
 	protected List<MMMessageElement> messageElement;
 	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlock_lazy;
@@ -49,8 +47,8 @@ public class MMMessageComponent implements MMMessageElementContainer {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMDataDictionary getContainer() {
+		return getDataDictionary();
 	}
 
 	@Override

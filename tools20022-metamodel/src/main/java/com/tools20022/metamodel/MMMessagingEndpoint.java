@@ -1,10 +1,9 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMMessageTransportSystem;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
-import com.tools20022.metamodel.MMMessageTransportSystem;
 import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
@@ -20,7 +19,6 @@ import java.util.Optional;
  */
 public class MMMessagingEndpoint implements MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMMessageTransportSystem> transportSystem_lazy;
 	protected Supplier<List<MMTransportMessage>> receivedMessage_lazy;
 	protected Supplier<List<MMTransportMessage>> sentMessage_lazy;
@@ -30,8 +28,8 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMMessageTransportSystem getContainer() {
+		return getTransportSystem();
 	}
 
 	@Override

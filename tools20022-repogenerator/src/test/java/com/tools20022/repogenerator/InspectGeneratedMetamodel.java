@@ -6,12 +6,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -51,10 +53,12 @@ public class InspectGeneratedMetamodel {
 		long usedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		long start = System.currentTimeMillis();
 		try {
-			EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
-			EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022"));
+			EPackage ecorePkg = ECoreIOHelper
+					.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
+			EObject rootEObj = ECoreIOHelper.loadXMIResource(
+					ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
-			repo = loader.load( ecorePkg, rootEObj);
+			repo = loader.load(ecorePkg, rootEObj);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -63,11 +67,11 @@ public class InspectGeneratedMetamodel {
 		System.out.println("Model load: " + (System.currentTimeMillis() - start) + " ms, "
 				+ ((usedMem2 - usedMem) / (1024 * 1024)) + " MB");
 	}
-	
+
 	@Test
 	public void testContaining() {
-		
-//		StandardMetamodel2013.metamodel().
+
+		// StandardMetamodel2013.metamodel().
 	}
 
 	@Test
@@ -334,7 +338,50 @@ public class InspectGeneratedMetamodel {
 		System.out.println("Number of MMSemanticMarkupElement objects : "
 				+ repo.getCountByType(MMSemanticMarkupElement.metaType()));
 		System.out.println();
-		
+
+	}
+
+	@Test
+	public void listContainerTypes() throws Exception {
+		LinkedHashMap<MetamodelType<? extends GeneratedMetamodelBean>, Set<MetamodelAttribute<?, ?>>> containerRefsByTypes = new LinkedHashMap<>();
+		for (MetamodelType<? extends GeneratedMetamodelBean> mmType : StandardMetamodel2013.metamodel().getAllTypes()) {
+			if( mmType.isAbstract() )
+				continue;
+			Set<MetamodelAttribute<?, ?>> containerRefs = new LinkedHashSet<>();
+			mmType.getIncomingAttributes().stream().filter(mmAttr -> mmAttr.isContainment()).forEachOrdered(mmAttr -> {
+				containerRefs.add(mmAttr);
+			});
+			containerRefsByTypes.put(mmType, containerRefs);
+		}
+
+		Consumer<Map.Entry<MetamodelType<? extends GeneratedMetamodelBean>, Set<MetamodelAttribute<?, ?>>>> printEntry = e -> {
+			System.out.println(e.getKey().getName());
+			e.getValue().stream().forEachOrdered(mmAttr -> {
+				System.out.print("    - " + mmAttr.getDeclaringType().getName() + "." + mmAttr.getName());
+				if (mmAttr.getOpposite() != null)
+					System.out.print(" ( opposite: " + mmAttr.getOpposite().getDeclaringType().getName() + "."
+							+ mmAttr.getOpposite().getName() + ")");
+				System.out.println();
+			});
+		};
+
+		System.out.println("--- Types without containers --- ");
+		containerRefsByTypes.entrySet().stream().filter(e -> e.getValue().isEmpty()).forEachOrdered(printEntry);
+		System.out.println();
+
+		System.out.println("--- Types with one bidirectional container reference --- ");
+		containerRefsByTypes.entrySet().stream().filter(e -> e.getValue().size() == 1)
+				.filter(e -> e.getValue().iterator().next().getOpposite() != null).forEachOrdered(printEntry);
+		System.out.println();
+
+		System.out.println("--- Types with one container reference without opposite ref --- ");
+		containerRefsByTypes.entrySet().stream().filter(e -> e.getValue().size() == 1)
+				.filter(e -> e.getValue().iterator().next().getOpposite() == null).forEachOrdered(printEntry);
+		System.out.println();
+
+		System.out.println("--- Types with more than one container reference --- ");
+		containerRefsByTypes.entrySet().stream().filter(e -> e.getValue().size() > 1).forEachOrdered(printEntry);
+		System.out.println();
 	}
 
 	@Test
@@ -402,6 +449,5 @@ public class InspectGeneratedMetamodel {
 							});
 				});
 	}
-
 
 }

@@ -1,5 +1,6 @@
 # Core
 - [ ] Convert MMModelEntity, MMRepositoryConcept from interface to abstract tpye
+- [ ] Remove type parameters from MetamodelType and MetamodelAttribute 
 # Generators
 - [ ] Split AbstractGenerator and GenerationContext
 - [ ] GeneratorDebugProxy 

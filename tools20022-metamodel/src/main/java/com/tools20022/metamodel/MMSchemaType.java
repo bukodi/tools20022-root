@@ -1,11 +1,10 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMSchemaTypeKind;
-import com.tools20022.metamodel.MMDataDictionary;
 import java.util.function.Supplier;
 import java.util.Optional;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -22,7 +21,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMSchemaType implements MMDataType {
 
-	private GeneratedMetamodelBean container;
 	protected MMSchemaTypeKind kind;
 	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
@@ -38,8 +36,8 @@ public class MMSchemaType implements MMDataType {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMDataDictionary getContainer() {
+		return getDataDictionary();
 	}
 
 	@Override

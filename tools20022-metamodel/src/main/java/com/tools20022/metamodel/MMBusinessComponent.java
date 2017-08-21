@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
@@ -17,7 +17,6 @@ import com.tools20022.core.metamodel.Containment;
 import com.tools20022.metamodel.MMMessageComponentType;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMMessageElement;
-import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
@@ -35,7 +34,6 @@ public class MMBusinessComponent
 			MMBusinessElementType,
 			MMBusinessConcept {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMBusinessComponent>> subType_lazy;
 	protected Supplier<MMBusinessComponent> superType_lazy;
 	protected List<MMBusinessElement> element;
@@ -56,8 +54,8 @@ public class MMBusinessComponent
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMDataDictionary getContainer() {
+		return getDataDictionary();
 	}
 
 	@Override

@@ -1,10 +1,9 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
-import com.tools20022.metamodel.MMRepository;
 import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
@@ -20,7 +19,6 @@ import java.util.Optional;
  */
 public class MMBusinessProcessCatalogue implements MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMRepository> repository_lazy;
 	protected List<MMTopLevelCatalogueEntry> topLevelCatalogueEntry;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -28,8 +26,8 @@ public class MMBusinessProcessCatalogue implements MMModelEntity {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMRepository getContainer() {
+		return getRepository();
 	}
 
 	@Override

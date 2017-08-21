@@ -1,9 +1,8 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.MMRepositoryConcept;
 import java.util.Optional;
 import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
@@ -23,7 +22,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMConstraint implements MMRepositoryConcept {
 
-	private GeneratedMetamodelBean container;
 	protected String expression;
 	protected String expressionLanguage;
 	protected Supplier<MMRepositoryConcept> owner_lazy;
@@ -40,8 +38,8 @@ public class MMConstraint implements MMRepositoryConcept {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMRepositoryConcept getContainer() {
+		return getOwner();
 	}
 
 	@Override

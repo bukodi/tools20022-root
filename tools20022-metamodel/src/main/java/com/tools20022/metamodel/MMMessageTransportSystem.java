@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -17,9 +18,11 @@ import java.util.Optional;
  * MessagingEndpoint, transports them, and delivers them to the receiving
  * MessagingEndpoint
  */
-public class MMMessageTransportSystem implements MMModelEntity {
+public class MMMessageTransportSystem
+		implements
+			OrphanMetamodelType,
+			MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected List<MMMessagingEndpoint> endpoint;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
@@ -27,7 +30,7 @@ public class MMMessageTransportSystem implements MMModelEntity {
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
-		return container;
+		return null;
 	}
 
 	@Override

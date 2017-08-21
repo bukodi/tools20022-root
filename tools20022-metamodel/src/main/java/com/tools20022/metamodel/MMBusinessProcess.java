@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
@@ -12,7 +12,6 @@ import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMBusinessRole;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.metamodel.MMBusinessTransaction;
-import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import java.util.Optional;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMDoclet;
@@ -29,7 +28,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMBusinessProcess>> extender_lazy;
 	protected Supplier<List<MMBusinessProcess>> extended_lazy;
 	protected Supplier<List<MMBusinessProcess>> included_lazy;
@@ -50,8 +48,8 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMBusinessProcessCatalogue getContainer() {
+		return getBusinessProcessCatalogue();
 	}
 
 	@Override

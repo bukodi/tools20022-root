@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMBusinessElement;
@@ -8,7 +8,6 @@ import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import java.util.Optional;
 import java.util.function.Supplier;
 import com.tools20022.metamodel.MMAggregation;
-import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMMessageElement;
 import java.util.List;
@@ -31,7 +30,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMBusinessAssociationEnd implements MMBusinessElement {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMBusinessAssociationEnd> opposite_lazy;
 	protected MMAggregation aggregation;
 	protected Supplier<MMBusinessComponent> type_lazy;
@@ -53,8 +51,8 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 	protected Integer minOccurs;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMBusinessComponent getContainer() {
+		return getElementContext();
 	}
 
 	@Override

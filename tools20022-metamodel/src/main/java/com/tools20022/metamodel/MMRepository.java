@@ -18,7 +18,6 @@ import java.util.Optional;
  */
 public class MMRepository implements MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected MMDataDictionary dataDictionary;
 	protected MMBusinessProcessCatalogue businessProcessCatalogue;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -27,7 +26,7 @@ public class MMRepository implements MMModelEntity {
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
-		return container;
+		return null;
 	}
 
 	@Override

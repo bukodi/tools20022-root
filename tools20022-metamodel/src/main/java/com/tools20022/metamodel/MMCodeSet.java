@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMString;
@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Collections;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.core.metamodel.Containment;
-import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
@@ -25,7 +24,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMCodeSet extends MMString {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMCodeSet> trace_lazy;
 	protected Supplier<List<MMCodeSet>> derivation_lazy;
 	protected String identificationScheme;
@@ -48,8 +46,8 @@ public class MMCodeSet extends MMString {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMDataDictionary getContainer() {
+		return getDataDictionary();
 	}
 
 	@Override

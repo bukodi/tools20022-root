@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 public class MMMessageDefinitionIdentifier implements MMModelEntity {
 
-	private GeneratedMetamodelBean container;
+	protected MMMessageDefinition container;
 	protected String businessArea;
 	protected String messageFunctionality;
 	protected String flavour;
@@ -26,7 +26,7 @@ public class MMMessageDefinitionIdentifier implements MMModelEntity {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
+	public MMMessageDefinition getContainer() {
 		return container;
 	}
 

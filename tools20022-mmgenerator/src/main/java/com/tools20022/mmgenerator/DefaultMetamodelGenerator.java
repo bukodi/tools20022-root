@@ -3,6 +3,7 @@ package com.tools20022.mmgenerator;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.StringJoiner;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -32,6 +33,7 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
 import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.core.metamodel.StaticMemembersBuilder;
 import com.tools20022.generators.GenerationContext;
@@ -163,16 +165,55 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		}
 
 		{ // Implement getContainer();
-			src.addImport(GeneratedMetamodelBean.class);
-			src.addField().setPrivate().setName("container").setType(GeneratedMetamodelBean.class);
+			MethodSource<JavaClassSource> getContainerMethod = src.addMethod();
+			getContainerMethod.setName("getContainer").setPublic();
+			getContainerMethod.addAnnotation(Override.class);
 
-			src.addImport(srcMetamodelMain);
-			MethodSource<JavaClassSource> method = src.addMethod();
-			method.setName("getContainer").setPublic();
-			method.setReturnType(GeneratedMetamodelBean.class);
-			method.addAnnotation(Override.class);
-			method.setBody("return container;");
+			Set<? extends MetamodelAttribute> containingRefs = mmType.getIncomingAttributes().stream()
+					.filter(mmAttr -> mmAttr.isContainment()).collect(Collectors.toSet());
+			if (containingRefs.size() > 1) {
+				// This should be the Xor type
+				if (!"Xor".equals(mmType.getName()))
+					throw new RuntimeException("The '" + mmType.getName()
+							+ "' has more than one possible container, and this case isn't handeled in this generator.");
+				// Custom implementation for Xor type
+				JavaName javaNameRepoType = getJavaName(metamodel.getTypeByName("RepositoryType"));
+				src.addImport(javaNameRepoType.getFullName());
+				getContainerMethod.setReturnType(javaNameRepoType.getSimpleName());
+				getContainerMethod.setBody("		if( getMessageComponent().isPresent() )\n"
+						+ "			return getMessageComponent().get();\n"
+						+ "		if( getMessageDefinition().isPresent())\n"
+						+ "			return getMessageDefinition().get();\n"
+						+ "		throw new IllegalStateException(\"The \" + toString() + \" hasn't container!\");\n"
+						+ "");
+			} else if (containingRefs.isEmpty()) {
+				// No container ref, mark as an OrphanType, except the Repository
+				if(! "Repository".equals( mmType.getName() ) ) {
+					src.addImport(OrphanMetamodelType.class);
+					src.addInterface(OrphanMetamodelType.class.getSimpleName());					
+				}
+				
+				src.addImport(GeneratedMetamodelBean.class);
+				getContainerMethod.setReturnType(GeneratedMetamodelBean.class);
+				getContainerMethod.setBody("return null;");
+			} else {
+				// Exactly one containing ref
+				MetamodelAttribute containingRef = containingRefs.iterator().next();
+				JavaName containerTypeJavaName = getJavaName( containingRef.getDeclaringType() );
+				src.addImport(containerTypeJavaName.getFullName());
+				getContainerMethod.setReturnType(containerTypeJavaName.getSimpleName());
+				if (containingRef.getOpposite() != null) {
+					// Has an opposite ref
+					String getterName = getterName ( containingRef.getOpposite() );
+					getContainerMethod.setBody("return " + getterName + "();");
+				} else {
+					// Hasn't opposite container ref, container field added
+					src.addField().setProtected().setName("container").setType(containerTypeJavaName.getSimpleName());
+					getContainerMethod.setBody("return container;");
+				}
+			}
 		}
+		
 		{ // Implement getMetamodel();
 			src.addImport(srcMetamodelMain);
 			MethodSource<JavaClassSource> method = src.addMethod();
@@ -339,11 +380,8 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 		// Create getter
 		MethodSource<T> srcGetter;
-		{
-			boolean isBool = mmAttr.getValueJavaClass() != null && (mmAttr.getValueJavaClass().equals(Boolean.TYPE)
-					|| mmAttr.getValueJavaClass().equals(Boolean.class));
-			String getterName = (isBool ? "is" : "get") + mmAttr.getName().substring(0, 1).toUpperCase()
-					+ mmAttr.getName().substring(1);
+		{			
+			String getterName = getterName(mmAttr);
 			srcGetter = srcMMType.addMethod().setName(getterName);
 			srcGetter.setReturnType(getterReturnType);
 			srcGetter.setPublic();
@@ -473,4 +511,11 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		return javaDoc;
 	}
 
+	protected static String getterName( MetamodelAttribute mmAttr ) {
+		boolean isBool = mmAttr.getValueJavaClass() != null && (mmAttr.getValueJavaClass().equals(Boolean.TYPE)
+				|| mmAttr.getValueJavaClass().equals(Boolean.class));
+
+		return (isBool ? "is" : "get") + mmAttr.getName().substring(0, 1).toUpperCase()
+		+ mmAttr.getName().substring(1);
+	}
 }

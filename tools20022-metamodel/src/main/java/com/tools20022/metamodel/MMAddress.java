@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -16,9 +17,8 @@ import java.util.Optional;
  * identification and efficient resolution to the location of a
  * MessagingEndpoint
  */
-public class MMAddress implements MMModelEntity {
+public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMBroadcastList>> broadCastList_lazy;
 	protected Supplier<MMMessagingEndpoint> endpoint_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -27,7 +27,7 @@ public class MMAddress implements MMModelEntity {
 
 	@Override
 	public GeneratedMetamodelBean getContainer() {
-		return container;
+		return null;
 	}
 
 	@Override

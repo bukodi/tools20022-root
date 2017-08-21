@@ -1,13 +1,12 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMDataType;
 import java.util.Optional;
 import java.util.function.Supplier;
-import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMMessageElement;
 import java.util.List;
 import java.util.Collections;
@@ -29,7 +28,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMBusinessAttribute implements MMBusinessElement {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<MMDataType> simpleType_lazy;
 	protected Supplier<MMBusinessComponent> complexType_lazy;
 	protected boolean isDerived;
@@ -50,8 +48,8 @@ public class MMBusinessAttribute implements MMBusinessElement {
 	protected Integer minOccurs;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMBusinessComponent getContainer() {
+		return getElementContext();
 	}
 
 	@Override

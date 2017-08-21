@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMBusinessProcess;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.metamodel.MMBusinessProcess;
 import com.tools20022.core.metamodel.Container;
 import java.util.Optional;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -25,7 +24,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMBusinessRole implements MMRepositoryConcept {
 
-	private GeneratedMetamodelBean container;
 	protected Supplier<List<MMParticipant>> businessRoleTrace_lazy;
 	protected Supplier<MMBusinessProcess> businessProcess_lazy;
 	protected String name;
@@ -41,8 +39,8 @@ public class MMBusinessRole implements MMRepositoryConcept {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMBusinessProcess getContainer() {
+		return getBusinessProcess();
 	}
 
 	@Override

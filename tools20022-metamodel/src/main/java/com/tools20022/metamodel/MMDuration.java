@@ -1,11 +1,10 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMAbstractDateTimeConcept;
 import java.util.Optional;
-import com.tools20022.metamodel.MMDataDictionary;
 import java.util.function.Supplier;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import java.util.List;
@@ -22,7 +21,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMDuration implements MMAbstractDateTimeConcept {
 
-	private GeneratedMetamodelBean container;
 	protected String minInclusive;
 	protected String minExclusive;
 	protected String maxInclusive;
@@ -42,8 +40,8 @@ public class MMDuration implements MMAbstractDateTimeConcept {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMDataDictionary getContainer() {
+		return getDataDictionary();
 	}
 
 	@Override

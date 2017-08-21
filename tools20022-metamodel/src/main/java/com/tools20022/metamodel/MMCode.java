@@ -1,11 +1,10 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import java.util.Optional;
-import com.tools20022.metamodel.MMCodeSet;
 import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
@@ -25,7 +24,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMCode implements MMRepositoryConcept {
 
-	private GeneratedMetamodelBean container;
 	protected String codeName;
 	protected Supplier<MMCodeSet> owner_lazy;
 	protected String name;
@@ -41,8 +39,8 @@ public class MMCode implements MMRepositoryConcept {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMCodeSet getContainer() {
+		return getOwner();
 	}
 
 	@Override

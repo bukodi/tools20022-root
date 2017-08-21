@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMMessageElementContainer;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMMessageElement;
@@ -11,7 +11,6 @@ import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
 import java.util.Optional;
 import com.tools20022.metamodel.MMBusinessElement;
-import com.tools20022.metamodel.MMMessageElementContainer;
 import com.tools20022.metamodel.MMLogicalType;
 import com.tools20022.metamodel.constraints.DeriveMMMessageAssociationEnd_xmlMemberType;
 import com.tools20022.metamodel.MMRepositoryType;
@@ -30,7 +29,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMMessageAssociationEnd implements MMMessageElement {
 
-	private GeneratedMetamodelBean container;
 	protected boolean isComposite;
 	protected Supplier<MMMessageComponentType> type_lazy;
 	protected Supplier<MMBusinessComponent> businessComponentTrace_lazy;
@@ -53,8 +51,8 @@ public class MMMessageAssociationEnd implements MMMessageElement {
 	protected Integer minOccurs;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMMessageElementContainer getContainer() {
+		return getComponentContext();
 	}
 
 	@Override

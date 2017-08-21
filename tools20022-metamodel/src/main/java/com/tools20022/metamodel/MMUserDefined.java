@@ -1,6 +1,6 @@
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMMessageComponentType;
@@ -14,7 +14,6 @@ import java.util.Collections;
 import com.tools20022.metamodel.constraints.DeriveMMUserDefined_isTechnical;
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
@@ -28,7 +27,6 @@ import com.tools20022.metamodel.MMModelEntity;
  */
 public class MMUserDefined implements MMMessageComponentType {
 
-	private GeneratedMetamodelBean container;
 	protected MMNamespace namespace;
 	protected String namespaceList;
 	protected MMProcessContent processContents;
@@ -48,8 +46,8 @@ public class MMUserDefined implements MMMessageComponentType {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
-		return container;
+	public MMDataDictionary getContainer() {
+		return getDataDictionary();
 	}
 
 	@Override
