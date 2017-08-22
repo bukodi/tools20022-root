@@ -1,6 +1,7 @@
 # Core
 - [ ] Convert MMModelEntity, MMRepositoryConcept from interface to abstract tpye
-- [ ] Remove type parameters from MetamodelType and MetamodelAttribute 
+- [ ] Remove type parameters from MetamodelType and MetamodelAttribute
+
 # Generators
 - [ ] Split AbstractGenerator and GenerationContext
 - [ ] GeneratorDebugProxy 
@@ -20,4 +21,7 @@
 - [ ] Add cross links to JavaDoc texts
 - [ ] Generate class diagrams ( PlantUML, or dagre-d3)
 - [ ] Generate javadoc like html doc for XSDs 
-- [ ] Add "Where used?" links to the JavaDoc 
+- [ ] Add "Where used?" links to the JavaDoc
+
+# Long term
+- [ ] ISO15002 parser with mappings 
