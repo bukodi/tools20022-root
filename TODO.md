@@ -5,6 +5,7 @@
 # Generators
 - [ ] Split AbstractGenerator and GenerationContext
 - [ ] GeneratorDebugProxy 
+- [ ] Replace code snippet based generation with AST building. 
 - [ ] Support shouldParseIfExists feature
 - [ ] Support @shouldParseIfExists feature
 - [ ] Add package-info.java to generated packages.  
