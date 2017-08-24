@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -112,7 +113,7 @@ public class GenerateSources {
 
 		}
 
-		JavaResult<JavaClassSource> getOrCreateSingelonClass(GeneratedMetamodelBean mmBean,
+		JavaResult<JavaClassSource> createSingelonClass(GeneratedMetamodelBean mmBean,
 				JavaClassSource srcImportHolder) {
 			JavaName javaName = getJavaName(mmBean);
 			if (javaName == null )
@@ -156,14 +157,14 @@ public class GenerateSources {
 				if (mmAttr.getValueJavaClass() != null && !mmAttr.isDerived()) {
 					// Simple attributes
 					Object value = mmAttr.get(mmBean);
-					String valueAsSrc = convertAttributeValueToSource(srcImportHolder, value, false);
+					String valueAsSrc = convertAttributeValueToSource(srcImportHolder, value);
 					if (valueAsSrc != null) {
 						body += "super." + mmAttr.getName() + " = " + valueAsSrc + ";";
 					}
 				} else if (mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment()) {
 					// Reference attributes with lazy inti
 					Object value = mmAttr.get(mmBean);
-					String valueAsSrc = convertAttributeValueToSource(srcImportHolder, value, false);
+					String valueAsSrc = convertAttributeValueToSource(srcImportHolder, value);
 					if (valueAsSrc != null) {
 						body += "super." + mmAttr.getName() + "_lazy = ()->" + valueAsSrc + ";";
 					}
@@ -177,7 +178,7 @@ public class GenerateSources {
 						if (!((Optional<?>) value).isPresent())
 							continue;
 						valueBean = (GeneratedMetamodelBean) ((Optional<?>) value).get();
-						FieldSource<JavaClassSource> srcStaticField = createStaticVarWithAnonymousClass(valueBean, src);
+						FieldSource<JavaClassSource> srcStaticField = createFinalVarWithAnonymousClass(valueBean, src);
 						if (srcStaticField != null) {
 							body += "super." + mmAttr.getName() + " = " + srcStaticField.getName() + ";";
 						}
@@ -191,11 +192,11 @@ public class GenerateSources {
 							if( valueBeanName == null )
 								continue;
 							if( valueBeanName.getMemberName() == null ) {
-								JavaResult<JavaClassSource> type = getOrCreateSingelonClass(valueBean, null);
+								JavaResult<JavaClassSource> type = createSingelonClass(valueBean, null);
 								srcImportHolder.addImport(type.src);								
 								listSrcElems.add(type.src.getName() + ".repoType()");								
 							} else {
-								FieldSource<JavaClassSource> srcStaticField = createStaticVarWithAnonymousClass(valueBean, src);								
+								FieldSource<JavaClassSource> srcStaticField = createFinalVarWithAnonymousClass(valueBean, src);								
 								listSrcElems.add(srcStaticField.getName());
 							}
 						}
@@ -207,19 +208,15 @@ public class GenerateSources {
 						// continue;
 					} else if (value instanceof GeneratedMetamodelBean) {
 						valueBean = (GeneratedMetamodelBean) value;
-						FieldSource<JavaClassSource> srcStaticField = createStaticVarWithAnonymousClass(valueBean, src);
+						FieldSource<JavaClassSource> srcStaticField = createFinalVarWithAnonymousClass(valueBean, src);
 						if (srcStaticField != null) {
 							body += "super." + mmAttr.getName() + " = " + srcStaticField.getName()
-									+ ".repoType();";
+									+ ";";
 						}
 					} else {
 						throw new RuntimeException("Unsupported type: " + value.getClass());
 					}
 
-					// String valueAsSrc = convertAttributeValueToSource(src, value, true);
-					// if (valueAsSrc != null) {
-					// body += "super." + mmAttr.getName() + "_lazy = ()->" + valueAsSrc + ";";
-					// }
 				} else {
 					// TODOD enum
 				}
@@ -232,8 +229,8 @@ public class GenerateSources {
 
 			return GenerationResult.fromJavaSource(src);
 		}
-
-		FieldSource<JavaClassSource> createStaticVarWithAnonymousClass(GeneratedMetamodelBean mmBean,
+		
+		FieldSource<JavaClassSource> createFinalVarWithAnonymousClass(GeneratedMetamodelBean mmBean,
 				JavaClassSource srcMainClass) {
 			JavaName javaName = getJavaName(mmBean);
 			if (javaName == null)
@@ -245,10 +242,9 @@ public class GenerateSources {
 			FieldSource<JavaClassSource> src = srcMainClass.addField();
 			src.setName(javaName.getMemberName());
 			src.setPublic();
-			src.setStatic(true);
+			src.setFinal(true);
 			srcMainClass.addImport(mmBean.getClass());
 			src.setType( mmBean.getClass() );
-		
 
 			// Init atributes in constructor
 			String body = "";
@@ -256,14 +252,14 @@ public class GenerateSources {
 				if (mmAttr.getValueJavaClass() != null && !mmAttr.isDerived()) {
 					// Simple attributes
 					Object value = mmAttr.get(mmBean);
-					String valueAsSrc = convertAttributeValueToSource(srcMainClass, value, false);
+					String valueAsSrc = convertAttributeValueToSource(srcMainClass, value);
 					if (valueAsSrc != null) {
 						body += "super." + mmAttr.getName() + " = " + valueAsSrc + ";";
 					}
 				} else if (mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment()) {
 					// Reference attributes with lazy inti
 					Object value = mmAttr.get(mmBean);
-					String valueAsSrc = convertAttributeValueToSource(srcMainClass, value, false);
+					String valueAsSrc = convertAttributeValueToSource(srcMainClass, value);
 					if (valueAsSrc != null) {
 						body += "super." + mmAttr.getName() + "_lazy = ()->" + valueAsSrc + ";";
 					}
@@ -279,7 +275,7 @@ public class GenerateSources {
 						valueBean = (GeneratedMetamodelBean) ((Optional<?>) value).get();
 						JavaName containedElemName = getJavaName(valueBean);
 						if (containedElemName != null) {
-							getOrCreateSingelonClass(valueBean, null);
+							createSingelonClass(valueBean, null);
 							srcMainClass.addImport(containedElemName.getFullName());
 							body += "super." + mmAttr.getName() + " = " + containedElemName.getSimpleName()	+ ".repoType();";
 						}
@@ -292,7 +288,7 @@ public class GenerateSources {
 							JavaName containedElemName = getJavaName(valueBean);
 							if (containedElemName == null) 
 								continue;
-							getOrCreateSingelonClass(valueBean, null);
+							createSingelonClass(valueBean, null);
 							srcMainClass.addImport(containedElemName.getFullName());
 							listSrcElems.add(containedElemName.getSimpleName() + ".repoType()");
 						}
@@ -306,7 +302,7 @@ public class GenerateSources {
 						valueBean = (GeneratedMetamodelBean) value;
 						JavaName containedElemName = getJavaName(valueBean);
 						if (containedElemName != null) {
-							getOrCreateSingelonClass(valueBean, null);
+							createSingelonClass(valueBean, null);
 							srcMainClass.addImport(containedElemName.getFullName());
 							body += "super." + mmAttr.getName() + " = " + containedElemName.getSimpleName()	+ ".repoType();";
 						}
@@ -332,13 +328,12 @@ public class GenerateSources {
 		}
 
 		JavaResult<JavaClassSource> generateMMRepository(GenerationResult container, MMRepository mmBean) {
-			JavaResult<JavaClassSource> srcRepoMain = getOrCreateSingelonClass(mmBean, null);
+			JavaResult<JavaClassSource> srcRepoMain = createSingelonClass(mmBean, null);
 
 			return srcRepoMain;
 		}
 
-		private String convertAttributeValueToSource(JavaClassSource addImportsTo, Object value,
-				boolean isContainment) {
+		private String convertAttributeValueToSource(JavaClassSource addImportsTo, Object value ) {
 			if (value instanceof Optional<?>) {
 				if (((Optional<?>) value).isPresent()) {
 					value = ((Optional<?>) value).get();
@@ -352,7 +347,7 @@ public class GenerateSources {
 				addImportsTo.addImport(Arrays.class);
 				String src = Arrays.class.getSimpleName() + ".asList( ";
 				Stream<Object> elems = ((List<Object>) value).stream();
-				src += elems.map(e -> convertAttributeValueToSource(addImportsTo, e, isContainment))
+				src += elems.map(e -> convertAttributeValueToSource(addImportsTo, e))
 						.collect(Collectors.joining(","));
 				src += ")";
 				return src;
@@ -362,6 +357,9 @@ public class GenerateSources {
 				return value.toString();
 			} else if (value instanceof Boolean) {
 				return value.toString();
+			} else if (value instanceof Date) {
+				addImportsTo.addImport(Date.class);
+				return " new Date(" + ((Date)value).getTime() + ")";
 			} else if (value instanceof CharSequence) {
 				StringBuilder sb = new StringBuilder();
 				for (int i = 0; i < ((CharSequence) value).length(); i++) {
@@ -378,18 +376,26 @@ public class GenerateSources {
 						sb.append(ch);
 				}
 				return "\"" + sb.toString() + "\"";
-			} else if (value instanceof GeneratedMetamodelBean && !isContainment) {
-				JavaName javaName = getJavaName((GeneratedMetamodelBean) value);
-				if (javaName == null)
+			} else if (value instanceof GeneratedMetamodelBean ) {
+				GeneratedMetamodelBean mmElem = (GeneratedMetamodelBean)value;
+				JavaName javaName = getJavaName(mmElem);
+				if( javaName == null )
 					return null;
-				addImportsTo.addImport(javaName.getFullName());
-				return javaName.getSimpleName() + ".repoType()";
-				// } else if (value instanceof GeneratedMetamodelBean && isContainment) {
-				// JavaName javaName = getJavaName((GeneratedMetamodelBean) value);
-				// if (javaName == null || javaName.getNestedTypeName() == null )
-				// return null;
-				// addImportsTo.addImport(javaName.getFullName());
-				// return javaName.getSimpleName() + ".repoType()";
+				if( javaName.getMemberName() != null ) {
+					// This is a variable member of a type
+					if( addImportsTo.getPackage().equals( javaName.getCompilationUnit() ) && addImportsTo.getName().equals(javaName.getCompilationUnit()) ){
+						// The variable declared in thes type
+						return javaName.getMemberName();
+					} else {
+						// The variable declared in other type
+						addImportsTo.addImport(javaName.getPackage() + "." + javaName.getCompilationUnit() );
+						return javaName.getCompilationUnit() + ".repoType()." + javaName.getMemberName();
+					}
+				} else {
+					// This is a main class
+					addImportsTo.addImport(javaName.getFullName());
+					return javaName.getSimpleName() + ".repoType()";
+				}
 			} else {
 				throw new RuntimeException("Unimplemented value type: " + value.getClass());
 			}
@@ -400,15 +406,20 @@ public class GenerateSources {
 		}
 		
 		protected JavaName createJavaNameAsMemeber(GeneratedMetamodelBean mmElem) {
-			JavaName containerJavaName = getJavaName(mmElem.getContainer());
 			String memberName;
 			if( mmElem instanceof MMRepositoryConcept ) {
 				memberName = ((MMRepositoryConcept)mmElem).getName();
 			} else {
 				memberName = mmElem.getMetamodel().getName();
 			}
+			memberName = lowerFirstChar(memberName);
 			memberName = convertToJavaName(memberName);
-			return JavaName.member(containerJavaName, lowerFirstChar( memberName ));			
+			return createJavaNameAsMemeber(mmElem, memberName);
+		}
+		
+		protected JavaName createJavaNameAsMemeber(GeneratedMetamodelBean mmElem, String memberName ) {
+			JavaName containerJavaName = getJavaName(mmElem.getContainer());
+			return JavaName.member(containerJavaName, memberName );			
 		}
 
 		@Override
@@ -419,15 +430,15 @@ public class GenerateSources {
 			if (mmElem instanceof MMRepository) {
 				return JavaName.primaryType(basePackageName, mainClassSimpleName);
 			} else if (mmElem instanceof MMDataDictionary) {				
-				return createJavaNameAsMemeber(mmElem);
+				return createJavaNameAsMemeber(mmElem, "dataDict");
 			} else if (mmElem instanceof MMBusinessProcessCatalogue) {
-				return createJavaNameAsMemeber(mmElem);
+				return createJavaNameAsMemeber(mmElem, "catalogue");
 			} else if (mmElem instanceof MMBusinessAssociationEnd) {
-				return createJavaNameAsMemeber(mmElem);
+				return createJavaNameAsMemeber(mmElem, "ref" + ((MMBusinessAssociationEnd)mmElem).getName());
 			} else if (mmElem instanceof MMBusinessAttribute) {
-				return createJavaNameAsMemeber(mmElem);
+				return createJavaNameAsMemeber(mmElem, "attr" + ((MMBusinessAttribute)mmElem).getName());
 			} else if (mmElem instanceof MMCode) {
-				return createJavaNameAsMemeber(mmElem);
+				return createJavaNameAsMemeber(mmElem, "code" + ((MMCode)mmElem).getName());
 			}
 
 
