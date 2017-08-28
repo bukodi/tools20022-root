@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.repository.GeneratedRepository;
-import com.tools20022.repository.dict.entity.AccountIdentification;
+import com.tools20022.repository.dict.entity.RTAccountIdentification;
 
 public class TestDummyRepo {
 
@@ -19,7 +19,7 @@ public class TestDummyRepo {
 		
 		System.out.println();
 		
-		System.out.println(AccountIdentification.repoType().attrIBAN.getDefinition().get());
+		System.out.println(RTAccountIdentification.repoType().attrIBAN.getDefinition().get());
 	}
 
 }

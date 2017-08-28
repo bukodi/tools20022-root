@@ -2,6 +2,7 @@ package com.tools20022.repogenerator;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
 import org.jboss.forge.roaster.model.source.AnnotationSource;
@@ -55,12 +56,25 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 
 	/*** Store intermediate generation results ***/ 
 	protected JavaResult<JavaClassSource> genRepoMain;
-
+	
 	@Override
 	public void accept(RawRepository repo, GenerationContext<RawRepository> ctx) {
 		this.repo = repo;
 		this.ctx = ctx;
 
+		// Count main types to generate
+		{
+			long start = System.currentTimeMillis();
+			AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
+			repo.listContent(repo.getRootObject(), true,  true).forEach(repoObj->{
+				JavaName javaName = getJavaName(repoObj);
+				if( javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null )
+					totalNumberOfMainTypesToGenerate.incrementAndGet();
+			});
+			ctx.setTotalNumberOfMainTypesToGenerate(totalNumberOfMainTypesToGenerate.get());
+			System.out.println( "Found " + totalNumberOfMainTypesToGenerate + " java sources to generate. ( Calculated in " + (System.currentTimeMillis()-start) + " msec )");
+		}
+		
 		// Create repo skeleton
 		{
 			JavaName repoName = JavaName.primaryType(basePackageName, mainClassSimpleName );
@@ -94,7 +108,7 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 		}
 	
 	}
-
+		
 	protected void implementDefaultInterfaces(JavaResult<JavaClassSource> gen, GeneratedMetamodelBean mmElem) {
 		if (mmElem instanceof MMRepositoryConcept) {
 			implementMMRepositoryConcept(gen, (MMRepositoryConcept) mmElem);

@@ -173,7 +173,6 @@ public class XMILoader {
 			System.err.println("Can't set value: " + mmAttr + " := " + value);
 			e.printStackTrace();
 		}
-
 	}
 
 	public RawRepository load(EPackage ecorePkg, EObject rootEObj) {
@@ -195,6 +194,14 @@ public class XMILoader {
 					continue;
 				EStructuralFeature eSF = mapping.eSFsBymmAttr.get(mmAttr);
 				Object value = eObj.eGet(eSF);
+
+				// This is bug workaround
+				if( value!= null && "name".equals(mmAttr.getName()) && value instanceof String && ((String)value).endsWith(".")) {
+					String name = (String) value;
+					value = name.substring(0, name.length()-1);
+					System.out.println("XMI model bug wokaround: name '" + name +"' trailing dot eliminated." );
+				}
+				
 				setAttributeValue(mmAttr, repoObj, value, repoObjsByEObj);
 			}
 		}

@@ -5,10 +5,11 @@ import java.io.UncheckedIOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
@@ -30,9 +31,14 @@ import org.jboss.forge.roaster.model.util.Formatter;
 
 public class GenerationContext<M> {
 
-	Set<JavaSource<?>> allSources = new LinkedHashSet<>();
+	Map<String,JavaSource<?>> unsavedSources = new LinkedHashMap<>();
 	private GeneratorFileManager fileManager;
 	private Properties formatterOptions;
+
+	protected int totalNumberOfMainTypesToGenerate;
+	protected int countOfGeneratedMainTypes;
+	protected long generationStarted = System.currentTimeMillis();
+	private boolean firstGeneratedFile = false;
 
 	public GenerationContext(Class<M> modelltype) {
 	}
@@ -91,31 +97,61 @@ public class GenerationContext<M> {
 	}
 
 	public <T extends JavaSource<?>> T createSourceFile(Class<T> sourceType, JavaName javaName) {
+		if ( ! firstGeneratedFile   ) {
+			firstGeneratedFile = true;
+			generationStarted = System.currentTimeMillis();
+		}
 		T src = Roaster.create(sourceType);
 		src.setPackage(javaName.getPackage());
 		src.setName(javaName.getSimpleName());
-		allSources.add(src);
+		unsavedSources.put( src.getQualifiedName(), src);
 		return src;
 	}
 
+	public void setTotalNumberOfMainTypesToGenerate(int numberOfFiles ) {
+		totalNumberOfMainTypesToGenerate = numberOfFiles;
+	}
+
+	public void saveSourceFile(JavaSource<?> src) {		
+		if( null == unsavedSources.remove(src.getQualifiedName()) ) {
+			throw new IllegalStateException("The " + src.getName() + " wasn't unsaved!");
+		}
+		try {
+			JavaFileObject jf = getFileManager().getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,
+					src.getQualifiedName(), Kind.SOURCE, null);
+			try (Writer w = jf.openWriter()) {
+//				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
+//				w.append(srcAsFormattedString);
+				w.append(src.toUnformattedString());
+			}
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
+		}
+		
+		countOfGeneratedMainTypes ++;
+		if( countOfGeneratedMainTypes % 100 == 0 ) {
+			System.out.print(  countOfGeneratedMainTypes + " of " + totalNumberOfMainTypesToGenerate + " Java files generated. ");
+			System.out.print( "( " + unsavedSources.size() + " unsaved files) ");
+			long elapsedTime = System.currentTimeMillis() - generationStarted;
+			System.out.print(" (" + (elapsedTime/1000) + " secs, ");
+			System.out.print("ETA: " + ((( elapsedTime* totalNumberOfMainTypesToGenerate / countOfGeneratedMainTypes) - elapsedTime) / 1000 ) + " secs )" );
+			System.out.println();
+		}
+		
+	}
+
+
+
 	public final void generate(M model, BiConsumer<M, GenerationContext<M>> generator) {
 		long start = System.currentTimeMillis();
+		generationStarted = System.currentTimeMillis();
 		generator.accept(model, this);
-		System.out.println("Generation time:" + (System.currentTimeMillis() - start) + " ms");
-		start = System.currentTimeMillis();
-		for (JavaSource<?> src : allSources) {
-			try {
-				JavaFileObject jf = getFileManager().getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,
-						src.getQualifiedName(), Kind.SOURCE, null);
-				try (Writer w = jf.openWriter()) {
-					String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
-					w.append(srcAsFormattedString);
-				}
-			} catch (IOException e) {
-				throw new UncheckedIOException(e);
-			}
+		
+		// Save the remaining unsaved sources
+		for (JavaSource<?> src : new HashSet<>( unsavedSources.values() )) {
+			saveSourceFile(src);
 		}
-		System.out.println("Save and format time:" + (System.currentTimeMillis() - start) + " ms");
+		System.out.println("Generation time:" + (System.currentTimeMillis() - start) + " ms");
 	}
 
 	private String toUnformattedString(CompilationUnit unit) {

@@ -35,7 +35,7 @@ import com.tools20022.generators.RoasterHelper;
 public class TestRoaster {
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void testCreateParseModify() {
 		String src;
 		{
@@ -57,6 +57,8 @@ public class TestRoaster {
 			System.out.println(javaSrc.toString());
 		}
 	}
+	
+	
 
 	@Test
 	@Ignore

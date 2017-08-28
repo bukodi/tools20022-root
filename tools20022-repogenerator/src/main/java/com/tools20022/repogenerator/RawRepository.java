@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
+import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.generators.JavaName;
 import com.tools20022.metamodel.MMRepository;
 
 public class RawRepository {
@@ -68,6 +71,52 @@ public class RawRepository {
 	public int getCountByType(MetamodelType<?> mmType) {
 		LinkedHashSet<GeneratedMetamodelBean> set = objectsByType.get(mmType);
 		return set == null ? 0 : set.size();
+	}
+
+	public Stream<? extends GeneratedMetamodelBean> listContent( GeneratedMetamodelBean container, boolean includeThis, boolean recursive ) {
+		Stream<? extends GeneratedMetamodelBean> subTreeStream;
+		if (recursive) {
+			subTreeStream = listContent( container,false, false).flatMap(c -> listContent(c, true, true));
+		} else {
+			// Collect direct content
+			subTreeStream = listDirectContent(container);
+		}
+
+		if (includeThis) {
+			subTreeStream = Stream.concat(Stream.of(container), subTreeStream);
+		}
+
+		return subTreeStream;
+		
+	}
+
+	private Stream<? extends GeneratedMetamodelBean> listDirectContent( GeneratedMetamodelBean mmContainer ) {
+		List<GeneratedMetamodelBean> ret = new ArrayList<>();
+		Stream<MetamodelAttribute<?, ?>> containerAttrStream = (Stream<MetamodelAttribute<?, ?>>) mmContainer.getMetamodel().getAllAttributes().stream().filter(mmAttr->mmAttr.isContainment());
+		
+		containerAttrStream.forEach(mmAttr->{
+			Object value = mmAttr.get(mmContainer);
+			if( value == null )
+				return;
+			if( value instanceof Optional<?>) {
+				if( ((Optional<?>)value).isPresent() ) {
+					value = ((Optional<?>)value).get();
+				} else {
+					return;
+				}
+			}
+			if( value instanceof List) {
+				for(Object elem : (List)value) {
+					if( elem instanceof GeneratedMetamodelBean )
+						ret.add((GeneratedMetamodelBean) elem);
+				}
+			} else if( value instanceof GeneratedMetamodelBean ) {
+				ret.add((GeneratedMetamodelBean) value);
+			} else {
+				throw new IllegalStateException( "Invalid value in " + mmContainer + " in attribute " + mmAttr );
+			}
+		});
+		return ret.stream();
 	}
 
 }
