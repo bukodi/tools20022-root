@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.jboss.forge.roaster.model.Visibility;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
@@ -127,6 +129,7 @@ public class GenerateSources {
 			}
 
 			// Create containment tree 
+			/* 
 			MMBusinessProcessCatalogue rtCatalogue = repo.getRootObject().getBusinessProcessCatalogue();
 			repo.listContent(rtCatalogue, false, false).forEachOrdered(rt->{
 				createRTClass(rt, null);
@@ -134,9 +137,9 @@ public class GenerateSources {
 			MMDataDictionary rtDict = repo.getRootObject().getDataDictionary();
 			repo.listContent(rtDict, false, false).forEachOrdered(rt->{
 				createRTClass(rt, null);
-			});
+			});*/
 
-			//createSingelonRTClass(repo.getRootObject()); 
+			createSingelonRTClass(repo.getRootObject()); 
 			//
 			// Collection<? extends GeneratedMetamodelBean> allObjects = repo.listObjects()
 			// .collect(Collectors.toCollection(LinkedHashSet::new));
@@ -191,9 +194,6 @@ public class GenerateSources {
 			// Constructor
 			MethodSource<JavaClassSource> srcConstr = src.addMethod().setConstructor(true);
 			srcConstr.setPrivate();
-
-			if( javaName.getSimpleName().equals(mainClassSimpleName))
-				return;
 
 			// Init atributes in constructor
 			String body = "";
@@ -265,6 +265,44 @@ public class GenerateSources {
 			return srcField;
 		}
 
+		int USE_LIST_BUILDER_ABOVE = 500;
+		JavaName createLongListBuilder(JavaClassSource addImportsTo, List<Object> elems ) { 
+			
+			JavaName firstBuilderName = null;
+			
+			for( int seq = 0; seq * USE_LIST_BUILDER_ABOVE < elems.size(); seq ++) {
+				JavaName javaName = JavaName.primaryType(addImportsTo.getPackage(), "ListBuilderFor" + addImportsTo.getName() + "_" + (seq<10?"0":"") + seq);				
+				JavaClassSource src = ctx.createSourceFile(JavaClassSource.class, javaName);
+				src.setVisibility(Visibility.PACKAGE_PRIVATE);
+				src.addImport(List.class);
+				
+				StringBuilder sb = new StringBuilder();
+				sb.append("  @SuppressWarnings(\"unchecked\")\n" );
+				sb.append("  static <T> List<T> addElems(List<T> list) {\n");
+				for( int i = 0; i < USE_LIST_BUILDER_ABOVE; i++ ) {
+					if( (seq * USE_LIST_BUILDER_ABOVE) + i >= elems.size() )
+						break;
+					Object elem = elems.get( (seq * USE_LIST_BUILDER_ABOVE) + i );
+					String valueAsSrc = convertAttributeValueToSource(addImportsTo, elem); 
+					sb.append("    list.add( (T) " + valueAsSrc + ");\n");					
+				}
+				
+				if( (seq+1) * USE_LIST_BUILDER_ABOVE < elems.size() ) {
+					// Add next ListBuilder
+					sb.append( "    ListBuilderFor" + addImportsTo.getName() + "_" + ((seq+1)<10?"0":"") + (seq+1) +".addElems(list);\n");
+				}
+				sb.append("    return list;\n");					
+				sb.append("  }\n");
+				
+				src.addMethod(sb.toString());
+				ctx.saveSourceFile(src);
+				if( firstBuilderName == null )
+					firstBuilderName = javaName;
+			}
+			
+			return firstBuilderName;
+		}
+		
 		private String convertAttributeValueToSource(JavaClassSource addImportsTo, Object value) {
 			if (value == null)
 				return null;
@@ -279,10 +317,18 @@ public class GenerateSources {
 				if (((List<?>) value).isEmpty())
 					return null;
 				addImportsTo.addImport(Arrays.class);
-				String src = Arrays.class.getSimpleName() + ".asList( ";
-				Stream<Object> elems = ((List<Object>) value).stream();
-				src += elems.map(e -> convertAttributeValueToSource(addImportsTo, e)).filter(s->s!=null).collect(Collectors.joining(",\n"));
-				src += ")";
+				List<Object> elems = ((List<Object>) value); 
+				String src;
+				if( elems.size() > USE_LIST_BUILDER_ABOVE ){
+					JavaName firstListBuilder = createLongListBuilder(addImportsTo, elems);
+					addImportsTo.addImport(ArrayList.class);
+					src = "" + firstListBuilder.getSimpleName() + ".addElems( new " + ArrayList.class.getSimpleName() + "<>() )";
+				} else {
+					src = Arrays.class.getSimpleName() + ".asList( ";
+					src += elems.stream().map(e -> convertAttributeValueToSource(addImportsTo, e)).filter(s->s!=null).collect(Collectors.joining(",\n"));					
+					src += ")";
+				}
+				
 				return src;
 			}
 
