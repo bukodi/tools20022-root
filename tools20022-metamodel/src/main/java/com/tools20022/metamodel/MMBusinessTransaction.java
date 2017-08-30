@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -21,17 +22,14 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;
-
-/**
- * particular solution that meets the communication requirements and the
- * interaction requirements of a particular BusinessProcess and BusinessArea
+import com.tools20022.metamodel.MMModelEntity;/**
+ * particular solution that meets the communication requirements and the interaction requirements of a particular BusinessProcess and BusinessArea
  */
 public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 
 	protected Supplier<MMBusinessProcess> businessProcessTrace_lazy;
-	protected List<MMParticipant> participant;
-	protected List<MMMessageTransmission> transmission;
+	protected Supplier<List<MMParticipant>> participant_lazy;
+	protected Supplier<List<MMMessageTransmission>> transmission_lazy;
 	protected Supplier<MMMessageTransportMode> messageTransportMode_lazy;
 	protected Supplier<List<MMBusinessTransaction>> subTransaction_lazy;
 	protected Supplier<MMBusinessTransaction> parentTransaction_lazy;
@@ -39,10 +37,10 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
 	protected String definition;
-	protected List<MMSemanticMarkup> semanticMarkup;
-	protected List<MMDoclet> doclet;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
+	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
-	protected List<MMConstraint> constraint;
+	protected Supplier<List<MMConstraint>> constraint_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -66,7 +64,6 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * the BusinessProcessTrace that is used to trace the BusinessTransaction
-	 * 
 	 * @see MMBusinessProcess#getBusinessProcessTrace()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "businessProcessTrace")
@@ -76,31 +73,28 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * the involvement of a BusinessRole in a BusinessTransaction
-	 * 
 	 * @see MMParticipant#getBusinessTransaction()
 	 */
 	@Opposite(bean = MMParticipant.class, attribute = "businessTransaction")
 	@Containment
 	public List<MMParticipant> getParticipant() {
-		return participant == null ? Collections.emptyList() : participant;
+		return participant_lazy == null ? Collections.emptyList()
+				: participant_lazy.get();
 	}
 
 	/**
-	 * he conveyance of information from a sending Participant in the context of
-	 * a BusinessTransaction
-	 * 
+	 * he conveyance of information from a sending Participant in the context of a BusinessTransaction
 	 * @see MMMessageTransmission#getBusinessTransaction()
 	 */
 	@Opposite(bean = MMMessageTransmission.class, attribute = "businessTransaction")
 	@Containment
 	public List<MMMessageTransmission> getTransmission() {
-		return transmission == null ? Collections.emptyList() : transmission;
+		return transmission_lazy == null ? Collections.emptyList()
+				: transmission_lazy.get();
 	}
 
 	/**
-	 * Provides a set of characterstics for a MessageTransportMode to have in
-	 * the context of a single BusinessTransaction
-	 * 
+	 * Provides a set of characterstics for a MessageTransportMode to have in the context of a single BusinessTransaction
 	 * @see MMMessageTransportMode#getBusinessTransaction()
 	 */
 	@Opposite(bean = MMMessageTransportMode.class, attribute = "businessTransaction")
@@ -109,22 +103,17 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	}
 
 	/**
-	 * decomposition of a BusinessTransaction into a number of sub transactions
-	 * which are BusinessTransactions in their own right.
-	 * 
+	 * decomposition of a BusinessTransaction into a number of sub transactions which are BusinessTransactions in their own right.
 	 * @see MMBusinessTransaction#getParentTransaction()
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "parentTransaction")
 	public List<MMBusinessTransaction> getSubTransaction() {
-		return subTransaction_lazy == null
-				? Collections.emptyList()
+		return subTransaction_lazy == null ? Collections.emptyList()
 				: subTransaction_lazy.get();
 	}
 
 	/**
-	 * assembly of a number of BusinessTransactions that together form a
-	 * BusinessTransaction
-	 * 
+	 * assembly of a number of BusinessTransactions that together form a BusinessTransaction
 	 * @see MMBusinessTransaction#getSubTransaction()
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "subTransaction")
@@ -134,9 +123,7 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	}
 
 	/**
-	 * all of the BusinessTransactionTraces that derive MessageChoreographies
-	 * from one BusinessTransaction
-	 * 
+	 * all of the BusinessTransactionTraces that derive MessageChoreographies from one BusinessTransaction
 	 * @see MMMessageChoreography#getBusinessTransactionTrace()
 	 */
 	@Opposite(bean = MMMessageChoreography.class, attribute = "businessTransactionTrace")
@@ -161,14 +148,14 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup == null
-				? Collections.emptyList()
-				: semanticMarkup;
+		return semanticMarkup_lazy == null ? Collections.emptyList()
+				: semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet == null ? Collections.emptyList() : doclet;
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
+				.get();
 	}
 
 	@Override
@@ -178,7 +165,8 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint == null ? Collections.emptyList() : constraint;
+		return constraint_lazy == null ? Collections.emptyList()
+				: constraint_lazy.get();
 	}
 
 	@Override
@@ -194,8 +182,7 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -209,5 +196,4 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

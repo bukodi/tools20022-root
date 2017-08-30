@@ -27,6 +27,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnumLiteral;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMRepositoryConcept;
 
 public class XMILoader {
 
@@ -133,8 +134,7 @@ public class XMILoader {
 				/*** Singular reference ***/
 				EObject refObj = (EObject) value;
 				GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(refObj);
-				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived()
-						&& !mmAttr.isContainment();
+				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived();
 				if (!isLazyReference) {
 					mmAttr.set(repoObj, refIsoObj);
 				} else {
@@ -148,8 +148,7 @@ public class XMILoader {
 					GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(x);
 					isoList.add(refIsoObj);
 				}
-				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived()
-						&& !mmAttr.isContainment();
+				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived();
 				if (!isLazyReference) {
 					mmAttr.set(repoObj, isoList);
 				} else {

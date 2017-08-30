@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -7,19 +8,16 @@ import com.tools20022.metamodel.MMModelEntity;
 import java.util.Optional;
 import com.tools20022.metamodel.MMSemanticMarkupElement;
 import java.util.List;
-import java.util.Collections;
-import com.tools20022.core.metamodel.Containment;
 import java.util.function.Supplier;
-
-/**
- * Enables modelers to markup elements of the Repository with semantic metadata.
- * Each semanticMarkup string is a TupleValue.
+import java.util.Collections;
+import com.tools20022.core.metamodel.Containment;/**
+ * Enables modelers to markup elements of the Repository with semantic metadata. Each semanticMarkup string is a TupleValue. 
  */
 public class MMSemanticMarkup implements MMModelEntity {
 
 	protected MMRepositoryConcept container;
 	protected String type;
-	protected List<MMSemanticMarkupElement> elements;
+	protected Supplier<List<MMSemanticMarkupElement>> elements_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
@@ -51,13 +49,13 @@ public class MMSemanticMarkup implements MMModelEntity {
 	 */
 	@Containment
 	public List<MMSemanticMarkupElement> getElements() {
-		return elements == null ? Collections.emptyList() : elements;
+		return elements_lazy == null ? Collections.emptyList() : elements_lazy
+				.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -71,5 +69,4 @@ public class MMSemanticMarkup implements MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

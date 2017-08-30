@@ -1,14 +1,13 @@
 package com.tools20022.metamodel.struct;
 
+
 import com.tools20022.metamodel.struct.MMTopLevelCatalogueEntry_;
 import com.tools20022.metamodel.MMBusinessProcess;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import java.util.List;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.metamodel.MMBusinessRole;
-import com.tools20022.metamodel.MMBusinessTransaction;
-
-public interface MMBusinessProcess_ extends MMTopLevelCatalogueEntry_ {
+import com.tools20022.metamodel.MMBusinessTransaction;public interface MMBusinessProcess_ extends MMTopLevelCatalogueEntry_ {
 
 	/**
 	 * specifies the BusinessProcess that is extending another BusinessProcess
@@ -30,5 +29,4 @@ public interface MMBusinessProcess_ extends MMTopLevelCatalogueEntry_ {
 	 * the BusinessRole that plays a role in BusinessProcess that owns it.
 	 */
 	MetamodelAttribute<MMBusinessProcess, List<MMBusinessRole>> businessRole = newAttribute();
-	MetamodelAttribute<MMBusinessProcess, List<MMBusinessTransaction>> businessProcessTrace = newAttribute();
-}
+	MetamodelAttribute<MMBusinessProcess, List<MMBusinessTransaction>> businessProcessTrace = newAttribute(); }

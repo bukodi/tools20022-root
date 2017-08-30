@@ -1,5 +1,6 @@
 package com.tools20022.metamodel.struct;
 
+
 import com.tools20022.metamodel.struct.MMTopLevelCatalogueEntry_;
 import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
@@ -9,9 +10,7 @@ import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.metamodel.MMEncoding;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
-
-public interface MMMessageSet_ extends MMTopLevelCatalogueEntry_ {
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;public interface MMMessageSet_ extends MMTopLevelCatalogueEntry_ {
 
 	/**
 	 * identification of the syntax for a specific EncodingScheme
@@ -27,9 +26,8 @@ public interface MMMessageSet_ extends MMTopLevelCatalogueEntry_ {
 	MetamodelAttribute<MMMessageSet, List<MMMessageDefinition>> messageDefinition = newAttribute();
 	/**
 	 * the generated syntax is derived from the syntax for a validEncoding
-	 * generatedSyntax-&gt;asBag() = validEncoding.syntax
+	 generatedSyntax-&gt;asBag() = validEncoding.syntax
 	 */
 	MetamodelConstraint<MMMessageSet> checkGeneratedSyntaxDerivation = newConstraint(b -> {
 		throw new RuntimeException("Not implemented!");
-	});
-}
+	}); }

@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMMessageTransportSystem;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -11,11 +12,8 @@ import com.tools20022.metamodel.MMTransportMessage;
 import java.util.List;
 import java.util.Collections;
 import com.tools20022.metamodel.MMAddress;
-import java.util.Optional;
-
-/**
- * addressable node on the MessageTransportSystem which is capable of sending
- * and receiving TransportMessages
+import java.util.Optional;/**
+ * addressable node on the MessageTransportSystem which is capable of sending and receiving TransportMessages
  */
 public class MMMessagingEndpoint implements MMModelEntity {
 
@@ -44,7 +42,6 @@ public class MMMessagingEndpoint implements MMModelEntity {
 
 	/**
 	 * the MessageTransportSystem that owns and uses this MessagingEndpoint
-	 * 
 	 * @see MMMessageTransportSystem#getEndpoint()
 	 */
 	@Opposite(bean = MMMessageTransportSystem.class, attribute = "endpoint")
@@ -55,31 +52,26 @@ public class MMMessagingEndpoint implements MMModelEntity {
 
 	/**
 	 * the TransportMessage that is received by the receiving MessagingEndpoint
-	 * 
 	 * @see MMTransportMessage#getReceiver()
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "receiver")
 	public List<MMTransportMessage> getReceivedMessage() {
-		return receivedMessage_lazy == null
-				? Collections.emptyList()
+		return receivedMessage_lazy == null ? Collections.emptyList()
 				: receivedMessage_lazy.get();
 	}
 
 	/**
 	 * the TransportMessage that is sent by the sending MessagingEndpoint
-	 * 
 	 * @see MMTransportMessage#getSender()
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "sender")
 	public List<MMTransportMessage> getSentMessage() {
-		return sentMessage_lazy == null
-				? Collections.emptyList()
+		return sentMessage_lazy == null ? Collections.emptyList()
 				: sentMessage_lazy.get();
 	}
 
 	/**
 	 * an Address used to identify the MessagingEndpoint
-	 * 
 	 * @see MMAddress#getEndpoint()
 	 */
 	@Opposite(bean = MMAddress.class, attribute = "endpoint")
@@ -90,8 +82,7 @@ public class MMMessagingEndpoint implements MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -105,5 +96,4 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

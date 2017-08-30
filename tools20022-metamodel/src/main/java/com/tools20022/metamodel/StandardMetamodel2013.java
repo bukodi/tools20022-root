@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.metamodel.MMAggregation;
@@ -100,9 +101,7 @@ import com.tools20022.metamodel.MMUserDefined;
 import com.tools20022.metamodel.MMIndustryMessageSet;
 import com.tools20022.metamodel.MMConvergenceDocumentation;
 import com.tools20022.metamodel.MMISO15022MessageSet;
-import com.tools20022.metamodel.MMSchemaType;
-
-public class StandardMetamodel2013 extends ReflectionBasedMetamodel {
+import com.tools20022.metamodel.MMSchemaType;public class StandardMetamodel2013 extends ReflectionBasedMetamodel {
 
 	private static final StandardMetamodel2013 metamodel = new StandardMetamodel2013();
 
@@ -159,5 +158,4 @@ public class StandardMetamodel2013 extends ReflectionBasedMetamodel {
 
 	public static StandardMetamodel2013 metamodel() {
 		return metamodel;
-	}
-}
+	} }

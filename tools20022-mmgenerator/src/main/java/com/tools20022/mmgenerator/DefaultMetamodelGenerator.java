@@ -371,8 +371,8 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		String getterReturnType = generateSourceType(mmAttr, srcMMType, true, true);
 		String fieldValueType = generateSourceType(mmAttr, srcMMType, true, false);
 
-		boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived() && !mmAttr.isContainment();
-		if (isLazyReference) {
+		boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived(); // && !mmAttr.isContainment();
+		if (mmAttr.getReferencedType() != null) {
 			srcMMType.addImport(Supplier.class);
 			fieldValueType = Supplier.class.getSimpleName() + "<" + fieldValueType + ">";
 		}

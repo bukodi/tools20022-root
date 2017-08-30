@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -11,11 +12,8 @@ import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMMessagingEndpoint;
-import java.util.Optional;
-
-/**
- * identification and efficient resolution to the location of a
- * MessagingEndpoint
+import java.util.Optional;/**
+ * identification and efficient resolution to the location of a MessagingEndpoint
  */
 public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 
@@ -42,19 +40,16 @@ public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 
 	/**
 	 * a BroadCastList to which this Address belongs
-	 * 
 	 * @see MMBroadcastList#getAddress()
 	 */
 	@Opposite(bean = MMBroadcastList.class, attribute = "address")
 	public List<MMBroadcastList> getBroadCastList() {
-		return broadCastList_lazy == null
-				? Collections.emptyList()
+		return broadCastList_lazy == null ? Collections.emptyList()
 				: broadCastList_lazy.get();
 	}
 
 	/**
 	 * specifies the MessagingEndpoint for the Address
-	 * 
 	 * @see MMMessagingEndpoint#getLocation()
 	 */
 	@Opposite(bean = MMMessagingEndpoint.class, attribute = "location")
@@ -64,8 +59,7 @@ public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -79,5 +73,4 @@ public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

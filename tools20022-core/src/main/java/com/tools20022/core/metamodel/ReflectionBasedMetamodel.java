@@ -473,7 +473,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				Field field = null;
 				for (Class<?> declClass = repoObj.getClass(); field == null && declClass != null;) {
 					try {
-						String fieldName = name + (getReferencedType() != null && !isDerived() && !isContainment() ? "_lazy":"");
+						String fieldName = name + (getReferencedType() != null && !isDerived() ? "_lazy":"");
 						field = declClass.getDeclaredField(fieldName);
 					} catch (NoSuchFieldException nsfe) {
 						// No problem, continue with superclass

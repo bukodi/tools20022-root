@@ -1,25 +1,24 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMDataDictionary;
+import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.Collections;
-import java.util.Optional;
-
-/**
+import java.util.Optional;/**
  * place where all RepositoryConcepts are stored
  */
 public class MMRepository implements MMModelEntity {
 
-	protected MMDataDictionary dataDictionary;
-	protected MMBusinessProcessCatalogue businessProcessCatalogue;
+	protected Supplier<MMDataDictionary> dataDictionary_lazy;
+	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
@@ -41,30 +40,27 @@ public class MMRepository implements MMModelEntity {
 
 	/**
 	 * the DataDictionary owned by the ISO 20022 Repository
-	 * 
 	 * @see MMDataDictionary#getRepository()
 	 */
 	@Opposite(bean = MMDataDictionary.class, attribute = "repository")
 	@Containment
 	public MMDataDictionary getDataDictionary() {
-		return dataDictionary;
+		return dataDictionary_lazy.get();
 	}
 
 	/**
 	 * the BusinessProcessCatalogue owned by the ISO 20022 Repository
-	 * 
 	 * @see MMBusinessProcessCatalogue#getRepository()
 	 */
 	@Opposite(bean = MMBusinessProcessCatalogue.class, attribute = "repository")
 	@Containment
 	public MMBusinessProcessCatalogue getBusinessProcessCatalogue() {
-		return businessProcessCatalogue;
+		return businessProcessCatalogue_lazy.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -78,5 +74,4 @@ public class MMRepository implements MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

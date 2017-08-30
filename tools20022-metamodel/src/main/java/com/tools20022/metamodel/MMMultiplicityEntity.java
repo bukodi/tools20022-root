@@ -1,10 +1,9 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import java.util.Optional;
-
-/**
+import java.util.Optional;/**
  * Any model entity where a multiplicity can be defined.
  */
 public interface MMMultiplicityEntity extends GeneratedMetamodelBean {
@@ -15,14 +14,11 @@ public interface MMMultiplicityEntity extends GeneratedMetamodelBean {
 	}
 
 	/**
-	 * MaxOccurs is an integer with a value greater than or equal to the lower
-	 * limit. If undefined an unlimited upper value is assumed.
+	 * MaxOccurs is an integer with a value greater than or equal to the lower limit. If undefined an unlimited upper value is assumed.
 	 */
 	public Optional<Integer> getMaxOccurs();
 
 	/**
-	 * MinOccurs is an integer with value greater than or equal to zero. If
-	 * undefined a value of zero is assumed.
+	 * MinOccurs is an integer with value greater than or equal to zero. If undefined a value of zero is assumed.
 	 */
-	public Optional<Integer> getMinOccurs();
-}
+	public Optional<Integer> getMinOccurs(); }

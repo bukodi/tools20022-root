@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -24,11 +25,8 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;
-
-/**
- * group of settings for the values for the MessageTransportCharacteristics
- * properties
+import com.tools20022.metamodel.MMModelEntity;/**
+ * group of settings for the values for the MessageTransportCharacteristics properties
  */
 public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 
@@ -50,10 +48,10 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
 	protected String definition;
-	protected List<MMSemanticMarkup> semanticMarkup;
-	protected List<MMDoclet> doclet;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
+	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
-	protected List<MMConstraint> constraint;
+	protected Supplier<List<MMConstraint>> constraint_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -76,77 +74,63 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	}
 
 	/**
-	 * the maximum duration of time within which a TransportMessage must be
-	 * delivered
+	 * the maximum duration of time within which a TransportMessage must be delivered
 	 */
 	public String getBoundedCommunicationDelay() {
 		return boundedCommunicationDelay;
 	}
 
 	/**
-	 * clocks must maintain a maximum (inclusive) variance from UTC for the
-	 * supported MessageTransportMode
+	 * clocks must maintain a maximum (inclusive) variance from UTC for the supported MessageTransportMode
 	 */
 	public String getMaximumClockVariation() {
 		return maximumClockVariation;
 	}
 
 	/**
-	 * the maximum size of a TransportMessage in kilobytes (any positive integer
-	 * greater than zero).
+	 * the maximum size of a TransportMessage in kilobytes (any positive integer greater than zero).
 	 */
 	public Integer getMaximumMessageSize() {
 		return maximumMessageSize;
 	}
 
 	/**
-	 * the MessageDeliveryOrder is relaxed by a rolling window of time in which
-	 * the Transport Messages may be delivered out of order whereby for each
-	 * TransportMessage delivered it defines the maximum duration of time it may
-	 * be out of sequence within
+	 * the MessageDeliveryOrder is relaxed by a rolling window of time in which the Transport Messages may be delivered out of order whereby for each TransportMessage delivered it defines the maximum duration of time it may be out of sequence within
 	 */
 	public String getMessageDeliveryWindow() {
 		return messageDeliveryWindow;
 	}
 
 	/**
-	 * the Choreography is relaxed by a rolling window of time in which the
-	 * Business Messages may be sent out of order whereby for each Business
-	 * Message sent it defines the maximum duration of time it may be out of
-	 * sequence with
+	 * the Choreography is relaxed by a rolling window of time in which the Business Messages may be sent out of order whereby for each Business Message sent it defines the maximum duration of time it may be out of sequence with
 	 */
 	public String getMessageSendingWindow() {
 		return messageSendingWindow;
 	}
 
 	/**
-	 * the degree to which the sending MessagingEndpoint is assured that a
-	 * TransportMessage will be delivered
+	 * the degree to which the sending MessagingEndpoint is assured that a TransportMessage will be delivered
 	 */
 	public MMDeliveryAssurance getDeliveryAssurance() {
 		return deliveryAssurance;
 	}
 
 	/**
-	 * whether the MessageTransportSystem safely retains a TransportMessage
-	 * until it has been received by the destination MessagingEndpoint
+	 * whether the MessageTransportSystem safely retains a TransportMessage until it has been received by the destination MessagingEndpoint
 	 */
 	public MMDurability getDurability() {
 		return durability;
 	}
 
 	/**
-	 * specifies how receiving MessagingEndpoints may be addressed in a
-	 * TransportMessage
+	 * specifies how receiving MessagingEndpoints may be addressed in a TransportMessage
 	 */
 	public MMMessageCasting getMessageCasting() {
 		return messageCasting;
 	}
 
 	/**
-	 * indicates to what extent Transport Messages from a sending
-	 * MessagingEndpoint arrive in the order in which they were sent at the
-	 * receiving MessagingEndpoints
+	 * indicates to what extent Transport Messages from a sending MessagingEndpoint arrive in the order in which they were sent at the receiving MessagingEndpoints
 	 */
 	public MMMessageDeliveryOrder getMessageDeliveryOrder() {
 		return messageDeliveryOrder;
@@ -160,50 +144,41 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	}
 
 	/**
-	 * specifies whether the MessageTransportSystem validates the
-	 * MessageInstance with respect to SyntaxMessageScheme, Constraints, the
-	 * MarketPractices, and the MessageChoreography
+	 * specifies whether the MessageTransportSystem validates the MessageInstance with respect to SyntaxMessageScheme, Constraints, the MarketPractices, and the MessageChoreography
 	 */
 	public MMMessageValidationOnOff getMessageValidationOnOff() {
 		return messageValidationOnOff;
 	}
 
 	/**
-	 * specifies how the MessageTransport System acts upon the results of
-	 * MessageValidationOnOff
+	 * specifies how the MessageTransport System acts upon the results of MessageValidationOnOff
 	 */
 	public MMMessageValidationResults getMessageValidationResults() {
 		return messageValidationResults;
 	}
 
 	/**
-	 * indicates whether a receiving MessagingEndpoint blocks the sending and
-	 * receipt of other Transport Messages until it sends a response to this
-	 * TransportMessage
+	 * indicates whether a receiving MessagingEndpoint blocks the sending and receipt of other Transport Messages until it sends a response to this TransportMessage
+
 	 */
 	public MMReceiverAsynchronicity getReceiverAsynchronicity() {
 		return receiverAsynchronicity;
 	}
 
 	/**
-	 * indicates whether a sending MessagingEndpoint blocks after sending a
-	 * TransportMessage to the MessageTransportSystem while waiting for a
-	 * response from a MessagingEndpoint
+	 * indicates whether a sending MessagingEndpoint blocks after sending a TransportMessage to the MessageTransportSystem while waiting for a response from a MessagingEndpoint
 	 */
 	public MMSenderAsynchronicity getSenderAsynchronicity() {
 		return senderAsynchronicity;
 	}
 
 	/**
-	 * specifies the BusinessTransaction for which a set of MessageTransportMode
-	 * characteristics apply
-	 * 
+	 * specifies the BusinessTransaction for which a set of MessageTransportMode characteristics apply
 	 * @see MMBusinessTransaction#getMessageTransportMode()
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "messageTransportMode")
 	public List<MMBusinessTransaction> getBusinessTransaction() {
-		return businessTransaction_lazy == null
-				? Collections.emptyList()
+		return businessTransaction_lazy == null ? Collections.emptyList()
 				: businessTransaction_lazy.get();
 	}
 
@@ -224,14 +199,14 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup == null
-				? Collections.emptyList()
-				: semanticMarkup;
+		return semanticMarkup_lazy == null ? Collections.emptyList()
+				: semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet == null ? Collections.emptyList() : doclet;
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
+				.get();
 	}
 
 	@Override
@@ -241,7 +216,8 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint == null ? Collections.emptyList() : constraint;
+		return constraint_lazy == null ? Collections.emptyList()
+				: constraint_lazy.get();
 	}
 
 	@Override
@@ -257,8 +233,7 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -272,5 +247,4 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -11,9 +12,7 @@ import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMSyntax;
-import java.util.Optional;
-
-/**
+import java.util.Optional;/**
  * A particular set of encoding rules for a MessageInstance.
  */
 public class MMEncoding implements OrphanMetamodelType, MMModelEntity {
@@ -41,19 +40,16 @@ public class MMEncoding implements OrphanMetamodelType, MMModelEntity {
 
 	/**
 	 * The MessageSets for which this Encoding is a valid ISO 20022 encoding
-	 * 
 	 * @see MMMessageSet#getValidEncoding()
 	 */
 	@Opposite(bean = MMMessageSet.class, attribute = "validEncoding")
 	public List<MMMessageSet> getMessageSet() {
-		return messageSet_lazy == null
-				? Collections.emptyList()
+		return messageSet_lazy == null ? Collections.emptyList()
 				: messageSet_lazy.get();
 	}
 
 	/**
 	 * The source syntax on which an encoding applies
-	 * 
 	 * @see MMSyntax#getPossibleEncodings()
 	 */
 	@Opposite(bean = MMSyntax.class, attribute = "possibleEncodings")
@@ -63,8 +59,7 @@ public class MMEncoding implements OrphanMetamodelType, MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -78,5 +73,4 @@ public class MMEncoding implements OrphanMetamodelType, MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

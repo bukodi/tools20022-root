@@ -1,5 +1,6 @@
 package com.tools20022.metamodel.struct;
 
+
 import com.tools20022.metamodel.struct.MMTopLevelDictionaryEntry_;
 import com.tools20022.metamodel.struct.MMBusinessElementType_;
 import com.tools20022.metamodel.struct.MMBusinessConcept_;
@@ -13,13 +14,7 @@ import com.tools20022.metamodel.MMMessageComponentType;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMMessageElement;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
-
-public interface MMBusinessComponent_
-		extends
-			MMTopLevelDictionaryEntry_,
-			MMBusinessElementType_,
-			MMBusinessConcept_ {
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;public interface MMBusinessComponent_ extends MMTopLevelDictionaryEntry_, MMBusinessElementType_, MMBusinessConcept_ {
 
 	/**
 	 * The BusinessComponents that specialize this BusinessComponent.
@@ -38,8 +33,7 @@ public interface MMBusinessComponent_
 	 */
 	MetamodelAttribute<MMBusinessComponent, List<MMMessageComponentType>> derivationComponent = newAttribute();
 	/**
-	 * Describes the semantics that determine how the BusinessComponent may
-	 * participate in the BusinessAssociation.
+	 * Describes the semantics that determine how the BusinessComponent may participate in the BusinessAssociation.
 	 */
 	MetamodelAttribute<MMBusinessComponent, List<MMBusinessAssociationEnd>> associationDomain = newAttribute();
 	/**
@@ -47,11 +41,9 @@ public interface MMBusinessComponent_
 	 */
 	MetamodelAttribute<MMBusinessComponent, List<MMMessageElement>> derivationElement = newAttribute();
 	/**
-	 * All BusinessElements contained by this BusinessComponents have different
-	 * names element-&gt;forAll(el1,el2 : BusinessElement| el1 &lt;&gt; el2
-	 * implies el1.name &lt;&gt; el2.name)
+	 * All BusinessElements contained by this BusinessComponents have different names
+	element-&gt;forAll(el1,el2 : BusinessElement| el1 &lt;&gt; el2 implies el1.name &lt;&gt; el2.name)
 	 */
 	MetamodelConstraint<MMBusinessComponent> checkBusinessElementsHaveUniqueNames = newConstraint(b -> {
 		throw new RuntimeException("Not implemented!");
-	});
-}
+	}); }

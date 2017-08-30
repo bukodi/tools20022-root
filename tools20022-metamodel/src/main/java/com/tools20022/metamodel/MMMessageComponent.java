@@ -1,17 +1,18 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMMessageElementContainer;
 import com.tools20022.metamodel.MMXor;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.metamodel.MMMessageElement;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
-import java.util.function.Supplier;
 import com.tools20022.metamodel.constraints.DeriveMMMessageComponent_isTechnical;
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.metamodel.MMBusinessComponent;
@@ -21,25 +22,22 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;
-
-/**
- * re-usable Dictionary Item that is a building block for assembling
- * MessageDefinitions, composed of a sequence of MessageElements
+import com.tools20022.metamodel.MMModelEntity;/**
+ * re-usable Dictionary Item that is a building block for assembling MessageDefinitions, composed of a sequence of MessageElements
  */
 public class MMMessageComponent implements MMMessageElementContainer {
 
-	protected List<MMXor> xors;
-	protected List<MMMessageElement> messageElement;
+	protected Supplier<List<MMXor>> xors_lazy;
+	protected Supplier<List<MMMessageElement>> messageElement_lazy;
 	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlock_lazy;
 	protected Supplier<MMBusinessComponent> trace_lazy;
 	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
 	protected String definition;
-	protected List<MMSemanticMarkup> semanticMarkup;
-	protected List<MMDoclet> doclet;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
+	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
-	protected List<MMConstraint> constraint;
+	protected Supplier<List<MMConstraint>> constraint_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -63,26 +61,23 @@ public class MMMessageComponent implements MMMessageElementContainer {
 
 	/**
 	 * XORs applied to a selection of the elements of the Message Component.
-	 * 
 	 * @see MMXor#getMessageComponent()
 	 */
 	@Opposite(bean = MMXor.class, attribute = "messageComponent")
 	@Containment
 	public List<MMXor> getXors() {
-		return xors == null ? Collections.emptyList() : xors;
+		return xors_lazy == null ? Collections.emptyList() : xors_lazy.get();
 	}
 
 	@Override
 	public List<MMMessageElement> getMessageElement() {
-		return messageElement == null
-				? Collections.emptyList()
-				: messageElement;
+		return messageElement_lazy == null ? Collections.emptyList()
+				: messageElement_lazy.get();
 	}
 
 	@Override
 	public List<MMMessageBuildingBlock> getMessageBuildingBlock() {
-		return messageBuildingBlock_lazy == null
-				? Collections.emptyList()
+		return messageBuildingBlock_lazy == null ? Collections.emptyList()
 				: messageBuildingBlock_lazy.get();
 	}
 
@@ -115,14 +110,14 @@ public class MMMessageComponent implements MMMessageElementContainer {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup == null
-				? Collections.emptyList()
-				: semanticMarkup;
+		return semanticMarkup_lazy == null ? Collections.emptyList()
+				: semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet == null ? Collections.emptyList() : doclet;
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
+				.get();
 	}
 
 	@Override
@@ -132,7 +127,8 @@ public class MMMessageComponent implements MMMessageElementContainer {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint == null ? Collections.emptyList() : constraint;
+		return constraint_lazy == null ? Collections.emptyList()
+				: constraint_lazy.get();
 	}
 
 	@Override
@@ -148,8 +144,7 @@ public class MMMessageComponent implements MMMessageElementContainer {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -163,5 +158,4 @@ public class MMMessageComponent implements MMMessageElementContainer {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

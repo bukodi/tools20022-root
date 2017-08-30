@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -11,11 +12,8 @@ import com.tools20022.metamodel.MMTransportMessage;
 import java.util.List;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
-import java.util.Optional;
-
-/**
- * instance of MessageDefinition, containing a set of structured information
- * exchanged between BusinessRoles, in the scope of a BusinessTransaction
+import java.util.Optional;/**
+ * instance of MessageDefinition, containing a set of structured information exchanged between BusinessRoles, in the scope of a BusinessTransaction
  */
 public class MMMessageInstance implements OrphanMetamodelType, MMModelEntity {
 
@@ -49,20 +47,17 @@ public class MMMessageInstance implements OrphanMetamodelType, MMModelEntity {
 
 	/**
 	 * the TransportMessage that contains the MessageInstance
-	 * 
 	 * @see MMTransportMessage#getMessageInstance()
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "messageInstance")
 	public List<MMTransportMessage> getTransportMessage() {
-		return transportMessage_lazy == null
-				? Collections.emptyList()
+		return transportMessage_lazy == null ? Collections.emptyList()
 				: transportMessage_lazy.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -76,5 +71,4 @@ public class MMMessageInstance implements OrphanMetamodelType, MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

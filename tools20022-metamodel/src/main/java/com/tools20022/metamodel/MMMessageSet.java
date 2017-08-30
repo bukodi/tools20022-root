@@ -1,16 +1,17 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMSyntax;
 import java.util.List;
+import java.util.function.Supplier;
 import com.tools20022.metamodel.constraints.DeriveMMMessageSet_generatedSyntax;
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMEncoding;
-import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.metamodel.MMMessageDefinition;
 import java.util.Optional;
@@ -19,9 +20,7 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;
-
-/**
+import com.tools20022.metamodel.MMModelEntity;/**
  * A set of MessageDefinitions
  */
 public class MMMessageSet implements MMTopLevelCatalogueEntry {
@@ -31,10 +30,10 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
 	protected String definition;
-	protected List<MMSemanticMarkup> semanticMarkup;
-	protected List<MMDoclet> doclet;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
+	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
-	protected List<MMConstraint> constraint;
+	protected Supplier<List<MMConstraint>> constraint_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -58,7 +57,6 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * identification of the syntax for a specific EncodingScheme
-	 * 
 	 * @see MMSyntax#getGeneratedFor()
 	 */
 	@Derived
@@ -69,25 +67,21 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * the set of encodings considered ISO 20022 valid for this MessageSet
-	 * 
 	 * @see MMEncoding#getMessageSet()
 	 */
 	@Opposite(bean = MMEncoding.class, attribute = "messageSet")
 	public List<MMEncoding> getValidEncoding() {
-		return validEncoding_lazy == null
-				? Collections.emptyList()
+		return validEncoding_lazy == null ? Collections.emptyList()
 				: validEncoding_lazy.get();
 	}
 
 	/**
 	 * the MessageDefinition that belongs to the MessageSet
-	 * 
 	 * @see MMMessageDefinition#getMessageSet()
 	 */
 	@Opposite(bean = MMMessageDefinition.class, attribute = "messageSet")
 	public List<MMMessageDefinition> getMessageDefinition() {
-		return messageDefinition_lazy == null
-				? Collections.emptyList()
+		return messageDefinition_lazy == null ? Collections.emptyList()
 				: messageDefinition_lazy.get();
 	}
 
@@ -108,14 +102,14 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup == null
-				? Collections.emptyList()
-				: semanticMarkup;
+		return semanticMarkup_lazy == null ? Collections.emptyList()
+				: semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet == null ? Collections.emptyList() : doclet;
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
+				.get();
 	}
 
 	@Override
@@ -125,7 +119,8 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint == null ? Collections.emptyList() : constraint;
+		return constraint_lazy == null ? Collections.emptyList()
+				: constraint_lazy.get();
 	}
 
 	@Override
@@ -141,8 +136,7 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -156,5 +150,4 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -18,13 +19,8 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;
-
-/**
- * unrealized definition of the business activities undertaken by BusinessRoles
- * within a BusinessArea whereby each BusinessProcess fulfils one type of
- * business activity and whereby a BusinessProcess may include and extend other
- * BusinessProcesses
+import com.tools20022.metamodel.MMModelEntity;/**
+ * unrealized definition of the business activities undertaken by BusinessRoles within a BusinessArea whereby each BusinessProcess fulfils one type of business activity and whereby a BusinessProcess may include and extend other BusinessProcesses
  */
 public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
@@ -32,15 +28,15 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	protected Supplier<List<MMBusinessProcess>> extended_lazy;
 	protected Supplier<List<MMBusinessProcess>> included_lazy;
 	protected Supplier<List<MMBusinessProcess>> includer_lazy;
-	protected List<MMBusinessRole> businessRole;
+	protected Supplier<List<MMBusinessRole>> businessRole_lazy;
 	protected Supplier<List<MMBusinessTransaction>> businessProcessTrace_lazy;
 	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
 	protected String definition;
-	protected List<MMSemanticMarkup> semanticMarkup;
-	protected List<MMDoclet> doclet;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
+	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
-	protected List<MMConstraint> constraint;
+	protected Supplier<List<MMConstraint>> constraint_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -64,7 +60,6 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * specifies the BusinessProcess that is extending another BusinessProcess
-	 * 
 	 * @see MMBusinessProcess#getExtended()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "extended")
@@ -75,7 +70,6 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * specifies the BusinessProcess that is extended by another BusinessProcess
-	 * 
 	 * @see MMBusinessProcess#getExtender()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "extender")
@@ -86,7 +80,6 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * specifies the BusinessProcess that is included by another BusinessProcess
-	 * 
 	 * @see MMBusinessProcess#getIncluder()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "includer")
@@ -97,7 +90,6 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * specifies the BusinessProcess that is incuding another BusinessProcess
-	 * 
 	 * @see MMBusinessProcess#getIncluded()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "included")
@@ -108,13 +100,13 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * the BusinessRole that plays a role in BusinessProcess that owns it.
-	 * 
 	 * @see MMBusinessRole#getBusinessProcess()
 	 */
 	@Opposite(bean = MMBusinessRole.class, attribute = "businessProcess")
 	@Containment
 	public List<MMBusinessRole> getBusinessRole() {
-		return businessRole == null ? Collections.emptyList() : businessRole;
+		return businessRole_lazy == null ? Collections.emptyList()
+				: businessRole_lazy.get();
 	}
 
 	/**
@@ -122,8 +114,7 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "businessProcessTrace")
 	public List<MMBusinessTransaction> getBusinessProcessTrace() {
-		return businessProcessTrace_lazy == null
-				? Collections.emptyList()
+		return businessProcessTrace_lazy == null ? Collections.emptyList()
 				: businessProcessTrace_lazy.get();
 	}
 
@@ -144,14 +135,14 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup == null
-				? Collections.emptyList()
-				: semanticMarkup;
+		return semanticMarkup_lazy == null ? Collections.emptyList()
+				: semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet == null ? Collections.emptyList() : doclet;
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
+				.get();
 	}
 
 	@Override
@@ -161,7 +152,8 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint == null ? Collections.emptyList() : constraint;
+		return constraint_lazy == null ? Collections.emptyList()
+				: constraint_lazy.get();
 	}
 
 	@Override
@@ -177,8 +169,7 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -192,5 +183,4 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

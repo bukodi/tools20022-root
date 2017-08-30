@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -11,9 +12,7 @@ import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.MMMessageInstance;
 import java.util.List;
 import java.util.Collections;
-import java.util.Optional;
-
-/**
+import java.util.Optional;/**
  * document that is an instance of the MessageTransportSystem message schema
  */
 public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
@@ -42,7 +41,6 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 
 	/**
 	 * the sending MessagingEndpoint of a TransportMessage
-	 * 
 	 * @see MMMessagingEndpoint#getSentMessage()
 	 */
 	@Opposite(bean = MMMessagingEndpoint.class, attribute = "sentMessage")
@@ -52,7 +50,6 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 
 	/**
 	 * the MessageInstance that is part of the TransportMessage
-	 * 
 	 * @see MMMessageInstance#getTransportMessage()
 	 */
 	@Opposite(bean = MMMessageInstance.class, attribute = "transportMessage")
@@ -62,7 +59,6 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 
 	/**
 	 * the receiving MessagingEndpoint in a TransportMessage
-	 * 
 	 * @see MMMessagingEndpoint#getReceivedMessage()
 	 */
 	@Opposite(bean = MMMessagingEndpoint.class, attribute = "receivedMessage")
@@ -73,8 +69,7 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -88,5 +83,4 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

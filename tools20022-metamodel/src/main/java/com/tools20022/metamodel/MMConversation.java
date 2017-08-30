@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -8,9 +9,7 @@ import com.tools20022.metamodel.MMModelEntity;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.Collections;
-import java.util.Optional;
-
-/**
+import java.util.Optional;/**
  * exchange of one or more MessageInstances amongst MessagingEndpoints
  */
 public class MMConversation implements OrphanMetamodelType, MMModelEntity {
@@ -36,8 +35,7 @@ public class MMConversation implements OrphanMetamodelType, MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -51,5 +49,4 @@ public class MMConversation implements OrphanMetamodelType, MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

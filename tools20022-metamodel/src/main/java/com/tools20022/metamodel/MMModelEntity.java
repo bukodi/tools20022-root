@@ -1,16 +1,15 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.MMModelEntity;
 import java.util.List;
 import java.util.function.Supplier;
 import com.tools20022.core.metamodel.Opposite;
-import java.util.Optional;
-
-/**
- * Abstract definition of a model entity. The common meta class which is the
- * generalisation of all Meta Classes.
+import java.util.Optional;/**
+ * Abstract definition of a model entity.
+The common meta class which is the generalisation of all Meta Classes.
  */
 public interface MMModelEntity extends GeneratedMetamodelBean {
 
@@ -21,8 +20,7 @@ public interface MMModelEntity extends GeneratedMetamodelBean {
 
 	/**
 	 * List of next versions of a ModelEntity that stem from this ModelEntity.
-	 * Allows version control management.
-	 * 
+	Allows version control management.
 	 * @see MMModelEntity#getPreviousVersion()
 	 */
 	@Opposite(bean = MMModelEntity.class, attribute = "previousVersion")
@@ -30,8 +28,7 @@ public interface MMModelEntity extends GeneratedMetamodelBean {
 
 	/**
 	 * Previous version of a ModelEntity that this ModelEntity stems from.
-	 * Allows version control management.
-	 * 
+	Allows version control management.
 	 * @see MMModelEntity#getNextVersions()
 	 */
 	@Opposite(bean = MMModelEntity.class, attribute = "nextVersions")
@@ -40,5 +37,4 @@ public interface MMModelEntity extends GeneratedMetamodelBean {
 	/**
 	 * Uniquely identifies the RepositoryConcept
 	 */
-	public Optional<String> getObjectIdentifier();
-}
+	public Optional<String> getObjectIdentifier(); }

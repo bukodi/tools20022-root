@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -10,11 +11,8 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.Collections;
 import com.tools20022.core.metamodel.Opposite;
-import java.util.Optional;
-
-/**
- * set of references to MessagingEndpoints (identified by their Address), that
- * is used for message broadcasting
+import java.util.Optional;/**
+ * set of references to MessagingEndpoints (identified by their Address), that is used for message broadcasting
  */
 public class MMBroadcastList implements OrphanMetamodelType, MMModelEntity {
 
@@ -40,7 +38,6 @@ public class MMBroadcastList implements OrphanMetamodelType, MMModelEntity {
 
 	/**
 	 * a BroadCastList entry using an Address
-	 * 
 	 * @see MMAddress#getBroadCastList()
 	 */
 	@Opposite(bean = MMAddress.class, attribute = "broadCastList")
@@ -51,8 +48,7 @@ public class MMBroadcastList implements OrphanMetamodelType, MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -66,5 +62,4 @@ public class MMBroadcastList implements OrphanMetamodelType, MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

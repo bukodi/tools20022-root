@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -22,11 +23,8 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;
-
-/**
- * The context of a BusinessAssociation must be the type of its opposite and
- * vice-versa
+import com.tools20022.metamodel.MMModelEntity;/**
+ * The context of a BusinessAssociation must be the type of its opposite and vice-versa
  */
 public class MMBusinessAssociationEnd implements MMBusinessElement {
 
@@ -38,10 +36,10 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 	protected Supplier<MMBusinessComponent> elementContext_lazy;
 	protected String name;
 	protected String definition;
-	protected List<MMSemanticMarkup> semanticMarkup;
-	protected List<MMDoclet> doclet;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
+	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
-	protected List<MMConstraint> constraint;
+	protected Supplier<List<MMConstraint>> constraint_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -66,8 +64,7 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 	}
 
 	/**
-	 * Opposite end of a bi-directional relationship between 2
-	 * BusinessComponents.
+	 * Opposite end of a bi-directional relationship between 2 BusinessComponents.
 	 */
 	public Optional<MMBusinessAssociationEnd> getOpposite() {
 		return opposite_lazy == null ? Optional.empty() : Optional
@@ -75,18 +72,14 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 	}
 
 	/**
-	 * Expresses the strength of the semantic relationship between two
-	 * BusinessComponents.
+	 * Expresses the strength of the semantic relationship between two BusinessComponents.
 	 */
 	public MMAggregation getAggregation() {
 		return aggregation;
 	}
 
 	/**
-	 * Specifies that a BusinessAssociationEnd always has a complex content
-	 * model and is therefore always typed by a BusinessComponent, contrarily to
-	 * a BusinessAttribute which may be typed by a data type.
-	 * 
+	 * Specifies that a BusinessAssociationEnd always has a complex content model and is therefore always typed by a BusinessComponent, contrarily to a BusinessAttribute which may be typed by a data type.
 	 * @see MMBusinessComponent#getAssociationDomain()
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "associationDomain")
@@ -101,8 +94,7 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 
 	@Override
 	public List<MMMessageElement> getDerivation() {
-		return derivation_lazy == null
-				? Collections.emptyList()
+		return derivation_lazy == null ? Collections.emptyList()
 				: derivation_lazy.get();
 	}
 
@@ -136,14 +128,14 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup == null
-				? Collections.emptyList()
-				: semanticMarkup;
+		return semanticMarkup_lazy == null ? Collections.emptyList()
+				: semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet == null ? Collections.emptyList() : doclet;
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
+				.get();
 	}
 
 	@Override
@@ -153,7 +145,8 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint == null ? Collections.emptyList() : constraint;
+		return constraint_lazy == null ? Collections.emptyList()
+				: constraint_lazy.get();
 	}
 
 	@Override
@@ -169,8 +162,7 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -194,5 +186,4 @@ public class MMBusinessAssociationEnd implements MMBusinessElement {
 	@Override
 	public Optional<Integer> getMinOccurs() {
 		return minOccurs == null ? Optional.empty() : Optional.of(minOccurs);
-	}
-}
+	} }

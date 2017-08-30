@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMMessageTransmission;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -10,9 +11,7 @@ import com.tools20022.core.metamodel.Container;
 import com.tools20022.metamodel.MMParticipant;
 import java.util.List;
 import java.util.Collections;
-import java.util.Optional;
-
-/**
+import java.util.Optional;/**
  * the handling of a stimulus passed from a sender instance
  */
 public class MMReceive implements MMModelEntity {
@@ -40,7 +39,6 @@ public class MMReceive implements MMModelEntity {
 
 	/**
 	 * the stimulus handled as part of the Receive
-	 * 
 	 * @see MMMessageTransmission#getReceive()
 	 */
 	@Opposite(bean = MMMessageTransmission.class, attribute = "receive")
@@ -51,7 +49,6 @@ public class MMReceive implements MMModelEntity {
 
 	/**
 	 * the object handling a stimulus passed from the sender
-	 * 
 	 * @see MMParticipant#getReceives()
 	 */
 	@Opposite(bean = MMParticipant.class, attribute = "receives")
@@ -61,8 +58,7 @@ public class MMReceive implements MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -76,5 +72,4 @@ public class MMReceive implements MMModelEntity {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

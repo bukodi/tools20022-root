@@ -5,10 +5,12 @@ import java.io.UncheckedIOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
@@ -53,6 +55,10 @@ public class GenerationContext<M> {
 			formatterOptions.setProperty(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, CompilerOptions.VERSION_1_8);
 			// ROASTER-96: Add a blank line after imports. "1" is equivalent to TRUE in the
 			// formatter XML file
+			formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "240");
+			formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, "tab");
+			formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE, "4");
+//			formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_JOIN_WRAPPED_LINES, "false");
 			formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_BLANK_LINES_AFTER_IMPORTS, "1");
 		}
 		return formatterOptions;
@@ -111,6 +117,8 @@ public class GenerationContext<M> {
 	public void setTotalNumberOfMainTypesToGenerate(int numberOfFiles ) {
 		totalNumberOfMainTypesToGenerate = numberOfFiles;
 	}
+	
+	private long lastPrinted = System.currentTimeMillis();
 
 	public void saveSourceFile(JavaSource<?> src) {		
 		if( null == unsavedSources.remove(src.getQualifiedName()) ) {
@@ -120,22 +128,23 @@ public class GenerationContext<M> {
 			JavaFileObject jf = getFileManager().getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,
 					src.getQualifiedName(), Kind.SOURCE, null);
 			try (Writer w = jf.openWriter()) {
-//				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
-//				w.append(srcAsFormattedString);
-				w.append(src.toUnformattedString());
+				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
+				w.append(srcAsFormattedString);
+//				w.append(src.toUnformattedString());
 			}
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
 		}
 		
 		countOfGeneratedMainTypes ++;
-		if( countOfGeneratedMainTypes % 100 == 0 ) {
+		if( System.currentTimeMillis() - lastPrinted > 10 * 1000 ) {
 			System.out.print(  countOfGeneratedMainTypes + " of " + totalNumberOfMainTypesToGenerate + " Java files generated. ");
 			System.out.print( "( " + unsavedSources.size() + " unsaved files) ");
 			long elapsedTime = System.currentTimeMillis() - generationStarted;
 			System.out.print(" (" + (elapsedTime/1000) + " secs, ");
 			System.out.print("ETA: " + ((( elapsedTime* totalNumberOfMainTypesToGenerate / countOfGeneratedMainTypes) - elapsedTime) / 1000 ) + " secs )" );
 			System.out.println();
+			lastPrinted = System.currentTimeMillis();
 		}
 		
 	}
@@ -148,7 +157,20 @@ public class GenerationContext<M> {
 		generator.accept(model, this);
 		
 		// Save the remaining unsaved sources
-		for (JavaSource<?> src : new HashSet<>( unsavedSources.values() )) {
+				
+		System.out.println( "Before loop: " + (System.currentTimeMillis() - start) + " ms");
+		JavaSource<?> srcArray[] = new JavaSource<?>[unsavedSources.size()];
+		int i = 0;
+		for( Entry<String, JavaSource<?>> e : unsavedSources.entrySet() ) {
+			System.out.println( "-----"  + e.getKey() +"------" );
+			System.out.println( "Unformatted: " + e.getValue().toUnformattedString() );
+			System.out.println( "------------------" );
+			srcArray[i] = e.getValue();
+			i++;
+		}
+		System.out.println( "After loop:" + (System.currentTimeMillis() - start) + " ms");
+		
+		for (JavaSource<?> src : srcArray ) {
 			saveSourceFile(src);
 		}
 		System.out.println("Generation time:" + (System.currentTimeMillis() - start) + " ms");

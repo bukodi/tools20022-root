@@ -1,5 +1,6 @@
 package com.tools20022.metamodel.struct;
 
+
 import com.tools20022.metamodel.struct.MMRepositoryConcept_;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
@@ -9,9 +10,7 @@ import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import java.util.Optional;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMMessageDefinition;
-
-public interface MMXor_ extends MMRepositoryConcept_ {
+import com.tools20022.metamodel.MMMessageDefinition;public interface MMXor_ extends MMRepositoryConcept_ {
 
 	/**
 	 * Message Elements impacted by the XOR.
@@ -28,5 +27,4 @@ public interface MMXor_ extends MMRepositoryConcept_ {
 	/**
 	 * Message Definition owning the XOR.
 	 */
-	MetamodelAttribute<MMXor, Optional<MMMessageDefinition>> messageDefinition = newAttribute();
-}
+	MetamodelAttribute<MMXor, Optional<MMMessageDefinition>> messageDefinition = newAttribute(); }

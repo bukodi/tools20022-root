@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -14,11 +15,8 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;
-
-/**
- * A rule that must be universally satisfied i.e. all conditions required for
- * the Constraint to be applicable, are known.
+import com.tools20022.metamodel.MMModelEntity;/**
+ * A rule that must be universally satisfied i.e. all conditions required for the Constraint to be applicable, are known.
  */
 public class MMConstraint implements MMRepositoryConcept {
 
@@ -27,10 +25,10 @@ public class MMConstraint implements MMRepositoryConcept {
 	protected Supplier<MMRepositoryConcept> owner_lazy;
 	protected String name;
 	protected String definition;
-	protected List<MMSemanticMarkup> semanticMarkup;
-	protected List<MMDoclet> doclet;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
+	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
-	protected List<MMConstraint> constraint;
+	protected Supplier<List<MMConstraint>> constraint_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -53,8 +51,7 @@ public class MMConstraint implements MMRepositoryConcept {
 	}
 
 	/**
-	 * The description of a Constraint in a specific language, defined in
-	 * expressionLanguage
+	 * The description of a Constraint in a specific language, defined in expressionLanguage
 	 */
 	public Optional<String> getExpression() {
 		return expression == null ? Optional.empty() : Optional.of(expression);
@@ -70,7 +67,6 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	/**
 	 * The owner of the Rule.
-	 * 
 	 * @see MMRepositoryConcept#getConstraint()
 	 */
 	@Opposite(bean = MMRepositoryConcept.class, attribute = "constraint")
@@ -91,14 +87,14 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup == null
-				? Collections.emptyList()
-				: semanticMarkup;
+		return semanticMarkup_lazy == null ? Collections.emptyList()
+				: semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet == null ? Collections.emptyList() : doclet;
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
+				.get();
 	}
 
 	@Override
@@ -108,7 +104,8 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint == null ? Collections.emptyList() : constraint;
+		return constraint_lazy == null ? Collections.emptyList()
+				: constraint_lazy.get();
 	}
 
 	@Override
@@ -124,8 +121,7 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -139,5 +135,4 @@ public class MMConstraint implements MMRepositoryConcept {
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }

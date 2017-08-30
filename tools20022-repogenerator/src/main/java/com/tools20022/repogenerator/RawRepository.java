@@ -92,30 +92,29 @@ public class RawRepository {
 
 	private Stream<? extends GeneratedMetamodelBean> listDirectContent( GeneratedMetamodelBean mmContainer ) {
 		List<GeneratedMetamodelBean> ret = new ArrayList<>();
-		Stream<MetamodelAttribute<?, ?>> containerAttrStream = (Stream<MetamodelAttribute<?, ?>>) mmContainer.getMetamodel().getAllAttributes().stream().filter(mmAttr->mmAttr.isContainment());
+		for (MetamodelAttribute<?, ?> mmAttr : mmContainer.getMetamodel().getAllAttributes()) {
+			if( mmAttr.getReferencedType() == null || mmAttr.isDerived() || ! mmAttr.isContainment() )
+				continue;
 		
-		containerAttrStream.forEach(mmAttr->{
 			Object value = mmAttr.get(mmContainer);
 			if( value == null )
-				return;
-			if( value instanceof Optional<?>) {
-				if( ((Optional<?>)value).isPresent() ) {
-					value = ((Optional<?>)value).get();
-				} else {
-					return;
-				}
-			}
-			if( value instanceof List) {
-				for(Object elem : (List)value) {
+				continue;
+			
+			if( value instanceof GeneratedMetamodelBean ) {
+				ret.add((GeneratedMetamodelBean) value);
+			} else if( value instanceof Optional<?> && ((Optional<?>)value).isPresent()) {
+				Object value2 = ((Optional<?>)value).get();
+				if( value2 instanceof GeneratedMetamodelBean )
+					ret.add((GeneratedMetamodelBean) value2);
+			} else if( value instanceof List) {
+				for(Object elem : (List<?>)value) {
 					if( elem instanceof GeneratedMetamodelBean )
 						ret.add((GeneratedMetamodelBean) elem);
 				}
-			} else if( value instanceof GeneratedMetamodelBean ) {
-				ret.add((GeneratedMetamodelBean) value);
 			} else {
 				throw new IllegalStateException( "Invalid value in " + mmContainer + " in attribute " + mmAttr );
 			}
-		});
+		};
 		return ret.stream();
 	}
 

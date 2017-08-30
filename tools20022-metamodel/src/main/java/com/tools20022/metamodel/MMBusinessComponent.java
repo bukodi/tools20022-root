@@ -1,5 +1,6 @@
 package com.tools20022.metamodel;
 
+
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -22,31 +23,24 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;
-
-/**
- * Representation of a (part of a) key business notion, characterized by
- * specific BusinessElements.
+import com.tools20022.metamodel.MMModelEntity;/**
+ * Representation of a (part of a) key business notion, characterized by specific BusinessElements.
  */
-public class MMBusinessComponent
-		implements
-			MMTopLevelDictionaryEntry,
-			MMBusinessElementType,
-			MMBusinessConcept {
+public class MMBusinessComponent implements MMTopLevelDictionaryEntry, MMBusinessElementType, MMBusinessConcept {
 
 	protected Supplier<List<MMBusinessComponent>> subType_lazy;
 	protected Supplier<MMBusinessComponent> superType_lazy;
-	protected List<MMBusinessElement> element;
+	protected Supplier<List<MMBusinessElement>> element_lazy;
 	protected Supplier<List<MMMessageComponentType>> derivationComponent_lazy;
 	protected Supplier<List<MMBusinessAssociationEnd>> associationDomain_lazy;
 	protected Supplier<List<MMMessageElement>> derivationElement_lazy;
 	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
 	protected String definition;
-	protected List<MMSemanticMarkup> semanticMarkup;
-	protected List<MMDoclet> doclet;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
+	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
-	protected List<MMConstraint> constraint;
+	protected Supplier<List<MMConstraint>> constraint_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -70,7 +64,6 @@ public class MMBusinessComponent
 
 	/**
 	 * The BusinessComponents that specialize this BusinessComponent.
-	 * 
 	 * @see MMBusinessComponent#getSuperType()
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "superType")
@@ -81,7 +74,6 @@ public class MMBusinessComponent
 
 	/**
 	 * The BusinessComponent that is specialized by this BusinessComponent.
-	 * 
 	 * @see MMBusinessComponent#getSubType()
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "subType")
@@ -92,49 +84,42 @@ public class MMBusinessComponent
 
 	/**
 	 * A semantic property of a BusinessComponent.
-	 * 
 	 * @see MMBusinessElement#getElementContext()
 	 */
 	@Opposite(bean = MMBusinessElement.class, attribute = "elementContext")
 	@Containment
 	public List<MMBusinessElement> getElement() {
-		return element == null ? Collections.emptyList() : element;
+		return element_lazy == null ? Collections.emptyList() : element_lazy
+				.get();
 	}
 
 	/**
 	 * All of the MessageComponentTypes that derive from this BusinessComponent.
-	 * 
 	 * @see MMMessageComponentType#getTrace()
 	 */
 	@Opposite(bean = MMMessageComponentType.class, attribute = "trace")
 	public List<MMMessageComponentType> getDerivationComponent() {
-		return derivationComponent_lazy == null
-				? Collections.emptyList()
+		return derivationComponent_lazy == null ? Collections.emptyList()
 				: derivationComponent_lazy.get();
 	}
 
 	/**
-	 * Describes the semantics that determine how the BusinessComponent may
-	 * participate in the BusinessAssociation.
-	 * 
+	 * Describes the semantics that determine how the BusinessComponent may participate in the BusinessAssociation.
 	 * @see MMBusinessAssociationEnd#getType()
 	 */
 	@Opposite(bean = MMBusinessAssociationEnd.class, attribute = "type")
 	public List<MMBusinessAssociationEnd> getAssociationDomain() {
-		return associationDomain_lazy == null
-				? Collections.emptyList()
+		return associationDomain_lazy == null ? Collections.emptyList()
 				: associationDomain_lazy.get();
 	}
 
 	/**
 	 * All of the MessageElements that derive from this BusinessComponent.
-	 * 
 	 * @see MMMessageElement#getBusinessComponentTrace()
 	 */
 	@Opposite(bean = MMMessageElement.class, attribute = "businessComponentTrace")
 	public List<MMMessageElement> getDerivationElement() {
-		return derivationElement_lazy == null
-				? Collections.emptyList()
+		return derivationElement_lazy == null ? Collections.emptyList()
 				: derivationElement_lazy.get();
 	}
 
@@ -155,14 +140,14 @@ public class MMBusinessComponent
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup == null
-				? Collections.emptyList()
-				: semanticMarkup;
+		return semanticMarkup_lazy == null ? Collections.emptyList()
+				: semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet == null ? Collections.emptyList() : doclet;
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
+				.get();
 	}
 
 	@Override
@@ -172,7 +157,8 @@ public class MMBusinessComponent
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint == null ? Collections.emptyList() : constraint;
+		return constraint_lazy == null ? Collections.emptyList()
+				: constraint_lazy.get();
 	}
 
 	@Override
@@ -188,8 +174,7 @@ public class MMBusinessComponent
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null
-				? Collections.emptyList()
+		return nextVersions_lazy == null ? Collections.emptyList()
 				: nextVersions_lazy.get();
 	}
 
@@ -203,5 +188,4 @@ public class MMBusinessComponent
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional
 				.of(objectIdentifier);
-	}
-}
+	} }
