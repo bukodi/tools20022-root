@@ -419,7 +419,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				isMultiple = false;
 				isUnique = true;
 			} else if (Collection.class.isAssignableFrom(pt.wrapperClass)) {
-				isOptional = false;
+				isOptional = true;
 				isMultiple = true;
 				isUnique = true;
 			} else {

@@ -5,11 +5,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,6 +23,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -40,23 +45,53 @@ public class SaveConsistentSubSet {
 
 	EPackage ecorePackage;
 	EObject xmiRootEObj;
+	//final Set<EClass> dontAddContents;
+	final Set<EReference> dontAddRefContents;
+	final Set<EReference> keepRefs;
+
+	final EReference businessAssocType;
+	final EAttribute businessAssocMinOccurs;
+
 	Set<EObject> markedForRetain = new HashSet<>();
-	Set<String> dontAddContents = Stream.of("Repository", "BusinessProcessCatalogue", "DataDictionary", "BusinessArea")
-			.collect(Collectors.toSet());
-	Set<String> keepRefs = Stream.of("simpleType", "complexType")
-			.collect(Collectors.toSet());
-//	Set<String> keepRefs = Stream.of("simpleType", "complexType", "businessElementTrace", "businessComponentTrace")
+//	Set<String> keepRefs = Stream.of("simpleType", "complexType")
 //			.collect(Collectors.toSet());
 	private boolean keepRequiredBusinessAssociationEnds = false;
 
-	public SaveConsistentSubSet(String ecoreResource, String xmiResource) {
-		ecorePackage = loadECorePackage(ecoreResource);
-		xmiRootEObj = loadXMIResource(xmiResource);
+	public SaveConsistentSubSet() {				
+		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore"); 
+		Path xmiPath = Paths.get("../tools20022-repogenerator/src/main/resources/model/20170516_ISO20022_2013_eRepository.iso20022");
+		ecorePackage = ECoreIOHelper.loadECorePackage(ecorePath);
+		xmiRootEObj = ECoreIOHelper.loadXMIResource(xmiPath);
+		
+		businessAssocType = (EReference)((EClass) ecorePackage.getEClassifier("BusinessAssociationEnd")).getEStructuralFeature("type");
+		businessAssocMinOccurs= (EAttribute)((EClass) ecorePackage.getEClassifier("BusinessAssociationEnd")).getEStructuralFeature("minOccurs");
+		{
+			Set<EReference> tmp = new HashSet<>(); 
+			tmp.add((EReference)((EClass) ecorePackage.getEClassifier("DataDictionary")).getEStructuralFeature("topLevelDictionaryEntry"));
+			tmp.add((EReference)((EClass) ecorePackage.getEClassifier("BusinessProcessCatalogue")).getEStructuralFeature("topLevelCatalogueEntry"));
+			tmp.add((EReference)((EClass) ecorePackage.getEClassifier("BusinessArea")).getEStructuralFeature("messageDefinition"));
+			dontAddRefContents = Collections.unmodifiableSet(tmp);
+		}
+		
+		{
+			List<String> names = Arrays.asList("simpleType", "complexType", "businessElementTrace", "businessComponentTrace");
+			Set<EReference> tmp = new HashSet<>();
+			for( EClassifier ecc : ecorePackage.getEClassifiers() ) {
+				if( ! (ecc instanceof EClass) )
+					continue;
+				for( EReference eRef : ((EClass)ecc).getEAllReferences() ) {
+					if( ! names.contains(eRef.getName()) )
+						continue;
+					tmp.add(eRef);
+				}
+			}
+			keepRefs = Collections.unmodifiableSet(tmp);
+		}
+
 	}
 
 	public static void main(String[] args) throws Exception {
-		SaveConsistentSubSet scss = new SaveConsistentSubSet("../tools20022-mmgenerator/src/test/resources/model/ISO20022.ecore",
-				"/model/20170516_ISO20022_2013_eRepository.iso20022");
+		SaveConsistentSubSet scss = new SaveConsistentSubSet();
 
 		// "MessageDefinition", "MandateInitiationRequestV05"
 		Path tmpFile = Files.createTempFile("test", "iso20022");
@@ -72,7 +107,7 @@ public class SaveConsistentSubSet {
 		EClass eClassMsgDef = (EClass) ecorePackage.getEClassifier("MessageDefinition");
 		EAttribute eAttrName = (EAttribute) eClassMsgDef.getEStructuralFeature("name");
 
-		/*** Phase 1: collect reatined object ***/
+		/*** Phase 1: collect seed set ***/
 
 		long now = System.currentTimeMillis();
 		xmiRootEObj.eAllContents().forEachRemaining(eObj -> {
@@ -80,32 +115,23 @@ public class SaveConsistentSubSet {
 				String name = (String) eObj.eGet(eAttrName);
 				if ("MandateInitiationRequestV05".equals(name)) {
 					markedForRetain.add(eObj);
-					eObj.eAllContents().forEachRemaining(c -> {
-						markedForRetain.add(c);
-					});
+//					eObj.eAllContents().forEachRemaining(c -> {
+//						markedForRetain.add(c);
+//					});
 					;
 				}
 			}
 		});
 		System.out.println(System.currentTimeMillis() - now);
 		System.out.println();
-		/*
-		 * Map<EClass, AtomicInteger> retainedObjectsCount = new HashMap<>();
-		 * for (EObject level1Obj : xmiRootEObj.eContents()) { List<EObject>
-		 * contents = new ArrayList<>(level1Obj.eContents()); for (EObject
-		 * level2Obj : contents) { EClass eClass = level2Obj.eClass();
-		 * 
-		 * AtomicInteger cnt =
-		 * retainedObjectsCount.computeIfAbsent(level2Obj.eClass(), x -> new
-		 * AtomicInteger()); if (cnt.get() >= 5) { continue; }
-		 * cnt.incrementAndGet(); addAllContents(level2Obj,markedForRetain); } }
-		 */
 
 		/*** Phase 2: extend retainSet ***/
 		for (int round = 1;; round++) {
+			System.out.println("--- Round " + round + " ---");
 			int addedObjects = extendRetainSet(markedForRetain);
 			System.out.println("" + addedObjects + " objects added in " + round + ". round. All objects: "
 					+ markedForRetain.size());
+			System.out.println();
 			if (addedObjects == 0)
 				break;
 		}
@@ -153,121 +179,98 @@ public class SaveConsistentSubSet {
 	int extendRetainSet(Set<EObject> markedForRetain) {
 		int startCount = markedForRetain.size();
 
-		HashMap<EReference, Set<EObject>> newMarks = new HashMap<>();
-		for (EObject eObj : new HashSet<EObject>(markedForRetain)) {
-			if (eObj.eContainer() != null)
-				markedForRetain.add(eObj.eContainer());
+		Set<EObject> newMarks = new HashSet<>();
 
-			EList<EStructuralFeature> eSFList = eObj.eClass().getEAllStructuralFeatures();
-			for (EStructuralFeature eSF : eSFList) {
-				if (!(eSF instanceof EReference))
-					continue;
-				EReference eRef = (EReference) eSF;
+		// Loop on objects
+		for (EObject eObj : new HashSet<EObject>(markedForRetain)) {
+			System.out.println( "Extend object: " + toString(eObj));
+			
+			// Add container
+			if (eObj.eContainer() != null) {
+				markedForRetain.add(eObj.eContainer());				
+				System.out.println( "  - add container: " + toString(eObj.eContainer()));
+			}
+
+			// Loop on references
+			for (EReference eRef : eObj.eClass().getEAllReferences()) {
 				if (eRef.isContainer())
 					continue;
-				Object value = eObj.eGet(eRef);
-				if (value == null)
+				
+				boolean keepThisRef = keepRefs.contains(eRef);
+				keepThisRef = keepThisRef || (eRef.isMany() && eRef.getLowerBound() > 0);
+				keepThisRef = keepThisRef || (!eRef.isMany() && (!eRef.isChangeable() || eRef.isRequired()));
+				keepThisRef = keepThisRef || ( eRef.isContainment() && (! dontAddRefContents.contains( eRef)));
+				if( ! keepThisRef )
 					continue;
-
-				boolean isProtectedRef = keepRefs.contains(eRef.getName());
-
-				if (eRef.isMany()) {
-					if (eRef.getLowerBound() > 0) {
-						EList<EObject> list = (EList<EObject>) value;
-						for (EObject refObj : list) {
-							addObject(eRef, refObj, newMarks);
-							// newMarks.computeIfAbsent(eRef, x -> new
-							// HashSet<>()).add(refObj);
-						}
-					}
-				} else {
-					if (!eRef.isChangeable() || eRef.isRequired() || isProtectedRef) {
-						EObject refObj = (EObject) value;
-						addObject(eRef, refObj, newMarks);
+				
+				if( businessAssocType.equals( eRef ) ) {
+					Object minOccursValue = eObj.eGet(businessAssocMinOccurs);
+					if (minOccursValue == null)
+						continue;
+					if (((Integer) minOccursValue).intValue() == 0)
+						continue;
+					if( ! keepRequiredBusinessAssociationEnds )
+						continue;					
+				}
+								
+				Object value = eObj.eGet(eRef);
+				if (value == null) {
+					continue;
+				} else if( value instanceof List ) {
+					List<EObject> list = (List<EObject>) value;
+					for (EObject refObj : list) {
+						addObject(eRef, refObj, markedForRetain, newMarks);
 						// newMarks.computeIfAbsent(eRef, x -> new
 						// HashSet<>()).add(refObj);
-					}
+					}					
+				} else if ( value instanceof EObject ) {
+					EObject refObj = (EObject) value;
+					addObject(eRef, refObj, markedForRetain, newMarks);					
+				} else {
+					throw new RuntimeException("Invalid value: " + value );
 				}
+				
 			}
 		}
 
 		// Return delta
-		markedForRetain.addAll(newMarks.values().stream().flatMap(s -> s.stream()).collect(Collectors.toSet()));
+		markedForRetain.addAll(newMarks);
 		return markedForRetain.size() - startCount;
 	}
 
-	void addObject(EReference eRef, EObject refObj, HashMap<EReference, Set<EObject>> newMarks) {
+	void addObject(EReference eRef, EObject refObj, Set<EObject> markedForRetain, Set<EObject> newMarks) {
 		// newMarks.computeIfAbsent(eRef, x -> new HashSet<>()).add(refObj);
-
-		Set<EObject> set = newMarks.computeIfAbsent(eRef, x -> new HashSet<>());
-		set.add(refObj);
-
-		if (dontAddContents.contains(refObj.eClass().getName()))
-			return;
-		TreeIterator<EObject> contentIterator = refObj.eAllContents();
-		for (; contentIterator.hasNext();) {
-			EObject eChild = contentIterator.next();
-			if ("BusinessAssociationEnd".equals(eChild.eClass().getName())) {
-				EStructuralFeature eSF = eChild.eClass().getEStructuralFeature("minOccurs");
-				Object minOccursValue = eChild.eGet(eSF);
-				if (minOccursValue == null)
-					continue;
-				if (((Integer) minOccursValue).intValue() == 0)
-					continue;
-				if( ! keepRequiredBusinessAssociationEnds )
-					continue;
-			}
-
-			set.add(eChild);
-		}
+//		if( markedForRetain.contains(refObj))
+//			return;
+		
+		newMarks.add(refObj);
+		System.out.println("  - add by ref: " + eRef.getName() + "->" + toString(refObj));
+//		if( "topLevelDictionaryEntry".equals( eRef.getName()) ) {
+//			System.out.println("Bingo");
+//		}
+//		if (dontAddRefContents.contains(eRef))
+//			return;
+//		TreeIterator<EObject> contentIterator = refObj.eAllContents();
+//		for (; contentIterator.hasNext();) {
+//			EObject eChild = contentIterator.next();
+//			if ("BusinessAssociationEnd".equals(eChild.eClass().getName())) {
+//				EStructuralFeature eSF = eChild.eClass().getEStructuralFeature("minOccurs");
+//				Object minOccursValue = eChild.eGet(eSF);
+//				if (minOccursValue == null)
+//					continue;
+//				if (((Integer) minOccursValue).intValue() == 0)
+//					continue;
+//				if( ! keepRequiredBusinessAssociationEnds )
+//					continue;
+//			}
+//			
+//			newMarks.add(eChild);
+//			System.out.println( "    - child of the ref : " + toString(refObj) + "/" + toString(eChild) );			
+//		}
 	}
 
-	private EPackage loadECorePackage(String ecoreResource) {
-		try {
-			ResourceSet load_resourceSet = new ResourceSetImpl();
-			load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore",
-					new PerformantXMIResourceFactoryImpl());
-
-			URL url = getClass().getResource(ecoreResource);
-			File f = new File( url.toURI() );
-			if( f.exists() ) {
-				System.out.println( "OK:" + f.getAbsolutePath() );
-			} else {
-				System.out.println( "FAIL:" + f.getAbsolutePath() );
-			}
-
-			// Create empty resource with the given URI
-			Resource load_resource = load_resourceSet.getResource(URI.createURI(url.toString()), true);
-			if (load_resource.getContents().size() != 1)
-				throw new RuntimeException("Exactly one root object allowed");
-
-			EPackage ecorePkg = (EPackage) load_resource.getContents().get(0);
-			ecorePkg.setName("iso20022");
-			ecorePkg.setNsPrefix("iso20022");
-			EPackage.Registry.INSTANCE.put(ecorePkg.getNsURI(), ecorePkg);
-			return ecorePkg;
-		} catch (Exception e) {
-			throw new RuntimeException("Can't load ECore resource: " + ecoreResource, e);
-		}
+	String toString( EObject eObj ) {
+		Optional<EAttribute> nameAttr = eObj.eClass().getEAllAttributes().stream().filter(eAttr->eAttr.getName().equalsIgnoreCase("name")).findFirst();
+		return "[" + eObj.eClass().getName() + "]" + (nameAttr.isPresent()? eObj.eGet( nameAttr.get() ) : "-no name-");
 	}
-
-	private EObject loadXMIResource(String xmiResource) {
-		try {
-			ResourceSet load_resourceSet = new ResourceSetImpl();
-
-			load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*",
-					new PerformantXMIResourceFactoryImpl());
-			// TODO: use internal PerformantXMIResourceFactoryImpl class
-
-			URL url = getClass().getResource(xmiResource);
-
-			Resource load_resource = load_resourceSet.getResource(URI.createURI(url.toString()), true);
-			if (load_resource.getContents().size() != 1)
-				throw new RuntimeException("Exactly one root object allowed");
-			return load_resource.getContents().get(0);
-		} catch (Exception e) {
-			throw new RuntimeException("Can't load XMI resource: " + xmiResource, e);
-		}
-	}
-
 }
