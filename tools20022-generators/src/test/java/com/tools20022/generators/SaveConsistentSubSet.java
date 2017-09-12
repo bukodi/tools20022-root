@@ -1,40 +1,23 @@
 package com.tools20022.generators;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.Resource.IOWrappedException;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.DanglingHREFException;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
  * Saves the consistent subset of the full eRepository.
@@ -49,13 +32,14 @@ public class SaveConsistentSubSet {
 	final Set<EReference> dontAddRefContents;
 	final Set<EReference> keepRefs;
 
-	final EReference businessAssocType;
+	//final EReference businessAssocType;
 	final EAttribute businessAssocMinOccurs;
+	final EReference assocDomainRef;
 
 	Set<EObject> markedForRetain = new HashSet<>();
 //	Set<String> keepRefs = Stream.of("simpleType", "complexType")
 //			.collect(Collectors.toSet());
-	private boolean keepRequiredBusinessAssociationEnds = false;
+//	private boolean keepRequiredBusinessAssociationEnds = false;
 
 	public SaveConsistentSubSet() {				
 		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore"); 
@@ -63,7 +47,8 @@ public class SaveConsistentSubSet {
 		ecorePackage = ECoreIOHelper.loadECorePackage(ecorePath);
 		xmiRootEObj = ECoreIOHelper.loadXMIResource(xmiPath);
 		
-		businessAssocType = (EReference)((EClass) ecorePackage.getEClassifier("BusinessAssociationEnd")).getEStructuralFeature("type");
+		assocDomainRef = (EReference)((EClass) ecorePackage.getEClassifier("BusinessComponent")).getEStructuralFeature("associationDomain");
+		//businessAssocType = (EReference)((EClass) ecorePackage.getEClassifier("BusinessAssociationEnd")).getEStructuralFeature("type");
 		businessAssocMinOccurs= (EAttribute)((EClass) ecorePackage.getEClassifier("BusinessAssociationEnd")).getEStructuralFeature("minOccurs");
 		{
 			Set<EReference> tmp = new HashSet<>(); 
@@ -137,36 +122,36 @@ public class SaveConsistentSubSet {
 		}
 
 		/*** Phase 3: remove missing references ***/
-		markedForRetain.add(xmiRootEObj);
-		for (EObject level1Obj : xmiRootEObj.eContents()) {
-			markedForRetain.add(level1Obj);
-		}
-
 		for (EObject eObj : markedForRetain) {
-			EList<EStructuralFeature> eSFList = eObj.eClass().getEAllStructuralFeatures();
-			for (EStructuralFeature eSF : eSFList) {
-				if (!(eSF instanceof EReference))
-					continue;
-				EReference eRef = (EReference) eSF;
-				if (eRef.isRequired() || !eRef.isChangeable())
-					continue;
-				if ("simpleType".equals(eRef.getName()) || "complexType".equals(eRef.getName()))
-					continue;
+			for (EReference eRef  : eObj.eClass().getEAllReferences()) {
+				List<EObject> refObjList;
+				{
+					Object value = eObj.eGet(eRef);
+					if (value == null) {
+						continue;
+					} else if( value instanceof List ) {
+						refObjList = new ArrayList<>((List<EObject>) value);
+					} else if ( value instanceof EObject ) {
+						refObjList = Arrays.asList( (EObject) value );
+					} else {
+						throw new RuntimeException("Invalid value: " + value );
+					}					
+				}
 
-				Object value = eObj.eGet(eRef);
-				if (value == null)
-					continue;
-
-				if (eRef.isMany()) {
-					List<EObject> list = new ArrayList<>((EList<EObject>) value);
-					for (EObject refObj : list) {
+				if( keeThisRef(eRef, eObj) ) {
+					// Check
+					for (EObject refObj : refObjList) {
+						if (markedForRetain.contains(refObj))
+							continue;
+						throw new RuntimeException("Missing referenced object: " + toString(eObj) + "." + eRef.getName() + " -> " + toString(refObj));
+					}
+				} else {
+					// Clear if not contained
+					for (EObject refObj : refObjList) {
 						if (markedForRetain.contains(refObj))
 							continue;
 						EcoreUtil.remove(eObj, eRef, refObj);
-					}
-				} else {
-					EObject refObj = (EObject) value;
-					EcoreUtil.remove(eObj, eRef, refObj);
+					}					
 				}
 			}
 		}
@@ -193,26 +178,8 @@ public class SaveConsistentSubSet {
 
 			// Loop on references
 			for (EReference eRef : eObj.eClass().getEAllReferences()) {
-				if (eRef.isContainer())
+				if( ! keeThisRef(eRef, eObj) )
 					continue;
-				
-				boolean keepThisRef = keepRefs.contains(eRef);
-				keepThisRef = keepThisRef || (eRef.isMany() && eRef.getLowerBound() > 0);
-				keepThisRef = keepThisRef || (!eRef.isMany() && (!eRef.isChangeable() || eRef.isRequired()));
-				keepThisRef = keepThisRef || ( eRef.isContainment() && (! dontAddRefContents.contains( eRef)));
-				if( ! keepThisRef )
-					continue;
-				
-				if( businessAssocType.equals( eRef ) ) {
-					Object minOccursValue = eObj.eGet(businessAssocMinOccurs);
-					if (minOccursValue == null)
-						continue;
-					if (((Integer) minOccursValue).intValue() == 0)
-						continue;
-					if( ! keepRequiredBusinessAssociationEnds )
-						continue;					
-				}
-								
 				Object value = eObj.eGet(eRef);
 				if (value == null) {
 					continue;
@@ -237,12 +204,35 @@ public class SaveConsistentSubSet {
 		markedForRetain.addAll(newMarks);
 		return markedForRetain.size() - startCount;
 	}
+	
+	boolean keeThisRef( EReference eRef, EObject eObj ) {
+		if (eRef.isContainer())
+			return false;
+		
+		boolean keepThisRef = keepRefs.contains(eRef);
+		keepThisRef = keepThisRef || (eRef.isMany() && eRef.getLowerBound() > 0);
+		keepThisRef = keepThisRef || (!eRef.isMany() && (!eRef.isChangeable() || eRef.isRequired()));
+		keepThisRef = keepThisRef || ( eRef.isContainment() && (! dontAddRefContents.contains( eRef)));
+		if( ! keepThisRef )
+			return false;
+		
+		return true;
+	}
 
 	void addObject(EReference eRef, EObject refObj, Set<EObject> markedForRetain, Set<EObject> newMarks) {
 		// newMarks.computeIfAbsent(eRef, x -> new HashSet<>()).add(refObj);
 //		if( markedForRetain.contains(refObj))
 //			return;
 		
+		// Don't add if thi is an optional entity association
+		if( assocDomainRef.equals( eRef ) ) {
+			// Ez nem biztos, hogy jó, mert lehet, hogy egyébként a cél is bekerül a retain set-be, de a assoc object-et már töröltük.
+			Object minOccursValue = refObj.eGet(businessAssocMinOccurs);
+			if (minOccursValue == null || (((Integer) minOccursValue).intValue() == 0))
+				return;
+			System.out.println("  - skip optional businessAssoc " + toString(refObj));
+		}
+					
 		newMarks.add(refObj);
 		System.out.println("  - add by ref: " + eRef.getName() + "->" + toString(refObj));
 //		if( "topLevelDictionaryEntry".equals( eRef.getName()) ) {
