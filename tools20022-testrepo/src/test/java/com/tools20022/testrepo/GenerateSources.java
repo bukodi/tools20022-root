@@ -89,10 +89,12 @@ public class GenerateSources {
 		}
 
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
+		EObject xmiRootObj = ECoreIOHelper
+				.loadXMIResource("/model/testSubset.iso20022");
 //		EObject xmiRootObj = ECoreIOHelper
-//				.loadXMIResource("/model/MandateInitiationRequestV05-with-BusinessConcepts.iso20022");
-		 EObject xmiRootObj =
-		 ECoreIOHelper.loadXMIResource("/model/20170516_ISO20022_2013_eRepository.iso20022");
+//				.loadXMIResource("/model/MandateInitiationRequestV05-with-BusinessConceptsV2.iso20022");
+//		 EObject xmiRootObj =
+//		 ECoreIOHelper.loadXMIResource("/model/20170516_ISO20022_2013_eRepository.iso20022");
 		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 		RawRepository repo = loader.load(ecorePkg, xmiRootObj);
 

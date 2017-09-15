@@ -32,11 +32,12 @@ public class SaveConsistentSubSet {
 	final Set<EReference> dontAddRefContents;
 	final Set<EReference> keepRefs;
 
-	//final EReference businessAssocType;
+	final EReference businessAssocType;
 	final EAttribute businessAssocMinOccurs;
 	final EReference assocDomainRef;
 
 	Set<EObject> markedForRetain = new HashSet<>();
+	Set<EObject> optionalBusinessAssoc = new HashSet<>();
 //	Set<String> keepRefs = Stream.of("simpleType", "complexType")
 //			.collect(Collectors.toSet());
 //	private boolean keepRequiredBusinessAssociationEnds = false;
@@ -48,7 +49,7 @@ public class SaveConsistentSubSet {
 		xmiRootEObj = ECoreIOHelper.loadXMIResource(xmiPath);
 		
 		assocDomainRef = (EReference)((EClass) ecorePackage.getEClassifier("BusinessComponent")).getEStructuralFeature("associationDomain");
-		//businessAssocType = (EReference)((EClass) ecorePackage.getEClassifier("BusinessAssociationEnd")).getEStructuralFeature("type");
+		businessAssocType = (EReference)((EClass) ecorePackage.getEClassifier("BusinessAssociationEnd")).getEStructuralFeature("type");
 		businessAssocMinOccurs= (EAttribute)((EClass) ecorePackage.getEClassifier("BusinessAssociationEnd")).getEStructuralFeature("minOccurs");
 		{
 			Set<EReference> tmp = new HashSet<>(); 
@@ -79,8 +80,9 @@ public class SaveConsistentSubSet {
 		SaveConsistentSubSet scss = new SaveConsistentSubSet();
 
 		// "MessageDefinition", "MandateInitiationRequestV05"
-		Path tmpFile = Files.createTempFile("test", "iso20022");
-		scss.saveTestFile(tmpFile);
+		//Path tmpFile = Files.createTempFile("test", "iso20022");
+		Path testSubsetFile = Paths.get("../tools20022-testrepo/src/test/resources/model/testSubset.xmi"); 
+		scss.saveTestFile(testSubsetFile);
 	}
 
 	EClass getEClassByName(String eClassName) {
@@ -119,6 +121,13 @@ public class SaveConsistentSubSet {
 			System.out.println();
 			if (addedObjects == 0)
 				break;
+		}
+		/*** Phase 3: add optional business assoc if the target type retained ***/
+		for (EObject eObj : optionalBusinessAssoc) {
+			EObject refEntity = (EObject)eObj.eGet(businessAssocType);
+			if( markedForRetain.contains(refEntity) ) {
+				markedForRetain.add(eObj);
+			}
 		}
 
 		/*** Phase 3: remove missing references ***/
@@ -171,6 +180,7 @@ public class SaveConsistentSubSet {
 			System.out.println( "Extend object: " + toString(eObj));
 			
 			// Add container
+			
 			if (eObj.eContainer() != null) {
 				markedForRetain.add(eObj.eContainer());				
 				System.out.println( "  - add container: " + toString(eObj.eContainer()));
@@ -224,12 +234,14 @@ public class SaveConsistentSubSet {
 //		if( markedForRetain.contains(refObj))
 //			return;
 		
-		// Don't add if thi is an optional entity association
+		// Don't add if this is an optional entity association
 		if( assocDomainRef.equals( eRef ) ) {
 			// Ez nem biztos, hogy jó, mert lehet, hogy egyébként a cél is bekerül a retain set-be, de a assoc object-et már töröltük.
 			Object minOccursValue = refObj.eGet(businessAssocMinOccurs);
-			if (minOccursValue == null || (((Integer) minOccursValue).intValue() == 0))
+			if (minOccursValue == null || (((Integer) minOccursValue).intValue() == 0)) {
+				optionalBusinessAssoc.add(refObj);
 				return;
+			}
 			System.out.println("  - skip optional businessAssoc " + toString(refObj));
 		}
 					
