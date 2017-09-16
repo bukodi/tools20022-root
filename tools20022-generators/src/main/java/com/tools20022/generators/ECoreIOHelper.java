@@ -1,28 +1,24 @@
 package com.tools20022.generators;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 
 public class ECoreIOHelper {
 
@@ -115,6 +111,18 @@ public class ECoreIOHelper {
 		Writer writer = new StringWriter();
 		resource.save(new URIConverter.WriteableOutputStream(writer, StandardCharsets.UTF_8.name()), null);
 		return writer.toString().getBytes(StandardCharsets.UTF_8);
+	}
+
+	public static String toString( EObject eObj ) {
+		Optional<EAttribute> nameAttr = eObj.eClass().getEAllAttributes().stream().filter(eAttr->eAttr.getName().equalsIgnoreCase("name")).findFirst();
+		return "[" + eObj.eClass().getName() + "]" + (nameAttr.isPresent()? eObj.eGet( nameAttr.get() ) : "-no name-");
+	}
+	public static String toStringWithPath( EObject eObj ) {
+		String conatinerPath;
+		if( eObj.eContainer() != null )
+			return toStringWithPath(eObj.eContainer()) + "/" + toString(eObj);
+		else 
+			return toString(eObj);
 	}
 
 }

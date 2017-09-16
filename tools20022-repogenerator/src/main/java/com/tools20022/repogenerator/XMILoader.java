@@ -26,6 +26,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnumLiteral;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 
@@ -198,7 +199,7 @@ public class XMILoader {
 				if( value!= null && "name".equals(mmAttr.getName()) && value instanceof String && ((String)value).endsWith(".")) {
 					String name = (String) value;
 					value = name.substring(0, name.length()-1);
-					System.out.println("XMI model bug wokaround: name '" + name +"' trailing dot eliminated." );
+					System.out.println("XMI model bug wokaround: name '" + name +"' trailing dot eliminated:"  + ECoreIOHelper.toStringWithPath(eObj));
 				}
 				
 				setAttributeValue(mmAttr, repoObj, value, repoObjsByEObj);
