@@ -251,4 +251,92 @@ public class SaveConsistentSubSet {
 		}
 
 	}
+
+	public Predicate<EObject> filterLatestVersion( ) {
+		EClass eClassModelEntity = (EClass) ecorePackage.getEClassifier("ModelEntiy");
+		EReference eRefNextVersions = (EReference) eClassModelEntity.getEStructuralFeature("nextVersions");
+
+		Predicate<EObject> filter = eObj -> {
+			if ( ! ((List) eObj.eGet(eRefNextVersions)).isEmpty())
+				return false;
+			return true;
+		};
+
+		return filter;
+	}
+
+	/*public Predicate<EObject> filterBusinessArea( String businessAreaName, boolean onlyTheLatesVersion ) {
+		EClass eClassMessageDefinition = (EClass) ecorePackage.getEClassifier("MessageDefinition");
+		EAttribute eAttrName = (EAttribute) eClassMessageDefinition.getEStructuralFeature("name");
+		// Predicate<EObject> filter = eObj -> {
+		// if (!eClassMessageDefinition.equals(eObj.eClass()))
+		// return false;
+		// String name = (String) eObj.eGet(eAttrName);
+		// return "MandateInitiationRequestV05".equals(name);
+		// };
+
+		EClass eClassBusinessArea = (EClass) ecorePackage.getEClassifier("BusinessArea");
+		EAttribute eAttrCode = (EAttribute) eClassBusinessArea.getEStructuralFeature("code");
+		// Predicate<EObject> filter = eObj -> {
+		// if (!eClassBusinessArea.equals(eObj.eClass()))
+		// return false;
+		// String name = (String) eObj.eGet(eAttrCode);
+		// return "pain".equals(name);
+		// };
+
+		Predicate<EObject> filter = eObj -> {
+			if (!eClassMessageDefinition.equals(eObj.eClass()))
+				return false;
+			if ( ! ((List) eObj.eGet(eRefNextVersions)).isEmpty())
+				return false;
+			EObject ba = eObj.eContainer();
+			String code = (String) ba.eGet(eAttrCode);
+//			if (!"acmt".equals(code))
+//				return false;
+			if ( ! ((List) ba.eGet(eRefNextVersions)).isEmpty())
+				return false;
+			return true;
+		};
+
+		return filter;
+	}*/
+
+	public Predicate<EObject> filterMessageDefinitions( String businessAreaName ) {
+		EClass eClassMessageDefinition = (EClass) ecorePackage.getEClassifier("MessageDefinition");
+		EAttribute eAttrName = (EAttribute) eClassMessageDefinition.getEStructuralFeature("name");
+		EReference eRefNextVersions = (EReference) eClassMessageDefinition.getEStructuralFeature("nextVersions");
+		// Predicate<EObject> filter = eObj -> {
+		// if (!eClassMessageDefinition.equals(eObj.eClass()))
+		// return false;
+		// String name = (String) eObj.eGet(eAttrName);
+		// return "MandateInitiationRequestV05".equals(name);
+		// };
+
+		EClass eClassBusinessArea = (EClass) ecorePackage.getEClassifier("BusinessArea");
+		EAttribute eAttrCode = (EAttribute) eClassBusinessArea.getEStructuralFeature("code");
+		// Predicate<EObject> filter = eObj -> {
+		// if (!eClassBusinessArea.equals(eObj.eClass()))
+		// return false;
+		// String name = (String) eObj.eGet(eAttrCode);
+		// return "pain".equals(name);
+		// };
+
+		Predicate<EObject> filter = eObj -> {
+			if (!eClassMessageDefinition.equals(eObj.eClass()))
+				return false;
+			if ( ! ((List) eObj.eGet(eRefNextVersions)).isEmpty())
+				return false;
+			EObject ba = eObj.eContainer();
+			String code = (String) ba.eGet(eAttrCode);
+//			if (!"acmt".equals(code))
+//				return false;
+			if ( ! ((List) ba.eGet(eRefNextVersions)).isEmpty())
+				return false;
+			return true;
+		};
+
+		return filter;
+	}
+
+	
 }

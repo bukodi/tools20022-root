@@ -3,10 +3,12 @@ package com.tools20022.repogenerator;
 import java.io.IOException;
 import java.text.Collator;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -28,6 +30,7 @@ import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMRepositoryType;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -71,6 +74,23 @@ public class InspectLoadedRepository {
 			}
 			System.out.println();
 
+		}
+
+	}
+
+	@Test
+	public void registrationStatus() throws Exception {
+		
+		Map<MMRegistrationStatus,List<MMRepositoryConcept>> byRegStatus = repo.listObjects(MMRepositoryConcept.class).collect(Collectors.groupingBy(rc->rc.getRegistrationStatus()));
+		
+		for ( Entry<MMRegistrationStatus, List<MMRepositoryConcept>> e : byRegStatus.entrySet()) {
+			System.out.println(  e.getKey() + " : " + e.getValue().size());			
+		}
+
+		Date epoch = new Date(0L);
+		Map<Date,List<MMRepositoryConcept>> byRemovalDate = repo.listObjects(MMRepositoryConcept.class).collect(Collectors.groupingBy(rc->rc.getRemovalDate().orElse(epoch)));
+		for ( Entry<Date, List<MMRepositoryConcept>> e : byRemovalDate.entrySet()) {
+			System.out.println(  e.getKey() + " : " + e.getValue().size());			
 		}
 
 	}
