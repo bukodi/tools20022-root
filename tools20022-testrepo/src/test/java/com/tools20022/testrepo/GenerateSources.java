@@ -482,6 +482,17 @@ public class GenerateSources {
 		}
 	}
 
+	/**
+	 * Converts the input string to a valid Java identifier name.
+	 * 
+	 * Does two transformations:
+	 * <ul>
+	 * <li>removes non Java identifier characters</li>
+	 * <li>if the name is a Java reserved word, appends an underscore character</li>   
+	 * </ul>
+	 * @param name
+	 * @return
+	 */
 	static String convertToJavaName(String name) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < name.length(); i++) {
