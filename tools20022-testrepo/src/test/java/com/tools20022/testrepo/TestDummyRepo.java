@@ -19,7 +19,7 @@ public class TestDummyRepo {
 		
 		System.out.println();
 		
-		System.out.println(AccountIdentification.repoType().attrIBAN.getDefinition().get());
+		//System.out.println(AccountIdentification.repoType().attrIBAN.getDefinition().get());
 	}
 
 }

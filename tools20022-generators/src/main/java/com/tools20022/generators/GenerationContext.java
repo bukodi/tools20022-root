@@ -60,6 +60,7 @@ public class GenerationContext<M> {
 			formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE, "4");
 //			formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_JOIN_WRAPPED_LINES, "false");
 			formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_BLANK_LINES_AFTER_IMPORTS, "1");
+			//formatterOptions.setProperty(DefaultCodeFormatterConstants.FORMATTER_JBLANK_LINES_AFTER_IMPORTS, "1");
 		}
 		return formatterOptions;
 	}

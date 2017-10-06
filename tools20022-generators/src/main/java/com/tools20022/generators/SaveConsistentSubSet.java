@@ -2,18 +2,20 @@ package com.tools20022.generators;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -102,8 +104,20 @@ public class SaveConsistentSubSet {
 	}
 
 	public ConsistentSubset createSubSet(Predicate<EObject> filter, ProgressMonitor monitor) throws Exception {
+		Set<EObject> seedSet = new HashSet<>();
+		xmiRootEObj.eAllContents().forEachRemaining(eObj -> {
+			if (filter.test(eObj)) {
+				seedSet.add(eObj);
+			}
+		});
+		monitor.info("Seed selection completed");
+		
+		return createSubSet(seedSet, monitor);
+	}
+
+	public ConsistentSubset createSubSet(Set<EObject> seedSet, ProgressMonitor monitor) throws Exception {
 		ConsistentSubset css = new ConsistentSubset();
-		css.executeFilter(filter, monitor);
+		css.executeFilter(seedSet, monitor);
 		return css;
 	}
 
@@ -111,16 +125,10 @@ public class SaveConsistentSubSet {
 		Set<EObject> markedForRetain = new HashSet<>();
 		Set<EObject> optionalBusinessAssoc = new HashSet<>();
 
-		private void executeFilter(Predicate<EObject> filter, ProgressMonitor monitor) throws Exception {
+		private void executeFilter(Set<EObject> seedSet, ProgressMonitor monitor) throws Exception {
 
 			/*** Phase 1: collect seed set ***/
-
-			xmiRootEObj.eAllContents().forEachRemaining(eObj -> {
-				if (filter.test(eObj)) {
-					markedForRetain.add(eObj);
-				}
-			});
-			monitor.info("Seed selection completed");
+			markedForRetain.addAll(seedSet);
 
 			/*** Phase 2: extend retainSet ***/
 			for (int round = 1;; round++) {
@@ -337,6 +345,81 @@ public class SaveConsistentSubSet {
 
 		return filter;
 	}
+	
+	public EObject getLatestBusinessAreaByCode( String code ) {
+		EClass eClassBusinessArea = (EClass) ecorePackage.getEClassifier("BusinessArea");
+		EAttribute eAttrCode = (EAttribute) eClassBusinessArea.getEStructuralFeature("code");
+		EReference eRefNextVersions = (EReference) eClassBusinessArea.getEStructuralFeature("nextVersions");
+		Set<EObject> matchingEObjs = new HashSet<>();
+		for( TreeIterator<EObject> tit = xmiRootEObj.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if( ! eClassBusinessArea.equals( eObject.eClass()) ) 
+				continue;
+			if( ! code.equals( eObject.eGet(eAttrCode) ) )
+				continue;
+			if( ! ((List)eObject.eGet(eRefNextVersions) ).isEmpty() )
+				continue;
+			matchingEObjs.add(eObject);
+		}
+		if( matchingEObjs == null )
+			throw new NoSuchElementException();
+		if( matchingEObjs == null )
+			throw new RuntimeException();
+		return matchingEObjs.iterator().next();
+	}
+
+	public Map<String,EObject> getLatestBusinessAreas() {
+		Map<String,EObject> areasbyCode = new HashMap<>();
+		EClass eClassBusinessArea = (EClass) ecorePackage.getEClassifier("BusinessArea");
+		EAttribute eAttrCode = (EAttribute) eClassBusinessArea.getEStructuralFeature("code");
+		EAttribute eAttrName = (EAttribute) eClassBusinessArea.getEStructuralFeature("name");
+		EReference eRefNextVersions = (EReference) eClassBusinessArea.getEStructuralFeature("nextVersions");
+		Set<EObject> matchingEObjs = new HashSet<>();
+		for( TreeIterator<EObject> tit = xmiRootEObj.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if( ! eClassBusinessArea.equals( eObject.eClass()) ) 
+				continue;
+			if( ! ((String)eObject.eGet(eAttrName) ).endsWith("- Latest version - master") )
+				continue;
+			String code = (String) eObject.eGet(eAttrCode); 
+			if( areasbyCode.containsKey(code) )
+				throw new RuntimeException();
+			areasbyCode.put(code, eObject);
+		}
+		return areasbyCode;
+	}
+
+	public EObject getBusinessAreaByName( String name ) {
+
+		EClass eClassMessageDefinition = (EClass) ecorePackage.getEClassifier("MessageDefinition");
+		EAttribute eAttrName = (EAttribute) eClassMessageDefinition.getEStructuralFeature("name");
+		EReference eRefNextVersions = (EReference) eClassMessageDefinition.getEStructuralFeature("nextVersions");
+		// Predicate<EObject> filter = eObj -> {
+		// if (!eClassMessageDefinition.equals(eObj.eClass()))
+		// return false;
+		// String name = (String) eObj.eGet(eAttrName);
+		// return "MandateInitiationRequestV05".equals(name);
+		// };
+
+		EClass eClassBusinessArea = (EClass) ecorePackage.getEClassifier("BusinessArea");
+		EAttribute eAttrCode = (EAttribute) eClassBusinessArea.getEStructuralFeature("code");
+		// Predicate<EObject> filter = eObj -> {
+		// if (!eClassBusinessArea.equals(eObj.eClass()))
+		// return false;
+		// String name = (String) eObj.eGet(eAttrCode);
+		// return "pain".equals(name);
+		// };		
+		for( TreeIterator<EObject> tit = xmiRootEObj.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if( ! eClassBusinessArea.equals( eObject.eClass()) ) 
+				continue;
+			if( name.equals( eObject.eGet(eAttrName) ) )
+				return eObject;
+		}
+		throw new NoSuchElementException();
+	}
+	
+
 
 	
 }

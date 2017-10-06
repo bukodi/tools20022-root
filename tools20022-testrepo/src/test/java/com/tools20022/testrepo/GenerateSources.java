@@ -90,7 +90,7 @@ public class GenerateSources {
 
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
 		EObject xmiRootObj = ECoreIOHelper
-				.loadXMIResource("/model/testSubset.iso20022");
+				.loadXMIResource("/model/business-area-pain.iso20022");
 //		EObject xmiRootObj = ECoreIOHelper
 //				.loadXMIResource("/model/MandateInitiationRequestV05-with-BusinessConceptsV2.iso20022");
 //		 EObject xmiRootObj =
@@ -130,24 +130,7 @@ public class GenerateSources {
 				ctx.setTotalNumberOfMainTypesToGenerate(totalNumberOfMainTypesToGenerate.get());;
 			}
 
-			// Create containment tree 
-			/* 
-			MMBusinessProcessCatalogue rtCatalogue = repo.getRootObject().getBusinessProcessCatalogue();
-			repo.listContent(rtCatalogue, false, false).forEachOrdered(rt->{
-				createRTClass(rt, null);
-			});
-			MMDataDictionary rtDict = repo.getRootObject().getDataDictionary();
-			repo.listContent(rtDict, false, false).forEachOrdered(rt->{
-				createRTClass(rt, null);
-			});*/
-
 			createSingelonRTClass(repo.getRootObject()); 
-			//
-			// Collection<? extends GeneratedMetamodelBean> allObjects = repo.listObjects()
-			// .collect(Collectors.toCollection(LinkedHashSet::new));
-			// for (GeneratedMetamodelBean obj : allObjects) {
-			// getOrCreateSingelonClass(obj, null);
-			// }
 			
 		}
 
@@ -492,6 +475,9 @@ public class GenerateSources {
 			}
 			// Replace <, >, & chars
 			docTxt = docTxt.replaceAll("&", "	&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+			docTxt = docTxt.replaceAll("\r\n", "<br>\n");
+			docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
+			docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
 			javaDocHolder.getJavaDoc().setText(docTxt);
 		}
 	}
