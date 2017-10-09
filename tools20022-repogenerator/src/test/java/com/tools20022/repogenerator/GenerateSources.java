@@ -1,4 +1,4 @@
-package com.tools20022.testrepo;
+package com.tools20022.repogenerator;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
@@ -83,7 +83,7 @@ public class GenerateSources {
 
 	@Test
 	public void generateRepoSrc() throws Exception {
-		Path srcRoot = Paths.get("src/main/java/");
+		Path srcRoot = Paths.get("../tools20022-testrepo/src/main/java/").toRealPath();		
 		if (Files.notExists(srcRoot)) {
 			throw new FileNotFoundException(srcRoot.toFile().getAbsolutePath().toString());
 		}
@@ -100,6 +100,7 @@ public class GenerateSources {
 
 		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
 		genCtx.setFileManagerRoot(srcRoot);
+		genCtx.dontChangeIfExists(p->false);
 
 		start = System.currentTimeMillis();
 		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
@@ -288,7 +289,7 @@ public class GenerateSources {
 			return firstBuilderName;
 		}
 		
-		private String convertAttributeValueToSource(JavaClassSource addImportsTo, Object value) {
+		protected String convertAttributeValueToSource(JavaClassSource addImportsTo, Object value) {
 			if (value == null)
 				return null;
 			if (value instanceof Optional<?>) {

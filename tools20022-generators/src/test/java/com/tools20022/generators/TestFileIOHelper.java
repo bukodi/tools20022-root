@@ -17,7 +17,7 @@ public class TestFileIOHelper {
 			Path generatedDir = Files.createDirectories(src.resolve("com/tools20022/generated"));
 			Path customFile = Files.write(customDir.resolve("MyFile.java"), "class MyFile{}".getBytes());
 			Path generatedFile = Files.write(generatedDir.resolve("GenFile.java"), "class GenFile{}".getBytes());
-			FileIOHelper.deleteAllExcept(src, p -> p.toString().contains("/custom/"));
+			FileIOHelper.deleteAllExcept(src, p -> p.toString().contains("custom"));
 			assertTrue(Files.exists(customFile));
 			assertFalse(Files.exists(generatedFile));
 		} finally {

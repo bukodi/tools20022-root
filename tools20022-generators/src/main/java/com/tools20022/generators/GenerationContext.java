@@ -154,8 +154,12 @@ public class GenerationContext<M> {
 
 	public final void generate(M model, BiConsumer<M, GenerationContext<M>> generator) {
 		long start = System.currentTimeMillis();
+		// Delete unprotected files
+		fileManager.cleanOutputFolder();
+
 		generationStarted = System.currentTimeMillis();
 		generator.accept(model, this);
+		
 		
 		// Save the remaining unsaved sources
 				

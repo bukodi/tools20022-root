@@ -5,15 +5,19 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -51,25 +55,6 @@ public class FileIOHelper {
 			zos.write(Files.readAllBytes(fileOrDir));
 			zos.closeEntry();
 		}
-	}
-
-	public static void deleteAll(Path directory) throws IOException {
-		if (Files.notExists(directory))
-			return;
-		Files.walkFileTree(directory, new SimpleFileVisitor<Path>() {
-			@Override
-			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-				Files.delete(file);
-				return FileVisitResult.CONTINUE;
-			}
-
-			@Override
-			public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-				Files.delete(dir);
-				return FileVisitResult.CONTINUE;
-			}
-
-		});
 	}
 
 	static void isEquals(Path rootDirExpected, Path rootDirActual) throws IOException {
@@ -114,24 +99,35 @@ public class FileIOHelper {
 		}
 		return baos.toByteArray();
 	}
-
-	public static void deleteAllExcept(Path startPath, Predicate<Path> filter) throws IOException {
-		Files.walkFileTree(startPath, new SimpleFileVisitor<Path>() {
-			@Override
-			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-				if (!filter.test(file))
-					Files.delete(file);
-				return FileVisitResult.CONTINUE;
+	
+	/**
+	 * 
+	 * @param dirpath
+	 * @param filter
+	 * @return <code>true</code> if the directory is empty
+	 */
+	public static boolean deleteAllExcept(Path dir, Predicate<Path> filter) throws IOException {
+		List<Path> entries = new ArrayList<>();
+		try( DirectoryStream<Path> ds = Files.newDirectoryStream(dir); ) {
+			ds.forEach(p->entries.add(p));
+		}
+		boolean allDeleted = true;
+		for( Path entry : entries ) {			
+			if( Files.isDirectory(entry)) {
+				boolean isEmpty = deleteAllExcept(entry, filter);
+				if( !isEmpty || filter.test(entry) ) {
+					allDeleted = false;					
+				} else {
+					Files.delete(entry);
+				}
+			} else {
+				if( filter.test(entry)) {
+					allDeleted = false;					
+				} else {
+					Files.delete(entry);
+				}
 			}
-
-			@Override
-			public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException {
-				if (e != null)
-					throw e;
-				if( !filter.test(dir) && Files.list(dir).count() == 0 && !dir.equals(startPath))
-					Files.delete(dir);
-				return FileVisitResult.CONTINUE;
-			}
-		});
+		}
+		return allDeleted;
 	}
 }

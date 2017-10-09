@@ -50,6 +50,15 @@ public class GeneratorFileManager implements JavaFileManager {
 		this.dontChangeIfExists = predicate;
 	}
 	
+	public void cleanOutputFolder() {
+		Path srcOutputPath = rootPaths.get(StandardLocation.SOURCE_OUTPUT);
+		try {
+			FileIOHelper.deleteAllExcept(srcOutputPath, dontChangeIfExists);
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
+		}
+	}
+	
 	@Override
 	public int isSupportedOption(String option) {
 		return -1;
@@ -217,13 +226,15 @@ public class GeneratorFileManager implements JavaFileManager {
 
 		@Override
 		public Writer openWriter() throws IOException {
-			if (isProtected) {
+			if (isProtected) 
 				return new StringWriter();
-			} else {
+			
+			Path parentDir = path.getParent();
+			if( Files.notExists(parentDir)) {
 				Files.createDirectories(path.getParent());
-				return Files.newBufferedWriter(path, charset, StandardOpenOption.CREATE,
-						StandardOpenOption.TRUNCATE_EXISTING);
-			}
+			} 
+			return Files.newBufferedWriter(path, charset, StandardOpenOption.CREATE,
+					StandardOpenOption.TRUNCATE_EXISTING);
 		}
 
 		@Override
