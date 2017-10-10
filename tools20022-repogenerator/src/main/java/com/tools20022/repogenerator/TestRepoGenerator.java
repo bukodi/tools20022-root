@@ -99,20 +99,15 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		JavaClassSource src;
 		src = ctx.createSourceFile(JavaClassSource.class, javaName);
 
-		// repoType field and method
-		MetamodelType<?> metamodelType = repo.getMetamodel().getTypeByClass(mmBean.getClass());
 		src.addImport(mmBean.getClass());
-		src.setSuperType(mmBean.getClass());
+		//src.setSuperType(mmBean.getClass());
 
 		createJavaDoc(src, mmBean);
 
 		src.addImport(AtomicReference.class);
 		src.addField(
-				"private final static " + AtomicReference.class.getSimpleName() + "<" + javaName.getSimpleName()
-						+ "> repoTypeRef = new " + AtomicReference.class.getSimpleName() + "<>();");
-		src.addMethod("public static " + javaName.getSimpleName() + " repoType() { "
-				+ " repoTypeRef.compareAndSet(null, new " + javaName.getSimpleName() + "());"
-				+ " return repoTypeRef.get();" + "}");
+				"private final static " + AtomicReference.class.getSimpleName() + "<" + mmBean.getClass().getSimpleName()
+						+ "> mmObject_lazy = new " + AtomicReference.class.getSimpleName() + "<>();");
 
 		// Create containment tree
 		Set<GeneratedMetamodelBean> directContent = repo.listContent(mmBean, false, false)
@@ -121,14 +116,21 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			createRTClass(containedBean, src);
 		}
 
-		// Constructor
-		MethodSource<JavaClassSource> srcConstr = src.addMethod().setConstructor(true);
-		srcConstr.setPrivate();
+		// mmObject field and method
+		MethodSource<JavaClassSource> methodMMObject = src.addMethod();		
+		methodMMObject.setPublic().setStatic(true).setFinal(true);
+		methodMMObject.setReturnType(mmBean.getClass());
+		methodMMObject.setName("mmObject");
 
 		// Init atributes in constructor
-		String body = addAllAttributes(mmBean, src, src);
-		srcConstr.setBody(body);
+		String initFieldsSrc = addAllAttributes(mmBean, src, src);
 
+		String body = "  mmObject_lazy.compareAndSet(null, ";
+		body += "  new " + mmBean.getClass().getSimpleName() + "(){{" + initFieldsSrc + "}} );";
+		body += "  return mmObject_lazy.get();";
+		
+		methodMMObject.setBody(body);
+		
 		ctx.saveSourceFile(src);
 	}
 
@@ -182,7 +184,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		FieldSource<JavaClassSource> srcField = srcMainClass.addField();
 		srcField.setName(javaName.getMemberName());
 		srcField.setPublic();
-		srcField.setFinal(true);
+		srcField.setFinal(true).setStatic(true);
 		srcMainClass.addImport(mmBean.getClass());
 		srcField.setType(mmBean.getClass());
 		createJavaDoc(srcField, mmBean);
@@ -341,11 +343,11 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 					// The variable declared in other type
 					// addImportsTo.addImport(javaName.getPackage() + "." +
 					// javaName.getCompilationUnit());
-					String srcValue = javaName.getPackage() + "." + javaName.getCompilationUnit() + ".repoType()."
+					String srcValue = javaName.getPackage() + "." + javaName.getCompilationUnit() + "."
 							+ javaName.getMemberName();
-					String javaDocValue = "{@linkplain " + javaName.getPackage() + "."
-							+ javaName.getCompilationUnit() + "#" + javaName.getMemberName() + " "
-							+ javaName.getCompilationUnit() + "." + javaName.getMemberName() + "}";
+					String javaDocValue = "{@linkplain ";
+					javaDocValue += javaName.getPackage() + "." + javaName.getCompilationUnit() + "#" + javaName.getMemberName(); 
+					javaDocValue += " " + javaName.getCompilationUnit() + "." + javaName.getMemberName() + "}";
 					return new AttrValue(srcValue, javaDocValue);
 				}
 			} else {
@@ -353,7 +355,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 				// addImportsTo.addImport(javaName.getFullName());
 				String javaDocValue = "{@linkplain " + javaName.getFullName() + " " + javaName.getCompilationUnit()
 						+ "}";
-				return new AttrValue(javaName.getFullName() + ".repoType()", javaDocValue);
+				return new AttrValue(javaName.getFullName() + ".mmObject()", javaDocValue);
 			}
 		} else if (value instanceof Enum<?>) {
 			return null; // TODO
@@ -370,9 +372,6 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			memberName = RoasterHelper.convertToJavaName(memberName);
 			return JavaName.member(parentJavaName, memberName);
 		};
-
-		String pkg;
-		String cuName;
 
 		if (mmElem instanceof MMRepository) {
 			return JavaName.primaryType(basePackageName, mainClassSimpleName);
@@ -400,6 +399,9 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
 		}
 
+		String pkg;
+		String cuName;
+
 		// CU name
 		if (mmElem instanceof MMRepositoryConcept) {
 			cuName = (((MMRepositoryConcept) mmElem).getName()).toString();
@@ -412,33 +414,33 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
 			String areaCode = msgDef.getBusinessArea() == null ? "other"
 					: msgDef.getBusinessArea().getCode() == null ? "other" : msgDef.getBusinessArea().getCode();
-			pkg = "catalogue.msgdef." + areaCode;
+			pkg = "area." + areaCode;
 		} else if (mmElem instanceof MMTopLevelCatalogueEntry) {
 			if (mmElem instanceof MMMessageSet) {
-				pkg = "catalogue.msgset";
+				pkg = "msgset";
 			} else if (mmElem instanceof MMBusinessArea) {
-				pkg = "catalogue.area";
+				pkg = "area";
 			} else {
-				pkg = "catalogue.other";
+				pkg = "other";
 			}
 		} else if (mmElem instanceof MMTopLevelDictionaryEntry) {
 			if (mmElem instanceof MMCodeSet) {
-				pkg = "dict.codeset";
+				pkg = "codeset";
 			} else if (mmElem instanceof MMDataType) {
-				pkg = "dict.datatype";
+				pkg = "datatype";
 			} else if (mmElem instanceof MMBusinessComponent) {
-				pkg = "dict.entity";
+				pkg = "entity";
 			} else if (mmElem instanceof MMMessageComponent) {
-				pkg = "dict.msg";
+				pkg = "msg";
 			} else if (mmElem instanceof MMChoiceComponent) {
-				pkg = "dict.choice";
+				pkg = "choice";
 			} else {
-				pkg = "dict.other";
+				pkg = "other";
 			}
 		} else {
 			return null;
 		}
-		pkg = basePackageName + "." + pkg;
+		pkg = basePackageName + ".struct." + pkg;
 
 		if (cuName == null) {
 			return null;
@@ -453,26 +455,9 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 				cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
 		}
 
-		return JavaName.primaryType(pkg, cuName);
+		return JavaName.primaryType(pkg, cuName + "_");
 	}
 
-	/**
-	 * kashkjdhaks. ajsdkjashd.
-	 * <p>
-	 * <strong>Fields:</strong>
-	 * <ul>
-	 * <li>First:</li>
-	 * <ul>
-	 * <li>First</li>
-	 * <li>Second</li>
-	 * </ul>
-	 * <li>Second</li>
-	 * </ul>
-	 * </p>
-	 * 
-	 * @param javaDocHolder
-	 * @param repoObj
-	 */
 	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj) {
 		String docTxt;
 		if (repoObj instanceof MMRepositoryConcept) {

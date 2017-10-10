@@ -3,6 +3,7 @@
 - [ ] Remove type parameters from MetamodelType and MetamodelAttribute
 
 # Generators
+- [ ] Inject "Watermark errors" while repository loading. 
 - [ ] Split AbstractGenerator and GenerationContext
 - [ ] GeneratorDebugProxy 
 - [ ] Replace code snippet based generation with AST building. 
