@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -53,6 +55,7 @@ import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
@@ -161,7 +164,7 @@ public class GenerateSources {
 			src.addImport(mmBean.getClass());
 			src.setSuperType(mmBean.getClass());
 			
-			addJavaDoc(mmBean, src);
+			createJavaDoc(src, mmBean);
 			
 			src.addImport(AtomicReference.class);
 			src.addField(
@@ -182,27 +185,42 @@ public class GenerateSources {
 			srcConstr.setPrivate();
 
 			// Init atributes in constructor
-			String body = "";
-			
-			for (MetamodelAttribute<?, ?> mmAttr : mmBean.getMetamodel().getAllAttributes()) {
-				if( mmAttr.isDerived() )
-					continue;
-				Object value = mmAttr.get(mmBean);				
-				String valueAsSourceString = convertAttributeValueToSource(src, value);
-				if( valueAsSourceString == null )
-					continue;
-				if( mmAttr.getReferencedType() != null ) {
-					body += mmAttr.getName() + "_lazy = ()->" + valueAsSourceString + ";";
-				} else {
-					body += mmAttr.getName() + " = " + valueAsSourceString + ";";					
-				}
-			}
-
+			String body = addAllAttributes(mmBean, src, src);
 			srcConstr.setBody(body);
 
 			ctx.saveSourceFile(src);			
 		}
 		
+		private String addAllAttributes(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass, JavaDocCapableSource<?> javaDocHolder) {
+			String body = "";
+			
+			addToJavaDoc(javaDocHolder, "\r\n<ul>");
+			for (MetamodelAttribute<?, ?> mmAttr : mmBean.getMetamodel().getAllAttributes()) {
+				if( mmAttr.isDerived() )
+					continue;
+				Object value = mmAttr.get(mmBean);				
+				AttrValue valueAsSourceString = convertAttributeValueToSource(srcMainClass, value);
+				if( valueAsSourceString == null )
+					continue;
+				if( mmAttr.getReferencedType() != null ) {
+					body += mmAttr.getName() + "_lazy = ()->" + valueAsSourceString.valueAsSource + ";";
+				} else {
+					body += mmAttr.getName() + " = " + valueAsSourceString.valueAsSource + ";";					
+				}
+				if( valueAsSourceString.valueAsJavaDoc != null ) {
+					if( mmAttr.getDeclaringType().equals(MMRepositoryConcept.metaType())) {
+						
+					} else if( mmAttr.getDeclaringType().equals(MMModelEntity.metaType())) {
+						
+					} else {
+						addToJavaDoc(javaDocHolder, "\r\n<li>"+mmAttr.getName() + " = "+ valueAsSourceString.valueAsJavaDoc +"</li>");											
+					}
+				}
+			}
+			addToJavaDoc(javaDocHolder, "\r\n</ul>");
+			return body;
+		}
+				
 		FieldSource<JavaClassSource> createFinalVarWithAnonymousClass(GeneratedMetamodelBean mmBean,
 				JavaClassSource srcMainClass) {
 			JavaName javaName = getJavaName(mmBean);
@@ -218,7 +236,7 @@ public class GenerateSources {
 			srcField.setFinal(true);
 			srcMainClass.addImport(mmBean.getClass());
 			srcField.setType(mmBean.getClass());
-			addJavaDoc(mmBean, srcField);
+			createJavaDoc(srcField, mmBean);
 			
 			// Create containment tree 
 			Set<GeneratedMetamodelBean> directContent = repo.listContent(mmBean, false, false).collect(Collectors.toCollection(LinkedHashSet::new));  
@@ -227,21 +245,8 @@ public class GenerateSources {
 			}
 			
 			// Init atributes in constructor
-			String body = "";
+			String body = addAllAttributes(mmBean, srcMainClass, srcField);
 			
-			for (MetamodelAttribute<?, ?> mmAttr : mmBean.getMetamodel().getAllAttributes()) {
-				if( mmAttr.isDerived() )
-					continue;
-				Object value = mmAttr.get(mmBean);				
-				String valueAsSourceString = convertAttributeValueToSource(srcMainClass, value);
-				if( valueAsSourceString == null )
-					continue;
-				if( mmAttr.getReferencedType() != null ) {
-					body += mmAttr.getName() + "_lazy = ()->" + valueAsSourceString + ";";
-				} else {
-					body += mmAttr.getName() + " = " + valueAsSourceString + ";";					
-				}
-			}
 
 			String init = " new " + mmBean.getClass().getSimpleName() + "(){ ";
 			init += "{" + body + "}";
@@ -252,7 +257,7 @@ public class GenerateSources {
 		}
 
 		int USE_LIST_BUILDER_ABOVE = 500;
-		JavaName createLongListBuilder(JavaClassSource addImportsTo, List<Object> elems ) { 
+		private JavaName createLongListBuilder(JavaClassSource addImportsTo, List<Object> elems ) { 
 			
 			JavaName firstBuilderName = null;
 			
@@ -269,8 +274,8 @@ public class GenerateSources {
 					if( (seq * USE_LIST_BUILDER_ABOVE) + i >= elems.size() )
 						break;
 					Object elem = elems.get( (seq * USE_LIST_BUILDER_ABOVE) + i );
-					String valueAsSrc = convertAttributeValueToSource(addImportsTo, elem); 
-					sb.append("    list.add( (T) " + valueAsSrc + ");\n");					
+					AttrValue valueAsSrc = convertAttributeValueToSource(addImportsTo, elem); 
+					sb.append("    list.add( (T) " + valueAsSrc.valueAsSource + ");\n");					
 				}
 				
 				if( (seq+1) * USE_LIST_BUILDER_ABOVE < elems.size() ) {
@@ -289,7 +294,21 @@ public class GenerateSources {
 			return firstBuilderName;
 		}
 		
-		protected String convertAttributeValueToSource(JavaClassSource addImportsTo, Object value) {
+		private class AttrValue {
+			public final String valueAsSource;
+			public final String valueAsJavaDoc;
+			
+			AttrValue(String valueAsSource ) {
+				this( valueAsSource, valueAsSource);
+			}
+
+			AttrValue(String valueAsSource, String valueAsJavaDoc ) {
+				this.valueAsSource = valueAsSource;
+				this.valueAsJavaDoc = valueAsJavaDoc;
+			}
+		}
+		
+		protected AttrValue convertAttributeValueToSource(JavaClassSource addImportsTo, Object value) {
 			if (value == null)
 				return null;
 			if (value instanceof Optional<?>) {
@@ -311,20 +330,20 @@ public class GenerateSources {
 					src = "" + firstListBuilder.getSimpleName() + ".addElems( new " + ArrayList.class.getSimpleName() + "<>() )";
 				} else {
 					src = Arrays.class.getSimpleName() + ".asList( ";
-					src += elems.stream().map(e -> convertAttributeValueToSource(addImportsTo, e)).filter(s->s!=null).collect(Collectors.joining(",\n"));					
+					src += elems.stream().map(e -> convertAttributeValueToSource(addImportsTo, e)).filter(s->s!=null).map( av->av.valueAsSource).collect(Collectors.joining(",\n"));					
 					src += ")";
 				}
 				
-				return src;
+				return new AttrValue(src, "List of " + elems.size() + " elements");
 			}
 
 			if (value instanceof Number) {
-				return value.toString();
+				return new AttrValue( value.toString() );
 			} else if (value instanceof Boolean) {
-				return value.toString();
+				return new AttrValue( value.toString() );
 			} else if (value instanceof Date) {
 				addImportsTo.addImport(Date.class);
-				return " new Date(" + ((Date) value).getTime() + "L)";
+				return new AttrValue( " new Date(" + ((Date) value).getTime() + "L)", DateFormat.getDateInstance(DateFormat.LONG).format((Date)value));
 			} else if (value instanceof CharSequence) {
 				StringBuilder sb = new StringBuilder();
 				for (int i = 0; i < ((CharSequence) value).length(); i++) {
@@ -340,7 +359,10 @@ public class GenerateSources {
 					else
 						sb.append(ch);
 				}
-				return "\"" + sb.toString() + "\"";
+				// Replace <, >, & chars
+				String srcTxt = "\"" + sb.toString() + "\"";
+				String docTxt = srcTxt.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+				return new AttrValue( srcTxt, docTxt);
 			} else if (value instanceof GeneratedMetamodelBean) {
 				GeneratedMetamodelBean mmElem = (GeneratedMetamodelBean) value;
 				JavaName javaName = getJavaName(mmElem);
@@ -351,16 +373,19 @@ public class GenerateSources {
 					if (addImportsTo.getPackage().equals(javaName.getPackage())
 							&& addImportsTo.getName().equals(javaName.getCompilationUnit())) {
 						// The variable declared in thes type
-						return javaName.getMemberName();
+						return new AttrValue( javaName.getMemberName(), "{@linkplain #" + javaName.getMemberName() + "}");
 					} else {
 						// The variable declared in other type
 						//addImportsTo.addImport(javaName.getPackage() + "." + javaName.getCompilationUnit());
-						return javaName.getPackage() + "." + javaName.getCompilationUnit() + ".repoType()." + javaName.getMemberName();
+						String srcValue = javaName.getPackage() + "." + javaName.getCompilationUnit() + ".repoType()." + javaName.getMemberName();
+						String javaDocValue = "{@linkplain " + javaName.getPackage() + "." + javaName.getCompilationUnit() + "#" + javaName.getMemberName() + " " + javaName.getCompilationUnit() + "." + javaName.getMemberName() + "}";
+						return new AttrValue(srcValue, javaDocValue);
 					}
 				} else {
 					// This is a main class
 					//addImportsTo.addImport(javaName.getFullName());
-					return javaName.getFullName() + ".repoType()";
+					String javaDocValue = "{@linkplain " + javaName.getFullName() + " " + javaName.getCompilationUnit()  + "}";
+					return new AttrValue( javaName.getFullName() + ".repoType()", javaDocValue);
 				}
 			} else if (value instanceof Enum<?>) {
 				return null; // TODO
@@ -369,45 +394,42 @@ public class GenerateSources {
 			}
 		}
 
-		private static String lowerFirstChar(String name) {
-			return name.substring(0, 1).toLowerCase() + name.substring(1);
-		}
-
-		protected JavaName createJavaNameAsMemeber(GeneratedMetamodelBean mmElem, String memberName) {
-			JavaName containerJavaName = getJavaName(mmElem.getContainer());
-			memberName = convertToJavaName(memberName);
-			return JavaName.member(containerJavaName, memberName);
-		}
-
 		@Override
 		protected JavaName getJavaName(GeneratedMetamodelBean mmElem) {
+			
+			BiFunction<GeneratedMetamodelBean, String, JavaName> createJavaNameAsMemeber = (parentElem,memberName)->{
+				JavaName parentJavaName = getJavaName(parentElem.getContainer());
+				memberName = RoasterHelper.convertToJavaName(memberName);
+				return JavaName.member(parentJavaName, memberName);				
+			};
+			
 			String pkg;
 			String cuName;
 
 			if (mmElem instanceof MMRepository) {
 				return JavaName.primaryType(basePackageName, mainClassSimpleName);
 			} else if (mmElem instanceof MMDataDictionary) {
-				return createJavaNameAsMemeber(mmElem, "dataDict");
+				return createJavaNameAsMemeber.apply(mmElem, "dataDict");
 			} else if (mmElem instanceof MMBusinessProcessCatalogue) {
-				return createJavaNameAsMemeber(mmElem, "catalogue");
+				return createJavaNameAsMemeber.apply(mmElem, "catalogue");
 			} else if (mmElem instanceof MMBusinessAssociationEnd) {
-				return createJavaNameAsMemeber(mmElem, "ref" + ((MMBusinessAssociationEnd) mmElem).getName());
+				return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessAssociationEnd) mmElem).getName());
 			} else if (mmElem instanceof MMBusinessAttribute) {
-				return createJavaNameAsMemeber(mmElem, "attr" + ((MMBusinessAttribute) mmElem).getName());
+				return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessAttribute) mmElem).getName());
 			} else if (mmElem instanceof MMMessageAssociationEnd) {
-				return createJavaNameAsMemeber(mmElem, "ref" + ((MMMessageAssociationEnd) mmElem).getName());
+				return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageAssociationEnd) mmElem).getName());
 			} else if (mmElem instanceof MMMessageAttribute) {
-				return createJavaNameAsMemeber(mmElem, "attr" + ((MMMessageAttribute) mmElem).getName());
+				return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageAttribute) mmElem).getName());
 			} else if (mmElem instanceof MMMessageBuildingBlock) {
-				return createJavaNameAsMemeber(mmElem, "block" + ((MMMessageBuildingBlock) mmElem).getName());
+				return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageBuildingBlock) mmElem).getName());
 			} else if (mmElem instanceof MMMessageDefinitionIdentifier) {
-				return createJavaNameAsMemeber(mmElem, "identifier");
+				return createJavaNameAsMemeber.apply(mmElem, "identifier");
 			} else if (mmElem instanceof MMXor) {
-				return createJavaNameAsMemeber(mmElem, "xor" + ((MMXor) mmElem).getName());
+				return createJavaNameAsMemeber.apply(mmElem, "" + ((MMXor) mmElem).getName());
 			} else if (mmElem instanceof MMBusinessRole) {
-				return createJavaNameAsMemeber(mmElem, "role" + ((MMBusinessRole) mmElem).getName());
+				return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessRole) mmElem).getName());
 			} else if (mmElem instanceof MMCode) {
-				return createJavaNameAsMemeber(mmElem, "code" + ((MMCode) mmElem).getName());
+				return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
 			}
 
 			// CU name
@@ -454,7 +476,7 @@ public class GenerateSources {
 				return null;
 			}
 
-			cuName = convertToJavaName(cuName);
+			cuName = RoasterHelper.convertToJavaName(cuName);
 
 			if (mmElem instanceof MMBusinessArea) {
 				if (cuName.endsWith("master"))
@@ -466,7 +488,7 @@ public class GenerateSources {
 			return JavaName.primaryType(pkg, cuName);
 		}
 
-		protected void addJavaDoc(GeneratedMetamodelBean repoObj, JavaDocCapableSource<?> javaDocHolder) {
+		protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj ) {
 			String docTxt;
 			if (repoObj instanceof MMRepositoryConcept) {
 				MMRepositoryConcept mmRC = (MMRepositoryConcept) repoObj;
@@ -475,36 +497,20 @@ public class GenerateSources {
 				docTxt = "An instance of " + repoObj.getMetamodel().getName() + ".";
 			}
 			// Replace <, >, & chars
-			docTxt = docTxt.replaceAll("&", "	&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+			docTxt = docTxt.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
 			docTxt = docTxt.replaceAll("\r\n", "<br>\n");
 			docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
 			docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
 			javaDocHolder.getJavaDoc().setText(docTxt);
 		}
-	}
 
-	/**
-	 * Converts the input string to a valid Java identifier name.
-	 * 
-	 * Does two transformations:
-	 * <ul>
-	 * <li>removes non Java identifier characters</li>
-	 * <li>if the name is a Java reserved word, appends an underscore character</li>   
-	 * </ul>
-	 * @param name
-	 * @return
-	 */
-	static String convertToJavaName(String name) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < name.length(); i++) {
-			char ch = name.charAt(i);
-			if (Character.isJavaIdentifierPart(ch))
-				sb.append(ch);
+		protected void addToJavaDoc(JavaDocCapableSource<?> javaDocHolder, String docTxt ) {
+
+			String existingDoc = javaDocHolder.getJavaDoc().getText(); 
+			if( existingDoc == null ) 
+				existingDoc = "";
+			javaDocHolder.getJavaDoc().setText(existingDoc + docTxt);
 		}
-		name = sb.toString();
-		if (RoasterHelper.JAVA_RESERVED_WORDS.contains(name))
-			name = name + "_";
-		return name;
 	}
 
 }

@@ -20,9 +20,13 @@ import org.junit.Test;
 import com.tools20022.generators.SaveConsistentSubSet.ConsistentSubset;
 
 public class TestConsistentSubset {
+	
 
 	@Test
-	public void testName() throws Exception {
+	public void subsetForBusinessArea() throws Exception {
+		final String code = "pain";
+		
+		
 		long start = System.currentTimeMillis();
 		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore");
 		Path xmiPath = Paths.get(
@@ -43,18 +47,13 @@ public class TestConsistentSubset {
 		System.out.println();
 		
 		EObject areaEObj = scss.getLatestBusinessAreaByCode("pain");
-		ConsistentSubset ss = saveSubsetForArea(scss, "pain", areaEObj, monitor);
-//		for( Entry<String, EObject> e : areasByCode.entrySet() ) {
-//		}
-	}
-	
-	private ConsistentSubset saveSubsetForArea( SaveConsistentSubSet scss, String code, EObject areaEObj, ProgressMonitor monitor) throws Exception {
 		Set<EObject> seedSet = new HashSet<>();
 		seedSet.addAll(areaEObj.eContents());
+		
 		ConsistentSubset ss = scss.createSubSet(seedSet, monitor);
 		Map<EClass, List<EObject>> stat = ss.getSatistics();
 
-		Path testSubsetFile = Paths.get("../tools20022-testrepo/src/test/resources/model/business-area-" + code + ".iso20022");
+		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-area-" + code + ".iso20022");
 		ss.saveFilteredXmiModel(testSubsetFile);
 
 		System.out.println();
@@ -65,8 +64,43 @@ public class TestConsistentSubset {
 			System.out.println(e.getKey().getName() + " : " + e.getValue().size());
 		});
 		System.out.println("Summ of "+ code +" : " + summCount.get());
-		return ss;
 	}
-	
+		
+	@Test
+	public void subsetForMessageDef() throws Exception {
+		final String msgId = "pain.002.001.08";
+		
+		
+		long start = System.currentTimeMillis();
+		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore");
+		Path xmiPath = Paths.get(
+				"../tools20022-repogenerator/src/main/resources/model/20170713_ISO20022_2013_eRepository.iso20022");
+		EPackage ecorePackage = ECoreIOHelper.loadECorePackage(ecorePath);
+		EObject xmiRootEObj = ECoreIOHelper.loadXMIResource(xmiPath);
+		System.out.println("EMF Load completed: " + (System.currentTimeMillis() - start) + " ms");
+
+		SaveConsistentSubSet scss = new SaveConsistentSubSet(ecorePackage, xmiRootEObj);
+		ProgressMonitor monitor = new ProgressMonitor();
+		scss.getMsgDefByMsgId(msgId);
+				
+		Set<EObject> seedSet = new HashSet<>();
+		seedSet.add(scss.getMsgDefByMsgId(msgId));
+		
+		ConsistentSubset ss = scss.createSubSet(seedSet, monitor);
+		Map<EClass, List<EObject>> stat = ss.getSatistics();
+
+		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/msgdef-" + msgId + ".iso20022");
+		ss.saveFilteredXmiModel(testSubsetFile);
+
+		System.out.println();
+		System.out.println("--- Statistics of " + msgId + " ---");
+		AtomicInteger summCount = new AtomicInteger();
+		stat.entrySet().forEach(e -> {
+			summCount.addAndGet(e.getValue().size());
+			System.out.println(e.getKey().getName() + " : " + e.getValue().size());
+		});
+		System.out.println("Summ of "+ msgId +" : " + summCount.get());
+	}
+		
 	
 }

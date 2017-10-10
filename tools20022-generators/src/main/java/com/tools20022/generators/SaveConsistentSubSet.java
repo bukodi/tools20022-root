@@ -419,6 +419,32 @@ public class SaveConsistentSubSet {
 		throw new NoSuchElementException();
 	}
 	
+	public EObject getMsgDefByMsgId( String expected_id ) {
+
+		EClass eClassMsgDefId = (EClass) ecorePackage.getEClassifier("MessageDefinitionIdentifier");
+		EAttribute eAttrMsgDefArea = (EAttribute) eClassMsgDefId.getEStructuralFeature("businessArea");
+		EAttribute eAttrMsgDefFunc = (EAttribute) eClassMsgDefId.getEStructuralFeature("messageFunctionality");
+		EAttribute eAttrMsgDefFlavour = (EAttribute) eClassMsgDefId.getEStructuralFeature("flavour");
+		EAttribute eAttrMsgDefVer = (EAttribute) eClassMsgDefId.getEStructuralFeature("version");
+		
+		
+		for( TreeIterator<EObject> tit = xmiRootEObj.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if( ! eClassMsgDefId.equals( eObject.eClass()) ) 
+				continue;
+			String area = (String)eObject.eGet(eAttrMsgDefArea);
+			String func = (String)eObject.eGet(eAttrMsgDefFunc);
+			String flavour = (String)eObject.eGet(eAttrMsgDefFlavour);
+			String ver = (String)eObject.eGet(eAttrMsgDefVer);
+			
+			String actual_id = area + "." + func + "." + flavour + "." + ver;
+			System.out.println( actual_id );
+			if( expected_id.equals( actual_id ) )
+				return eObject.eContainer();
+		}
+		throw new NoSuchElementException();
+	}
+	
 
 
 	

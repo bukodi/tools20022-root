@@ -33,7 +33,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
-					<subpackages>com:test</subpackages>
+					<subpackages>com.tools20022.core:com.tools20022.metamodel:com.tools20022.repository</subpackages>
 				</configuration>
 				<executions>
 					<execution>

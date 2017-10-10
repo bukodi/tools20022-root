@@ -42,7 +42,7 @@ public class GenerationContext<M> {
 	protected long generationStarted = System.currentTimeMillis();
 	private boolean firstGeneratedFile = false;
 
-	public GenerationContext(Class<M> modelltype) {
+	public GenerationContext(Class<M> modelType) {
 	}
 
 	protected Properties getFormatterOptions() {

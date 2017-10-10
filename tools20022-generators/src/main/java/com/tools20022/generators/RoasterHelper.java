@@ -132,4 +132,29 @@ public class RoasterHelper {
 				.get();
 	}
 
+	/**
+	 * Converts the input string to a valid Java identifier name.
+	 * 
+	 * Does two transformations:
+	 * <ul>
+	 * <li>removes non Java identifier characters</li>
+	 * <li>if the name is a Java reserved word, appends an underscore character</li>   
+	 * </ul>
+	 * @param name
+	 * @return
+	 */
+	public static String convertToJavaName(String name) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < name.length(); i++) {
+			char ch = name.charAt(i);
+			if (Character.isJavaIdentifierPart(ch))
+				sb.append(ch);
+		}
+		name = sb.toString();
+		if (JAVA_RESERVED_WORDS.contains(name))
+			name = name + "_";
+		return name;
+	}
+
+
 }
