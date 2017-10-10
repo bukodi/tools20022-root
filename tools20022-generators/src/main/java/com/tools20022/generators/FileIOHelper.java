@@ -102,8 +102,8 @@ public class FileIOHelper {
 	
 	/**
 	 * 
-	 * @param dirpath
-	 * @param filter
+	 * @param dir root directory
+	 * @param filter keep files or directories 
 	 * @return <code>true</code> if the directory is empty
 	 */
 	public static boolean deleteAllExcept(Path dir, Predicate<Path> filter) throws IOException {

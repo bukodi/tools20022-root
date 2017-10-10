@@ -34,7 +34,7 @@ public class GenerateRepositoryArtifact {
 		
 		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
 		genCtx.setFileManagerRoot(srcRoot);
-		genCtx.generate( repo, new GenerateSources.TestRepoGenerator() );
+		genCtx.generate( repo, new TestRepoGenerator() );
 
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		System.out.println("Repo generation : " + (System.currentTimeMillis() - start) + " ms, " + ((usedMem2 - usedMem )/(1024*1024)) + " MB" + " (Max mem: " + (Runtime.getRuntime().maxMemory()/(1024*1024)) + " MB)");
