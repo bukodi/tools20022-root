@@ -22,7 +22,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<metamodel.version>0.0.1.2013-SNAPSHOT</metamodel.version>
-		<repository.version>0.0.1.20170210-SNAPSHOT</repository.version>
+		<repository.version>0.0.1.20170713-SNAPSHOT</repository.version>
 	</properties>
 
 	<dependencies>
@@ -57,7 +57,7 @@
 						<link>http://docs.oracle.com/javase/8/docs/api</link>
 					</links>
 					<additionalparam>--allow-script-in-comments</additionalparam>
-					<additionalJOption>-J-Xmx1024m</additionalJOption>
+					<additionalJOption>-J-Xmx6000m</additionalJOption>
 
 					<!-- GA Tracking code -->
 					<header>
