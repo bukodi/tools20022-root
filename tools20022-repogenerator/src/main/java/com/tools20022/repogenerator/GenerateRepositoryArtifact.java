@@ -27,14 +27,14 @@ public class GenerateRepositoryArtifact {
 		RawRepository repo;
 		{
 			final EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
-			EObject rootEObj = ECoreIOHelper.loadXMIResource("/model/20170516_ISO20022_2013_eRepository.iso20022");
+			EObject rootEObj = ECoreIOHelper.loadXMIResource("/model/20170713_ISO20022_2013_eRepository.iso20022");
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());		
 			repo = loader.load( ecorePkg, rootEObj);
 		}
 		
 		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
 		genCtx.setFileManagerRoot(srcRoot);
-		genCtx.generate( repo, new DefaultRepoGenerator() );
+		genCtx.generate( repo, new GenerateSources.TestRepoGenerator() );
 
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		System.out.println("Repo generation : " + (System.currentTimeMillis() - start) + " ms, " + ((usedMem2 - usedMem )/(1024*1024)) + " MB" + " (Max mem: " + (Runtime.getRuntime().maxMemory()/(1024*1024)) + " MB)");

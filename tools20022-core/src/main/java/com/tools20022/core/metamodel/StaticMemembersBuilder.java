@@ -1,5 +1,6 @@
 package com.tools20022.core.metamodel;
 
+import java.lang.reflect.Method;
 import java.util.LinkedHashSet;
 import java.util.function.Consumer;
 
@@ -136,9 +137,14 @@ public class StaticMemembersBuilder {
 
 		@Override
 		public void set(GeneratedMetamodelBean repoObj, Object value) {
-			impl().set(repoObj, value);
-			
+			impl().set(repoObj, value);			
 		}
+		
+		@Override
+		public Method getGetterMethod() {
+			return impl().getGetterMethod();
+		}
+
 	}
 
 	class ConstrWrapper<B extends GeneratedMetamodelBean>

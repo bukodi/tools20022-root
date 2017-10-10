@@ -468,6 +468,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		@Override
+		public Method getGetterMethod() {
+			return getterMethod;
+		}
+		
+		@Override
 		public void set(GeneratedMetamodelBean repoObj, Object value) {
 			try {
 				Field field = null;

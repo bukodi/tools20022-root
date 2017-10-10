@@ -1,5 +1,6 @@
 package com.tools20022.core.metamodel;
 
+import java.lang.reflect.Method;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -97,6 +98,7 @@ public interface Metamodel {
 
 		Object get(GeneratedMetamodelBean repoObj);
 		void set(GeneratedMetamodelBean repoObj,Object value);
+		Method getGetterMethod();
 	}
 
 	public interface MetamodelConstraint<B extends GeneratedMetamodelBean> extends MetamodelElement {
