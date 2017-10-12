@@ -62,7 +62,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			long start = System.currentTimeMillis();
 			AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
 			repo.listContent(repo.getRootObject(), true, true).forEach(repoObj -> {
-				JavaName javaName = getJavaName(repoObj);
+				JavaName javaName = getResultNames(repoObj).structName;
 				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null)
 					totalNumberOfMainTypesToGenerate.incrementAndGet();
 			});
@@ -73,12 +73,12 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			;
 		}
 
-		createSingelonRTClass(repo.getRootObject());
+		createStructMain(repo.getRootObject());
 
 	}
 
-	protected void createRTClass(GeneratedMetamodelBean mmBean, JavaClassSource containerSource) {
-		JavaName javaName = getJavaName(mmBean);
+	protected void createStructNested(GeneratedMetamodelBean mmBean, JavaClassSource containerSource) {
+		JavaName javaName = getResultNames(mmBean).structName;
 		if (javaName == null)
 			return;
 		if (javaName.getNestedTypeName() != null) {
@@ -89,12 +89,12 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		if (javaName.getMemberName() != null) {
 			createFinalVarWithAnonymousClass(mmBean, containerSource);
 		} else {
-			createSingelonRTClass(mmBean);
+			createStructMain(mmBean);
 		}
 	}
 
-	protected void createSingelonRTClass(GeneratedMetamodelBean mmBean) {
-		JavaName javaName = getJavaName(mmBean);
+	protected void createStructMain(GeneratedMetamodelBean mmBean) {
+		JavaName javaName = getResultNames(mmBean).structName;
 
 		JavaClassSource src;
 		src = ctx.createSourceFile(JavaClassSource.class, javaName);
@@ -113,7 +113,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		Set<GeneratedMetamodelBean> directContent = repo.listContent(mmBean, false, false)
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 		for (GeneratedMetamodelBean containedBean : directContent) {
-			createRTClass(containedBean, src);
+			createStructNested(containedBean, src);
 		}
 
 		// mmObject field and method
@@ -174,7 +174,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 
 	FieldSource<JavaClassSource> createFinalVarWithAnonymousClass(GeneratedMetamodelBean mmBean,
 			JavaClassSource srcMainClass) {
-		JavaName javaName = getJavaName(mmBean);
+		JavaName javaName = getResultNames(mmBean).structName;
 		if (javaName == null)
 			return null;
 		if (javaName.getNestedTypeName() != null || javaName.getMemberName() == null) {
@@ -193,7 +193,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		Set<GeneratedMetamodelBean> directContent = repo.listContent(mmBean, false, false)
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 		for (GeneratedMetamodelBean containedBean : directContent) {
-			createRTClass(containedBean, srcMainClass);
+			createStructNested(containedBean, srcMainClass);
 		}
 
 		// Init atributes in constructor
@@ -329,7 +329,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			return new AttrValue(srcTxt, docTxt);
 		} else if (value instanceof GeneratedMetamodelBean) {
 			GeneratedMetamodelBean mmElem = (GeneratedMetamodelBean) value;
-			JavaName javaName = getJavaName(mmElem);
+			JavaName javaName = getResultNames(mmElem).structName;
 			if (javaName == null)
 				return null;
 			if (javaName.getMemberName() != null) {
@@ -363,18 +363,55 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			throw new RuntimeException("Unimplemented value type: " + value.getClass());
 		}
 	}
+	
+	private static class ResultNames {
+		public final JavaName structName;
+		public final JavaName objectName;
+		public final JavaName enumName;
+		
+		public ResultNames(boolean isNull) {
+			if( !isNull )
+				throw new IllegalArgumentException();
+			this.structName = null;
+			this.objectName = null;
+			this.enumName = null;			
+		}
+		
+		public ResultNames(JavaName structName) {
+			if( structName == null )
+				throw new IllegalArgumentException();
+			this.structName = structName;
+			this.objectName = null;
+			this.enumName = null;
+		}
+		
+		public ResultNames(JavaName structName, JavaName objectName) {
+			if( structName == null || objectName == null )
+				throw new IllegalArgumentException();
+			this.structName = structName;
+			this.objectName = objectName;
+			this.enumName = null;
+		}
+		
+		public ResultNames(boolean isEnum, JavaName enumName) {
+			if( enumName == null || !isEnum)
+				throw new IllegalArgumentException();
+			this.structName = null;
+			this.objectName = null;
+			this.enumName = enumName;
+		}
+	}
 
-	@Override
-	protected JavaName getJavaName(GeneratedMetamodelBean mmElem) {
+	protected ResultNames getResultNames(GeneratedMetamodelBean mmElem) {
 
-		BiFunction<GeneratedMetamodelBean, String, JavaName> createJavaNameAsMemeber = (parentElem, memberName) -> {
-			JavaName parentJavaName = getJavaName(parentElem.getContainer());
+		BiFunction<GeneratedMetamodelBean, String, ResultNames> createJavaNameAsMemeber = (parentElem, memberName) -> {
+			JavaName parentStructName = getResultNames(parentElem.getContainer()).structName;
 			memberName = RoasterHelper.convertToJavaName(memberName);
-			return JavaName.member(parentJavaName, memberName);
+			return new ResultNames( JavaName.member(parentStructName, memberName) );
 		};
 
 		if (mmElem instanceof MMRepository) {
-			return JavaName.primaryType(basePackageName, mainClassSimpleName);
+			return new ResultNames( JavaName.primaryType(basePackageName, mainClassSimpleName ));
 		} else if (mmElem instanceof MMDataDictionary) {
 			return createJavaNameAsMemeber.apply(mmElem, "dataDict");
 		} else if (mmElem instanceof MMBusinessProcessCatalogue) {
@@ -438,12 +475,12 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 				pkg = "other";
 			}
 		} else {
-			return null;
+			return new ResultNames(true);
 		}
 		pkg = basePackageName + ".struct." + pkg;
 
 		if (cuName == null) {
-			return null;
+			return new ResultNames(true);
 		}
 
 		cuName = RoasterHelper.convertToJavaName(cuName);
@@ -455,7 +492,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 				cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
 		}
 
-		return JavaName.primaryType(pkg, cuName + "_");
+		return new ResultNames( JavaName.primaryType(pkg, cuName + "_") );
 	}
 
 	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj) {

@@ -287,7 +287,7 @@ public class DefaultRepoGenerator implements BiConsumer<RawRepository,Generation
 		}
 	}
 
-	protected JavaName getJavaName(GeneratedMetamodelBean mmElem) {
+	private JavaName getJavaName(GeneratedMetamodelBean mmElem) {
 		String pkg;
 		String cuName;
 
