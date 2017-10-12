@@ -41,7 +41,7 @@ class PerformantXMIResourceFactoryImpl extends ResourceFactoryImpl {
 		resource = new XMIResourceImpl(uri) {
 			@Override
 			protected boolean useIDs() {
-				return false;
+				return true;
 			}
 		};
 		configureResource(resource);

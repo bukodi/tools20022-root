@@ -82,8 +82,9 @@ public class ECoreIOHelper {
 				InputStreamReader isr = new InputStreamReader(bis, StandardCharsets.UTF_8)) {
 			ResourceSet load_resourceSet = new ResourceSetImpl();
 
-			load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*",
-					new PerformantXMIResourceFactoryImpl());
+			PerformantXMIResourceFactoryImpl loadCache = new PerformantXMIResourceFactoryImpl();
+			load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", loadCache
+					);
 			// TODO: use internal PerformantXMIResourceFactoryImpl class
 
 			Resource load_resource = load_resourceSet.createResource(URI.createURI("*.iso20022"));

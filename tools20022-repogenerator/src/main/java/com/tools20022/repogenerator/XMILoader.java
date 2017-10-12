@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
@@ -105,7 +107,15 @@ public class XMILoader {
 					// container.
 				}
 			}
-
+			
+			Resource res = eObj.eResource();
+			if( res instanceof XMIResource ) {
+				XMIResource xmires = (XMIResource)res;
+				String id = xmires.getID(eObj);
+				if( id == null ) {
+//					System.out.println( "no id:" + ECoreIOHelper.toStringWithPath(eObj) );
+				}
+			}
 		} catch (Exception e) {
 			System.err.println("Can't process eObject: " + eObj);
 			e.printStackTrace();
