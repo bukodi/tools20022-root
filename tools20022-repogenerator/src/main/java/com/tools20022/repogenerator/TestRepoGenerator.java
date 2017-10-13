@@ -52,6 +52,137 @@ import com.tools20022.metamodel.MMXor;
 
 public class TestRepoGenerator extends DefaultRepoGenerator {
 
+	private static class ResultNames {
+		public final JavaName structName;
+		public final JavaName objectName;
+		public final JavaName enumName;
+		
+		public ResultNames(boolean isNull) {
+			if( !isNull )
+				throw new IllegalArgumentException();
+			this.structName = null;
+			this.objectName = null;
+			this.enumName = null;			
+		}
+		
+		public ResultNames(JavaName structName) {
+			if( structName == null )
+				throw new IllegalArgumentException();
+			this.structName = structName;
+			this.objectName = null;
+			this.enumName = null;
+		}
+		
+		public ResultNames(JavaName structName, JavaName objectName) {
+			if( structName == null || objectName == null )
+				throw new IllegalArgumentException();
+			this.structName = structName;
+			this.objectName = objectName;
+			this.enumName = null;
+		}
+		
+		public ResultNames(boolean isEnum, JavaName enumName) {
+			if( enumName == null || !isEnum)
+				throw new IllegalArgumentException();
+			this.structName = null;
+			this.objectName = null;
+			this.enumName = enumName;
+		}
+	}
+
+	protected ResultNames getResultNames(GeneratedMetamodelBean mmElem) {
+	
+		BiFunction<GeneratedMetamodelBean, String, ResultNames> createJavaNameAsMemeber = (parentElem, memberName) -> {
+			JavaName parentStructName = getResultNames(parentElem.getContainer()).structName;
+			memberName = RoasterHelper.convertToJavaName(memberName);
+			return new ResultNames( JavaName.member(parentStructName, memberName) );
+		};
+	
+		if (mmElem instanceof MMRepository) {
+			return new ResultNames( JavaName.primaryType(basePackageName, mainClassSimpleName ));
+		} else if (mmElem instanceof MMDataDictionary) {
+			return createJavaNameAsMemeber.apply(mmElem, "dataDict");
+		} else if (mmElem instanceof MMBusinessProcessCatalogue) {
+			return createJavaNameAsMemeber.apply(mmElem, "catalogue");
+		} else if (mmElem instanceof MMBusinessAssociationEnd) {
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessAssociationEnd) mmElem).getName());
+		} else if (mmElem instanceof MMBusinessAttribute) {
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessAttribute) mmElem).getName());
+		} else if (mmElem instanceof MMMessageAssociationEnd) {
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageAssociationEnd) mmElem).getName());
+		} else if (mmElem instanceof MMMessageAttribute) {
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageAttribute) mmElem).getName());
+		} else if (mmElem instanceof MMMessageBuildingBlock) {
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageBuildingBlock) mmElem).getName());
+		} else if (mmElem instanceof MMMessageDefinitionIdentifier) {
+			return createJavaNameAsMemeber.apply(mmElem, "identifier");
+		} else if (mmElem instanceof MMXor) {
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMXor) mmElem).getName());
+		} else if (mmElem instanceof MMBusinessRole) {
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessRole) mmElem).getName());
+		} else if (mmElem instanceof MMCode) {
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
+		}
+	
+		String pkg;
+		String cuName;
+	
+		// CU name
+		if (mmElem instanceof MMRepositoryConcept) {
+			cuName = (((MMRepositoryConcept) mmElem).getName()).toString();
+		} else {
+			cuName = null;
+		}
+	
+		// Package
+		if (mmElem instanceof MMMessageDefinition) {
+			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
+			String areaCode = msgDef.getBusinessArea() == null ? "other"
+					: msgDef.getBusinessArea().getCode() == null ? "other" : msgDef.getBusinessArea().getCode();
+			pkg = "area." + areaCode;
+		} else if (mmElem instanceof MMTopLevelCatalogueEntry) {
+			if (mmElem instanceof MMMessageSet) {
+				pkg = "msgset";
+			} else if (mmElem instanceof MMBusinessArea) {
+				pkg = "area";
+			} else {
+				pkg = "other";
+			}
+		} else if (mmElem instanceof MMTopLevelDictionaryEntry) {
+			if (mmElem instanceof MMCodeSet) {
+				pkg = "codeset";
+			} else if (mmElem instanceof MMDataType) {
+				pkg = "datatype";
+			} else if (mmElem instanceof MMBusinessComponent) {
+				pkg = "entity";
+			} else if (mmElem instanceof MMMessageComponent) {
+				pkg = "msg";
+			} else if (mmElem instanceof MMChoiceComponent) {
+				pkg = "choice";
+			} else {
+				pkg = "other";
+			}
+		} else {
+			return new ResultNames(true);
+		}
+		pkg = basePackageName + ".struct." + pkg;
+	
+		if (cuName == null) {
+			return new ResultNames(true);
+		}
+	
+		cuName = RoasterHelper.convertToJavaName(cuName);
+	
+		if (mmElem instanceof MMBusinessArea) {
+			if (cuName.endsWith("master"))
+				cuName = cuName.substring(0, cuName.length() - "master".length());
+			if (cuName.endsWith("version"))
+				cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
+		}
+	
+		return new ResultNames( JavaName.primaryType(pkg, cuName + "_") );
+	}
+
 	@Override
 	public void accept(RawRepository repo, GenerationContext<RawRepository> ctx) {
 		this.repo = repo;
@@ -75,22 +206,6 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 
 		createStructMain(repo.getRootObject());
 
-	}
-
-	protected void createStructNested(GeneratedMetamodelBean mmBean, JavaClassSource containerSource) {
-		JavaName javaName = getResultNames(mmBean).structName;
-		if (javaName == null)
-			return;
-		if (javaName.getNestedTypeName() != null) {
-			throw new IllegalStateException(
-					"Nested type not allowed at this point. ( " + javaName.getFullName() + ")");
-		}
-
-		if (javaName.getMemberName() != null) {
-			createFinalVarWithAnonymousClass(mmBean, containerSource);
-		} else {
-			createStructMain(mmBean);
-		}
 	}
 
 	protected void createStructMain(GeneratedMetamodelBean mmBean) {
@@ -132,6 +247,22 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		methodMMObject.setBody(body);
 		
 		ctx.saveSourceFile(src);
+	}
+
+	protected void createStructNested(GeneratedMetamodelBean mmBean, JavaClassSource containerSource) {
+		JavaName javaName = getResultNames(mmBean).structName;
+		if (javaName == null)
+			return;
+		if (javaName.getNestedTypeName() != null) {
+			throw new IllegalStateException(
+					"Nested type not allowed at this point. ( " + javaName.getFullName() + ")");
+		}
+	
+		if (javaName.getMemberName() != null) {
+			createFinalVarWithAnonymousClass(mmBean, containerSource);
+		} else {
+			createStructMain(mmBean);
+		}
 	}
 
 	private String addAllAttributes(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass,
@@ -364,137 +495,6 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		}
 	}
 	
-	private static class ResultNames {
-		public final JavaName structName;
-		public final JavaName objectName;
-		public final JavaName enumName;
-		
-		public ResultNames(boolean isNull) {
-			if( !isNull )
-				throw new IllegalArgumentException();
-			this.structName = null;
-			this.objectName = null;
-			this.enumName = null;			
-		}
-		
-		public ResultNames(JavaName structName) {
-			if( structName == null )
-				throw new IllegalArgumentException();
-			this.structName = structName;
-			this.objectName = null;
-			this.enumName = null;
-		}
-		
-		public ResultNames(JavaName structName, JavaName objectName) {
-			if( structName == null || objectName == null )
-				throw new IllegalArgumentException();
-			this.structName = structName;
-			this.objectName = objectName;
-			this.enumName = null;
-		}
-		
-		public ResultNames(boolean isEnum, JavaName enumName) {
-			if( enumName == null || !isEnum)
-				throw new IllegalArgumentException();
-			this.structName = null;
-			this.objectName = null;
-			this.enumName = enumName;
-		}
-	}
-
-	protected ResultNames getResultNames(GeneratedMetamodelBean mmElem) {
-
-		BiFunction<GeneratedMetamodelBean, String, ResultNames> createJavaNameAsMemeber = (parentElem, memberName) -> {
-			JavaName parentStructName = getResultNames(parentElem.getContainer()).structName;
-			memberName = RoasterHelper.convertToJavaName(memberName);
-			return new ResultNames( JavaName.member(parentStructName, memberName) );
-		};
-
-		if (mmElem instanceof MMRepository) {
-			return new ResultNames( JavaName.primaryType(basePackageName, mainClassSimpleName ));
-		} else if (mmElem instanceof MMDataDictionary) {
-			return createJavaNameAsMemeber.apply(mmElem, "dataDict");
-		} else if (mmElem instanceof MMBusinessProcessCatalogue) {
-			return createJavaNameAsMemeber.apply(mmElem, "catalogue");
-		} else if (mmElem instanceof MMBusinessAssociationEnd) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessAssociationEnd) mmElem).getName());
-		} else if (mmElem instanceof MMBusinessAttribute) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessAttribute) mmElem).getName());
-		} else if (mmElem instanceof MMMessageAssociationEnd) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageAssociationEnd) mmElem).getName());
-		} else if (mmElem instanceof MMMessageAttribute) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageAttribute) mmElem).getName());
-		} else if (mmElem instanceof MMMessageBuildingBlock) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageBuildingBlock) mmElem).getName());
-		} else if (mmElem instanceof MMMessageDefinitionIdentifier) {
-			return createJavaNameAsMemeber.apply(mmElem, "identifier");
-		} else if (mmElem instanceof MMXor) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMXor) mmElem).getName());
-		} else if (mmElem instanceof MMBusinessRole) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessRole) mmElem).getName());
-		} else if (mmElem instanceof MMCode) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
-		}
-
-		String pkg;
-		String cuName;
-
-		// CU name
-		if (mmElem instanceof MMRepositoryConcept) {
-			cuName = (((MMRepositoryConcept) mmElem).getName()).toString();
-		} else {
-			cuName = null;
-		}
-
-		// Package
-		if (mmElem instanceof MMMessageDefinition) {
-			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
-			String areaCode = msgDef.getBusinessArea() == null ? "other"
-					: msgDef.getBusinessArea().getCode() == null ? "other" : msgDef.getBusinessArea().getCode();
-			pkg = "area." + areaCode;
-		} else if (mmElem instanceof MMTopLevelCatalogueEntry) {
-			if (mmElem instanceof MMMessageSet) {
-				pkg = "msgset";
-			} else if (mmElem instanceof MMBusinessArea) {
-				pkg = "area";
-			} else {
-				pkg = "other";
-			}
-		} else if (mmElem instanceof MMTopLevelDictionaryEntry) {
-			if (mmElem instanceof MMCodeSet) {
-				pkg = "codeset";
-			} else if (mmElem instanceof MMDataType) {
-				pkg = "datatype";
-			} else if (mmElem instanceof MMBusinessComponent) {
-				pkg = "entity";
-			} else if (mmElem instanceof MMMessageComponent) {
-				pkg = "msg";
-			} else if (mmElem instanceof MMChoiceComponent) {
-				pkg = "choice";
-			} else {
-				pkg = "other";
-			}
-		} else {
-			return new ResultNames(true);
-		}
-		pkg = basePackageName + ".struct." + pkg;
-
-		if (cuName == null) {
-			return new ResultNames(true);
-		}
-
-		cuName = RoasterHelper.convertToJavaName(cuName);
-
-		if (mmElem instanceof MMBusinessArea) {
-			if (cuName.endsWith("master"))
-				cuName = cuName.substring(0, cuName.length() - "master".length());
-			if (cuName.endsWith("version"))
-				cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
-		}
-
-		return new ResultNames( JavaName.primaryType(pkg, cuName + "_") );
-	}
-
 	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj) {
 		String docTxt;
 		if (repoObj instanceof MMRepositoryConcept) {
