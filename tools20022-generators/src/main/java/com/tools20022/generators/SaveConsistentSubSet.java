@@ -442,7 +442,7 @@ public class SaveConsistentSubSet {
 			if( expected_id.equals( actual_id ) )
 				return eObject.eContainer();
 		}
-		throw new NoSuchElementException();
+		throw new NoSuchElementException("MessageDefinition with id=" + expected_id);
 	}
 	
 
