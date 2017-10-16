@@ -1,9 +1,17 @@
 package com.tools20022.repogenerator;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Optional;
+
 import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationResult;
@@ -16,17 +24,40 @@ public class GenerateRepoGenerator {
 	public static void main(String[] args) throws Exception {
 		GenerateRepoGenerator grg = new GenerateRepoGenerator();
 		grg.generate();
-		System.out.println(grg.mainSrc.toString());
+		String src = grg.mainSrc.toString();
+		Path destPath = Paths.get("src/test/java/com/tools20022/repogenerator/GeneratedRepoGenerator.java"); 
+		Files.write(destPath, src.getBytes(StandardCharsets.UTF_8));
+		System.out.println("saved to: " + destPath.toString());
 	}
 
 	GenerateRepoGenerator() {
 
 	}
+	
+	final static String method1 = "	protected <MB extends GeneratedMetamodelBean, T> GenerationResult defaultOptionalAttribute( MetamodelAttribute<MB, Optional<T>> mmAttr, Optional<T> optValue ) {\n" + 
+			"		return null;\n" + 
+			"	}\n" + 
+			""; 
+	final static String method2 = "	protected <MB extends GeneratedMetamodelBean, T> GenerationResult defaultMandatoryAttribute( MetamodelAttribute<MB, T> mmAttr, T value ) {\n" + 
+			"		return null;\n" + 
+			"	}\n" + 
+			""; 
+	final static String method3 = "	protected <MB extends GeneratedMetamodelBean, T> GenerationResult defaultMultivalueAttribute( MetamodelAttribute<MB, List<T>> mmAttr, List<T> values ) {\n" + 
+			"		return null;\n" + 
+			"	}\n" + 
+			""; 
 
 	void generate() throws Exception {
 		mainSrc = Roaster.create(JavaClassSource.class);
-		mainSrc.setName("GeneratorSkeleton").setPackage("test.generators");
+		mainSrc.setName("GeneratedRepoGenerator").setPackage("com.tools20022.repogenerator");
 		mainSrc.addImport(GenerationResult.class);
+		mainSrc.addMethod(method1);
+		mainSrc.addMethod(method2);
+		mainSrc.addMethod(method3);
+		mainSrc.addImport(MetamodelAttribute.class);
+		mainSrc.addImport(List.class);
+		mainSrc.addImport(Optional.class);
+		mainSrc.addImport(GeneratedMetamodelBean.class);
 
 		// List non-abstract types organized by containment hierarchy.
 		StandardMetamodel2013.metamodel().listTypes().filter(t -> !t.isAbstract()).forEachOrdered(t -> {
@@ -42,6 +73,7 @@ public class GenerateRepoGenerator {
 	void generateNonAbstractType(MetamodelType<?> mmType) {
 		MethodSource<JavaClassSource> method = mainSrc.addMethod();
 		mainSrc.addImport(mmType.getBeanClass().getName());
+		mainSrc.addImport(mmType.getBeanClass().getPackage().getName() + ".struct." + mmType.getBeanClass().getSimpleName() + "_");
 		method.setName("generate" + mmType.getBeanClass().getSimpleName());
 		method.setReturnType(GenerationResult.class);
 		method.addParameter(GenerationResult.class.getSimpleName(), "containerGen");
@@ -60,16 +92,12 @@ public class GenerateRepoGenerator {
 		}
 
 		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
-			if (attr.isOptional()) {
-				bodySb.append("if( mmBean." + getGetterName(attr) + "().isPresent() ) {\n");
-				bodySb.append("}\n");
-				bodySb.append("\n");
-			} else if (attr.isMultiple()) {
-				bodySb.append("for( Object value: mmBean." + getGetterName(attr) + "() ) {\n");
-				bodySb.append("}\n");
-				bodySb.append("\n");
+			if (attr.isMultiple()) {
+				bodySb.append("defaultMultivalueAttribute(" + mmType.getBeanClass().getSimpleName() + "_." + attr.getName() + ", mmBean." + getGetterName(attr) + "() );\n");
+			} else if (attr.isOptional()) {
+				bodySb.append("defaultOptionalAttribute(" + mmType.getBeanClass().getSimpleName() + "_." + attr.getName() + ", mmBean." + getGetterName(attr) + "() );\n");
 			} else {
-				
+				bodySb.append("defaultMandatoryAttribute(" + mmType.getBeanClass().getSimpleName() + "_." + attr.getName() + ", mmBean." + getGetterName(attr) + "() );\n");
 			}
 
 		}
