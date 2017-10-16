@@ -204,25 +204,34 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			;
 		}
 
-		createStructMain(repo.getRootObject());
+		createStructMain(repo.getRootObject(), null );
 
 	}
+	
+	protected void createStruct(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass) {
+		JavaName javaName = getResultNames(mmBean).structName;
+		boolean isNestedStruct = javaName.getNestedTypeName() != null;
+		if( !isNestedStruct ) {
+			createStructMain(mmBean, null);
+		} else {
+			createStructNested(mmBean, null);			
+		}
+	}
 
-	protected void createStructMain(GeneratedMetamodelBean mmBean) {
+//	protected String addMembers(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass) { {
+//		
+//	}
+	private void createStructMain(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass) {
 		JavaName javaName = getResultNames(mmBean).structName;
 
 		JavaClassSource src;
 		src = ctx.createSourceFile(JavaClassSource.class, javaName);
+		if( srcMainClass != null )
+			throw new IllegalArgumentException("srcMainClass must be null");
+		srcMainClass = src;
 
-		src.addImport(mmBean.getClass());
-		//src.setSuperType(mmBean.getClass());
-
+		srcMainClass.addImport(mmBean.getClass());
 		createJavaDoc(src, mmBean);
-
-		src.addImport(AtomicReference.class);
-		src.addField(
-				"private final static " + AtomicReference.class.getSimpleName() + "<" + mmBean.getClass().getSimpleName()
-						+ "> mmObject_lazy = new " + AtomicReference.class.getSimpleName() + "<>();");
 
 		// Create containment tree
 		Set<GeneratedMetamodelBean> directContent = repo.listContent(mmBean, false, false)
@@ -230,26 +239,30 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		for (GeneratedMetamodelBean containedBean : directContent) {
 			createStructNested(containedBean, src);
 		}
-
-		// mmObject field and method
-		MethodSource<JavaClassSource> methodMMObject = src.addMethod();		
-		methodMMObject.setPublic().setStatic(true).setFinal(true);
-		methodMMObject.setReturnType(mmBean.getClass());
-		methodMMObject.setName("mmObject");
-
 		// Init atributes in constructor
-		String initFieldsSrc = addAllAttributes(mmBean, src, src);
+		String initFieldsSrc = addAllAttributes(mmBean, srcMainClass, src);
 
-		String body = "  mmObject_lazy.compareAndSet(null, ";
-		body += "  new " + mmBean.getClass().getSimpleName() + "(){{" + initFieldsSrc + "}} );";
-		body += "  return mmObject_lazy.get();";
-		
-		methodMMObject.setBody(body);
+		{// mmObject field and method
+			src.addImport(AtomicReference.class);
+			src.addField(
+					"private final static " + AtomicReference.class.getSimpleName() + "<" + mmBean.getClass().getSimpleName()
+							+ "> mmObject_lazy = new " + AtomicReference.class.getSimpleName() + "<>();");
+			
+			MethodSource<JavaClassSource> methodMMObject = src.addMethod();		
+			methodMMObject.setPublic().setStatic(true).setFinal(true);
+			methodMMObject.setReturnType(mmBean.getClass());
+			methodMMObject.setName("mmObject");
+
+			String body = "  mmObject_lazy.compareAndSet(null, ";
+			body += "  new " + mmBean.getClass().getSimpleName() + "(){{" + initFieldsSrc + "}} );";
+			body += "  return mmObject_lazy.get();";			
+			methodMMObject.setBody(body);			
+		}
 		
 		ctx.saveSourceFile(src);
 	}
 
-	protected void createStructNested(GeneratedMetamodelBean mmBean, JavaClassSource containerSource) {
+	protected void createStructNested(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass) {
 		JavaName javaName = getResultNames(mmBean).structName;
 		if (javaName == null)
 			return;
@@ -259,9 +272,9 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		}
 	
 		if (javaName.getMemberName() != null) {
-			createFinalVarWithAnonymousClass(mmBean, containerSource);
+			createFinalVarWithAnonymousClass(mmBean, srcMainClass);
 		} else {
-			createStructMain(mmBean);
+			createStructMain(mmBean, null);
 		}
 	}
 
@@ -303,22 +316,23 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		return body;
 	}
 
-	FieldSource<JavaClassSource> createFinalVarWithAnonymousClass(GeneratedMetamodelBean mmBean,
+	private void createFinalVarWithAnonymousClass(GeneratedMetamodelBean mmBean,
 			JavaClassSource srcMainClass) {
 		JavaName javaName = getResultNames(mmBean).structName;
 		if (javaName == null)
-			return null;
+			return;
 		if (javaName.getNestedTypeName() != null || javaName.getMemberName() == null) {
 			throw new IllegalArgumentException("Not a member of a primary type: " + javaName);
 		}
 
-		FieldSource<JavaClassSource> srcField = srcMainClass.addField();
-		srcField.setName(javaName.getMemberName());
-		srcField.setPublic();
-		srcField.setFinal(true).setStatic(true);
+		FieldSource<JavaClassSource> src = srcMainClass.addField();
+		src.setName(javaName.getMemberName());
+		src.setPublic();
+		src.setFinal(true).setStatic(true);
+		src.setType(mmBean.getClass());		
+
 		srcMainClass.addImport(mmBean.getClass());
-		srcField.setType(mmBean.getClass());
-		createJavaDoc(srcField, mmBean);
+		createJavaDoc(src, mmBean);
 
 		// Create containment tree
 		Set<GeneratedMetamodelBean> directContent = repo.listContent(mmBean, false, false)
@@ -326,16 +340,15 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 		for (GeneratedMetamodelBean containedBean : directContent) {
 			createStructNested(containedBean, srcMainClass);
 		}
-
 		// Init atributes in constructor
-		String body = addAllAttributes(mmBean, srcMainClass, srcField);
+		String initFieldsSrc = addAllAttributes(mmBean, srcMainClass, src);
+		
+		{
+			String init = " new " + mmBean.getClass().getSimpleName() + "(){ ";		init += "{" + initFieldsSrc + "}";
+			init += "};";
+			src.setLiteralInitializer(init);			
+		}
 
-		String init = " new " + mmBean.getClass().getSimpleName() + "(){ ";
-		init += "{" + body + "}";
-		init += "};";
-		srcField.setLiteralInitializer(init);
-
-		return srcField;
 	}
 
 	int USE_LIST_BUILDER_ABOVE = 500;
