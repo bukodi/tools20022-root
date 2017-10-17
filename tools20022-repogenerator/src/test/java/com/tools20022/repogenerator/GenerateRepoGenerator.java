@@ -77,6 +77,8 @@ public class GenerateRepoGenerator {
 			bodySb.append("implement" + st.getBeanClass().getSimpleName() + "( gen, mmBean );\n");
 		}
 
+		bodySb.append("\n");
+
 		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
 			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
 			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";

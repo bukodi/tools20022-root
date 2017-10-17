@@ -6,51 +6,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
-import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
-import org.jboss.forge.roaster.model.source.PropertySource;
+import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.core.repo.AbstractBusinessComponent;
-import com.tools20022.core.repo.GeneratedRepoBean;
-import com.tools20022.core.repo.NextVersion;
-import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.GenerationResult.JavaResult;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.metamodel.MMBusinessArea;
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
-import com.tools20022.metamodel.MMBusinessAttribute;
-import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMBusinessElement;
-import com.tools20022.metamodel.MMBusinessProcessCatalogue;
-import com.tools20022.metamodel.MMBusinessRole;
-import com.tools20022.metamodel.MMChoiceComponent;
-import com.tools20022.metamodel.MMCode;
-import com.tools20022.metamodel.MMCodeSet;
-import com.tools20022.metamodel.MMDataDictionary;
-import com.tools20022.metamodel.MMDataType;
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import com.tools20022.metamodel.MMMessageAttribute;
-import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMMessageComponent;
-import com.tools20022.metamodel.MMMessageComponentType;
-import com.tools20022.metamodel.MMMessageDefinition;
-import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
-import com.tools20022.metamodel.MMMessageSet;
-import com.tools20022.metamodel.MMModelEntity;
-import com.tools20022.metamodel.MMRepository;
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
-import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
-import com.tools20022.metamodel.MMXor;
-import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.metamodel.struct.MMBusinessAttribute_;
-import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
+import com.tools20022.metamodel.*;
 
 public abstract class BaseRepoGenerator implements BiConsumer<RawRepository,GenerationContext<RawRepository>> {
 
@@ -208,6 +175,40 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository,Gene
 	protected <MB extends GeneratedMetamodelBean, T> GenerationResult defaultMultivalueAttribute( GenerationResult gen, 
 			MetamodelAttribute<MB, List<T>> mmAttr, List<T> values) {
 		return null;
+	}
+
+	protected GenerationResult defaultStructType( GenerationResult containerGen, GeneratedMetamodelBean mmBean) {
+		StructuredName name = getStructuredName(mmBean);
+		if( name.isCompilationUnit() ) {
+			JavaClassSource src;
+			src = ctx.createSourceFile(JavaClassSource.class, name);
+		} else {
+		}
+		return null;
+	}
+
+	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj) {
+		String docTxt;
+		if (repoObj instanceof MMRepositoryConcept) {
+			MMRepositoryConcept mmRC = (MMRepositoryConcept) repoObj;
+			docTxt = mmRC.getDefinition().orElse("(No doc)");
+		} else {
+			docTxt = "An instance of " + repoObj.getMetamodel().getName() + ".";
+		}
+		// Replace <, >, & chars
+		docTxt = docTxt.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		docTxt = docTxt.replaceAll("\r\n", "<br>\n");
+		docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
+		docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
+		javaDocHolder.getJavaDoc().setText(docTxt);
+	}
+
+	protected void addToJavaDoc(JavaDocCapableSource<?> javaDocHolder, String docTxt) {
+
+		String existingDoc = javaDocHolder.getJavaDoc().getText();
+		if (existingDoc == null)
+			existingDoc = "";
+		javaDocHolder.getJavaDoc().setText(existingDoc + docTxt);
 	}
 
 

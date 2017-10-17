@@ -377,27 +377,4 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 		}
 	}
 	
-	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj) {
-		String docTxt;
-		if (repoObj instanceof MMRepositoryConcept) {
-			MMRepositoryConcept mmRC = (MMRepositoryConcept) repoObj;
-			docTxt = mmRC.getDefinition().orElse("(No doc)");
-		} else {
-			docTxt = "An instance of " + repoObj.getMetamodel().getName() + ".";
-		}
-		// Replace <, >, & chars
-		docTxt = docTxt.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
-		docTxt = docTxt.replaceAll("\r\n", "<br>\n");
-		docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
-		docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
-		javaDocHolder.getJavaDoc().setText(docTxt);
-	}
-
-	protected void addToJavaDoc(JavaDocCapableSource<?> javaDocHolder, String docTxt) {
-
-		String existingDoc = javaDocHolder.getJavaDoc().getText();
-		if (existingDoc == null)
-			existingDoc = "";
-		javaDocHolder.getJavaDoc().setText(existingDoc + docTxt);
-	}
 }

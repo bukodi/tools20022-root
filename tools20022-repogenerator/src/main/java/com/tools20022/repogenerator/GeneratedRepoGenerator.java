@@ -8,7 +8,7 @@ public class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected GenerationResult generateMMAddress(GenerationResult containerGen,
 			MMAddress mmBean) {
-		GenerationResult gen = null;
+		GenerationResult gen = defaultStructType(containerGen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		defaultMandatoryAttribute(gen, MMAddress_.endpoint,
 				mmBean.getEndpoint());

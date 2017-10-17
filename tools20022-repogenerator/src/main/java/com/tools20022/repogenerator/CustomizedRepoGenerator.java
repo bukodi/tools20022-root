@@ -31,7 +31,7 @@ import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
 
 public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 
-	protected void implementMMModelEntity(JavaResult<JavaClassSource> gen, MMModelEntity me) {
+	protected void _implementMMModelEntity(JavaResult<JavaClassSource> gen, MMModelEntity me) {
 		/*** MMModelEntity.Members.previousVersion ***/
 		if (me.getPreviousVersion().isPresent()) {
 			StructuredName prevVer = getStructuredName(me.getPreviousVersion().get());
@@ -51,8 +51,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 
 	}
 
-	protected void implementMMRepositoryConcept(JavaResult<JavaClassSource> gen, MMRepositoryConcept rc) {
-		implementMMModelEntity(gen, rc);
+	protected void _implementMMRepositoryConcept(JavaResult<JavaClassSource> gen, MMRepositoryConcept rc) {
+		_implementMMModelEntity(gen, rc);
 
 		/*** MMRepositoryConcept.Members.definition ***/
 		if (rc.getDefinition().isPresent()) {
@@ -63,9 +63,9 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		}
 	}
 
-	protected GenerationResult generateMMBusinessComponent(GenerationResult container, MMBusinessComponent bc) {
-		JavaResult<JavaClassSource> gen = generateDefaultClass(bc);
-		implementMMRepositoryConcept(gen, bc);
+	protected GenerationResult _generateMMBusinessComponent(GenerationResult container, MMBusinessComponent bc) {
+		JavaResult<JavaClassSource> gen = _generateDefaultClass(bc);
+		_implementMMRepositoryConcept(gen, bc);
 
 		/*** MMBusinessComponent.superType ***/
 		if (bc.getSuperType().isPresent()) {
@@ -80,7 +80,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		/*** MMBusinessComponent.Members.element ***/
 		for (MMBusinessElement elem : bc.getElement()) {
 			try {
-				generateMMBusinessElements(gen, elem);
+				_generateMMBusinessElements(gen, elem);
 			} catch (Exception e) {
 				System.err.println(bc);
 				e.printStackTrace();
@@ -90,9 +90,9 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		return gen;
 	}
 
-	protected GenerationResult generateMMBusinessArea(GenerationResult container, MMBusinessArea ba) {
-		JavaResult<JavaClassSource> gen = generateDefaultClass(ba);
-		implementMMRepositoryConcept(gen, ba);
+	protected GenerationResult _generateMMBusinessArea(GenerationResult container, MMBusinessArea ba) {
+		JavaResult<JavaClassSource> gen = _generateDefaultClass(ba);
+		_implementMMRepositoryConcept(gen, ba);
 
 		/*** MMBusinessArea.Members.messageDefinition ***/
 		for (MMMessageDefinition md : ba.getMessageDefinition()) {
@@ -107,9 +107,9 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		return gen;
 	}
 
-	protected GenerationResult generateMMMessageDefinition(GenerationResult container, MMMessageDefinition md) {
-		JavaResult<JavaClassSource> gen = generateDefaultClass(md);
-		implementMMRepositoryConcept(gen, md);
+	protected GenerationResult _generateMMMessageDefinition(GenerationResult container, MMMessageDefinition md) {
+		JavaResult<JavaClassSource> gen = _generateDefaultClass(md);
+		_implementMMRepositoryConcept(gen, md);
 
 		/*** MMBusinessArea.Members.messageDefinition ***/
 		for (MMMessageBuildingBlock mbb : md.getMessageBuildingBlock()) {
@@ -145,7 +145,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 
 	// TODO: return with property as composite GenerationResult
-	protected GenerationResult generateMMBusinessElements(JavaResult<JavaClassSource> container, MMBusinessElement elem) {
+	protected GenerationResult _generateMMBusinessElements(JavaResult<JavaClassSource> container, MMBusinessElement elem) {
 		StructuredName typeName;
 		if (elem instanceof MMBusinessAttribute) {
 			MMBusinessAttribute attr = (MMBusinessAttribute) elem;
@@ -173,7 +173,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		return null;
 	}
 
-	protected JavaResult<JavaClassSource> generateDefaultClass(GeneratedMetamodelBean mmElem) {
+	protected JavaResult<JavaClassSource> _generateDefaultClass(GeneratedMetamodelBean mmElem) {
 		StructuredName javaName = null;
 		try {
 			javaName = getStructuredName(mmElem);

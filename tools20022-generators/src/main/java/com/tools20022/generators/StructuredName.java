@@ -56,6 +56,14 @@ public class StructuredName {
 		return memberName;
 	}
 
+	public boolean isCompilationUnit() {
+		return getNestedTypeName() == null && getMemberName() == null;
+	}
+
+	public boolean isNestedType() {
+		return getNestedTypeName() != null && getMemberName() == null;
+	}
+
 	@Override
 	public String toString() {
 		return "JavaName [pkg=" + pkg + ", cuName=" + cuName + ", nestedTypeName=" + nestedTypeName + ", memberName="
