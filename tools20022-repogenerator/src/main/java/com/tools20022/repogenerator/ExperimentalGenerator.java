@@ -113,10 +113,9 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 		String initFieldsSrc = addAllAttributes(mmBean, srcMainClass, src);
 
 		{// mmObject field and method
-			src.addImport(AtomicReference.class);
 			src.addField(
-					"private final static " + AtomicReference.class.getSimpleName() + "<" + mmBean.getClass().getSimpleName()
-							+ "> mmObject_lazy = new " + AtomicReference.class.getSimpleName() + "<>();");
+					"private final static " + AtomicReference.class.getName() + "<" + mmBean.getClass().getName()
+							+ "> mmObject_lazy = new " + AtomicReference.class.getName() + "<>();");
 			
 			MethodSource<JavaClassSource> methodMMObject = src.addMethod();		
 			methodMMObject.setPublic().setStatic(true).setFinal(true);

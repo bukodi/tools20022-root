@@ -31,6 +31,8 @@ import org.jboss.forge.roaster._shade.org.eclipse.text.edits.TextEdit;
 import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.util.Formatter;
 
+import de.dainel.cleanqualifiedtypes.CleanQualifiedTypes;
+
 public class GenerationContext<M> {
 
 	Map<String,JavaSource<?>> unsavedSources = new LinkedHashMap<>();
@@ -129,6 +131,9 @@ public class GenerationContext<M> {
 			JavaFileObject jf = getFileManager().getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,
 					src.getQualifiedName(), Kind.SOURCE, null);
 			try (Writer w = jf.openWriter()) {
+				// Clean qualified types
+				CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal());
+				
 				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
 				w.append(srcAsFormattedString);
 //				w.append(src.toUnformattedString());

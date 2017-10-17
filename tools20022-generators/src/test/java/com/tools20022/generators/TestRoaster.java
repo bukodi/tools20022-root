@@ -2,35 +2,23 @@ package com.tools20022.generators;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 
 import javax.tools.JavaFileObject;
 import javax.tools.StandardLocation;
 import javax.xml.ws.Holder;
 
-import org.jboss.forge.roaster.ParserException;
-import org.jboss.forge.roaster.Problem;
 import org.jboss.forge.roaster.Roaster;
-import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTNode;
-import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
-import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Block;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.CompilationUnit;
-import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Initializer;
-import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.MethodDeclaration;
-import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Modifier.ModifierKeyword;
-import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Statement;
-import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.TypeDeclaration;
-import org.jboss.forge.roaster.model.ast.ModifierAccessor;
-import org.jboss.forge.roaster.model.ast.TypeDeclarationFinderVisitor;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.tools20022.generators.GeneratorFileManager;
-import com.tools20022.generators.RoasterHelper;
+import de.dainel.cleanqualifiedtypes.CleanQualifiedTypes;
 
 public class TestRoaster {
 
@@ -51,15 +39,27 @@ public class TestRoaster {
 		{
 			JavaClassSource javaSrc = (JavaClassSource) Roaster.parse(src);
 			javaSrc.addField().setName("var2").setType(AtomicInteger.class);
+			javaSrc.addField().setName("Predicate").setType(Object.class);
+			javaSrc.addImport(SimpleDateFormat.class);
+//			javaSrc.addImport("java.util.function.*");
 
 			String methodSrc = "void fn1() {java.util.function.Predicate<String> isEmpty = (s)->s.isEmpty(); }";
 			javaSrc.addMethod(methodSrc);
+
+			String methodSrc2 = "void fn2() {java.util.function.Supplier<String> sayHello = ()->\"Hello!\"; }";
+			javaSrc.addMethod(methodSrc2);
+
+			
+			CompilationUnit astCu = (CompilationUnit)javaSrc.getInternal();
+			
+			CleanQualifiedTypes.cleanAst(astCu);
+					
+			
 			System.out.println(javaSrc.toString());
 		}
 	}
 	
 	
-
 	@Test
 	@Ignore
 	public void testStaticInitializer() {
