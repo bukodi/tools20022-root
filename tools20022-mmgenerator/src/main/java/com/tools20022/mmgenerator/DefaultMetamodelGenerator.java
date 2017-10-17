@@ -37,7 +37,7 @@ import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.core.metamodel.StaticMemembersBuilder;
 import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.JavaName;
+import com.tools20022.generators.StructuredName;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelAttribute;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelConstraint;
@@ -65,7 +65,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		this.metamodel = metamodel;
 		this.ctx = ctx;
 		// Create metamodel model skeleton
-		JavaName mmName = JavaName.primaryType(basePackageName, mainClassSimpleName);
+		StructuredName mmName = StructuredName.primaryType(basePackageName, mainClassSimpleName);
 		JavaClassSource srcMetamodelMain = ctx.createSourceFile(JavaClassSource.class, mmName);
 		srcMetamodelMain.addImport(ReflectionBasedMetamodel.class);
 		srcMetamodelMain.setSuperType(ReflectionBasedMetamodel.class);
@@ -114,16 +114,16 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		src.addImport(getJavaName(mmElem).getFullName());
 	}
 
-	protected JavaName getStructJavaName(MetamodelType mmType) {
-		return JavaName.primaryType(getJavaName(mmType).getPackage() + ".struct",
+	protected StructuredName getStructJavaName(MetamodelType mmType) {
+		return StructuredName.primaryType(getJavaName(mmType).getPackage() + ".struct",
 				getJavaName(mmType).getSimpleName() + "_");
 	}
 
-	protected JavaName getJavaName(MetamodelElement mmElem) {
+	protected StructuredName getJavaName(MetamodelElement mmElem) {
 		if (mmElem instanceof MetamodelType || mmElem instanceof MetamodelEnum) {
-			return JavaName.primaryType(basePackageName, CLASS_NAME_PREFIX + mmElem.getName());
+			return StructuredName.primaryType(basePackageName, CLASS_NAME_PREFIX + mmElem.getName());
 		}
-		JavaName parentName;
+		StructuredName parentName;
 		String memberName = mmElem.getName();
 		if (mmElem instanceof MetamodelAttribute) {
 			parentName = getJavaName(((MetamodelAttribute) mmElem).getDeclaringType());
@@ -138,7 +138,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 		if (RoasterHelper.JAVA_RESERVED_WORDS.contains(memberName))
 			memberName = memberName + "_";
-		return JavaName.member(parentName, memberName);
+		return StructuredName.member(parentName, memberName);
 
 	}
 
@@ -177,7 +177,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 					throw new RuntimeException("The '" + mmType.getName()
 							+ "' has more than one possible container, and this case isn't handeled in this generator.");
 				// Custom implementation for Xor type
-				JavaName javaNameRepoType = getJavaName(metamodel.getTypeByName("RepositoryType"));
+				StructuredName javaNameRepoType = getJavaName(metamodel.getTypeByName("RepositoryType"));
 				src.addImport(javaNameRepoType.getFullName());
 				getContainerMethod.setReturnType(javaNameRepoType.getSimpleName());
 				getContainerMethod.setBody("		if( getMessageComponent().isPresent() )\n"
@@ -199,7 +199,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 			} else {
 				// Exactly one containing ref
 				MetamodelAttribute containingRef = containingRefs.iterator().next();
-				JavaName containerTypeJavaName = getJavaName( containingRef.getDeclaringType() );
+				StructuredName containerTypeJavaName = getJavaName( containingRef.getDeclaringType() );
 				src.addImport(containerTypeJavaName.getFullName());
 				getContainerMethod.setReturnType(containerTypeJavaName.getSimpleName());
 				if (containingRef.getOpposite() != null) {
@@ -256,10 +256,10 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	<T extends JavaSource<?>> void generateStaticStructInterface(JavaClassSource srcMetamodelMain, T mmTypeSrc,
 			MetamodelType mmType) {
-		JavaName structJavaName = getStructJavaName(mmType);
+		StructuredName structJavaName = getStructJavaName(mmType);
 		JavaInterfaceSource src = ctx.createSourceFile(JavaInterfaceSource.class, structJavaName);
 		for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
-			JavaName superStructName = getStructJavaName(superType);
+			StructuredName superStructName = getStructJavaName(superType);
 			src.addImport(superStructName.getFullName());
 			src.addInterface(superStructName.getSimpleName());
 		}
@@ -376,7 +376,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 			srcMMType.addImport(Supplier.class);
 			fieldValueType = Supplier.class.getSimpleName() + "<" + fieldValueType + ">";
 		}
-		JavaName attrName = getJavaName(mmAttr);
+		StructuredName attrName = getJavaName(mmAttr);
 
 		// Create getter
 		MethodSource<T> srcGetter;
@@ -443,7 +443,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	protected JavaClassSource generateDerivedAttributeCalulatorClass(MetamodelAttribute mmAttr,
 			JavaClassSource srcMMType) {
-		JavaName javaName = JavaName.primaryType(basePackageName + ".constraints",
+		StructuredName javaName = StructuredName.primaryType(basePackageName + ".constraints",
 				"Derive" + srcMMType.getName() + "_" + mmAttr.getName());
 		JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
 		srcDerive.addImport(srcMMType);

@@ -12,7 +12,7 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.generators.JavaName;
+import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMRepository;
 
 public class RawRepository {

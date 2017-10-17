@@ -23,7 +23,7 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.JavaName;
+import com.tools20022.generators.StructuredName;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
@@ -50,138 +50,8 @@ import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.MMXor;
 
-public class TestRepoGenerator extends DefaultRepoGenerator {
+public class ExperimentalGenerator extends BaseRepoGenerator {
 
-	private static class ResultNames {
-		public final JavaName structName;
-		public final JavaName objectName;
-		public final JavaName enumName;
-		
-		public ResultNames(boolean isNull) {
-			if( !isNull )
-				throw new IllegalArgumentException();
-			this.structName = null;
-			this.objectName = null;
-			this.enumName = null;			
-		}
-		
-		public ResultNames(JavaName structName) {
-			if( structName == null )
-				throw new IllegalArgumentException();
-			this.structName = structName;
-			this.objectName = null;
-			this.enumName = null;
-		}
-		
-		public ResultNames(JavaName structName, JavaName objectName) {
-			if( structName == null || objectName == null )
-				throw new IllegalArgumentException();
-			this.structName = structName;
-			this.objectName = objectName;
-			this.enumName = null;
-		}
-		
-		public ResultNames(boolean isEnum, JavaName enumName) {
-			if( enumName == null || !isEnum)
-				throw new IllegalArgumentException();
-			this.structName = null;
-			this.objectName = null;
-			this.enumName = enumName;
-		}
-	}
-
-	protected ResultNames getResultNames(GeneratedMetamodelBean mmElem) {
-	
-		BiFunction<GeneratedMetamodelBean, String, ResultNames> createJavaNameAsMemeber = (parentElem, memberName) -> {
-			JavaName parentStructName = getResultNames(parentElem.getContainer()).structName;
-			memberName = RoasterHelper.convertToJavaName(memberName);
-			return new ResultNames( JavaName.member(parentStructName, memberName) );
-		};
-	
-		if (mmElem instanceof MMRepository) {
-			return new ResultNames( JavaName.primaryType(basePackageName, mainClassSimpleName ));
-		} else if (mmElem instanceof MMDataDictionary) {
-			return createJavaNameAsMemeber.apply(mmElem, "dataDict");
-		} else if (mmElem instanceof MMBusinessProcessCatalogue) {
-			return createJavaNameAsMemeber.apply(mmElem, "catalogue");
-		} else if (mmElem instanceof MMBusinessAssociationEnd) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessAssociationEnd) mmElem).getName());
-		} else if (mmElem instanceof MMBusinessAttribute) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessAttribute) mmElem).getName());
-		} else if (mmElem instanceof MMMessageAssociationEnd) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageAssociationEnd) mmElem).getName());
-		} else if (mmElem instanceof MMMessageAttribute) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageAttribute) mmElem).getName());
-		} else if (mmElem instanceof MMMessageBuildingBlock) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMMessageBuildingBlock) mmElem).getName());
-		} else if (mmElem instanceof MMMessageDefinitionIdentifier) {
-			return createJavaNameAsMemeber.apply(mmElem, "identifier");
-		} else if (mmElem instanceof MMXor) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMXor) mmElem).getName());
-		} else if (mmElem instanceof MMBusinessRole) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessRole) mmElem).getName());
-		} else if (mmElem instanceof MMCode) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
-		}
-	
-		String pkg;
-		String cuName;
-	
-		// CU name
-		if (mmElem instanceof MMRepositoryConcept) {
-			cuName = (((MMRepositoryConcept) mmElem).getName()).toString();
-		} else {
-			cuName = null;
-		}
-	
-		// Package
-		if (mmElem instanceof MMMessageDefinition) {
-			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
-			String areaCode = msgDef.getBusinessArea() == null ? "other"
-					: msgDef.getBusinessArea().getCode() == null ? "other" : msgDef.getBusinessArea().getCode();
-			pkg = "area." + areaCode;
-		} else if (mmElem instanceof MMTopLevelCatalogueEntry) {
-			if (mmElem instanceof MMMessageSet) {
-				pkg = "msgset";
-			} else if (mmElem instanceof MMBusinessArea) {
-				pkg = "area";
-			} else {
-				pkg = "other";
-			}
-		} else if (mmElem instanceof MMTopLevelDictionaryEntry) {
-			if (mmElem instanceof MMCodeSet) {
-				pkg = "codeset";
-			} else if (mmElem instanceof MMDataType) {
-				pkg = "datatype";
-			} else if (mmElem instanceof MMBusinessComponent) {
-				pkg = "entity";
-			} else if (mmElem instanceof MMMessageComponent) {
-				pkg = "msg";
-			} else if (mmElem instanceof MMChoiceComponent) {
-				pkg = "choice";
-			} else {
-				pkg = "other";
-			}
-		} else {
-			return new ResultNames(true);
-		}
-		pkg = basePackageName + ".struct." + pkg;
-	
-		if (cuName == null) {
-			return new ResultNames(true);
-		}
-	
-		cuName = RoasterHelper.convertToJavaName(cuName);
-	
-		if (mmElem instanceof MMBusinessArea) {
-			if (cuName.endsWith("master"))
-				cuName = cuName.substring(0, cuName.length() - "master".length());
-			if (cuName.endsWith("version"))
-				cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
-		}
-	
-		return new ResultNames( JavaName.primaryType(pkg, cuName + "_") );
-	}
 
 	@Override
 	public void accept(RawRepository repo, GenerationContext<RawRepository> ctx) {
@@ -193,7 +63,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			long start = System.currentTimeMillis();
 			AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
 			repo.listContent(repo.getRootObject(), true, true).forEach(repoObj -> {
-				JavaName javaName = getResultNames(repoObj).structName;
+				StructuredName javaName = getStructuredName(repoObj);
 				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null)
 					totalNumberOfMainTypesToGenerate.incrementAndGet();
 			});
@@ -209,7 +79,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 	}
 	
 	protected void createStruct(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass) {
-		JavaName javaName = getResultNames(mmBean).structName;
+		StructuredName javaName = getStructuredName(mmBean);
 		boolean isNestedStruct = javaName.getNestedTypeName() != null;
 		if( !isNestedStruct ) {
 			createStructMain(mmBean, null);
@@ -222,7 +92,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 //		
 //	}
 	private void createStructMain(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass) {
-		JavaName javaName = getResultNames(mmBean).structName;
+		StructuredName javaName = getStructuredName(mmBean);
 
 		JavaClassSource src;
 		src = ctx.createSourceFile(JavaClassSource.class, javaName);
@@ -263,7 +133,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 	}
 
 	protected void createStructNested(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass) {
-		JavaName javaName = getResultNames(mmBean).structName;
+		StructuredName javaName = getStructuredName(mmBean);
 		if (javaName == null)
 			return;
 		if (javaName.getNestedTypeName() != null) {
@@ -318,7 +188,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 
 	private void createFinalVarWithAnonymousClass(GeneratedMetamodelBean mmBean,
 			JavaClassSource srcMainClass) {
-		JavaName javaName = getResultNames(mmBean).structName;
+		StructuredName javaName = getStructuredName(mmBean);
 		if (javaName == null)
 			return;
 		if (javaName.getNestedTypeName() != null || javaName.getMemberName() == null) {
@@ -353,12 +223,12 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 
 	int USE_LIST_BUILDER_ABOVE = 500;
 
-	private JavaName createLongListBuilder(JavaClassSource addImportsTo, List<Object> elems) {
+	private StructuredName createLongListBuilder(JavaClassSource addImportsTo, List<Object> elems) {
 
-		JavaName firstBuilderName = null;
+		StructuredName firstBuilderName = null;
 
 		for (int seq = 0; seq * USE_LIST_BUILDER_ABOVE < elems.size(); seq++) {
-			JavaName javaName = JavaName.primaryType(addImportsTo.getPackage(),
+			StructuredName javaName = StructuredName.primaryType(addImportsTo.getPackage(),
 					"ListBuilderFor" + addImportsTo.getName() + "_" + (seq < 10 ? "0" : "") + seq);
 			JavaClassSource src = ctx.createSourceFile(JavaClassSource.class, javaName);
 			src.setVisibility(Visibility.PACKAGE_PRIVATE);
@@ -424,7 +294,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			String src;
 			String javaDoc;
 			if (elems.size() > USE_LIST_BUILDER_ABOVE) {
-				JavaName firstListBuilder = createLongListBuilder(addImportsTo, elems);
+				StructuredName firstListBuilder = createLongListBuilder(addImportsTo, elems);
 				addImportsTo.addImport(ArrayList.class);
 				src = "" + firstListBuilder.getSimpleName() + ".addElems( new " + ArrayList.class.getSimpleName()
 						+ "<>() )";
@@ -473,7 +343,7 @@ public class TestRepoGenerator extends DefaultRepoGenerator {
 			return new AttrValue(srcTxt, docTxt);
 		} else if (value instanceof GeneratedMetamodelBean) {
 			GeneratedMetamodelBean mmElem = (GeneratedMetamodelBean) value;
-			JavaName javaName = getResultNames(mmElem).structName;
+			StructuredName javaName = getStructuredName(mmElem);
 			if (javaName == null)
 				return null;
 			if (javaName.getMemberName() != null) {

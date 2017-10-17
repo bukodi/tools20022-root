@@ -25,7 +25,7 @@ public class GenerateRepoGenerator {
 		GenerateRepoGenerator grg = new GenerateRepoGenerator();
 		grg.generate();
 		String src = grg.mainSrc.toString();
-		Path destPath = Paths.get("src/test/java/com/tools20022/repogenerator/GeneratedRepoGenerator.java"); 
+		Path destPath = Paths.get("src/main/java/com/tools20022/repogenerator/GeneratedRepoGenerator.java"); 
 		Files.write(destPath, src.getBytes(StandardCharsets.UTF_8));
 		System.out.println("saved to: " + destPath.toString());
 	}
@@ -34,26 +34,12 @@ public class GenerateRepoGenerator {
 
 	}
 	
-	final static String method1 = "	protected <MB extends GeneratedMetamodelBean, T> GenerationResult defaultOptionalAttribute( MetamodelAttribute<MB, Optional<T>> mmAttr, Optional<T> optValue ) {\n" + 
-			"		return null;\n" + 
-			"	}\n" + 
-			""; 
-	final static String method2 = "	protected <MB extends GeneratedMetamodelBean, T> GenerationResult defaultMandatoryAttribute( MetamodelAttribute<MB, T> mmAttr, T value ) {\n" + 
-			"		return null;\n" + 
-			"	}\n" + 
-			""; 
-	final static String method3 = "	protected <MB extends GeneratedMetamodelBean, T> GenerationResult defaultMultivalueAttribute( MetamodelAttribute<MB, List<T>> mmAttr, List<T> values ) {\n" + 
-			"		return null;\n" + 
-			"	}\n" + 
-			""; 
-
 	void generate() throws Exception {
 		mainSrc = Roaster.create(JavaClassSource.class);
 		mainSrc.setName("GeneratedRepoGenerator").setPackage("com.tools20022.repogenerator");
+		mainSrc.addImport(BaseRepoGenerator.class);
+		mainSrc.extendSuperType(BaseRepoGenerator.class);
 		mainSrc.addImport(GenerationResult.class);
-		mainSrc.addMethod(method1);
-		mainSrc.addMethod(method2);
-		mainSrc.addMethod(method3);
 		mainSrc.addImport(MetamodelAttribute.class);
 		mainSrc.addImport(List.class);
 		mainSrc.addImport(Optional.class);
@@ -71,7 +57,7 @@ public class GenerateRepoGenerator {
 	}
 
 	void generateNonAbstractType(MetamodelType<?> mmType) {
-		MethodSource<JavaClassSource> method = mainSrc.addMethod();
+		MethodSource<JavaClassSource> method = mainSrc.addMethod().setProtected();
 		mainSrc.addImport(mmType.getBeanClass().getName());
 		mainSrc.addImport(mmType.getBeanClass().getPackage().getName() + ".struct." + mmType.getBeanClass().getSimpleName() + "_");
 		method.setName("generate" + mmType.getBeanClass().getSimpleName());
@@ -92,36 +78,26 @@ public class GenerateRepoGenerator {
 		}
 
 		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
+			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
+			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";
 			if (attr.isMultiple()) {
-				bodySb.append("defaultMultivalueAttribute(" + mmType.getBeanClass().getSimpleName() + "_." + attr.getName() + ", mmBean." + getGetterName(attr) + "() );\n");
+				bodySb.append("defaultMultivalueAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 			} else if (attr.isOptional()) {
-				bodySb.append("defaultOptionalAttribute(" + mmType.getBeanClass().getSimpleName() + "_." + attr.getName() + ", mmBean." + getGetterName(attr) + "() );\n");
+				bodySb.append("defaultOptionalAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 			} else {
-				bodySb.append("defaultMandatoryAttribute(" + mmType.getBeanClass().getSimpleName() + "_." + attr.getName() + ", mmBean." + getGetterName(attr) + "() );\n");
+				bodySb.append("defaultMandatoryAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 			}
-
 		}
 
 		bodySb.append("return gen;");
 		method.setBody(bodySb.toString());
 	}
 
-	String getGetterName(MetamodelAttribute<?, ?> attr) {
-		String x = attr.getName();
-		x = Character.toUpperCase(x.charAt(0)) + x.substring(1);
-		if (attr.getValueJavaClass() != null
-				&& (boolean.class.equals(attr.getValueJavaClass()) || Boolean.class.equals(attr.getValueJavaClass()))) {
-			x = "is" + x;
-		} else {
-			x = "get" + x;
-		}
-		return x;
-	}
-
 	void implementAbstractType(MetamodelType<?> mmType) {
-		MethodSource<JavaClassSource> method = mainSrc.addMethod();
+		MethodSource<JavaClassSource> method = mainSrc.addMethod().setProtected();
 		mainSrc.addImport(mmType.getBeanClass().getName());
-		method.setName("implement" + mmType.getBeanClass().getSimpleName());
+		mainSrc.addImport(mmType.getBeanClass().getPackage().getName() + ".struct." + mmType.getBeanClass().getSimpleName() + "_");
+		method.setName("implement" + mmType.getBeanClass().getSimpleName());		
 		method.addParameter(GenerationResult.class.getSimpleName(), "gen");
 		method.addParameter(mmType.getBeanClass().getSimpleName(), "mmBean");
 
@@ -131,6 +107,18 @@ public class GenerateRepoGenerator {
 			if (!st.isAbstract())
 				throw new RuntimeException("Unsupported case");
 			bodySb.append("implement" + st.getBeanClass().getSimpleName() + "( gen, mmBean );\n");
+		}
+
+		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
+			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
+			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";
+			if (attr.isMultiple()) {
+				bodySb.append("defaultMultivalueAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
+			} else if (attr.isOptional()) {
+				bodySb.append("defaultOptionalAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
+			} else {
+				bodySb.append("defaultMandatoryAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
+			}
 		}
 
 		method.setBody(bodySb.toString());

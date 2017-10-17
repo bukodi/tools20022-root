@@ -1,13 +1,13 @@
 package com.tools20022.generators;
 
-public class JavaName {
+public class StructuredName {
 
 	private final String pkg;
 	private final String cuName;
 	private final String nestedTypeName;
 	private final String memberName;
 
-	private JavaName(String pkg, String cuName, String nestedTypeName, String memberName) {
+	private StructuredName(String pkg, String cuName, String nestedTypeName, String memberName) {
 		if (pkg == null)
 			throw new IllegalArgumentException("pkg == null");
 		if (cuName == null)
@@ -19,24 +19,24 @@ public class JavaName {
 		this.memberName = memberName;
 	}
 
-	public static JavaName primaryType(String pkg, String cuName) {
-		return new JavaName(pkg, cuName, null, null);
+	public static StructuredName primaryType(String pkg, String cuName) {
+		return new StructuredName(pkg, cuName, null, null);
 	}
 
-	public static JavaName nestedType(String pkg, String cuName, String nestedTypeName) {
-		return new JavaName(pkg, cuName, nestedTypeName, null);
+	public static StructuredName nestedType(String pkg, String cuName, String nestedTypeName) {
+		return new StructuredName(pkg, cuName, nestedTypeName, null);
 	}
 
-	public static JavaName nestedType(JavaName primaryType, String nestedTypeName) {
+	public static StructuredName nestedType(StructuredName primaryType, String nestedTypeName) {
 		if (primaryType.getNestedTypeName() != null || primaryType.getMemberName() != null)
 			throw new IllegalArgumentException("Only primary type can declare nested type");
-		return new JavaName(primaryType.getPackage(), primaryType.getCompilationUnit(), nestedTypeName, null);
+		return new StructuredName(primaryType.getPackage(), primaryType.getCompilationUnit(), nestedTypeName, null);
 	}
 
-	public static JavaName member(JavaName declaringType, String memberName) {
+	public static StructuredName member(StructuredName declaringType, String memberName) {
 		if (declaringType.getMemberName() != null )
 			throw new IllegalArgumentException("Only types can declare method");
-		return new JavaName(declaringType.getPackage(), declaringType.getCompilationUnit(),
+		return new StructuredName(declaringType.getPackage(), declaringType.getCompilationUnit(),
 				declaringType.getNestedTypeName(), memberName);
 	}
 

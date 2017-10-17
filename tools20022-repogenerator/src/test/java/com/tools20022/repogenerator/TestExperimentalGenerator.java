@@ -19,7 +19,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.repogenerator.RawRepository;
 import com.tools20022.repogenerator.XMILoader;
 
-public class GenerateSources {
+public class TestExperimentalGenerator {
 
 	static long usedMem, start;
 
@@ -60,7 +60,7 @@ public class GenerateSources {
 
 		start = System.currentTimeMillis();
 		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
-		genCtx.generate(repo, new TestRepoGenerator());
+		genCtx.generate(repo, new ExperimentalGenerator());
 		// genCtx.generate( repo, new DefaultRepoGenerator() );
 		System.out.println("Generation time : " + (System.currentTimeMillis() - start) + " ms ");
 	}

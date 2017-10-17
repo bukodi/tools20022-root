@@ -103,7 +103,7 @@ public class GenerationContext<M> {
 		return false;
 	}
 
-	public <T extends JavaSource<?>> T createSourceFile(Class<T> sourceType, JavaName javaName) {
+	public <T extends JavaSource<?>> T createSourceFile(Class<T> sourceType, StructuredName javaName) {
 		if ( ! firstGeneratedFile   ) {
 			firstGeneratedFile = true;
 			generationStarted = System.currentTimeMillis();
