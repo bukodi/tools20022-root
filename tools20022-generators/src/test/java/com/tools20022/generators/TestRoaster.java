@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Supplier;
 
 import javax.tools.JavaFileObject;
 import javax.tools.StandardLocation;
@@ -50,6 +49,21 @@ public class TestRoaster {
 			javaSrc.addMethod(methodSrc2);
 
 			
+			String methodSrc3 = "java.util.List<String> fn3( java.util.Set<String> name ) {  return \"Hello \" + name; }";
+			javaSrc.addMethod(methodSrc3);
+
+			javaSrc.addImport("com.tools20022.repogenerator.MainTypeResult");
+			String methodSrc4 = "	protected MainTypeResult generateMMCode(\r\n" + 
+					"			com.tools20022.repogenerator.EnumTypeResult containerGen,\r\n" + 
+					"			MMCode mmBean) {\r\n" + 
+					"		com.tools20022.repogenerator.MainTypeResult gen = null;\r\n" + 
+					"		implementMMRepositoryConcept(gen, mmBean);\r\n" + 
+					"		defaultMandatoryAttribute(gen, MMCode_.owner, mmBean.getOwner());\r\n" + 
+					"		defaultOptionalAttribute(gen, MMCode_.codeName, mmBean.getCodeName());\r\n" + 
+					"		return gen;\r\n" + 
+					"	}";
+			javaSrc.addMethod(methodSrc4);
+
 			CompilationUnit astCu = (CompilationUnit)javaSrc.getInternal();
 			
 			CleanQualifiedTypes.cleanAst(astCu);

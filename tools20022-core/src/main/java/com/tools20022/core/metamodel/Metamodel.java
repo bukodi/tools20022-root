@@ -7,8 +7,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-
 public interface Metamodel {
 
 	Stream<? extends MetamodelType<? extends GeneratedMetamodelBean>> listTypes();
@@ -80,6 +78,12 @@ public interface Metamodel {
 		default Set<? extends MetamodelConstraint<? super B>> getAllConstraints() {
 			return listAllConstraints().collect(Collectors.toCollection(LinkedHashSet::new));
 		}
+		
+		default Set<MetamodelType<?>> getPossibleContainers() {
+			Stream<? extends MetamodelAttribute<?,?>> containmentAttrs = getIncomingAttributes().stream().filter(mmAttr->mmAttr.isContainment());
+			return containmentAttrs.map(mmAttr->mmAttr.getDeclaringType()).collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+
 	}
 
 	public interface MetamodelAttribute<B extends GeneratedMetamodelBean,T> extends MetamodelElement {

@@ -97,7 +97,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		/*** MMBusinessArea.Members.messageDefinition ***/
 		for (MMMessageDefinition md : ba.getMessageDefinition()) {
 			try {
-				generateMMMessageDefinition(gen, md);
+				_generateMMMessageDefinition(gen, md);
 			} catch (Exception e) {
 				System.err.println(md);
 				e.printStackTrace();

@@ -1,10 +1,10 @@
 package com.tools20022.mmgenerator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.junit.BeforeClass;
@@ -92,8 +92,12 @@ public class TestECoreBackedMetamodel {
 	@Test
 	public void listContainers() {		
 		metamodel.listTypes().forEachOrdered(mmtype->{
-			Stream<String> s = mmtype.getPossibleContainers().stream().map(x->x.getName());			
-			System.out.println( mmtype.getName() + " : " + s.collect(Collectors.joining(", ")));
+			Set<String> s = mmtype.getPossibleContainers().stream().map(x->x.getName()).collect(Collectors.toSet());
+			if( s.size() > 1 ) {
+				System.out.println( "Multiple containers: " + mmtype.getName() + " : " + s.stream().collect(Collectors.joining(", ")));				
+			} else if( s.isEmpty() ){
+				//System.out.println( "Multiple containers: " + mmtype.getName() + " : " + s.stream().collect(Collectors.joining(", ")));								
+			}
 		});
 	}
 	
