@@ -1,17 +1,19 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
-import java.util.Optional;
+import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMSemanticMarkupElement;
-import java.util.List;
-import java.util.function.Supplier;
+import com.tools20022.metamodel.StandardMetamodel2013;
 import java.util.Collections;
-import com.tools20022.core.metamodel.Containment;/**
- * Enables modelers to markup elements of the Repository with semantic metadata. Each semanticMarkup string is a TupleValue. 
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Enables modelers to markup elements of the Repository with semantic metadata.
+ * Each semanticMarkup string is a TupleValue.
  */
 public class MMSemanticMarkup implements MMModelEntity {
 
@@ -33,8 +35,7 @@ public class MMSemanticMarkup implements MMModelEntity {
 	}
 
 	public static MetamodelType<? extends MMSemanticMarkup> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMSemanticMarkup.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMSemanticMarkup.class);
 	}
 
 	/**
@@ -49,24 +50,21 @@ public class MMSemanticMarkup implements MMModelEntity {
 	 */
 	@Containment
 	public List<MMSemanticMarkupElement> getElements() {
-		return elements_lazy == null ? Collections.emptyList() : elements_lazy
-				.get();
+		return elements_lazy == null ? Collections.emptyList() : elements_lazy.get();
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}

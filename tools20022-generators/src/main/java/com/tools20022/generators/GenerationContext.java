@@ -117,6 +117,19 @@ public class GenerationContext<M> {
 		return src;
 	}
 
+	public <T extends JavaSource<?>> T createSourceFile(Class<T> sourceType, String javaFqn) {
+		if ( ! firstGeneratedFile   ) {
+			firstGeneratedFile = true;
+			generationStarted = System.currentTimeMillis();
+		}
+		T src = Roaster.create(sourceType);
+		int posDot = javaFqn.lastIndexOf('.');
+		src.setPackage(javaFqn.substring(0, posDot));
+		src.setName(javaFqn.substring(posDot+1));
+		unsavedSources.put( src.getQualifiedName(), src);
+		return src;
+	}
+
 	public void setTotalNumberOfMainTypesToGenerate(int numberOfFiles ) {
 		totalNumberOfMainTypesToGenerate = numberOfFiles;
 	}
@@ -172,9 +185,6 @@ public class GenerationContext<M> {
 		JavaSource<?> srcArray[] = new JavaSource<?>[unsavedSources.size()];
 		int i = 0;
 		for( Entry<String, JavaSource<?>> e : unsavedSources.entrySet() ) {
-			System.out.println( "-----"  + e.getKey() +"------" );
-			System.out.println( "Unformatted: " + e.getValue().toUnformattedString() );
-			System.out.println( "------------------" );
 			srcArray[i] = e.getValue();
 			i++;
 		}

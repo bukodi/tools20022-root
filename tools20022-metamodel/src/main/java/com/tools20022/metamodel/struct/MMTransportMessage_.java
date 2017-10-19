@@ -1,15 +1,16 @@
 package com.tools20022.metamodel.struct;
 
-
-import com.tools20022.metamodel.struct.MMModelEntity_;
-import com.tools20022.metamodel.MMTransportMessage;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.metamodel.MMMessagingEndpoint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import com.tools20022.metamodel.MMMessageInstance;
-import java.util.List;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;public interface MMTransportMessage_ extends MMModelEntity_ {
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
+import com.tools20022.metamodel.MMMessageInstance;
+import com.tools20022.metamodel.MMMessagingEndpoint;
+import com.tools20022.metamodel.MMTransportMessage;
+import com.tools20022.metamodel.struct.MMModelEntity_;
+import java.util.List;
+
+public interface MMTransportMessage_ extends MMModelEntity_ {
 
 	/**
 	 * the sending MessagingEndpoint of a TransportMessage
@@ -24,9 +25,11 @@ import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint
 	 */
 	MetamodelAttribute<MMTransportMessage, List<MMMessagingEndpoint>> receiver = newAttribute();
 	/**
-	 * The sender and receiver of a TransportMessage must use the same MessageTransportSystem
-	receiver-&gt;asBag().transportSystem = sender.transportSystem-&gt;asBag()
+	 * The sender and receiver of a TransportMessage must use the same
+	 * MessageTransportSystem receiver-&gt;asBag().transportSystem =
+	 * sender.transportSystem-&gt;asBag()
 	 */
 	MetamodelConstraint<MMTransportMessage> checksameMessageTransportSystem = newConstraint(b -> {
 		throw new RuntimeException("Not implemented!");
-	}); }
+	});
+}

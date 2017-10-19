@@ -1,15 +1,13 @@
 package com.tools20022.metamodel.constraints;
 
 import com.tools20022.metamodel.MMMessageAssociationEnd;
-import java.util.function.Function;
 import com.tools20022.metamodel.MMRepositoryType;
+import java.util.function.Function;
 
 /**
  * Calculate derived attribute {@link MMMessageAssociationEnd#getMemberType()}
  */
-public class DeriveMMMessageAssociationEnd_memberType
-		implements
-			Function<MMMessageAssociationEnd, MMRepositoryType> {
+public class DeriveMMMessageAssociationEnd_memberType implements Function<MMMessageAssociationEnd, MMRepositoryType> {
 
 	/**
 	 * The type of this Member

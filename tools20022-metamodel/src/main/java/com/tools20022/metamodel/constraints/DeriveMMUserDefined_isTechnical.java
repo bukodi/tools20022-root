@@ -6,9 +6,7 @@ import java.util.function.Function;
 /**
  * Calculate derived attribute {@link MMUserDefined#isIsTechnical()}
  */
-public class DeriveMMUserDefined_isTechnical
-		implements
-			Function<MMUserDefined, Boolean> {
+public class DeriveMMUserDefined_isTechnical implements Function<MMUserDefined, Boolean> {
 
 	/**
 	 * A property indicating the absense of a semantic relationship to a

@@ -1,26 +1,16 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMBusinessTransaction;
-import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.MMMultiplicityEntity;
-import java.util.function.Supplier;
-import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
-import com.tools20022.metamodel.MMReceive;
-import java.util.List;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.metamodel.*;
 import java.util.Collections;
-import com.tools20022.metamodel.MMSend;
-import com.tools20022.metamodel.MMBusinessRole;
-import java.util.Optional;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;/**
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
  * involvement of a BusinessRole in a BusinessTransaction
  */
 public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity {
@@ -54,12 +44,12 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	}
 
 	public static MetamodelType<? extends MMParticipant> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMParticipant.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMParticipant.class);
 	}
 
 	/**
 	 * the BusinessTransaction in which the Participant plays a role
+	 * 
 	 * @see MMBusinessTransaction#getParticipant()
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "participant")
@@ -70,16 +60,18 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	/**
 	 * The handling of a stimulus passed from a sending participant
+	 * 
 	 * @see MMReceive#getReceiver()
 	 */
 	@Opposite(bean = MMReceive.class, attribute = "receiver")
 	public List<MMReceive> getReceives() {
-		return receives_lazy == null ? Collections.emptyList() : receives_lazy
-				.get();
+		return receives_lazy == null ? Collections.emptyList() : receives_lazy.get();
 	}
 
 	/**
-	 * The passing of information from a sending Participant to a receiving Participant
+	 * The passing of information from a sending Participant to a receiving
+	 * Participant
+	 * 
 	 * @see MMSend#getSender()
 	 */
 	@Opposite(bean = MMSend.class, attribute = "sender")
@@ -89,6 +81,7 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	/**
 	 * the BusinessRoleTrace that traces the Participant to its BusinessRole
+	 * 
 	 * @see MMBusinessRole#getBusinessRoleTrace()
 	 */
 	@Opposite(bean = MMBusinessRole.class, attribute = "businessRoleTrace")
@@ -108,14 +101,12 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList()
-				: semanticMarkup_lazy.get();
+		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
-				.get();
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
 	}
 
 	@Override
@@ -125,8 +116,7 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList()
-				: constraint_lazy.get();
+		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
 	}
 
 	@Override
@@ -136,26 +126,22 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate == null ? Optional.empty() : Optional
-				.of(removalDate);
+		return removalDate == null ? Optional.empty() : Optional.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
 	}
 
 	@Override
@@ -166,4 +152,5 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	@Override
 	public Optional<Integer> getMinOccurs() {
 		return minOccurs == null ? Optional.empty() : Optional.of(minOccurs);
-	} }
+	}
+}

@@ -1,16 +1,17 @@
 package com.tools20022.metamodel;
 
-
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMDataType;
-import java.util.Optional;/**
- * Abstract definition of a data type whose properties are common to all kinds of time-related concepts.
+import java.util.Optional;
+
+/**
+ * Abstract definition of a data type whose properties are common to all kinds
+ * of time-related concepts.
  */
 public interface MMAbstractDateTimeConcept extends MMDataType {
 
 	public static MetamodelType<MMAbstractDateTimeConcept> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMAbstractDateTimeConcept.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMAbstractDateTimeConcept.class);
 	}
 
 	/**
@@ -34,6 +35,9 @@ public interface MMAbstractDateTimeConcept extends MMDataType {
 	public Optional<String> getMaxExclusive();
 
 	/**
-	 * A constraint on the value space of a datatype which is achieved by constraining the lexical space to literals which match a specific pattern.
+	 * A constraint on the value space of a datatype which is achieved by
+	 * constraining the lexical space to literals which match a specific
+	 * pattern.
 	 */
-	public Optional<String> getPattern(); }
+	public Optional<String> getPattern();
+}

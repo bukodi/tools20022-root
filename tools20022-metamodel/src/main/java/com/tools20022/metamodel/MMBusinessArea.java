@@ -1,24 +1,18 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMBusinessProcessCatalogue;
-import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
-import com.tools20022.metamodel.MMMessageDefinition;
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.Collections;
-import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Containment;
-import java.util.Optional;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.metamodel.*;
+import java.util.Collections;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;/**
- * Set of strongly related business activities, that provide a self-standing business value to a set of BusinessRoles.
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Set of strongly related business activities, that provide a self-standing
+ * business value to a set of BusinessRoles.
  */
 public class MMBusinessArea implements MMTopLevelCatalogueEntry {
 
@@ -48,8 +42,7 @@ public class MMBusinessArea implements MMTopLevelCatalogueEntry {
 	}
 
 	public static MetamodelType<? extends MMBusinessArea> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMBusinessArea.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMBusinessArea.class);
 	}
 
 	/**
@@ -61,13 +54,13 @@ public class MMBusinessArea implements MMTopLevelCatalogueEntry {
 
 	/**
 	 * The MessageDefinition that belongs to the BusinessArea.
+	 * 
 	 * @see MMMessageDefinition#getBusinessArea()
 	 */
 	@Opposite(bean = MMMessageDefinition.class, attribute = "businessArea")
 	@Containment
 	public List<MMMessageDefinition> getMessageDefinition() {
-		return messageDefinition_lazy == null ? Collections.emptyList()
-				: messageDefinition_lazy.get();
+		return messageDefinition_lazy == null ? Collections.emptyList() : messageDefinition_lazy.get();
 	}
 
 	@Override
@@ -87,14 +80,12 @@ public class MMBusinessArea implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList()
-				: semanticMarkup_lazy.get();
+		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
-				.get();
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
 	}
 
 	@Override
@@ -104,8 +95,7 @@ public class MMBusinessArea implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList()
-				: constraint_lazy.get();
+		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
 	}
 
 	@Override
@@ -115,24 +105,21 @@ public class MMBusinessArea implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate == null ? Optional.empty() : Optional
-				.of(removalDate);
+		return removalDate == null ? Optional.empty() : Optional.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}

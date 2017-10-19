@@ -6,9 +6,7 @@ import java.util.function.Function;
 /**
  * Calculate derived attribute {@link MMChoiceComponent#isIsTechnical()}
  */
-public class DeriveMMChoiceComponent_isTechnical
-		implements
-			Function<MMChoiceComponent, Boolean> {
+public class DeriveMMChoiceComponent_isTechnical implements Function<MMChoiceComponent, Boolean> {
 
 	/**
 	 * A property indicating the absense of a semantic relationship to a

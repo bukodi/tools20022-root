@@ -2,19 +2,17 @@ package com.tools20022.repogenerator;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
+import org.jboss.forge.roaster.model.source.JavaEnumSource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
-import com.tools20022.generators.GenerationResult.JavaResult;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMBusinessArea;
@@ -40,7 +38,8 @@ import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.MMXor;
-import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
+import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.SubTypeResult;
 
@@ -54,46 +53,16 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 	protected RawRepository repo;
 	protected GenerationContext<RawRepository> ctx;
 
-	/*** Store intermediate generation results ***/
-	protected JavaResult<JavaClassSource> genRepoMain;
-
 	@Override
-	public void accept(RawRepository repo, GenerationContext<RawRepository> ctx) {
-		this.repo = repo;
-		this.ctx = ctx;
+	public abstract void accept(RawRepository repo, GenerationContext<RawRepository> ctx);
 
-		// Count main types to generate
-		{
-			long start = System.currentTimeMillis();
-			AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
-			repo.listContent(repo.getRootObject(), true, true).forEach(repoObj -> {
-				StructuredName javaName = getStructuredName(repoObj);
-				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null)
-					totalNumberOfMainTypesToGenerate.incrementAndGet();
-			});
-			ctx.setTotalNumberOfMainTypesToGenerate(totalNumberOfMainTypesToGenerate.get());
-			System.out.println("Found " + totalNumberOfMainTypesToGenerate
-					+ " java sources to generate. ( Calculated in " + (System.currentTimeMillis() - start) + " msec )");
-		}
-
-		// Create repo skeleton
-		{
-			StructuredName repoName = StructuredName.primaryType(basePackageName, mainClassSimpleName);
-			JavaClassSource srcRepoMain = ctx.createSourceFile(JavaClassSource.class, repoName);
-			srcRepoMain.addImport(ReflectionBasedRepository.class);
-			srcRepoMain.setSuperType(ReflectionBasedRepository.class);
-			genRepoMain = GenerationResult.fromJavaSource(srcRepoMain);
-
-			// Add constructor
-			srcRepoMain.addImport(StandardMetamodel2013.class);
-			srcRepoMain.addMethod().setConstructor(true).setPrivate()
-					.setBody("super( " + StandardMetamodel2013.class.getSimpleName() + ".metamodel());");
-		}
-
-		MMRepository root = repo.getRootObject();
-
+	protected String getStructFQN( StructuredName sName ) {
+		String fqn = sName.getPackage() + "." + sName.getCompilationUnit() + "_";
+		fqn += sName.getNestedTypeName() != null ? "." + sName.getNestedTypeName() : "";
+		fqn += sName.getMemberName() != null ? "." + sName.getMemberName(): "";
+		return fqn;
 	}
-
+	
 	protected StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
 
 		BiFunction<GeneratedMetamodelBean, String, StructuredName> createJavaNameAsMemeber = (parentElem,
@@ -185,7 +154,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 				cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
 		}
 
-		return StructuredName.primaryType(pkg, cuName + "_");
+		return StructuredName.primaryType(pkg, cuName );
 	}
 
 	protected <MB extends GeneratedMetamodelBean, T> GenerationResult defaultOptionalAttribute(GenerationResult gen,
@@ -204,17 +173,39 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 	}
 
 	protected MainTypeResult defaultMainType(GeneratedMetamodelBean mmBean) {
-		MainTypeResult mtr = new MainTypeResult();
 		StructuredName name = getStructuredName(mmBean);
-		mtr.structSrc = ctx.createSourceFile(JavaClassSource.class, name);
+		MainTypeResult mtr = new MainTypeResult(ctx, name );
+		mtr.structSrc = ctx.createSourceFile(JavaClassSource.class, mtr.getJavaFQN());
 		return mtr;
 	}
 
-	protected SubTypeResult defaultSubType(GeneratedMetamodelBean mmBean, MainTypeResult containerGen ) {
-		SubTypeResult str = new SubTypeResult();
+	protected MainTypeResult defaultBeanMainType(GeneratedMetamodelBean mmBean) {
 		StructuredName name = getStructuredName(mmBean);
-		JavaClassSource src;
-		//str.structSrc = ctx.createSourceFile(JavaClassSource.class, name);
+		MainTypeResult mtr = new MainTypeResult(ctx, name );
+		mtr.structSrc = ctx.createSourceFile(JavaClassSource.class, mtr.getJavaFQN());
+		return mtr;
+	}
+
+	protected EnumTypeResult defaultEnumType(GeneratedMetamodelBean mmBean) {
+		StructuredName name = getStructuredName(mmBean);
+		EnumTypeResult etr = new EnumTypeResult(ctx,name);
+		etr.structSrc = ctx.createSourceFile(JavaEnumSource.class, etr.getJavaFQN());
+		return etr;
+	}
+
+	protected EnumConstantResult defaultEnumConstant(GeneratedMetamodelBean mmBean, EnumTypeResult containerGen ) {
+		StructuredName name = getStructuredName(mmBean);
+		EnumConstantResult etr = new EnumConstantResult(ctx,name);
+		//etr.structSrc = ctx.createSourceFile(JavaEnumSource.class, name);
+		return etr;
+	}
+
+	protected SubTypeResult defaultSubType(GeneratedMetamodelBean mmBean, MainTypeResult containerGen ) {
+		StructuredName name = getStructuredName(mmBean);
+		SubTypeResult str = new SubTypeResult(ctx,name);
+		str.structSrc = containerGen.structSrc.addField().setName(name.getMemberName());
+		str.structSrc.setPublic().setStatic(true).setFinal(true);
+		str.structSrc.setType(mmBean.getMetamodel().getBeanClass());
 		return str;
 	}
 

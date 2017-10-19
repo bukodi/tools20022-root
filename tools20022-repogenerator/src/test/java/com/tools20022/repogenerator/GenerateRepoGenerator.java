@@ -17,6 +17,7 @@ import org.jboss.forge.roaster.model.source.MethodSource;
 
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
@@ -26,14 +27,18 @@ import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMBusinessRole;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
+import com.tools20022.metamodel.MMMessageElement;
 import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.MMXor;
@@ -66,7 +71,9 @@ public class GenerateRepoGenerator {
 	
 	void generate() throws Exception {
 		mainSrc = Roaster.create(JavaClassSource.class);
-		mainSrc.setName("GeneratedRepoGenerator").setPackage("com.tools20022.repogenerator");
+		mainSrc.setName("GeneratedRepoGenerator").setPackage("com.tools20022.repogenerator").setAbstract(true);				
+		mainSrc.addMethod("	@Override\n" + 
+				"	public abstract void accept(" +RawRepository.class.getName()+" repo, " +GenerationContext.class.getName()+"<" +RawRepository.class.getName()+"> ctx);");
 		mainSrc.extendSuperType(BaseRepoGenerator.class);
 
 		// List non-abstract types organized by containment hierarchy.
@@ -87,6 +94,7 @@ public class GenerateRepoGenerator {
 		addSwitchGenerators(MMTopLevelCatalogueEntry.metaType(), SubTypeResult.class);
 		addSwitchGenerators(MMTopLevelDictionaryEntry.metaType(), SubTypeResult.class);
 		addSwitchGenerators(MMBusinessElement.metaType(), MainTypeResult.class);
+		addSwitchGenerators(MMMessageElement.metaType(), MainTypeResult.class);
 	}
 	
 	void addSwitchGenerators(MetamodelType<?> switchOntype, Class<? extends GenerationResult> typeOfGenArg ) {
@@ -126,10 +134,14 @@ public class GenerateRepoGenerator {
 		Class<? extends GenerationResult> rt = getResultType(mmType);
 		if( MainTypeResult.class.equals(rt)) {
 			bodySb.append( MainTypeResult.class.getName() + " gen = defaultMainType(mmBean);\n");			
+		} else if( EnumTypeResult.class.equals(rt)) {
+			bodySb.append( EnumTypeResult.class.getName() + " gen = defaultEnumType(mmBean);\n");			
 		} else if( SubTypeResult.class.equals(rt)) {
 			bodySb.append( SubTypeResult.class.getName() + " gen = defaultSubType(mmBean, containerGen);\n");			
+		} else if( EnumConstantResult.class.equals(rt)) {
+			bodySb.append( EnumConstantResult.class.getName() + " gen = defaultEnumConstant(mmBean, containerGen);\n");			
 		} else {
-			bodySb.append( rt.getName() + " gen = null;\n");
+			throw new IllegalArgumentException("Invalid type hierarchy: " + rt);
 		}
 		bodySb.append("\n");
 
@@ -166,6 +178,8 @@ public class GenerateRepoGenerator {
 		
 		/*** Init attribute values ***/
 		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
+			if( attr.isDerived() )
+				continue;
 			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
 			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";
 			if (attr.isMultiple()) {
@@ -177,6 +191,7 @@ public class GenerateRepoGenerator {
 			}
 		}
 
+		bodySb.append("gen.flush();");
 		bodySb.append("return gen;");
 		method.setBody(bodySb.toString());
 	}
@@ -184,8 +199,13 @@ public class GenerateRepoGenerator {
 	void implementAbstractType(MetamodelType<?> mmType) {
 		MethodSource<JavaClassSource> method = mainSrc.addMethod().setProtected();
 		mainSrc.addImport(mmType.getBeanClass().getPackage().getName() + ".struct." + mmType.getBeanClass().getSimpleName() + "_");
-		method.setName("implement" + mmType.getBeanClass().getSimpleName());		
-		method.addParameter(GenerationResult.class, "gen");
+		method.setName("implement" + mmType.getBeanClass().getSimpleName());
+		
+		if( "implementMMMessageElementContainer".equals( method.getName()) ) {
+			method.addParameter(MainTypeResult.class, "gen");
+		} else {
+			method.addParameter(GenerationResult.class, "gen");			
+		}		
 		method.addParameter(mmType.getBeanClass(), "mmBean");
 
 		StringBuilder bodySb = new StringBuilder();
@@ -195,8 +215,31 @@ public class GenerateRepoGenerator {
 				throw new RuntimeException("Unsupported case");
 			bodySb.append("implement" + st.getBeanClass().getSimpleName() + "( gen, mmBean );\n");
 		}
+		
+		/*** Create contained types ***/
+		for( MetamodelAttribute<?, ?> attr : mmType.listDeclaredAttributes().filter(a->a.isContainment()).collect(Collectors.toList()) ) {
+			Class<?> refClass = attr.getReferencedType().getBeanClass();
+			if( MMDoclet.class.equals(refClass) || MMSemanticMarkup.class.equals(refClass) || MMConstraint.class.equals(refClass))
+				continue;
+			String genmethodName = "generate" + refClass.getSimpleName() + ( MMXor.class.equals(refClass) ? "In" + mmType.getName() : "");			
+			if (attr.isMultiple()) {
+//				for( MMMessageDefinition mmChild : mmBean.getMessageDefinition() ) {
+//					generateMMMessageDefinition(gen, mmChild);
+//				}
+				bodySb.append("for( " + refClass.getName() + " mmChild : mmBean." + attr.getGetterMethod().getName() + "() ) {" );
+				bodySb.append("  " + genmethodName + "( gen, mmChild );");
+				bodySb.append("}" );
+			} else if (attr.isOptional()) {
+				//bodySb.append("defaultOptionalAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
+			} else {
+				bodySb.append("  " + genmethodName + "( gen, mmBean." +attr.getGetterMethod().getName()+ "());");
+			}			
+		}
+
 
 		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
+			if( attr.isDerived() )
+				continue;
 			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
 			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";
 			if (attr.isMultiple()) {

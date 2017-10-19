@@ -1,26 +1,20 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMBusinessProcessCatalogue;
-import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
-import com.tools20022.metamodel.MMBusinessProcess;
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.Collections;
-import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.metamodel.MMBusinessRole;
 import com.tools20022.core.metamodel.Containment;
-import com.tools20022.metamodel.MMBusinessTransaction;
-import java.util.Optional;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.metamodel.*;
+import java.util.Collections;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;/**
- * unrealized definition of the business activities undertaken by BusinessRoles within a BusinessArea whereby each BusinessProcess fulfils one type of business activity and whereby a BusinessProcess may include and extend other BusinessProcesses
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * unrealized definition of the business activities undertaken by BusinessRoles
+ * within a BusinessArea whereby each BusinessProcess fulfils one type of
+ * business activity and whereby a BusinessProcess may include and extend other
+ * BusinessProcesses
  */
 public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
@@ -54,59 +48,58 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	}
 
 	public static MetamodelType<? extends MMBusinessProcess> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMBusinessProcess.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMBusinessProcess.class);
 	}
 
 	/**
 	 * specifies the BusinessProcess that is extending another BusinessProcess
+	 * 
 	 * @see MMBusinessProcess#getExtended()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "extended")
 	public List<MMBusinessProcess> getExtender() {
-		return extender_lazy == null ? Collections.emptyList() : extender_lazy
-				.get();
+		return extender_lazy == null ? Collections.emptyList() : extender_lazy.get();
 	}
 
 	/**
 	 * specifies the BusinessProcess that is extended by another BusinessProcess
+	 * 
 	 * @see MMBusinessProcess#getExtender()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "extender")
 	public List<MMBusinessProcess> getExtended() {
-		return extended_lazy == null ? Collections.emptyList() : extended_lazy
-				.get();
+		return extended_lazy == null ? Collections.emptyList() : extended_lazy.get();
 	}
 
 	/**
 	 * specifies the BusinessProcess that is included by another BusinessProcess
+	 * 
 	 * @see MMBusinessProcess#getIncluder()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "includer")
 	public List<MMBusinessProcess> getIncluded() {
-		return included_lazy == null ? Collections.emptyList() : included_lazy
-				.get();
+		return included_lazy == null ? Collections.emptyList() : included_lazy.get();
 	}
 
 	/**
 	 * specifies the BusinessProcess that is incuding another BusinessProcess
+	 * 
 	 * @see MMBusinessProcess#getIncluded()
 	 */
 	@Opposite(bean = MMBusinessProcess.class, attribute = "included")
 	public List<MMBusinessProcess> getIncluder() {
-		return includer_lazy == null ? Collections.emptyList() : includer_lazy
-				.get();
+		return includer_lazy == null ? Collections.emptyList() : includer_lazy.get();
 	}
 
 	/**
 	 * the BusinessRole that plays a role in BusinessProcess that owns it.
+	 * 
 	 * @see MMBusinessRole#getBusinessProcess()
 	 */
 	@Opposite(bean = MMBusinessRole.class, attribute = "businessProcess")
 	@Containment
 	public List<MMBusinessRole> getBusinessRole() {
-		return businessRole_lazy == null ? Collections.emptyList()
-				: businessRole_lazy.get();
+		return businessRole_lazy == null ? Collections.emptyList() : businessRole_lazy.get();
 	}
 
 	/**
@@ -114,8 +107,7 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "businessProcessTrace")
 	public List<MMBusinessTransaction> getBusinessProcessTrace() {
-		return businessProcessTrace_lazy == null ? Collections.emptyList()
-				: businessProcessTrace_lazy.get();
+		return businessProcessTrace_lazy == null ? Collections.emptyList() : businessProcessTrace_lazy.get();
 	}
 
 	@Override
@@ -135,14 +127,12 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList()
-				: semanticMarkup_lazy.get();
+		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
-				.get();
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
 	}
 
 	@Override
@@ -152,8 +142,7 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList()
-				: constraint_lazy.get();
+		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
 	}
 
 	@Override
@@ -163,24 +152,21 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate == null ? Optional.empty() : Optional
-				.of(removalDate);
+		return removalDate == null ? Optional.empty() : Optional.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}

@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 import org.jboss.forge.roaster.model.Visibility;
@@ -21,34 +20,10 @@ import org.jboss.forge.roaster.model.source.MethodSource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.generators.RoasterHelper;
-import com.tools20022.metamodel.MMBusinessArea;
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
-import com.tools20022.metamodel.MMBusinessAttribute;
-import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMBusinessProcessCatalogue;
-import com.tools20022.metamodel.MMBusinessRole;
-import com.tools20022.metamodel.MMChoiceComponent;
-import com.tools20022.metamodel.MMCode;
-import com.tools20022.metamodel.MMCodeSet;
-import com.tools20022.metamodel.MMDataDictionary;
-import com.tools20022.metamodel.MMDataType;
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import com.tools20022.metamodel.MMMessageAttribute;
-import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMMessageComponent;
-import com.tools20022.metamodel.MMMessageDefinition;
-import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
-import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMModelEntity;
-import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
-import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
-import com.tools20022.metamodel.MMXor;
 
 public class ExperimentalGenerator extends BaseRepoGenerator {
 
@@ -79,8 +54,8 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 	}
 	
 	protected void createStruct(GeneratedMetamodelBean mmBean, JavaClassSource srcMainClass) {
-		StructuredName javaName = getStructuredName(mmBean);
-		boolean isNestedStruct = javaName.getNestedTypeName() != null;
+		StructuredName sName = getStructuredName(mmBean);
+		boolean isNestedStruct = sName.getNestedTypeName() != null;
 		if( !isNestedStruct ) {
 			createStructMain(mmBean, null);
 		} else {
@@ -187,15 +162,15 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 
 	private void createFinalVarWithAnonymousClass(GeneratedMetamodelBean mmBean,
 			JavaClassSource srcMainClass) {
-		StructuredName javaName = getStructuredName(mmBean);
-		if (javaName == null)
+		StructuredName sName = getStructuredName(mmBean);
+		if (sName == null)
 			return;
-		if (javaName.getNestedTypeName() != null || javaName.getMemberName() == null) {
-			throw new IllegalArgumentException("Not a member of a primary type: " + javaName);
+		if (sName.getNestedTypeName() != null || sName.getMemberName() == null) {
+			throw new IllegalArgumentException("Not a member of a primary type: " + sName);
 		}
 
 		FieldSource<JavaClassSource> src = srcMainClass.addField();
-		src.setName(javaName.getMemberName());
+		src.setName(sName.getMemberName());
 		src.setPublic();
 		src.setFinal(true).setStatic(true);
 		src.setType(mmBean.getClass());		

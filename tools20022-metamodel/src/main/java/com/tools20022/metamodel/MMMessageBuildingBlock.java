@@ -1,29 +1,20 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMMessageDefinition;
-import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.MMMessageConstruct;
-import com.tools20022.metamodel.MMDataType;
-import java.util.Optional;
-import java.util.function.Supplier;
-import com.tools20022.metamodel.MMMessageComponentType;
-import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.metamodel.MMLogicalType;
-import com.tools20022.metamodel.constraints.DeriveMMMessageBuildingBlock_xmlMemberType;
 import com.tools20022.core.metamodel.Derived;
-import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.metamodel.constraints.DeriveMMMessageBuildingBlock_memberType;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import java.util.List;
+import com.tools20022.metamodel.constraints.DeriveMMMessageBuildingBlock_xmlMemberType;
+import com.tools20022.metamodel.*;
 import java.util.Collections;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;/**
- * Characteristic of a MessageDefinition, having a unique meaning within the scope of that MessageDefinition.
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Characteristic of a MessageDefinition, having a unique meaning within the
+ * scope of that MessageDefinition.
  */
 public class MMMessageBuildingBlock implements MMMessageConstruct {
 
@@ -56,26 +47,26 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 	}
 
 	public static MetamodelType<? extends MMMessageBuildingBlock> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMMessageBuildingBlock.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMMessageBuildingBlock.class);
 	}
 
 	/**
-	 * The simple content model of a MessageBuildingBlock when it is expressed using a DataType
+	 * The simple content model of a MessageBuildingBlock when it is expressed
+	 * using a DataType
 	 */
 	public Optional<MMDataType> getSimpleType() {
-		return simpleType_lazy == null ? Optional.empty() : Optional
-				.of(simpleType_lazy.get());
+		return simpleType_lazy == null ? Optional.empty() : Optional.of(simpleType_lazy.get());
 	}
 
 	/**
-	 * the complex content model of a MessageBuildingBlock when it is expressed using a MessageComponentType
+	 * the complex content model of a MessageBuildingBlock when it is expressed
+	 * using a MessageComponentType
+	 * 
 	 * @see MMMessageComponentType#getMessageBuildingBlock()
 	 */
 	@Opposite(bean = MMMessageComponentType.class, attribute = "messageBuildingBlock")
 	public Optional<MMMessageComponentType> getComplexType() {
-		return complexType_lazy == null ? Optional.empty() : Optional
-				.of(complexType_lazy.get());
+		return complexType_lazy == null ? Optional.empty() : Optional.of(complexType_lazy.get());
 	}
 
 	@Override
@@ -107,14 +98,12 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList()
-				: semanticMarkup_lazy.get();
+		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
-				.get();
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
 	}
 
 	@Override
@@ -124,8 +113,7 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList()
-				: constraint_lazy.get();
+		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
 	}
 
 	@Override
@@ -135,26 +123,22 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate == null ? Optional.empty() : Optional
-				.of(removalDate);
+		return removalDate == null ? Optional.empty() : Optional.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
 	}
 
 	@Override
@@ -165,4 +149,5 @@ public class MMMessageBuildingBlock implements MMMessageConstruct {
 	@Override
 	public Optional<Integer> getMinOccurs() {
 		return minOccurs == null ? Optional.empty() : Optional.of(minOccurs);
-	} }
+	}
+}

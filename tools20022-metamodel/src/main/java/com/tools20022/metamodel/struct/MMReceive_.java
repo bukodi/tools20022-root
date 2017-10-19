@@ -1,12 +1,13 @@
 package com.tools20022.metamodel.struct;
 
-
-import com.tools20022.metamodel.struct.MMModelEntity_;
-import com.tools20022.metamodel.MMReceive;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.metamodel.MMMessageTransmission;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import com.tools20022.metamodel.MMParticipant;public interface MMReceive_ extends MMModelEntity_ {
+import com.tools20022.metamodel.MMMessageTransmission;
+import com.tools20022.metamodel.MMParticipant;
+import com.tools20022.metamodel.MMReceive;
+import com.tools20022.metamodel.struct.MMModelEntity_;
+
+public interface MMReceive_ extends MMModelEntity_ {
 
 	/**
 	 * the stimulus handled as part of the Receive
@@ -15,4 +16,5 @@ import com.tools20022.metamodel.MMParticipant;public interface MMReceive_ extend
 	/**
 	 * the object handling a stimulus passed from the sender
 	 */
-	MetamodelAttribute<MMReceive, MMParticipant> receiver = newAttribute(); }
+	MetamodelAttribute<MMReceive, MMParticipant> receiver = newAttribute();
+}

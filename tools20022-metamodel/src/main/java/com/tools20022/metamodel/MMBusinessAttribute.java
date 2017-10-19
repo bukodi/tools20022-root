@@ -1,28 +1,19 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.MMBusinessElement;
-import com.tools20022.metamodel.MMDataType;
-import java.util.Optional;
-import java.util.function.Supplier;
-import com.tools20022.metamodel.MMMessageElement;
-import java.util.List;
-import java.util.Collections;
-import com.tools20022.metamodel.MMBusinessElementType;
-import com.tools20022.metamodel.constraints.DeriveMMBusinessAttribute_businessElementType;
 import com.tools20022.core.metamodel.Derived;
-import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.metamodel.constraints.DeriveMMBusinessAttribute_businessElementType;
 import com.tools20022.metamodel.constraints.DeriveMMBusinessAttribute_memberType;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.metamodel.*;
+import java.util.Collections;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;/**
- * A BusinessElement, typed by a BusinessComponent or a DataType (contrary to a BusinessAssociationEnd, which is always typed by another BusinessComponent)
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * A BusinessElement, typed by a BusinessComponent or a DataType (contrary to a
+ * BusinessAssociationEnd, which is always typed by another BusinessComponent)
  */
 public class MMBusinessAttribute implements MMBusinessElement {
 
@@ -56,24 +47,23 @@ public class MMBusinessAttribute implements MMBusinessElement {
 	}
 
 	public static MetamodelType<? extends MMBusinessAttribute> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMBusinessAttribute.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMBusinessAttribute.class);
 	}
 
 	/**
-	 * Expresses that the content model of a BusinessAttribute may be specified by a type from the XSD type library or a derived datatype.
+	 * Expresses that the content model of a BusinessAttribute may be specified
+	 * by a type from the XSD type library or a derived datatype.
 	 */
 	public Optional<MMDataType> getSimpleType() {
-		return simpleType_lazy == null ? Optional.empty() : Optional
-				.of(simpleType_lazy.get());
+		return simpleType_lazy == null ? Optional.empty() : Optional.of(simpleType_lazy.get());
 	}
 
 	/**
-	 * The BusinessComponent that describes the complex content model of the BusinessAttrribute.
+	 * The BusinessComponent that describes the complex content model of the
+	 * BusinessAttrribute.
 	 */
 	public Optional<MMBusinessComponent> getComplexType() {
-		return complexType_lazy == null ? Optional.empty() : Optional
-				.of(complexType_lazy.get());
+		return complexType_lazy == null ? Optional.empty() : Optional.of(complexType_lazy.get());
 	}
 
 	@Override
@@ -83,15 +73,13 @@ public class MMBusinessAttribute implements MMBusinessElement {
 
 	@Override
 	public List<MMMessageElement> getDerivation() {
-		return derivation_lazy == null ? Collections.emptyList()
-				: derivation_lazy.get();
+		return derivation_lazy == null ? Collections.emptyList() : derivation_lazy.get();
 	}
 
 	@Derived
 	@Override
 	public MMBusinessElementType getBusinessElementType() {
-		return (new DeriveMMBusinessAttribute_businessElementType())
-				.apply(this);
+		return (new DeriveMMBusinessAttribute_businessElementType()).apply(this);
 	}
 
 	@Override
@@ -117,14 +105,12 @@ public class MMBusinessAttribute implements MMBusinessElement {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList()
-				: semanticMarkup_lazy.get();
+		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
-				.get();
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
 	}
 
 	@Override
@@ -134,8 +120,7 @@ public class MMBusinessAttribute implements MMBusinessElement {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList()
-				: constraint_lazy.get();
+		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
 	}
 
 	@Override
@@ -145,26 +130,22 @@ public class MMBusinessAttribute implements MMBusinessElement {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate == null ? Optional.empty() : Optional
-				.of(removalDate);
+		return removalDate == null ? Optional.empty() : Optional.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
 	}
 
 	@Override
@@ -175,4 +156,5 @@ public class MMBusinessAttribute implements MMBusinessElement {
 	@Override
 	public Optional<Integer> getMinOccurs() {
 		return minOccurs == null ? Optional.empty() : Optional.of(minOccurs);
-	} }
+	}
+}

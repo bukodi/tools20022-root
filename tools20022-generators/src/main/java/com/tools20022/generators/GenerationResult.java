@@ -1,18 +1,20 @@
 package com.tools20022.generators;
 
-import org.jboss.forge.roaster.model.source.JavaSource;
-
 public abstract class GenerationResult {
 	
-	public static <T extends JavaSource<?>> JavaResult<T> fromJavaSource( T src ) {
-		return new JavaResult<>(src);
+	public final GenerationContext<?> ctx;
+	public final StructuredName baseName;
+	
+	protected GenerationResult( GenerationContext<?> ctx, StructuredName baseName ) {
+		this.ctx = ctx;
+		this.baseName = baseName;
 	}
 	
-	public static class JavaResult<T extends JavaSource<?>>  extends GenerationResult {
-		public final T src;
-		
-		private JavaResult(T src) {
-			this.src = src;
-		}
+	public abstract void flush();
+	
+	public abstract String getJavaFQN();
+
+	public String getJavaBeanFQN() {
+		return null;
 	}
 }

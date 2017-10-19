@@ -1,15 +1,18 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMSemanticMarkup;
-import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
-import java.util.Optional;
-import java.util.List;
+import com.tools20022.metamodel.MMSemanticMarkup;
+import com.tools20022.metamodel.StandardMetamodel2013;
+import java.util.Collections;
 import java.util.function.Supplier;
-import java.util.Collections;/**
- * A semantic mark-up element defines a name + value pair for content. E.g. for synonyms, the name will be either "name" or "context" and the value will be the corresponding synonym name or context.
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * A semantic mark-up element defines a name + value pair for content. E.g. for
+ * synonyms, the name will be either "name" or "context" and the value will be
+ * the corresponding synonym name or context.
  */
 public class MMSemanticMarkupElement implements MMModelEntity {
 
@@ -31,8 +34,7 @@ public class MMSemanticMarkupElement implements MMModelEntity {
 	}
 
 	public static MetamodelType<? extends MMSemanticMarkupElement> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMSemanticMarkupElement.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMSemanticMarkupElement.class);
 	}
 
 	/**
@@ -51,18 +53,16 @@ public class MMSemanticMarkupElement implements MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}

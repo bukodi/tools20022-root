@@ -1,11 +1,12 @@
 package com.tools20022.metamodel.struct;
 
-
-import com.tools20022.metamodel.struct.MMDataType_;
-import com.tools20022.metamodel.MMBinary;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+import com.tools20022.metamodel.MMBinary;
+import com.tools20022.metamodel.struct.MMDataType_;
 import java.util.Optional;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;public interface MMBinary_ extends MMDataType_ {
+
+public interface MMBinary_ extends MMDataType_ {
 
 	/**
 	 * the minimum number of units of characters
@@ -20,6 +21,9 @@ import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 	 */
 	MetamodelAttribute<MMBinary, Optional<Integer>> length = newAttribute();
 	/**
-	 * A constraint on the value space of a datatype which is achieved by constraining the lexical space to literals which match a specific pattern.
+	 * A constraint on the value space of a datatype which is achieved by
+	 * constraining the lexical space to literals which match a specific
+	 * pattern.
 	 */
-	MetamodelAttribute<MMBinary, Optional<String>> pattern = newAttribute(); }
+	MetamodelAttribute<MMBinary, Optional<String>> pattern = newAttribute();
+}

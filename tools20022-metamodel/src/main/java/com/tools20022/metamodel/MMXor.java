@@ -1,27 +1,18 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMRepositoryType;
-import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.MMMessageElement;
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.Collections;
-import com.tools20022.metamodel.MMMessageComponent;
-import java.util.Optional;
-import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
-import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMMessageDefinition;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.metamodel.*;
+import java.util.Collections;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;/**
- * A rule which enforces a choice amongst a set of Message Elements contained either within a Message Definition or a Message Component.
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * A rule which enforces a choice amongst a set of Message Elements contained
+ * either within a Message Definition or a Message Component.
  */
 public class MMXor implements MMRepositoryConcept {
 
@@ -47,8 +38,7 @@ public class MMXor implements MMRepositoryConcept {
 			return getMessageComponent().get();
 		if (getMessageDefinition().isPresent())
 			return getMessageDefinition().get();
-		throw new IllegalStateException("The " + toString()
-				+ " hasn't container!");
+		throw new IllegalStateException("The " + toString() + " hasn't container!");
 	}
 
 	@Override
@@ -64,38 +54,36 @@ public class MMXor implements MMRepositoryConcept {
 	 * Message Elements impacted by the XOR.
 	 */
 	public List<MMMessageElement> getImpactedElements() {
-		return impactedElements_lazy == null ? Collections.emptyList()
-				: impactedElements_lazy.get();
+		return impactedElements_lazy == null ? Collections.emptyList() : impactedElements_lazy.get();
 	}
 
 	/**
 	 * Message Component owning the XOR.
+	 * 
 	 * @see MMMessageComponent#getXors()
 	 */
 	@Opposite(bean = MMMessageComponent.class, attribute = "xors")
 	@Container
 	public Optional<MMMessageComponent> getMessageComponent() {
-		return messageComponent_lazy == null ? Optional.empty() : Optional
-				.of(messageComponent_lazy.get());
+		return messageComponent_lazy == null ? Optional.empty() : Optional.of(messageComponent_lazy.get());
 	}
 
 	/**
 	 * MessageBuildingBlocks impacted by the XOR.
 	 */
 	public List<MMMessageBuildingBlock> getImpactedMessageBuildingBlocks() {
-		return impactedMessageBuildingBlocks_lazy == null ? Collections
-				.emptyList() : impactedMessageBuildingBlocks_lazy.get();
+		return impactedMessageBuildingBlocks_lazy == null ? Collections.emptyList() : impactedMessageBuildingBlocks_lazy.get();
 	}
 
 	/**
 	 * Message Definition owning the XOR.
+	 * 
 	 * @see MMMessageDefinition#getXors()
 	 */
 	@Opposite(bean = MMMessageDefinition.class, attribute = "xors")
 	@Container
 	public Optional<MMMessageDefinition> getMessageDefinition() {
-		return messageDefinition_lazy == null ? Optional.empty() : Optional
-				.of(messageDefinition_lazy.get());
+		return messageDefinition_lazy == null ? Optional.empty() : Optional.of(messageDefinition_lazy.get());
 	}
 
 	@Override
@@ -110,14 +98,12 @@ public class MMXor implements MMRepositoryConcept {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList()
-				: semanticMarkup_lazy.get();
+		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
-				.get();
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
 	}
 
 	@Override
@@ -127,8 +113,7 @@ public class MMXor implements MMRepositoryConcept {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList()
-				: constraint_lazy.get();
+		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
 	}
 
 	@Override
@@ -138,24 +123,21 @@ public class MMXor implements MMRepositoryConcept {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate == null ? Optional.empty() : Optional
-				.of(removalDate);
+		return removalDate == null ? Optional.empty() : Optional.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}

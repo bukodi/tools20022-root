@@ -39,7 +39,8 @@ public class TestGeneratedGenerator {
 
 	@Test
 	public void generateRepoSrc() throws Exception {
-		Path srcRoot = Paths.get("../tools20022-testrepo/src/main/java/").toRealPath();
+		//Path srcRoot = Paths.get("../tools20022-testrepo/src/main/java/").toRealPath();
+		Path srcRoot = Paths.get("/tmp/1019/").toRealPath();
 		if (Files.notExists(srcRoot)) {
 			throw new FileNotFoundException(srcRoot.toFile().getAbsolutePath().toString());
 		}
@@ -60,7 +61,7 @@ public class TestGeneratedGenerator {
 
 		start = System.currentTimeMillis();
 		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
-		genCtx.generate(repo, new ExperimentalGenerator());
+		genCtx.generate(repo, new CustomizedRepoGenerator());
 		// genCtx.generate( repo, new DefaultRepoGenerator() );
 		System.out.println("Generation time : " + (System.currentTimeMillis() - start) + " ms ");
 	}

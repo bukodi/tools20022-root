@@ -1,22 +1,18 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import java.util.Optional;
-import java.util.function.Supplier;
-import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.Container;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import java.util.List;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.metamodel.*;
 import java.util.Collections;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;/**
- * A rule that must be universally satisfied i.e. all conditions required for the Constraint to be applicable, are known.
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * A rule that must be universally satisfied i.e. all conditions required for
+ * the Constraint to be applicable, are known.
  */
 public class MMConstraint implements MMRepositoryConcept {
 
@@ -46,12 +42,12 @@ public class MMConstraint implements MMRepositoryConcept {
 	}
 
 	public static MetamodelType<? extends MMConstraint> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMConstraint.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMConstraint.class);
 	}
 
 	/**
-	 * The description of a Constraint in a specific language, defined in expressionLanguage
+	 * The description of a Constraint in a specific language, defined in
+	 * expressionLanguage
 	 */
 	public Optional<String> getExpression() {
 		return expression == null ? Optional.empty() : Optional.of(expression);
@@ -61,12 +57,12 @@ public class MMConstraint implements MMRepositoryConcept {
 	 * The language in which a Constraint in expressed.
 	 */
 	public Optional<String> getExpressionLanguage() {
-		return expressionLanguage == null ? Optional.empty() : Optional
-				.of(expressionLanguage);
+		return expressionLanguage == null ? Optional.empty() : Optional.of(expressionLanguage);
 	}
 
 	/**
 	 * The owner of the Rule.
+	 * 
 	 * @see MMRepositoryConcept#getConstraint()
 	 */
 	@Opposite(bean = MMRepositoryConcept.class, attribute = "constraint")
@@ -87,14 +83,12 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList()
-				: semanticMarkup_lazy.get();
+		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
-				.get();
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
 	}
 
 	@Override
@@ -104,8 +98,7 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList()
-				: constraint_lazy.get();
+		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
 	}
 
 	@Override
@@ -115,24 +108,21 @@ public class MMConstraint implements MMRepositoryConcept {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate == null ? Optional.empty() : Optional
-				.of(removalDate);
+		return removalDate == null ? Optional.empty() : Optional.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}

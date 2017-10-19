@@ -1,15 +1,17 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
-import java.util.Optional;
-import java.util.List;
+import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.StandardMetamodel2013;
+import java.util.Collections;
 import java.util.function.Supplier;
-import java.util.Collections;/**
- * A Doclet provides a way of adding categorised documentation to an model entity.
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * A Doclet provides a way of adding categorised documentation to an model
+ * entity.
  */
 public class MMDoclet implements MMModelEntity {
 
@@ -35,7 +37,9 @@ public class MMDoclet implements MMModelEntity {
 	}
 
 	/**
-	 * The type of doclet. The definition of the doclet type is left open so that new doclet types can be easily added without the need for a change to the meta-model.
+	 * The type of doclet. The definition of the doclet type is left open so
+	 * that new doclet types can be easily added without the need for a change
+	 * to the meta-model.
 	 */
 	public Optional<String> getType() {
 		return type == null ? Optional.empty() : Optional.of(type);
@@ -50,18 +54,16 @@ public class MMDoclet implements MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}

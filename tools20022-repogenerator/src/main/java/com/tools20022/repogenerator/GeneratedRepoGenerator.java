@@ -1,5 +1,6 @@
 package com.tools20022.repogenerator;
 
+import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.metamodel.*;
 import com.tools20022.metamodel.struct.*;
@@ -9,140 +10,196 @@ import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.SubTypeResult;
 
-public class GeneratedRepoGenerator extends BaseRepoGenerator {
+public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
+
+	@Override
+	public abstract void accept(RawRepository repo,
+			GenerationContext<RawRepository> ctx);
 
 	protected MainTypeResult generateMMAddress(MMAddress mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMAddress_.broadCastList, mmBean.getBroadCastList());
-		defaultMandatoryAttribute(gen, MMAddress_.endpoint, mmBean.getEndpoint());
+		defaultMultivalueAttribute(gen, MMAddress_.broadCastList,
+				mmBean.getBroadCastList());
+		defaultMandatoryAttribute(gen, MMAddress_.endpoint,
+				mmBean.getEndpoint());
+		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMBroadcastList(MMBroadcastList mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMBroadcastList_.address, mmBean.getAddress());
+		defaultMultivalueAttribute(gen, MMBroadcastList_.address,
+				mmBean.getAddress());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessagingEndpoint(MainTypeResult containerGen, MMMessagingEndpoint mmBean) {
+	protected MainTypeResult generateMMMessagingEndpoint(
+			MainTypeResult containerGen, MMMessagingEndpoint mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMMessagingEndpoint_.receivedMessage, mmBean.getReceivedMessage());
-		defaultMultivalueAttribute(gen, MMMessagingEndpoint_.sentMessage, mmBean.getSentMessage());
-		defaultMandatoryAttribute(gen, MMMessagingEndpoint_.transportSystem, mmBean.getTransportSystem());
-		defaultMultivalueAttribute(gen, MMMessagingEndpoint_.location, mmBean.getLocation());
+		defaultMandatoryAttribute(gen, MMMessagingEndpoint_.transportSystem,
+				mmBean.getTransportSystem());
+		defaultMultivalueAttribute(gen, MMMessagingEndpoint_.receivedMessage,
+				mmBean.getReceivedMessage());
+		defaultMultivalueAttribute(gen, MMMessagingEndpoint_.sentMessage,
+				mmBean.getSentMessage());
+		defaultMultivalueAttribute(gen, MMMessagingEndpoint_.location,
+				mmBean.getLocation());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessageTransportSystem(MMMessageTransportSystem mmBean) {
+	protected MainTypeResult generateMMMessageTransportSystem(
+			MMMessageTransportSystem mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
 		for (MMMessagingEndpoint mmChild : mmBean.getEndpoint()) {
 			generateMMMessagingEndpoint(gen, mmChild);
 		}
-		defaultMultivalueAttribute(gen, MMMessageTransportSystem_.endpoint, mmBean.getEndpoint());
+		defaultMultivalueAttribute(gen, MMMessageTransportSystem_.endpoint,
+				mmBean.getEndpoint());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMTransportMessage(MMTransportMessage mmBean) {
+	protected MainTypeResult generateMMTransportMessage(
+			MMTransportMessage mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMTransportMessage_.sender, mmBean.getSender());
-		defaultMandatoryAttribute(gen, MMTransportMessage_.messageInstance, mmBean.getMessageInstance());
-		defaultMultivalueAttribute(gen, MMTransportMessage_.receiver, mmBean.getReceiver());
+		defaultMandatoryAttribute(gen, MMTransportMessage_.sender,
+				mmBean.getSender());
+		defaultMandatoryAttribute(gen, MMTransportMessage_.messageInstance,
+				mmBean.getMessageInstance());
+		defaultMultivalueAttribute(gen, MMTransportMessage_.receiver,
+				mmBean.getReceiver());
+		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMMessageInstance(MMMessageInstance mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMMessageInstance_.specification, mmBean.getSpecification());
-		defaultMultivalueAttribute(gen, MMMessageInstance_.transportMessage, mmBean.getTransportMessage());
+		defaultMandatoryAttribute(gen, MMMessageInstance_.specification,
+				mmBean.getSpecification());
+		defaultMultivalueAttribute(gen, MMMessageInstance_.transportMessage,
+				mmBean.getTransportMessage());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMSyntaxMessageScheme(SubTypeResult containerGen, MMSyntaxMessageScheme mmBean) {
+	protected MainTypeResult generateMMSyntaxMessageScheme(
+			SubTypeResult containerGen, MMSyntaxMessageScheme mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
-		defaultOptionalAttribute(gen, MMSyntaxMessageScheme_.messageDefinitionTrace,
+		defaultOptionalAttribute(gen,
+				MMSyntaxMessageScheme_.messageDefinitionTrace,
 				mmBean.getMessageDefinitionTrace());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMSemanticMarkup(MainTypeResult containerGen, MMSemanticMarkup mmBean) {
+	protected MainTypeResult generateMMSemanticMarkup(
+			MainTypeResult containerGen, MMSemanticMarkup mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
 		for (MMSemanticMarkupElement mmChild : mmBean.getElements()) {
 			generateMMSemanticMarkupElement(gen, mmChild);
 		}
-		defaultMultivalueAttribute(gen, MMSemanticMarkup_.elements, mmBean.getElements());
+		defaultMultivalueAttribute(gen, MMSemanticMarkup_.elements,
+				mmBean.getElements());
 		defaultOptionalAttribute(gen, MMSemanticMarkup_.type, mmBean.getType());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMSemanticMarkupElement(MainTypeResult containerGen,
-			MMSemanticMarkupElement mmBean) {
+	protected MainTypeResult generateMMSemanticMarkupElement(
+			MainTypeResult containerGen, MMSemanticMarkupElement mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultOptionalAttribute(gen, MMSemanticMarkupElement_.name, mmBean.getName());
-		defaultOptionalAttribute(gen, MMSemanticMarkupElement_.value, mmBean.getValue());
+		defaultOptionalAttribute(gen, MMSemanticMarkupElement_.name,
+				mmBean.getName());
+		defaultOptionalAttribute(gen, MMSemanticMarkupElement_.value,
+				mmBean.getValue());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDoclet(MainTypeResult containerGen, MMDoclet mmBean) {
+	protected MainTypeResult generateMMDoclet(MainTypeResult containerGen,
+			MMDoclet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
 		defaultOptionalAttribute(gen, MMDoclet_.type, mmBean.getType());
 		defaultOptionalAttribute(gen, MMDoclet_.content, mmBean.getContent());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMConstraint(MainTypeResult containerGen, MMConstraint mmBean) {
+	protected MainTypeResult generateMMConstraint(MainTypeResult containerGen,
+			MMConstraint mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		defaultMandatoryAttribute(gen, MMConstraint_.owner, mmBean.getOwner());
-		defaultOptionalAttribute(gen, MMConstraint_.expression, mmBean.getExpression());
-		defaultOptionalAttribute(gen, MMConstraint_.expressionLanguage, mmBean.getExpressionLanguage());
+		defaultOptionalAttribute(gen, MMConstraint_.expression,
+				mmBean.getExpression());
+		defaultOptionalAttribute(gen, MMConstraint_.expressionLanguage,
+				mmBean.getExpressionLanguage());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMBusinessProcessCatalogue(MainTypeResult containerGen,
-			MMBusinessProcessCatalogue mmBean) {
+	protected SubTypeResult generateMMBusinessProcessCatalogue(
+			MainTypeResult containerGen, MMBusinessProcessCatalogue mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMModelEntity(gen, mmBean);
-		for (MMTopLevelCatalogueEntry mmChild : mmBean.getTopLevelCatalogueEntry()) {
+		for (MMTopLevelCatalogueEntry mmChild : mmBean
+				.getTopLevelCatalogueEntry()) {
 			generateMMTopLevelCatalogueEntry(gen, mmChild);
 		}
-		defaultMandatoryAttribute(gen, MMBusinessProcessCatalogue_.repository, mmBean.getRepository());
-		defaultMultivalueAttribute(gen, MMBusinessProcessCatalogue_.topLevelCatalogueEntry,
+		defaultMandatoryAttribute(gen, MMBusinessProcessCatalogue_.repository,
+				mmBean.getRepository());
+		defaultMultivalueAttribute(gen,
+				MMBusinessProcessCatalogue_.topLevelCatalogueEntry,
 				mmBean.getTopLevelCatalogueEntry());
+		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMRepository(MMRepository mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		generateMMBusinessProcessCatalogue(gen, mmBean.getBusinessProcessCatalogue());
+		generateMMBusinessProcessCatalogue(gen,
+				mmBean.getBusinessProcessCatalogue());
 		generateMMDataDictionary(gen, mmBean.getDataDictionary());
-		defaultMandatoryAttribute(gen, MMRepository_.businessProcessCatalogue, mmBean.getBusinessProcessCatalogue());
-		defaultMandatoryAttribute(gen, MMRepository_.dataDictionary, mmBean.getDataDictionary());
+		defaultMandatoryAttribute(gen, MMRepository_.businessProcessCatalogue,
+				mmBean.getBusinessProcessCatalogue());
+		defaultMandatoryAttribute(gen, MMRepository_.dataDictionary,
+				mmBean.getDataDictionary());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMDataDictionary(MainTypeResult containerGen, MMDataDictionary mmBean) {
+	protected SubTypeResult generateMMDataDictionary(
+			MainTypeResult containerGen, MMDataDictionary mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMModelEntity(gen, mmBean);
-		for (MMTopLevelDictionaryEntry mmChild : mmBean.getTopLevelDictionaryEntry()) {
+		for (MMTopLevelDictionaryEntry mmChild : mmBean
+				.getTopLevelDictionaryEntry()) {
 			generateMMTopLevelDictionaryEntry(gen, mmChild);
 		}
-		defaultMandatoryAttribute(gen, MMDataDictionary_.repository, mmBean.getRepository());
-		defaultMultivalueAttribute(gen, MMDataDictionary_.topLevelDictionaryEntry, mmBean.getTopLevelDictionaryEntry());
+		defaultMultivalueAttribute(gen,
+				MMDataDictionary_.topLevelDictionaryEntry,
+				mmBean.getTopLevelDictionaryEntry());
+		defaultMandatoryAttribute(gen, MMDataDictionary_.repository,
+				mmBean.getRepository());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessageDefinition(MainTypeResult containerGen, MMMessageDefinition mmBean) {
+	protected MainTypeResult generateMMMessageDefinition(
+			MainTypeResult containerGen, MMMessageDefinition mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		for (MMXor mmChild : mmBean.getXors()) {
@@ -151,81 +208,115 @@ public class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMMessageBuildingBlock mmChild : mmBean.getMessageBuildingBlock()) {
 			generateMMMessageBuildingBlock(gen, mmChild);
 		}
-		generateMMMessageDefinitionIdentifier(gen, mmBean.getMessageDefinitionIdentifier());
-		defaultMandatoryAttribute(gen, MMMessageDefinition_.businessArea, mmBean.getBusinessArea());
-		defaultMultivalueAttribute(gen, MMMessageDefinition_.messageSet, mmBean.getMessageSet());
-		defaultOptionalAttribute(gen, MMMessageDefinition_.xmlName, mmBean.getXmlName());
-		defaultOptionalAttribute(gen, MMMessageDefinition_.xmlTag, mmBean.getXmlTag());
-		defaultMultivalueAttribute(gen, MMMessageDefinition_.xors, mmBean.getXors());
-		defaultMandatoryAttribute(gen, MMMessageDefinition_.rootElement, mmBean.getRootElement());
-		defaultMultivalueAttribute(gen, MMMessageDefinition_.messageBuildingBlock, mmBean.getMessageBuildingBlock());
-		defaultMultivalueAttribute(gen, MMMessageDefinition_.choreography, mmBean.getChoreography());
-		defaultMultivalueAttribute(gen, MMMessageDefinition_.trace, mmBean.getTrace());
-		defaultMandatoryAttribute(gen, MMMessageDefinition_.messageDefinitionIdentifier,
+		generateMMMessageDefinitionIdentifier(gen,
 				mmBean.getMessageDefinitionIdentifier());
-		defaultMultivalueAttribute(gen, MMMessageDefinition_.derivation, mmBean.getDerivation());
+		defaultMandatoryAttribute(gen, MMMessageDefinition_.businessArea,
+				mmBean.getBusinessArea());
+		defaultMultivalueAttribute(gen, MMMessageDefinition_.messageSet,
+				mmBean.getMessageSet());
+		defaultOptionalAttribute(gen, MMMessageDefinition_.xmlName,
+				mmBean.getXmlName());
+		defaultOptionalAttribute(gen, MMMessageDefinition_.xmlTag,
+				mmBean.getXmlTag());
+		defaultMultivalueAttribute(gen, MMMessageDefinition_.xors,
+				mmBean.getXors());
+		defaultMandatoryAttribute(gen, MMMessageDefinition_.rootElement,
+				mmBean.getRootElement());
+		defaultMultivalueAttribute(gen,
+				MMMessageDefinition_.messageBuildingBlock,
+				mmBean.getMessageBuildingBlock());
+		defaultMultivalueAttribute(gen, MMMessageDefinition_.choreography,
+				mmBean.getChoreography());
+		defaultMultivalueAttribute(gen, MMMessageDefinition_.trace,
+				mmBean.getTrace());
+		defaultMandatoryAttribute(gen,
+				MMMessageDefinition_.messageDefinitionIdentifier,
+				mmBean.getMessageDefinitionIdentifier());
+		defaultMultivalueAttribute(gen, MMMessageDefinition_.derivation,
+				mmBean.getDerivation());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessageSet(SubTypeResult containerGen, MMMessageSet mmBean) {
+	protected MainTypeResult generateMMMessageSet(SubTypeResult containerGen,
+			MMMessageSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMMessageSet_.messageDefinition, mmBean.getMessageDefinition());
-		defaultMultivalueAttribute(gen, MMMessageSet_.validEncoding, mmBean.getValidEncoding());
-		defaultMultivalueAttribute(gen, MMMessageSet_.generatedSyntax, mmBean.getGeneratedSyntax());
+		defaultMultivalueAttribute(gen, MMMessageSet_.messageDefinition,
+				mmBean.getMessageDefinition());
+		defaultMultivalueAttribute(gen, MMMessageSet_.validEncoding,
+				mmBean.getValidEncoding());
+		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMSyntax(MMSyntax mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMSyntax_.possibleEncodings, mmBean.getPossibleEncodings());
-		defaultMultivalueAttribute(gen, MMSyntax_.generatedFor, mmBean.getGeneratedFor());
+		defaultMultivalueAttribute(gen, MMSyntax_.possibleEncodings,
+				mmBean.getPossibleEncodings());
+		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMEncoding(MMEncoding mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMEncoding_.messageSet, mmBean.getMessageSet());
+		defaultMultivalueAttribute(gen, MMEncoding_.messageSet,
+				mmBean.getMessageSet());
 		defaultMandatoryAttribute(gen, MMEncoding_.syntax, mmBean.getSyntax());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBusinessArea(SubTypeResult containerGen, MMBusinessArea mmBean) {
+	protected MainTypeResult generateMMBusinessArea(SubTypeResult containerGen,
+			MMBusinessArea mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		for (MMMessageDefinition mmChild : mmBean.getMessageDefinition()) {
 			generateMMMessageDefinition(gen, mmChild);
 		}
-		defaultMultivalueAttribute(gen, MMBusinessArea_.messageDefinition, mmBean.getMessageDefinition());
+		defaultMultivalueAttribute(gen, MMBusinessArea_.messageDefinition,
+				mmBean.getMessageDefinition());
 		defaultMandatoryAttribute(gen, MMBusinessArea_.code, mmBean.getCode());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMXorInMessageDefinition(MainTypeResult containerGen, MMXor mmBean) {
+	protected SubTypeResult generateMMXorInMessageDefinition(
+			MainTypeResult containerGen, MMXor mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
-		defaultOptionalAttribute(gen, MMXor_.messageComponent, mmBean.getMessageComponent());
-		defaultOptionalAttribute(gen, MMXor_.messageDefinition, mmBean.getMessageDefinition());
-		defaultMultivalueAttribute(gen, MMXor_.impactedElements, mmBean.getImpactedElements());
+		defaultOptionalAttribute(gen, MMXor_.messageComponent,
+				mmBean.getMessageComponent());
+		defaultOptionalAttribute(gen, MMXor_.messageDefinition,
+				mmBean.getMessageDefinition());
+		defaultMultivalueAttribute(gen, MMXor_.impactedElements,
+				mmBean.getImpactedElements());
 		defaultMultivalueAttribute(gen, MMXor_.impactedMessageBuildingBlocks,
 				mmBean.getImpactedMessageBuildingBlocks());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMXorInMessageComponent(MainTypeResult containerGen, MMXor mmBean) {
+	protected SubTypeResult generateMMXorInMessageComponent(
+			MainTypeResult containerGen, MMXor mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
-		defaultOptionalAttribute(gen, MMXor_.messageComponent, mmBean.getMessageComponent());
-		defaultOptionalAttribute(gen, MMXor_.messageDefinition, mmBean.getMessageDefinition());
-		defaultMultivalueAttribute(gen, MMXor_.impactedElements, mmBean.getImpactedElements());
+		defaultOptionalAttribute(gen, MMXor_.messageComponent,
+				mmBean.getMessageComponent());
+		defaultOptionalAttribute(gen, MMXor_.messageDefinition,
+				mmBean.getMessageDefinition());
+		defaultMultivalueAttribute(gen, MMXor_.impactedElements,
+				mmBean.getImpactedElements());
 		defaultMultivalueAttribute(gen, MMXor_.impactedMessageBuildingBlocks,
 				mmBean.getImpactedMessageBuildingBlocks());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBusinessComponent(SubTypeResult containerGen, MMBusinessComponent mmBean) {
+	protected MainTypeResult generateMMBusinessComponent(
+			SubTypeResult containerGen, MMBusinessComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
 		implementMMBusinessElementType(gen, mmBean);
@@ -233,53 +324,78 @@ public class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMBusinessElement mmChild : mmBean.getElement()) {
 			generateMMBusinessElement(gen, mmChild);
 		}
-		defaultMultivalueAttribute(gen, MMBusinessComponent_.derivationElement, mmBean.getDerivationElement());
-		defaultMultivalueAttribute(gen, MMBusinessComponent_.subType, mmBean.getSubType());
-		defaultOptionalAttribute(gen, MMBusinessComponent_.superType, mmBean.getSuperType());
-		defaultMultivalueAttribute(gen, MMBusinessComponent_.element, mmBean.getElement());
-		defaultMultivalueAttribute(gen, MMBusinessComponent_.derivationComponent, mmBean.getDerivationComponent());
-		defaultMultivalueAttribute(gen, MMBusinessComponent_.associationDomain, mmBean.getAssociationDomain());
+		defaultMultivalueAttribute(gen, MMBusinessComponent_.subType,
+				mmBean.getSubType());
+		defaultOptionalAttribute(gen, MMBusinessComponent_.superType,
+				mmBean.getSuperType());
+		defaultMultivalueAttribute(gen, MMBusinessComponent_.element,
+				mmBean.getElement());
+		defaultMultivalueAttribute(gen,
+				MMBusinessComponent_.derivationComponent,
+				mmBean.getDerivationComponent());
+		defaultMultivalueAttribute(gen, MMBusinessComponent_.associationDomain,
+				mmBean.getAssociationDomain());
+		defaultMultivalueAttribute(gen, MMBusinessComponent_.derivationElement,
+				mmBean.getDerivationElement());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMMessageBuildingBlock(MainTypeResult containerGen, MMMessageBuildingBlock mmBean) {
+	protected SubTypeResult generateMMMessageBuildingBlock(
+			MainTypeResult containerGen, MMMessageBuildingBlock mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMMessageConstruct(gen, mmBean);
-		defaultOptionalAttribute(gen, MMMessageBuildingBlock_.simpleType, mmBean.getSimpleType());
-		defaultOptionalAttribute(gen, MMMessageBuildingBlock_.complexType, mmBean.getComplexType());
+		defaultOptionalAttribute(gen, MMMessageBuildingBlock_.simpleType,
+				mmBean.getSimpleType());
+		defaultOptionalAttribute(gen, MMMessageBuildingBlock_.complexType,
+				mmBean.getComplexType());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMBusinessAssociationEnd(MainTypeResult containerGen,
-			MMBusinessAssociationEnd mmBean) {
+	protected SubTypeResult generateMMBusinessAssociationEnd(
+			MainTypeResult containerGen, MMBusinessAssociationEnd mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMBusinessElement(gen, mmBean);
-		defaultOptionalAttribute(gen, MMBusinessAssociationEnd_.opposite, mmBean.getOpposite());
-		defaultMandatoryAttribute(gen, MMBusinessAssociationEnd_.aggregation, mmBean.getAggregation());
-		defaultMandatoryAttribute(gen, MMBusinessAssociationEnd_.type, mmBean.getType());
+		defaultOptionalAttribute(gen, MMBusinessAssociationEnd_.opposite,
+				mmBean.getOpposite());
+		defaultMandatoryAttribute(gen, MMBusinessAssociationEnd_.aggregation,
+				mmBean.getAggregation());
+		defaultMandatoryAttribute(gen, MMBusinessAssociationEnd_.type,
+				mmBean.getType());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessageComponent(SubTypeResult containerGen, MMMessageComponent mmBean) {
+	protected MainTypeResult generateMMMessageComponent(
+			SubTypeResult containerGen, MMMessageComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMMessageElementContainer(gen, mmBean);
 		for (MMXor mmChild : mmBean.getXors()) {
 			generateMMXorInMessageComponent(gen, mmChild);
 		}
-		defaultMultivalueAttribute(gen, MMMessageComponent_.xors, mmBean.getXors());
+		defaultMultivalueAttribute(gen, MMMessageComponent_.xors,
+				mmBean.getXors());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessageChoreography(SubTypeResult containerGen, MMMessageChoreography mmBean) {
+	protected MainTypeResult generateMMMessageChoreography(
+			SubTypeResult containerGen, MMMessageChoreography mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMMessageChoreography_.messageDefinition, mmBean.getMessageDefinition());
-		defaultOptionalAttribute(gen, MMMessageChoreography_.businessTransactionTrace,
+		defaultMultivalueAttribute(gen,
+				MMMessageChoreography_.messageDefinition,
+				mmBean.getMessageDefinition());
+		defaultOptionalAttribute(gen,
+				MMMessageChoreography_.businessTransactionTrace,
 				mmBean.getBusinessTransactionTrace());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBusinessTransaction(SubTypeResult containerGen, MMBusinessTransaction mmBean) {
+	protected MainTypeResult generateMMBusinessTransaction(
+			SubTypeResult containerGen, MMBusinessTransaction mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		for (MMParticipant mmChild : mmBean.getParticipant()) {
@@ -288,451 +404,652 @@ public class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMMessageTransmission mmChild : mmBean.getTransmission()) {
 			generateMMMessageTransmission(gen, mmChild);
 		}
-		defaultMultivalueAttribute(gen, MMBusinessTransaction_.trace, mmBean.getTrace());
-		defaultMandatoryAttribute(gen, MMBusinessTransaction_.businessProcessTrace, mmBean.getBusinessProcessTrace());
-		defaultMultivalueAttribute(gen, MMBusinessTransaction_.participant, mmBean.getParticipant());
-		defaultMultivalueAttribute(gen, MMBusinessTransaction_.transmission, mmBean.getTransmission());
-		defaultMandatoryAttribute(gen, MMBusinessTransaction_.messageTransportMode, mmBean.getMessageTransportMode());
-		defaultMultivalueAttribute(gen, MMBusinessTransaction_.subTransaction, mmBean.getSubTransaction());
-		defaultOptionalAttribute(gen, MMBusinessTransaction_.parentTransaction, mmBean.getParentTransaction());
+		defaultMultivalueAttribute(gen, MMBusinessTransaction_.trace,
+				mmBean.getTrace());
+		defaultMandatoryAttribute(gen,
+				MMBusinessTransaction_.businessProcessTrace,
+				mmBean.getBusinessProcessTrace());
+		defaultMultivalueAttribute(gen, MMBusinessTransaction_.participant,
+				mmBean.getParticipant());
+		defaultMultivalueAttribute(gen, MMBusinessTransaction_.transmission,
+				mmBean.getTransmission());
+		defaultMandatoryAttribute(gen,
+				MMBusinessTransaction_.messageTransportMode,
+				mmBean.getMessageTransportMode());
+		defaultMultivalueAttribute(gen, MMBusinessTransaction_.subTransaction,
+				mmBean.getSubTransaction());
+		defaultOptionalAttribute(gen, MMBusinessTransaction_.parentTransaction,
+				mmBean.getParentTransaction());
+		gen.flush();
 		return gen;
 	}
 
-	protected EnumTypeResult generateMMBusinessProcess(SubTypeResult containerGen, MMBusinessProcess mmBean) {
-		EnumTypeResult gen = null;
+	protected EnumTypeResult generateMMBusinessProcess(
+			SubTypeResult containerGen, MMBusinessProcess mmBean) {
+		EnumTypeResult gen = defaultEnumType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		for (MMBusinessRole mmChild : mmBean.getBusinessRole()) {
 			generateMMBusinessRole(gen, mmChild);
 		}
-		defaultMultivalueAttribute(gen, MMBusinessProcess_.businessProcessTrace, mmBean.getBusinessProcessTrace());
-		defaultMultivalueAttribute(gen, MMBusinessProcess_.extender, mmBean.getExtender());
-		defaultMultivalueAttribute(gen, MMBusinessProcess_.extended, mmBean.getExtended());
-		defaultMultivalueAttribute(gen, MMBusinessProcess_.included, mmBean.getIncluded());
-		defaultMultivalueAttribute(gen, MMBusinessProcess_.includer, mmBean.getIncluder());
-		defaultMultivalueAttribute(gen, MMBusinessProcess_.businessRole, mmBean.getBusinessRole());
+		defaultMultivalueAttribute(gen,
+				MMBusinessProcess_.businessProcessTrace,
+				mmBean.getBusinessProcessTrace());
+		defaultMultivalueAttribute(gen, MMBusinessProcess_.extender,
+				mmBean.getExtender());
+		defaultMultivalueAttribute(gen, MMBusinessProcess_.extended,
+				mmBean.getExtended());
+		defaultMultivalueAttribute(gen, MMBusinessProcess_.included,
+				mmBean.getIncluded());
+		defaultMultivalueAttribute(gen, MMBusinessProcess_.includer,
+				mmBean.getIncluder());
+		defaultMultivalueAttribute(gen, MMBusinessProcess_.businessRole,
+				mmBean.getBusinessRole());
+		gen.flush();
 		return gen;
 	}
 
-	protected EnumConstantResult generateMMBusinessRole(EnumTypeResult containerGen, MMBusinessRole mmBean) {
-		EnumConstantResult gen = null;
+	protected EnumConstantResult generateMMBusinessRole(
+			EnumTypeResult containerGen, MMBusinessRole mmBean) {
+		EnumConstantResult gen = defaultEnumConstant(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMBusinessRole_.businessProcess, mmBean.getBusinessProcess());
-		defaultMultivalueAttribute(gen, MMBusinessRole_.businessRoleTrace, mmBean.getBusinessRoleTrace());
+		defaultMandatoryAttribute(gen, MMBusinessRole_.businessProcess,
+				mmBean.getBusinessProcess());
+		defaultMultivalueAttribute(gen, MMBusinessRole_.businessRoleTrace,
+				mmBean.getBusinessRoleTrace());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMParticipant(MainTypeResult containerGen, MMParticipant mmBean) {
+	protected MainTypeResult generateMMParticipant(MainTypeResult containerGen,
+			MMParticipant mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMMultiplicityEntity(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMParticipant_.businessRoleTrace, mmBean.getBusinessRoleTrace());
-		defaultMandatoryAttribute(gen, MMParticipant_.businessTransaction, mmBean.getBusinessTransaction());
-		defaultMultivalueAttribute(gen, MMParticipant_.receives, mmBean.getReceives());
+		defaultMandatoryAttribute(gen, MMParticipant_.businessRoleTrace,
+				mmBean.getBusinessRoleTrace());
+		defaultMandatoryAttribute(gen, MMParticipant_.businessTransaction,
+				mmBean.getBusinessTransaction());
+		defaultMultivalueAttribute(gen, MMParticipant_.receives,
+				mmBean.getReceives());
 		defaultMultivalueAttribute(gen, MMParticipant_.sends, mmBean.getSends());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMReceive(MainTypeResult containerGen, MMReceive mmBean) {
+	protected MainTypeResult generateMMReceive(MainTypeResult containerGen,
+			MMReceive mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMReceive_.receiver, mmBean.getReceiver());
-		defaultMandatoryAttribute(gen, MMReceive_.messageTransmission, mmBean.getMessageTransmission());
+		defaultMandatoryAttribute(gen, MMReceive_.receiver,
+				mmBean.getReceiver());
+		defaultMandatoryAttribute(gen, MMReceive_.messageTransmission,
+				mmBean.getMessageTransmission());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessageTransmission(MainTypeResult containerGen, MMMessageTransmission mmBean) {
+	protected MainTypeResult generateMMMessageTransmission(
+			MainTypeResult containerGen, MMMessageTransmission mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		generateMMSend(gen, mmBean.getSend());
 		for (MMReceive mmChild : mmBean.getReceive()) {
 			generateMMReceive(gen, mmChild);
 		}
-		defaultMultivalueAttribute(gen, MMMessageTransmission_.derivation, mmBean.getDerivation());
-		defaultMandatoryAttribute(gen, MMMessageTransmission_.businessTransaction, mmBean.getBusinessTransaction());
-		defaultMandatoryAttribute(gen, MMMessageTransmission_.messageTypeDescription,
+		defaultMultivalueAttribute(gen, MMMessageTransmission_.derivation,
+				mmBean.getDerivation());
+		defaultMandatoryAttribute(gen,
+				MMMessageTransmission_.businessTransaction,
+				mmBean.getBusinessTransaction());
+		defaultMandatoryAttribute(gen,
+				MMMessageTransmission_.messageTypeDescription,
 				mmBean.getMessageTypeDescription());
-		defaultMandatoryAttribute(gen, MMMessageTransmission_.send, mmBean.getSend());
-		defaultMultivalueAttribute(gen, MMMessageTransmission_.receive, mmBean.getReceive());
+		defaultMandatoryAttribute(gen, MMMessageTransmission_.send,
+				mmBean.getSend());
+		defaultMultivalueAttribute(gen, MMMessageTransmission_.receive,
+				mmBean.getReceive());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMSend(MainTypeResult containerGen, MMSend mmBean) {
+	protected MainTypeResult generateMMSend(MainTypeResult containerGen,
+			MMSend mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
 		defaultMandatoryAttribute(gen, MMSend_.sender, mmBean.getSender());
-		defaultMandatoryAttribute(gen, MMSend_.messageTransmission, mmBean.getMessageTransmission());
+		defaultMandatoryAttribute(gen, MMSend_.messageTransmission,
+				mmBean.getMessageTransmission());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessageTransportMode(SubTypeResult containerGen, MMMessageTransportMode mmBean) {
+	protected MainTypeResult generateMMMessageTransportMode(
+			SubTypeResult containerGen, MMMessageTransportMode mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.boundedCommunicationDelay,
+		defaultMultivalueAttribute(gen,
+				MMMessageTransportMode_.businessTransaction,
+				mmBean.getBusinessTransaction());
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.boundedCommunicationDelay,
 				mmBean.getBoundedCommunicationDelay());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.maximumClockVariation,
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.maximumClockVariation,
 				mmBean.getMaximumClockVariation());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.maximumMessageSize, mmBean.getMaximumMessageSize());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.messageDeliveryWindow,
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.maximumMessageSize,
+				mmBean.getMaximumMessageSize());
+		defaultMandatoryAttribute(gen, MMMessageTransportMode_.durability,
+				mmBean.getDurability());
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.messageDeliveryWindow,
 				mmBean.getMessageDeliveryWindow());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.messageSendingWindow, mmBean.getMessageSendingWindow());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.deliveryAssurance, mmBean.getDeliveryAssurance());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.durability, mmBean.getDurability());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.messageCasting, mmBean.getMessageCasting());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.messageDeliveryOrder, mmBean.getMessageDeliveryOrder());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.messageValidationLevel,
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.messageSendingWindow,
+				mmBean.getMessageSendingWindow());
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.deliveryAssurance,
+				mmBean.getDeliveryAssurance());
+		defaultMandatoryAttribute(gen, MMMessageTransportMode_.messageCasting,
+				mmBean.getMessageCasting());
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.messageDeliveryOrder,
+				mmBean.getMessageDeliveryOrder());
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.messageValidationLevel,
 				mmBean.getMessageValidationLevel());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.messageValidationOnOff,
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.messageValidationOnOff,
 				mmBean.getMessageValidationOnOff());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.messageValidationResults,
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.messageValidationResults,
 				mmBean.getMessageValidationResults());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.receiverAsynchronicity,
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.receiverAsynchronicity,
 				mmBean.getReceiverAsynchronicity());
-		defaultMandatoryAttribute(gen, MMMessageTransportMode_.senderAsynchronicity, mmBean.getSenderAsynchronicity());
-		defaultMultivalueAttribute(gen, MMMessageTransportMode_.businessTransaction, mmBean.getBusinessTransaction());
+		defaultMandatoryAttribute(gen,
+				MMMessageTransportMode_.senderAsynchronicity,
+				mmBean.getSenderAsynchronicity());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMMessageDefinitionIdentifier(MainTypeResult containerGen,
-			MMMessageDefinitionIdentifier mmBean) {
+	protected SubTypeResult generateMMMessageDefinitionIdentifier(
+			MainTypeResult containerGen, MMMessageDefinitionIdentifier mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMModelEntity(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMMessageDefinitionIdentifier_.businessArea, mmBean.getBusinessArea());
-		defaultMandatoryAttribute(gen, MMMessageDefinitionIdentifier_.messageFunctionality,
+		defaultMandatoryAttribute(gen,
+				MMMessageDefinitionIdentifier_.businessArea,
+				mmBean.getBusinessArea());
+		defaultMandatoryAttribute(gen,
+				MMMessageDefinitionIdentifier_.messageFunctionality,
 				mmBean.getMessageFunctionality());
-		defaultMandatoryAttribute(gen, MMMessageDefinitionIdentifier_.flavour, mmBean.getFlavour());
-		defaultMandatoryAttribute(gen, MMMessageDefinitionIdentifier_.version, mmBean.getVersion());
+		defaultMandatoryAttribute(gen, MMMessageDefinitionIdentifier_.flavour,
+				mmBean.getFlavour());
+		defaultMandatoryAttribute(gen, MMMessageDefinitionIdentifier_.version,
+				mmBean.getVersion());
+		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMConversation(MMConversation mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMMessageAssociationEnd(MainTypeResult containerGen,
-			MMMessageAssociationEnd mmBean) {
+	protected SubTypeResult generateMMMessageAssociationEnd(
+			MainTypeResult containerGen, MMMessageAssociationEnd mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMMessageElement(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMMessageAssociationEnd_.isComposite, mmBean.isIsComposite());
-		defaultMandatoryAttribute(gen, MMMessageAssociationEnd_.type, mmBean.getType());
+		defaultMandatoryAttribute(gen, MMMessageAssociationEnd_.isComposite,
+				mmBean.isIsComposite());
+		defaultMandatoryAttribute(gen, MMMessageAssociationEnd_.type,
+				mmBean.getType());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMMessageAttribute(MainTypeResult containerGen, MMMessageAttribute mmBean) {
+	protected SubTypeResult generateMMMessageAttribute(
+			MainTypeResult containerGen, MMMessageAttribute mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMMessageElement(gen, mmBean);
-		defaultOptionalAttribute(gen, MMMessageAttribute_.simpleType, mmBean.getSimpleType());
-		defaultOptionalAttribute(gen, MMMessageAttribute_.complexType, mmBean.getComplexType());
+		defaultOptionalAttribute(gen, MMMessageAttribute_.simpleType,
+				mmBean.getSimpleType());
+		defaultOptionalAttribute(gen, MMMessageAttribute_.complexType,
+				mmBean.getComplexType());
+		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMBusinessAttribute(MainTypeResult containerGen, MMBusinessAttribute mmBean) {
+	protected SubTypeResult generateMMBusinessAttribute(
+			MainTypeResult containerGen, MMBusinessAttribute mmBean) {
 		SubTypeResult gen = defaultSubType(mmBean, containerGen);
 		implementMMBusinessElement(gen, mmBean);
-		defaultOptionalAttribute(gen, MMBusinessAttribute_.simpleType, mmBean.getSimpleType());
-		defaultOptionalAttribute(gen, MMBusinessAttribute_.complexType, mmBean.getComplexType());
+		defaultOptionalAttribute(gen, MMBusinessAttribute_.simpleType,
+				mmBean.getSimpleType());
+		defaultOptionalAttribute(gen, MMBusinessAttribute_.complexType,
+				mmBean.getComplexType());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMText(SubTypeResult containerGen, MMText mmBean) {
+	protected MainTypeResult generateMMText(SubTypeResult containerGen,
+			MMText mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMString(SubTypeResult containerGen, MMString mmBean) {
+	protected MainTypeResult generateMMString(SubTypeResult containerGen,
+			MMString mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
-		defaultOptionalAttribute(gen, MMString_.minLength, mmBean.getMinLength());
-		defaultOptionalAttribute(gen, MMString_.maxLength, mmBean.getMaxLength());
+		defaultOptionalAttribute(gen, MMString_.minLength,
+				mmBean.getMinLength());
+		defaultOptionalAttribute(gen, MMString_.maxLength,
+				mmBean.getMaxLength());
 		defaultOptionalAttribute(gen, MMString_.pattern, mmBean.getPattern());
 		defaultOptionalAttribute(gen, MMString_.length, mmBean.getLength());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMIdentifierSet(SubTypeResult containerGen, MMIdentifierSet mmBean) {
+	protected MainTypeResult generateMMIdentifierSet(
+			SubTypeResult containerGen, MMIdentifierSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
-		defaultMandatoryAttribute(gen, MMIdentifierSet_.identificationScheme, mmBean.getIdentificationScheme());
+		defaultMandatoryAttribute(gen, MMIdentifierSet_.identificationScheme,
+				mmBean.getIdentificationScheme());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMIndicator(SubTypeResult containerGen, MMIndicator mmBean) {
+	protected MainTypeResult generateMMIndicator(SubTypeResult containerGen,
+			MMIndicator mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
-		defaultMandatoryAttribute(gen, MMIndicator_.meaningWhenTrue, mmBean.getMeaningWhenTrue());
-		defaultMandatoryAttribute(gen, MMIndicator_.meaningWhenFalse, mmBean.getMeaningWhenFalse());
+		defaultMandatoryAttribute(gen, MMIndicator_.meaningWhenFalse,
+				mmBean.getMeaningWhenFalse());
+		defaultMandatoryAttribute(gen, MMIndicator_.meaningWhenTrue,
+				mmBean.getMeaningWhenTrue());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBoolean(SubTypeResult containerGen, MMBoolean mmBean) {
+	protected MainTypeResult generateMMBoolean(SubTypeResult containerGen,
+			MMBoolean mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
 		defaultOptionalAttribute(gen, MMBoolean_.pattern, mmBean.getPattern());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMRate(SubTypeResult containerGen, MMRate mmBean) {
+	protected MainTypeResult generateMMRate(SubTypeResult containerGen,
+			MMRate mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		defaultMandatoryAttribute(gen, MMRate_.baseValue, mmBean.getBaseValue());
-		defaultOptionalAttribute(gen, MMRate_.baseUnitCode, mmBean.getBaseUnitCode());
+		defaultOptionalAttribute(gen, MMRate_.baseUnitCode,
+				mmBean.getBaseUnitCode());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDecimal(SubTypeResult containerGen, MMDecimal mmBean) {
+	protected MainTypeResult generateMMDecimal(SubTypeResult containerGen,
+			MMDecimal mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
+		defaultOptionalAttribute(gen, MMDecimal_.minInclusive,
+				mmBean.getMinInclusive());
+		defaultOptionalAttribute(gen, MMDecimal_.minExclusive,
+				mmBean.getMinExclusive());
+		defaultOptionalAttribute(gen, MMDecimal_.maxInclusive,
+				mmBean.getMaxInclusive());
+		defaultOptionalAttribute(gen, MMDecimal_.maxExclusive,
+				mmBean.getMaxExclusive());
+		defaultOptionalAttribute(gen, MMDecimal_.totalDigits,
+				mmBean.getTotalDigits());
+		defaultOptionalAttribute(gen, MMDecimal_.fractionDigits,
+				mmBean.getFractionDigits());
 		defaultOptionalAttribute(gen, MMDecimal_.pattern, mmBean.getPattern());
-		defaultOptionalAttribute(gen, MMDecimal_.minInclusive, mmBean.getMinInclusive());
-		defaultOptionalAttribute(gen, MMDecimal_.minExclusive, mmBean.getMinExclusive());
-		defaultOptionalAttribute(gen, MMDecimal_.maxInclusive, mmBean.getMaxInclusive());
-		defaultOptionalAttribute(gen, MMDecimal_.maxExclusive, mmBean.getMaxExclusive());
-		defaultOptionalAttribute(gen, MMDecimal_.totalDigits, mmBean.getTotalDigits());
-		defaultOptionalAttribute(gen, MMDecimal_.fractionDigits, mmBean.getFractionDigits());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMExternalSchema(SubTypeResult containerGen, MMExternalSchema mmBean) {
+	protected MainTypeResult generateMMExternalSchema(
+			SubTypeResult containerGen, MMExternalSchema mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMMessageComponentType(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMExternalSchema_.namespaceList, mmBean.getNamespaceList());
-		defaultMandatoryAttribute(gen, MMExternalSchema_.processContent, mmBean.getProcessContent());
+		defaultMultivalueAttribute(gen, MMExternalSchema_.namespaceList,
+				mmBean.getNamespaceList());
+		defaultMandatoryAttribute(gen, MMExternalSchema_.processContent,
+				mmBean.getProcessContent());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMQuantity(SubTypeResult containerGen, MMQuantity mmBean) {
+	protected MainTypeResult generateMMQuantity(SubTypeResult containerGen,
+			MMQuantity mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
-		defaultOptionalAttribute(gen, MMQuantity_.unitCode, mmBean.getUnitCode());
+		defaultOptionalAttribute(gen, MMQuantity_.unitCode,
+				mmBean.getUnitCode());
+		gen.flush();
 		return gen;
 	}
 
-	protected EnumConstantResult generateMMCode(EnumTypeResult containerGen, MMCode mmBean) {
-		EnumConstantResult gen = null;
+	protected EnumConstantResult generateMMCode(EnumTypeResult containerGen,
+			MMCode mmBean) {
+		EnumConstantResult gen = defaultEnumConstant(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		defaultMandatoryAttribute(gen, MMCode_.owner, mmBean.getOwner());
 		defaultOptionalAttribute(gen, MMCode_.codeName, mmBean.getCodeName());
+		gen.flush();
 		return gen;
 	}
 
-	protected EnumTypeResult generateMMCodeSet(SubTypeResult containerGen, MMCodeSet mmBean) {
-		EnumTypeResult gen = null;
+	protected EnumTypeResult generateMMCodeSet(SubTypeResult containerGen,
+			MMCodeSet mmBean) {
+		EnumTypeResult gen = defaultEnumType(mmBean);
 		for (MMCode mmChild : mmBean.getCode()) {
 			generateMMCode(gen, mmChild);
 		}
 		defaultOptionalAttribute(gen, MMCodeSet_.trace, mmBean.getTrace());
-		defaultMultivalueAttribute(gen, MMCodeSet_.derivation, mmBean.getDerivation());
+		defaultMultivalueAttribute(gen, MMCodeSet_.derivation,
+				mmBean.getDerivation());
 		defaultMultivalueAttribute(gen, MMCodeSet_.code, mmBean.getCode());
-		defaultOptionalAttribute(gen, MMCodeSet_.identificationScheme, mmBean.getIdentificationScheme());
+		defaultOptionalAttribute(gen, MMCodeSet_.identificationScheme,
+				mmBean.getIdentificationScheme());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMAmount(SubTypeResult containerGen, MMAmount mmBean) {
+	protected MainTypeResult generateMMAmount(SubTypeResult containerGen,
+			MMAmount mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
-		defaultOptionalAttribute(gen, MMAmount_.currencyIdentifierSet, mmBean.getCurrencyIdentifierSet());
+		defaultOptionalAttribute(gen, MMAmount_.currencyIdentifierSet,
+				mmBean.getCurrencyIdentifierSet());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMChoiceComponent(SubTypeResult containerGen, MMChoiceComponent mmBean) {
+	protected MainTypeResult generateMMChoiceComponent(
+			SubTypeResult containerGen, MMChoiceComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMMessageElementContainer(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMEndPointCategory(SubTypeResult containerGen, MMEndPointCategory mmBean) {
+	protected MainTypeResult generateMMEndPointCategory(
+			SubTypeResult containerGen, MMEndPointCategory mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMEndPointCategory_.endPoints, mmBean.getEndPoints());
+		defaultMultivalueAttribute(gen, MMEndPointCategory_.endPoints,
+				mmBean.getEndPoints());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBinary(SubTypeResult containerGen, MMBinary mmBean) {
+	protected MainTypeResult generateMMBinary(SubTypeResult containerGen,
+			MMBinary mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
-		defaultOptionalAttribute(gen, MMBinary_.minLength, mmBean.getMinLength());
-		defaultOptionalAttribute(gen, MMBinary_.maxLength, mmBean.getMaxLength());
+		defaultOptionalAttribute(gen, MMBinary_.minLength,
+				mmBean.getMinLength());
+		defaultOptionalAttribute(gen, MMBinary_.maxLength,
+				mmBean.getMaxLength());
 		defaultOptionalAttribute(gen, MMBinary_.pattern, mmBean.getPattern());
 		defaultOptionalAttribute(gen, MMBinary_.length, mmBean.getLength());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDate(SubTypeResult containerGen, MMDate mmBean) {
+	protected MainTypeResult generateMMDate(SubTypeResult containerGen,
+			MMDate mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDateTime(SubTypeResult containerGen, MMDateTime mmBean) {
+	protected MainTypeResult generateMMDateTime(SubTypeResult containerGen,
+			MMDateTime mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDay(SubTypeResult containerGen, MMDay mmBean) {
+	protected MainTypeResult generateMMDay(SubTypeResult containerGen,
+			MMDay mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDuration(SubTypeResult containerGen, MMDuration mmBean) {
+	protected MainTypeResult generateMMDuration(SubTypeResult containerGen,
+			MMDuration mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMonth(SubTypeResult containerGen, MMMonth mmBean) {
+	protected MainTypeResult generateMMMonth(SubTypeResult containerGen,
+			MMMonth mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMonthDay(SubTypeResult containerGen, MMMonthDay mmBean) {
+	protected MainTypeResult generateMMMonthDay(SubTypeResult containerGen,
+			MMMonthDay mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMTime(SubTypeResult containerGen, MMTime mmBean) {
+	protected MainTypeResult generateMMTime(SubTypeResult containerGen,
+			MMTime mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMYear(SubTypeResult containerGen, MMYear mmBean) {
+	protected MainTypeResult generateMMYear(SubTypeResult containerGen,
+			MMYear mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMYearMonth(SubTypeResult containerGen, MMYearMonth mmBean) {
+	protected MainTypeResult generateMMYearMonth(SubTypeResult containerGen,
+			MMYearMonth mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMUserDefined(SubTypeResult containerGen, MMUserDefined mmBean) {
+	protected MainTypeResult generateMMUserDefined(SubTypeResult containerGen,
+			MMUserDefined mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMMessageComponentType(gen, mmBean);
-		defaultOptionalAttribute(gen, MMUserDefined_.namespaceList, mmBean.getNamespaceList());
-		defaultMandatoryAttribute(gen, MMUserDefined_.processContents, mmBean.getProcessContents());
-		defaultMandatoryAttribute(gen, MMUserDefined_.namespace, mmBean.getNamespace());
+		defaultOptionalAttribute(gen, MMUserDefined_.namespaceList,
+				mmBean.getNamespaceList());
+		defaultMandatoryAttribute(gen, MMUserDefined_.namespace,
+				mmBean.getNamespace());
+		defaultMandatoryAttribute(gen, MMUserDefined_.processContents,
+				mmBean.getProcessContents());
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMIndustryMessageSet(SubTypeResult containerGen, MMIndustryMessageSet mmBean) {
+	protected MainTypeResult generateMMIndustryMessageSet(
+			SubTypeResult containerGen, MMIndustryMessageSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMConvergenceDocumentation(SubTypeResult containerGen,
-			MMConvergenceDocumentation mmBean) {
+	protected MainTypeResult generateMMConvergenceDocumentation(
+			SubTypeResult containerGen, MMConvergenceDocumentation mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMISO15022MessageSet(SubTypeResult containerGen, MMISO15022MessageSet mmBean) {
+	protected MainTypeResult generateMMISO15022MessageSet(
+			SubTypeResult containerGen, MMISO15022MessageSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
+		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMSchemaType(SubTypeResult containerGen, MMSchemaType mmBean) {
+	protected MainTypeResult generateMMSchemaType(SubTypeResult containerGen,
+			MMSchemaType mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
 		defaultMandatoryAttribute(gen, MMSchemaType_.kind, mmBean.getKind());
+		gen.flush();
 		return gen;
 	}
 
-	protected void implementMMModelEntity(GenerationResult gen, MMModelEntity mmBean) {
-		defaultMultivalueAttribute(gen, MMModelEntity_.nextVersions, mmBean.getNextVersions());
-		defaultOptionalAttribute(gen, MMModelEntity_.previousVersion, mmBean.getPreviousVersion());
-		defaultOptionalAttribute(gen, MMModelEntity_.objectIdentifier, mmBean.getObjectIdentifier());
+	protected void implementMMModelEntity(GenerationResult gen,
+			MMModelEntity mmBean) {
+		defaultMultivalueAttribute(gen, MMModelEntity_.nextVersions,
+				mmBean.getNextVersions());
+		defaultOptionalAttribute(gen, MMModelEntity_.previousVersion,
+				mmBean.getPreviousVersion());
+		defaultOptionalAttribute(gen, MMModelEntity_.objectIdentifier,
+				mmBean.getObjectIdentifier());
 	}
 
-	protected void implementMMTopLevelCatalogueEntry(GenerationResult gen, MMTopLevelCatalogueEntry mmBean) {
+	protected void implementMMTopLevelCatalogueEntry(GenerationResult gen,
+			MMTopLevelCatalogueEntry mmBean) {
 		implementMMRepositoryConcept(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMTopLevelCatalogueEntry_.businessProcessCatalogue,
+		defaultMandatoryAttribute(gen,
+				MMTopLevelCatalogueEntry_.businessProcessCatalogue,
 				mmBean.getBusinessProcessCatalogue());
 	}
 
-	protected void implementMMRepositoryConcept(GenerationResult gen, MMRepositoryConcept mmBean) {
+	protected void implementMMRepositoryConcept(GenerationResult gen,
+			MMRepositoryConcept mmBean) {
 		implementMMModelEntity(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup, mmBean.getSemanticMarkup());
-		defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet, mmBean.getDoclet());
-		defaultMultivalueAttribute(gen, MMRepositoryConcept_.example, mmBean.getExample());
-		defaultMultivalueAttribute(gen, MMRepositoryConcept_.constraint, mmBean.getConstraint());
-		defaultMandatoryAttribute(gen, MMRepositoryConcept_.registrationStatus, mmBean.getRegistrationStatus());
-		defaultOptionalAttribute(gen, MMRepositoryConcept_.removalDate, mmBean.getRemovalDate());
-		defaultMandatoryAttribute(gen, MMRepositoryConcept_.name, mmBean.getName());
-		defaultOptionalAttribute(gen, MMRepositoryConcept_.definition, mmBean.getDefinition());
+		defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
+				mmBean.getSemanticMarkup());
+		defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet,
+				mmBean.getDoclet());
+		defaultMultivalueAttribute(gen, MMRepositoryConcept_.example,
+				mmBean.getExample());
+		defaultMultivalueAttribute(gen, MMRepositoryConcept_.constraint,
+				mmBean.getConstraint());
+		defaultMandatoryAttribute(gen, MMRepositoryConcept_.registrationStatus,
+				mmBean.getRegistrationStatus());
+		defaultOptionalAttribute(gen, MMRepositoryConcept_.removalDate,
+				mmBean.getRemovalDate());
+		defaultMandatoryAttribute(gen, MMRepositoryConcept_.name,
+				mmBean.getName());
+		defaultOptionalAttribute(gen, MMRepositoryConcept_.definition,
+				mmBean.getDefinition());
 	}
 
-	protected void implementMMTopLevelDictionaryEntry(GenerationResult gen, MMTopLevelDictionaryEntry mmBean) {
+	protected void implementMMTopLevelDictionaryEntry(GenerationResult gen,
+			MMTopLevelDictionaryEntry mmBean) {
 		implementMMRepositoryConcept(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMTopLevelDictionaryEntry_.dataDictionary, mmBean.getDataDictionary());
+		defaultMandatoryAttribute(gen,
+				MMTopLevelDictionaryEntry_.dataDictionary,
+				mmBean.getDataDictionary());
 	}
 
-	protected void implementMMRepositoryType(GenerationResult gen, MMRepositoryType mmBean) {
+	protected void implementMMRepositoryType(GenerationResult gen,
+			MMRepositoryType mmBean) {
 		implementMMRepositoryConcept(gen, mmBean);
 	}
 
-	protected void implementMMMessageElement(GenerationResult gen, MMMessageElement mmBean) {
+	protected void implementMMMessageElement(GenerationResult gen,
+			MMMessageElement mmBean) {
 		implementMMMessageConstruct(gen, mmBean);
 		implementMMMessageConcept(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMMessageElement_.isTechnical, mmBean.isIsTechnical());
-		defaultOptionalAttribute(gen, MMMessageElement_.businessComponentTrace, mmBean.getBusinessComponentTrace());
-		defaultOptionalAttribute(gen, MMMessageElement_.businessElementTrace, mmBean.getBusinessElementTrace());
-		defaultMandatoryAttribute(gen, MMMessageElement_.componentContext, mmBean.getComponentContext());
-		defaultMandatoryAttribute(gen, MMMessageElement_.isDerived, mmBean.isIsDerived());
+		defaultOptionalAttribute(gen, MMMessageElement_.businessComponentTrace,
+				mmBean.getBusinessComponentTrace());
+		defaultOptionalAttribute(gen, MMMessageElement_.businessElementTrace,
+				mmBean.getBusinessElementTrace());
+		defaultMandatoryAttribute(gen, MMMessageElement_.componentContext,
+				mmBean.getComponentContext());
+		defaultMandatoryAttribute(gen, MMMessageElement_.isDerived,
+				mmBean.isIsDerived());
 	}
 
-	protected void implementMMMessageConstruct(GenerationResult gen, MMMessageConstruct mmBean) {
+	protected void implementMMMessageConstruct(GenerationResult gen,
+			MMMessageConstruct mmBean) {
 		implementMMConstruct(gen, mmBean);
-		defaultOptionalAttribute(gen, MMMessageConstruct_.xmlTag, mmBean.getXmlTag());
-		defaultMandatoryAttribute(gen, MMMessageConstruct_.xmlMemberType, mmBean.getXmlMemberType());
+		defaultOptionalAttribute(gen, MMMessageConstruct_.xmlTag,
+				mmBean.getXmlTag());
 	}
 
 	protected void implementMMConstruct(GenerationResult gen, MMConstruct mmBean) {
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMMultiplicityEntity(gen, mmBean);
-		defaultMandatoryAttribute(gen, MMConstruct_.memberType, mmBean.getMemberType());
 	}
 
-	protected void implementMMMultiplicityEntity(GenerationResult gen, MMMultiplicityEntity mmBean) {
-		defaultOptionalAttribute(gen, MMMultiplicityEntity_.maxOccurs, mmBean.getMaxOccurs());
-		defaultOptionalAttribute(gen, MMMultiplicityEntity_.minOccurs, mmBean.getMinOccurs());
+	protected void implementMMMultiplicityEntity(GenerationResult gen,
+			MMMultiplicityEntity mmBean) {
+		defaultOptionalAttribute(gen, MMMultiplicityEntity_.maxOccurs,
+				mmBean.getMaxOccurs());
+		defaultOptionalAttribute(gen, MMMultiplicityEntity_.minOccurs,
+				mmBean.getMinOccurs());
 	}
 
-	protected void implementMMLogicalType(GenerationResult gen, MMLogicalType mmBean) {
+	protected void implementMMLogicalType(GenerationResult gen,
+			MMLogicalType mmBean) {
 		implementMMRepositoryType(gen, mmBean);
 	}
 
-	protected void implementMMMessageConcept(GenerationResult gen, MMMessageConcept mmBean) {
+	protected void implementMMMessageConcept(GenerationResult gen,
+			MMMessageConcept mmBean) {
 		implementMMModelEntity(gen, mmBean);
 	}
 
-	protected void implementMMBusinessElementType(GenerationResult gen, MMBusinessElementType mmBean) {
+	protected void implementMMBusinessElementType(GenerationResult gen,
+			MMBusinessElementType mmBean) {
 		implementMMRepositoryType(gen, mmBean);
 	}
 
-	protected void implementMMBusinessConcept(GenerationResult gen, MMBusinessConcept mmBean) {
+	protected void implementMMBusinessConcept(GenerationResult gen,
+			MMBusinessConcept mmBean) {
 		implementMMModelEntity(gen, mmBean);
 	}
 
-	protected void implementMMBusinessElement(GenerationResult gen, MMBusinessElement mmBean) {
+	protected void implementMMBusinessElement(GenerationResult gen,
+			MMBusinessElement mmBean) {
 		implementMMConstruct(gen, mmBean);
 		implementMMBusinessConcept(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMBusinessElement_.derivation, mmBean.getDerivation());
-		defaultMandatoryAttribute(gen, MMBusinessElement_.elementContext, mmBean.getElementContext());
-		defaultMandatoryAttribute(gen, MMBusinessElement_.isDerived, mmBean.isIsDerived());
-		defaultMandatoryAttribute(gen, MMBusinessElement_.businessElementType, mmBean.getBusinessElementType());
+		defaultMultivalueAttribute(gen, MMBusinessElement_.derivation,
+				mmBean.getDerivation());
+		defaultMandatoryAttribute(gen, MMBusinessElement_.elementContext,
+				mmBean.getElementContext());
+		defaultMandatoryAttribute(gen, MMBusinessElement_.isDerived,
+				mmBean.isIsDerived());
 	}
 
-	protected void implementMMMessageComponentType(GenerationResult gen, MMMessageComponentType mmBean) {
+	protected void implementMMMessageComponentType(GenerationResult gen,
+			MMMessageComponentType mmBean) {
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
 		implementMMLogicalType(gen, mmBean);
 		implementMMMessageConcept(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMMessageComponentType_.messageBuildingBlock, mmBean.getMessageBuildingBlock());
-		defaultOptionalAttribute(gen, MMMessageComponentType_.trace, mmBean.getTrace());
-		defaultMandatoryAttribute(gen, MMMessageComponentType_.isTechnical, mmBean.isIsTechnical());
+		defaultMultivalueAttribute(gen,
+				MMMessageComponentType_.messageBuildingBlock,
+				mmBean.getMessageBuildingBlock());
+		defaultOptionalAttribute(gen, MMMessageComponentType_.trace,
+				mmBean.getTrace());
 	}
 
 	protected void implementMMDataType(GenerationResult gen, MMDataType mmBean) {
@@ -741,49 +1058,72 @@ public class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMLogicalType(gen, mmBean);
 	}
 
-	protected void implementMMMessageElementContainer(GenerationResult gen, MMMessageElementContainer mmBean) {
+	protected void implementMMMessageElementContainer(MainTypeResult gen,
+			MMMessageElementContainer mmBean) {
 		implementMMMessageComponentType(gen, mmBean);
-		defaultMultivalueAttribute(gen, MMMessageElementContainer_.messageElement, mmBean.getMessageElement());
+		for (MMMessageElement mmChild : mmBean.getMessageElement()) {
+			generateMMMessageElement(gen, mmChild);
+		}
+		defaultMultivalueAttribute(gen,
+				MMMessageElementContainer_.messageElement,
+				mmBean.getMessageElement());
 	}
 
-	protected void implementMMAbstractDateTimeConcept(GenerationResult gen, MMAbstractDateTimeConcept mmBean) {
+	protected void implementMMAbstractDateTimeConcept(GenerationResult gen,
+			MMAbstractDateTimeConcept mmBean) {
 		implementMMDataType(gen, mmBean);
-		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.pattern, mmBean.getPattern());
-		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.minInclusive, mmBean.getMinInclusive());
-		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.minExclusive, mmBean.getMinExclusive());
-		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.maxInclusive, mmBean.getMaxInclusive());
-		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.maxExclusive, mmBean.getMaxExclusive());
+		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.minInclusive,
+				mmBean.getMinInclusive());
+		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.minExclusive,
+				mmBean.getMinExclusive());
+		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.maxInclusive,
+				mmBean.getMaxInclusive());
+		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.maxExclusive,
+				mmBean.getMaxExclusive());
+		defaultOptionalAttribute(gen, MMAbstractDateTimeConcept_.pattern,
+				mmBean.getPattern());
 	}
 
-	public GenerationResult generateMMTopLevelCatalogueEntry(SubTypeResult gen, MMTopLevelCatalogueEntry mmBean) {
+	protected GenerationResult generateMMTopLevelCatalogueEntry(
+			SubTypeResult gen, MMTopLevelCatalogueEntry mmBean) {
 		if (MMSyntaxMessageScheme.class.equals(mmBean.getClass())) {
-			return generateMMSyntaxMessageScheme(gen, (MMSyntaxMessageScheme) mmBean);
+			return generateMMSyntaxMessageScheme(gen,
+					(MMSyntaxMessageScheme) mmBean);
 		} else if (MMMessageSet.class.equals(mmBean.getClass())) {
 			return generateMMMessageSet(gen, (MMMessageSet) mmBean);
 		} else if (MMBusinessArea.class.equals(mmBean.getClass())) {
 			return generateMMBusinessArea(gen, (MMBusinessArea) mmBean);
 		} else if (MMMessageChoreography.class.equals(mmBean.getClass())) {
-			return generateMMMessageChoreography(gen, (MMMessageChoreography) mmBean);
+			return generateMMMessageChoreography(gen,
+					(MMMessageChoreography) mmBean);
 		} else if (MMBusinessTransaction.class.equals(mmBean.getClass())) {
-			return generateMMBusinessTransaction(gen, (MMBusinessTransaction) mmBean);
+			return generateMMBusinessTransaction(gen,
+					(MMBusinessTransaction) mmBean);
 		} else if (MMBusinessProcess.class.equals(mmBean.getClass())) {
 			return generateMMBusinessProcess(gen, (MMBusinessProcess) mmBean);
 		} else if (MMMessageTransportMode.class.equals(mmBean.getClass())) {
-			return generateMMMessageTransportMode(gen, (MMMessageTransportMode) mmBean);
+			return generateMMMessageTransportMode(gen,
+					(MMMessageTransportMode) mmBean);
 		} else if (MMIndustryMessageSet.class.equals(mmBean.getClass())) {
-			return generateMMIndustryMessageSet(gen, (MMIndustryMessageSet) mmBean);
+			return generateMMIndustryMessageSet(gen,
+					(MMIndustryMessageSet) mmBean);
 		} else if (MMISO15022MessageSet.class.equals(mmBean.getClass())) {
-			return generateMMISO15022MessageSet(gen, (MMISO15022MessageSet) mmBean);
+			return generateMMISO15022MessageSet(gen,
+					(MMISO15022MessageSet) mmBean);
 		} else if (MMConvergenceDocumentation.class.equals(mmBean.getClass())) {
-			return generateMMConvergenceDocumentation(gen, (MMConvergenceDocumentation) mmBean);
+			return generateMMConvergenceDocumentation(gen,
+					(MMConvergenceDocumentation) mmBean);
 		} else {
-			throw new IllegalArgumentException("Invalid type hierarchy: " + mmBean.getClass());
+			throw new IllegalArgumentException("Invalid type hierarchy: "
+					+ mmBean.getClass());
 		}
 	}
 
-	public GenerationResult generateMMTopLevelDictionaryEntry(SubTypeResult gen, MMTopLevelDictionaryEntry mmBean) {
+	protected GenerationResult generateMMTopLevelDictionaryEntry(
+			SubTypeResult gen, MMTopLevelDictionaryEntry mmBean) {
 		if (MMBusinessComponent.class.equals(mmBean.getClass())) {
-			return generateMMBusinessComponent(gen, (MMBusinessComponent) mmBean);
+			return generateMMBusinessComponent(gen,
+					(MMBusinessComponent) mmBean);
 		} else if (MMMessageComponent.class.equals(mmBean.getClass())) {
 			return generateMMMessageComponent(gen, (MMMessageComponent) mmBean);
 		} else if (MMChoiceComponent.class.equals(mmBean.getClass())) {
@@ -837,17 +1177,35 @@ public class GeneratedRepoGenerator extends BaseRepoGenerator {
 		} else if (MMEndPointCategory.class.equals(mmBean.getClass())) {
 			return generateMMEndPointCategory(gen, (MMEndPointCategory) mmBean);
 		} else {
-			throw new IllegalArgumentException("Invalid type hierarchy: " + mmBean.getClass());
+			throw new IllegalArgumentException("Invalid type hierarchy: "
+					+ mmBean.getClass());
 		}
 	}
 
-	public GenerationResult generateMMBusinessElement(MainTypeResult gen, MMBusinessElement mmBean) {
+	protected GenerationResult generateMMBusinessElement(MainTypeResult gen,
+			MMBusinessElement mmBean) {
 		if (MMBusinessAssociationEnd.class.equals(mmBean.getClass())) {
-			return generateMMBusinessAssociationEnd(gen, (MMBusinessAssociationEnd) mmBean);
+			return generateMMBusinessAssociationEnd(gen,
+					(MMBusinessAssociationEnd) mmBean);
 		} else if (MMBusinessAttribute.class.equals(mmBean.getClass())) {
-			return generateMMBusinessAttribute(gen, (MMBusinessAttribute) mmBean);
+			return generateMMBusinessAttribute(gen,
+					(MMBusinessAttribute) mmBean);
 		} else {
-			throw new IllegalArgumentException("Invalid type hierarchy: " + mmBean.getClass());
+			throw new IllegalArgumentException("Invalid type hierarchy: "
+					+ mmBean.getClass());
+		}
+	}
+
+	protected GenerationResult generateMMMessageElement(MainTypeResult gen,
+			MMMessageElement mmBean) {
+		if (MMMessageAssociationEnd.class.equals(mmBean.getClass())) {
+			return generateMMMessageAssociationEnd(gen,
+					(MMMessageAssociationEnd) mmBean);
+		} else if (MMMessageAttribute.class.equals(mmBean.getClass())) {
+			return generateMMMessageAttribute(gen, (MMMessageAttribute) mmBean);
+		} else {
+			throw new IllegalArgumentException("Invalid type hierarchy: "
+					+ mmBean.getClass());
 		}
 	}
 }

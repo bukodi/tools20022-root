@@ -1,14 +1,15 @@
 package com.tools20022.metamodel.struct;
 
-
-import com.tools20022.metamodel.struct.MMModelEntity_;
-import com.tools20022.metamodel.MMMessagingEndpoint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.metamodel.MMMessageTransportSystem;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+import com.tools20022.metamodel.MMAddress;
+import com.tools20022.metamodel.MMMessageTransportSystem;
+import com.tools20022.metamodel.MMMessagingEndpoint;
 import com.tools20022.metamodel.MMTransportMessage;
+import com.tools20022.metamodel.struct.MMModelEntity_;
 import java.util.List;
-import com.tools20022.metamodel.MMAddress;public interface MMMessagingEndpoint_ extends MMModelEntity_ {
+
+public interface MMMessagingEndpoint_ extends MMModelEntity_ {
 
 	/**
 	 * the MessageTransportSystem that owns and uses this MessagingEndpoint
@@ -25,4 +26,5 @@ import com.tools20022.metamodel.MMAddress;public interface MMMessagingEndpoint_ 
 	/**
 	 * an Address used to identify the MessagingEndpoint
 	 */
-	MetamodelAttribute<MMMessagingEndpoint, List<MMAddress>> location = newAttribute(); }
+	MetamodelAttribute<MMMessagingEndpoint, List<MMAddress>> location = newAttribute();
+}

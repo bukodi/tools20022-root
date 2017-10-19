@@ -1,13 +1,14 @@
 package com.tools20022.metamodel.struct;
 
-
-import com.tools20022.metamodel.struct.MMModelEntity_;
-import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import java.util.Optional;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMSemanticMarkupElement;
-import java.util.List;public interface MMSemanticMarkup_ extends MMModelEntity_ {
+import com.tools20022.metamodel.struct.MMModelEntity_;
+import java.util.List;
+import java.util.Optional;
+
+public interface MMSemanticMarkup_ extends MMModelEntity_ {
 
 	/**
 	 * The type of semantic mark-up e.g. "synonym".
@@ -16,4 +17,5 @@ import java.util.List;public interface MMSemanticMarkup_ extends MMModelEntity_ 
 	/**
 	 * The elements of semantic markup.
 	 */
-	MetamodelAttribute<MMSemanticMarkup, List<MMSemanticMarkupElement>> elements = newAttribute(); }
+	MetamodelAttribute<MMSemanticMarkup, List<MMSemanticMarkupElement>> elements = newAttribute();
+}

@@ -6,9 +6,7 @@ import java.util.function.Function;
 /**
  * Calculate derived attribute {@link MMExternalSchema#isIsTechnical()}
  */
-public class DeriveMMExternalSchema_isTechnical
-		implements
-			Function<MMExternalSchema, Boolean> {
+public class DeriveMMExternalSchema_isTechnical implements Function<MMExternalSchema, Boolean> {
 
 	/**
 	 * A property indicating the absense of a semantic relationship to a

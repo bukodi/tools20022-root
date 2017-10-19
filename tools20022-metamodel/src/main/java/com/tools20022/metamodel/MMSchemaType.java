@@ -1,21 +1,14 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMDataDictionary;
-import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.MMDataType;
-import com.tools20022.metamodel.MMSchemaTypeKind;
-import java.util.function.Supplier;
-import java.util.Optional;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import java.util.List;
+import com.tools20022.metamodel.*;
 import java.util.Collections;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import java.util.Date;
-import com.tools20022.metamodel.MMModelEntity;/**
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
  * Meta class for represensting XML Schema DataTypes
  */
 public class MMSchemaType implements MMDataType {
@@ -45,8 +38,7 @@ public class MMSchemaType implements MMDataType {
 	}
 
 	public static MetamodelType<? extends MMSchemaType> metaType() {
-		return StandardMetamodel2013.metamodel().getTypeByClass(
-				MMSchemaType.class);
+		return StandardMetamodel2013.metamodel().getTypeByClass(MMSchemaType.class);
 	}
 
 	public MMSchemaTypeKind getKind() {
@@ -70,14 +62,12 @@ public class MMSchemaType implements MMDataType {
 
 	@Override
 	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList()
-				: semanticMarkup_lazy.get();
+		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
 	}
 
 	@Override
 	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy
-				.get();
+		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
 	}
 
 	@Override
@@ -87,8 +77,7 @@ public class MMSchemaType implements MMDataType {
 
 	@Override
 	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList()
-				: constraint_lazy.get();
+		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
 	}
 
 	@Override
@@ -98,24 +87,21 @@ public class MMSchemaType implements MMDataType {
 
 	@Override
 	public Optional<Date> getRemovalDate() {
-		return removalDate == null ? Optional.empty() : Optional
-				.of(removalDate);
+		return removalDate == null ? Optional.empty() : Optional.of(removalDate);
 	}
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}

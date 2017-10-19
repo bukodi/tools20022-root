@@ -1,17 +1,18 @@
 package com.tools20022.metamodel;
 
-
-import com.tools20022.metamodel.MMMessageTransmission;
-import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.metamodel.MMMessageTransmission;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMParticipant;
-import java.util.function.Supplier;
-import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.core.metamodel.Container;
-import java.util.List;
+import com.tools20022.metamodel.StandardMetamodel2013;
 import java.util.Collections;
-import java.util.Optional;/**
+import java.util.function.Supplier;
+import java.util.List;
+import java.util.Optional;
+
+/**
  * the passing of a stimulus from a sender instance to a receiver instance
  */
 public class MMSend implements MMModelEntity {
@@ -38,6 +39,7 @@ public class MMSend implements MMModelEntity {
 
 	/**
 	 * The object passing a stimulus to a receiver object
+	 * 
 	 * @see MMParticipant#getSends()
 	 */
 	@Opposite(bean = MMParticipant.class, attribute = "sends")
@@ -47,6 +49,7 @@ public class MMSend implements MMModelEntity {
 
 	/**
 	 * the stimulus handled as part of the Send
+	 * 
 	 * @see MMMessageTransmission#getSend()
 	 */
 	@Opposite(bean = MMMessageTransmission.class, attribute = "send")
@@ -57,18 +60,16 @@ public class MMSend implements MMModelEntity {
 
 	@Override
 	public List<MMModelEntity> getNextVersions() {
-		return nextVersions_lazy == null ? Collections.emptyList()
-				: nextVersions_lazy.get();
+		return nextVersions_lazy == null ? Collections.emptyList() : nextVersions_lazy.get();
 	}
 
 	@Override
 	public Optional<MMModelEntity> getPreviousVersion() {
-		return previousVersion_lazy == null ? Optional.empty() : Optional
-				.of(previousVersion_lazy.get());
+		return previousVersion_lazy == null ? Optional.empty() : Optional.of(previousVersion_lazy.get());
 	}
 
 	@Override
 	public Optional<String> getObjectIdentifier() {
-		return objectIdentifier == null ? Optional.empty() : Optional
-				.of(objectIdentifier);
-	} }
+		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+}
