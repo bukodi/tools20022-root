@@ -2,12 +2,14 @@ package de.dainel.cleanqualifiedtypes;
 
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTNode;
@@ -28,9 +30,13 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.SingleMemberAnnot
 public class CleanQualifiedTypes {
 
 	public static void cleanAst(CompilationUnit unit) {
+		cleanAst(unit, Collections.emptyList());
+	}
+
+	public static void cleanAst(CompilationUnit unit, List<String> dontModifyImports ) {
 		QualifiedTypeDetector detector = new QualifiedTypeDetector();
 		unit.accept(detector);
-		CleanQualifiedTypes qualifiedTypeRewriter = new CleanQualifiedTypes(unit, detector.getTypeManagers());
+		CleanQualifiedTypes qualifiedTypeRewriter = new CleanQualifiedTypes(unit, detector.getTypeManagers(), dontModifyImports);
 		qualifiedTypeRewriter.rewrite();
 	}
 
@@ -93,10 +99,12 @@ public class CleanQualifiedTypes {
 
 	private boolean organizeImports = true;
 	private List<String> importGroups = null;
-
-	private CleanQualifiedTypes(CompilationUnit unit, List<QualifiedTypeBindingManager> typeManagers) {
+	private final List<String> dontModifyImports;
+	
+	private CleanQualifiedTypes(CompilationUnit unit, List<QualifiedTypeBindingManager> typeManagers, List<String> dontModifyImports ) {
 		this.unit = unit;
 		this.typeManagers = typeManagers;
+		this.dontModifyImports = Objects.requireNonNull(dontModifyImports);
 	}
 
 	private void rewrite() {
@@ -121,9 +129,13 @@ public class CleanQualifiedTypes {
 	private void modify() {
 		@SuppressWarnings("unchecked")
 		List<ImportDeclaration> imports = unit.imports();
-		for (QualifiedTypeBindingManager mg : typeManagers) {
+		loop_on_imports: for (QualifiedTypeBindingManager mg : typeManagers) {
+			String fullyQualifiedName = mg.getQualifiedNames().iterator().next().getFullyQualifiedName();
+			for( String pattern: dontModifyImports ) {
+				if( shouldIgnore(fullyQualifiedName, pattern))
+					continue loop_on_imports;
+			};
 			if (!mg.importAlreadyExists()) {
-				String fullyQualifiedName = mg.getQualifiedNames().iterator().next().getFullyQualifiedName();
 				if (!isFiltered(unit, fullyQualifiedName)) {
 					createImport(imports, fullyQualifiedName);
 				}
@@ -147,6 +159,12 @@ public class CleanQualifiedTypes {
 				}
 			}
 		}
+	}
+	
+	private boolean shouldIgnore( String fullyQualifiedName, String pattern) {
+		if( pattern.startsWith("*") )
+			return fullyQualifiedName.endsWith(pattern.substring(1));
+		return fullyQualifiedName.equals(pattern);
 	}
 	
 	private List<ImportDeclaration> useWildcardImports( List<ImportDeclaration> imports, int useWildcardLimit ) {
@@ -185,6 +203,11 @@ public class CleanQualifiedTypes {
 			}
 			
 			QualifiedName fqn = (QualifiedName) name;
+			String cuName = fqn.getName().toString();
+			if( JAVA_LANG_CLASSNAMES.contains( cuName ) ) {
+				wildcardedImports.add(imp);
+				continue;									
+			}
 			String pkgName = fqn.getQualifier().toString();
 			if( ! useWildcards.contains(pkgName)) {
 				wildcardedImports.add(imp);
@@ -252,4 +275,114 @@ public class CleanQualifiedTypes {
 	public List<String> getImportGroups() {
 		return importGroups;
 	}
+	
+	private final static Set<String> JAVA_LANG_CLASSNAMES;
+	
+	static {
+		Set<String> tmp = new HashSet<>();
+		/*** Interfaces ***/
+		tmp.add( "Appendable" );
+		tmp.add( "AutoCloseable" );
+		tmp.add( "CharSequence" );
+		tmp.add( "Cloneable" );
+		tmp.add( "Comparable" );
+		tmp.add( "Iterable" );
+		tmp.add( "Readable" );
+		tmp.add( "Runnable" );
+		/*** Classes ***/
+		tmp.add( "Boolean" );
+		tmp.add( "Byte" );
+		tmp.add( "Character" );
+		tmp.add( "Class" );
+		tmp.add( "ClassLoader" );
+		tmp.add( "ClassValue" );
+		tmp.add( "Compiler" );
+		tmp.add( "Double" );
+		tmp.add( "Enum" );
+		tmp.add( "Float" );
+		tmp.add( "InheritableThreadLocal" );
+		tmp.add( "Integer" );
+		tmp.add( "Long" );
+		tmp.add( "Math" );
+		tmp.add( "Number" );
+		tmp.add( "Object" );
+		tmp.add( "Package" );
+		tmp.add( "Process" );
+		tmp.add( "ProcessBuilder" );
+		tmp.add( "Runtime" );
+		tmp.add( "RuntimePermission" );
+		tmp.add( "SecurityManager" );
+		tmp.add( "Short" );
+		tmp.add( "StackTraceElement" );
+		tmp.add( "StrictMath" );
+		tmp.add( "String" );
+		tmp.add( "StringBuffer" );
+		tmp.add( "StringBuilder" );
+		tmp.add( "System" );
+		tmp.add( "Thread" );
+		tmp.add( "ThreadGroup" );
+		tmp.add( "ThreadLocal" );
+		tmp.add( "Throwable" );
+		tmp.add( "Void" );
+		/*** Exceptions ***/
+		tmp.add( "ArithmeticException" );
+		tmp.add( "ArrayIndexOutOfBoundsException" );
+		tmp.add( "ArrayStoreException" );
+		tmp.add( "ClassCastException" );
+		tmp.add( "ClassNotFoundException" );
+		tmp.add( "CloneNotSupportedException" );
+		tmp.add( "EnumConstantNotPresentException" );
+		tmp.add( "Exception" );
+		tmp.add( "IllegalAccessException" );
+		tmp.add( "IllegalArgumentException" );
+		tmp.add( "IllegalMonitorStateException" );
+		tmp.add( "IllegalStateException" );
+		tmp.add( "IllegalThreadStateException" );
+		tmp.add( "IndexOutOfBoundsException" );
+		tmp.add( "InstantiationException" );
+		tmp.add( "InterruptedException" );
+		tmp.add( "NegativeArraySizeException" );
+		tmp.add( "NoSuchFieldException" );
+		tmp.add( "NoSuchMethodException" );
+		tmp.add( "NullPointerException" );
+		tmp.add( "NumberFormatException" );
+		tmp.add( "ReflectiveOperationException" );
+		tmp.add( "RuntimeException" );
+		tmp.add( "SecurityException" );
+		tmp.add( "StringIndexOutOfBoundsException" );
+		tmp.add( "TypeNotPresentException" );
+		tmp.add( "UnsupportedOperationException" );
+		/*** Errors ***/
+		tmp.add( "AbstractMethodError" );
+		tmp.add( "AssertionError" );
+		tmp.add( "BootstrapMethodError" );
+		tmp.add( "ClassCircularityError" );
+		tmp.add( "ClassFormatError" );
+		tmp.add( "Error" );
+		tmp.add( "ExceptionInInitializerError" );
+		tmp.add( "IllegalAccessError" );
+		tmp.add( "IncompatibleClassChangeError" );
+		tmp.add( "InstantiationError" );
+		tmp.add( "InternalError" );
+		tmp.add( "LinkageError" );
+		tmp.add( "NoClassDefFoundError" );
+		tmp.add( "NoSuchFieldError" );
+		tmp.add( "NoSuchMethodError" );
+		tmp.add( "OutOfMemoryError" );
+		tmp.add( "StackOverflowError" );
+		tmp.add( "ThreadDeath" );
+		tmp.add( "UnknownError" );
+		tmp.add( "UnsatisfiedLinkError" );
+		tmp.add( "UnsupportedClassVersionError" );
+		tmp.add( "VerifyError" );
+		tmp.add( "VirtualMachineError" );
+		/*** Annotations ***/
+		tmp.add( "Deprecated" );
+		tmp.add( "Override" );
+		tmp.add( "SafeVarargs" );
+		tmp.add( "SuppressWarnings" );
+		JAVA_LANG_CLASSNAMES = Collections.unmodifiableSet(tmp);
+	}
+	
 }
+

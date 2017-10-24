@@ -60,6 +60,10 @@ public class StructuredName {
 		return getNestedTypeName() == null && getMemberName() == null;
 	}
 
+	public boolean isMember() {
+		return getMemberName() != null;
+	}
+
 	public boolean isNestedType() {
 		return getNestedTypeName() != null && getMemberName() == null;
 	}

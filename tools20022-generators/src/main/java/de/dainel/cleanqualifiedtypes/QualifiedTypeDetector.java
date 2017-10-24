@@ -75,7 +75,6 @@ class QualifiedTypeDetector extends ASTVisitor {
 
 	@Override
 	public boolean visit(QualifiedName qn) {
-		//handleName(qn);
 		return true;
 	}
 

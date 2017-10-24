@@ -2,6 +2,7 @@ package com.tools20022.repogenerator.resulttypes;
 
 import org.jboss.forge.roaster.model.source.EnumConstantSource;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
@@ -10,22 +11,15 @@ public class EnumConstantResult extends GenerationResult{
 
 	public EnumConstantSource enumConstantSrc;
 
-	public EnumConstantResult(GenerationContext<?> ctx, StructuredName baseName) {
-		super(ctx, baseName);
+	public EnumConstantResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+		super(ctx, mmBean, baseName);
 	}
 
 	@Override
 	public void flush() {
-		// Nothing
+		String fieldinitializer = "new " + mmBean.getMetamodel().getBeanClass().getName() + "()";
+		fieldinitializer += "{{" + mmObjectInitBlock.toString() + "}}";
+		enumConstantSrc.setConstructorArguments(fieldinitializer);
 	}
-	
-	@Override
-	public String getJavaFQN() {
-		String fqn = baseName.getPackage() + "." + baseName.getCompilationUnit() ;
-		fqn += baseName.getNestedTypeName() != null ? "." + baseName.getNestedTypeName(): "";
-		fqn += baseName.getMemberName() != null ? "." + baseName.getMemberName() : "";
-		return fqn;
-	}
-
 	
 }

@@ -39,8 +39,8 @@ public class TestGeneratedGenerator {
 
 	@Test
 	public void generateRepoSrc() throws Exception {
-		//Path srcRoot = Paths.get("../tools20022-testrepo/src/main/java/").toRealPath();
-		Path srcRoot = Paths.get("/tmp/1019/").toRealPath();
+		Path srcRoot = Paths.get("../tools20022-testrepo/src/main/java/").toRealPath();
+		//Path srcRoot = Paths.get("/tmp/1019/").toRealPath();
 		if (Files.notExists(srcRoot)) {
 			throw new FileNotFoundException(srcRoot.toFile().getAbsolutePath().toString());
 		}

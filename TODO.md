@@ -1,6 +1,9 @@
 # Core
 - [ ] Convert MMModelEntity, MMRepositoryConcept from interface to abstract tpye
-- [ ] Remove type parameters from MetamodelType and MetamodelAttribute
+- [ ] ? Remove type parameters from MetamodelType and MetamodelAttribute
+- [ ] Cleanup generated metamodel: unify *.MMTypeName and *.struct.MMTypeName_, remove StaticMemembersBuilder 
+- [ ] Rename MetamodelType to CoreModelType
+- [ ] Try to use ClassValue instead of RepoTypeName.mmObject_lazy
 
 # Generators
 - [ ] Inject "Watermark errors" while repository loading. 

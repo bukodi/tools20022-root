@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.tools.JavaFileObject;
@@ -11,7 +12,14 @@ import javax.tools.StandardLocation;
 import javax.xml.ws.Holder;
 
 import org.jboss.forge.roaster.Roaster;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTNode;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTVisitor;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Block;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.CompilationUnit;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ExpressionStatement;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.MethodInvocation;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.SimpleName;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 import org.junit.Ignore;
@@ -22,7 +30,7 @@ import de.dainel.cleanqualifiedtypes.CleanQualifiedTypes;
 public class TestRoaster {
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void testCreateParseModify() {
 		String src;
 		{
@@ -72,6 +80,53 @@ public class TestRoaster {
 			System.out.println(javaSrc.toString());
 		}
 	}
+	
+	@Test
+	public void testBlockTemplate() throws Exception {
+		JavaClassSource javaSrc = Roaster.create(JavaClassSource.class);
+		javaSrc.setPackage("com.bukodi.test").setName("TestType");
+		MethodSource<JavaClassSource> method = javaSrc.addMethod().setName("fn1");
+		method.setBody("replaceThisBlock();");
+		MethodDeclaration jdtMethodDecl = (MethodDeclaration) method.getInternal();	
+		
+		jdtMethodDecl.accept(new FindBlock());
+		
+		System.out.println(javaSrc);
+	}
+	
+	class ExpressionTemplate {
+		Block block;
+		ExpressionStatement astExpr = null;
+		
+		ExpressionTemplate( String snippet ) {
+	         String stub = "public class Stub { public void method() {" + snippet + "} }";
+	         JavaClassSource temp = (JavaClassSource) Roaster.parse(stub);
+	         List<MethodSource<JavaClassSource>> methods = temp.getMethods();
+	         block = ((MethodDeclaration) methods.get(0).getInternal()).getBody();
+	         //block = (Block) ASTNode.copySubtree(method.getAST(), block);
+		}
+		
+		class Replacer {
+			
+		}
+				
+		
+	}
+	
+	class FindBlock extends ASTVisitor {
+
+		@Override
+		public boolean visit(MethodInvocation node) {
+			SimpleName methodName = node.getName();
+			if( "replaceThisBlock".equals(methodName.toString())) {
+				SimpleName newName = node.getAST().newSimpleName("newName"); 
+				node.setName( newName);
+			}
+			return super.visit(node);
+		}
+		
+	}
+
 	
 	
 	@Test

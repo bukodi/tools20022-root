@@ -6,9 +6,11 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -136,7 +138,11 @@ public class GenerationContext<M> {
 	
 	private long lastPrinted = System.currentTimeMillis();
 
-	public void saveSourceFile(JavaSource<?> src) {		
+	public void saveSourceFile(JavaSource<?> src) {
+		saveSourceFile(src, Collections.emptyList());
+	}
+
+	public void saveSourceFile(JavaSource<?> src, List<String> dontModifyImports ) {		
 		if( null == unsavedSources.remove(src.getQualifiedName()) ) {
 			throw new IllegalStateException("The " + src.getName() + " wasn't unsaved!");
 		}
@@ -145,7 +151,7 @@ public class GenerationContext<M> {
 					src.getQualifiedName(), Kind.SOURCE, null);
 			try (Writer w = jf.openWriter()) {
 				// Clean qualified types
-				CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal());
+				CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal(), dontModifyImports);
 				
 				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
 				w.append(srcAsFormattedString);

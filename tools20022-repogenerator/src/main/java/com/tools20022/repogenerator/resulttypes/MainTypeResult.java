@@ -1,43 +1,38 @@
 package com.tools20022.repogenerator.resulttypes;
 
-import org.jboss.forge.roaster.model.source.JavaClassSource;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.jboss.forge.roaster.model.source.JavaClassSource;
+import org.jboss.forge.roaster.model.source.MethodSource;
+
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
 
-public class MainTypeResult extends GenerationResult{
+public class MainTypeResult extends GenerationResult {
 
-	public JavaClassSource structSrc;
-	public JavaClassSource beanSrc;
+	public JavaClassSource src;
+	public MethodSource<JavaClassSource> mmObjectMethod;
+	public List<String> dontModifyImports = new ArrayList<>();
 
-	public MainTypeResult(GenerationContext<?> ctx, StructuredName baseName) {
-		super(ctx, baseName);
+	public MainTypeResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+		super(ctx, mmBean, baseName);
 	}
 
 	@Override
 	public void flush() {
-		ctx.saveSourceFile(structSrc);
-		if( beanSrc != null ) {
-			ctx.saveSourceFile(beanSrc);
+		{
+			String init = "mmObject_lazy.compareAndSet(null, new " + mmBean.getMetamodel().getBeanClass().getName()
+					+ "()";
+			init += "{{" + mmObjectInitBlock.toString() + "}}";
+			init += ");";
+			init += "return mmObject_lazy.get();";
+			mmObjectMethod.setBody(init);
 		}
+
+		ctx.saveSourceFile(src, dontModifyImports);
 	}
 
-	@Override
-	public String getJavaFQN() {
-		String fqn = baseName.getPackage() + "." + baseName.getCompilationUnit() + "_";
-		fqn += baseName.getNestedTypeName() != null ? "." + baseName.getNestedTypeName(): "";
-		fqn += baseName.getMemberName() != null ? "." + baseName.getMemberName() : "";
-		return fqn;
-	}
-	
-	@Override
-	public String getJavaBeanFQN() {
-		String fqn = baseName.getPackage() + "." + baseName.getCompilationUnit() + "";
-		fqn += baseName.getNestedTypeName() != null ? "." + baseName.getNestedTypeName(): "";
-		fqn += baseName.getMemberName() != null ? "." + baseName.getMemberName() : "";
-		return fqn;
-	}
-	
-	
 }

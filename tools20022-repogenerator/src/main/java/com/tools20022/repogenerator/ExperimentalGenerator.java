@@ -133,7 +133,7 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 			if (mmAttr.isDerived())
 				continue;
 			Object value = mmAttr.get(mmBean);
-			AttrValue valueAsSourceString = convertAttributeValueToSource(srcMainClass, value);
+			AttrValue valueAsSourceString = convertAttributeValueToSource( getStructuredName(mmBean), value);
 			if (valueAsSourceString == null)
 				continue;
 			if (mmAttr.getReferencedType() != null) {
@@ -197,13 +197,13 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 
 	int USE_LIST_BUILDER_ABOVE = 500;
 
-	private StructuredName createLongListBuilder(JavaClassSource addImportsTo, List<Object> elems) {
-
+	private StructuredName createLongListBuilder(StructuredName  mainSrcName, List<Object> elems) {
+		
 		StructuredName firstBuilderName = null;
 
 		for (int seq = 0; seq * USE_LIST_BUILDER_ABOVE < elems.size(); seq++) {
-			StructuredName javaName = StructuredName.primaryType(addImportsTo.getPackage(),
-					"ListBuilderFor" + addImportsTo.getName() + "_" + (seq < 10 ? "0" : "") + seq);
+			StructuredName javaName = StructuredName.primaryType(mainSrcName.getPackage(),
+					"ListBuilderFor" + mainSrcName.getCompilationUnit() + "_" + (seq < 10 ? "0" : "") + seq);
 			JavaClassSource src = ctx.createSourceFile(JavaClassSource.class, javaName);
 			src.setVisibility(Visibility.PACKAGE_PRIVATE);
 			src.addImport(List.class);
@@ -215,13 +215,13 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 				if ((seq * USE_LIST_BUILDER_ABOVE) + i >= elems.size())
 					break;
 				Object elem = elems.get((seq * USE_LIST_BUILDER_ABOVE) + i);
-				AttrValue valueAsSrc = convertAttributeValueToSource(addImportsTo, elem);
+				AttrValue valueAsSrc = convertAttributeValueToSource(mainSrcName, elem);
 				sb.append("    list.add( (T) " + valueAsSrc.valueAsSource + ");\n");
 			}
 
 			if ((seq + 1) * USE_LIST_BUILDER_ABOVE < elems.size()) {
 				// Add next ListBuilder
-				sb.append("    ListBuilderFor" + addImportsTo.getName() + "_" + ((seq + 1) < 10 ? "0" : "")
+				sb.append("    ListBuilderFor" + mainSrcName.getCompilationUnit() + "_" + ((seq + 1) < 10 ? "0" : "")
 						+ (seq + 1) + ".addElems(list);\n");
 			}
 			sb.append("    return list;\n");
@@ -236,21 +236,7 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 		return firstBuilderName;
 	}
 
-	private class AttrValue {
-		public final String valueAsSource;
-		public final String valueAsJavaDoc;
-
-		AttrValue(String valueAsSource) {
-			this(valueAsSource, valueAsSource);
-		}
-
-		AttrValue(String valueAsSource, String valueAsJavaDoc) {
-			this.valueAsSource = valueAsSource;
-			this.valueAsJavaDoc = valueAsJavaDoc;
-		}
-	}
-
-	protected AttrValue convertAttributeValueToSource(JavaClassSource addImportsTo, Object value) {
+	protected AttrValue convertAttributeValueToSource(StructuredName mainSrcName, Object value) {
 		if (value == null)
 			return null;
 		if (value instanceof Optional<?>) {
@@ -260,42 +246,37 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 				return null;
 			}
 		}
+		
+		AttrValue attrValue = new AttrValue();
 		if (value instanceof List<?>) {
 			if (((List<?>) value).isEmpty())
 				return null;
-			addImportsTo.addImport(Arrays.class);
 			List<Object> elems = ((List<Object>) value);
-			String src;
-			String javaDoc;
 			if (elems.size() > USE_LIST_BUILDER_ABOVE) {
-				StructuredName firstListBuilder = createLongListBuilder(addImportsTo, elems);
-				addImportsTo.addImport(ArrayList.class);
-				src = "" + firstListBuilder.getSimpleName() + ".addElems( new " + ArrayList.class.getSimpleName()
+				StructuredName firstListBuilder = createLongListBuilder(mainSrcName, elems);
+				System.out.println( firstListBuilder.getFullName() + "");
+				attrValue.valueAsSource = "" + firstListBuilder.getSimpleName() + ".addElems( new " + ArrayList.class.getName()
 						+ "<>() )";
-				javaDoc = "List of " + elems.size() + " elements";
+				attrValue.valueAsJavaDoc = "List of " + elems.size() + " elements";
 			} else {
-				src = Arrays.class.getSimpleName() + ".asList( ";
-				List<AttrValue> elemValues = elems.stream().map(e -> convertAttributeValueToSource(addImportsTo, e))
+				attrValue.valueAsSource = Arrays.class.getName() + ".asList( ";
+				List<AttrValue> elemValues = elems.stream().map(e -> convertAttributeValueToSource(mainSrcName, e))
 						.filter(s -> s != null).collect(Collectors.toList());
-				src += elemValues.stream().map(av -> av.valueAsSource).collect(Collectors.joining(",\n"));
-				src += ")";
-				javaDoc = "<ul>\r\n";
-				javaDoc += elemValues.stream().map(av -> "<li>" + av.valueAsJavaDoc + "</li>")
+				attrValue.valueAsSource += elemValues.stream().map(av -> av.valueAsSource).collect(Collectors.joining(",\n"));
+				attrValue.valueAsSource += ")";
+				attrValue.valueAsJavaDoc = "<ul>\r\n";
+				attrValue.valueAsJavaDoc += elemValues.stream().map(av -> "<li>" + av.valueAsJavaDoc + "</li>")
 						.collect(Collectors.joining("\r\n"));
-				javaDoc += "</ul>\r\n";
+				attrValue.valueAsJavaDoc += "</ul>\r\n";
 			}
 
-			return new AttrValue(src, javaDoc);
-		}
-
-		if (value instanceof Number) {
-			return new AttrValue(value.toString());
-		} else if (value instanceof Boolean) {
-			return new AttrValue(value.toString());
+			
+		} else if (value instanceof Number || value instanceof Boolean ) {
+			attrValue.valueAsSource = value.toString();
+			attrValue.valueAsJavaDoc = attrValue.valueAsSource;
 		} else if (value instanceof Date) {
-			addImportsTo.addImport(Date.class);
-			return new AttrValue(" new Date(" + ((Date) value).getTime() + "L)",
-					DateFormat.getDateInstance(DateFormat.LONG).format((Date) value));
+			attrValue.valueAsSource = " new " + Date.class.getName() + "(" + ((Date) value).getTime() + "L)"; 
+			attrValue.valueAsJavaDoc = DateFormat.getDateInstance(DateFormat.LONG).format((Date) value); 
 		} else if (value instanceof CharSequence) {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < ((CharSequence) value).length(); i++) {
@@ -312,9 +293,8 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 					sb.append(ch);
 			}
 			// Replace <, >, & chars
-			String srcTxt = "\"" + sb.toString() + "\"";
-			String docTxt = srcTxt.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
-			return new AttrValue(srcTxt, docTxt);
+			attrValue.valueAsSource = "\"" + sb.toString() + "\"";
+			attrValue.valueAsJavaDoc = attrValue.valueAsSource.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
 		} else if (value instanceof GeneratedMetamodelBean) {
 			GeneratedMetamodelBean mmElem = (GeneratedMetamodelBean) value;
 			StructuredName javaName = getStructuredName(mmElem);
@@ -322,34 +302,33 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 				return null;
 			if (javaName.getMemberName() != null) {
 				// This is a variable member of a type
-				if (addImportsTo.getPackage().equals(javaName.getPackage())
-						&& addImportsTo.getName().equals(javaName.getCompilationUnit())) {
+				if ( mainSrcName.getPackage().equals(javaName.getPackage())
+						&& mainSrcName.getCompilationUnit().equals(javaName.getCompilationUnit())) {
 					// The variable declared in thes type
-					return new AttrValue(javaName.getMemberName(),
-							"{@linkplain #" + javaName.getMemberName() + "}");
+					attrValue.valueAsSource = javaName.getMemberName();
+					attrValue.valueAsJavaDoc = "{@linkplain #" + javaName.getMemberName() + "}";
 				} else {
 					// The variable declared in other type
 					// addImportsTo.addImport(javaName.getPackage() + "." +
 					// javaName.getCompilationUnit());
-					String srcValue = javaName.getPackage() + "." + javaName.getCompilationUnit() + "."
+					attrValue.valueAsSource = javaName.getPackage() + "." + javaName.getCompilationUnit() + "."
 							+ javaName.getMemberName();
-					String javaDocValue = "{@linkplain ";
-					javaDocValue += javaName.getPackage() + "." + javaName.getCompilationUnit() + "#" + javaName.getMemberName(); 
-					javaDocValue += " " + javaName.getCompilationUnit() + "." + javaName.getMemberName() + "}";
-					return new AttrValue(srcValue, javaDocValue);
+					attrValue.valueAsJavaDoc = "{@linkplain ";
+					attrValue.valueAsJavaDoc += javaName.getPackage() + "." + javaName.getCompilationUnit() + "#" + javaName.getMemberName(); 
+					attrValue.valueAsJavaDoc += " " + javaName.getCompilationUnit() + "." + javaName.getMemberName() + "}";
 				}
 			} else {
 				// This is a main class
-				// addImportsTo.addImport(javaName.getFullName());
-				String javaDocValue = "{@linkplain " + javaName.getFullName() + " " + javaName.getCompilationUnit()
+				attrValue.valueAsSource = javaName.getFullName() + ".mmObject()"; 
+				attrValue.valueAsJavaDoc = "{@linkplain " + javaName.getFullName() + " " + javaName.getCompilationUnit()
 						+ "}";
-				return new AttrValue(javaName.getFullName() + ".mmObject()", javaDocValue);
 			}
 		} else if (value instanceof Enum<?>) {
 			return null; // TODO
 		} else {
 			throw new RuntimeException("Unimplemented value type: " + value.getClass());
 		}
+		return attrValue;
 	}
 	
 }

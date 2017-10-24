@@ -289,11 +289,18 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		void initMembersClass() throws Exception {
-			Class<?> membersClass = Stream.of(beanClass.getDeclaredClasses())
-					.filter(c -> "Members".equals(c.getSimpleName())).findFirst().orElse(null);
-			if (membersClass == null)
+			Class<?> structClass;			
+			try {
+				String className = beanClass.getPackage().getName() + ".struct.";
+				className += beanClass.getSimpleName() + "_";
+				structClass = beanClass.getClassLoader().loadClass( className );
+			} catch( Exception e ) {
 				return;
-			for (Field f : membersClass.getDeclaredFields()) {
+			}
+			
+			if (structClass == null)
+				return;
+			for (Field f : structClass.getDeclaredFields()) {
 				if (f.isSynthetic())
 					continue;
 				Object wrapper = f.get(null);

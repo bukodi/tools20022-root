@@ -2,6 +2,7 @@ package com.tools20022.repogenerator;
 
 import java.io.IOException;
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
@@ -80,17 +82,19 @@ public class InspectLoadedRepository {
 
 	@Test
 	public void registrationStatus() throws Exception {
-		
-		Map<MMRegistrationStatus,List<MMRepositoryConcept>> byRegStatus = repo.listObjects(MMRepositoryConcept.class).collect(Collectors.groupingBy(rc->rc.getRegistrationStatus()));
-		
-		for ( Entry<MMRegistrationStatus, List<MMRepositoryConcept>> e : byRegStatus.entrySet()) {
-			System.out.println(  e.getKey() + " : " + e.getValue().size());			
+
+		Map<MMRegistrationStatus, List<MMRepositoryConcept>> byRegStatus = repo.listObjects(MMRepositoryConcept.class)
+				.collect(Collectors.groupingBy(rc -> rc.getRegistrationStatus()));
+
+		for (Entry<MMRegistrationStatus, List<MMRepositoryConcept>> e : byRegStatus.entrySet()) {
+			System.out.println(e.getKey() + " : " + e.getValue().size());
 		}
 
 		Date epoch = new Date(0L);
-		Map<Date,List<MMRepositoryConcept>> byRemovalDate = repo.listObjects(MMRepositoryConcept.class).collect(Collectors.groupingBy(rc->rc.getRemovalDate().orElse(epoch)));
-		for ( Entry<Date, List<MMRepositoryConcept>> e : byRemovalDate.entrySet()) {
-			System.out.println(  e.getKey() + " : " + e.getValue().size());			
+		Map<Date, List<MMRepositoryConcept>> byRemovalDate = repo.listObjects(MMRepositoryConcept.class)
+				.collect(Collectors.groupingBy(rc -> rc.getRemovalDate().orElse(epoch)));
+		for (Entry<Date, List<MMRepositoryConcept>> e : byRemovalDate.entrySet()) {
+			System.out.println(e.getKey() + " : " + e.getValue().size());
 		}
 
 	}
@@ -153,14 +157,17 @@ public class InspectLoadedRepository {
 				otherSysnonyms.add(mmSM);
 			}
 		}
-		
-		System.out.println( "--- SemanticMarkups where the type='Synonym' ---");
-		System.out.println( "Most of the SemanticMarkups are syonyms ( " + markupsByType.get("Synonym").size() + " instances)");
-		System.out.println( "From that " +  sysnonymsWithoutElements.size() +" hasn't any element. (Propably these are bugs)");
-		System.out.println( "The rest of the synonym markups has two elements with key names [context,value] or [name,context].");
-		System.out.println( "Number of synonym markups grouped by context value:");
+
+		System.out.println("--- SemanticMarkups where the type='Synonym' ---");
+		System.out.println(
+				"Most of the SemanticMarkups are syonyms ( " + markupsByType.get("Synonym").size() + " instances)");
+		System.out.println(
+				"From that " + sysnonymsWithoutElements.size() + " hasn't any element. (Propably these are bugs)");
+		System.out.println(
+				"The rest of the synonym markups has two elements with key names [context,value] or [name,context].");
+		System.out.println("Number of synonym markups grouped by context value:");
 		for (Map.Entry<String, Set<MMSemanticMarkup>> e : sysnonymsByContext.entrySet()) {
-			System.out.println( " - context= '" + e.getKey() + "' : " + e.getValue().size());
+			System.out.println(" - context= '" + e.getKey() + "' : " + e.getValue().size());
 		}
 		System.out.println();
 		for (MMSemanticMarkup mmSM : otherSysnonyms) {
@@ -172,18 +179,18 @@ public class InspectLoadedRepository {
 			}
 			System.out.println("Execept this: " + line);
 		}
-		
-		System.out.println( "--- Non synonym SemanticMarkups ---");
-		System.out.println( "List of SemanticMarkups grouped by type (where type<>'Synonym')");
-		for( Map.Entry<String, Set<MMSemanticMarkup>> e : markupsByType.entrySet() ) {
-			if( "Synonym".equals(e.getKey()) )
+
+		System.out.println("--- Non synonym SemanticMarkups ---");
+		System.out.println("List of SemanticMarkups grouped by type (where type<>'Synonym')");
+		for (Map.Entry<String, Set<MMSemanticMarkup>> e : markupsByType.entrySet()) {
+			if ("Synonym".equals(e.getKey()))
 				continue;
-			System.out.println("type=" + e.getKey() + "" );
-			if( "SampleData".equals(e.getKey()) ) {
+			System.out.println("type=" + e.getKey() + "");
+			if ("SampleData".equals(e.getKey())) {
 				System.out.println("  - " + e.getValue().size() + " instances, but they are useless.");
 				continue;
 			}
-			for( MMSemanticMarkup mmSM : e.getValue() ) {
+			for (MMSemanticMarkup mmSM : e.getValue()) {
 				String line = "[" + mmSM.getContainer().getClass().getSimpleName() + "]" + mmSM.getContainer().getName()
 						+ " :";
 				for (MMSemanticMarkupElement mmSME : mmSM.getElements()) {
@@ -194,8 +201,84 @@ public class InspectLoadedRepository {
 			}
 		}
 		System.out.println();
-		System.out.println( "No SemanticMarkups where the 'type' is empty. (But the SemanticMarkups.type defined as optional in eCore model)");
+		System.out.println(
+				"No SemanticMarkups where the 'type' is empty. (But the SemanticMarkups.type defined as optional in eCore model)");
 
+	}
+
+	@Test
+	public void codeSets() throws Exception {
+
+		Map<Integer, List<MMCodeSet>> csByCodesetSize = new HashMap<>();
+
+		for (MMCodeSet mmCS : repo.listObjects(MMCodeSet.class).collect(Collectors.toList())) {
+			csByCodesetSize.computeIfAbsent(mmCS.getCode().size(), x -> new ArrayList<>()).add(mmCS);
+		}
+
+		csByCodesetSize.entrySet().stream().forEachOrdered(e -> {
+			System.out.println(e.getKey() + " : " + e.getValue().size());
+		});
+
+		csByCodesetSize.get(1).stream().forEachOrdered(cs -> {
+			System.out.print(cs.getName() + ", " + cs.getPattern().orElse("-") + ", " + cs.getIdentificationScheme().orElse("-") );
+			System.out.print(  ", " + (cs.getTrace().isPresent() ? cs.getTrace().get().getName() : "-"));
+			System.out.println(  ", " + (cs.getDerivation().size()));
+		});
+
+	}
+
+	@Test
+	public void doclets() throws Exception {
+		Map<String, Set<MMDoclet>> docletsByType = new LinkedHashMap<>();
+		for (MMDoclet mmD : repo.listObjects(MMDoclet.class).collect(Collectors.toList())) {
+			docletsByType.computeIfAbsent(mmD.getType().orElse("-noType-"), x->new LinkedHashSet<>()).add(mmD);
+		}
+		
+		docletsByType.entrySet().stream().forEachOrdered(e -> {
+			System.out.println(e.getKey() + " : " + e.getValue().size());
+		});
+		System.out.println();
+		docletsByType.entrySet().stream().forEachOrdered(e -> {
+			System.out.println("---" + e.getKey() + " ---" );
+			e.getValue().forEach(mmD->{
+				System.out.println( mmD.getContent().orElse("-noContent-"));
+			});
+		});
+
+	
+	}
+
+	@Test
+	// @Ignore
+	public void entityInheritance() throws Exception {		
+		List<MMBusinessComponent> topLevelEntities = new ArrayList<>();
+		Map<MMBusinessComponent, List<MMBusinessComponent>> subTypesByParent = new LinkedHashMap<>();
+		
+		for (MMBusinessComponent mmBC : repo.listObjects(MMBusinessComponent.class).collect(Collectors.toList())) {
+			if( mmBC.getSuperType().isPresent() ) {
+				subTypesByParent.computeIfAbsent(mmBC.getSuperType().get(), x->new ArrayList<>()).add(mmBC); 
+			} else {
+				topLevelEntities.add(mmBC);
+			}
+		}
+		
+		System.out.println( "-- no super or sub type ---");
+		topLevelEntities.stream().filter(x->(!subTypesByParent.containsKey(x))).forEach(y->{
+			System.out.println(y.getName());
+		});
+		System.out.println();
+		System.out.println( "-- Hierarchy ---");
+		topLevelEntities.stream().filter(x->(subTypesByParent.containsKey(x))).forEach(y->{
+			printWithSubtypes(y, "", subTypesByParent);
+		});
+		
+	}
+	
+	private void printWithSubtypes(MMBusinessComponent mmBC, String tab,  Map<MMBusinessComponent, List<MMBusinessComponent>> subTypesByParent) {
+		System.out.println(tab + mmBC.getName() + "( " + mmBC.getElement().size() + ")");
+		mmBC.getSubType().forEach(x->{
+			printWithSubtypes(x, tab + "  ", subTypesByParent);
+		});
 	}
 
 	@Test
@@ -369,4 +452,5 @@ public class InspectLoadedRepository {
 		/*** Count entities with single area code ***/
 		return (int) entitiesByAreaCodes.entrySet().stream().filter(e -> e.getValue().size() == 1).count();
 	}
+
 }

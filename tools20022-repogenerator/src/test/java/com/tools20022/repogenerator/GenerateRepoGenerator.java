@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringJoiner;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import org.jboss.forge.roaster.Roaster;
@@ -21,6 +22,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMBusinessProcess;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
@@ -127,7 +129,7 @@ public class GenerateRepoGenerator {
 			method.addParameter(getResultType(mmContainerType), "containerGen");			
 		}
 		method.addParameter(mmType.getBeanClass(), "mmBean");
-
+		
 		StringBuilder bodySb = new StringBuilder();
 		/*** Create generationResult ***/
 
@@ -146,7 +148,7 @@ public class GenerateRepoGenerator {
 		bodySb.append("\n");
 
 		/*** Call implementXXX ***/
-		for (MetamodelType<?> st : mmType.getSuperTypes(false, false)) {
+		for (MetamodelType<?> st : mmType.getSuperTypes(false, true)) {
 			if (!st.isAbstract()) {
 				System.err.println("Unsupported case. This type:" + mmType.getName() + " superType: " + st.getName());
 				continue;
@@ -182,13 +184,7 @@ public class GenerateRepoGenerator {
 				continue;
 			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
 			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";
-			if (attr.isMultiple()) {
-				bodySb.append("defaultMultivalueAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
-			} else if (attr.isOptional()) {
-				bodySb.append("defaultOptionalAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
-			} else {
-				bodySb.append("defaultMandatoryAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
-			}
+			bodySb.append("defaultAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 		}
 
 		bodySb.append("gen.flush();");
@@ -209,12 +205,6 @@ public class GenerateRepoGenerator {
 		method.addParameter(mmType.getBeanClass(), "mmBean");
 
 		StringBuilder bodySb = new StringBuilder();
-
-		for (MetamodelType<?> st : mmType.getSuperTypes(false, false)) {
-			if (!st.isAbstract())
-				throw new RuntimeException("Unsupported case");
-			bodySb.append("implement" + st.getBeanClass().getSimpleName() + "( gen, mmBean );\n");
-		}
 		
 		/*** Create contained types ***/
 		for( MetamodelAttribute<?, ?> attr : mmType.listDeclaredAttributes().filter(a->a.isContainment()).collect(Collectors.toList()) ) {
@@ -242,13 +232,7 @@ public class GenerateRepoGenerator {
 				continue;
 			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
 			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";
-			if (attr.isMultiple()) {
-				bodySb.append("defaultMultivalueAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
-			} else if (attr.isOptional()) {
-				bodySb.append("defaultOptionalAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
-			} else {
-				bodySb.append("defaultMandatoryAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
-			}
+			bodySb.append("defaultAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 		}
 
 		method.setBody(bodySb.toString());
@@ -260,6 +244,8 @@ public class GenerateRepoGenerator {
 	}
 
 	final static Set<MetamodelType<?>> SUBTYPES = new HashSet<>( Arrays.asList(MMXor.metaType(), MMMessageBuildingBlock.metaType(), 
+			MMBusinessRole.metaType(), 
+			MMCode.metaType(), 
 			MMBusinessAssociationEnd.metaType(), 
 			MMMessageDefinitionIdentifier.metaType(), 
 			MMMessageAssociationEnd.metaType(), 
@@ -276,10 +262,10 @@ public class GenerateRepoGenerator {
 	protected Class<? extends GenerationResult> getResultType( MetamodelType<?> mmtype ) {
 		if( SUBTYPES.contains(mmtype) )
 			return SubTypeResult.class;
-		else if( MMCodeSet.metaType().equals(mmtype) || MMBusinessProcess.metaType().equals(mmtype))
-			return EnumTypeResult.class;
-		else if( MMCode.metaType().equals(mmtype) || MMBusinessRole.metaType().equals(mmtype))
-			return EnumConstantResult.class;
+//		else if( MMCodeSet.metaType().equals(mmtype) || MMBusinessProcess.metaType().equals(mmtype))
+//			return EnumTypeResult.class;
+//		else if( MMCode.metaType().equals(mmtype) || MMBusinessRole.metaType().equals(mmtype))
+//			return EnumConstantResult.class;
 		else
 			return MainTypeResult.class;
 	}
