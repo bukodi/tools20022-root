@@ -39,10 +39,7 @@ public class TestExperimentalGenerator {
 
 	@Test
 	public void generateRepoSrc() throws Exception {
-		Path srcRoot = Paths.get("../tools20022-testrepo/src/main/java/").toRealPath();
-		if (Files.notExists(srcRoot)) {
-			throw new FileNotFoundException(srcRoot.toFile().getAbsolutePath().toString());
-		}
+		Path mvnProjectRoot = Paths.get("../tools20022-testrepo/").toRealPath();
 
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
 		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-area-pain.iso20022");
@@ -55,7 +52,7 @@ public class TestExperimentalGenerator {
 		RawRepository repo = loader.load(ecorePkg, xmiRootObj);
 
 		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
-		genCtx.setFileManagerRoot(srcRoot);
+		genCtx.setMavenProjectRoot(mvnProjectRoot);
 		genCtx.dontChangeIfExists(p -> false);
 
 		start = System.currentTimeMillis();

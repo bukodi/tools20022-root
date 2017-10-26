@@ -22,6 +22,7 @@ import com.tools20022.repogenerator.XMILoader;
 public class TestGeneratedGenerator {
 
 	static long usedMem, start;
+	
 
 	@BeforeClass
 	public static void setup() {
@@ -39,11 +40,8 @@ public class TestGeneratedGenerator {
 
 	@Test
 	public void generateRepoSrc() throws Exception {
-		Path srcRoot = Paths.get("../tools20022-testrepo/src/main/java/").toRealPath();
+		Path mvnProjectRoot = Paths.get("../tools20022-testrepo/").toRealPath();
 		//Path srcRoot = Paths.get("/tmp/1019/").toRealPath();
-		if (Files.notExists(srcRoot)) {
-			throw new FileNotFoundException(srcRoot.toFile().getAbsolutePath().toString());
-		}
 
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
 		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-area-pain.iso20022");
@@ -56,8 +54,9 @@ public class TestGeneratedGenerator {
 		RawRepository repo = loader.load(ecorePkg, xmiRootObj);
 
 		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
-		genCtx.setFileManagerRoot(srcRoot);
+		genCtx.setMavenProjectRoot(mvnProjectRoot);
 		genCtx.dontChangeIfExists(p -> false);
+		genCtx.setLicenceHeaderGPLv3();
 
 		start = System.currentTimeMillis();
 		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");

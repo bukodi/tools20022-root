@@ -15,15 +15,14 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.NestingKind;
+import javax.tools.DocumentationTool;
 import javax.tools.FileObject;
 import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
@@ -38,12 +37,27 @@ import javax.tools.StandardLocation;
  */
 public class GeneratorFileManager implements JavaFileManager {
 
-	private Map<Location, Path> rootPaths = new HashMap<>();
+	//private Map<Location, Path> rootPaths = new HashMap<>();
+	private Path mavenProjectRoot;
 	private Predicate<Path> dontChangeIfExists;
 
-	public GeneratorFileManager(Path srcRoot, Predicate<Path> dontChangeIfExists) {
-		rootPaths.put(StandardLocation.SOURCE_OUTPUT, srcRoot);
+	public GeneratorFileManager(Path mavenProjectRoot, Predicate<Path> dontChangeIfExists) {
+		this.mavenProjectRoot = mavenProjectRoot;
 		this.dontChangeIfExists = dontChangeIfExists;
+	}
+	
+	protected Path getLocationRoot( Location location ) {
+		if( StandardLocation.SOURCE_OUTPUT.equals( location)) {
+			return mavenProjectRoot.resolve("src/main/java");
+		} else if ( StandardLocation.SOURCE_OUTPUT.equals(location) ) {
+			return mavenProjectRoot.resolve("src/main/resources");
+		} else if ( StandardLocation.CLASS_OUTPUT.equals(location) ) {
+			return mavenProjectRoot.resolve("target/classes");
+		} else if ( DocumentationTool.Location.DOCUMENTATION_OUTPUT.equals(location) ) {
+			return mavenProjectRoot.resolve("src/main/javadoc");
+		} else { 
+			throw new IllegalArgumentException("Unsupported location : " + location );
+		}
 	}
 
 	public void dontChangeIfExists( Predicate<Path> predicate) {
@@ -51,7 +65,7 @@ public class GeneratorFileManager implements JavaFileManager {
 	}
 	
 	public void cleanOutputFolder() {
-		Path srcOutputPath = rootPaths.get(StandardLocation.SOURCE_OUTPUT);
+		Path srcOutputPath = getLocationRoot(StandardLocation.SOURCE_OUTPUT);
 		try {
 			FileIOHelper.deleteAllExcept(srcOutputPath, dontChangeIfExists);
 		} catch (IOException e) {
@@ -72,8 +86,9 @@ public class GeneratorFileManager implements JavaFileManager {
 	@Override
 	public Iterable<JavaFileObject> list(Location location, String packageName, Set<Kind> kinds, boolean recurse)
 			throws IOException {
+		
 		return () -> {
-			Path startPath = rootPaths.get(location).resolve(packageName.replace('.', '/'));
+			Path startPath = getLocationRoot(location).resolve(packageName.replace('.', '/'));
 			Stream<Path> filePathStream = listFiles(startPath, recurse);
 			Stream<JavaFileObject> jfoStream = filePathStream.map(p -> new GeneratorJavaFileObject(location, p));
 			// TODO: filter by kinds
@@ -118,7 +133,12 @@ public class GeneratorFileManager implements JavaFileManager {
 
 	@Override
 	public boolean hasLocation(Location location) {
-		return rootPaths.containsKey(location);
+		try {
+			getLocationRoot(location);
+			return true;
+		} catch ( IllegalArgumentException iae ) {
+			return false;
+		}
 	}
 
 	@Override
@@ -126,12 +146,12 @@ public class GeneratorFileManager implements JavaFileManager {
 		String ext;
 		if (Kind.SOURCE.equals(kind)) {
 			ext = ".java";
-		} else if (Kind.CLASS.equals(kind)) {
-			ext = ".class";
+//		} else if (Kind.CLASS.equals(kind)) {
+//			ext = ".class";
 		} else {
 			throw new IllegalArgumentException("Invalid kind: " + kind);
 		}
-		Path path = rootPaths.get(location).resolve(className.replace('.', '/') + ext);
+		Path path = getLocationRoot(location).resolve(className.replace('.', '/') + ext);
 		return new GeneratorJavaFileObject(location, path);
 	}
 
@@ -141,12 +161,12 @@ public class GeneratorFileManager implements JavaFileManager {
 		String ext;
 		if (Kind.SOURCE.equals(kind)) {
 			ext = ".java";
-		} else if (Kind.CLASS.equals(kind)) {
-			ext = ".class";
+//		} else if (Kind.CLASS.equals(kind)) {
+//			ext = ".class";
 		} else {
 			throw new IllegalArgumentException("Invalid kind: " + kind);
 		}
-		Path path = rootPaths.get(location).resolve(className.replace('.', '/') + ext);
+		Path path = getLocationRoot(location).resolve(className.replace('.', '/') + ext);
 		return new GeneratorJavaFileObject(location, path);
 	}
 

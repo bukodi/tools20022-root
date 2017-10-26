@@ -18,7 +18,8 @@ public class TestMMCodeGen {
 		
 		// Create generation context
 		GenerationContext<RawMetamodel> genCtx = new GenerationContext<>(RawMetamodel.class);
-		genCtx.setFileManagerRoot(Paths.get("../tools20022-metamodel/src/main/java"));
+		genCtx.setLicenceHeaderGPLv3();
+		genCtx.setMavenProjectRoot(Paths.get("../tools20022-metamodel/"));
 
 		// Execute generation
 		genCtx.generate(metamodel, new DefaultMetamodelGenerator());

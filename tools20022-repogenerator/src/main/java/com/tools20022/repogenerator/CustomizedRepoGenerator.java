@@ -24,6 +24,8 @@ import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMCode;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponentType;
@@ -34,6 +36,7 @@ import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.metamodel.struct.MMBusinessAttribute_;
 import com.tools20022.metamodel.struct.MMBusinessComponent_;
+import com.tools20022.metamodel.struct.MMCodeSet_;
 import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
 import com.tools20022.metamodel.struct.MMRepositoryConcept_;
 import com.tools20022.metamodel.struct.MMRepository_;
@@ -98,7 +101,51 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		return mtr;
 	}
 	
+
 	
+
+	@Override
+	protected MainTypeResult generateMMCodeSet(SubTypeResult containerGen, MMCodeSet mmBean) {
+		MainTypeResult gen = defaultMainType(mmBean);
+		gen.mmObjectMethod.setFinal(false);
+		mmBean.getTrace().ifPresent(mmST->{
+				StructuredName stName = getStructuredName(mmST);
+				gen.src.setSuperType( stName.getFullName());
+				collectDontModifyImports(mmBean, gen.dontModifyImports);
+		});		
+
+		implementMMDataType(gen, mmBean);
+		implementMMTopLevelDictionaryEntry(gen, mmBean);
+		implementMMRepositoryConcept(gen, mmBean);
+		implementMMModelEntity(gen, mmBean);
+		implementMMBusinessElementType(gen, mmBean);
+		implementMMRepositoryType(gen, mmBean);
+		implementMMLogicalType(gen, mmBean);
+		for (MMCode mmChild : mmBean.getCode()) {
+			generateMMCode(gen, mmChild);
+		}
+		defaultAttribute(gen, MMCodeSet_.code, mmBean.getCode());
+		defaultAttribute(gen, MMCodeSet_.trace, mmBean.getTrace());
+		defaultAttribute(gen, MMCodeSet_.derivation, mmBean.getDerivation());
+		defaultAttribute(gen, MMCodeSet_.identificationScheme,
+				mmBean.getIdentificationScheme());
+		gen.flush();
+		return gen;
+	}
+
+	private void collectDontModifyImports( MMCodeSet mmBean, List<String> dontModifyImports ) {
+		List<MMCode> mmFields = mmBean.getCode();
+		for( MMCode mmField : mmFields) {
+			StructuredName fieldName = getStructuredName(mmField);
+			if( fieldName == null || fieldName.getMemberName() == null)
+				continue;
+			dontModifyImports.add("*." + fieldName.getMemberName() );
+		}
+		mmBean.getTrace().ifPresent(mmST->{
+			collectDontModifyImports(mmST, dontModifyImports);
+		});
+	}
+
 
 	@Override
 	protected MainTypeResult generateMMBusinessComponent(SubTypeResult containerGen, MMBusinessComponent mmBean) {

@@ -15,10 +15,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 public class GenerateRepositoryArtifact {
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		Path srcRoot = Paths.get("../tools20022-repository/src/main/java/");
-		if( Files.notExists(srcRoot) ) {
-			throw new FileNotFoundException(srcRoot.toFile().getAbsolutePath().toString());
-		}
+		Path mvnProjectRoot = Paths.get("../tools20022-repository/");
 
 		long usedMem, start;
 		usedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
@@ -33,7 +30,7 @@ public class GenerateRepositoryArtifact {
 		}
 		
 		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
-		genCtx.setFileManagerRoot(srcRoot);
+		genCtx.setMavenProjectRoot(mvnProjectRoot);
 		genCtx.generate( repo, new ExperimentalGenerator() );
 
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();

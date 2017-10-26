@@ -1,15 +1,13 @@
 package com.tools20022.generators;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -40,11 +38,12 @@ public class GenerationContext<M> {
 	Map<String,JavaSource<?>> unsavedSources = new LinkedHashMap<>();
 	private GeneratorFileManager fileManager;
 	private Properties formatterOptions;
+	private String licenceHeader;
 
 	protected int totalNumberOfMainTypesToGenerate;
 	protected int countOfGeneratedMainTypes;
 	protected long generationStarted = System.currentTimeMillis();
-	private boolean firstGeneratedFile = false;
+	private boolean firstGeneratedFile = false;	
 
 	public GenerationContext(Class<M> modelType) {
 	}
@@ -74,6 +73,16 @@ public class GenerationContext<M> {
 			throw new IllegalStateException("formatterOptions already set");
 		this.formatterOptions = formatterOptions;
 	}
+	
+	
+
+	public void setLicenceHeader(String licenceHeader) {
+		this.licenceHeader = licenceHeader;
+	}
+
+	public void setLicenceHeaderGPLv3() {
+		this.licenceHeader = licenceHeaderGPLv3;
+	}
 
 	public void dontChangeIfExists(Predicate<Path> filter) {
 		getFileManager().dontChangeIfExists(filter);
@@ -83,8 +92,8 @@ public class GenerationContext<M> {
 		if (fileManager == null) {
 			try {
 				// TODO: use jimfs instead of tmp dir
-				Path srcRoot = Files.createTempDirectory("generatedSourceRoot");
-				setFileManagerRoot(srcRoot);
+				Path mvnProjectRoot = Files.createTempDirectory("generatedMavenProject");
+				setMavenProjectRoot(mvnProjectRoot);
 			} catch (IOException e) {
 				throw new UncheckedIOException(e);
 			}
@@ -98,8 +107,11 @@ public class GenerationContext<M> {
 		this.fileManager = fileManager;
 	}
 
-	public void setFileManagerRoot(Path srcRoot) {
-		GeneratorFileManager fm = new GeneratorFileManager(srcRoot, x -> false);
+	public void setMavenProjectRoot(Path mvnProjectRoot) {
+		if (Files.notExists(mvnProjectRoot)) {
+			throw new UncheckedIOException( new FileNotFoundException(mvnProjectRoot.toFile().getAbsolutePath().toString()));
+		}
+		GeneratorFileManager fm = new GeneratorFileManager(mvnProjectRoot, x -> false);
 		setFileManager(fm);
 	}
 
@@ -154,6 +166,8 @@ public class GenerationContext<M> {
 				CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal(), dontModifyImports);
 				
 				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
+				if( licenceHeader != null )
+					w.append(licenceHeader);
 				w.append(srcAsFormattedString);
 //				w.append(src.toUnformattedString());
 			}
@@ -218,5 +232,22 @@ public class GenerationContext<M> {
 
 		return documentLocal.get();
 	}
+
+	private static String licenceHeaderGPLv3 = "/* Tools20022 - API for ISO 20022\n" + 
+			"* Copyright (C) 2017 Tools20022.com - László Bukodi \n" + 
+			"* \n" + 
+			"* This program is free software: you can redistribute it and/or modify\n" + 
+			"* it under the terms of the GNU General Public License as published by\n" + 
+			"* the Free Software Foundation, either version 3 of the License, or\n" + 
+			"* (at your option) any later version.\n" + 
+			"* \n" + 
+			"* This program is distributed in the hope that it will be useful,\n" + 
+			"* but WITHOUT ANY WARRANTY; without even the implied warranty of\n" + 
+			"* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" + 
+			"* GNU General Public License for more details.\n" + 
+			"* \n" + 
+			"* You should have received a copy of the GNU General Public License\n" + 
+			"* along with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+			+ "*/\n\n"; 
 
 }

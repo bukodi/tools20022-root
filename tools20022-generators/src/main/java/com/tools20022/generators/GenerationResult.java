@@ -24,5 +24,6 @@ public abstract class GenerationResult {
 	public void addMMAttributeInit( String attrInitExpression ) {
 		mmObjectInitBlock.add(attrInitExpression);
 	}
-	
+
+
 }
