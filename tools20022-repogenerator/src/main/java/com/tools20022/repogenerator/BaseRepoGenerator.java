@@ -22,36 +22,15 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.metamodel.MMBusinessArea;
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
-import com.tools20022.metamodel.MMBusinessAttribute;
-import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMBusinessProcessCatalogue;
-import com.tools20022.metamodel.MMBusinessRole;
-import com.tools20022.metamodel.MMChoiceComponent;
-import com.tools20022.metamodel.MMCode;
-import com.tools20022.metamodel.MMCodeSet;
-import com.tools20022.metamodel.MMDataDictionary;
-import com.tools20022.metamodel.MMDataType;
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import com.tools20022.metamodel.MMMessageAttribute;
-import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMMessageComponent;
-import com.tools20022.metamodel.MMMessageDefinition;
-import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
-import com.tools20022.metamodel.MMMessageSet;
-import com.tools20022.metamodel.MMRepository;
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
-import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
-import com.tools20022.metamodel.MMXor;
+import com.tools20022.metamodel.*;
+import com.tools20022.repogenerator.resulttypes.AttrResult;
 import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.SubTypeResult;
+import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, GenerationContext<RawRepository>> {
 
@@ -160,7 +139,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		return StructuredName.primaryType(pkg, cuName);
 	}
 
-	protected GenerationResult defaultAttribute(GenerationResult gen,
+	protected AttrResult defaultAttribute(TypeResult gen,
 			MetamodelAttribute<?, ?> mmAttr, Object value) {
 		if( value == null )
 			return null;
@@ -186,29 +165,30 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		if( attrValue == null )
 			return null;
 		
+		AttrResult attrGen = gen.createAttrResult(mmAttr);
 		if( mmAttr.getReferencedType() != null ) {			
 			gen.addMMAttributeInit(mmAttr.getName() + "_lazy = () -> " + attrValue.valueAsSource + ";");			
 		} else {
 			gen.addMMAttributeInit(mmAttr.getName() + " = " + attrValue.valueAsSource + ";");			
 		}
 		
-		return null;			
+		return attrGen;			
 	}
 
-	protected <T> AttrValue basicValueAsString( GenerationResult gen, Object value ) {		
+	protected <T> AttrValue basicValueAsString( TypeResult containerGen, Object attrValue ) {		
 		AttrValue ret = new AttrValue();
 
-		if (value instanceof Number || value instanceof Boolean ) {
-			ret.valueAsSource = value.toString();
-			ret.valueAsSource = value.toString();
-		} else if( value instanceof Date ) {
-			String dateAsString = DateFormat.getDateInstance(DateFormat.LONG).format((Date) value);
+		if (attrValue instanceof Number || attrValue instanceof Boolean ) {
+			ret.valueAsSource = attrValue.toString();
+			ret.valueAsSource = attrValue.toString();
+		} else if( attrValue instanceof Date ) {
+			String dateAsString = DateFormat.getDateInstance(DateFormat.LONG).format((Date) attrValue);
 			ret.valueAsSource = DateFormat.class.getName() + ".getDateInstance(" +DateFormat.class.getName() + ".LONG).parse(\"" + dateAsString + "\")";
 			ret.valueAsJavaDoc = dateAsString; 
-		} else if( value instanceof CharSequence ) {
+		} else if( attrValue instanceof CharSequence ) {
 			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < ((CharSequence) value).length(); i++) {
-				char ch = ((CharSequence) value).charAt(i);
+			for (int i = 0; i < ((CharSequence) attrValue).length(); i++) {
+				char ch = ((CharSequence) attrValue).charAt(i);
 				if (ch == '"' || ch == '\\')
 					sb.append('\\').append(ch);
 				else if (ch == '\n')
@@ -223,22 +203,22 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			ret.valueAsSource = "\"" + sb.toString() + "\"";
 			// Replace <, >, & chars
 			ret.valueAsJavaDoc = ret.valueAsSource.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
-		} else if( value instanceof Enum ) {
-			ret.valueAsSource = value.getClass().getName() + "." + value.toString();
-			ret.valueAsJavaDoc = value.getClass().getName() + "." + value.toString();
-		} else if( value instanceof GeneratedMetamodelBean ) {
-			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean)value;			
+		} else if( attrValue instanceof Enum ) {
+			ret.valueAsSource = attrValue.getClass().getName() + "." + attrValue.toString();
+			ret.valueAsJavaDoc = attrValue.getClass().getName() + "." + attrValue.toString();
+		} else if( attrValue instanceof GeneratedMetamodelBean ) {
+			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean)attrValue;			
 			StructuredName refName = getStructuredName(refmmBean);
 			if( refName.isCompilationUnit() ) {
 				ret.valueAsSource = refName.getFullName() + ".mmObject()";
 				ret.valueAsJavaDoc = "{@linkplain " + refName.getFullName() + " " + refName.getCompilationUnit()
 				+ "}";				
-			} else if ( refName.isMember() && ! (gen instanceof EnumTypeResult) ) {
+			} else if ( refName.isMember() && ! (containerGen instanceof EnumTypeResult) ) {
 				ret.valueAsSource = refName.getFullName();
 				ret.valueAsJavaDoc = 	 "{@linkplain ";
 				ret.valueAsJavaDoc  += refName.getPackage() + "." + refName.getCompilationUnit() + "#" + refName.getMemberName(); 
 				ret.valueAsJavaDoc  += " " + refName.getCompilationUnit() + "." + refName.getMemberName() + "}";
-			} else if ( refName.isMember() && gen instanceof EnumTypeResult) {
+			} else if ( refName.isMember() && containerGen instanceof EnumTypeResult) {
 				ret.valueAsSource = refName.getFullName() + ".mmEnumConstant()";
 				ret.valueAsJavaDoc = 	 "{@linkplain ";
 				ret.valueAsJavaDoc  += refName.getPackage() + "." + refName.getCompilationUnit() + "#" + refName.getMemberName(); 
@@ -246,22 +226,22 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			} else {
 				throw new IllegalArgumentException("Invalid refName: " + refName);				
 			}
-		} else if( value instanceof List && ((List<?>)value).size() <= USE_LIST_BUILDER_ABOVE ) {
+		} else if( attrValue instanceof List && ((List<?>)attrValue).size() <= USE_LIST_BUILDER_ABOVE ) {
 			StringJoiner srcJoin = new StringJoiner(",\n",   Arrays.class.getName() + ".asList(", ")");
 			StringJoiner docJoin = new StringJoiner(",\n",   Arrays.class.getName() + ".asList(", ")");
-			for( Object elem : (List<?>)value ) {
-				AttrValue elemRet = basicValueAsString(gen, elem);
+			for( Object elem : (List<?>)attrValue ) {
+				AttrValue elemRet = basicValueAsString(containerGen, elem);
 				srcJoin.add(elemRet.valueAsSource);		
 				docJoin.add(elemRet.valueAsJavaDoc);
 			}
 			ret.valueAsSource = srcJoin.toString();
 			ret.valueAsJavaDoc = docJoin.toString();
-		} else if( value instanceof List && ((List<?>)value).size() > USE_LIST_BUILDER_ABOVE ) {
-			StructuredName listBuilderName = createLongListBuilder(gen, (List<?>)value);
+		} else if( attrValue instanceof List && ((List<?>)attrValue).size() > USE_LIST_BUILDER_ABOVE ) {
+			StructuredName listBuilderName = createLongListBuilder(containerGen, (List<?>)attrValue);
 			ret.valueAsSource = listBuilderName.getFullName() + ".addElems(new " + ArrayList.class.getName() + "<>())";
-			ret.valueAsJavaDoc = "List of " + ((List<?>)value).size() + " elements";
+			ret.valueAsJavaDoc = "List of " + ((List<?>)attrValue).size() + " elements";
 		} else {
-			throw new IllegalArgumentException("Unsupported value type: " + value.getClass());
+			throw new IllegalArgumentException("Unsupported value type: " + attrValue.getClass());
 		}
 		
 		return ret;
@@ -378,7 +358,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 
 	int USE_LIST_BUILDER_ABOVE = 500;
 
-	protected StructuredName createLongListBuilder(GenerationResult gen, List<?> elems) {
+	protected StructuredName createLongListBuilder(TypeResult gen, List<?> elems) {
 		
 		StructuredName firstBuilderName = null;
 

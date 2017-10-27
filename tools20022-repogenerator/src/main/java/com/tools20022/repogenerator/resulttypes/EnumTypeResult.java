@@ -8,7 +8,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
 
-public class EnumTypeResult extends GenerationResult {
+public class EnumTypeResult extends TypeResult {
 
 	public JavaEnumSource src;
 	public MethodSource<JavaEnumSource> mmObjectMethod;

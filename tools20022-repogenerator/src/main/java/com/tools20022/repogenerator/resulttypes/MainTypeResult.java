@@ -11,7 +11,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
 
-public class MainTypeResult extends GenerationResult {
+public class MainTypeResult extends TypeResult {
 
 	public JavaClassSource src;
 	public MethodSource<JavaClassSource> mmObjectMethod;

@@ -19,21 +19,7 @@ import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.metamodel.MMBusinessArea;
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
-import com.tools20022.metamodel.MMBusinessAttribute;
-import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMBusinessElement;
-import com.tools20022.metamodel.MMCode;
-import com.tools20022.metamodel.MMCodeSet;
-import com.tools20022.metamodel.MMDataType;
-import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMMessageComponentType;
-import com.tools20022.metamodel.MMMessageDefinition;
-import com.tools20022.metamodel.MMModelEntity;
-import com.tools20022.metamodel.MMRepository;
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.metamodel.*;
 import com.tools20022.metamodel.struct.MMBusinessAttribute_;
 import com.tools20022.metamodel.struct.MMBusinessComponent_;
 import com.tools20022.metamodel.struct.MMCodeSet_;
@@ -42,6 +28,7 @@ import com.tools20022.metamodel.struct.MMRepositoryConcept_;
 import com.tools20022.metamodel.struct.MMRepository_;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.SubTypeResult;
+import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 
@@ -194,7 +181,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 
 	@Override
-	protected void implementMMRepositoryConcept(GenerationResult gen, MMRepositoryConcept mmBean) {
+	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
 		//defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup, mmBean.getSemanticMarkup());
 		//defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet, mmBean.getDoclet());
 		defaultAttribute(gen, MMRepositoryConcept_.example, mmBean.getExample());

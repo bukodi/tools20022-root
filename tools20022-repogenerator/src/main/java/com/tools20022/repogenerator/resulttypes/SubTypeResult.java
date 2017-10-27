@@ -11,7 +11,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
 
-public class SubTypeResult extends GenerationResult {
+public class SubTypeResult extends TypeResult {
 
 	public FieldSource<JavaClassSource> structSrc;
 	public StringJoiner structConstructorBody = new StringJoiner(";\n");

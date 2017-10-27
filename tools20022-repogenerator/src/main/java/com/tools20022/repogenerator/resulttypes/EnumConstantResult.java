@@ -7,7 +7,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
 
-public class EnumConstantResult extends GenerationResult{
+public class EnumConstantResult extends TypeResult{
 
 	public EnumConstantSource enumConstantSrc;
 
