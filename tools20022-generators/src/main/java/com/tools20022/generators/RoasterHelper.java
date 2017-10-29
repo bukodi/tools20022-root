@@ -23,6 +23,7 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.jboss.forge.roaster.model.ast.ModifierAccessor;
 import org.jboss.forge.roaster.model.ast.TypeDeclarationFinderVisitor;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
+import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
 /**
@@ -156,5 +157,13 @@ public class RoasterHelper {
 		return name;
 	}
 
+
+	public static void addToJavaDoc(JavaDocCapableSource<?> javaDocHolder, String docTxt) {
+
+		String existingDoc = javaDocHolder.getJavaDoc().getText();
+		if (existingDoc == null)
+			existingDoc = "";
+		javaDocHolder.getJavaDoc().setText(existingDoc + docTxt);
+	}
 
 }

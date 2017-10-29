@@ -178,7 +178,10 @@ public class GeneratorFileManager implements JavaFileManager {
 	@Override
 	public FileObject getFileForOutput(Location location, String packageName, String relativeName, FileObject sibling)
 			throws IOException {
-		throw new UnsupportedOperationException();
+		if( sibling != null )
+			throw new IllegalArgumentException("\"sibling\" argument isn't supported"); 
+		Path path = getLocationRoot(location).resolve(packageName.replace('.', '/') ).resolve(relativeName);
+		return new GeneratorJavaFileObject(location, path);
 	}
 
 	@Override

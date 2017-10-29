@@ -10,6 +10,10 @@ import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.jboss.forge.roaster.model.Visibility;
 import org.jboss.forge.roaster.model.source.FieldSource;
@@ -166,12 +170,12 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			return null;
 		
 		AttrResult attrGen = gen.createAttrResult(mmAttr);
-		if( mmAttr.getReferencedType() != null ) {			
-			gen.addMMAttributeInit(mmAttr.getName() + "_lazy = () -> " + attrValue.valueAsSource + ";");			
+		if( mmAttr.getReferencedType() != null ) {
+			attrGen.initializationSource = mmAttr.getName() + "_lazy = () -> " + attrValue.valueAsSource + ";";			
 		} else {
-			gen.addMMAttributeInit(mmAttr.getName() + " = " + attrValue.valueAsSource + ";");			
-		}
-		
+			attrGen.initializationSource = mmAttr.getName() + " = " + attrValue.valueAsSource + ";";			
+		}		
+		attrGen.valueAsJavaDoc = attrValue.valueAsJavaDoc;
 		return attrGen;			
 	}
 
@@ -183,7 +187,9 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			ret.valueAsSource = attrValue.toString();
 		} else if( attrValue instanceof Date ) {
 			String dateAsString = DateFormat.getDateInstance(DateFormat.LONG).format((Date) attrValue);
-			ret.valueAsSource = DateFormat.class.getName() + ".getDateInstance(" +DateFormat.class.getName() + ".LONG).parse(\"" + dateAsString + "\")";
+			ret.valueAsSource = "(("+Supplier.class.getName()+"<" + Date.class.getName()+ ">) ( () -> { try {\n return ";
+			ret.valueAsSource += DateFormat.class.getName() + ".getDateInstance(" +DateFormat.class.getName() + ".LONG).parse(\"" + dateAsString + "\");";
+			ret.valueAsSource += "\n} catch ( Exception e ) { throw new RuntimeException( e) ; }})).get()";
 			ret.valueAsJavaDoc = dateAsString; 
 		} else if( attrValue instanceof CharSequence ) {
 			StringBuilder sb = new StringBuilder();
@@ -228,11 +234,11 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			}
 		} else if( attrValue instanceof List && ((List<?>)attrValue).size() <= USE_LIST_BUILDER_ABOVE ) {
 			StringJoiner srcJoin = new StringJoiner(",\n",   Arrays.class.getName() + ".asList(", ")");
-			StringJoiner docJoin = new StringJoiner(",\n",   Arrays.class.getName() + ".asList(", ")");
+			StringJoiner docJoin = new StringJoiner("\r\n",   "<ul>\r\n", "</ul>\r\n");
 			for( Object elem : (List<?>)attrValue ) {
 				AttrValue elemRet = basicValueAsString(containerGen, elem);
 				srcJoin.add(elemRet.valueAsSource);		
-				docJoin.add(elemRet.valueAsJavaDoc);
+				docJoin.add("<li>" + elemRet.valueAsJavaDoc + "</li>");
 			}
 			ret.valueAsSource = srcJoin.toString();
 			ret.valueAsJavaDoc = docJoin.toString();
@@ -325,10 +331,10 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		StructuredName name = getStructuredName(mmBean);
 		SubTypeResult str = new SubTypeResult(ctx, mmBean, name);
 
-		str.structSrc = containerGen.src.addField().setName(name.getMemberName());
-		str.structSrc.setPublic().setStatic(true).setFinal(true);
-		str.structSrc.setType(mmBean.getMetamodel().getBeanClass());
-		createJavaDoc(str.structSrc, mmBean);
+		str.staticFieldSrc = containerGen.src.addField().setName(name.getMemberName());
+		str.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+		str.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
+		createJavaDoc(str.staticFieldSrc, mmBean);
 		return str;
 	}
 
@@ -346,14 +352,6 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
 		docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
 		javaDocHolder.getJavaDoc().setText(docTxt);
-	}
-
-	protected void addToJavaDoc(JavaDocCapableSource<?> javaDocHolder, String docTxt) {
-
-		String existingDoc = javaDocHolder.getJavaDoc().getText();
-		if (existingDoc == null)
-			existingDoc = "";
-		javaDocHolder.getJavaDoc().setText(existingDoc + docTxt);
 	}
 
 	int USE_LIST_BUILDER_ABOVE = 500;

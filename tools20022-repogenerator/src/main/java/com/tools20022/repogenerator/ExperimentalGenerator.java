@@ -21,6 +21,7 @@ import org.jboss.forge.roaster.model.source.MethodSource;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.generators.GenerationContext;
+import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepositoryConcept;
@@ -156,7 +157,7 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 			}
 		}
 		javadoc += "\r\n</ul>";
-		addToJavaDoc(javaDocHolder, javadoc);
+		RoasterHelper.addToJavaDoc(javaDocHolder, javadoc);
 		return body;
 	}
 

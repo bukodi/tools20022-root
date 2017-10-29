@@ -55,6 +55,11 @@
 			<artifactId>j2html</artifactId>
 			<version>${j2html.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.plantuml</groupId>
+			<artifactId>plantuml</artifactId>
+			<version>1.2017.16</version>
+		</dependency>
 	</dependencies>
 
 	<build>

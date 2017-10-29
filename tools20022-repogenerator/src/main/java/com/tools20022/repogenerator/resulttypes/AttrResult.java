@@ -7,7 +7,7 @@ public class AttrResult extends GenerationResult {
 
 	public final TypeResult containerGen;
 	public final MetamodelAttribute<?, ?> mmAttr;
-	public String valueAsSource;
+	public String initializationSource;
 	public String valueAsJavaDoc;
 	
 	protected AttrResult(TypeResult containerGen, MetamodelAttribute<?, ?> mmAttr) {

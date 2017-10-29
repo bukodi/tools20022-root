@@ -18,8 +18,23 @@ import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
+import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.metamodel.*;
+import com.tools20022.metamodel.MMBusinessArea;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessAttribute;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMCode;
+import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMDataType;
+import com.tools20022.metamodel.MMMessageBuildingBlock;
+import com.tools20022.metamodel.MMMessageComponentType;
+import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMModelEntity;
+import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.metamodel.struct.MMBusinessAttribute_;
 import com.tools20022.metamodel.struct.MMBusinessComponent_;
 import com.tools20022.metamodel.struct.MMCodeSet_;
@@ -87,19 +102,16 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		mtr.flush();
 		return mtr;
 	}
-	
-
-	
 
 	@Override
 	protected MainTypeResult generateMMCodeSet(SubTypeResult containerGen, MMCodeSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		gen.mmObjectMethod.setFinal(false);
-		mmBean.getTrace().ifPresent(mmST->{
-				StructuredName stName = getStructuredName(mmST);
-				gen.src.setSuperType( stName.getFullName());
-				collectDontModifyImports(mmBean, gen.dontModifyImports);
-		});		
+		mmBean.getTrace().ifPresent(mmST -> {
+			StructuredName stName = getStructuredName(mmST);
+			gen.src.setSuperType(stName.getFullName());
+			collectDontModifyImports(mmBean, gen.dontModifyImports);
+		});
 
 		implementMMDataType(gen, mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
@@ -114,36 +126,45 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		defaultAttribute(gen, MMCodeSet_.code, mmBean.getCode());
 		defaultAttribute(gen, MMCodeSet_.trace, mmBean.getTrace());
 		defaultAttribute(gen, MMCodeSet_.derivation, mmBean.getDerivation());
-		defaultAttribute(gen, MMCodeSet_.identificationScheme,
-				mmBean.getIdentificationScheme());
+		defaultAttribute(gen, MMCodeSet_.identificationScheme, mmBean.getIdentificationScheme());
 		gen.flush();
 		return gen;
 	}
 
-	private void collectDontModifyImports( MMCodeSet mmBean, List<String> dontModifyImports ) {
+	private void collectDontModifyImports(MMCodeSet mmBean, List<String> dontModifyImports) {
 		List<MMCode> mmFields = mmBean.getCode();
-		for( MMCode mmField : mmFields) {
+		for (MMCode mmField : mmFields) {
 			StructuredName fieldName = getStructuredName(mmField);
-			if( fieldName == null || fieldName.getMemberName() == null)
+			if (fieldName == null || fieldName.getMemberName() == null)
 				continue;
-			dontModifyImports.add("*." + fieldName.getMemberName() );
+			dontModifyImports.add("*." + fieldName.getMemberName());
 		}
-		mmBean.getTrace().ifPresent(mmST->{
+		mmBean.getTrace().ifPresent(mmST -> {
 			collectDontModifyImports(mmST, dontModifyImports);
 		});
 	}
-
 
 	@Override
 	protected MainTypeResult generateMMBusinessComponent(SubTypeResult containerGen, MMBusinessComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		gen.mmObjectMethod.setFinal(false);
-		mmBean.getSuperType().ifPresent(mmST->{
-				StructuredName stName = getStructuredName(mmST);
-				gen.src.setSuperType( stName.getFullName());
-				collectDontModifyImports(mmBean, gen.dontModifyImports);
-		});		
-				
+		mmBean.getSuperType().ifPresent(mmST -> {
+			StructuredName stName = getStructuredName(mmST);
+			gen.src.setSuperType(stName.getFullName());
+			collectDontModifyImports(mmBean, gen.dontModifyImports);
+		});
+
+		if( ! ctx.isSkipDocGeneration() ){
+			String plantUmlSource = (new ClassDiagramGenerator(mmBean, false)).getPlantUmlSource();
+			ctx.createPlantUmlImage(gen.baseName, plantUmlSource);
+
+			String diagramJavaDoc = "<p>\r\n";
+			diagramJavaDoc += "<strong>Class diagram</strong>\r\n";
+			diagramJavaDoc += "<p>\r\n";
+			diagramJavaDoc += "<embed name=\"" + mmBean.getName() + "\" src=\"doc-files/" + gen.baseName.getCompilationUnit() + ".svg\">\r\n";
+			RoasterHelper.addToJavaDoc(gen.src, diagramJavaDoc);
+		}
+
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
@@ -153,39 +174,38 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		for (MMBusinessElement mmChild : mmBean.getElement()) {
 			generateMMBusinessElement(gen, mmChild);
 		}
-		defaultAttribute(gen, MMBusinessComponent_.associationDomain,
-				mmBean.getAssociationDomain());
-		defaultAttribute(gen, MMBusinessComponent_.derivationElement,
-				mmBean.getDerivationElement());
+		defaultAttribute(gen, MMBusinessComponent_.associationDomain, mmBean.getAssociationDomain());
+		defaultAttribute(gen, MMBusinessComponent_.derivationElement, mmBean.getDerivationElement());
 		defaultAttribute(gen, MMBusinessComponent_.subType, mmBean.getSubType());
-		defaultAttribute(gen, MMBusinessComponent_.superType,
-				mmBean.getSuperType());
+		defaultAttribute(gen, MMBusinessComponent_.superType, mmBean.getSuperType());
 		defaultAttribute(gen, MMBusinessComponent_.element, mmBean.getElement());
-		defaultAttribute(gen, MMBusinessComponent_.derivationComponent,
-				mmBean.getDerivationComponent());
+		defaultAttribute(gen, MMBusinessComponent_.derivationComponent, mmBean.getDerivationComponent());
 		gen.flush();
 		return gen;
 	}
-	
-	private void collectDontModifyImports( MMBusinessComponent mmBean, List<String> dontModifyImports ) {
+
+	private void collectDontModifyImports(MMBusinessComponent mmBean, List<String> dontModifyImports) {
 		List<MMBusinessElement> mmFields = mmBean.getElement();
-		for( MMBusinessElement mmField : mmFields) {
+		for (MMBusinessElement mmField : mmFields) {
 			StructuredName fieldName = getStructuredName(mmField);
-			if( fieldName == null || fieldName.getMemberName() == null)
+			if (fieldName == null || fieldName.getMemberName() == null)
 				continue;
-			dontModifyImports.add("*." + fieldName.getMemberName() );
+			dontModifyImports.add("*." + fieldName.getMemberName());
 		}
-		mmBean.getSuperType().ifPresent(mmST->{
+		mmBean.getSuperType().ifPresent(mmST -> {
 			collectDontModifyImports(mmST, dontModifyImports);
 		});
 	}
 
 	@Override
 	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
-		//defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup, mmBean.getSemanticMarkup());
-		//defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet, mmBean.getDoclet());
+		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
+		// mmBean.getSemanticMarkup());
+		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet,
+		// mmBean.getDoclet());
 		defaultAttribute(gen, MMRepositoryConcept_.example, mmBean.getExample());
-		//defaultMultivalueAttribute(gen, MMRepositoryConcept_.constraint, mmBean.getConstraint());
+		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.constraint,
+		// mmBean.getConstraint());
 		defaultAttribute(gen, MMRepositoryConcept_.registrationStatus, mmBean.getRegistrationStatus());
 		defaultAttribute(gen, MMRepositoryConcept_.removalDate, mmBean.getRemovalDate());
 		defaultAttribute(gen, MMRepositoryConcept_.name, mmBean.getName());

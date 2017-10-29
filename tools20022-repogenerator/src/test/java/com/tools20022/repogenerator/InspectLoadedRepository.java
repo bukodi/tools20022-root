@@ -15,6 +15,7 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -23,20 +24,28 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.tools20022.generators.ECoreIOHelper;
+import com.tools20022.metamodel.MMAggregation;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMDoclet;
+import com.tools20022.metamodel.MMExternalSchema;
+import com.tools20022.metamodel.MMMessageAssociationEnd;
+import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMRepositoryType;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMSemanticMarkupElement;
+import com.tools20022.metamodel.MMUserDefined;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
 
@@ -220,9 +229,10 @@ public class InspectLoadedRepository {
 		});
 
 		csByCodesetSize.get(1).stream().forEachOrdered(cs -> {
-			System.out.print(cs.getName() + ", " + cs.getPattern().orElse("-") + ", " + cs.getIdentificationScheme().orElse("-") );
-			System.out.print(  ", " + (cs.getTrace().isPresent() ? cs.getTrace().get().getName() : "-"));
-			System.out.println(  ", " + (cs.getDerivation().size()));
+			System.out.print(cs.getName() + ", " + cs.getPattern().orElse("-") + ", "
+					+ cs.getIdentificationScheme().orElse("-"));
+			System.out.print(", " + (cs.getTrace().isPresent() ? cs.getTrace().get().getName() : "-"));
+			System.out.println(", " + (cs.getDerivation().size()));
 		});
 
 	}
@@ -231,52 +241,132 @@ public class InspectLoadedRepository {
 	public void doclets() throws Exception {
 		Map<String, Set<MMDoclet>> docletsByType = new LinkedHashMap<>();
 		for (MMDoclet mmD : repo.listObjects(MMDoclet.class).collect(Collectors.toList())) {
-			docletsByType.computeIfAbsent(mmD.getType().orElse("-noType-"), x->new LinkedHashSet<>()).add(mmD);
+			docletsByType.computeIfAbsent(mmD.getType().orElse("-noType-"), x -> new LinkedHashSet<>()).add(mmD);
 		}
-		
+
 		docletsByType.entrySet().stream().forEachOrdered(e -> {
 			System.out.println(e.getKey() + " : " + e.getValue().size());
 		});
 		System.out.println();
 		docletsByType.entrySet().stream().forEachOrdered(e -> {
-			System.out.println("---" + e.getKey() + " ---" );
-			e.getValue().forEach(mmD->{
-				System.out.println( mmD.getContent().orElse("-noContent-"));
+			System.out.println("---" + e.getKey() + " ---");
+			e.getValue().forEach(mmD -> {
+				System.out.println(mmD.getContent().orElse("-noContent-"));
 			});
 		});
 
-	
+	}
+
+	final Map<Class<? extends MMModelEntity>, Set<MMModelEntity>> noTrace = new HashMap<>();
+	final Map<Class<? extends MMModelEntity>, Set<MMModelEntity>> withTrace = new HashMap<>();
+
+	@Test
+	public void traces() throws Exception {
+		noTrace.clear();
+		withTrace.clear();
+
+		inspectTraces(MMBusinessComponent.class,
+				mmObj -> !(mmObj.getDerivationComponent().isEmpty() && mmObj.getDerivationComponent().isEmpty()));
+		inspectTraces(MMBusinessAttribute.class, mmObj -> !mmObj.getDerivation().isEmpty());
+		inspectTraces(MMBusinessAssociationEnd.class, mmObj -> !mmObj.getDerivation().isEmpty());
+
+		inspectTraces(MMMessageAttribute.class, mmObj -> mmObj.getBusinessComponentTrace().isPresent() || mmObj.getBusinessElementTrace().isPresent());
+		inspectTraces(MMMessageAssociationEnd.class, mmObj -> mmObj.getBusinessComponentTrace().isPresent() || mmObj.getBusinessElementTrace().isPresent());
+
+		inspectTraces(MMExternalSchema.class, mmObj -> mmObj.getTrace().isPresent());
+		inspectTraces(MMUserDefined.class, mmObj -> mmObj.getTrace().isPresent());
+		inspectTraces(MMChoiceComponent.class, mmObj -> mmObj.getTrace().isPresent());
+		inspectTraces(MMMessageComponent.class, mmObj -> mmObj.getTrace().isPresent());
+		
+		for(Class<?> mmType :  noTrace.keySet() ) {
+			System.out.println( mmType.getSimpleName() + ": no=" + noTrace.get(mmType).size() + " with=" + withTrace.get(mmType).size());
+		}
+
+	}
+
+	public <T extends MMModelEntity> void inspectTraces(Class<T> mmType, Predicate<T> hasTrace) {
+		Set<MMModelEntity> noTraceSet = noTrace.computeIfAbsent(mmType, x -> new HashSet<>());
+		Set<MMModelEntity> withTraceSet = withTrace.computeIfAbsent(mmType, x -> new HashSet<>());
+		repo.listObjects(mmType).forEach(mmObj -> {
+			if (hasTrace.test(mmObj)) {
+				withTraceSet.add(mmObj);
+			} else {
+				noTraceSet.add(mmObj);
+			}
+		});
+	}
+
+	@Test
+	public void businessAssociations() throws Exception {
+		Map<MMAggregation, List<MMBusinessAssociationEnd>> refsByAggr = new LinkedHashMap<>();
+		Map<String, List<MMBusinessAssociationEnd>> refsByArity = new LinkedHashMap<>();
+		Set<MMBusinessAssociationEnd> processedMMRef = new HashSet<>();
+		for (MMBusinessAssociationEnd mmRef : repo.listObjects(MMBusinessAssociationEnd.class)
+				.collect(Collectors.toList())) {
+			if (processedMMRef.contains(mmRef))
+				continue;
+			processedMMRef.add(mmRef);
+			mmRef.getOpposite().ifPresent(opposite -> processedMMRef.add(opposite));
+
+			refsByAggr.computeIfAbsent(mmRef.getAggregation(), x -> new ArrayList<>()).add(mmRef);
+
+			String arity = mmRef.getMinOccurs().isPresent() ? mmRef.getMinOccurs().get().toString() : "?";
+			arity += "..";
+			arity += mmRef.getMaxOccurs().isPresent() ? mmRef.getMaxOccurs().get().toString() : "?";
+
+			if (mmRef.getOpposite().isPresent()) {
+				MMBusinessAssociationEnd mmOp = mmRef.getOpposite().get();
+				arity += "-";
+				arity += mmOp.getMinOccurs().isPresent() ? mmOp.getMinOccurs().get().toString() : "?";
+				arity += "..";
+				arity += mmOp.getMaxOccurs().isPresent() ? mmOp.getMaxOccurs().get().toString() : "?";
+			}
+
+			refsByArity.computeIfAbsent(arity, x -> new ArrayList<>()).add(mmRef);
+
+		}
+
+		refsByAggr.entrySet().stream().forEachOrdered(e -> {
+			System.out.println(e.getKey() + " : " + e.getValue().size());
+		});
+		System.out.println();
+		refsByArity.entrySet().stream().forEachOrdered(e -> {
+			System.out.println(e.getKey() + " : " + e.getValue().size());
+		});
+		System.out.println();
+
 	}
 
 	@Test
 	// @Ignore
-	public void entityInheritance() throws Exception {		
+	public void entityInheritance() throws Exception {
 		List<MMBusinessComponent> topLevelEntities = new ArrayList<>();
 		Map<MMBusinessComponent, List<MMBusinessComponent>> subTypesByParent = new LinkedHashMap<>();
-		
+
 		for (MMBusinessComponent mmBC : repo.listObjects(MMBusinessComponent.class).collect(Collectors.toList())) {
-			if( mmBC.getSuperType().isPresent() ) {
-				subTypesByParent.computeIfAbsent(mmBC.getSuperType().get(), x->new ArrayList<>()).add(mmBC); 
+			if (mmBC.getSuperType().isPresent()) {
+				subTypesByParent.computeIfAbsent(mmBC.getSuperType().get(), x -> new ArrayList<>()).add(mmBC);
 			} else {
 				topLevelEntities.add(mmBC);
 			}
 		}
-		
-		System.out.println( "-- no super or sub type ---");
-		topLevelEntities.stream().filter(x->(!subTypesByParent.containsKey(x))).forEach(y->{
+
+		System.out.println("-- no super or sub type ---");
+		topLevelEntities.stream().filter(x -> (!subTypesByParent.containsKey(x))).forEach(y -> {
 			System.out.println(y.getName());
 		});
 		System.out.println();
-		System.out.println( "-- Hierarchy ---");
-		topLevelEntities.stream().filter(x->(subTypesByParent.containsKey(x))).forEach(y->{
+		System.out.println("-- Hierarchy ---");
+		topLevelEntities.stream().filter(x -> (subTypesByParent.containsKey(x))).forEach(y -> {
 			printWithSubtypes(y, "", subTypesByParent);
 		});
-		
+
 	}
-	
-	private void printWithSubtypes(MMBusinessComponent mmBC, String tab,  Map<MMBusinessComponent, List<MMBusinessComponent>> subTypesByParent) {
+
+	private void printWithSubtypes(MMBusinessComponent mmBC, String tab,
+			Map<MMBusinessComponent, List<MMBusinessComponent>> subTypesByParent) {
 		System.out.println(tab + mmBC.getName() + "( " + mmBC.getElement().size() + ")");
-		mmBC.getSubType().forEach(x->{
+		mmBC.getSubType().forEach(x -> {
 			printWithSubtypes(x, tab + "  ", subTypesByParent);
 		});
 	}

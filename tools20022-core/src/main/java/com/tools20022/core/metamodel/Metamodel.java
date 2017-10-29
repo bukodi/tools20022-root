@@ -7,6 +7,21 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * This class creates a labeled button. The application can cause
+ * some action to happen when the button is pushed. This image
+ * depicts three views of a "<code>Quit</code>" button as it appears
+ * under the Solaris operating system:
+ * 
+ * <hr>
+ * <embed name="E"  src="doc-files/Metamodel2.svg">
+ * <hr>
+ * <img alt="Class diagram" src="doc-files/Metamodel.svg">
+ * <hr>
+ * 
+ * @author bukodi
+ *
+ */
 public interface Metamodel {
 
 	Stream<? extends MetamodelType<? extends GeneratedMetamodelBean>> listTypes();

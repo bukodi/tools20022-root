@@ -5,6 +5,7 @@ import org.jboss.forge.roaster.model.source.EnumConstantSource;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
+import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 
 public class EnumConstantResult extends TypeResult{
@@ -17,9 +18,19 @@ public class EnumConstantResult extends TypeResult{
 
 	@Override
 	public void flush() {
-		String fieldinitializer = "new " + mmBean.getMetamodel().getBeanClass().getName() + "()";
-		fieldinitializer += "{{" + mmObjectInitBlock.toString() + "}}";
-		enumConstantSrc.setConstructorArguments(fieldinitializer);
+		{
+			String init = "new " + mmBean.getMetamodel().getBeanClass().getName() + "(){{";
+			for(AttrResult attrGen : attrGens ) {
+				init += attrGen.initializationSource + "\n";
+			}
+			init += "}};";
+			enumConstantSrc.setConstructorArguments(init);
+		}
+		{
+			String attrsJavadoc = getJavaDocForAttrs();
+			RoasterHelper.addToJavaDoc(enumConstantSrc, attrsJavadoc);
+		}
+
 	}
 	
 }
