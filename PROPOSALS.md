@@ -5,4 +5,6 @@
 - The context names in  SemanticMarkup with type=Synonym are inconsistent: "ISO 15022", "ISO15022", "ISO", "15022", "ISO15002"  
 - There are many SemanticMarkup with type=Synonym, but hasn't any element
 
- 
+Ambiguous names:
+area.pain.PaymentCancellationRequestV01 area.pacs.PaymentCancellationRequestV01
+area.pain.PaymentStatusReportV02 area.pacs.PaymentStatusReportV02

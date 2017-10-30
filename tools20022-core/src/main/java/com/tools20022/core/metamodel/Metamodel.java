@@ -13,12 +13,6 @@ import java.util.stream.Stream;
  * depicts three views of a "<code>Quit</code>" button as it appears
  * under the Solaris operating system:
  * 
- * <hr>
- * <embed name="E"  src="doc-files/Metamodel2.svg">
- * <hr>
- * <img alt="Class diagram" src="doc-files/Metamodel.svg">
- * <hr>
- * 
  * @author bukodi
  *
  */
