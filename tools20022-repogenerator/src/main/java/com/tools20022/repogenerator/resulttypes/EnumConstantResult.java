@@ -26,8 +26,8 @@ public class EnumConstantResult extends TypeResult{
 			init += "}};";
 			enumConstantSrc.setConstructorArguments(init);
 		}
-		{
-			String attrsJavadoc = getJavaDocForAttrs();
+		if( ! ctx.isSkipDocGeneration() ) {
+			String attrsJavadoc = getJavaDocForAttrs();			
 			RoasterHelper.addToJavaDoc(enumConstantSrc, attrsJavadoc);
 		}
 

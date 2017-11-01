@@ -25,16 +25,18 @@ public class SubTypeResult extends TypeResult {
 	}
 
 	@Override
-	public void flush() {		
+	public void flush() {
 		String init = "new " + mmBean.getMetamodel().getBeanClass().getName() + "(){{";
-		for(AttrResult attrGen : attrGens ) {
+		for (AttrResult attrGen : attrGens) {
 			init += attrGen.initializationSource + "\n";
 		}
 		init += "}};";
 		staticFieldSrc.setLiteralInitializer(init);
-		
-		String attrsJavadoc = getJavaDocForAttrs();
-		RoasterHelper.addToJavaDoc(staticFieldSrc, attrsJavadoc);
+
+		if (!ctx.isSkipDocGeneration()) {
+			String attrsJavadoc = getJavaDocForAttrs();
+			RoasterHelper.addToJavaDoc(staticFieldSrc, attrsJavadoc);
+		}
 	}
 
 }

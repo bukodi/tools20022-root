@@ -157,7 +157,8 @@ public class ExperimentalGenerator extends BaseRepoGenerator {
 			}
 		}
 		javadoc += "\r\n</ul>";
-		RoasterHelper.addToJavaDoc(javaDocHolder, javadoc);
+		if( ! ctx.isSkipDocGeneration() )
+			RoasterHelper.addToJavaDoc(javaDocHolder, javadoc);
 		return body;
 	}
 

@@ -54,7 +54,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		BiFunction<GeneratedMetamodelBean, String, StructuredName> createJavaNameAsMemeber = (parentElem,
 				memberName) -> {
 			StructuredName parentStructName = getStructuredName(parentElem.getContainer());
-			memberName = RoasterHelper.convertToJavaName(memberName);
+			memberName = "mm" + RoasterHelper.convertToJavaName(memberName);
 			return StructuredName.member(parentStructName, memberName);
 		};
 
@@ -339,6 +339,8 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 	}
 
 	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj) {
+		if( ctx.isSkipDocGeneration() )
+			return;
 		String docTxt;
 		if (repoObj instanceof MMRepositoryConcept) {
 			MMRepositoryConcept mmRC = (MMRepositoryConcept) repoObj;

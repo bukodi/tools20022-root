@@ -30,7 +30,7 @@ public class EnumTypeResult extends TypeResult {
 			init += "return mmObject_lazy.get();";
 			mmObjectMethod.setBody(init);
 		}
-		{
+		if( ! ctx.isSkipDocGeneration() ) {
 			String attrsJavadoc = getJavaDocForAttrs();
 			RoasterHelper.addToJavaDoc(src, attrsJavadoc);
 		}
