@@ -13,9 +13,11 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.jboss.forge.roaster.model.Visibility;
+import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
@@ -54,7 +56,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		BiFunction<GeneratedMetamodelBean, String, StructuredName> createJavaNameAsMemeber = (parentElem,
 				memberName) -> {
 			StructuredName parentStructName = getStructuredName(parentElem.getContainer());
-			memberName = "mm" + RoasterHelper.convertToJavaName(memberName);
+			memberName = RoasterHelper.convertToJavaName(memberName);
 			return StructuredName.member(parentStructName, memberName);
 		};
 
@@ -220,10 +222,10 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 				ret.valueAsJavaDoc = "{@linkplain " + refName.getFullName() + " " + refName.getCompilationUnit()
 				+ "}";				
 			} else if ( refName.isMember() && ! (containerGen instanceof EnumTypeResult) ) {
-				ret.valueAsSource = refName.getFullName();
+				ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + ".mm" + refName.getMemberName();
 				ret.valueAsJavaDoc = 	 "{@linkplain ";
-				ret.valueAsJavaDoc  += refName.getPackage() + "." + refName.getCompilationUnit() + "#" + refName.getMemberName(); 
-				ret.valueAsJavaDoc  += " " + refName.getCompilationUnit() + "." + refName.getMemberName() + "}";
+				ret.valueAsJavaDoc  += refName.getPackage() + "." + refName.getCompilationUnit() + "#mm" + refName.getMemberName(); 
+				ret.valueAsJavaDoc  += " " + refName.getCompilationUnit() + ".mm" + refName.getMemberName() + "}";
 			} else if ( refName.isMember() && containerGen instanceof EnumTypeResult) {
 				ret.valueAsSource = refName.getFullName() + ".mmEnumConstant()";
 				ret.valueAsJavaDoc = 	 "{@linkplain ";
@@ -330,11 +332,12 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 	protected SubTypeResult defaultSubType(GeneratedMetamodelBean mmBean, MainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
 		SubTypeResult str = new SubTypeResult(ctx, mmBean, name);
-
-		str.staticFieldSrc = containerGen.src.addField().setName(name.getMemberName());
-		str.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-		str.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
-		createJavaDoc(str.staticFieldSrc, mmBean);
+		{
+			str.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
+			str.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+			str.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
+			createJavaDoc(str.staticFieldSrc, mmBean);			
+		}
 		return str;
 	}
 
