@@ -35,7 +35,8 @@ import com.tools20022.repogenerator.resulttypes.AttrResult;
 import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
-import com.tools20022.repogenerator.resulttypes.SubTypeResult;
+import com.tools20022.repogenerator.resulttypes.PropertyResult;
+import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, GenerationContext<RawRepository>> {
@@ -145,55 +146,56 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		return StructuredName.primaryType(pkg, cuName);
 	}
 
-	protected AttrResult defaultAttribute(TypeResult gen,
-			MetamodelAttribute<?, ?> mmAttr, Object value) {
-		if( value == null )
+	protected AttrResult defaultAttribute(TypeResult gen, MetamodelAttribute<?, ?> mmAttr, Object value) {
+		if (value == null)
 			return null;
 
 		AttrValue attrValue;
-		if( value instanceof List && mmAttr.isMultiple() ) {
-			List<?> listValue = (List<?>)value;
-			if( listValue.isEmpty() )
+		if (value instanceof List && mmAttr.isMultiple()) {
+			List<?> listValue = (List<?>) value;
+			if (listValue.isEmpty())
 				return null;
-			attrValue = basicValueAsString(gen, listValue);			
-		} else if( value instanceof Optional && mmAttr.isOptional() ) {
-			Optional<?> optValue = (Optional<?>)value;
-			if( ! optValue.isPresent() )
+			attrValue = basicValueAsString(gen, listValue);
+		} else if (value instanceof Optional && mmAttr.isOptional()) {
+			Optional<?> optValue = (Optional<?>) value;
+			if (!optValue.isPresent())
 				return null;
-			attrValue = basicValueAsString(gen, optValue.get());			
-		} else if( ! ( mmAttr.isMultiple() || mmAttr.isOptional() ) ) {
+			attrValue = basicValueAsString(gen, optValue.get());
+		} else if (!(mmAttr.isMultiple() || mmAttr.isOptional())) {
 			attrValue = basicValueAsString(gen, value);
 		} else {
-			throw new IllegalArgumentException("Invalid attr with value. " + mmAttr + " = " + value );
+			throw new IllegalArgumentException("Invalid attr with value. " + mmAttr + " = " + value);
 		}
-		
+
 		// TODO: remove this
-		if( attrValue == null )
+		if (attrValue == null)
 			return null;
-		
+
 		AttrResult attrGen = gen.createAttrResult(mmAttr);
-		if( mmAttr.getReferencedType() != null ) {
-			attrGen.initializationSource = mmAttr.getName() + "_lazy = () -> " + attrValue.valueAsSource + ";";			
+		if (mmAttr.getReferencedType() != null) {
+			attrGen.initializationSource = mmAttr.getName() + "_lazy = () -> " + attrValue.valueAsSource + ";";
 		} else {
-			attrGen.initializationSource = mmAttr.getName() + " = " + attrValue.valueAsSource + ";";			
-		}		
+			attrGen.initializationSource = mmAttr.getName() + " = " + attrValue.valueAsSource + ";";
+		}
 		attrGen.valueAsJavaDoc = attrValue.valueAsJavaDoc;
-		return attrGen;			
+		return attrGen;
 	}
 
-	protected <T> AttrValue basicValueAsString( TypeResult containerGen, Object attrValue ) {		
+	protected <T> AttrValue basicValueAsString(TypeResult containerGen, Object attrValue) {
 		AttrValue ret = new AttrValue();
 
-		if (attrValue instanceof Number || attrValue instanceof Boolean ) {
+		if (attrValue instanceof Number || attrValue instanceof Boolean) {
 			ret.valueAsSource = attrValue.toString();
 			ret.valueAsSource = attrValue.toString();
-		} else if( attrValue instanceof Date ) {
+		} else if (attrValue instanceof Date) {
 			String dateAsString = DateFormat.getDateInstance(DateFormat.LONG).format((Date) attrValue);
-			ret.valueAsSource = "(("+Supplier.class.getName()+"<" + Date.class.getName()+ ">) ( () -> { try {\n return ";
-			ret.valueAsSource += DateFormat.class.getName() + ".getDateInstance(" +DateFormat.class.getName() + ".LONG).parse(\"" + dateAsString + "\");";
+			ret.valueAsSource = "((" + Supplier.class.getName() + "<" + Date.class.getName()
+					+ ">) ( () -> { try {\n return ";
+			ret.valueAsSource += DateFormat.class.getName() + ".getDateInstance(" + DateFormat.class.getName()
+					+ ".LONG).parse(\"" + dateAsString + "\");";
 			ret.valueAsSource += "\n} catch ( Exception e ) { throw new RuntimeException( e) ; }})).get()";
-			ret.valueAsJavaDoc = dateAsString; 
-		} else if( attrValue instanceof CharSequence ) {
+			ret.valueAsJavaDoc = dateAsString;
+		} else if (attrValue instanceof CharSequence) {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < ((CharSequence) attrValue).length(); i++) {
 				char ch = ((CharSequence) attrValue).charAt(i);
@@ -210,139 +212,217 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			}
 			ret.valueAsSource = "\"" + sb.toString() + "\"";
 			// Replace <, >, & chars
-			ret.valueAsJavaDoc = ret.valueAsSource.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
-		} else if( attrValue instanceof Enum ) {
+			ret.valueAsJavaDoc = ret.valueAsSource.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<",
+					"&lt;");
+		} else if (attrValue instanceof Enum) {
 			ret.valueAsSource = attrValue.getClass().getName() + "." + attrValue.toString();
 			ret.valueAsJavaDoc = attrValue.getClass().getName() + "." + attrValue.toString();
-		} else if( attrValue instanceof GeneratedMetamodelBean ) {
-			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean)attrValue;			
+		} else if (attrValue instanceof GeneratedMetamodelBean) {
+			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;
 			StructuredName refName = getStructuredName(refmmBean);
-			if( refName.isCompilationUnit() ) {
+			if (refName.isCompilationUnit()) {
 				ret.valueAsSource = refName.getFullName() + ".mmObject()";
-				ret.valueAsJavaDoc = "{@linkplain " + refName.getFullName() + " " + refName.getCompilationUnit()
-				+ "}";				
-			} else if ( refName.isMember() && ! (containerGen instanceof EnumTypeResult) ) {
-				ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + ".mm" + refName.getMemberName();
-				ret.valueAsJavaDoc = 	 "{@linkplain ";
-				ret.valueAsJavaDoc  += refName.getPackage() + "." + refName.getCompilationUnit() + "#mm" + refName.getMemberName(); 
-				ret.valueAsJavaDoc  += " " + refName.getCompilationUnit() + ".mm" + refName.getMemberName() + "}";
-			} else if ( refName.isMember() && containerGen instanceof EnumTypeResult) {
+				ret.valueAsJavaDoc = "{@linkplain " + refName.getFullName() + " " + refName.getCompilationUnit() + "}";
+			} else if (refName.isMember() && !(containerGen instanceof EnumTypeResult)) {
+				ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + ".mm"
+						+ refName.getMemberName();
+				ret.valueAsJavaDoc = "{@linkplain ";
+				ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#mm"
+						+ refName.getMemberName();
+				ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + ".mm" + refName.getMemberName() + "}";
+			} else if (refName.isMember() && containerGen instanceof EnumTypeResult) {
 				ret.valueAsSource = refName.getFullName() + ".mmEnumConstant()";
-				ret.valueAsJavaDoc = 	 "{@linkplain ";
-				ret.valueAsJavaDoc  += refName.getPackage() + "." + refName.getCompilationUnit() + "#" + refName.getMemberName(); 
-				ret.valueAsJavaDoc  += " " + refName.getCompilationUnit() + "." + refName.getMemberName() + "}";
+				ret.valueAsJavaDoc = "{@linkplain ";
+				ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#"
+						+ refName.getMemberName();
+				ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + "." + refName.getMemberName() + "}";
 			} else {
-				throw new IllegalArgumentException("Invalid refName: " + refName);				
+				throw new IllegalArgumentException("Invalid refName: " + refName);
 			}
-		} else if( attrValue instanceof List && ((List<?>)attrValue).size() <= USE_LIST_BUILDER_ABOVE ) {
-			StringJoiner srcJoin = new StringJoiner(",\n",   Arrays.class.getName() + ".asList(", ")");
-			StringJoiner docJoin = new StringJoiner("\r\n",   "<ul>\r\n", "</ul>\r\n");
-			for( Object elem : (List<?>)attrValue ) {
+		} else if (attrValue instanceof List && ((List<?>) attrValue).size() <= USE_LIST_BUILDER_ABOVE) {
+			StringJoiner srcJoin = new StringJoiner(",\n", Arrays.class.getName() + ".asList(", ")");
+			StringJoiner docJoin = new StringJoiner("\r\n", "<ul>\r\n", "</ul>\r\n");
+			for (Object elem : (List<?>) attrValue) {
 				AttrValue elemRet = basicValueAsString(containerGen, elem);
-				srcJoin.add(elemRet.valueAsSource);		
+				srcJoin.add(elemRet.valueAsSource);
 				docJoin.add("<li>" + elemRet.valueAsJavaDoc + "</li>");
 			}
 			ret.valueAsSource = srcJoin.toString();
 			ret.valueAsJavaDoc = docJoin.toString();
-		} else if( attrValue instanceof List && ((List<?>)attrValue).size() > USE_LIST_BUILDER_ABOVE ) {
-			StructuredName listBuilderName = createLongListBuilder(containerGen, (List<?>)attrValue);
+		} else if (attrValue instanceof List && ((List<?>) attrValue).size() > USE_LIST_BUILDER_ABOVE) {
+			StructuredName listBuilderName = createLongListBuilder(containerGen, (List<?>) attrValue);
 			ret.valueAsSource = listBuilderName.getFullName() + ".addElems(new " + ArrayList.class.getName() + "<>())";
-			ret.valueAsJavaDoc = "List of " + ((List<?>)attrValue).size() + " elements";
+			ret.valueAsJavaDoc = "List of " + ((List<?>) attrValue).size() + " elements";
 		} else {
 			throw new IllegalArgumentException("Unsupported value type: " + attrValue.getClass());
 		}
-		
+
 		return ret;
 	}
-	
+
 	protected static class AttrValue {
 		public String valueAsSource;
 		public String valueAsJavaDoc;
 	}
-	
+
 	protected MainTypeResult defaultMainType(GeneratedMetamodelBean mmBean) {
 		StructuredName name = getStructuredName(mmBean);
-		MainTypeResult mtr = new MainTypeResult(ctx, mmBean, name);
-		mtr.src = ctx.createSourceFile(JavaClassSource.class, name);
-		createJavaDoc(mtr.src, mmBean);
+		MainTypeResult gen = new MainTypeResult(ctx, mmBean, name);
+		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
+		createJavaDoc(gen.src, mmBean);
 
 		// private final static AtomicReference<MMBusinessComponent> mmObject_lazy = new
 		// AtomicReference<>();
 		{
-			FieldSource<JavaClassSource> field = mtr.src.addField().setName("mmObject_lazy");
+			FieldSource<JavaClassSource> field = gen.src.addField().setName("mmObject_lazy");
 			field.setFinal(true).setStatic(true).setPrivate();
 			field.setType(AtomicReference.class.getName() + "<" + mmBean.getMetamodel().getBeanClass().getName() + ">");
 			field.setLiteralInitializer(" new " + AtomicReference.class.getName() + "<>();");
 		}
 
 		{
-			mtr.mmObjectMethod = mtr.src.addMethod().setName("mmObject");
-			mtr.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
-			mtr.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
+			gen.mmObjectMethod = gen.src.addMethod().setName("mmObject");
+			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
+			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
 
-		return mtr;
+		return gen;
 	}
 
 	protected EnumTypeResult defaultEnumType(GeneratedMetamodelBean mmBean) {
 		StructuredName name = getStructuredName(mmBean);
-		EnumTypeResult etr = new EnumTypeResult(ctx, mmBean, name);
-		etr.src = ctx.createSourceFile(JavaEnumSource.class, name);
+		EnumTypeResult gen = new EnumTypeResult(ctx, mmBean, name);
+		gen.src = ctx.createSourceFile(JavaEnumSource.class, name);
 		{
-			MetamodelAttribute<? extends GeneratedMetamodelBean, ?> enumValueAttr = mmBean.getMetamodel().listDeclaredAttributes().filter(mmAttr->mmAttr.isContainment()).findFirst().get();
+			MetamodelAttribute<? extends GeneratedMetamodelBean, ?> enumValueAttr = mmBean.getMetamodel()
+					.listDeclaredAttributes().filter(mmAttr -> mmAttr.isContainment()).findFirst().get();
 			MetamodelType<?> enumValueType = enumValueAttr.getReferencedType();
-			FieldSource<JavaEnumSource> fieldEnumConstant = etr.src.addField();
+			FieldSource<JavaEnumSource> fieldEnumConstant = gen.src.addField();
 			fieldEnumConstant.setName("mmEnumConstant");
 			fieldEnumConstant.setFinal(true).setPrivate();
 			fieldEnumConstant.setType(enumValueType.getBeanClass());
-			
-			MethodSource<JavaEnumSource> constr = etr.src.addMethod().setConstructor(true);
-			constr.addParameter(enumValueType.getBeanClass(), "mmEnumConstant");
-			constr.setBody("this.mmEnumConstant = mmEnumConstant;" );
 
-			MethodSource<JavaEnumSource> methodGetMM = etr.src.addMethod().setName("mmEnumConstant");
+			MethodSource<JavaEnumSource> constr = gen.src.addMethod().setConstructor(true);
+			constr.addParameter(enumValueType.getBeanClass(), "mmEnumConstant");
+			constr.setBody("this.mmEnumConstant = mmEnumConstant;");
+
+			MethodSource<JavaEnumSource> methodGetMM = gen.src.addMethod().setName("mmEnumConstant");
 			methodGetMM.setPublic();
 			methodGetMM.setReturnType(enumValueType.getBeanClass());
-			methodGetMM.setBody("return  mmEnumConstant;" );
+			methodGetMM.setBody("return  mmEnumConstant;");
 		}
-		
-		createJavaDoc(etr.src, mmBean);
+
+		createJavaDoc(gen.src, mmBean);
 
 		{ // static field and method: mmObject_lazy, mmObject();
-			FieldSource<JavaEnumSource> field = etr.src.addField().setName("mmObject_lazy");
+			FieldSource<JavaEnumSource> field = gen.src.addField().setName("mmObject_lazy");
 			field.setFinal(true).setStatic(true).setPrivate();
 			field.setType(AtomicReference.class.getName() + "<" + mmBean.getMetamodel().getBeanClass().getName() + ">");
 			field.setLiteralInitializer(" new " + AtomicReference.class.getName() + "<>();");
-			etr.mmObjectMethod = etr.src.addMethod().setName("mmObject");
-			etr.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
-			etr.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
+			gen.mmObjectMethod = gen.src.addMethod().setName("mmObject");
+			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
+			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
 
-		return etr;
+		return gen;
 	}
 
 	protected EnumConstantResult defaultEnumConstant(GeneratedMetamodelBean mmBean, EnumTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
-		EnumConstantResult ecr = new EnumConstantResult(ctx, mmBean, name);
-		ecr.enumConstantSrc = containerGen.src.addEnumConstant(name.getMemberName());
-		createJavaDoc(ecr.enumConstantSrc, mmBean);
-		return ecr;
+		EnumConstantResult gen = new EnumConstantResult(ctx, mmBean, name);
+		gen.enumConstantSrc = containerGen.src.addEnumConstant(name.getMemberName());
+		createJavaDoc(gen.enumConstantSrc, mmBean);
+		return gen;
 	}
 
-	protected SubTypeResult defaultSubType(GeneratedMetamodelBean mmBean, MainTypeResult containerGen) {
+	protected StaticFieldResult defaultStaticFieldResult(GeneratedMetamodelBean mmBean, MainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
-		SubTypeResult str = new SubTypeResult(ctx, mmBean, name);
+		StaticFieldResult gen = new StaticFieldResult(ctx, mmBean, name);
 		{
-			str.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
-			str.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-			str.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
-			createJavaDoc(str.staticFieldSrc, mmBean);			
+			gen.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
+			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
+			createJavaDoc(gen.staticFieldSrc, mmBean);
 		}
-		return str;
+		return gen;
+	}
+
+	protected MMRepositoryConcept getPropertyType(MMConstruct mmBean) {
+		if (mmBean instanceof MMMessageBuildingBlock) {
+			if (((MMMessageBuildingBlock) mmBean).getSimpleType().isPresent()) {
+				return ((MMMessageBuildingBlock) mmBean).getSimpleType().get();
+			} else if (((MMMessageBuildingBlock) mmBean).getComplexType().isPresent()) {
+				return ((MMMessageBuildingBlock) mmBean).getComplexType().get();
+			} else {
+				throw new IllegalArgumentException("Unsupported bean instance : " + mmBean);
+			}
+		} else if (mmBean instanceof MMBusinessAttribute) {
+			if (((MMBusinessAttribute) mmBean).getSimpleType().isPresent()) {
+				return ((MMBusinessAttribute) mmBean).getSimpleType().get();
+			} else if (((MMBusinessAttribute) mmBean).getComplexType().isPresent()) {
+				return ((MMBusinessAttribute) mmBean).getComplexType().get();
+			} else {
+				throw new IllegalArgumentException("Unsupported bean instance : " + mmBean);
+			}
+		} else if (mmBean instanceof MMMessageAttribute) {
+			if (((MMMessageAttribute) mmBean).getSimpleType().isPresent()) {
+				return ((MMMessageAttribute) mmBean).getSimpleType().get();
+			} else if (((MMMessageAttribute) mmBean).getComplexType().isPresent()) {
+				return ((MMMessageAttribute) mmBean).getComplexType().get();
+			} else {
+				throw new IllegalArgumentException("Unsupported bean instance : " + mmBean);
+			}
+		} else if (mmBean instanceof MMBusinessAssociationEnd) {
+			return ((MMBusinessAssociationEnd) mmBean).getType();
+		} else if (mmBean instanceof MMMessageAssociationEnd) {
+			return ((MMMessageAssociationEnd) mmBean).getType();
+		} else {
+			throw new IllegalArgumentException("Unsupported bean type: " + mmBean.getClass());
+		}
+	}
+
+	protected PropertyResult defaultPropertyResult(MMConstruct mmBean, MainTypeResult containerGen) {
+		StructuredName name = getStructuredName(mmBean);
+
+		// TODO: support optionals and lists
+		
+		MMRepositoryConcept propertyMMType = getPropertyType(mmBean);
+		String propertyType = getStructuredName(propertyMMType).getFullName();
+//		if( mmBean.getMinOccurs().isPresent())
+		
+		PropertyResult gen = new PropertyResult(ctx, mmBean, name);
+		{
+			String fieldName = name.getMemberName().substring(0, 1).toLowerCase() + name.getMemberName().substring(1);
+			fieldName = RoasterHelper.convertToJavaName(fieldName);
+			gen.beanFieldSrc = containerGen.src.addField().setName(fieldName);
+			gen.beanFieldSrc.setProtected();
+			gen.beanFieldSrc.setType(propertyType);
+		}
+		{
+			// TODO: support isXXX() for boolean type
+			gen.beanGetterSrc = containerGen.src.addMethod().setName("get" + name.getMemberName());
+			gen.beanGetterSrc.setPublic();
+			gen.beanGetterSrc.setReturnType(propertyType);
+			gen.beanGetterSrc.setBody("return " + gen.beanFieldSrc.getName() + ";");
+		}
+		{
+			// TODO: support isXXX() for boolean type
+			gen.beanSetterSrc = containerGen.src.addMethod().setName("set" + name.getMemberName());
+			gen.beanSetterSrc.setPublic();
+			gen.beanSetterSrc.addParameter(propertyType, gen.beanFieldSrc.getName());
+			gen.beanSetterSrc.setBody("this." + gen.beanFieldSrc.getName() + " = " + gen.beanFieldSrc.getName() + ";");
+		}
+		{
+			gen.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
+			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
+			createJavaDoc(gen.staticFieldSrc, mmBean);
+		}
+		return gen;
 	}
 
 	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj) {
-		if( ctx.isSkipDocGeneration() )
+		if (ctx.isSkipDocGeneration())
 			return;
 		String docTxt;
 		if (repoObj instanceof MMRepositoryConcept) {
@@ -362,7 +442,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 	int USE_LIST_BUILDER_ABOVE = 500;
 
 	protected StructuredName createLongListBuilder(TypeResult gen, List<?> elems) {
-		
+
 		StructuredName firstBuilderName = null;
 
 		for (int seq = 0; seq * USE_LIST_BUILDER_ABOVE < elems.size(); seq++) {
@@ -401,4 +481,3 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 	}
 
 }
-

@@ -23,7 +23,8 @@ import com.tools20022.metamodel.*;
 import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
-import com.tools20022.repogenerator.resulttypes.SubTypeResult;
+import com.tools20022.repogenerator.resulttypes.PropertyResult;
+import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 import de.dainel.cleanqualifiedtypes.CleanQualifiedTypes;
@@ -69,8 +70,8 @@ public class GenerateRepoGenerator {
 		});
 		// generateNonAbstractType(MMRepository.metaType());
 		
-		addSwitchGenerators(MMTopLevelCatalogueEntry.metaType(), SubTypeResult.class);
-		addSwitchGenerators(MMTopLevelDictionaryEntry.metaType(), SubTypeResult.class);
+		addSwitchGenerators(MMTopLevelCatalogueEntry.metaType(), StaticFieldResult.class);
+		addSwitchGenerators(MMTopLevelDictionaryEntry.metaType(), StaticFieldResult.class);
 		addSwitchGenerators(MMBusinessElement.metaType(), MainTypeResult.class);
 		addSwitchGenerators(MMMessageElement.metaType(), MainTypeResult.class);
 	}
@@ -114,8 +115,10 @@ public class GenerateRepoGenerator {
 			bodySb.append( MainTypeResult.class.getName() + " gen = defaultMainType(mmBean);\n");			
 		} else if( EnumTypeResult.class.equals(rt)) {
 			bodySb.append( EnumTypeResult.class.getName() + " gen = defaultEnumType(mmBean);\n");			
-		} else if( SubTypeResult.class.equals(rt)) {
-			bodySb.append( SubTypeResult.class.getName() + " gen = defaultSubType(mmBean, containerGen);\n");			
+		} else if( StaticFieldResult.class.equals(rt)) {
+			bodySb.append( StaticFieldResult.class.getName() + " gen = defaultStaticFieldResult(mmBean, containerGen);\n");			
+		} else if( PropertyResult.class.equals(rt)) {
+			bodySb.append( PropertyResult.class.getName() + " gen = defaultPropertyResult(mmBean, containerGen);\n");			
 		} else if( EnumConstantResult.class.equals(rt)) {
 			bodySb.append( EnumConstantResult.class.getName() + " gen = defaultEnumConstant(mmBean, containerGen);\n");			
 		} else {
@@ -219,16 +222,18 @@ public class GenerateRepoGenerator {
 		return mmType.getName();
 	}
 
-	final static Set<MetamodelType<?>> SUBTYPES = new HashSet<>( Arrays.asList(MMXor.metaType(), MMMessageBuildingBlock.metaType(), 
+	final static Set<MetamodelType<?>> STATIC_FIELD = new HashSet<>( Arrays.asList(MMXor.metaType(), 
 			MMBusinessRole.metaType(), 
-			MMCode.metaType(), 
-			MMBusinessAssociationEnd.metaType(), 
+			MMCode.metaType(), 			
 			MMMessageDefinitionIdentifier.metaType(), 
-			MMMessageAssociationEnd.metaType(), 
-			MMMessageAttribute.metaType(), 
-			MMBusinessAttribute.metaType(),
 			MMBusinessProcessCatalogue.metaType(),
 			MMDataDictionary.metaType())); 
+
+	final static Set<MetamodelType<?>> PROPERTY_RESULT = new HashSet<>( Arrays.asList(MMMessageBuildingBlock.metaType(), 
+			MMMessageAssociationEnd.metaType(), 
+			MMMessageAttribute.metaType(), 
+			MMBusinessAssociationEnd.metaType(),
+			MMBusinessAttribute.metaType())); 
 	
 	final static Set<MetamodelType<?>> DONT_GENERATE_BEANS = new HashSet<>( Arrays.asList( 
 			MMRepository.metaType(), 
@@ -236,8 +241,10 @@ public class GenerateRepoGenerator {
 			MMDataDictionary.metaType())); 
 	
 	protected Class<? extends GenerationResult> getResultType( MetamodelType<?> mmtype ) {
-		if( SUBTYPES.contains(mmtype) )
-			return SubTypeResult.class;
+		if( STATIC_FIELD.contains(mmtype) )
+			return StaticFieldResult.class;
+		if( PROPERTY_RESULT.contains(mmtype) )
+			return PropertyResult.class;
 //		else if( MMCodeSet.metaType().equals(mmtype) || MMBusinessProcess.metaType().equals(mmtype))
 //			return EnumTypeResult.class;
 //		else if( MMCode.metaType().equals(mmtype) || MMBusinessRole.metaType().equals(mmtype))

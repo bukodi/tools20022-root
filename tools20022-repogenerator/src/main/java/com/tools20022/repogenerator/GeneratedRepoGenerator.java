@@ -6,7 +6,8 @@ import com.tools20022.metamodel.*;
 import com.tools20022.metamodel.struct.*;
 import com.tools20022.repogenerator.BaseRepoGenerator;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
-import com.tools20022.repogenerator.resulttypes.SubTypeResult;
+import com.tools20022.repogenerator.resulttypes.PropertyResult;
+import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
@@ -37,14 +38,14 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 			MainTypeResult containerGen, MMMessagingEndpoint mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMMessagingEndpoint_.location,
-				mmBean.getLocation());
-		defaultAttribute(gen, MMMessagingEndpoint_.sentMessage,
-				mmBean.getSentMessage());
-		defaultAttribute(gen, MMMessagingEndpoint_.receivedMessage,
-				mmBean.getReceivedMessage());
 		defaultAttribute(gen, MMMessagingEndpoint_.transportSystem,
 				mmBean.getTransportSystem());
+		defaultAttribute(gen, MMMessagingEndpoint_.receivedMessage,
+				mmBean.getReceivedMessage());
+		defaultAttribute(gen, MMMessagingEndpoint_.sentMessage,
+				mmBean.getSentMessage());
+		defaultAttribute(gen, MMMessagingEndpoint_.location,
+				mmBean.getLocation());
 		gen.flush();
 		return gen;
 	}
@@ -66,11 +67,11 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 			MMTransportMessage mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMTransportMessage_.receiver,
-				mmBean.getReceiver());
 		defaultAttribute(gen, MMTransportMessage_.sender, mmBean.getSender());
 		defaultAttribute(gen, MMTransportMessage_.messageInstance,
 				mmBean.getMessageInstance());
+		defaultAttribute(gen, MMTransportMessage_.receiver,
+				mmBean.getReceiver());
 		gen.flush();
 		return gen;
 	}
@@ -87,7 +88,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected MainTypeResult generateMMSyntaxMessageScheme(
-			SubTypeResult containerGen, MMSyntaxMessageScheme mmBean) {
+			StaticFieldResult containerGen, MMSyntaxMessageScheme mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -105,8 +106,8 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMSemanticMarkupElement mmChild : mmBean.getElements()) {
 			generateMMSemanticMarkupElement(gen, mmChild);
 		}
-		defaultAttribute(gen, MMSemanticMarkup_.type, mmBean.getType());
 		defaultAttribute(gen, MMSemanticMarkup_.elements, mmBean.getElements());
+		defaultAttribute(gen, MMSemanticMarkup_.type, mmBean.getType());
 		gen.flush();
 		return gen;
 	}
@@ -144,9 +145,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected SubTypeResult generateMMBusinessProcessCatalogue(
+	protected StaticFieldResult generateMMBusinessProcessCatalogue(
 			MainTypeResult containerGen, MMBusinessProcessCatalogue mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMModelEntity(gen, mmBean);
 		for (MMTopLevelCatalogueEntry mmChild : mmBean
 				.getTopLevelCatalogueEntry()) {
@@ -175,18 +176,18 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected SubTypeResult generateMMDataDictionary(
+	protected StaticFieldResult generateMMDataDictionary(
 			MainTypeResult containerGen, MMDataDictionary mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMModelEntity(gen, mmBean);
 		for (MMTopLevelDictionaryEntry mmChild : mmBean
 				.getTopLevelDictionaryEntry()) {
 			generateMMTopLevelDictionaryEntry(gen, mmChild);
 		}
-		defaultAttribute(gen, MMDataDictionary_.repository,
-				mmBean.getRepository());
 		defaultAttribute(gen, MMDataDictionary_.topLevelDictionaryEntry,
 				mmBean.getTopLevelDictionaryEntry());
+		defaultAttribute(gen, MMDataDictionary_.repository,
+				mmBean.getRepository());
 		gen.flush();
 		return gen;
 	}
@@ -205,30 +206,30 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		}
 		generateMMMessageDefinitionIdentifier(gen,
 				mmBean.getMessageDefinitionIdentifier());
+		defaultAttribute(gen, MMMessageDefinition_.businessArea,
+				mmBean.getBusinessArea());
 		defaultAttribute(gen, MMMessageDefinition_.messageSet,
 				mmBean.getMessageSet());
+		defaultAttribute(gen, MMMessageDefinition_.xmlName, mmBean.getXmlName());
+		defaultAttribute(gen, MMMessageDefinition_.xmlTag, mmBean.getXmlTag());
 		defaultAttribute(gen, MMMessageDefinition_.xors, mmBean.getXors());
 		defaultAttribute(gen, MMMessageDefinition_.rootElement,
 				mmBean.getRootElement());
-		defaultAttribute(gen, MMMessageDefinition_.choreography,
-				mmBean.getChoreography());
-		defaultAttribute(gen, MMMessageDefinition_.xmlTag, mmBean.getXmlTag());
-		defaultAttribute(gen, MMMessageDefinition_.trace, mmBean.getTrace());
-		defaultAttribute(gen, MMMessageDefinition_.derivation,
-				mmBean.getDerivation());
-		defaultAttribute(gen, MMMessageDefinition_.businessArea,
-				mmBean.getBusinessArea());
-		defaultAttribute(gen, MMMessageDefinition_.xmlName, mmBean.getXmlName());
 		defaultAttribute(gen, MMMessageDefinition_.messageBuildingBlock,
 				mmBean.getMessageBuildingBlock());
+		defaultAttribute(gen, MMMessageDefinition_.choreography,
+				mmBean.getChoreography());
+		defaultAttribute(gen, MMMessageDefinition_.trace, mmBean.getTrace());
 		defaultAttribute(gen, MMMessageDefinition_.messageDefinitionIdentifier,
 				mmBean.getMessageDefinitionIdentifier());
+		defaultAttribute(gen, MMMessageDefinition_.derivation,
+				mmBean.getDerivation());
 		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMessageSet(SubTypeResult containerGen,
-			MMMessageSet mmBean) {
+	protected MainTypeResult generateMMMessageSet(
+			StaticFieldResult containerGen, MMMessageSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -259,8 +260,8 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBusinessArea(SubTypeResult containerGen,
-			MMBusinessArea mmBean) {
+	protected MainTypeResult generateMMBusinessArea(
+			StaticFieldResult containerGen, MMBusinessArea mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -275,42 +276,42 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected SubTypeResult generateMMXorInMessageDefinition(
+	protected StaticFieldResult generateMMXorInMessageDefinition(
 			MainTypeResult containerGen, MMXor mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMXor_.impactedElements,
-				mmBean.getImpactedElements());
-		defaultAttribute(gen, MMXor_.messageDefinition,
-				mmBean.getMessageDefinition());
-		defaultAttribute(gen, MMXor_.impactedMessageBuildingBlocks,
-				mmBean.getImpactedMessageBuildingBlocks());
 		defaultAttribute(gen, MMXor_.messageComponent,
 				mmBean.getMessageComponent());
+		defaultAttribute(gen, MMXor_.messageDefinition,
+				mmBean.getMessageDefinition());
+		defaultAttribute(gen, MMXor_.impactedElements,
+				mmBean.getImpactedElements());
+		defaultAttribute(gen, MMXor_.impactedMessageBuildingBlocks,
+				mmBean.getImpactedMessageBuildingBlocks());
 		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMXorInMessageComponent(
+	protected StaticFieldResult generateMMXorInMessageComponent(
 			MainTypeResult containerGen, MMXor mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMXor_.impactedElements,
-				mmBean.getImpactedElements());
-		defaultAttribute(gen, MMXor_.messageDefinition,
-				mmBean.getMessageDefinition());
-		defaultAttribute(gen, MMXor_.impactedMessageBuildingBlocks,
-				mmBean.getImpactedMessageBuildingBlocks());
 		defaultAttribute(gen, MMXor_.messageComponent,
 				mmBean.getMessageComponent());
+		defaultAttribute(gen, MMXor_.messageDefinition,
+				mmBean.getMessageDefinition());
+		defaultAttribute(gen, MMXor_.impactedElements,
+				mmBean.getImpactedElements());
+		defaultAttribute(gen, MMXor_.impactedMessageBuildingBlocks,
+				mmBean.getImpactedMessageBuildingBlocks());
 		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMBusinessComponent(
-			SubTypeResult containerGen, MMBusinessComponent mmBean) {
+			StaticFieldResult containerGen, MMBusinessComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -323,21 +324,21 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		}
 		defaultAttribute(gen, MMBusinessComponent_.derivationElement,
 				mmBean.getDerivationElement());
+		defaultAttribute(gen, MMBusinessComponent_.subType, mmBean.getSubType());
+		defaultAttribute(gen, MMBusinessComponent_.superType,
+				mmBean.getSuperType());
+		defaultAttribute(gen, MMBusinessComponent_.element, mmBean.getElement());
 		defaultAttribute(gen, MMBusinessComponent_.derivationComponent,
 				mmBean.getDerivationComponent());
 		defaultAttribute(gen, MMBusinessComponent_.associationDomain,
 				mmBean.getAssociationDomain());
-		defaultAttribute(gen, MMBusinessComponent_.subType, mmBean.getSubType());
-		defaultAttribute(gen, MMBusinessComponent_.element, mmBean.getElement());
-		defaultAttribute(gen, MMBusinessComponent_.superType,
-				mmBean.getSuperType());
 		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMMessageBuildingBlock(
+	protected PropertyResult generateMMMessageBuildingBlock(
 			MainTypeResult containerGen, MMMessageBuildingBlock mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		PropertyResult gen = defaultPropertyResult(mmBean, containerGen);
 		implementMMMessageConstruct(gen, mmBean);
 		implementMMConstruct(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -351,26 +352,26 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected SubTypeResult generateMMBusinessAssociationEnd(
+	protected PropertyResult generateMMBusinessAssociationEnd(
 			MainTypeResult containerGen, MMBusinessAssociationEnd mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		PropertyResult gen = defaultPropertyResult(mmBean, containerGen);
 		implementMMBusinessElement(gen, mmBean);
 		implementMMConstruct(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		implementMMMultiplicityEntity(gen, mmBean);
 		implementMMBusinessConcept(gen, mmBean);
-		defaultAttribute(gen, MMBusinessAssociationEnd_.type, mmBean.getType());
 		defaultAttribute(gen, MMBusinessAssociationEnd_.opposite,
 				mmBean.getOpposite());
 		defaultAttribute(gen, MMBusinessAssociationEnd_.aggregation,
 				mmBean.getAggregation());
+		defaultAttribute(gen, MMBusinessAssociationEnd_.type, mmBean.getType());
 		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMMessageComponent(
-			SubTypeResult containerGen, MMMessageComponent mmBean) {
+			StaticFieldResult containerGen, MMMessageComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMMessageElementContainer(gen, mmBean);
 		implementMMMessageComponentType(gen, mmBean);
@@ -389,7 +390,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected MainTypeResult generateMMMessageChoreography(
-			SubTypeResult containerGen, MMMessageChoreography mmBean) {
+			StaticFieldResult containerGen, MMMessageChoreography mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -403,36 +404,36 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected MainTypeResult generateMMBusinessTransaction(
-			SubTypeResult containerGen, MMBusinessTransaction mmBean) {
+			StaticFieldResult containerGen, MMBusinessTransaction mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		for (MMMessageTransmission mmChild : mmBean.getTransmission()) {
-			generateMMMessageTransmission(gen, mmChild);
-		}
 		for (MMParticipant mmChild : mmBean.getParticipant()) {
 			generateMMParticipant(gen, mmChild);
+		}
+		for (MMMessageTransmission mmChild : mmBean.getTransmission()) {
+			generateMMMessageTransmission(gen, mmChild);
 		}
 		defaultAttribute(gen, MMBusinessTransaction_.trace, mmBean.getTrace());
 		defaultAttribute(gen, MMBusinessTransaction_.businessProcessTrace,
 				mmBean.getBusinessProcessTrace());
-		defaultAttribute(gen, MMBusinessTransaction_.parentTransaction,
-				mmBean.getParentTransaction());
-		defaultAttribute(gen, MMBusinessTransaction_.subTransaction,
-				mmBean.getSubTransaction());
-		defaultAttribute(gen, MMBusinessTransaction_.messageTransportMode,
-				mmBean.getMessageTransportMode());
-		defaultAttribute(gen, MMBusinessTransaction_.transmission,
-				mmBean.getTransmission());
 		defaultAttribute(gen, MMBusinessTransaction_.participant,
 				mmBean.getParticipant());
+		defaultAttribute(gen, MMBusinessTransaction_.transmission,
+				mmBean.getTransmission());
+		defaultAttribute(gen, MMBusinessTransaction_.messageTransportMode,
+				mmBean.getMessageTransportMode());
+		defaultAttribute(gen, MMBusinessTransaction_.subTransaction,
+				mmBean.getSubTransaction());
+		defaultAttribute(gen, MMBusinessTransaction_.parentTransaction,
+				mmBean.getParentTransaction());
 		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMBusinessProcess(
-			SubTypeResult containerGen, MMBusinessProcess mmBean) {
+			StaticFieldResult containerGen, MMBusinessProcess mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -440,27 +441,27 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMBusinessRole mmChild : mmBean.getBusinessRole()) {
 			generateMMBusinessRole(gen, mmChild);
 		}
-		defaultAttribute(gen, MMBusinessProcess_.businessProcessTrace,
-				mmBean.getBusinessProcessTrace());
+		defaultAttribute(gen, MMBusinessProcess_.extended, mmBean.getExtended());
 		defaultAttribute(gen, MMBusinessProcess_.included, mmBean.getIncluded());
+		defaultAttribute(gen, MMBusinessProcess_.includer, mmBean.getIncluder());
 		defaultAttribute(gen, MMBusinessProcess_.businessRole,
 				mmBean.getBusinessRole());
+		defaultAttribute(gen, MMBusinessProcess_.businessProcessTrace,
+				mmBean.getBusinessProcessTrace());
 		defaultAttribute(gen, MMBusinessProcess_.extender, mmBean.getExtender());
-		defaultAttribute(gen, MMBusinessProcess_.includer, mmBean.getIncluder());
-		defaultAttribute(gen, MMBusinessProcess_.extended, mmBean.getExtended());
 		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMBusinessRole(MainTypeResult containerGen,
-			MMBusinessRole mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+	protected StaticFieldResult generateMMBusinessRole(
+			MainTypeResult containerGen, MMBusinessRole mmBean) {
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMBusinessRole_.businessRoleTrace,
-				mmBean.getBusinessRoleTrace());
 		defaultAttribute(gen, MMBusinessRole_.businessProcess,
 				mmBean.getBusinessProcess());
+		defaultAttribute(gen, MMBusinessRole_.businessRoleTrace,
+				mmBean.getBusinessRoleTrace());
 		gen.flush();
 		return gen;
 	}
@@ -471,12 +472,12 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		implementMMMultiplicityEntity(gen, mmBean);
-		defaultAttribute(gen, MMParticipant_.sends, mmBean.getSends());
 		defaultAttribute(gen, MMParticipant_.businessRoleTrace,
 				mmBean.getBusinessRoleTrace());
 		defaultAttribute(gen, MMParticipant_.businessTransaction,
 				mmBean.getBusinessTransaction());
 		defaultAttribute(gen, MMParticipant_.receives, mmBean.getReceives());
+		defaultAttribute(gen, MMParticipant_.sends, mmBean.getSends());
 		gen.flush();
 		return gen;
 	}
@@ -497,19 +498,19 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
+		generateMMSend(gen, mmBean.getSend());
 		for (MMReceive mmChild : mmBean.getReceive()) {
 			generateMMReceive(gen, mmChild);
 		}
-		generateMMSend(gen, mmBean.getSend());
 		defaultAttribute(gen, MMMessageTransmission_.derivation,
 				mmBean.getDerivation());
 		defaultAttribute(gen, MMMessageTransmission_.businessTransaction,
 				mmBean.getBusinessTransaction());
 		defaultAttribute(gen, MMMessageTransmission_.messageTypeDescription,
 				mmBean.getMessageTypeDescription());
+		defaultAttribute(gen, MMMessageTransmission_.send, mmBean.getSend());
 		defaultAttribute(gen, MMMessageTransmission_.receive,
 				mmBean.getReceive());
-		defaultAttribute(gen, MMMessageTransmission_.send, mmBean.getSend());
 		gen.flush();
 		return gen;
 	}
@@ -526,59 +527,59 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected MainTypeResult generateMMMessageTransportMode(
-			SubTypeResult containerGen, MMMessageTransportMode mmBean) {
+			StaticFieldResult containerGen, MMMessageTransportMode mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMMessageTransportMode_.businessTransaction,
-				mmBean.getBusinessTransaction());
 		defaultAttribute(gen,
 				MMMessageTransportMode_.boundedCommunicationDelay,
 				mmBean.getBoundedCommunicationDelay());
-		defaultAttribute(gen, MMMessageTransportMode_.messageValidationOnOff,
-				mmBean.getMessageValidationOnOff());
-		defaultAttribute(gen, MMMessageTransportMode_.messageCasting,
-				mmBean.getMessageCasting());
-		defaultAttribute(gen, MMMessageTransportMode_.receiverAsynchronicity,
-				mmBean.getReceiverAsynchronicity());
-		defaultAttribute(gen, MMMessageTransportMode_.deliveryAssurance,
-				mmBean.getDeliveryAssurance());
-		defaultAttribute(gen, MMMessageTransportMode_.maximumMessageSize,
-				mmBean.getMaximumMessageSize());
 		defaultAttribute(gen, MMMessageTransportMode_.maximumClockVariation,
 				mmBean.getMaximumClockVariation());
-		defaultAttribute(gen, MMMessageTransportMode_.messageDeliveryOrder,
-				mmBean.getMessageDeliveryOrder());
+		defaultAttribute(gen, MMMessageTransportMode_.maximumMessageSize,
+				mmBean.getMaximumMessageSize());
 		defaultAttribute(gen, MMMessageTransportMode_.messageDeliveryWindow,
 				mmBean.getMessageDeliveryWindow());
-		defaultAttribute(gen, MMMessageTransportMode_.messageValidationLevel,
-				mmBean.getMessageValidationLevel());
-		defaultAttribute(gen, MMMessageTransportMode_.messageValidationResults,
-				mmBean.getMessageValidationResults());
 		defaultAttribute(gen, MMMessageTransportMode_.messageSendingWindow,
 				mmBean.getMessageSendingWindow());
-		defaultAttribute(gen, MMMessageTransportMode_.senderAsynchronicity,
-				mmBean.getSenderAsynchronicity());
+		defaultAttribute(gen, MMMessageTransportMode_.deliveryAssurance,
+				mmBean.getDeliveryAssurance());
 		defaultAttribute(gen, MMMessageTransportMode_.durability,
 				mmBean.getDurability());
+		defaultAttribute(gen, MMMessageTransportMode_.messageCasting,
+				mmBean.getMessageCasting());
+		defaultAttribute(gen, MMMessageTransportMode_.messageDeliveryOrder,
+				mmBean.getMessageDeliveryOrder());
+		defaultAttribute(gen, MMMessageTransportMode_.messageValidationLevel,
+				mmBean.getMessageValidationLevel());
+		defaultAttribute(gen, MMMessageTransportMode_.messageValidationOnOff,
+				mmBean.getMessageValidationOnOff());
+		defaultAttribute(gen, MMMessageTransportMode_.messageValidationResults,
+				mmBean.getMessageValidationResults());
+		defaultAttribute(gen, MMMessageTransportMode_.receiverAsynchronicity,
+				mmBean.getReceiverAsynchronicity());
+		defaultAttribute(gen, MMMessageTransportMode_.senderAsynchronicity,
+				mmBean.getSenderAsynchronicity());
+		defaultAttribute(gen, MMMessageTransportMode_.businessTransaction,
+				mmBean.getBusinessTransaction());
 		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMMessageDefinitionIdentifier(
+	protected StaticFieldResult generateMMMessageDefinitionIdentifier(
 			MainTypeResult containerGen, MMMessageDefinitionIdentifier mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMModelEntity(gen, mmBean);
 		defaultAttribute(gen, MMMessageDefinitionIdentifier_.businessArea,
 				mmBean.getBusinessArea());
 		defaultAttribute(gen,
 				MMMessageDefinitionIdentifier_.messageFunctionality,
 				mmBean.getMessageFunctionality());
-		defaultAttribute(gen, MMMessageDefinitionIdentifier_.version,
-				mmBean.getVersion());
 		defaultAttribute(gen, MMMessageDefinitionIdentifier_.flavour,
 				mmBean.getFlavour());
+		defaultAttribute(gen, MMMessageDefinitionIdentifier_.version,
+				mmBean.getVersion());
 		gen.flush();
 		return gen;
 	}
@@ -590,9 +591,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected SubTypeResult generateMMMessageAssociationEnd(
+	protected PropertyResult generateMMMessageAssociationEnd(
 			MainTypeResult containerGen, MMMessageAssociationEnd mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		PropertyResult gen = defaultPropertyResult(mmBean, containerGen);
 		implementMMMessageElement(gen, mmBean);
 		implementMMMessageConstruct(gen, mmBean);
 		implementMMConstruct(gen, mmBean);
@@ -600,16 +601,16 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMModelEntity(gen, mmBean);
 		implementMMMultiplicityEntity(gen, mmBean);
 		implementMMMessageConcept(gen, mmBean);
-		defaultAttribute(gen, MMMessageAssociationEnd_.type, mmBean.getType());
 		defaultAttribute(gen, MMMessageAssociationEnd_.isComposite,
 				mmBean.isIsComposite());
+		defaultAttribute(gen, MMMessageAssociationEnd_.type, mmBean.getType());
 		gen.flush();
 		return gen;
 	}
 
-	protected SubTypeResult generateMMMessageAttribute(
+	protected PropertyResult generateMMMessageAttribute(
 			MainTypeResult containerGen, MMMessageAttribute mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		PropertyResult gen = defaultPropertyResult(mmBean, containerGen);
 		implementMMMessageElement(gen, mmBean);
 		implementMMMessageConstruct(gen, mmBean);
 		implementMMConstruct(gen, mmBean);
@@ -625,9 +626,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected SubTypeResult generateMMBusinessAttribute(
+	protected PropertyResult generateMMBusinessAttribute(
 			MainTypeResult containerGen, MMBusinessAttribute mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		PropertyResult gen = defaultPropertyResult(mmBean, containerGen);
 		implementMMBusinessElement(gen, mmBean);
 		implementMMConstruct(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -642,7 +643,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMText(SubTypeResult containerGen,
+	protected MainTypeResult generateMMText(StaticFieldResult containerGen,
 			MMText mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -656,7 +657,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMString(SubTypeResult containerGen,
+	protected MainTypeResult generateMMString(StaticFieldResult containerGen,
 			MMString mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -666,16 +667,16 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMLogicalType(gen, mmBean);
-		defaultAttribute(gen, MMString_.length, mmBean.getLength());
 		defaultAttribute(gen, MMString_.minLength, mmBean.getMinLength());
 		defaultAttribute(gen, MMString_.maxLength, mmBean.getMaxLength());
 		defaultAttribute(gen, MMString_.pattern, mmBean.getPattern());
+		defaultAttribute(gen, MMString_.length, mmBean.getLength());
 		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMIdentifierSet(
-			SubTypeResult containerGen, MMIdentifierSet mmBean) {
+			StaticFieldResult containerGen, MMIdentifierSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
@@ -690,8 +691,8 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMIndicator(SubTypeResult containerGen,
-			MMIndicator mmBean) {
+	protected MainTypeResult generateMMIndicator(
+			StaticFieldResult containerGen, MMIndicator mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
@@ -700,15 +701,15 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMLogicalType(gen, mmBean);
-		defaultAttribute(gen, MMIndicator_.meaningWhenFalse,
-				mmBean.getMeaningWhenFalse());
 		defaultAttribute(gen, MMIndicator_.meaningWhenTrue,
 				mmBean.getMeaningWhenTrue());
+		defaultAttribute(gen, MMIndicator_.meaningWhenFalse,
+				mmBean.getMeaningWhenFalse());
 		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBoolean(SubTypeResult containerGen,
+	protected MainTypeResult generateMMBoolean(StaticFieldResult containerGen,
 			MMBoolean mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -723,7 +724,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMRate(SubTypeResult containerGen,
+	protected MainTypeResult generateMMRate(StaticFieldResult containerGen,
 			MMRate mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -733,13 +734,13 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMLogicalType(gen, mmBean);
-		defaultAttribute(gen, MMRate_.baseUnitCode, mmBean.getBaseUnitCode());
 		defaultAttribute(gen, MMRate_.baseValue, mmBean.getBaseValue());
+		defaultAttribute(gen, MMRate_.baseUnitCode, mmBean.getBaseUnitCode());
 		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDecimal(SubTypeResult containerGen,
+	protected MainTypeResult generateMMDecimal(StaticFieldResult containerGen,
 			MMDecimal mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -749,20 +750,20 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMLogicalType(gen, mmBean);
+		defaultAttribute(gen, MMDecimal_.minInclusive, mmBean.getMinInclusive());
+		defaultAttribute(gen, MMDecimal_.minExclusive, mmBean.getMinExclusive());
+		defaultAttribute(gen, MMDecimal_.maxInclusive, mmBean.getMaxInclusive());
+		defaultAttribute(gen, MMDecimal_.maxExclusive, mmBean.getMaxExclusive());
+		defaultAttribute(gen, MMDecimal_.totalDigits, mmBean.getTotalDigits());
 		defaultAttribute(gen, MMDecimal_.fractionDigits,
 				mmBean.getFractionDigits());
-		defaultAttribute(gen, MMDecimal_.maxExclusive, mmBean.getMaxExclusive());
-		defaultAttribute(gen, MMDecimal_.minExclusive, mmBean.getMinExclusive());
-		defaultAttribute(gen, MMDecimal_.minInclusive, mmBean.getMinInclusive());
-		defaultAttribute(gen, MMDecimal_.maxInclusive, mmBean.getMaxInclusive());
-		defaultAttribute(gen, MMDecimal_.totalDigits, mmBean.getTotalDigits());
 		defaultAttribute(gen, MMDecimal_.pattern, mmBean.getPattern());
 		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMExternalSchema(
-			SubTypeResult containerGen, MMExternalSchema mmBean) {
+			StaticFieldResult containerGen, MMExternalSchema mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMMessageComponentType(gen, mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
@@ -771,15 +772,15 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMLogicalType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMMessageConcept(gen, mmBean);
-		defaultAttribute(gen, MMExternalSchema_.processContent,
-				mmBean.getProcessContent());
 		defaultAttribute(gen, MMExternalSchema_.namespaceList,
 				mmBean.getNamespaceList());
+		defaultAttribute(gen, MMExternalSchema_.processContent,
+				mmBean.getProcessContent());
 		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMQuantity(SubTypeResult containerGen,
+	protected MainTypeResult generateMMQuantity(StaticFieldResult containerGen,
 			MMQuantity mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -794,9 +795,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected SubTypeResult generateMMCode(MainTypeResult containerGen,
+	protected StaticFieldResult generateMMCode(MainTypeResult containerGen,
 			MMCode mmBean) {
-		SubTypeResult gen = defaultSubType(mmBean, containerGen);
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		defaultAttribute(gen, MMCode_.owner, mmBean.getOwner());
@@ -805,7 +806,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMCodeSet(SubTypeResult containerGen,
+	protected MainTypeResult generateMMCodeSet(StaticFieldResult containerGen,
 			MMCodeSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -827,7 +828,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMAmount(SubTypeResult containerGen,
+	protected MainTypeResult generateMMAmount(StaticFieldResult containerGen,
 			MMAmount mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -844,7 +845,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected MainTypeResult generateMMChoiceComponent(
-			SubTypeResult containerGen, MMChoiceComponent mmBean) {
+			StaticFieldResult containerGen, MMChoiceComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMMessageElementContainer(gen, mmBean);
 		implementMMMessageComponentType(gen, mmBean);
@@ -859,7 +860,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected MainTypeResult generateMMEndPointCategory(
-			SubTypeResult containerGen, MMEndPointCategory mmBean) {
+			StaticFieldResult containerGen, MMEndPointCategory mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -870,7 +871,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBinary(SubTypeResult containerGen,
+	protected MainTypeResult generateMMBinary(StaticFieldResult containerGen,
 			MMBinary mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
@@ -880,15 +881,15 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMLogicalType(gen, mmBean);
-		defaultAttribute(gen, MMBinary_.length, mmBean.getLength());
 		defaultAttribute(gen, MMBinary_.minLength, mmBean.getMinLength());
 		defaultAttribute(gen, MMBinary_.maxLength, mmBean.getMaxLength());
 		defaultAttribute(gen, MMBinary_.pattern, mmBean.getPattern());
+		defaultAttribute(gen, MMBinary_.length, mmBean.getLength());
 		gen.flush();
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDate(SubTypeResult containerGen,
+	protected MainTypeResult generateMMDate(StaticFieldResult containerGen,
 			MMDate mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
@@ -903,7 +904,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDateTime(SubTypeResult containerGen,
+	protected MainTypeResult generateMMDateTime(StaticFieldResult containerGen,
 			MMDateTime mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
@@ -918,7 +919,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDay(SubTypeResult containerGen,
+	protected MainTypeResult generateMMDay(StaticFieldResult containerGen,
 			MMDay mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
@@ -933,7 +934,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMDuration(SubTypeResult containerGen,
+	protected MainTypeResult generateMMDuration(StaticFieldResult containerGen,
 			MMDuration mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
@@ -948,7 +949,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMonth(SubTypeResult containerGen,
+	protected MainTypeResult generateMMMonth(StaticFieldResult containerGen,
 			MMMonth mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
@@ -963,7 +964,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMMonthDay(SubTypeResult containerGen,
+	protected MainTypeResult generateMMMonthDay(StaticFieldResult containerGen,
 			MMMonthDay mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
@@ -978,7 +979,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMTime(SubTypeResult containerGen,
+	protected MainTypeResult generateMMTime(StaticFieldResult containerGen,
 			MMTime mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
@@ -993,7 +994,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMYear(SubTypeResult containerGen,
+	protected MainTypeResult generateMMYear(StaticFieldResult containerGen,
 			MMYear mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
@@ -1008,8 +1009,8 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMYearMonth(SubTypeResult containerGen,
-			MMYearMonth mmBean) {
+	protected MainTypeResult generateMMYearMonth(
+			StaticFieldResult containerGen, MMYearMonth mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMAbstractDateTimeConcept(gen, mmBean);
 		implementMMDataType(gen, mmBean);
@@ -1023,8 +1024,8 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMUserDefined(SubTypeResult containerGen,
-			MMUserDefined mmBean) {
+	protected MainTypeResult generateMMUserDefined(
+			StaticFieldResult containerGen, MMUserDefined mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMMessageComponentType(gen, mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
@@ -1033,17 +1034,17 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMLogicalType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMMessageConcept(gen, mmBean);
-		defaultAttribute(gen, MMUserDefined_.processContents,
-				mmBean.getProcessContents());
 		defaultAttribute(gen, MMUserDefined_.namespaceList,
 				mmBean.getNamespaceList());
 		defaultAttribute(gen, MMUserDefined_.namespace, mmBean.getNamespace());
+		defaultAttribute(gen, MMUserDefined_.processContents,
+				mmBean.getProcessContents());
 		gen.flush();
 		return gen;
 	}
 
 	protected MainTypeResult generateMMIndustryMessageSet(
-			SubTypeResult containerGen, MMIndustryMessageSet mmBean) {
+			StaticFieldResult containerGen, MMIndustryMessageSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -1053,7 +1054,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected MainTypeResult generateMMConvergenceDocumentation(
-			SubTypeResult containerGen, MMConvergenceDocumentation mmBean) {
+			StaticFieldResult containerGen, MMConvergenceDocumentation mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -1063,7 +1064,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected MainTypeResult generateMMISO15022MessageSet(
-			SubTypeResult containerGen, MMISO15022MessageSet mmBean) {
+			StaticFieldResult containerGen, MMISO15022MessageSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -1072,8 +1073,8 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMSchemaType(SubTypeResult containerGen,
-			MMSchemaType mmBean) {
+	protected MainTypeResult generateMMSchemaType(
+			StaticFieldResult containerGen, MMSchemaType mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMDataType(gen, mmBean);
 		implementMMTopLevelDictionaryEntry(gen, mmBean);
@@ -1088,12 +1089,12 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected void implementMMModelEntity(TypeResult gen, MMModelEntity mmBean) {
-		defaultAttribute(gen, MMModelEntity_.objectIdentifier,
-				mmBean.getObjectIdentifier());
-		defaultAttribute(gen, MMModelEntity_.previousVersion,
-				mmBean.getPreviousVersion());
 		defaultAttribute(gen, MMModelEntity_.nextVersions,
 				mmBean.getNextVersions());
+		defaultAttribute(gen, MMModelEntity_.previousVersion,
+				mmBean.getPreviousVersion());
+		defaultAttribute(gen, MMModelEntity_.objectIdentifier,
+				mmBean.getObjectIdentifier());
 	}
 
 	protected void implementMMTopLevelCatalogueEntry(TypeResult gen,
@@ -1105,19 +1106,19 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected void implementMMRepositoryConcept(TypeResult gen,
 			MMRepositoryConcept mmBean) {
+		defaultAttribute(gen, MMRepositoryConcept_.semanticMarkup,
+				mmBean.getSemanticMarkup());
+		defaultAttribute(gen, MMRepositoryConcept_.doclet, mmBean.getDoclet());
+		defaultAttribute(gen, MMRepositoryConcept_.example, mmBean.getExample());
+		defaultAttribute(gen, MMRepositoryConcept_.constraint,
+				mmBean.getConstraint());
+		defaultAttribute(gen, MMRepositoryConcept_.registrationStatus,
+				mmBean.getRegistrationStatus());
+		defaultAttribute(gen, MMRepositoryConcept_.removalDate,
+				mmBean.getRemovalDate());
 		defaultAttribute(gen, MMRepositoryConcept_.name, mmBean.getName());
 		defaultAttribute(gen, MMRepositoryConcept_.definition,
 				mmBean.getDefinition());
-		defaultAttribute(gen, MMRepositoryConcept_.semanticMarkup,
-				mmBean.getSemanticMarkup());
-		defaultAttribute(gen, MMRepositoryConcept_.registrationStatus,
-				mmBean.getRegistrationStatus());
-		defaultAttribute(gen, MMRepositoryConcept_.doclet, mmBean.getDoclet());
-		defaultAttribute(gen, MMRepositoryConcept_.constraint,
-				mmBean.getConstraint());
-		defaultAttribute(gen, MMRepositoryConcept_.removalDate,
-				mmBean.getRemovalDate());
-		defaultAttribute(gen, MMRepositoryConcept_.example, mmBean.getExample());
 	}
 
 	protected void implementMMTopLevelDictionaryEntry(TypeResult gen,
@@ -1132,12 +1133,12 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected void implementMMMessageElement(TypeResult gen,
 			MMMessageElement mmBean) {
-		defaultAttribute(gen, MMMessageElement_.componentContext,
-				mmBean.getComponentContext());
 		defaultAttribute(gen, MMMessageElement_.businessComponentTrace,
 				mmBean.getBusinessComponentTrace());
 		defaultAttribute(gen, MMMessageElement_.businessElementTrace,
 				mmBean.getBusinessElementTrace());
+		defaultAttribute(gen, MMMessageElement_.componentContext,
+				mmBean.getComponentContext());
 		defaultAttribute(gen, MMMessageElement_.isDerived, mmBean.isIsDerived());
 	}
 
@@ -1151,10 +1152,10 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected void implementMMMultiplicityEntity(TypeResult gen,
 			MMMultiplicityEntity mmBean) {
-		defaultAttribute(gen, MMMultiplicityEntity_.minOccurs,
-				mmBean.getMinOccurs());
 		defaultAttribute(gen, MMMultiplicityEntity_.maxOccurs,
 				mmBean.getMaxOccurs());
+		defaultAttribute(gen, MMMultiplicityEntity_.minOccurs,
+				mmBean.getMinOccurs());
 	}
 
 	protected void implementMMLogicalType(TypeResult gen, MMLogicalType mmBean) {
@@ -1184,9 +1185,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected void implementMMMessageComponentType(TypeResult gen,
 			MMMessageComponentType mmBean) {
-		defaultAttribute(gen, MMMessageComponentType_.trace, mmBean.getTrace());
 		defaultAttribute(gen, MMMessageComponentType_.messageBuildingBlock,
 				mmBean.getMessageBuildingBlock());
+		defaultAttribute(gen, MMMessageComponentType_.trace, mmBean.getTrace());
 	}
 
 	protected void implementMMDataType(TypeResult gen, MMDataType mmBean) {
@@ -1203,20 +1204,20 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected void implementMMAbstractDateTimeConcept(TypeResult gen,
 			MMAbstractDateTimeConcept mmBean) {
-		defaultAttribute(gen, MMAbstractDateTimeConcept_.maxExclusive,
-				mmBean.getMaxExclusive());
-		defaultAttribute(gen, MMAbstractDateTimeConcept_.minExclusive,
-				mmBean.getMinExclusive());
 		defaultAttribute(gen, MMAbstractDateTimeConcept_.minInclusive,
 				mmBean.getMinInclusive());
+		defaultAttribute(gen, MMAbstractDateTimeConcept_.minExclusive,
+				mmBean.getMinExclusive());
 		defaultAttribute(gen, MMAbstractDateTimeConcept_.maxInclusive,
 				mmBean.getMaxInclusive());
+		defaultAttribute(gen, MMAbstractDateTimeConcept_.maxExclusive,
+				mmBean.getMaxExclusive());
 		defaultAttribute(gen, MMAbstractDateTimeConcept_.pattern,
 				mmBean.getPattern());
 	}
 
 	protected GenerationResult generateMMTopLevelCatalogueEntry(
-			SubTypeResult gen, MMTopLevelCatalogueEntry mmBean) {
+			StaticFieldResult gen, MMTopLevelCatalogueEntry mmBean) {
 		if (MMSyntaxMessageScheme.class.equals(mmBean.getClass())) {
 			return generateMMSyntaxMessageScheme(gen,
 					(MMSyntaxMessageScheme) mmBean);
@@ -1251,7 +1252,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	}
 
 	protected GenerationResult generateMMTopLevelDictionaryEntry(
-			SubTypeResult gen, MMTopLevelDictionaryEntry mmBean) {
+			StaticFieldResult gen, MMTopLevelDictionaryEntry mmBean) {
 		if (MMBusinessComponent.class.equals(mmBean.getClass())) {
 			return generateMMBusinessComponent(gen,
 					(MMBusinessComponent) mmBean);

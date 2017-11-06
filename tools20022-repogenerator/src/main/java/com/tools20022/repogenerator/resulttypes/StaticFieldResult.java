@@ -12,15 +12,12 @@ import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 
-public class SubTypeResult extends TypeResult {
+public class StaticFieldResult extends TypeResult {
 
 	public FieldSource<JavaClassSource> staticFieldSrc;
-	public StringJoiner structConstructorBody = new StringJoiner(";\n");
-	public FieldSource<JavaClassSource> beanFieldSrc;
-	public MethodSource<JavaClassSource> beanGetterSrc;
-	public MethodSource<JavaClassSource> beanSetterSrc;
+	public StringJoiner staticFieldInitializerBody = new StringJoiner(";\n");
 
-	public SubTypeResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+	public StaticFieldResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
 		super(ctx, mmBean, baseName);
 	}
 

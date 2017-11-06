@@ -46,7 +46,7 @@ import com.tools20022.metamodel.struct.MMRepositoryConcept_;
 import com.tools20022.metamodel.struct.MMRepository_;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
-import com.tools20022.repogenerator.resulttypes.SubTypeResult;
+import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
@@ -108,7 +108,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 
 	@Override
-	protected MainTypeResult generateMMCodeSet(SubTypeResult containerGen, MMCodeSet mmBean) {
+	protected MainTypeResult generateMMCodeSet(StaticFieldResult containerGen, MMCodeSet mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		gen.mmObjectMethod.setFinal(false);
 		mmBean.getTrace().ifPresent(mmST -> {
@@ -149,7 +149,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 
 	@Override
-	protected MainTypeResult generateMMBusinessComponent(SubTypeResult containerGen, MMBusinessComponent mmBean) {
+	protected MainTypeResult generateMMBusinessComponent(StaticFieldResult containerGen, MMBusinessComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		gen.mmObjectMethod.setFinal(false);
 		mmBean.getSuperType().ifPresent(mmST -> {
