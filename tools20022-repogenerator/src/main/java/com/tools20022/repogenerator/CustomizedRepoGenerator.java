@@ -31,16 +31,20 @@ import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponentType;
 import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.metamodel.struct.MMBusinessAttribute_;
 import com.tools20022.metamodel.struct.MMBusinessComponent_;
 import com.tools20022.metamodel.struct.MMCodeSet_;
 import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
+import com.tools20022.metamodel.struct.MMMessageDefinition_;
 import com.tools20022.metamodel.struct.MMRepositoryConcept_;
 import com.tools20022.metamodel.struct.MMRepository_;
+import com.tools20022.repogenerator.resulttypes.AttrResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.SubTypeResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
@@ -195,6 +199,65 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		mmBean.getSuperType().ifPresent(mmST -> {
 			collectDontModifyImports(mmST, dontModifyImports);
 		});
+	}
+
+	
+	@Override
+	protected MainTypeResult generateMMMessageDefinition(MainTypeResult containerGen, MMMessageDefinition mmBean) {
+		MainTypeResult gen = defaultMainType(mmBean);
+		implementMMRepositoryType(gen, mmBean);
+		implementMMRepositoryConcept(gen, mmBean);
+		implementMMModelEntity(gen, mmBean);
+		for (MMXor mmChild : mmBean.getXors()) {
+			generateMMXorInMessageDefinition(gen, mmChild);
+		}
+		for (MMMessageBuildingBlock mmChild : mmBean.getMessageBuildingBlock()) {
+			generateMMMessageBuildingBlock(gen, mmChild);
+		}
+		defaultAttribute(gen, MMMessageDefinition_.messageSet,
+				mmBean.getMessageSet());
+		defaultAttribute(gen, MMMessageDefinition_.xors, mmBean.getXors());
+		defaultAttribute(gen, MMMessageDefinition_.rootElement,
+				mmBean.getRootElement());
+		defaultAttribute(gen, MMMessageDefinition_.choreography,
+				mmBean.getChoreography());
+		defaultAttribute(gen, MMMessageDefinition_.xmlTag, mmBean.getXmlTag());
+		defaultAttribute(gen, MMMessageDefinition_.trace, mmBean.getTrace());
+		defaultAttribute(gen, MMMessageDefinition_.derivation,
+				mmBean.getDerivation());
+		defaultAttribute(gen, MMMessageDefinition_.businessArea,
+				mmBean.getBusinessArea());
+		defaultAttribute(gen, MMMessageDefinition_.xmlName, mmBean.getXmlName());
+		defaultAttribute(gen, MMMessageDefinition_.messageBuildingBlock,
+				mmBean.getMessageBuildingBlock());
+
+		{
+			
+			// Create this block:
+			
+//			messageDefinitionIdentifier_lazy = () -> new MMMessageDefinitionIdentifier() {
+//				{
+//					businessArea = "camt";
+//					messageFunctionality = "030";
+//					version = "04";
+//					flavour = "001";
+//				}
+//			};
+
+			MMMessageDefinitionIdentifier mmMsgId = mmBean.getMessageDefinitionIdentifier();
+			AttrResult attrGen = gen.createAttrResult(MMMessageDefinition_.messageDefinitionIdentifier);
+			attrGen.initializationSource = "messageDefinitionIdentifier_lazy = () -> new " + MMMessageDefinitionIdentifier.class.getName() + "() {{";			
+			attrGen.initializationSource += "businessArea = \""+ mmMsgId.getBusinessArea()+"\";"; 
+			attrGen.initializationSource += "messageFunctionality = \""+ mmMsgId.getMessageFunctionality()+"\";"; 
+			attrGen.initializationSource += "version = \""+ mmMsgId.getVersion()+"\";"; 
+			attrGen.initializationSource += "flavour = \""+ mmMsgId.getFlavour()+"\";"; 
+			attrGen.initializationSource += "}};"; 
+			attrGen.valueAsJavaDoc = mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality()+ "." + mmMsgId.getFlavour() + "." + mmMsgId.getVersion() ;
+			attrGen.valueAsJavaDoc = "{@code " + attrGen.valueAsJavaDoc + "}";
+		}
+
+		gen.flush();
+		return gen;
 	}
 
 	@Override
