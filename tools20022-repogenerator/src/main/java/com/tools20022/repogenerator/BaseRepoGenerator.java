@@ -349,13 +349,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 
 	protected MMRepositoryConcept getPropertyType(MMConstruct mmBean) {
 		if (mmBean instanceof MMMessageBuildingBlock) {
-			if (((MMMessageBuildingBlock) mmBean).getSimpleType().isPresent()) {
-				return ((MMMessageBuildingBlock) mmBean).getSimpleType().get();
-			} else if (((MMMessageBuildingBlock) mmBean).getComplexType().isPresent()) {
-				return ((MMMessageBuildingBlock) mmBean).getComplexType().get();
-			} else {
-				throw new IllegalArgumentException("Unsupported bean instance : " + mmBean);
-			}
+			return ((MMMessageBuildingBlock) mmBean).getXmlMemberType();
 		} else if (mmBean instanceof MMBusinessAttribute) {
 			if (((MMBusinessAttribute) mmBean).getSimpleType().isPresent()) {
 				return ((MMBusinessAttribute) mmBean).getSimpleType().get();
@@ -384,11 +378,12 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 	protected PropertyResult defaultPropertyResult(MMConstruct mmBean, MainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
 
-		// TODO: support optionals and lists
+		// TODO: support optionals 
 		
-		MMRepositoryConcept propertyMMType = getPropertyType(mmBean);
+		MMRepositoryType propertyMMType = mmBean.getMemberType();
 		String propertyType = getStructuredName(propertyMMType).getFullName();
-//		if( mmBean.getMinOccurs().isPresent())
+		boolean isMultiple = mmBean.getMaxOccurs().orElse(100) > 1; 
+		boolean isOptional = mmBean.getMinOccurs().orElse(0) == 0;
 		
 		PropertyResult gen = new PropertyResult(ctx, mmBean, name);
 		{
@@ -396,20 +391,29 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			fieldName = RoasterHelper.convertToJavaName(fieldName);
 			gen.beanFieldSrc = containerGen.src.addField().setName(fieldName);
 			gen.beanFieldSrc.setProtected();
-			gen.beanFieldSrc.setType(propertyType);
+			if( isMultiple )
+				gen.beanFieldSrc.setType(List.class.getName() + "<" + propertyType + ">");
+			else
+				gen.beanFieldSrc.setType(propertyType);
 		}
 		{
 			// TODO: support isXXX() for boolean type
 			gen.beanGetterSrc = containerGen.src.addMethod().setName("get" + name.getMemberName());
 			gen.beanGetterSrc.setPublic();
-			gen.beanGetterSrc.setReturnType(propertyType);
+			if( isMultiple )
+				gen.beanGetterSrc.setReturnType(List.class.getName() + "<" + propertyType + ">");
+			else
+				gen.beanGetterSrc.setReturnType(propertyType);
 			gen.beanGetterSrc.setBody("return " + gen.beanFieldSrc.getName() + ";");
 		}
 		{
 			// TODO: support isXXX() for boolean type
 			gen.beanSetterSrc = containerGen.src.addMethod().setName("set" + name.getMemberName());
 			gen.beanSetterSrc.setPublic();
-			gen.beanSetterSrc.addParameter(propertyType, gen.beanFieldSrc.getName());
+			if( isMultiple )
+				gen.beanSetterSrc.addParameter(List.class.getName() + "<" + propertyType + ">", gen.beanFieldSrc.getName());
+			else
+				gen.beanSetterSrc.addParameter(propertyType, gen.beanFieldSrc.getName());
 			gen.beanSetterSrc.setBody("this." + gen.beanFieldSrc.getName() + " = " + gen.beanFieldSrc.getName() + ";");
 		}
 		{
