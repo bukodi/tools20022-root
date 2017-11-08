@@ -19,8 +19,10 @@ package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Derived;
+import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import com.tools20022.metamodel.derived.DeriveMMMessageComponent_isTechnical;
 import com.tools20022.metamodel.*;
 import java.util.Collections;
@@ -35,6 +37,10 @@ import java.util.Optional;
  */
 public class MMMessageComponent implements MMMessageElementContainer {
 
+	/**
+	 * XORs applied to a selection of the elements of the Message Component.
+	 */
+	public final static MetamodelAttribute<MMMessageComponent, List<MMXor>> xorsAttribute = newAttribute();
 	protected Supplier<List<MMXor>> xors_lazy;
 	protected Supplier<List<MMMessageElement>> messageElement_lazy;
 	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlock_lazy;

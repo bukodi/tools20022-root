@@ -99,7 +99,6 @@ public class GenerateRepoGenerator {
 	void generateNonAbstractType(MetamodelType<?> mmType, MetamodelType<?> mmContainerType) {		
 		
 		MethodSource<JavaClassSource> method = mainSrc.addMethod().setProtected();
-		mainSrc.addImport(mmType.getBeanClass().getPackage().getName() + ".struct." + mmType.getBeanClass().getSimpleName() + "_");
 		method.setName("generate" + mmType.getBeanClass().getSimpleName() + ( MMXor.class.equals(mmType.getBeanClass()) ? "In" + mmContainerType.getName() : ""));
 		method.setReturnType(getResultType(mmType));
 		if( mmContainerType != null ) {
@@ -161,9 +160,9 @@ public class GenerateRepoGenerator {
 		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
 			if( attr.isDerived() )
 				continue;
-			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
+			String coreAttrAsSrc = mmType.getBeanClass().getSimpleName() + "." + attr.getName() + "Attribute";
 			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";
-			bodySb.append("defaultAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
+			bodySb.append("defaultAttribute( gen, " + coreAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 		}
 
 		bodySb.append("gen.flush();");
@@ -173,7 +172,6 @@ public class GenerateRepoGenerator {
 
 	void implementAbstractType(MetamodelType<?> mmType) {
 		MethodSource<JavaClassSource> method = mainSrc.addMethod().setProtected();
-		mainSrc.addImport(mmType.getBeanClass().getPackage().getName() + ".struct." + mmType.getBeanClass().getSimpleName() + "_");
 		method.setName("implement" + mmType.getBeanClass().getSimpleName());
 		
 		if( "implementMMMessageElementContainer".equals( method.getName()) ) {
@@ -209,9 +207,9 @@ public class GenerateRepoGenerator {
 		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
 			if( attr.isDerived() )
 				continue;
-			String mmAttrAsSrc = mmType.getBeanClass().getSimpleName() + "_." + attr.getName();
+			String coreAttrAsSrc = mmType.getBeanClass().getSimpleName() + "." + attr.getName() + "Attribute";
 			String attrValueAsSrc = "mmBean." + attr.getGetterMethod().getName() + "()";
-			bodySb.append("defaultAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
+			bodySb.append("defaultAttribute( gen, " + coreAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 		}
 
 		method.setBody(bodySb.toString());

@@ -12,9 +12,12 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.management.RuntimeErrorException;
+
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.AnnotationTargetSource;
 import org.jboss.forge.roaster.model.source.EnumConstantSource;
+import org.jboss.forge.roaster.model.source.FieldHolderSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.Importer;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
@@ -25,7 +28,6 @@ import org.jboss.forge.roaster.model.source.JavaInterfaceSource;
 import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 import org.jboss.forge.roaster.model.source.PropertyHolderSource;
-import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
@@ -38,8 +40,8 @@ import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.core.metamodel.StaticMemembersBuilder;
 import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.StructuredName;
 import com.tools20022.generators.RoasterHelper;
+import com.tools20022.generators.StructuredName;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelAttribute;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelConstraint;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelElement;
@@ -253,25 +255,26 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	};
 
-	<T extends JavaSource<?>> void generateStaticStructInterface(JavaClassSource srcMetamodelMain, T mmTypeSrc,
+	<T extends JavaSource<T> & FieldHolderSource<T>> void generateStaticStructInterface(JavaClassSource srcMetamodelMain, T src,
 			MetamodelType mmType) {
 		StructuredName structJavaName = getStructJavaName(mmType);
-		JavaInterfaceSource src = ctx.createSourceFile(JavaInterfaceSource.class, structJavaName);
-		for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
-			StructuredName superStructName = getStructJavaName(superType);
-			src.addImport(superStructName.getFullName());
-			src.addInterface(superStructName.getSimpleName());
-		}
-		src.addImport(mmTypeSrc);
+//		JavaInterfaceSource src = ctx.createSourceFile(JavaInterfaceSource.class, structJavaName);
+//		for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
+//			StructuredName superStructName = getStructJavaName(superType);
+//			src.addImport(superStructName.getFullName());
+//			src.addInterface(superStructName.getSimpleName());
+//		}
+//		src.addImport(mmTypeSrc);
 
 		// Add declared attributes
 		for (MetamodelAttribute mmAttr : mmType.getDeclaredAttributes()) {
 			src.addImport(Metamodel.MetamodelAttribute.class);
 			String fieldtype = generateSourceType(mmAttr, src, false, true);
-			fieldtype = "<" + mmTypeSrc.getName() + ", " + fieldtype + ">";
+			fieldtype = "<" + src.getName() + ", " + fieldtype + ">";
 			fieldtype = Metamodel.MetamodelAttribute.class.getSimpleName() + fieldtype;
 
-			FieldSource<JavaInterfaceSource> metaField = src.addField().setName(getJavaName(mmAttr).getSimpleName());
+			FieldSource<T> metaField = src.addField().setName(getJavaName(mmAttr).getSimpleName() + "Attribute");
+			metaField.setPublic().setFinal(true).setStatic(true);
 			metaField.setType(fieldtype);
 			src.addImport(StaticMemembersBuilder.class.getName() + ".newAttribute").setStatic(true);
 			metaField.setLiteralInitializer("newAttribute()");
@@ -282,13 +285,18 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		for (MetamodelConstraint mmConstr : mmType.getDeclaredConstraints()) {
 			JavaClassSource srcConstr = generateConstraintValidator(mmConstr);			
 			src.addImport(Metamodel.MetamodelConstraint.class);
-			FieldSource<JavaInterfaceSource> metaField = src.addField().setName(getJavaName(mmConstr).getSimpleName());
-			metaField.setType(Metamodel.MetamodelConstraint.class.getSimpleName() + "<" + mmTypeSrc.getName() + ">");
+			FieldSource<T> metaField = src.addField().setName(getJavaName(mmConstr).getSimpleName());
+			metaField.setType(Metamodel.MetamodelConstraint.class.getSimpleName() + "<" + src.getName() + ">");
+			metaField.setPublic().setFinal(true).setStatic(true);
 			src.addImport(StaticMemembersBuilder.class.getName() + ".newConstraint").setStatic(true);
 			setMMDoc(metaField, mmConstr);
 			// TODO: check class with name ConstraintExists
 			// src.addImport(RuntimeException.class);
-			metaField.setLiteralInitializer("newConstraint( b->{ throw new RuntimeException(\"Not implemented!\");})");
+			metaField.setLiteralInitializer("newConstraint( b->{ new " + srcConstr.getQualifiedName() + "().accept(b);})");
+			
+			String javaDocText = "Implementation of constraint ";
+			javaDocText += "{@link " + src.getQualifiedName() + "#" + metaField.getName() + "}";
+			srcConstr.getJavaDoc().setText(javaDocText);
 		}
 
 	}
@@ -460,8 +468,21 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	protected JavaClassSource generateConstraintValidator(MetamodelConstraint mmConstr) {		
 		StructuredName beanTypeName = getJavaName(mmConstr.getDeclaringType());
-		StructuredName javaName = StructuredName.primaryType(basePackageName + ".constraints",
-				mmConstr.getName().substring(0, 1).toUpperCase() + mmConstr.getName().substring(1));		
+		final String simpleName; 
+		if( "EntriesHaveUniqueName".equals(mmConstr.getName() ) ) {
+			// This is the only constraint with same name in two different types!
+			if( "DataDictionary".equals( mmConstr.getDeclaringType().getName() ) ) {
+				simpleName = "DataDictionaryEntriesHaveUniqueName"; 
+			} else if( "BusinessProcessCatalogue".equals( mmConstr.getDeclaringType().getName() ) ) {
+				simpleName = "BusinessProcessCatalogueEntriesHaveUniqueName"; 				
+			} else {
+				throw new RuntimeException("Unsupported case!");
+			}
+		} else {
+			simpleName = mmConstr.getName().substring(0, 1).toUpperCase() + mmConstr.getName().substring(1);				
+		}
+		StructuredName javaName = StructuredName.primaryType(basePackageName + ".constraints",simpleName);
+		
 		JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
 		srcDerive.addImport(beanTypeName.getFullName());
 		String ifName = Consumer.class.getName() + "<" + beanTypeName.getSimpleName() + ">";

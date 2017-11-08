@@ -14,13 +14,13 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMMessageAttribute;
+import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.struct.MMBusinessAttribute_;
-import com.tools20022.metamodel.struct.MMMessageAttribute_;
-import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
 
 class CreateConsistentSubset {
 
@@ -31,8 +31,8 @@ class CreateConsistentSubset {
 			.collect(Collectors.toSet());
 
 	private Set<MetamodelAttribute<?, ?>> keepRefs = Stream
-			.of(MMMessageBuildingBlock_.simpleType, MMMessageBuildingBlock_.complexType, MMMessageAttribute_.simpleType,
-					MMMessageAttribute_.complexType, MMBusinessAttribute_.simpleType, MMBusinessAttribute_.complexType)
+			.of(MMMessageBuildingBlock.simpleTypeAttribute, MMMessageBuildingBlock.complexTypeAttribute, MMMessageAttribute.simpleTypeAttribute,
+					MMMessageAttribute.complexTypeAttribute, MMBusinessAttribute.simpleTypeAttribute, MMBusinessAttribute.complexTypeAttribute)
 			.collect(Collectors.toSet());
 
 	private boolean keepRequiredBusinessAssociationEnds = false;

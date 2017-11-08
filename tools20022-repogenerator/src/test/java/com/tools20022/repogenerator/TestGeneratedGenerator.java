@@ -44,13 +44,13 @@ public class TestGeneratedGenerator {
 		//Path srcRoot = Paths.get("/tmp/1019/").toRealPath();
 
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
-		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04.iso20022");
+		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04.iso20022");
 		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-area-pain.iso20022");
 		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-domain-payments.iso20022");
 		// EObject xmiRootObj = ECoreIOHelper
 		// .loadXMIResource("/model/MandateInitiationRequestV05-with-BusinessConceptsV2.iso20022");
-		EObject xmiRootObj =
-		 ECoreIOHelper.loadXMIResource("/model/20170713_ISO20022_2013_eRepository.iso20022");
+//		EObject xmiRootObj =
+//		 ECoreIOHelper.loadXMIResource("/model/20170713_ISO20022_2013_eRepository.iso20022");
 		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 		RawRepository repo = loader.load(ecorePkg, xmiRootObj);
 

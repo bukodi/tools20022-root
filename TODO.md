@@ -7,6 +7,7 @@
 - [ ] Boolean attribute getters begins with double is ( example:  MMMessageAttribute.isIsDerived )
 - [ ] Show attributes in correct order (supertype first, then follow order in ecore file)
 - [ ] Support metamodel constraints
+- [ ] CleanQualifiedTypes in JavaDocs too
 
 # Generators
 - [ ] Inject "Watermark errors" while repository loading. 

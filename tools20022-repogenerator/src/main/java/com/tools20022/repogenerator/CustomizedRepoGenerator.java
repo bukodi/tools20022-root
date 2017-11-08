@@ -37,13 +37,6 @@ import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.metamodel.struct.MMBusinessAttribute_;
-import com.tools20022.metamodel.struct.MMBusinessComponent_;
-import com.tools20022.metamodel.struct.MMCodeSet_;
-import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
-import com.tools20022.metamodel.struct.MMMessageDefinition_;
-import com.tools20022.metamodel.struct.MMRepositoryConcept_;
-import com.tools20022.metamodel.struct.MMRepository_;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
@@ -101,8 +94,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		// implementMMModelEntity(gen, mmBean);
 		generateMMBusinessProcessCatalogue(mtr, mmBean.getBusinessProcessCatalogue());
 		generateMMDataDictionary(mtr, mmBean.getDataDictionary());
-		defaultAttribute(mtr, MMRepository_.businessProcessCatalogue, mmBean.getBusinessProcessCatalogue());
-		defaultAttribute(mtr, MMRepository_.dataDictionary, mmBean.getDataDictionary());
+		defaultAttribute(mtr, MMRepository.businessProcessCatalogueAttribute, mmBean.getBusinessProcessCatalogue());
+		defaultAttribute(mtr, MMRepository.dataDictionaryAttribute, mmBean.getDataDictionary());
 		mtr.flush();
 		return mtr;
 	}
@@ -127,10 +120,10 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		for (MMCode mmChild : mmBean.getCode()) {
 			generateMMCode(gen, mmChild);
 		}
-		defaultAttribute(gen, MMCodeSet_.code, mmBean.getCode());
-		defaultAttribute(gen, MMCodeSet_.trace, mmBean.getTrace());
-		defaultAttribute(gen, MMCodeSet_.derivation, mmBean.getDerivation());
-		defaultAttribute(gen, MMCodeSet_.identificationScheme, mmBean.getIdentificationScheme());
+		defaultAttribute(gen, MMCodeSet.codeAttribute, mmBean.getCode());
+		defaultAttribute(gen, MMCodeSet.traceAttribute, mmBean.getTrace());
+		defaultAttribute(gen, MMCodeSet.derivationAttribute, mmBean.getDerivation());
+		defaultAttribute(gen, MMCodeSet.identificationSchemeAttribute, mmBean.getIdentificationScheme());
 		gen.flush();
 		return gen;
 	}
@@ -178,12 +171,12 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		for (MMBusinessElement mmChild : mmBean.getElement()) {
 			generateMMBusinessElement(gen, mmChild);
 		}
-		defaultAttribute(gen, MMBusinessComponent_.associationDomain, mmBean.getAssociationDomain());
-		defaultAttribute(gen, MMBusinessComponent_.derivationElement, mmBean.getDerivationElement());
-		defaultAttribute(gen, MMBusinessComponent_.subType, mmBean.getSubType());
-		defaultAttribute(gen, MMBusinessComponent_.superType, mmBean.getSuperType());
-		defaultAttribute(gen, MMBusinessComponent_.element, mmBean.getElement());
-		defaultAttribute(gen, MMBusinessComponent_.derivationComponent, mmBean.getDerivationComponent());
+		defaultAttribute(gen, MMBusinessComponent.associationDomainAttribute, mmBean.getAssociationDomain());
+		defaultAttribute(gen, MMBusinessComponent.derivationElementAttribute, mmBean.getDerivationElement());
+		defaultAttribute(gen, MMBusinessComponent.subTypeAttribute, mmBean.getSubType());
+		defaultAttribute(gen, MMBusinessComponent.superTypeAttribute, mmBean.getSuperType());
+		defaultAttribute(gen, MMBusinessComponent.elementAttribute, mmBean.getElement());
+		defaultAttribute(gen, MMBusinessComponent.derivationComponentAttribute, mmBean.getDerivationComponent());
 		gen.flush();
 		return gen;
 	}
@@ -214,21 +207,21 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		for (MMMessageBuildingBlock mmChild : mmBean.getMessageBuildingBlock()) {
 			generateMMMessageBuildingBlock(gen, mmChild);
 		}
-		defaultAttribute(gen, MMMessageDefinition_.messageSet,
+		defaultAttribute(gen, MMMessageDefinition.messageSetAttribute,
 				mmBean.getMessageSet());
-		defaultAttribute(gen, MMMessageDefinition_.xors, mmBean.getXors());
-		defaultAttribute(gen, MMMessageDefinition_.rootElement,
+		defaultAttribute(gen, MMMessageDefinition.xorsAttribute, mmBean.getXors());
+		defaultAttribute(gen, MMMessageDefinition.rootElementAttribute,
 				mmBean.getRootElement());
-		defaultAttribute(gen, MMMessageDefinition_.choreography,
+		defaultAttribute(gen, MMMessageDefinition.choreographyAttribute,
 				mmBean.getChoreography());
-		defaultAttribute(gen, MMMessageDefinition_.xmlTag, mmBean.getXmlTag());
-		defaultAttribute(gen, MMMessageDefinition_.trace, mmBean.getTrace());
-		defaultAttribute(gen, MMMessageDefinition_.derivation,
+		defaultAttribute(gen, MMMessageDefinition.xmlTagAttribute, mmBean.getXmlTag());
+		defaultAttribute(gen, MMMessageDefinition.traceAttribute, mmBean.getTrace());
+		defaultAttribute(gen, MMMessageDefinition.derivationAttribute,
 				mmBean.getDerivation());
-		defaultAttribute(gen, MMMessageDefinition_.businessArea,
+		defaultAttribute(gen, MMMessageDefinition.businessAreaAttribute,
 				mmBean.getBusinessArea());
-		defaultAttribute(gen, MMMessageDefinition_.xmlName, mmBean.getXmlName());
-		defaultAttribute(gen, MMMessageDefinition_.messageBuildingBlock,
+		defaultAttribute(gen, MMMessageDefinition.xmlNameAttribute, mmBean.getXmlName());
+		defaultAttribute(gen, MMMessageDefinition.messageBuildingBlockAttribute,
 				mmBean.getMessageBuildingBlock());
 
 		{
@@ -245,7 +238,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 //			};
 
 			MMMessageDefinitionIdentifier mmMsgId = mmBean.getMessageDefinitionIdentifier();
-			AttrResult attrGen = gen.createAttrResult(MMMessageDefinition_.messageDefinitionIdentifier);
+			AttrResult attrGen = gen.createAttrResult(MMMessageDefinition.messageDefinitionIdentifierAttribute);
 			attrGen.initializationSource = "messageDefinitionIdentifier_lazy = () -> new " + MMMessageDefinitionIdentifier.class.getName() + "() {{";			
 			attrGen.initializationSource += "businessArea = \""+ mmMsgId.getBusinessArea()+"\";"; 
 			attrGen.initializationSource += "messageFunctionality = \""+ mmMsgId.getMessageFunctionality()+"\";"; 
@@ -266,13 +259,13 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		// mmBean.getSemanticMarkup());
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet,
 		// mmBean.getDoclet());
-		defaultAttribute(gen, MMRepositoryConcept_.example, mmBean.getExample());
+		defaultAttribute(gen, MMRepositoryConcept.exampleAttribute, mmBean.getExample());
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.constraint,
 		// mmBean.getConstraint());
-		defaultAttribute(gen, MMRepositoryConcept_.registrationStatus, mmBean.getRegistrationStatus());
-		defaultAttribute(gen, MMRepositoryConcept_.removalDate, mmBean.getRemovalDate());
-		defaultAttribute(gen, MMRepositoryConcept_.name, mmBean.getName());
-		defaultAttribute(gen, MMRepositoryConcept_.definition, mmBean.getDefinition());
+		defaultAttribute(gen, MMRepositoryConcept.registrationStatusAttribute, mmBean.getRegistrationStatus());
+		defaultAttribute(gen, MMRepositoryConcept.removalDateAttribute, mmBean.getRemovalDate());
+		defaultAttribute(gen, MMRepositoryConcept.nameAttribute, mmBean.getName());
+		defaultAttribute(gen, MMRepositoryConcept.definitionAttribute, mmBean.getDefinition());
 	}
 
 	protected void _implementMMModelEntity(MainTypeResult gen, MMModelEntity me) {
@@ -367,7 +360,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 				typeName = getStructuredName(dt);
 			} else {
 				throw new RuntimeException("Constraint violated:"
-						+ MMMessageBuildingBlock_.checkMessageBuildingBlockHasExactlyOneType.getName());
+						+ MMMessageBuildingBlock.checkMessageBuildingBlockHasExactlyOneType.getName());
 			}
 
 			gen.src.addImport(typeName.getFullName());
@@ -401,7 +394,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 				typeName = getStructuredName(ct);
 			} else {
 				throw new RuntimeException(
-						"Constraint violated:" + MMBusinessAttribute_.checkBusinessAttributeHasExactlyOneType);
+						"Constraint violated:" + MMBusinessAttribute.checkBusinessAttributeHasExactlyOneType);
 			}
 		} else if (elem instanceof MMBusinessAssociationEnd) {
 			MMBusinessAssociationEnd assoc = (MMBusinessAssociationEnd) elem;

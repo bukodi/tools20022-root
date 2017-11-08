@@ -9,14 +9,8 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
-import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.metamodel.MMModelEntity;
-import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.struct.MMModelEntity_;
-import com.tools20022.metamodel.struct.MMRepositoryConcept_;
-import com.tools20022.metamodel.struct.MMRepository_;
 
 public abstract class TypeResult extends GenerationResult {
 
@@ -54,7 +48,7 @@ public abstract class TypeResult extends GenerationResult {
 				continue;
 
 			AttrResult attrGen = e.getValue();
-			if( MMRepositoryConcept_.definition.equals( attrGen.mmAttr) ) {
+			if( MMRepositoryConcept.definitionAttribute.equals( attrGen.mmAttr) ) {
 				continue;
 			}
 

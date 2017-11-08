@@ -18,7 +18,12 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
+import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
+import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
+import com.tools20022.metamodel.constraints.MessageAttributeHasExactlyOneType;
 import com.tools20022.metamodel.derived.DeriveMMMessageAttribute_isTechnical;
 import com.tools20022.metamodel.derived.DeriveMMMessageAttribute_memberType;
 import com.tools20022.metamodel.derived.DeriveMMMessageAttribute_xmlMemberType;
@@ -34,6 +39,23 @@ import java.util.Optional;
  */
 public class MMMessageAttribute implements MMMessageElement {
 
+	/**
+	 * the simple content model of a MessageAttribute when it is expressed using
+	 * a DataType
+	 */
+	public final static MetamodelAttribute<MMMessageAttribute, Optional<MMDataType>> simpleTypeAttribute = newAttribute();
+	/**
+	 * the complex content model of a MessageAttribute when it is expressed
+	 * using a MessageComponentType
+	 */
+	public final static MetamodelAttribute<MMMessageAttribute, Optional<MMMessageComponentType>> complexTypeAttribute = newAttribute();
+	/**
+	 * A MessageAttribute must have exactly one of the following: simpleType and
+	 * complexType complexType-&gt;size() + simpleType-&gt;size() = 1
+	 */
+	public final static MetamodelConstraint<MMMessageAttribute> checkMessageAttributeHasExactlyOneType = newConstraint(b -> {
+		new MessageAttributeHasExactlyOneType().accept(b);
+	});
 	protected Supplier<MMDataType> simpleType_lazy;
 	protected Supplier<MMMessageComponentType> complexType_lazy;
 	protected Supplier<MMBusinessComponent> businessComponentTrace_lazy;

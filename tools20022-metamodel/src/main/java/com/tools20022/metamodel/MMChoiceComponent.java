@@ -18,7 +18,10 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
+import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
+import com.tools20022.metamodel.constraints.AtLeastOneProperty;
 import com.tools20022.metamodel.derived.DeriveMMChoiceComponent_isTechnical;
 import com.tools20022.metamodel.*;
 import java.util.Collections;
@@ -33,6 +36,13 @@ import java.util.Optional;
  */
 public class MMChoiceComponent implements MMMessageElementContainer {
 
+	/**
+	 * A MessageComponent or ChoiceComponent must have at least one
+	 * MessageElement messageElement-&gt;notEmpty( )
+	 */
+	public final static MetamodelConstraint<MMChoiceComponent> checkAtLeastOneProperty = newConstraint(b -> {
+		new AtLeastOneProperty().accept(b);
+	});
 	protected Supplier<List<MMMessageElement>> messageElement_lazy;
 	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlock_lazy;
 	protected Supplier<MMBusinessComponent> trace_lazy;
