@@ -2,9 +2,11 @@ package de.dainel.cleanqualifiedtypes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTVisitor;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.CompilationUnit;
@@ -24,6 +26,8 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.SingleMemberAnnot
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
+import gen.lib.dotgen.conc__c;
+
 /**
  * @author Michael Ernst
  */
@@ -33,6 +37,11 @@ class QualifiedTypeDetector extends ASTVisitor {
 	private Map<String, String> usedTypes = new HashMap<String, String>();
 	private List<String> compilationUnitTypes = new ArrayList<String>();
 	private List<String> propertyNames = new ArrayList<String>();
+	private final Set<String> knownTypeNames;
+
+	QualifiedTypeDetector(Set<String> knownTypeNames) {
+		this.knownTypeNames = knownTypeNames;
+	}
 
 	private void handleName(Name name) {
 		if (name.isSimpleName()) {
@@ -75,11 +84,15 @@ class QualifiedTypeDetector extends ASTVisitor {
 
 	@Override
 	public boolean visit(QualifiedName qn) {
+		if( knownTypeNames.contains( qn.toString() ) ) {
+			handleName(qn);
+		}
 		return true;
 	}
 
 	@Override
 	public boolean visit(QualifiedType qt) {
+		System.out.println("QualifiedType:" + qt.toString() );
 //		Name name = qt.getName();
 //		handleName(name);
 		return true;
@@ -166,6 +179,22 @@ class QualifiedTypeDetector extends ASTVisitor {
 	public List<QualifiedTypeBindingManager> getTypeManagers() {
 		List<QualifiedTypeBindingManager> result = new ArrayList<QualifiedTypeBindingManager>();
 		List<String> unqualifiedNamesInResult = new ArrayList<String>();
+		
+		{ // Remove entries with same unqualified name
+			Map<String,Set<String>> fqnsByUnqualifiedName = new HashMap<>();   
+			for( String fqn : bindingManagers.keySet() ) {
+				String unqualifiedName = getUnqualifiedName(fqn);
+				fqnsByUnqualifiedName.computeIfAbsent(unqualifiedName, x->new HashSet<>()).add(fqn);
+			}
+			for( Map.Entry<String, Set<String>> e : fqnsByUnqualifiedName.entrySet()) {
+				if(e.getValue().size() == 1)
+					continue;
+				for( String fqn : e.getValue() ) {
+					bindingManagers.remove(fqn);					
+				}				
+			}
+		}		
+		
 		for (Entry<String, QualifiedTypeBindingManager> entry : bindingManagers.entrySet()) {
 			String unqualifiedName = getUnqualifiedName(entry.getKey());
 			if (propertyNames.contains(unqualifiedName) || unqualifiedNamesInResult.contains(unqualifiedName)) {

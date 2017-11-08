@@ -30,11 +30,15 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.SingleMemberAnnot
 public class CleanQualifiedTypes {
 
 	public static void cleanAst(CompilationUnit unit) {
-		cleanAst(unit, Collections.emptyList());
+		cleanAst(unit, Collections.emptyList(), Collections.emptySet() );
 	}
 
-	public static void cleanAst(CompilationUnit unit, List<String> dontModifyImports ) {
-		QualifiedTypeDetector detector = new QualifiedTypeDetector();
+	public static void cleanAst(CompilationUnit unit, List<String> dontModifyImports) {
+		cleanAst(unit, dontModifyImports, Collections.emptySet() );
+	}
+
+	public static void cleanAst(CompilationUnit unit, List<String> dontModifyImports, Set<String> knownTypeNames ) {
+		QualifiedTypeDetector detector = new QualifiedTypeDetector(knownTypeNames);
 		unit.accept(detector);
 		CleanQualifiedTypes qualifiedTypeRewriter = new CleanQualifiedTypes(unit, detector.getTypeManagers(), dontModifyImports);
 		qualifiedTypeRewriter.rewrite();
@@ -101,7 +105,7 @@ public class CleanQualifiedTypes {
 	private List<String> importGroups = null;
 	private final List<String> dontModifyImports;
 	
-	private CleanQualifiedTypes(CompilationUnit unit, List<QualifiedTypeBindingManager> typeManagers, List<String> dontModifyImports ) {
+	private CleanQualifiedTypes(CompilationUnit unit, List<QualifiedTypeBindingManager> typeManagers, List<String> dontModifyImports) {
 		this.unit = unit;
 		this.typeManagers = typeManagers;
 		this.dontModifyImports = Objects.requireNonNull(dontModifyImports);

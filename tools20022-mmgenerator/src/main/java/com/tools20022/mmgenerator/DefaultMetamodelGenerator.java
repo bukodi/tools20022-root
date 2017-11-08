@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -60,7 +61,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	@Override
 	public void accept(RawMetamodel metamodel, GenerationContext<RawMetamodel> ctx) {
-		ctx.dontChangeIfExists(p -> p.toString().contains("/constraints/"));
+		ctx.dontChangeIfExists(p -> p.toString().contains("/constraints/") || p.toString().contains("/derived/"));
 
 		this.metamodel = metamodel;
 		this.ctx = ctx;
@@ -281,6 +282,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 		// Add declared constraints
 		for (MetamodelConstraint mmConstr : mmType.getDeclaredConstraints()) {
+			JavaClassSource srcConstr = generateConstraintValidator(mmConstr);			
 			src.addImport(Metamodel.MetamodelConstraint.class);
 			FieldSource<JavaInterfaceSource> metaField = src.addField().setName(getJavaName(mmConstr).getSimpleName());
 			metaField.setType(Metamodel.MetamodelConstraint.class.getSimpleName() + "<" + mmTypeSrc.getName() + ">");
@@ -443,19 +445,34 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	protected JavaClassSource generateDerivedAttributeCalulatorClass(MetamodelAttribute mmAttr,
 			JavaClassSource srcMMType) {
-		StructuredName javaName = StructuredName.primaryType(basePackageName + ".constraints",
+		StructuredName javaName = StructuredName.primaryType(basePackageName + ".derived",
 				"Derive" + srcMMType.getName() + "_" + mmAttr.getName());
 		JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
 		srcDerive.addImport(srcMMType);
-		srcDerive.addImport(Function.class);
 		String valueType2 = generateSourceType(mmAttr, srcDerive, false, true);
-		String ifName = Function.class.getSimpleName() + "<" + srcMMType.getName() + "," + valueType2 + ">";
+		String ifName = Function.class.getName() + "<" + srcMMType.getName() + "," + valueType2 + ">";
 		srcDerive.addInterface(ifName);
 		MethodSource<JavaClassSource> methodApply = srcDerive
 				.addMethod("public " + valueType2 + " apply(" + srcMMType.getName() + " mmBean ) {\n"
 						+ "			throw new RuntimeException(\"Not implemented!\");\n" + "		}");
 		methodApply.addAnnotation(Override.class);
 		setMMDoc(methodApply, mmAttr);
+		return srcDerive;
+	}
+
+	protected JavaClassSource generateConstraintValidator(MetamodelConstraint mmConstr) {		
+		StructuredName beanTypeName = getJavaName(mmConstr.getDeclaringType());
+		StructuredName javaName = StructuredName.primaryType(basePackageName + ".constraints",
+				mmConstr.getName());
+		JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
+		srcDerive.addImport(beanTypeName.getFullName());
+		String ifName = Consumer.class.getName() + "<" + beanTypeName.getSimpleName() + ">";
+		srcDerive.addInterface(ifName);
+		MethodSource<JavaClassSource> methodAccept= srcDerive
+				.addMethod("public void accept(" + beanTypeName.getSimpleName() + " mmBean ) {\n"
+						+ "			throw new RuntimeException(\"Not implemented!\");\n" + "		}");
+		methodAccept.addAnnotation(Override.class);
+		setMMDoc(methodAccept, mmConstr);
 		return srcDerive;
 	}
 
