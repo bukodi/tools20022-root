@@ -6,6 +6,7 @@
 - [ ] Try to use ClassValue instead of RepoTypeName.mmObject_lazy
 - [ ] Boolean attribute getters begins with double is ( example:  MMMessageAttribute.isIsDerived )
 - [ ] Show attributes in correct order (supertype first, then follow order in ecore file)
+- [ ] Support metamodel constraints
 
 # Generators
 - [ ] Inject "Watermark errors" while repository loading. 

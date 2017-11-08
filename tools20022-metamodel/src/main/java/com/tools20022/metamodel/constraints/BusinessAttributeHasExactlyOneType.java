@@ -17,21 +17,17 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMLogicalType;
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMBusinessAttribute;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute
- * {@link MMMessageAssociationEnd#getXmlMemberType()}
- */
-public class DeriveMMMessageAssociationEnd_xmlMemberType implements Function<MMMessageAssociationEnd, MMLogicalType> {
+public class BusinessAttributeHasExactlyOneType implements Consumer<MMBusinessAttribute> {
 
 	/**
-	 * Direct reference to the type of a MessageElement or MessageBuildingBlock
+	 * A BusinessAttribute must have exactly one of the following: simpleType
+	 * and complexType. complexType-&gt;size() + simpleType-&gt;size() = 1
 	 */
 	@Override
-	public MMLogicalType apply(MMMessageAssociationEnd mmBean) {
-		return mmBean.getType();
+	public void accept(MMBusinessAttribute mmBean) {
+		throw new RuntimeException("Not implemented!");
 	}
 }

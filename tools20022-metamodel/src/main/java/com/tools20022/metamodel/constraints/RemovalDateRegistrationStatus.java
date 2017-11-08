@@ -17,21 +17,18 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMMessageSet;
-import com.tools20022.metamodel.MMSyntax;
-import java.util.function.Function;
-import java.util.List;
+import com.tools20022.metamodel.MMRepositoryConcept;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMMessageSet#getGeneratedSyntax()}
- */
-public class DeriveMMMessageSet_generatedSyntax implements Function<MMMessageSet, List<MMSyntax>> {
+public class RemovalDateRegistrationStatus implements Consumer<MMRepositoryConcept> {
 
 	/**
-	 * identification of the syntax for a specific EncodingScheme
+	 * If a removalDate is specified then the registrationStatus must be
+	 * OBSOLETE removalDate-&gt;notEmpty( ) implies registrationStatus =
+	 * RegistrationStatus::OBSOLETE
 	 */
 	@Override
-	public List<MMSyntax> apply(MMMessageSet mmBean) {
+	public void accept(MMRepositoryConcept mmBean) {
 		throw new RuntimeException("Not implemented!");
 	}
 }

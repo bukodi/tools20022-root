@@ -19,7 +19,7 @@ package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.constraints.DeriveMMChoiceComponent_isTechnical;
+import com.tools20022.metamodel.derived.DeriveMMChoiceComponent_isTechnical;
 import com.tools20022.metamodel.*;
 import java.util.Collections;
 import java.util.Date;

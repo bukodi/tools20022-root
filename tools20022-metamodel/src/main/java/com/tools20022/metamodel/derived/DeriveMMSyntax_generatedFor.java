@@ -15,22 +15,23 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.tools20022.metamodel.constraints;
+package com.tools20022.metamodel.derived;
 
-import com.tools20022.metamodel.MMUserDefined;
+import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.metamodel.MMSyntax;
 import java.util.function.Function;
+import java.util.List;
 
 /**
- * Calculate derived attribute {@link MMUserDefined#isIsTechnical()}
+ * Calculate derived attribute {@link MMSyntax#getGeneratedFor()}
  */
-public class DeriveMMUserDefined_isTechnical implements Function<MMUserDefined, Boolean> {
+public class DeriveMMSyntax_generatedFor implements Function<MMSyntax, List<MMMessageSet>> {
 
 	/**
-	 * A property indicating the absense of a semantic relationship to a
-	 * BusinessComponent, i.e. it is not derived from a BusinessComponent
+	 * the scheme in which a syntax is encoded
 	 */
 	@Override
-	public Boolean apply(MMUserDefined mmBean) {
+	public List<MMMessageSet> apply(MMSyntax mmBean) {
 		throw new RuntimeException("Not implemented!");
 	}
 }

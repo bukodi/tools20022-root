@@ -19,8 +19,8 @@ package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.constraints.DeriveMMBusinessAttribute_businessElementType;
-import com.tools20022.metamodel.constraints.DeriveMMBusinessAttribute_memberType;
+import com.tools20022.metamodel.derived.DeriveMMBusinessAttribute_businessElementType;
+import com.tools20022.metamodel.derived.DeriveMMBusinessAttribute_memberType;
 import com.tools20022.metamodel.*;
 import java.util.Collections;
 import java.util.Date;

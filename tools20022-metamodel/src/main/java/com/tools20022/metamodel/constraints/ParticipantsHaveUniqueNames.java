@@ -17,21 +17,18 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMMessageAttribute;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMBusinessTransaction;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMMessageAttribute#isIsTechnical()}
- */
-public class DeriveMMMessageAttribute_isTechnical implements Function<MMMessageAttribute, Boolean> {
+public class ParticipantsHaveUniqueNames implements Consumer<MMBusinessTransaction> {
 
 	/**
-	 * a property of a MessageElement indicating whether it has a semantic
-	 * relationship to a BusinessComponent / BusinessElement, i.e. whether it is
-	 * derived from a BusinessComponent / BusinessElement
+	 * All Participants of this BusinessTransaction shall have different names.
+	 * participant-&gt;forAll(p1,p2 | p1 &lt;&gt; p2 implies p1.name &lt;&gt;
+	 * p2.name)
 	 */
 	@Override
-	public Boolean apply(MMMessageAttribute mmBean) {
+	public void accept(MMBusinessTransaction mmBean) {
 		throw new RuntimeException("Not implemented!");
 	}
 }

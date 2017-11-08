@@ -61,8 +61,6 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 
 	@Override
 	public void accept(RawMetamodel metamodel, GenerationContext<RawMetamodel> ctx) {
-		ctx.dontChangeIfExists(p -> p.toString().contains("/constraints/") || p.toString().contains("/derived/"));
-
 		this.metamodel = metamodel;
 		this.ctx = ctx;
 		// Create metamodel model skeleton
@@ -463,7 +461,7 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 	protected JavaClassSource generateConstraintValidator(MetamodelConstraint mmConstr) {		
 		StructuredName beanTypeName = getJavaName(mmConstr.getDeclaringType());
 		StructuredName javaName = StructuredName.primaryType(basePackageName + ".constraints",
-				mmConstr.getName());
+				mmConstr.getName().substring(0, 1).toUpperCase() + mmConstr.getName().substring(1));		
 		JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
 		srcDerive.addImport(beanTypeName.getFullName());
 		String ifName = Consumer.class.getName() + "<" + beanTypeName.getSimpleName() + ">";

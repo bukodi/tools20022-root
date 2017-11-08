@@ -17,20 +17,19 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMChoiceComponent;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMMessageDefinition;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMChoiceComponent#isIsTechnical()}
- */
-public class DeriveMMChoiceComponent_isTechnical implements Function<MMChoiceComponent, Boolean> {
+public class BusinessAreaNameMatch implements Consumer<MMMessageDefinition> {
 
 	/**
-	 * A property indicating the absense of a semantic relationship to a
-	 * BusinessComponent, i.e. it is not derived from a BusinessComponent
+	 * The businessArea of the messageDefinitionIdentifier of this
+	 * MessageDefinition is equal to the code of the BusinessArea that contains
+	 * this MessageDefinition businessArea.code =
+	 * messageDefinitionIdentifier.businessArea
 	 */
 	@Override
-	public Boolean apply(MMChoiceComponent mmBean) {
+	public void accept(MMMessageDefinition mmBean) {
 		throw new RuntimeException("Not implemented!");
 	}
 }

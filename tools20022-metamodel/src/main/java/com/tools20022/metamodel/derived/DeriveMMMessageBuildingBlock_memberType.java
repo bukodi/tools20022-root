@@ -15,22 +15,22 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.tools20022.metamodel.constraints;
+package com.tools20022.metamodel.derived;
 
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMRepositoryType;
 import java.util.function.Function;
 
 /**
- * Calculate derived attribute {@link MMBusinessAssociationEnd#getMemberType()}
+ * Calculate derived attribute {@link MMMessageBuildingBlock#getMemberType()}
  */
-public class DeriveMMBusinessAssociationEnd_memberType implements Function<MMBusinessAssociationEnd, MMRepositoryType> {
+public class DeriveMMMessageBuildingBlock_memberType implements Function<MMMessageBuildingBlock, MMRepositoryType> {
 
 	/**
 	 * The type of this Member
 	 */
 	@Override
-	public MMRepositoryType apply(MMBusinessAssociationEnd mmBean) {
-		return mmBean.getBusinessElementType();
+	public MMRepositoryType apply(MMMessageBuildingBlock mmBean) {
+		return mmBean.getXmlMemberType();
 	}
 }

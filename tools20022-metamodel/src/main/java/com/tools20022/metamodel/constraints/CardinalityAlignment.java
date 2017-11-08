@@ -17,20 +17,19 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import com.tools20022.metamodel.MMRepositoryType;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMMessageElement;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMMessageAssociationEnd#getMemberType()}
- */
-public class DeriveMMMessageAssociationEnd_memberType implements Function<MMMessageAssociationEnd, MMRepositoryType> {
+public class CardinalityAlignment implements Consumer<MMMessageElement> {
 
 	/**
-	 * The type of this Member
+	 * A trace can only raise the minimum cardinality and can only lower the
+	 * maximum cardinality minOccurs &gt;= businessElementTrace.minOccurs and
+	 * (businessElementTrace.maxOccurs.oclIsUndefined() or maxOccurs &lt;=
+	 * businessElementTrace.maxOccurs)
 	 */
 	@Override
-	public MMRepositoryType apply(MMMessageAssociationEnd mmBean) {
-		return mmBean.getXmlMemberType();
+	public void accept(MMMessageElement mmBean) {
+		throw new RuntimeException("Not implemented!");
 	}
 }

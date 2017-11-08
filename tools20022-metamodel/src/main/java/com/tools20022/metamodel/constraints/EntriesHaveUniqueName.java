@@ -17,20 +17,18 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMMessageComponent;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMDataDictionary;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMMessageComponent#isIsTechnical()}
- */
-public class DeriveMMMessageComponent_isTechnical implements Function<MMMessageComponent, Boolean> {
+public class EntriesHaveUniqueName implements Consumer<MMDataDictionary> {
 
 	/**
-	 * A property indicating the absense of a semantic relationship to a
-	 * BusinessComponent, i.e. it is not derived from a BusinessComponent
+	 * All TopLevelDictionaryEntries of a DataDictionary must have different
+	 * names topLevelDictionaryEntry-&gt;forAll(entry1,entry2 | entry1 &lt;&gt;
+	 * entry2 implies entry1.name &lt;&gt; entry2.name)
 	 */
 	@Override
-	public Boolean apply(MMMessageComponent mmBean) {
+	public void accept(MMDataDictionary mmBean) {
 		throw new RuntimeException("Not implemented!");
 	}
 }

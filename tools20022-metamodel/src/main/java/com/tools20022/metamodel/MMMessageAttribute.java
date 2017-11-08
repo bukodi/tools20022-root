@@ -19,9 +19,9 @@ package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.constraints.DeriveMMMessageAttribute_isTechnical;
-import com.tools20022.metamodel.constraints.DeriveMMMessageAttribute_memberType;
-import com.tools20022.metamodel.constraints.DeriveMMMessageAttribute_xmlMemberType;
+import com.tools20022.metamodel.derived.DeriveMMMessageAttribute_isTechnical;
+import com.tools20022.metamodel.derived.DeriveMMMessageAttribute_memberType;
+import com.tools20022.metamodel.derived.DeriveMMMessageAttribute_xmlMemberType;
 import com.tools20022.metamodel.*;
 import java.util.Collections;
 import java.util.Date;

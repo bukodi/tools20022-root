@@ -21,7 +21,7 @@ import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.metamodel.constraints.DeriveMMMessageComponent_isTechnical;
+import com.tools20022.metamodel.derived.DeriveMMMessageComponent_isTechnical;
 import com.tools20022.metamodel.*;
 import java.util.Collections;
 import java.util.Date;

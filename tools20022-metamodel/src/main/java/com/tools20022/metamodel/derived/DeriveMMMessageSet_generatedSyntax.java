@@ -15,23 +15,23 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.tools20022.metamodel.constraints;
+package com.tools20022.metamodel.derived;
 
-import com.tools20022.metamodel.MMMessageAssociationEnd;
+import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.metamodel.MMSyntax;
 import java.util.function.Function;
+import java.util.List;
 
 /**
- * Calculate derived attribute {@link MMMessageAssociationEnd#isIsTechnical()}
+ * Calculate derived attribute {@link MMMessageSet#getGeneratedSyntax()}
  */
-public class DeriveMMMessageAssociationEnd_isTechnical implements Function<MMMessageAssociationEnd, Boolean> {
+public class DeriveMMMessageSet_generatedSyntax implements Function<MMMessageSet, List<MMSyntax>> {
 
 	/**
-	 * a property of a MessageElement indicating whether it has a semantic
-	 * relationship to a BusinessComponent / BusinessElement, i.e. whether it is
-	 * derived from a BusinessComponent / BusinessElement
+	 * identification of the syntax for a specific EncodingScheme
 	 */
 	@Override
-	public Boolean apply(MMMessageAssociationEnd mmBean) {
+	public List<MMSyntax> apply(MMMessageSet mmBean) {
 		throw new RuntimeException("Not implemented!");
 	}
 }

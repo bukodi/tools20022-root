@@ -20,6 +20,7 @@ public class TestMMCodeGen {
 		GenerationContext<RawMetamodel> genCtx = new GenerationContext<>(RawMetamodel.class);
 		genCtx.setLicenceHeaderGPLv3();
 		genCtx.setMavenProjectRoot(Paths.get("../tools20022-metamodel/"));
+		genCtx.dontChangeIfExists(p -> p.toString().contains("/constraints/") || p.toString().contains("/derived/"));
 
 		// Execute generation
 		genCtx.generate(metamodel, new DefaultMetamodelGenerator());

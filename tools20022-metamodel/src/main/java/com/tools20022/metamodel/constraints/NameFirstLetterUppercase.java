@@ -17,21 +17,19 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMMessageSet;
-import com.tools20022.metamodel.MMSyntax;
-import java.util.function.Function;
-import java.util.List;
+import com.tools20022.metamodel.MMRepositoryConcept;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMSyntax#getGeneratedFor()}
- */
-public class DeriveMMSyntax_generatedFor implements Function<MMSyntax, List<MMMessageSet>> {
+public class NameFirstLetterUppercase implements Consumer<MMRepositoryConcept> {
 
 	/**
-	 * the scheme in which a syntax is encoded
+	 * First letter of name shall be upper case. [A-Z] Set
+	 * {'A','B','C','D','E','F'
+	 * ,'G','H','I','J','K','L','M','N','O','P','Q','R','S'
+	 * ,'T','U','V','W','X','Y','Z'}-&gt;exists(x|x=name.substring(1,1))
 	 */
 	@Override
-	public List<MMMessageSet> apply(MMSyntax mmBean) {
+	public void accept(MMRepositoryConcept mmBean) {
 		throw new RuntimeException("Not implemented!");
 	}
 }

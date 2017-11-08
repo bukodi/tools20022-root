@@ -15,33 +15,32 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.tools20022.metamodel.constraints;
+package com.tools20022.metamodel.derived;
+
+import com.tools20022.metamodel.MMLogicalType;
+import com.tools20022.metamodel.MMMessageBuildingBlock;
+import com.tools20022.metamodel.struct.MMMessageBuildingBlock_;
 
 import java.util.function.Function;
 
-import com.tools20022.metamodel.MMBusinessAttribute;
-import com.tools20022.metamodel.MMBusinessElementType;
-import com.tools20022.metamodel.struct.MMBusinessAttribute_;
-
 /**
- * Calculate derived attribute
- * {@link MMBusinessAttribute#getBusinessElementType()}
+ * Calculate derived attribute {@link MMMessageBuildingBlock#getXmlMemberType()}
  * 
- * @see MMBusinessAttribute_#checkBusinessAttributeHasExactlyOneType
+ * @see MMMessageBuildingBlock_#checkMessageBuildingBlockHasExactlyOneType
  */
-public class DeriveMMBusinessAttribute_businessElementType implements Function<MMBusinessAttribute, MMBusinessElementType> {
+public class DeriveMMMessageBuildingBlock_xmlMemberType implements Function<MMMessageBuildingBlock, MMLogicalType> {
 
 	/**
-	 * Derived direct reference to the type of the BusinessElement.
+	 * Direct reference to the type of a MessageElement or MessageBuildingBlock
 	 */
 	@Override
-	public MMBusinessElementType apply(MMBusinessAttribute mmBean) {
-		if( mmBean.getSimpleType().isPresent()) 
+	public MMLogicalType apply(MMMessageBuildingBlock mmBean) {
+		if (mmBean.getSimpleType().isPresent())
 			return mmBean.getSimpleType().get();
-		else if ( mmBean.getComplexType().isPresent()) 
+		else if (mmBean.getComplexType().isPresent())
 			return mmBean.getComplexType().get();
 		else
 			throw new RuntimeException(
-					"A BusinessAttribute must have exactly one of the following: simpleType or complexType.");
+					"A MessageBuildingBlock must have exactly one of the following: simpleType or complexType.");
 	}
 }

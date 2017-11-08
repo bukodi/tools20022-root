@@ -17,20 +17,17 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMBusinessAttribute;
-import com.tools20022.metamodel.MMRepositoryType;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMSyntax;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMBusinessAttribute#getMemberType()}
- */
-public class DeriveMMBusinessAttribute_memberType implements Function<MMBusinessAttribute, MMRepositoryType> {
+public class GeneratedForDerivation implements Consumer<MMSyntax> {
 
 	/**
-	 * The type of this Member
+	 * the syntax that is valid for a MessageSet, based on the Encoding used
+	 * generatedFor-&gt; asBag()=possibleEncodings.messageSet
 	 */
 	@Override
-	public MMRepositoryType apply(MMBusinessAttribute mmBean) {
-		return mmBean.getBusinessElementType();
+	public void accept(MMSyntax mmBean) {
+		throw new RuntimeException("Not implemented!");
 	}
 }

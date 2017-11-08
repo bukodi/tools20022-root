@@ -15,23 +15,22 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.tools20022.metamodel.constraints;
+package com.tools20022.metamodel.derived;
 
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
-import com.tools20022.metamodel.MMBusinessElementType;
+import com.tools20022.metamodel.MMMessageComponent;
 import java.util.function.Function;
 
 /**
- * Calculate derived attribute
- * {@link MMBusinessAssociationEnd#getBusinessElementType()}
+ * Calculate derived attribute {@link MMMessageComponent#isIsTechnical()}
  */
-public class DeriveMMBusinessAssociationEnd_businessElementType implements Function<MMBusinessAssociationEnd, MMBusinessElementType> {
+public class DeriveMMMessageComponent_isTechnical implements Function<MMMessageComponent, Boolean> {
 
 	/**
-	 * Derived direct reference to the type of the BusinessElement.
+	 * A property indicating the absense of a semantic relationship to a
+	 * BusinessComponent, i.e. it is not derived from a BusinessComponent
 	 */
 	@Override
-	public MMBusinessElementType apply(MMBusinessAssociationEnd mmBean) {
-		return mmBean.getType();
+	public Boolean apply(MMMessageComponent mmBean) {
+		throw new RuntimeException("Not implemented!");
 	}
 }

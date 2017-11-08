@@ -19,7 +19,7 @@ package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.metamodel.constraints.DeriveMMUserDefined_isTechnical;
+import com.tools20022.metamodel.derived.DeriveMMUserDefined_isTechnical;
 import com.tools20022.metamodel.*;
 import java.util.Collections;
 import java.util.Date;

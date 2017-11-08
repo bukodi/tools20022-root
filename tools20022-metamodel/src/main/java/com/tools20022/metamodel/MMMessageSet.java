@@ -20,7 +20,7 @@ package com.tools20022.metamodel;
 import com.tools20022.core.metamodel.Derived;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.metamodel.constraints.DeriveMMMessageSet_generatedSyntax;
+import com.tools20022.metamodel.derived.DeriveMMMessageSet_generatedSyntax;
 import com.tools20022.metamodel.*;
 import java.util.Collections;
 import java.util.Date;

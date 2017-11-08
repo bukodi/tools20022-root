@@ -22,7 +22,7 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.OrphanMetamodelType;
-import com.tools20022.metamodel.constraints.DeriveMMSyntax_generatedFor;
+import com.tools20022.metamodel.derived.DeriveMMSyntax_generatedFor;
 import com.tools20022.metamodel.MMEncoding;
 import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMModelEntity;

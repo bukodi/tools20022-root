@@ -17,20 +17,18 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMExternalSchema;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMExternalSchema#isIsTechnical()}
- */
-public class DeriveMMExternalSchema_isTechnical implements Function<MMExternalSchema, Boolean> {
+public class AtMostOneAggregatedEnd implements Consumer<MMBusinessAssociationEnd> {
 
 	/**
-	 * A property indicating the absense of a semantic relationship to a
-	 * BusinessComponent, i.e. it is not derived from a BusinessComponent
+	 * Two opposite association ends may not have composite or shared
+	 * aggregation at the same time not(aggregation &lt;&gt; Aggregation::NONE
+	 * and opposite.aggregation &lt;&gt; Aggregation::NONE)
 	 */
 	@Override
-	public Boolean apply(MMExternalSchema mmBean) {
+	public void accept(MMBusinessAssociationEnd mmBean) {
 		throw new RuntimeException("Not implemented!");
 	}
 }

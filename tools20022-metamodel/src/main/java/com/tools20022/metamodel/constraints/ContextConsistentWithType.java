@@ -17,20 +17,17 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMMessageAttribute;
-import com.tools20022.metamodel.MMRepositoryType;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMMessageAttribute#getMemberType()}
- */
-public class DeriveMMMessageAttribute_memberType implements Function<MMMessageAttribute, MMRepositoryType> {
+public class ContextConsistentWithType implements Consumer<MMBusinessAssociationEnd> {
 
 	/**
-	 * The type of this Member
+	 * The context of this end must be the type of the opposite and vice-versa
+	 * opposite.elementContext = type and elementContext = opposite.type
 	 */
 	@Override
-	public MMRepositoryType apply(MMMessageAttribute mmBean) {
-		return mmBean.getXmlMemberType();
+	public void accept(MMBusinessAssociationEnd mmBean) {
+		throw new RuntimeException("Not implemented!");
 	}
 }

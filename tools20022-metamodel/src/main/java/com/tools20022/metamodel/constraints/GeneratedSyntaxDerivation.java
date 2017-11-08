@@ -17,20 +17,17 @@
 
 package com.tools20022.metamodel.constraints;
 
-import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMRepositoryType;
-import java.util.function.Function;
+import com.tools20022.metamodel.MMMessageSet;
+import java.util.function.Consumer;
 
-/**
- * Calculate derived attribute {@link MMMessageBuildingBlock#getMemberType()}
- */
-public class DeriveMMMessageBuildingBlock_memberType implements Function<MMMessageBuildingBlock, MMRepositoryType> {
+public class GeneratedSyntaxDerivation implements Consumer<MMMessageSet> {
 
 	/**
-	 * The type of this Member
+	 * the generated syntax is derived from the syntax for a validEncoding
+	 * generatedSyntax-&gt;asBag() = validEncoding.syntax
 	 */
 	@Override
-	public MMRepositoryType apply(MMMessageBuildingBlock mmBean) {
-		return mmBean.getXmlMemberType();
+	public void accept(MMMessageSet mmBean) {
+		throw new RuntimeException("Not implemented!");
 	}
 }
