@@ -92,7 +92,7 @@ class QualifiedTypeDetector extends ASTVisitor {
 
 	@Override
 	public boolean visit(QualifiedType qt) {
-		System.out.println("QualifiedType:" + qt.toString() );
+//		System.out.println("QualifiedType:" + qt.toString() );
 //		Name name = qt.getName();
 //		handleName(name);
 		return true;

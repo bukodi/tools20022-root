@@ -8,12 +8,16 @@ import java.io.UncheckedIOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
@@ -53,6 +57,8 @@ public class GenerationContext<M> {
 	private boolean firstGeneratedFile = false;
 
 	private boolean skipDocGeneration = false;
+	
+	private final Set<String> knownTypeNames = new HashSet<>();
 
 	public GenerationContext(Class<M> modelType) {
 	}
@@ -77,6 +83,10 @@ public class GenerationContext<M> {
 			// "1");
 		}
 		return formatterOptions;
+	}
+	
+	public void addKnownTypeNames( String ...  knownTypeNames ) {
+		this.knownTypeNames.addAll( Arrays.asList(knownTypeNames));
 	}
 
 	public void setFormatterOptions(Properties formatterOptions) {
@@ -195,7 +205,7 @@ public class GenerationContext<M> {
 					src.getQualifiedName(), Kind.SOURCE, null);
 			try (Writer w = jf.openWriter()) {
 				// Clean qualified types
-				CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal(), dontModifyImports);
+				CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal(), dontModifyImports, knownTypeNames);
 
 				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
 				if (licenceHeader != null)

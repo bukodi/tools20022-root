@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
@@ -30,6 +31,7 @@ import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponentType;
+import com.tools20022.metamodel.MMMessageConcept;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMModelEntity;
@@ -48,6 +50,14 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	public void accept(RawRepository repo, GenerationContext<RawRepository> ctx) {
 		this.repo = repo;
 		this.ctx = ctx;
+		
+		
+		repo.getMetamodel().listEnums().forEach( mmEnum -> {
+			this.ctx.addKnownTypeNames(mmEnum.getEnumJavaClass().getName());
+		});
+		repo.getMetamodel().listTypes().forEach( mmType -> {
+			this.ctx.addKnownTypeNames(mmType.getBeanClass().getName());
+		});
 
 		// Count main types to generate
 		{
@@ -55,8 +65,10 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
 			repo.listContent(repo.getRootObject(), true, true).forEach(repoObj -> {
 				StructuredName javaName = getStructuredName(repoObj);
-				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null)
+				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null) {
 					totalNumberOfMainTypesToGenerate.incrementAndGet();
+					this.ctx.addKnownTypeNames(javaName.getFullName());
+				}
 			});
 			ctx.setTotalNumberOfMainTypesToGenerate(totalNumberOfMainTypesToGenerate.get());
 			System.out.println("Found " + totalNumberOfMainTypesToGenerate
@@ -252,7 +264,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		gen.flush();
 		return gen;
 	}
-
+	
 	@Override
 	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
@@ -266,6 +278,13 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		defaultAttribute(gen, MMRepositoryConcept.removalDateAttribute, mmBean.getRemovalDate());
 		defaultAttribute(gen, MMRepositoryConcept.nameAttribute, mmBean.getName());
 		defaultAttribute(gen, MMRepositoryConcept.definitionAttribute, mmBean.getDefinition());
+	}
+	
+	
+
+	@Override
+	protected void implementMMMessageConcept(TypeResult gen, MMMessageConcept mmBean) {
+		super.implementMMMessageConcept(gen, mmBean);
 	}
 
 	protected void _implementMMModelEntity(MainTypeResult gen, MMModelEntity me) {

@@ -31,6 +31,39 @@ public class TestCleanQualifiedTypes {
 	}
 
 	@Test
+	public void testQualifiedSelfReference() throws Exception {
+		String src1 = "package foo;"
+				+ "class Foo {"
+				+ "  Object field1 = foo.Foo.class;"
+				+ "  void fn1( foo.Foo param1, pkg2.Type2 param2 ) {}"
+				+ "}";
+	
+		JavaClassSource javaSrc = (JavaClassSource) Roaster.parse(src1);
+		CompilationUnit astCu = (CompilationUnit)javaSrc.getInternal();		
+		CleanQualifiedTypes.cleanAst(astCu);
+		String javaTxt = javaSrc.toString();
+		assertTrue(javaTxt.contains("field1 = Foo.class;") && javaTxt.contains("Foo param1"));
+	}
+
+	@Test
+	public void testQualifiedInnerSelfReference() throws Exception {
+		String src1 = "package foo;"
+				+ "class Foo {"
+				+ "  class InnerFoo{"
+				+ "    Object field1 = foo.Foo.class;"
+				+ "    void fn1( foo.Foo param1, pkg2.Type2 param2 ) {}"
+				+ "  }"
+				+ "}";
+	
+		JavaClassSource javaSrc = (JavaClassSource) Roaster.parse(src1);
+		CompilationUnit astCu = (CompilationUnit)javaSrc.getInternal();		
+		CleanQualifiedTypes.cleanAst(astCu);
+		String javaTxt = javaSrc.toString();
+		System.out.println(javaTxt);
+		//assertTrue(javaTxt.contains("import pkg1.Type1;") && javaTxt.contains("import pkg2.Type2;"));
+	}
+
+	@Test
 	public void testDuplicateUnqualifiedName() throws Exception {
 		String src1 = "package foo;"
 				+ "class Foo {"
