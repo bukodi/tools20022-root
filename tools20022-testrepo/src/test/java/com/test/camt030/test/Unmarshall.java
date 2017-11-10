@@ -25,6 +25,7 @@ public class Unmarshall {
 		System.out.println(obj);
 		
 		Marshaller marshaller = ctx.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		StreamResult writer = new StreamResult(baos);
 		marshaller.marshal(obj, writer );
