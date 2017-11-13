@@ -1,6 +1,7 @@
 package com.tools20022.mmgenerator;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -11,8 +12,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import javax.management.RuntimeErrorException;
 
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.AnnotationTargetSource;
@@ -29,6 +28,7 @@ import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 import org.jboss.forge.roaster.model.source.PropertyHolderSource;
 
+import com.tools20022.core.metamodel.BeanAware;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Derived;
@@ -37,6 +37,7 @@ import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.OrphanMetamodelType;
+import com.tools20022.core.metamodel.PropertyAware;
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.core.metamodel.StaticMemembersBuilder;
 import com.tools20022.generators.GenerationContext;
@@ -52,6 +53,17 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, GenerationContext<RawMetamodel>> {
 
 	private final static String CLASS_NAME_PREFIX = "MM";
+	
+	private final static Set<String> BEAN_AWARE_TYPE_NAMES = new HashSet<>();
+	private final static Set<String> PROPRTY_AWARE_TYPE_NAMES = new HashSet<>();
+	
+	static {
+		BEAN_AWARE_TYPE_NAMES.add("MessageDefinition");
+		BEAN_AWARE_TYPE_NAMES.add("BusinessComponent");
+		PROPRTY_AWARE_TYPE_NAMES.add("MessageBuildingBlock");
+		PROPRTY_AWARE_TYPE_NAMES.add("BusinessAttribute");
+		PROPRTY_AWARE_TYPE_NAMES.add("AssociationEnd");		
+	}
 
 	protected boolean generateStaticStructs = true;
 
@@ -231,6 +243,17 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 			method.setReturnType(Metamodel.MetamodelType.class.getSimpleName() + "<? extends " + src.getName() + ">");
 			method.setBody("return " + srcMetamodelMain.getName() + ".metamodel().getTypeByClass(" + src.getName()
 					+ ".class);");
+		}
+
+		{
+			// Implement XXXAware interfaces
+			if( BEAN_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
+				src.addInterface(BeanAware.class);
+			}
+			// Implement XXXAware interfaces
+			if( PROPRTY_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
+				src.addInterface(PropertyAware.class);
+			}
 		}
 
 		// TODO: optimize this block

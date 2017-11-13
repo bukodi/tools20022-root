@@ -17,6 +17,7 @@
 
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.BeanAware;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
@@ -36,7 +37,7 @@ import java.util.Optional;
 /**
  * Formal description of the structure of a MessageInstance
  */
-public class MMMessageDefinition implements MMRepositoryType {
+public class MMMessageDefinition implements BeanAware, MMRepositoryType {
 
 	/**
 	 * the MessageSet to which the MessageDefinition belongs

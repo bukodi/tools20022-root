@@ -22,6 +22,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.core.metamodel.PropertyAware;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.metamodel.constraints.MessageBuildingBlockHasExactlyOneType;
@@ -38,7 +39,7 @@ import java.util.Optional;
  * Characteristic of a MessageDefinition, having a unique meaning within the
  * scope of that MessageDefinition.
  */
-public class MMMessageBuildingBlock implements MMMessageConstruct {
+public class MMMessageBuildingBlock implements PropertyAware, MMMessageConstruct {
 
 	/**
 	 * The simple content model of a MessageBuildingBlock when it is expressed

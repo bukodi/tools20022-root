@@ -7,6 +7,7 @@ import org.jboss.forge.roaster.ParserException;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
+import com.tools20022.core.metamodel.BeanAware;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
@@ -30,7 +31,15 @@ public class MainTypeResult extends TypeResult {
 			for(AttrResult attrGen : attrGens ) {
 				init += attrGen.initializationSource + "\n";
 			}
-			init += "}});";
+			init += "}\n";
+			if( mmBean instanceof BeanAware ) {
+				init+= "@" + Override.class.getName() + "\n";
+				init+= "public Class<"+ src.getName()+"> getBeanClass() {\n";
+				init+= "  return "+ src.getName()+".class;\n";
+				init+= "}\n";
+			}
+			
+			init += "});";
 			init += "return mmObject_lazy.get();";
 			try {
 				mmObjectMethod.setBody(init);				

@@ -26,6 +26,7 @@ import org.xml.sax.InputSource;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMRepository;
@@ -78,8 +79,10 @@ public class Unmarshall {
 		collectContents(GeneratedRepository.mmObject(), mmBeansByType);
 
 		Set<Class<?>> classes = new HashSet<>();
-		mmBeansByType.get(MMMessageDefinition.metaType()).forEach(mmBean-> classes.add( mmBean.getMetamodel().getBeanClass() ) );
-		mmBeansByType.get(MMMessageConstruct.metaType()).forEach(mmBean-> classes.add( mmBean.getMetamodel().getBeanClass() ) );
+		mmBeansByType.get(MMMessageDefinition.metaType()).forEach(mmBean-> {			
+			classes.add( mmBean.getMetamodel().getBeanClass() );
+		});
+		mmBeansByType.get(MMMessageComponent.metaType()).forEach(mmBean-> classes.add( mmBean.getMetamodel().getBeanClass() ) );
 
 		
 		JAXBContext ctx = JAXBContext.newInstance( classes.toArray( new Class[classes.size()]) );	

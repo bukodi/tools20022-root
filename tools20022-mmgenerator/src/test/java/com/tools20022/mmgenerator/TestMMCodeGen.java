@@ -1,5 +1,6 @@
 package com.tools20022.mmgenerator;
 
+import java.io.File;
 import java.nio.file.Paths;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -20,7 +21,7 @@ public class TestMMCodeGen {
 		GenerationContext<RawMetamodel> genCtx = new GenerationContext<>(RawMetamodel.class);
 		genCtx.setLicenceHeaderGPLv3();
 		genCtx.setMavenProjectRoot(Paths.get("../tools20022-metamodel/"));
-		genCtx.dontChangeIfExists(p -> p.toString().contains("/constraints/") || p.toString().contains("/derived/"));
+		genCtx.dontChangeIfExists(p -> p.toString().contains( File.separator + "constraints" + File.separator ) || p.toString().contains(File.separator + "derived" + File.separator ));
 
 		// Execute generation
 		genCtx.generate(metamodel, new DefaultMetamodelGenerator());

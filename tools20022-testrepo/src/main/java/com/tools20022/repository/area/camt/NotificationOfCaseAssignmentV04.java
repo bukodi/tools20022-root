@@ -17,15 +17,20 @@
 
 package com.tools20022.repository.area.camt;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+
+import javax.xml.bind.annotation.XmlType;
+
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.area.CashManagementLatestVersion;
 import com.tools20022.repository.msg.*;
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.List;
 
 /**
  * <b>Scope</b><br>
@@ -105,9 +110,10 @@ import java.util.List;
  * </li>
  * </ul>
  */
+@XmlType
 public class NotificationOfCaseAssignmentV04 {
 
-	final static private AtomicReference<MMMessageDefinition> mmObject_lazy = new AtomicReference<>();
+	final static private AtomicReference<MMMessageDefinition<NotificationOfCaseAssignmentV04>> mmObject_lazy = new AtomicReference<>();
 	protected ReportHeader4 header;
 	/**
 	 * Specifies generic information about the notification. The receiver of a
@@ -287,10 +293,17 @@ public class NotificationOfCaseAssignmentV04 {
 			minOccurs = 0;
 			complexType_lazy = () -> SupplementaryData1.mmObject();
 		}
+		
+		public Function<NotificationOfCaseAssignmentV04,List<SupplementaryData1>> getter() {
+			return obj->obj.getSupplementaryData();			
+		};
+		public BiConsumer<NotificationOfCaseAssignmentV04,List<SupplementaryData1>> setter() {
+			return (obj,value)->obj.setSupplementaryData( value );			
+		};
 	};
 
-	final static public MMMessageDefinition mmObject() {
-		mmObject_lazy.compareAndSet(null, new MMMessageDefinition() {
+	final static public MMMessageDefinition<NotificationOfCaseAssignmentV04> mmObject() {
+		mmObject_lazy.compareAndSet(null, new MMMessageDefinition<NotificationOfCaseAssignmentV04>() {
 			{
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "NotificationOfCaseAssignmentV04";
@@ -309,6 +322,13 @@ public class NotificationOfCaseAssignmentV04 {
 					}
 				};
 			}
+
+			@Override
+			public Class<NotificationOfCaseAssignmentV04> getBeanClass() {
+				return NotificationOfCaseAssignmentV04.class;
+			}
+			
+			
 		});
 		return mmObject_lazy.get();
 	}

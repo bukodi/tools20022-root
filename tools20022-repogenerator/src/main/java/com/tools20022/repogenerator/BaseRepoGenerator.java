@@ -24,6 +24,7 @@ import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
 import org.jboss.forge.roaster.model.source.JavaEnumSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
+import com.tools20022.core.metamodel.BeanAware;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -285,7 +286,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
 			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
-
+		
 		return gen;
 	}
 
