@@ -126,7 +126,8 @@ public class TestConsistentSubset {
 		ConsistentSubset ss = scss.createSubSet(seedSet, monitor);
 		Map<EClass, List<EObject>> stat = ss.getSatistics();
 
-		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/msgdef-" + msgId + ".iso20022");
+		String fileName = "msgdef-" + msgId + (scss.addBusinessComponents ? "" : "-nobuscomp") + ".iso20022"; 
+		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/" + fileName );
 		ss.saveFilteredXmiModel(testSubsetFile);
 
 		System.out.println();

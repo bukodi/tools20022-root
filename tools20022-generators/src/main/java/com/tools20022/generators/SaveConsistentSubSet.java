@@ -40,6 +40,7 @@ public class SaveConsistentSubSet {
 	final EAttribute businessAssocMinOccurs;
 	final EReference assocDomainRef;
 
+	final boolean addBusinessComponents = false;
 	// Set<String> keepRefs = Stream.of("simpleType", "complexType")
 	// .collect(Collectors.toSet());
 	// private boolean keepRequiredBusinessAssociationEnds = false;
@@ -67,8 +68,11 @@ public class SaveConsistentSubSet {
 		}
 
 		{
-			List<String> names = Arrays.asList("simpleType", "complexType", "businessElementTrace",
-					"businessComponentTrace");
+			List<String> names = Arrays.asList("simpleType", "complexType");
+			if( addBusinessComponents ) {
+				names.add( "businessElementTrace");
+				names.add( "businessComponentTrace");
+			}
 			Set<EReference> tmp = new HashSet<>();
 			for (EClassifier ecc : ecorePackage.getEClassifiers()) {
 				if (!(ecc instanceof EClass))

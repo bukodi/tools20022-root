@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +24,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.metamodel.MMAggregation;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
@@ -32,6 +36,7 @@ import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMExternalSchema;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
@@ -70,6 +75,38 @@ public class InspectLoadedRepository {
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		System.out.println("Model load: " + (System.currentTimeMillis() - start) + " ms, "
 				+ ((usedMem2 - usedMem) / (1024 * 1024)) + " MB");
+	}
+
+	@Test
+	public void dataTypes() throws Exception {	
+		Map<MetamodelType<?>,List<MMDataType>> dataTypesBy = new HashMap<>();
+		for (MMDataType mmDataType : repo.listObjects(MMDataType.class).collect(Collectors.toList()) ) {
+			MetamodelType<? extends GeneratedMetamodelBean> mmType = mmDataType.getMetamodel();
+			dataTypesBy.computeIfAbsent(mmType, x->new ArrayList<>()).add(mmDataType);
+		}
+		
+		int max = 10;
+		for( Map.Entry<MetamodelType<?>,List<MMDataType>> e : dataTypesBy.entrySet()) {
+			System.out.println();
+			System.out.println( "***" + e.getKey().getName() + ": " + e.getValue().size() + " ***");
+			for( MetamodelAttribute<?, ?> coreAttr : e.getKey().getAllAttributes() ) {
+				if( ! coreAttr.getDeclaringType().getSuperTypes(false, true).contains(MMDataType.metaType()) )
+					continue;
+				System.out.println("  attr: " + coreAttr.getName() );
+			}
+			
+			
+			for( int i = 0; i < e.getValue().size(); i++ ) {
+				MMDataType dt = e.getValue().get(i);
+				if( i < max ) {
+					System.out.println( "  " + dt.getName());
+				} else if( i == max ) {
+					System.out.println("  ( " + (e.getValue().size() - max) + " subsequent items...)" );
+				}
+			}
+			
+		}
+
 	}
 
 	@Test

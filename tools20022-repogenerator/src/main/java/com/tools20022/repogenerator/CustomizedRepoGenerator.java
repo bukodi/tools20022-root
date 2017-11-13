@@ -32,6 +32,7 @@ import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponentType;
 import com.tools20022.metamodel.MMMessageConcept;
+import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMModelEntity;
@@ -281,10 +282,10 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 	
 	
-
 	@Override
-	protected void implementMMMessageConcept(TypeResult gen, MMMessageConcept mmBean) {
-		super.implementMMMessageConcept(gen, mmBean);
+	protected void implementMMMessageConstruct(TypeResult gen, MMMessageConstruct mmBean) {
+		super.implementMMMessageConstruct(gen, mmBean);
+		// TDOD: XMLElement annot
 	}
 
 	protected void _implementMMModelEntity(MainTypeResult gen, MMModelEntity me) {
