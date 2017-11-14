@@ -1,6 +1,7 @@
 package com.tools20022.repogenerator;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -30,7 +31,8 @@ public class TestXMIModel {
 		long start = System.currentTimeMillis();
 		try {
 			EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
-			EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022"));
+			EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
+			//EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 			domainModel = loader.load( ecorePkg, rootEObj);
 		} catch (IOException e) {
@@ -92,15 +94,23 @@ public class TestXMIModel {
 	}
 	
 	@Test
-	@Ignore
+	//@Ignore
 	public void testConstraints() throws Exception {
-		System.out.println(domainModel.listObjects(MMConstraint.metaType()).count());
-		System.out.println(domainModel.listObjects(MMConstraint.metaType()).filter(mmDef->mmDef.getExpression().isPresent()).count());
+		System.out.println("Number of constraints: " + domainModel.listObjects(MMConstraint.metaType()).count());
+		System.out.println("Constraints with expression: " + domainModel.listObjects(MMConstraint.metaType()).filter(mmDef->mmDef.getExpression().isPresent()).count());
+
+		Map<String,Set<MMConstraint>> constraintsWithDesc = new HashMap<>();
+		domainModel.listObjects(MMConstraint.metaType()).forEach(mmConstr->{
+			String nameDesc = mmConstr.getName() + ": " + mmConstr.getDefinition().orElse("<no def>");
+			constraintsWithDesc.computeIfAbsent(nameDesc, x->new HashSet<>()).add(mmConstr);
+		});
+		System.out.println("Number of different constraints: " + constraintsWithDesc.size());
+
 		domainModel.listObjects(MMConstraint.metaType()).filter(mmDef->mmDef.getExpression().isPresent()).forEachOrdered(mmC->{
-			System.out.println( mmC.getName() + " on " + mmC.getOwner());
-			System.out.println( mmC.getDefinition().orElse("-"));
-			System.out.println( mmC.getExpressionLanguage() + ": " + mmC.getExpression().orElse("-"));
-			System.out.println();
+//			System.out.println( mmC.getName() + " on " + mmC.getOwner());
+//			System.out.println( mmC.getDefinition().orElse("-"));
+//			System.out.println( mmC.getExpressionLanguage() + ": " + mmC.getExpression().orElse("-"));
+//			System.out.println();
 		});		
 	}
 

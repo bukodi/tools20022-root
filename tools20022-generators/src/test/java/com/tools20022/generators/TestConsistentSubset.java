@@ -66,9 +66,15 @@ public class TestConsistentSubset {
 	}
 		
 	@Test
-	public void subsetForBusinessDomain() throws Exception {
-		final String domainCode = "cards";
-		
+	public void subsetForBusinessDomains() throws Exception {
+		subsetForBusinessDomain("payments");			
+		subsetForBusinessDomain("cards");			
+		subsetForBusinessDomain("securities");			
+		subsetForBusinessDomain("fx");			
+		subsetForBusinessDomain("trade");			
+	}
+
+	private void subsetForBusinessDomain(String domainCode) throws Exception {
 		
 		long start = System.currentTimeMillis();
 		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore");

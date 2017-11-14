@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.common.util.EList;
@@ -95,6 +96,7 @@ public class XMILoader {
 			EClass eClass = eObj.eClass();
 			MetamodelType<?> mmType = mapping.mmTypesByEClass.get(eClass);
 			repoObj = mmType.newInstance();
+			objectCount.incrementAndGet();
 			loadedObjects.add(repoObj);
 			repoObjectsByEObj.put(eObj, repoObj);
 			if (container != null) {
@@ -179,11 +181,15 @@ public class XMILoader {
 			} else {
 				throw new RuntimeException("Invalid MetamodelAttribute: " + mmAttr);
 			}
+			attributeCount.incrementAndGet();
 		} catch (Exception e) {
 			System.err.println("Can't set value: " + mmAttr + " := " + value);
 			e.printStackTrace();
 		}
 	}
+	
+	private AtomicInteger objectCount = new AtomicInteger();
+	private AtomicInteger attributeCount = new AtomicInteger();
 
 	public RawRepository load(EPackage ecorePkg, EObject rootEObj) {
 		// Map loaded eCore model to generated metamodel
@@ -218,6 +224,7 @@ public class XMILoader {
 		GeneratedMetamodelBean rootRepoObj = repoObjsByEObj.get(rootEObj);
 		RawRepository rawRepo = new RawRepository(metamodel, (MMRepository) rootRepoObj);
 		loadedObjects.forEach(o -> rawRepo.addObject(o));
+		System.out.println("" + objectCount.get() + " objects with " + attributeCount.get() + " attributes loaded.");
 		return rawRepo;
 	}
 
