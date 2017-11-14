@@ -8,3 +8,13 @@
 Ambiguous names:
 area.pain.PaymentCancellationRequestV01 area.pacs.PaymentCancellationRequestV01
 area.pain.PaymentStatusReportV02 area.pacs.PaymentStatusReportV02
+
+Not exists in eRepository: 
+MessageDefinition with id=fxtr.031.001.01
+MessageDefinition with id=fxtr.032.001.01
+MessageDefinition with id=fxtr.033.001.01
+MessageDefinition with id=fxtr.034.001.01
+MessageDefinition with id=fxtr.035.001.01
+MessageDefinition with id=fxtr.036.001.01
+MessageDefinition with id=fxtr.037.001.01
+MessageDefinition with id=fxtr.038.001.01

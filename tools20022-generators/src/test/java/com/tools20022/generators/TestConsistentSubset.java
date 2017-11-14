@@ -89,13 +89,17 @@ public class TestConsistentSubset {
 				
 		Set<EObject> seedSet = new HashSet<>();
 		for(String msgId : getMessageIdsByDomains().get(domainCode) ) {
-			seedSet.add(scss.getMsgDefByMsgId(msgId));			
+			try {
+				seedSet.add(scss.getMsgDefByMsgId(msgId));							
+			} catch ( Exception e ) {
+				System.err.println( e.getMessage() );
+			}
 		}
 		
 		ConsistentSubset ss = scss.createSubSet(seedSet, monitor);
 		Map<EClass, List<EObject>> stat = ss.getSatistics();
 
-		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-domain-" + domainCode + ".iso20022");
+		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-domain-" + domainCode + "-nobuscomp.iso20022");
 		ss.saveFilteredXmiModel(testSubsetFile);
 
 		System.out.println();
@@ -106,6 +110,7 @@ public class TestConsistentSubset {
 			System.out.println(e.getKey().getName() + " : " + e.getValue().size());
 		});
 		System.out.println("Summ of "+ domainCode +" : " + summCount.get());
+		System.out.println();
 	}
 
 	@Test

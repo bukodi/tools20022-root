@@ -68,7 +68,9 @@ public class SaveConsistentSubSet {
 		}
 
 		{
-			List<String> names = Arrays.asList("simpleType", "complexType");
+			List<String> names = new ArrayList<>();
+			names.add("simpleType");
+			names.add("complexType");
 			if( addBusinessComponents ) {
 				names.add( "businessElementTrace");
 				names.add( "businessComponentTrace");
@@ -442,7 +444,6 @@ public class SaveConsistentSubSet {
 			String ver = (String)eObject.eGet(eAttrMsgDefVer);
 			
 			String actual_id = area + "." + func + "." + flavour + "." + ver;
-			System.out.println( actual_id );
 			if( expected_id.equals( actual_id ) )
 				return eObject.eContainer();
 		}
