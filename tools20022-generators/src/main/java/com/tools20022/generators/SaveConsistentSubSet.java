@@ -34,13 +34,11 @@ public class SaveConsistentSubSet {
 	final EPackage ecorePackage;
 	final EObject xmiRootEObj;
 	final Set<EReference> dontAddRefContents;
-	final Set<EReference> keepRefs;
 
 	final EReference businessAssocType;
 	final EAttribute businessAssocMinOccurs;
 	final EReference assocDomainRef;
 
-	final boolean addBusinessComponents = false;
 	// Set<String> keepRefs = Stream.of("simpleType", "complexType")
 	// .collect(Collectors.toSet());
 	// private boolean keepRequiredBusinessAssociationEnds = false;
@@ -67,49 +65,13 @@ public class SaveConsistentSubSet {
 			dontAddRefContents = Collections.unmodifiableSet(tmp);
 		}
 
-		{
-			List<String> names = new ArrayList<>();
-			names.add("simpleType");
-			names.add("complexType");
-			if( addBusinessComponents ) {
-				names.add( "businessElementTrace");
-				names.add( "businessComponentTrace");
-			}
-			Set<EReference> tmp = new HashSet<>();
-			for (EClassifier ecc : ecorePackage.getEClassifiers()) {
-				if (!(ecc instanceof EClass))
-					continue;
-				for (EReference eRef : ((EClass) ecc).getEAllReferences()) {
-					if (!names.contains(eRef.getName()))
-						continue;
-					tmp.add(eRef);
-				}
-			}
-			tmp.add(assocDomainRef);
-			keepRefs = Collections.unmodifiableSet(tmp);
-		}
-
 	}
 
 	EClass getEClassByName(String eClassName) {
 		return (EClass) ecorePackage.getEClassifier(eClassName);
 	}
 
-	boolean keepThisRef(EReference eRef, EObject eObj) {
-		if (eRef.isContainer())
-			return false;
-
-		boolean keepThisRef = keepRefs.contains(eRef);
-		keepThisRef = keepThisRef || (eRef.isMany() && eRef.getLowerBound() > 0);
-		keepThisRef = keepThisRef || (!eRef.isMany() && (!eRef.isChangeable() || eRef.isRequired()));
-		keepThisRef = keepThisRef || (eRef.isContainment() && (!dontAddRefContents.contains(eRef)));
-		if (!keepThisRef)
-			return false;
-
-		return true;
-	}
-
-	public ConsistentSubset createSubSet(Predicate<EObject> filter, ProgressMonitor monitor) throws Exception {
+	public ConsistentSubset createSubSet(Predicate<EObject> filter, boolean skipBusinessComponents, ProgressMonitor monitor) throws Exception {
 		Set<EObject> seedSet = new HashSet<>();
 		xmiRootEObj.eAllContents().forEachRemaining(eObj -> {
 			if (filter.test(eObj)) {
@@ -118,18 +80,47 @@ public class SaveConsistentSubSet {
 		});
 		monitor.info("Seed selection completed");
 		
-		return createSubSet(seedSet, monitor);
+		return createSubSet(seedSet, skipBusinessComponents, monitor);
 	}
 
-	public ConsistentSubset createSubSet(Set<EObject> seedSet, ProgressMonitor monitor) throws Exception {
-		ConsistentSubset css = new ConsistentSubset();
+	public ConsistentSubset createSubSet(Set<EObject> seedSet, boolean skipBusinessComponents, ProgressMonitor monitor) throws Exception {
+		ConsistentSubset css = new ConsistentSubset(skipBusinessComponents);
 		css.executeFilter(seedSet, monitor);
 		return css;
 	}
 
 	public class ConsistentSubset {
+		final boolean skipBusinessComponents;
 		Set<EObject> markedForRetain = new HashSet<>();
 		Set<EObject> optionalBusinessAssoc = new HashSet<>();
+		final Set<EReference> keepRefs;
+
+		public ConsistentSubset(boolean skipBusinessComponents) {
+			this.skipBusinessComponents = skipBusinessComponents;
+			
+			{
+				List<String> names = new ArrayList<>();
+				names.add("simpleType");
+				names.add("complexType");
+				if( ! skipBusinessComponents ) {
+					names.add( "businessElementTrace");
+					names.add( "businessComponentTrace");
+				}
+				Set<EReference> tmp = new HashSet<>();
+				for (EClassifier ecc : ecorePackage.getEClassifiers()) {
+					if (!(ecc instanceof EClass))
+						continue;
+					for (EReference eRef : ((EClass) ecc).getEAllReferences()) {
+						if (!names.contains(eRef.getName()))
+							continue;
+						tmp.add(eRef);
+					}
+				}
+				tmp.add(assocDomainRef);
+				keepRefs = Collections.unmodifiableSet(tmp);
+			}
+
+		}
 
 		private void executeFilter(Set<EObject> seedSet, ProgressMonitor monitor) throws Exception {
 
@@ -154,6 +145,20 @@ public class SaveConsistentSubSet {
 			}
 
 			monitor.info("End size: " + markedForRetain.size());
+		}
+
+		boolean keepThisRef(EReference eRef, EObject eObj) {
+			if (eRef.isContainer())
+				return false;
+
+			boolean keepThisRef = keepRefs.contains(eRef);
+			keepThisRef = keepThisRef || (eRef.isMany() && eRef.getLowerBound() > 0);
+			keepThisRef = keepThisRef || (!eRef.isMany() && (!eRef.isChangeable() || eRef.isRequired()));
+			keepThisRef = keepThisRef || (eRef.isContainment() && (!dontAddRefContents.contains(eRef)));
+			if (!keepThisRef)
+				return false;
+
+			return true;
 		}
 
 		int extendRetainSet(Set<EObject> markedForRetain, ProgressMonitor monitor) {

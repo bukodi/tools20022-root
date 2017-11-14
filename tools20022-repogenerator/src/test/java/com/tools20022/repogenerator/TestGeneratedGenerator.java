@@ -45,7 +45,7 @@ public class TestGeneratedGenerator {
 
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
 		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04.iso20022");
-		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04-nobuscomp.iso20022");
+		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04.iso20022");
 		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-area-pain.iso20022");
 		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-domain-payments.iso20022");
 		// EObject xmiRootObj = ECoreIOHelper

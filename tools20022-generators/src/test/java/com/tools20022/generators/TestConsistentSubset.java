@@ -23,6 +23,7 @@ public class TestConsistentSubset {
 
 	@Test
 	public void subsetForBusinessArea() throws Exception {
+		boolean skipBusinessComponents = false;
 		final String code = "pain";
 		
 		
@@ -49,10 +50,10 @@ public class TestConsistentSubset {
 		Set<EObject> seedSet = new HashSet<>();
 		seedSet.addAll(areaEObj.eContents());
 		
-		ConsistentSubset ss = scss.createSubSet(seedSet, monitor);
+		ConsistentSubset ss = scss.createSubSet(seedSet, skipBusinessComponents, monitor);
 		Map<EClass, List<EObject>> stat = ss.getSatistics();
 
-		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-area-" + code + ".iso20022");
+		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-area-" + code + (skipBusinessComponents ? "-nobuscomp" : "") + ".iso20022");
 		ss.saveFilteredXmiModel(testSubsetFile);
 
 		System.out.println();
@@ -75,6 +76,7 @@ public class TestConsistentSubset {
 	}
 
 	private void subsetForBusinessDomain(String domainCode) throws Exception {
+		boolean skipBusinessComponents = true;
 		
 		long start = System.currentTimeMillis();
 		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore");
@@ -95,11 +97,12 @@ public class TestConsistentSubset {
 				System.err.println( e.getMessage() );
 			}
 		}
+		seedSet.add( scss.getMsgDefByMsgId("head.001.001.01"));
 		
-		ConsistentSubset ss = scss.createSubSet(seedSet, monitor);
+		ConsistentSubset ss = scss.createSubSet(seedSet, skipBusinessComponents, monitor);
 		Map<EClass, List<EObject>> stat = ss.getSatistics();
 
-		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-domain-" + domainCode + "-nobuscomp.iso20022");
+		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-domain-" + domainCode + (skipBusinessComponents ? "-nobuscomp" : "") + ".iso20022");
 		ss.saveFilteredXmiModel(testSubsetFile);
 
 		System.out.println();
@@ -115,6 +118,7 @@ public class TestConsistentSubset {
 
 	@Test
 	public void subsetForMessageDef() throws Exception {
+		boolean skipBusinessComponents = false;
 		//final String msgId = "pain.002.001.08";
 		final String msgId = "camt.030.001.04";
 		
@@ -134,10 +138,10 @@ public class TestConsistentSubset {
 		Set<EObject> seedSet = new HashSet<>();
 		seedSet.add(scss.getMsgDefByMsgId(msgId));
 		
-		ConsistentSubset ss = scss.createSubSet(seedSet, monitor);
+		ConsistentSubset ss = scss.createSubSet(seedSet, skipBusinessComponents, monitor);
 		Map<EClass, List<EObject>> stat = ss.getSatistics();
 
-		String fileName = "msgdef-" + msgId + (scss.addBusinessComponents ? "" : "-nobuscomp") + ".iso20022"; 
+		String fileName = "msgdef-" + msgId + (skipBusinessComponents ? "-nobuscomp" : "") + ".iso20022"; 
 		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/" + fileName );
 		ss.saveFilteredXmiModel(testSubsetFile);
 
