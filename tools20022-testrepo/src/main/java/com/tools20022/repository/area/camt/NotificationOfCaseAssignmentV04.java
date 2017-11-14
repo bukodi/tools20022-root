@@ -23,6 +23,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import com.tools20022.metamodel.MMMessageBuildingBlock;
@@ -30,7 +32,11 @@ import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.area.CashManagementLatestVersion;
-import com.tools20022.repository.msg.*;
+import com.tools20022.repository.msg.Case3;
+import com.tools20022.repository.msg.CaseAssignment3;
+import com.tools20022.repository.msg.CaseForwardingNotification3;
+import com.tools20022.repository.msg.ReportHeader4;
+import com.tools20022.repository.msg.SupplementaryData1;
 
 /**
  * <b>Scope</b><br>
@@ -112,6 +118,12 @@ import com.tools20022.repository.msg.*;
  */
 @XmlType
 public class NotificationOfCaseAssignmentV04 {
+	
+	@XmlRootElement
+	public static class Document {
+	    @XmlElement(name = "NtfctnOfCaseAssgnmt", required = true)
+	    public NotificationOfCaseAssignmentV04 ntfctnOfCaseAssgnmt;
+	}
 
 	final static private AtomicReference<MMMessageDefinition<NotificationOfCaseAssignmentV04>> mmObject_lazy = new AtomicReference<>();
 	protected ReportHeader4 header;
