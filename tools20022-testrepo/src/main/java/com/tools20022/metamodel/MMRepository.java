@@ -58,7 +58,6 @@ public class MMRepository implements MMModelEntity {
 
 	@Override
 	public MetamodelType<? extends MMRepository> getMetamodel() {
-		Class<? extends MMRepository> c = getClass();
 		return StandardMetamodel2013.metamodel().getTypeByClass(getClass());
 	}
 

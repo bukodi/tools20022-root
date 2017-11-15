@@ -292,7 +292,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			docSrc.setPublic().setStatic(true);
 			
 			FieldSource<JavaClassSource> msgField = docSrc.addField();
-			msgField.setName(mmBean.getXmlTag().get());
+			msgField.setName("messageBody");
 			msgField.addAnnotation(XmlElement.class).setStringValue("name", mmBean.getXmlTag().get()).setLiteralValue("required", "true");
 			msgField.setType(gen.src);
 			msgField.setPublic();

@@ -28,7 +28,7 @@ import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 import org.jboss.forge.roaster.model.source.PropertyHolderSource;
 
-import com.tools20022.core.metamodel.BeanAware;
+import com.tools20022.core.metamodel.RuntimeInstanceAware;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Derived;
@@ -37,7 +37,7 @@ import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
 import com.tools20022.core.metamodel.Opposite;
 import com.tools20022.core.metamodel.OrphanMetamodelType;
-import com.tools20022.core.metamodel.PropertyAware;
+import com.tools20022.core.metamodel.RuntimePropertyAware;
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.core.metamodel.StaticMemembersBuilder;
 import com.tools20022.generators.GenerationContext;
@@ -248,11 +248,11 @@ public class DefaultMetamodelGenerator implements BiConsumer<RawMetamodel, Gener
 		{
 			// Implement XXXAware interfaces
 			if( BEAN_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
-				src.addInterface(BeanAware.class);
+				src.addInterface(RuntimeInstanceAware.class);
 			}
 			// Implement XXXAware interfaces
 			if( PROPRTY_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
-				src.addInterface(PropertyAware.class);
+				src.addInterface(RuntimePropertyAware.class);
 			}
 		}
 

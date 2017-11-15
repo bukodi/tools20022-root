@@ -4,31 +4,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Set;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.namespace.QName;
+import javax.xml.bind.*;
 import javax.xml.transform.stream.StreamResult;
 
 import org.junit.Test;
 import org.xml.sax.InputSource;
 
 import com.test.camt030.ObjectFactory;
-import com.tools20022.core.metamodel.BeanAware;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.core.metamodel.RuntimeInstanceAware;
 import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04;
 import com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04.Document;
@@ -84,7 +73,7 @@ public class Unmarshall {
 		header.setIdentification(id );
 		msg.setHeader(header);
 		Document doc = new NotificationOfCaseAssignmentV04.Document();
-		doc.NtfctnOfCaseAssgnmt = msg;
+		doc.messageBody = msg;
 		
 		JAXBContext ctx = createJaxbContext();
 		Marshaller marshaller = ctx.createMarshaller();
@@ -103,12 +92,12 @@ public class Unmarshall {
 		
 		Set<Class<?>> classes = new HashSet<>();
 		for( Entry<MetamodelType<?>, Set<GeneratedMetamodelBean>> e : mmBeansByType.entrySet()) {
-			if( ! BeanAware.class.isAssignableFrom(e.getKey().getBeanClass()) ) 
+			if( ! RuntimeInstanceAware.class.isAssignableFrom(e.getKey().getBeanClass()) ) 
 				continue;
 			
 			for( GeneratedMetamodelBean mmBean : e.getValue() ) {
-				BeanAware x = (BeanAware)mmBean;
-				Class instanceClazz = x.getBeanClass();
+				RuntimeInstanceAware x = (RuntimeInstanceAware)mmBean;
+				Class instanceClazz = x.getInstanceClass();
 				classes.add(instanceClazz);
 			}
 		}

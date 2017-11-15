@@ -17,13 +17,13 @@
 
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.BeanAware;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.core.metamodel.RuntimeInstanceAware;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.metamodel.constraints.BusinessAreaNameMatch;
@@ -37,7 +37,7 @@ import java.util.Optional;
 /**
  * Formal description of the structure of a MessageInstance
  */
-public class MMMessageDefinition<T> implements BeanAware, MMRepositoryType {
+public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryType {
 
 	/**
 	 * the MessageSet to which the MessageDefinition belongs

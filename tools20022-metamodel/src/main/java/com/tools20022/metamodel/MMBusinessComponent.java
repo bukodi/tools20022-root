@@ -17,12 +17,12 @@
 
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.BeanAware;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
+import com.tools20022.core.metamodel.RuntimeInstanceAware;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.metamodel.constraints.BusinessElementsHaveUniqueNames;
@@ -37,7 +37,7 @@ import java.util.Optional;
  * Representation of a (part of a) key business notion, characterized by
  * specific BusinessElements.
  */
-public class MMBusinessComponent implements BeanAware, MMTopLevelDictionaryEntry, MMBusinessElementType, MMBusinessConcept {
+public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDictionaryEntry, MMBusinessElementType, MMBusinessConcept {
 
 	/**
 	 * The BusinessComponents that specialize this BusinessComponent.
