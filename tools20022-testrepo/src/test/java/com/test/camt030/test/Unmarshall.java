@@ -24,6 +24,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.junit.Test;
 import org.xml.sax.InputSource;
 
+import com.test.camt030.ObjectFactory;
 import com.tools20022.core.metamodel.BeanAware;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
@@ -61,16 +62,16 @@ public class Unmarshall {
 		String id = "dummyId";
 		header.setId(id );
 		msg.setHdr(header);
-		
-		QName docQName = new QName("urn:iso:std:iso:20022:tech:xsd:camt.030.001.04", "Document");
-		JAXBElement<Object> rootElem = new JAXBElement<Object>(docQName, Object.class, null);
+		com.test.camt030.Document doc = new com.test.camt030.Document();
+		doc.setNtfctnOfCaseAssgnmt(msg);
+		JAXBElement<com.test.camt030.Document> root = new ObjectFactory().createDocument(doc);
 		
 		JAXBContext ctx = JAXBContext.newInstance("com.test.camt030");
 		Marshaller marshaller = ctx.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		StringWriter sw = new StringWriter();
-		marshaller.marshal(msg, sw);
+		marshaller.marshal(root, sw);
 
 		System.out.println(sw.toString());		
 	}
@@ -83,7 +84,7 @@ public class Unmarshall {
 		header.setIdentification(id );
 		msg.setHeader(header);
 		Document doc = new NotificationOfCaseAssignmentV04.Document();
-		doc.ntfctnOfCaseAssgnmt = msg;
+		doc.NtfctnOfCaseAssgnmt = msg;
 		
 		JAXBContext ctx = createJaxbContext();
 		Marshaller marshaller = ctx.createMarshaller();

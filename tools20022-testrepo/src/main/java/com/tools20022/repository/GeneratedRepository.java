@@ -36,15 +36,15 @@ import java.util.concurrent.atomic.AtomicReference;
  <p>
  * <strong>Constant fields:</strong>
  * <ul>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepository#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
+ * GeneratedRepository.mmdataDict}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMRepository#getBusinessProcessCatalogue
  * businessProcessCatalogue} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#mmcatalogue
  * GeneratedRepository.mmcatalogue}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepository#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
  * </ul>
  */
 public class GeneratedRepository extends ReflectionBasedRepository {
