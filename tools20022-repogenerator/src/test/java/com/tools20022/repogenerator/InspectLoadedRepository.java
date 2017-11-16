@@ -2,21 +2,10 @@ package com.tools20022.repogenerator;
 
 import java.io.IOException;
 import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -28,31 +17,7 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.ECoreIOHelper;
-import com.tools20022.metamodel.MMAggregation;
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
-import com.tools20022.metamodel.MMBusinessAttribute;
-import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMBusinessElement;
-import com.tools20022.metamodel.MMChoiceComponent;
-import com.tools20022.metamodel.MMCode;
-import com.tools20022.metamodel.MMCodeSet;
-import com.tools20022.metamodel.MMDataType;
-import com.tools20022.metamodel.MMDoclet;
-import com.tools20022.metamodel.MMExternalSchema;
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import com.tools20022.metamodel.MMMessageAttribute;
-import com.tools20022.metamodel.MMMessageComponent;
-import com.tools20022.metamodel.MMMessageConstruct;
-import com.tools20022.metamodel.MMMessageDefinition;
-import com.tools20022.metamodel.MMModelEntity;
-import com.tools20022.metamodel.MMRegistrationStatus;
-import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.MMRepositoryType;
-import com.tools20022.metamodel.MMSemanticMarkup;
-import com.tools20022.metamodel.MMSemanticMarkupElement;
-import com.tools20022.metamodel.MMUserDefined;
-import com.tools20022.metamodel.MMXor;
-import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.metamodel.*;
 
 public class InspectLoadedRepository {
 
@@ -64,8 +29,10 @@ public class InspectLoadedRepository {
 		try {
 			EPackage ecorePkg = ECoreIOHelper
 					.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
+//			EObject rootEObj = ECoreIOHelper.loadXMIResource(
+//					ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
 			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-					ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022"));
+					ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 			repo = loader.load(ecorePkg, rootEObj);
 		} catch (IOException e) {
@@ -578,6 +545,99 @@ public class InspectLoadedRepository {
 
 		/*** Count entities with single area code ***/
 		return (int) entitiesByAreaCodes.entrySet().stream().filter(e -> e.getValue().size() == 1).count();
+	}
+	
+	@Test
+	public void listMsgDefsWithVersionHistory() throws Exception {
+		int countLatestVersions = 0, countPreviousVersions = 0;
+		for (MMMessageDefinition mmMsgDef : repo.listObjects(MMMessageDefinition.class)
+				.collect(Collectors.toList())) {
+			if( ! mmMsgDef.getNextVersions().isEmpty() )
+				continue;
+			System.out.println( msgIdToString(mmMsgDef.getMessageDefinitionIdentifier()) + " - " +  mmMsgDef.getName() );
+			countLatestVersions ++;
+			for( MMMessageDefinition prevVer = mmMsgDef;; ) {
+				Optional<MMModelEntity> optPrevVer = prevVer.getPreviousVersion();
+				if( ! optPrevVer.isPresent())
+					break;
+				prevVer = (MMMessageDefinition)(optPrevVer.get());
+				System.out.println( "   " + msgIdToString(prevVer.getMessageDefinitionIdentifier()) + " - " +  prevVer.getName() );
+				countPreviousVersions ++;
+			}
+		}		
+		
+		System.out.println();
+		System.out.println("" + countLatestVersions + " latest msgDefs, and " + countPreviousVersions + " previous versions");
+	}
+	
+	static String msgIdToString( MMMessageDefinitionIdentifier mmMsgId ) {
+		return mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality()  + "." + mmMsgId.getFlavour() + "." + mmMsgId.getVersion();
+	}
+
+	@Test
+	public void testConstraints() throws Exception {
+		int countExpr = 0;
+		int conutNonMsgDef = 0;
+
+		Map<String, Set<MMConstraint>> sameDescMap = new HashMap<>();
+		Map<String, Set<MMConstraint>> sameNameMap = new HashMap<>();
+
+		List<? extends MMConstraint> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
+		System.out.println("--- Constraints : -----");
+		for (MMConstraint c : constr) {
+			// if(! c.getName().equals("ControlSumAndGroupReversalRule") )
+			// continue;
+
+			if (c.getContainer() instanceof MMMessageDefinition || c.getContainer() instanceof MMMessageComponent
+					|| c.getContainer() instanceof MMChoiceComponent) {
+				// continue;
+			} else {
+				conutNonMsgDef++;
+			}
+
+			String parent = c.getContainer().getClass().getSimpleName();
+			System.out.println(parent + " @" + c.getName() + ": " + c.getDefinition().orElse("-"));
+			System.out.println(c.getExpression());
+			System.out.println("----");
+
+			if (c.getExpression().isPresent()) {
+				countExpr++;
+			}
+
+			Set<MMConstraint> set1 = sameDescMap.computeIfAbsent(c.getDefinition().orElse("-"),
+					x -> new LinkedHashSet<MMConstraint>());
+			set1.add(c);
+			Set<MMConstraint> set = sameNameMap.computeIfAbsent(c.getDefinition().orElse("-"),
+					x -> new LinkedHashSet<MMConstraint>());
+			set.add(c);
+		}
+		;
+		System.out.println("------------------");
+		System.out.println();
+		List<String> defs = new ArrayList<>(sameDescMap.keySet());
+		Collections.sort(defs);
+		defs.stream().forEachOrdered(d -> {
+			System.out.print(sameDescMap.get(d).iterator().next().getName() + " : ");
+			System.out.println(d);
+		});
+		System.out.println("------------------");
+		System.out.println( "Number of all constraints: " + constr.size() );
+		System.out.println( "Number constraints not connected to MsgDefs: " + conutNonMsgDef );
+		System.out.println( "Number constraints with different name: " + sameNameMap.keySet().size() );
+		System.out.println( "Number constraints with different desc: " + sameDescMap.keySet().size() );
+		System.out.println( "Number different contrains containing \"During ISO 15022 – 20022 coexistence\" : " + sameDescMap.keySet().stream().filter(d->d.contains("During ISO 15022 – 20022 coexistence")).count() );
+		
+		System.out.println("---- Same name but different description -----------");
+		for (Map.Entry<String, Set<MMConstraint>> e : sameNameMap.entrySet()) {
+			if (e.getValue().stream().map(c -> c.getDefinition()).distinct().count() <= 1)
+				continue;
+			System.out.println("***" + e.getKey() + "***");
+			e.getValue().stream().map(c -> c.getDefinition()).forEach(d -> {
+				System.out.println(" - " + d);
+			});
+			System.out.println();
+		}
+
 	}
 
 }
