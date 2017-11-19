@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -13,11 +12,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot;
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
-import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
@@ -40,7 +37,6 @@ import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponentType;
-import com.tools20022.metamodel.MMMessageConcept;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
@@ -50,8 +46,9 @@ import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
+import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
+import com.tools20022.repogenerator.resulttypes.JaxbPropertyResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
-import com.tools20022.repogenerator.resulttypes.PropertyResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
@@ -163,6 +160,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		});
 	}
 
+	
+	
 	@Override
 	protected MainTypeResult generateMMBusinessComponent(StaticFieldResult containerGen, MMBusinessComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
@@ -217,26 +216,19 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		});
 	}
 
+	
 	@Override
-	protected MainTypeResult generateMMMessageDefinition(MainTypeResult containerGen, MMMessageDefinition mmBean) {
-		MainTypeResult gen = defaultMainType(mmBean);
+	protected JaxbMainTypeResult generateMMMessageDefinition(MainTypeResult containerGen, MMMessageDefinition mmBean) {
+		JaxbMainTypeResult gen = defaultJaxbMainType(mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		
-		List<String> propOrder = new ArrayList<>();
 		for (MMXor mmChild : mmBean.getXors()) {
 			generateMMXorInMessageDefinition(gen, mmChild);
 		}
 		for (MMMessageBuildingBlock mmChild : mmBean.getMessageBuildingBlock()) {
-			PropertyResult propGen = generateMMMessageBuildingBlock(gen, mmChild);
-			AnnotationSource<JavaClassSource> jaxbAnnot = propGen.beanGetterSrc.addAnnotation(XmlElement.class);
-			jaxbAnnot.setStringValue("name", mmChild.getXmlTag().get());
-			if( mmChild.getMinOccurs().orElse(0) > 0 ) {
-				jaxbAnnot.setLiteralValue("required", "true");				
-			}
-			String fieldName = propGen.baseName.getMemberName().substring(0, 1).toLowerCase() + propGen.baseName.getMemberName().substring(1);
-			propOrder.add(fieldName);
+			generateMMMessageBuildingBlock(gen, mmChild);
 		}
 		defaultAttribute(gen, MMMessageDefinition.messageSetAttribute,
 				mmBean.getMessageSet());
@@ -298,24 +290,6 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			msgField.setPublic();
 		}
 		
-		{ // Add JAXB annotations
-			/*@XmlAccessorType(XmlAccessType.FIELD)
-			@XmlType(name = "NotificationOfCaseAssignmentV04", propOrder = {
-			    "hdr",
-			    "_case",
-			    "assgnmt",
-			    "ntfctn",
-			    "splmtryData"
-			}) */
-			gen.src.addAnnotation(XmlAccessorType.class).setEnumValue(XmlAccessType.PROPERTY);
-			AnnotationSource<JavaClassSource> jaxbAnnot = gen.src.addAnnotation(XmlType.class);
-			jaxbAnnot.setStringValue("name", mmBean.getXmlName().orElse( mmBean.getName()));
-			jaxbAnnot.setStringArrayValue("propOrder", propOrder.toArray(new String[propOrder.size()]));
-			//gen.src.
-			
-			
-		}
-
 		gen.flush();
 		return gen;
 	}

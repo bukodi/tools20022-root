@@ -22,6 +22,8 @@ import com.tools20022.generators.GenerationResult;
 import com.tools20022.metamodel.*;
 import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
+import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
+import com.tools20022.repogenerator.resulttypes.JaxbPropertyResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.PropertyResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
@@ -73,7 +75,7 @@ public class GenerateRepoGenerator {
 		addSwitchGenerators(MMTopLevelCatalogueEntry.metaType(), StaticFieldResult.class);
 		addSwitchGenerators(MMTopLevelDictionaryEntry.metaType(), StaticFieldResult.class);
 		addSwitchGenerators(MMBusinessElement.metaType(), MainTypeResult.class);
-		addSwitchGenerators(MMMessageElement.metaType(), MainTypeResult.class);
+		addSwitchGenerators(MMMessageElement.metaType(), JaxbMainTypeResult.class);
 	}
 	
 	void addSwitchGenerators(MetamodelType<?> switchOntype, Class<? extends GenerationResult> typeOfGenArg ) {
@@ -102,7 +104,9 @@ public class GenerateRepoGenerator {
 		method.setName("generate" + mmType.getBeanClass().getSimpleName() + ( MMXor.class.equals(mmType.getBeanClass()) ? "In" + mmContainerType.getName() : ""));
 		method.setReturnType(getResultType(mmType));
 		if( mmContainerType != null ) {
-			method.addParameter(getResultType(mmContainerType), "containerGen");			
+			//essageAssociationEnd
+			Class<? extends GenerationResult> containerResultType = getResultType(mmContainerType);
+			method.addParameter(containerResultType, "containerGen");			
 		}
 		method.addParameter(mmType.getBeanClass(), "mmBean");
 		
@@ -112,12 +116,16 @@ public class GenerateRepoGenerator {
 		Class<? extends GenerationResult> rt = getResultType(mmType);
 		if( MainTypeResult.class.equals(rt)) {
 			bodySb.append( MainTypeResult.class.getName() + " gen = defaultMainType(mmBean);\n");			
+		} else if( JaxbMainTypeResult.class.equals(rt)) {
+			bodySb.append( JaxbMainTypeResult.class.getName() + " gen = defaultJaxbMainType(mmBean);\n");			
 		} else if( EnumTypeResult.class.equals(rt)) {
 			bodySb.append( EnumTypeResult.class.getName() + " gen = defaultEnumType(mmBean);\n");			
 		} else if( StaticFieldResult.class.equals(rt)) {
 			bodySb.append( StaticFieldResult.class.getName() + " gen = defaultStaticFieldResult(mmBean, containerGen);\n");			
 		} else if( PropertyResult.class.equals(rt)) {
 			bodySb.append( PropertyResult.class.getName() + " gen = defaultPropertyResult(mmBean, containerGen);\n");			
+		} else if( JaxbPropertyResult.class.equals(rt)) {
+			bodySb.append( JaxbPropertyResult.class.getName() + " gen = defaultJaxbPropertyResult(mmBean, containerGen);\n");			
 		} else if( EnumConstantResult.class.equals(rt)) {
 			bodySb.append( EnumConstantResult.class.getName() + " gen = defaultEnumConstant(mmBean, containerGen);\n");			
 		} else {
@@ -174,8 +182,8 @@ public class GenerateRepoGenerator {
 		MethodSource<JavaClassSource> method = mainSrc.addMethod().setProtected();
 		method.setName("implement" + mmType.getBeanClass().getSimpleName());
 		
-		if( "implementMMMessageElementContainer".equals( method.getName()) ) {
-			method.addParameter(MainTypeResult.class, "gen");
+		if( "implementMMMessageElementContainer".equals( method.getName()) ) {			
+			method.addParameter(JaxbMainTypeResult.class, "gen");
 		} else {
 			method.addParameter(TypeResult.class, "gen");			
 		}		
@@ -215,10 +223,10 @@ public class GenerateRepoGenerator {
 		method.setBody(bodySb.toString());
 	}
 
-	private String generateVarNameFormMMType(MetamodelType<?> mmType) {
-		// TODO
-		return mmType.getName();
-	}
+	final static Set<MetamodelType<?>> JAXB_MAIN_TYPE_RESULT = new HashSet<>( Arrays.asList(MMMessageDefinition.metaType(), 
+			MMMessageComponent.metaType(), 
+			MMChoiceComponent.metaType(),
+			MMMessageElementContainer.metaType())); 
 
 	final static Set<MetamodelType<?>> STATIC_FIELD = new HashSet<>( Arrays.asList(MMXor.metaType(), 
 			MMBusinessRole.metaType(), 
@@ -227,12 +235,14 @@ public class GenerateRepoGenerator {
 			MMBusinessProcessCatalogue.metaType(),
 			MMDataDictionary.metaType())); 
 
-	final static Set<MetamodelType<?>> PROPERTY_RESULT = new HashSet<>( Arrays.asList(MMMessageBuildingBlock.metaType(), 
-			MMMessageAssociationEnd.metaType(), 
-			MMMessageAttribute.metaType(), 
+	final static Set<MetamodelType<?>> PROPERTY_RESULT = new HashSet<>( Arrays.asList( 
 			MMBusinessAssociationEnd.metaType(),
 			MMBusinessAttribute.metaType())); 
 	
+	final static Set<MetamodelType<?>> JAXB_PROPERTY_RESULT = new HashSet<>( Arrays.asList(MMMessageBuildingBlock.metaType(),
+			MMMessageAssociationEnd.metaType(), 
+			MMMessageAttribute.metaType())); 
+
 	final static Set<MetamodelType<?>> DONT_GENERATE_BEANS = new HashSet<>( Arrays.asList( 
 			MMRepository.metaType(), 
 			MMBusinessProcessCatalogue.metaType(), 
@@ -243,6 +253,10 @@ public class GenerateRepoGenerator {
 			return StaticFieldResult.class;
 		if( PROPERTY_RESULT.contains(mmtype) )
 			return PropertyResult.class;
+		if( JAXB_PROPERTY_RESULT.contains(mmtype) )
+			return JaxbPropertyResult.class;
+		if( JAXB_MAIN_TYPE_RESULT.contains(mmtype) )
+			return JaxbMainTypeResult.class;
 //		else if( MMCodeSet.metaType().equals(mmtype) || MMBusinessProcess.metaType().equals(mmtype))
 //			return EnumTypeResult.class;
 //		else if( MMCode.metaType().equals(mmtype) || MMBusinessRole.metaType().equals(mmtype))

@@ -14,11 +14,13 @@ import com.tools20022.generators.StructuredName;
 
 public class StaticFieldResult extends TypeResult {
 
+	public final MainTypeResult containerGen;
 	public FieldSource<JavaClassSource> staticFieldSrc;
 	public StringJoiner staticFieldInitializerBody = new StringJoiner(";\n");
 
-	public StaticFieldResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
-		super(ctx, mmBean, baseName);
+	public StaticFieldResult(MainTypeResult containerGen, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+		super(containerGen.ctx, mmBean, baseName);
+		this.containerGen = containerGen;
 	}
 
 	@Override

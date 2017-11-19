@@ -56,7 +56,7 @@ public class TestGeneratedGenerator {
 		RawRepository repo = loader.load(ecorePkg, xmiRootObj);
 
 		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
-		genCtx.setSkipDocGeneration(false);
+		genCtx.setSkipDocGeneration(true);
 		genCtx.setMavenProjectRoot(mvnProjectRoot);
 		genCtx.dontChangeIfExists(p -> !p.toString().contains("com/tools20022/repository/"));
 		genCtx.setLicenceHeaderGPLv3();

@@ -11,30 +11,51 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.jboss.forge.roaster.model.Visibility;
-import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
 import org.jboss.forge.roaster.model.source.JavaEnumSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
-import com.tools20022.core.metamodel.RuntimeInstanceAware;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.metamodel.*;
+import com.tools20022.metamodel.MMBusinessArea;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessAttribute;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.metamodel.MMBusinessProcessCatalogue;
+import com.tools20022.metamodel.MMBusinessRole;
+import com.tools20022.metamodel.MMChoiceComponent;
+import com.tools20022.metamodel.MMCode;
+import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstruct;
+import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMDataType;
+import com.tools20022.metamodel.MMMessageAssociationEnd;
+import com.tools20022.metamodel.MMMessageAttribute;
+import com.tools20022.metamodel.MMMessageBuildingBlock;
+import com.tools20022.metamodel.MMMessageComponent;
+import com.tools20022.metamodel.MMMessageConstruct;
+import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
+import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
+import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
+import com.tools20022.metamodel.MMXor;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
 import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
+import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
+import com.tools20022.repogenerator.resulttypes.JaxbPropertyResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.PropertyResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
@@ -290,6 +311,30 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		return gen;
 	}
 
+	protected JaxbMainTypeResult defaultJaxbMainType(MMRepositoryConcept mmBean) {
+		StructuredName name = getStructuredName(mmBean);
+		JaxbMainTypeResult gen = new JaxbMainTypeResult(ctx, mmBean, name);
+		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
+		createJavaDoc(gen.src, mmBean);
+
+		// private final static AtomicReference<MMBusinessComponent> mmObject_lazy = new
+		// AtomicReference<>();
+		{
+			FieldSource<JavaClassSource> field = gen.src.addField().setName("mmObject_lazy");
+			field.setFinal(true).setStatic(true).setPrivate();
+			field.setType(AtomicReference.class.getName() + "<" + mmBean.getMetamodel().getBeanClass().getName() + ">");
+			field.setLiteralInitializer(" new " + AtomicReference.class.getName() + "<>();");
+		}
+
+		{
+			gen.mmObjectMethod = gen.src.addMethod().setName("mmObject");
+			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
+			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
+		}
+		
+		return gen;
+	}
+
 	protected EnumTypeResult defaultEnumType(GeneratedMetamodelBean mmBean) {
 		StructuredName name = getStructuredName(mmBean);
 		EnumTypeResult gen = new EnumTypeResult(ctx, mmBean, name);
@@ -338,7 +383,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 
 	protected StaticFieldResult defaultStaticFieldResult(GeneratedMetamodelBean mmBean, MainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
-		StaticFieldResult gen = new StaticFieldResult(ctx, mmBean, name);
+		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, name);
 		{
 			gen.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
 			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
@@ -386,7 +431,57 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		boolean isMultiple = mmBean.getMaxOccurs().orElse(100) > 1; 
 		boolean isOptional = mmBean.getMinOccurs().orElse(0) == 0;
 		
-		PropertyResult gen = new PropertyResult(ctx, mmBean, name);
+		PropertyResult gen = new PropertyResult(containerGen, mmBean, name);
+		{
+			String fieldName = name.getMemberName().substring(0, 1).toLowerCase() + name.getMemberName().substring(1);
+			fieldName = RoasterHelper.convertToJavaName(fieldName);
+			gen.beanFieldSrc = containerGen.src.addField().setName(fieldName);
+			gen.beanFieldSrc.setProtected();
+			if( isMultiple )
+				gen.beanFieldSrc.setType(List.class.getName() + "<" + propertyType + ">");
+			else
+				gen.beanFieldSrc.setType(propertyType);
+		}
+		{
+			// TODO: support isXXX() for boolean type
+			gen.beanGetterSrc = containerGen.src.addMethod().setName("get" + name.getMemberName());
+			gen.beanGetterSrc.setPublic();
+			if( isMultiple )
+				gen.beanGetterSrc.setReturnType(List.class.getName() + "<" + propertyType + ">");
+			else
+				gen.beanGetterSrc.setReturnType(propertyType);
+			gen.beanGetterSrc.setBody("return " + gen.beanFieldSrc.getName() + ";");
+		}
+		{
+			// TODO: support isXXX() for boolean type
+			gen.beanSetterSrc = containerGen.src.addMethod().setName("set" + name.getMemberName());
+			gen.beanSetterSrc.setPublic();
+			if( isMultiple )
+				gen.beanSetterSrc.addParameter(List.class.getName() + "<" + propertyType + ">", gen.beanFieldSrc.getName());
+			else
+				gen.beanSetterSrc.addParameter(propertyType, gen.beanFieldSrc.getName());
+			gen.beanSetterSrc.setBody("this." + gen.beanFieldSrc.getName() + " = " + gen.beanFieldSrc.getName() + ";");
+		}
+		{
+			gen.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
+			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
+			createJavaDoc(gen.staticFieldSrc, mmBean);
+		}
+		return gen;
+	}
+
+	protected JaxbPropertyResult defaultJaxbPropertyResult(MMMessageConstruct mmBean, JaxbMainTypeResult containerGen) {
+		StructuredName name = getStructuredName(mmBean);
+
+		// TODO: support optionals 
+		
+		MMRepositoryType propertyMMType = mmBean.getMemberType();
+		String propertyType = getStructuredName(propertyMMType).getFullName();
+		boolean isMultiple = mmBean.getMaxOccurs().orElse(100) > 1; 
+		boolean isOptional = mmBean.getMinOccurs().orElse(0) == 0;
+		
+		JaxbPropertyResult gen = new JaxbPropertyResult(containerGen, mmBean, name);
 		{
 			String fieldName = name.getMemberName().substring(0, 1).toLowerCase() + name.getMemberName().substring(1);
 			fieldName = RoasterHelper.convertToJavaName(fieldName);

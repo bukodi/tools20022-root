@@ -165,5 +165,24 @@ public class RoasterHelper {
 			existingDoc = "";
 		javaDocHolder.getJavaDoc().setText(existingDoc + docTxt);
 	}
+	
+	public static String getPropertyNameFromGetterName( String getterName ) {
+		String propName;
+		if( getterName.startsWith("is") ) {
+			propName = getterName.substring(2);
+		} else if( getterName.startsWith("get") ) {
+			propName = getterName.substring(3);
+		} else {
+			throw new IllegalArgumentException("The getter name must be start with 'is' or 'get': " + getterName );
+		}
+		
+		if( Character.isUpperCase( propName.charAt(0)) && Character.isUpperCase( propName.charAt(1)) ) {
+			// Begins with two uppercase letter, leave it unchanged:
+			// See '8.8 Capitalization of inferred names.' in 'Java Bean Specification'
+		} else {
+			propName = propName.substring(0, 1).toLowerCase() + propName.substring(1);
+		}
+		return propName; 
+	}
 
 }

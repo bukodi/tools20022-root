@@ -18,8 +18,8 @@ public class PropertyResult extends StaticFieldResult {
 	public MethodSource<JavaClassSource> beanGetterSrc;
 	public MethodSource<JavaClassSource> beanSetterSrc;
 
-	public PropertyResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
-		super(ctx, mmBean, baseName);
+	public PropertyResult(MainTypeResult containerGen, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+		super(containerGen, mmBean, baseName);
 	}
 
 	@Override
