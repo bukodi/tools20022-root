@@ -47,6 +47,10 @@ public class InspectLoadedRepository {
 	@Test
 	public void dataTypes() throws Exception {	
 		Map<MetamodelType<?>,List<MMDataType>> dataTypesBy = new HashMap<>();
+		MMDataType.metaType().listSubTypes(false, true).forEach(mmDT -> {
+			dataTypesBy.put(mmDT, new ArrayList<>());
+		});;
+		
 		for (MMDataType mmDataType : repo.listObjects(MMDataType.class).collect(Collectors.toList()) ) {
 			MetamodelType<? extends GeneratedMetamodelBean> mmType = mmDataType.getMetamodel();
 			dataTypesBy.computeIfAbsent(mmType, x->new ArrayList<>()).add(mmDataType);
@@ -55,18 +59,25 @@ public class InspectLoadedRepository {
 		int max = 10;
 		for( Map.Entry<MetamodelType<?>,List<MMDataType>> e : dataTypesBy.entrySet()) {
 			System.out.println();
-			System.out.println( "***" + e.getKey().getName() + ": " + e.getValue().size() + " ***");
+			System.out.println( "*** " + e.getKey().getName() + ": " + e.getValue().size() + " ***");
+			
+			for( MetamodelType<?> st : e.getKey().getSuperTypes(false, true) ) {
+				if( !st.getSuperTypes(false, true).contains(MMDataType.metaType())) 
+					continue;
+				System.out.println("  supertype: " + st.getName() );
+			}
+			
 			for( MetamodelAttribute<?, ?> coreAttr : e.getKey().getAllAttributes() ) {
 				if( ! coreAttr.getDeclaringType().getSuperTypes(false, true).contains(MMDataType.metaType()) )
 					continue;
-				System.out.println("  attr: " + coreAttr.getName() );
+				System.out.println("  attr: " + coreAttr.getDeclaringType().getName() + "." + coreAttr.getName() );
 			}
 			
 			
 			for( int i = 0; i < e.getValue().size(); i++ ) {
 				MMDataType dt = e.getValue().get(i);
 				if( i < max ) {
-					System.out.println( "  " + dt.getName());
+					System.out.println( "  - " + dt.getName());
 				} else if( i == max ) {
 					System.out.println("  ( " + (e.getValue().size() - max) + " subsequent items...)" );
 				}
