@@ -4,8 +4,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
@@ -19,7 +21,30 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
-import com.tools20022.metamodel.*;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessAttribute;
+import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMBusinessProcessCatalogue;
+import com.tools20022.metamodel.MMBusinessRole;
+import com.tools20022.metamodel.MMChoiceComponent;
+import com.tools20022.metamodel.MMCode;
+import com.tools20022.metamodel.MMConstraint;
+import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMDoclet;
+import com.tools20022.metamodel.MMMessageAssociationEnd;
+import com.tools20022.metamodel.MMMessageAttribute;
+import com.tools20022.metamodel.MMMessageBuildingBlock;
+import com.tools20022.metamodel.MMMessageComponent;
+import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
+import com.tools20022.metamodel.MMMessageElement;
+import com.tools20022.metamodel.MMMessageElementContainer;
+import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMSemanticMarkup;
+import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
+import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
+import com.tools20022.metamodel.MMXor;
+import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
@@ -136,7 +161,7 @@ public class GenerateRepoGenerator {
 		/*** Call implementXXX ***/
 		for (MetamodelType<?> st : mmType.getSuperTypes(false, true)) {
 			if (!st.isAbstract()) {
-				System.err.println("Unsupported case. This type:" + mmType.getName() + " superType: " + st.getName());
+				//System.err.println("Unsupported case. This type:" + mmType.getName() + " superType: " + st.getName());
 				continue;
 			}
 
@@ -165,7 +190,10 @@ public class GenerateRepoGenerator {
 		
 		
 		/*** Init attribute values ***/
-		for (MetamodelAttribute<?, ?> attr : mmType.getDeclaredAttributes()) {
+		List<MetamodelAttribute<?, ?>> attrList = new ArrayList<>();
+		mmType.listSuperTypes(true, true).filter(t->!t.isAbstract()).forEach(t-> attrList.addAll( t.getDeclaredAttributes()));
+		
+		for (MetamodelAttribute<?, ?> attr : attrList) {
 			if( attr.isDerived() )
 				continue;
 			String coreAttrAsSrc = mmType.getBeanClass().getSimpleName() + "." + attr.getName() + "Attribute";
