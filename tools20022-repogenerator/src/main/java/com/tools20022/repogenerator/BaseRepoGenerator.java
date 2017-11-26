@@ -29,6 +29,7 @@ import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.metamodel.MMBusinessProcess;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMBusinessRole;
 import com.tools20022.metamodel.MMChoiceComponent;
@@ -52,6 +53,7 @@ import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
+import com.tools20022.repogenerator.resulttypes.DataTypeResult;
 import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
@@ -239,25 +241,28 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		} else if (attrValue instanceof Enum) {
 			ret.valueAsSource = attrValue.getClass().getName() + "." + attrValue.toString();
 			ret.valueAsJavaDoc = attrValue.getClass().getName() + "." + attrValue.toString();
-		} else if (attrValue instanceof GeneratedMetamodelBean) {
+		} else if (attrValue instanceof MMCode ) {
+			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;
+			StructuredName refName = getStructuredName(refmmBean);
+			ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + "."
+					+ refName.getMemberName();
+			ret.valueAsJavaDoc = "{@linkplain ";
+			ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#"
+					+ refName.getMemberName();
+			ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + ".mm" + refName.getMemberName() + "}";
+		} else if (attrValue instanceof GeneratedMetamodelBean ) {
 			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;
 			StructuredName refName = getStructuredName(refmmBean);
 			if (refName.isCompilationUnit()) {
 				ret.valueAsSource = refName.getFullName() + ".mmObject()";
 				ret.valueAsJavaDoc = "{@linkplain " + refName.getFullName() + " " + refName.getCompilationUnit() + "}";
-			} else if (refName.isMember() && !(containerGen instanceof EnumTypeResult)) {
+			} else if (refName.isMember() ) {
 				ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + ".mm"
 						+ refName.getMemberName();
 				ret.valueAsJavaDoc = "{@linkplain ";
 				ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#mm"
 						+ refName.getMemberName();
 				ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + ".mm" + refName.getMemberName() + "}";
-			} else if (refName.isMember() && containerGen instanceof EnumTypeResult) {
-				ret.valueAsSource = refName.getFullName() + ".mmEnumConstant()";
-				ret.valueAsJavaDoc = "{@linkplain ";
-				ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#"
-						+ refName.getMemberName();
-				ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + "." + refName.getMemberName() + "}";
 			} else {
 				throw new IllegalArgumentException("Invalid refName: " + refName);
 			}
@@ -335,49 +340,71 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		return gen;
 	}
 
-	protected EnumTypeResult defaultEnumType(GeneratedMetamodelBean mmBean) {
+	protected DataTypeResult defaultDataType(MMDataType mmBean) {
 		StructuredName name = getStructuredName(mmBean);
-		EnumTypeResult gen = new EnumTypeResult(ctx, mmBean, name);
-		gen.src = ctx.createSourceFile(JavaEnumSource.class, name);
-		{
-			MetamodelAttribute<? extends GeneratedMetamodelBean, ?> enumValueAttr = mmBean.getMetamodel()
-					.listDeclaredAttributes().filter(mmAttr -> mmAttr.isContainment()).findFirst().get();
-			MetamodelType<?> enumValueType = enumValueAttr.getReferencedType();
-			FieldSource<JavaEnumSource> fieldEnumConstant = gen.src.addField();
-			fieldEnumConstant.setName("mmEnumConstant");
-			fieldEnumConstant.setFinal(true).setPrivate();
-			fieldEnumConstant.setType(enumValueType.getBeanClass());
-
-			MethodSource<JavaEnumSource> constr = gen.src.addMethod().setConstructor(true);
-			constr.addParameter(enumValueType.getBeanClass(), "mmEnumConstant");
-			constr.setBody("this.mmEnumConstant = mmEnumConstant;");
-
-			MethodSource<JavaEnumSource> methodGetMM = gen.src.addMethod().setName("mmEnumConstant");
-			methodGetMM.setPublic();
-			methodGetMM.setReturnType(enumValueType.getBeanClass());
-			methodGetMM.setBody("return  mmEnumConstant;");
-		}
-
+		DataTypeResult gen = new DataTypeResult(ctx, mmBean, name);
+		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
 		createJavaDoc(gen.src, mmBean);
 
-		{ // static field and method: mmObject_lazy, mmObject();
-			FieldSource<JavaEnumSource> field = gen.src.addField().setName("mmObject_lazy");
+		// private final static AtomicReference<MMBusinessComponent> mmObject_lazy = new
+		// AtomicReference<>();
+		{
+			FieldSource<JavaClassSource> field = gen.src.addField().setName("mmObject_lazy");
 			field.setFinal(true).setStatic(true).setPrivate();
 			field.setType(AtomicReference.class.getName() + "<" + mmBean.getMetamodel().getBeanClass().getName() + ">");
 			field.setLiteralInitializer(" new " + AtomicReference.class.getName() + "<>();");
+		}
+
+		{
 			gen.mmObjectMethod = gen.src.addMethod().setName("mmObject");
 			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
 			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
-
+		
 		return gen;
 	}
 
-	protected EnumConstantResult defaultEnumConstant(GeneratedMetamodelBean mmBean, EnumTypeResult containerGen) {
+	protected EnumTypeResult defaultEnumType(MMCodeSet mmBean) {
 		StructuredName name = getStructuredName(mmBean);
-		EnumConstantResult gen = new EnumConstantResult(ctx, mmBean, name);
-		gen.enumConstantSrc = containerGen.src.addEnumConstant(name.getMemberName());
-		createJavaDoc(gen.enumConstantSrc, mmBean);
+		EnumTypeResult gen = new EnumTypeResult(ctx, mmBean, name);
+		
+		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
+		createJavaDoc(gen.src, mmBean);
+		
+		gen.src.extendSuperType(MMCode.class);
+		MethodSource<JavaClassSource> privConstructor = gen.src.addMethod();
+		privConstructor.setConstructor(true);
+		privConstructor.setProtected();
+		privConstructor.setBody("");
+
+		// private final static AtomicReference<MMBusinessComponent> mmObject_lazy = new
+		// AtomicReference<>();
+		{
+			FieldSource<JavaClassSource> field = gen.src.addField().setName("mmObject_lazy");
+			field.setFinal(true).setStatic(true).setPrivate();
+			field.setType(AtomicReference.class.getName() + "<" + mmBean.getMetamodel().getBeanClass().getName() + ">");
+			field.setLiteralInitializer(" new " + AtomicReference.class.getName() + "<>();");
+		}
+
+		{
+			gen.mmObjectMethod = gen.src.addMethod().setName("mmObject");
+			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
+			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
+		}
+		
+		return gen;
+	}
+
+	protected EnumConstantResult defaultEnumConstant(MMCode mmBean, EnumTypeResult containerGen) {
+		StructuredName name = getStructuredName(mmBean);
+		EnumConstantResult gen = new EnumConstantResult(containerGen, (MMCode)mmBean, name);
+		
+		{
+			gen.staticFieldSrc = containerGen.src.addField().setName( name.getMemberName());
+			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+			gen.staticFieldSrc.setType( containerGen.src);
+			createJavaDoc(gen.staticFieldSrc, mmBean);
+		}
 		return gen;
 	}
 

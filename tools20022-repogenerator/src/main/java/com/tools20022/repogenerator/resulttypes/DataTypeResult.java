@@ -2,11 +2,11 @@ package com.tools20022.repogenerator.resulttypes;
 
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMDataType;
 
-public class EnumTypeResult extends MainTypeResult {
+public class DataTypeResult extends MainTypeResult {
 
-	public EnumTypeResult(GenerationContext<?> ctx, MMCodeSet mmBean, StructuredName baseName) {
+	public DataTypeResult(GenerationContext<?> ctx, MMDataType mmBean, StructuredName baseName) {
 		super(ctx, mmBean, baseName);
 	}
 
@@ -14,5 +14,7 @@ public class EnumTypeResult extends MainTypeResult {
 	public void flush() {
 		super.flush();
 	}
+	
+	
 
 }

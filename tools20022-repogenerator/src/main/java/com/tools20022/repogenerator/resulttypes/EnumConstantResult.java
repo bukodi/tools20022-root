@@ -1,36 +1,28 @@
 package com.tools20022.repogenerator.resulttypes;
 
-import org.jboss.forge.roaster.model.source.EnumConstantSource;
-
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMCode;
 
-public class EnumConstantResult extends TypeResult{
+public class EnumConstantResult extends StaticFieldResult{
 
-	public EnumConstantSource enumConstantSrc;
-
-	public EnumConstantResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
-		super(ctx, mmBean, baseName);
+	public EnumConstantResult(EnumTypeResult containerGen, MMCode mmBean, StructuredName baseName) {
+		super(containerGen, mmBean, baseName);
 	}
 
 	@Override
 	public void flush() {
-		{
-			String init = "new " + mmBean.getMetamodel().getBeanClass().getName() + "(){{";
-			for(AttrResult attrGen : attrGens ) {
-				init += attrGen.initializationSource + "\n";
-			}
-			init += "}};";
-			enumConstantSrc.setConstructorArguments(init);
+		String init = "new " + this.containerGen.src.getName() + "(){{";
+		for (AttrResult attrGen : attrGens) {
+			init += attrGen.initializationSource + "\n";
 		}
-		if( ! ctx.isSkipDocGeneration() ) {
-			String attrsJavadoc = getJavaDocForAttrs();			
-			RoasterHelper.addToJavaDoc(enumConstantSrc, attrsJavadoc);
-		}
+		init += "}};";
+		staticFieldSrc.setLiteralInitializer(init);
 
+		if (!ctx.isSkipDocGeneration()) {
+			String attrsJavadoc = getJavaDocForAttrs();
+			RoasterHelper.addToJavaDoc(staticFieldSrc, attrsJavadoc);
+		}
 	}
 	
 }

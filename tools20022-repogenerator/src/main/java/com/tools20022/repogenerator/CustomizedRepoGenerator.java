@@ -46,6 +46,8 @@ import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
+import com.tools20022.repogenerator.resulttypes.DataTypeResult;
+import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbPropertyResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
@@ -120,31 +122,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 
 	@Override
-	protected MainTypeResult generateMMCodeSet(StaticFieldResult containerGen, MMCodeSet mmBean) {
-		MainTypeResult gen = defaultMainType(mmBean);
-		gen.mmObjectMethod.setFinal(false);
-		mmBean.getTrace().ifPresent(mmST -> {
-			StructuredName stName = getStructuredName(mmST);
-			gen.src.setSuperType(stName.getFullName());
-			collectDontModifyImports(mmBean, gen.dontModifyImports);
-		});
-
-		implementMMDataType(gen, mmBean);
-		implementMMTopLevelDictionaryEntry(gen, mmBean);
-		implementMMRepositoryConcept(gen, mmBean);
-		implementMMModelEntity(gen, mmBean);
-		implementMMBusinessElementType(gen, mmBean);
-		implementMMRepositoryType(gen, mmBean);
-		implementMMLogicalType(gen, mmBean);
-		for (MMCode mmChild : mmBean.getCode()) {
-			generateMMCode(gen, mmChild);
-		}
-		defaultAttribute(gen, MMCodeSet.codeAttribute, mmBean.getCode());
-		defaultAttribute(gen, MMCodeSet.traceAttribute, mmBean.getTrace());
-		defaultAttribute(gen, MMCodeSet.derivationAttribute, mmBean.getDerivation());
-		defaultAttribute(gen, MMCodeSet.identificationSchemeAttribute, mmBean.getIdentificationScheme());
-		gen.flush();
-		return gen;
+	protected EnumTypeResult generateMMCodeSet(StaticFieldResult containerGen, MMCodeSet mmBean) {
+		return super.generateMMCodeSet(containerGen, mmBean);
 	}
 
 	private void collectDontModifyImports(MMCodeSet mmBean, List<String> dontModifyImports) {

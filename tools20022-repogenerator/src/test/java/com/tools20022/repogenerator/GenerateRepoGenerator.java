@@ -24,12 +24,15 @@ import com.tools20022.generators.GenerationResult;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMBusinessProcess;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMBusinessRole;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMCode;
+import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMDataDictionary;
+import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
@@ -45,6 +48,7 @@ import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.repogenerator.resulttypes.DataTypeResult;
 import com.tools20022.repogenerator.resulttypes.EnumConstantResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
@@ -153,6 +157,8 @@ public class GenerateRepoGenerator {
 			bodySb.append( JaxbPropertyResult.class.getName() + " gen = defaultJaxbPropertyResult(mmBean, containerGen);\n");			
 		} else if( EnumConstantResult.class.equals(rt)) {
 			bodySb.append( EnumConstantResult.class.getName() + " gen = defaultEnumConstant(mmBean, containerGen);\n");			
+		} else if( DataTypeResult.class.equals(rt)) {
+			bodySb.append( DataTypeResult.class.getName() + " gen = defaultDataType(mmBean);\n");			
 		} else {
 			throw new IllegalArgumentException("Invalid type hierarchy: " + rt);
 		}
@@ -257,8 +263,6 @@ public class GenerateRepoGenerator {
 			MMMessageElementContainer.metaType())); 
 
 	final static Set<MetamodelType<?>> STATIC_FIELD = new HashSet<>( Arrays.asList(MMXor.metaType(), 
-			MMBusinessRole.metaType(), 
-			MMCode.metaType(), 			
 			MMMessageDefinitionIdentifier.metaType(), 
 			MMBusinessProcessCatalogue.metaType(),
 			MMDataDictionary.metaType())); 
@@ -285,10 +289,12 @@ public class GenerateRepoGenerator {
 			return JaxbPropertyResult.class;
 		if( JAXB_MAIN_TYPE_RESULT.contains(mmtype) )
 			return JaxbMainTypeResult.class;
-//		else if( MMCodeSet.metaType().equals(mmtype) || MMBusinessProcess.metaType().equals(mmtype))
-//			return EnumTypeResult.class;
-//		else if( MMCode.metaType().equals(mmtype) || MMBusinessRole.metaType().equals(mmtype))
-//			return EnumConstantResult.class;
+		if( MMCodeSet.metaType().equals(mmtype) )
+			return EnumTypeResult.class;
+		if( MMCode.metaType().equals(mmtype) )
+			return EnumConstantResult.class;
+		if( MMDataType.class.isAssignableFrom( mmtype.getBeanClass() ) ) 
+				return DataTypeResult.class;
 		else
 			return MainTypeResult.class;
 	}
