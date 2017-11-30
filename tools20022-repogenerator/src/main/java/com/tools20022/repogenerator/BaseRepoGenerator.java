@@ -1,18 +1,24 @@
 package com.tools20022.repogenerator;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import org.jboss.forge.roaster.model.Visibility;
+import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
@@ -38,6 +44,7 @@ import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMDataType;
+import com.tools20022.metamodel.MMDecimal;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
@@ -49,6 +56,7 @@ import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.metamodel.MMString;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.MMXor;
@@ -361,6 +369,47 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
 		
+		Class<?> javaType = getMMDataTypeBaseType(mmBean);
+		if( javaType != null ) {
+			FieldSource<JavaClassSource> valueField = gen.src.addField();
+			valueField.setName("value").setProtected();
+			valueField.setType(javaType);
+			
+			MethodSource<JavaClassSource> constr = gen.src.addMethod();
+			constr.setConstructor(true).setPublic();
+			constr.addParameter(javaType, "value");
+			constr.setBody("this.value = value;");
+			
+			MethodSource<JavaClassSource> getter = gen.src.addMethod().setPublic();
+			getter.setName("to" + javaType.getSimpleName() );
+			getter.setReturnType(javaType);
+			getter.setBody("return value;");
+			if( "toString".equals( getter.getName()) ) {
+				getter.addAnnotation(Override.class);
+			}
+			
+			JavaClassSource xmlAdapter = gen.src.addNestedType(JavaClassSource.class);
+			xmlAdapter.setName("InternalXmlAdapter");
+			xmlAdapter.setProtected().setStatic(true);
+			xmlAdapter.setSuperType(XmlAdapter.class.getName() + "<" + javaType.getName() + ", " + gen.src.getName() + ">");
+			
+			MethodSource<JavaClassSource> unmarshal = xmlAdapter.addMethod().setName("unmarshal");
+			unmarshal.setPublic().addAnnotation(Override.class);
+			unmarshal.setReturnType(gen.src);
+			//unmarshall.addParameter(gen.src, "value");
+			unmarshal.addParameter(javaType, "value");
+			unmarshal.setBody("return new " + gen.src.getName() + "( value );");
+
+			MethodSource<JavaClassSource> marshal = xmlAdapter.addMethod().setName("marshal");
+			marshal.setPublic().addAnnotation(Override.class);
+			marshal.setReturnType(javaType);
+			marshal.addParameter(gen.src.getName(), "typedData");
+			marshal.setBody("return typedData.value;");
+			
+			AnnotationSource<JavaClassSource> jaxbAnnot = gen.src.addAnnotation(XmlJavaTypeAdapter.class);
+			jaxbAnnot.setLiteralValue("value", gen.src.getQualifiedName() + ".InternalXmlAdapter.class");
+		}
+		
 		return gen;
 	}
 
@@ -605,6 +654,17 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		}
 
 		return firstBuilderName;
+	}
+	
+	Class<?> getMMDataTypeBaseType(MMDataType mmDt ) {
+		Set<?> st = mmDt.getMetamodel().getSuperTypes(true, true);
+		if( st.contains(MMString.metaType()) ) {
+			return String.class;
+		} else if ( st.contains(MMDecimal.metaType() ) ) {
+			return BigDecimal.class;
+		} else {
+			return null;
+		}
 	}
 
 }

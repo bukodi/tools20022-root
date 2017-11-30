@@ -1,12 +1,16 @@
 package com.tools20022.repogenerator;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.Collator;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -18,6 +22,8 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.metamodel.*;
+
+import gen.lib.dotgen.conc__c;
 
 public class InspectLoadedRepository {
 
@@ -42,6 +48,14 @@ public class InspectLoadedRepository {
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		System.out.println("Model load: " + (System.currentTimeMillis() - start) + " ms, "
 				+ ((usedMem2 - usedMem) / (1024 * 1024)) + " MB");
+	}
+	
+	@Test
+	public void inspectSpecificObject() throws Exception {
+		GeneratedMetamodelBean obj = repo.findObjectByTypeAndName(MMCodeSet.class, "AddressType2Code");
+		
+		System.out.println( obj);
+		
 	}
 
 	@Test
@@ -75,7 +89,7 @@ public class InspectLoadedRepository {
 			
 			
 			for( int i = 0; i < e.getValue().size(); i++ ) {
-				MMDataType dt = e.getValue().get(i);
+				MMDataType dt = e.getValue().get(i);				
 				if( i < max ) {
 					System.out.println( "  - " + dt.getName());
 				} else if( i == max ) {
@@ -88,7 +102,7 @@ public class InspectLoadedRepository {
 	}
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void codeSetRelations() throws Exception {
 		for (MMCodeSet mmCodeSet : repo.listObjects(MMCodeSet.class).filter(cs -> cs.getName().startsWith("Repurchase"))
 				.collect(Collectors.toList())) {
@@ -233,15 +247,29 @@ public class InspectLoadedRepository {
 	@Test
 	public void codeSets() throws Exception {
 
-		Map<Integer, List<MMCodeSet>> csByCodesetSize = new HashMap<>();
 
-		for (MMCodeSet mmCS : repo.listObjects(MMCodeSet.class).collect(Collectors.toList())) {
-			csByCodesetSize.computeIfAbsent(mmCS.getCode().size(), x -> new ArrayList<>()).add(mmCS);
+		List<? extends MMCodeSet> allCodesets = repo.listObjects(MMCodeSet.class).collect(Collectors.toList());
+		Map<Integer, List<MMCodeSet>> csByCodesetSize = new HashMap<>();
+		for (MMCodeSet mmCS : allCodesets) {
+			csByCodesetSize.computeIfAbsent(mmCS.getCode().size(), x -> new ArrayList<>()).add(mmCS);			
 		}
 
+		List<MMCodeSet> csNoParent = new ArrayList<>();
+		Map<MMCodeSet, List<MMCodeSet>> csByParent = new HashMap<>();
+		for (MMCodeSet mmCS : allCodesets) {
+			if( mmCS.getTrace().isPresent()  ) {
+				csByParent.computeIfAbsent(mmCS.getTrace().get(), x -> new ArrayList<>()).add(mmCS);							
+			} else {
+				csNoParent.add(mmCS);
+			}
+		}
+
+		System.out.println("Size of codeset : number of codesets");
 		csByCodesetSize.entrySet().stream().forEachOrdered(e -> {
 			System.out.println(e.getKey() + " : " + e.getValue().size());
 		});
+		System.out.println( "Summ: " + allCodesets.size() + " codesets");
+		System.out.println();
 
 		csByCodesetSize.get(1).stream().forEachOrdered(cs -> {
 			System.out.print(cs.getName() + ", " + cs.getPattern().orElse("-") + ", "
@@ -249,7 +277,85 @@ public class InspectLoadedRepository {
 			System.out.print(", " + (cs.getTrace().isPresent() ? cs.getTrace().get().getName() : "-"));
 			System.out.println(", " + (cs.getDerivation().size()));
 		});
+		
+		System.out.println();
+		System.out.println("--- Codeset hierarchy ---");
+		PrintWriter pw = new PrintWriter(System.out); 
+		for( MMCodeSet mmCs : csNoParent ) {
+			dumpCodeSetSubTree(mmCs, csByParent, pw, "");			
+		}
+		pw.flush();
 
+		System.out.println();
+		System.out.println("--- Find MMCode instances without effectiveCode value --- ");
+		for( MMCodeSet mmCs : allCodesets) {			
+			for( MMCode mmCode : mmCs.getCode() ) {
+				if( mmCode.getCodeName().isPresent() ) {
+					
+				} else {
+					Optional<MMCodeSet> optSuperCs = mmCode.getContainer().getTrace();
+					if( ! optSuperCs.isPresent() ) {
+						System.out.println( "(Root codeset)" + mmCs.getName() + "." + mmCode.getName() );
+						continue;
+					}
+					
+					Optional<MMCode> optSuperCode = optSuperCs.get().getCode().stream().filter(sc -> sc.getName().equals(mmCode.getName())).findFirst();
+					if( ! optSuperCode.isPresent()) {
+						System.out.println( "(Derived codeset)" + mmCs.getName() + "." + mmCode.getName() );
+						continue;						
+					}
+				}
+			}
+		}
+
+		System.out.println();
+		System.out.println("--- Find MMCode in primary CodeSet without codeName, or derived codeset with codeName --- ");
+		for( MMCodeSet mmCs : allCodesets) {
+			if( mmCs.getTrace().isPresent() ) {
+				// Derived codeset
+				if( ! mmCs.getTrace().isPresent() ) {
+					System.out.println( "Base codeset not exists: " + mmCs.getName()  );
+					continue;
+				}
+				MMCodeSet baseCs = mmCs.getTrace().get();
+				for( MMCode mmCode : mmCs.getCode() ) {
+					Optional<MMCode> optSuperCode = baseCs.getCode().stream().filter(sc -> sc.getName().equals(mmCode.getName())).findFirst();
+					if( ! optSuperCode.isPresent()) {
+						System.out.println( "Base code not exists:" + mmCs.getName() + "." + mmCode.getName() );
+						continue;						
+					}
+
+					if( mmCode.getCodeName().isPresent() ) {						
+						System.out.println( "Codename exists in a derived codeset: " + mmCs.getName() + "." + mmCode.getName() + " [" + mmCode.getCodeName().get() + "] overrides [" + optSuperCode.get().getCodeName().get() + "]" );
+					}
+				}			
+			} else {
+				// Base codeset 
+				for( MMCode mmCode : mmCs.getCode() ) {
+					if( ! mmCode.getCodeName().isPresent() ) {
+						System.out.println( "No codeName in a base codeset:" + mmCs.getName() + "." + mmCode.getName() );
+					}
+				}			
+			}
+		}
+
+		System.out.println();
+		System.out.println("--- Base codesets without any derived codeset --- ");
+		for( MMCodeSet cs : csNoParent ) {
+			if( ! csByParent.containsKey(cs) ) {
+				System.out.println( "No derived codeset:" + cs.getName()  );				
+			}
+		}
+	}
+	
+	private void dumpCodeSetSubTree( MMCodeSet mmCs, Map<MMCodeSet, List<MMCodeSet>> csByParent, PrintWriter pw, String tab ) {
+		pw.println( tab + "" + mmCs.getName() );
+		List<MMCodeSet> derivedCsList = csByParent.get(mmCs);
+		if( derivedCsList == null )
+			return;
+		for( MMCodeSet derivedCs: derivedCsList) {
+			dumpCodeSetSubTree(derivedCs, csByParent, pw, tab + "  ");
+		}
 	}
 
 	@Test

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -14,6 +15,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMRepositoryConcept;
 
 public class RawRepository {
 
@@ -117,5 +119,19 @@ public class RawRepository {
 		};
 		return ret.stream();
 	}
+	
+	public <T extends MMRepositoryConcept> T findObjectByTypeAndName( Class<T> type, String name ) {
+		MetamodelType<T> mmType = metamodel.getTypeByClass(type);
+		for( GeneratedMetamodelBean obj : objectsByType.get(mmType) ) {
+			if( ! (obj instanceof MMRepositoryConcept ))
+				continue;
+			String objName = ((MMRepositoryConcept)obj).getName();
+			if( name.equals(objName)) {
+				return (T)obj;
+			}
+		}
+		throw new NoSuchElementException("type=" + type.getSimpleName()+", name=" + name);
+	}
+	
 
 }

@@ -3,6 +3,7 @@ package com.tools20022.mmgenerator;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -39,6 +41,19 @@ public class InspectECoreMetamodel {
 		metamodelPkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
 	}
 
+	@Test
+	public void listAttrsWithDeafultValues() throws Exception {
+		List<EClass> eClasses = metamodelPkg.getEClassifiers().stream().filter(ec -> ec instanceof EClass).map(ec->(EClass)ec).collect(Collectors.toList());
+		for( EClass eClass : eClasses ) {
+			for(EStructuralFeature eSF : eClass.getEStructuralFeatures() ) {
+				Object defValue = eSF.getDefaultValue();
+				if( defValue != null ) {
+					System.out.println( eClass.getName() + "." + eSF.getName() + " = [" + defValue.getClass().getSimpleName() + "]" + defValue );
+				}
+			}
+		}
+	}
+	
 	@Test
 	@Ignore
 	public void testLoadMetamodelFromECore() throws Exception {

@@ -2,7 +2,7 @@
 <iso20022:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:iso20022="urn:iso:std:iso:20022:2013:ecore">
   <dataDictionary>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ClearingSystemIdentification2Choice" definition="Choice of a clearing system identifier." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Identification of a clearing system, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.40"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Identification of a clearing system, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.41"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Identification code for a clearing system, that has not yet been identified in the list of clearing systems." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ClearingSystemMemberIdentification2" definition="Unique identification, as assigned by a clearing system, to unambiguously identify a member of the clearing system." registrationStatus="Registered">
@@ -10,7 +10,7 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="MemberIdentification" definition="Identification of a member of a clearing system." maxOccurs="1" minOccurs="1" xmlTag="MmbId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="FinancialIdentificationSchemeName1Choice" definition="Sets of elements to identify a name of the organisation identification scheme." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.41"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Name of the identification scheme, in a free text form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericFinancialIdentification1" definition="Information related to an identification of a financial institution." registrationStatus="Registered">
@@ -19,19 +19,19 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Entity that assigns the identification." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PostalAddress6" definition="Information that locates and identifies a specific address, as defined by postal services." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="AddressType" definition="Identifies the nature of the postal address." maxOccurs="1" xmlTag="AdrTp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.33"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AddressType" definition="Identifies the nature of the postal address." maxOccurs="1" xmlTag="AdrTp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.34"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Department" definition="Identification of a division of a large organisation or building." maxOccurs="1" xmlTag="Dept" simpleType="//@dataDictionary/@topLevelDictionaryEntry.29"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="SubDepartment" definition="Identification of a sub-division of a large organisation or building." maxOccurs="1" xmlTag="SubDept" simpleType="//@dataDictionary/@topLevelDictionaryEntry.29"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="StreetName" definition="Name of a street or thoroughfare." maxOccurs="1" xmlTag="StrtNm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.29"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="BuildingNumber" definition="Number that identifies the position of a building on a street." maxOccurs="1" xmlTag="BldgNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.34"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="PostCode" definition="Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail." maxOccurs="1" xmlTag="PstCd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.34"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BuildingNumber" definition="Number that identifies the position of a building on a street." maxOccurs="1" xmlTag="BldgNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.35"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="PostCode" definition="Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail." maxOccurs="1" xmlTag="PstCd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.35"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="TownName" definition="Name of a built-up area, with defined boundaries, and a local government." maxOccurs="1" xmlTag="TwnNm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="CountrySubDivision" definition="Identifies a subdivision of a country such as state, region, county." maxOccurs="1" xmlTag="CtrySubDvsn" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Country" definition="Nation with its own government." maxOccurs="1" xmlTag="Ctry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.28"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="AddressLine" definition="Information that locates and identifies a specific address, as defined by postal services, presented in free format text." maxOccurs="7" xmlTag="AdrLine" simpleType="//@dataDictionary/@topLevelDictionaryEntry.29"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="FinancialInstitutionIdentification8" definition="Set of elements used to identify a financial institution." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="BICFI" definition="Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BICFI" simpleType="//@dataDictionary/@topLevelDictionaryEntry.36"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BICFI" definition="Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BICFI" simpleType="//@dataDictionary/@topLevelDictionaryEntry.37"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ClearingSystemMemberIdentification" definition="Information used to identify a member within a clearing system." maxOccurs="1" xmlTag="ClrSysMmbId" type="//@dataDictionary/@topLevelDictionaryEntry.1"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name by which an agent is known and which is usually used to identify that agent." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.30"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PostalAddress" definition="Information that locates and identifies a specific address, as defined by postal services." maxOccurs="1" xmlTag="PstlAdr" type="//@dataDictionary/@topLevelDictionaryEntry.4"/>
@@ -53,7 +53,7 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="CountryOfBirth" definition="Country where a person was born." maxOccurs="1" minOccurs="1" xmlTag="CtryOfBirth" simpleType="//@dataDictionary/@topLevelDictionaryEntry.28"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="OrganisationIdentificationSchemeName1Choice" definition="Sets of elements to identify a name of the organisation identification scheme." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.43"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Name of the identification scheme, in a free text form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericOrganisationIdentification1" definition="Information related to an identification of an organisation." registrationStatus="Registered">
@@ -62,7 +62,7 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Entity that assigns the identification." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="PersonIdentificationSchemeName1Choice" definition="Sets of elements to identify a name of the identification scheme." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.43"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Name of the identification scheme, in a free text form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericPersonIdentification1" definition="Information related to an identification of a person." registrationStatus="Registered">
@@ -75,16 +75,16 @@
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Other" definition="Unique identification of a person, as assigned by an institution, using an identification scheme." xmlTag="Othr" type="//@dataDictionary/@topLevelDictionaryEntry.12"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ContactDetails2" definition="Communication device number or electronic address used for communication." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="NamePrefix" definition="Specifies the terms used to formally address a person." maxOccurs="1" xmlTag="NmPrfx" simpleType="//@dataDictionary/@topLevelDictionaryEntry.39"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="NamePrefix" definition="Specifies the terms used to formally address a person." maxOccurs="1" xmlTag="NmPrfx" simpleType="//@dataDictionary/@topLevelDictionaryEntry.40"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name by which a party is known and which is usually used to identify that party." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.30"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="PhoneNumber" definition="Collection of information that identifies a phone number, as defined by telecom services." maxOccurs="1" xmlTag="PhneNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.35"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="MobileNumber" definition="Collection of information that identifies a mobile phone number, as defined by telecom services." maxOccurs="1" xmlTag="MobNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.35"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="FaxNumber" definition="Collection of information that identifies a FAX number, as defined by telecom services." maxOccurs="1" xmlTag="FaxNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.35"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="EmailAddress" definition="Address for electronic mail (e-mail)." maxOccurs="1" xmlTag="EmailAdr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.37"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="PhoneNumber" definition="Collection of information that identifies a phone number, as defined by telecom services." maxOccurs="1" xmlTag="PhneNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.36"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="MobileNumber" definition="Collection of information that identifies a mobile phone number, as defined by telecom services." maxOccurs="1" xmlTag="MobNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.36"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="FaxNumber" definition="Collection of information that identifies a FAX number, as defined by telecom services." maxOccurs="1" xmlTag="FaxNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.36"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="EmailAddress" definition="Address for electronic mail (e-mail)." maxOccurs="1" xmlTag="EmailAdr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.38"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Other" definition="Contact details in an other form." maxOccurs="1" xmlTag="Othr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="OrganisationIdentification8" definition="Unique and unambiguous way to identify an organisation." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="AnyBIC" definition="Code allocated to a financial institution or non financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="AnyBIC" simpleType="//@dataDictionary/@topLevelDictionaryEntry.38"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AnyBIC" definition="Code allocated to a financial institution or non financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="AnyBIC" simpleType="//@dataDictionary/@topLevelDictionaryEntry.39"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Other" definition="Unique identification of an organisation, as assigned by an institution, using an identification scheme." xmlTag="Othr" type="//@dataDictionary/@topLevelDictionaryEntry.10"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="Party11Choice" definition="Nature or use of the account." registrationStatus="Registered">
@@ -119,7 +119,7 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="ReopenCaseIndication" definition="Indicates whether or not the case was previously closed and is now re-opened." maxOccurs="1" xmlTag="ReopCaseIndctn" simpleType="//@dataDictionary/@topLevelDictionaryEntry.32"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CaseForwardingNotification3" definition="Status of a case resulting from a case assignment." registrationStatus="Registered" messageBuildingBlock="//@businessProcessCatalogue/@topLevelCatalogueEntry.0/@messageDefinition.0/@messageBuildingBlock.3">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Justification" definition="Justification for the forward action." maxOccurs="1" minOccurs="1" xmlTag="Justfn" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Justification" definition="Justification for the forward action." maxOccurs="1" minOccurs="1" xmlTag="Justfn" simpleType="//@dataDictionary/@topLevelDictionaryEntry.46"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ReportHeader4" definition="Specifies generic information about an investigation report." registrationStatus="Registered" messageBuildingBlock="//@businessProcessCatalogue/@topLevelCatalogueEntry.0/@messageDefinition.0/@messageBuildingBlock.0">
       <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Point to point reference as assigned by the case assigner to unambiguously identify the case status report." maxOccurs="1" minOccurs="1" xmlTag="Id" simpleType="//@dataDictionary/@topLevelDictionaryEntry.25"/>
@@ -139,7 +139,16 @@
     <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max140Text" definition="Specifies a character string with a maximum length of 140 characters." registrationStatus="Registered" minLength="1" maxLength="140"/>
     <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max350Text" definition="Specifies a character string with a maximum length of 350 characters." registrationStatus="Registered" minLength="1" maxLength="350"/>
     <topLevelDictionaryEntry xsi:type="iso20022:Indicator" name="YesNoIndicator" definition="Indicates a &quot;Yes&quot; or &quot;No&quot; type of answer for an element." registrationStatus="Registered" meaningWhenTrue="Yes" meaningWhenFalse="No"/>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressType2Code" definition="Specifies the type of address." registrationStatus="Registered">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressTypeCode" definition="Specifies the type of address." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.34">
+      <example>HOME</example>
+      <code name="Residential" definition="Address is the home address." registrationStatus="Registered" codeName="HOME"/>
+      <code name="Business" definition="Address is the business address." registrationStatus="Registered" codeName="BIZZ"/>
+      <code name="Postal" definition="Address is the complete postal address." registrationStatus="Registered" codeName="ADDR"/>
+      <code name="POBox" definition="Address is a postal office (PO) box." registrationStatus="Registered" codeName="PBOX"/>
+      <code name="MailTo" definition="Address is the address to which mail is sent." registrationStatus="Registered" codeName="MLTO"/>
+      <code name="DeliveryTo" definition="Address is the address to which delivery is to take place." registrationStatus="Registered" codeName="DLVY"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressType2Code" definition="Specifies the type of address." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.33">
       <example>ADDR</example>
       <code name="Postal"/>
       <code name="POBox"/>
@@ -178,7 +187,17 @@
     <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ExternalPersonIdentification1Code" definition="Specifies the external person identification scheme name code in the format of character string with a maximum length of 4 characters.&#xD;&#xA;The list of valid codes is an external code list published separately.&#xD;&#xA;External code sets can be downloaded from www.iso20022.org." registrationStatus="Registered" minLength="1" maxLength="4">
       <example>ARNU</example>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CaseForwardingNotification3Code" definition="Specifies the action requested when forwarding a case." registrationStatus="Registered">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CaseForwardingNotificationCode" definition="Specifies the action requested when forwarding a case. Assignees taking the decision to cancel or modify to further case assignees must communicate this decision to their case assigners." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.46">
+      <example>FTHI</example>
+      <code name="FurtherInvestigation" definition="Case has been forwarded to the next party for further investigation." registrationStatus="Registered" codeName="FTHI"/>
+      <code name="RequestToCancel" definition="Case has been forwarded to the next party for cancellation." registrationStatus="Registered" codeName="CANC"/>
+      <code name="RequestToModify" definition="Case has been forwarded to the next party for modification." registrationStatus="Registered" codeName="MODI"/>
+      <code name="RequestDebitAuthorisation" definition="Case has been forwarded to obtain authorisation to debit." registrationStatus="Registered" codeName="DTAU"/>
+      <code name="SentAdditionalInformation" definition="Additional information has been forwarded to the creditor." registrationStatus="Registered" codeName="SAIN"/>
+      <code name="FoundInvestigatingAgent" definition="Case is taken up by an assigned agent." registrationStatus="Registered" codeName="FIAG"/>
+      <code name="MineInvestigationCase" definition="Case is been handled by the assigned party." registrationStatus="Registered" codeName="MINE"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CaseForwardingNotification3Code" definition="Specifies the action requested when forwarding a case." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.45">
       <example>FTHI</example>
       <code name="FurtherInvestigation"/>
       <code name="RequestToCancel"/>

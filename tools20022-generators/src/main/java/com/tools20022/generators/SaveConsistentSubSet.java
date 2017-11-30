@@ -111,6 +111,10 @@ public class SaveConsistentSubSet {
 					if (!(ecc instanceof EClass))
 						continue;
 					for (EReference eRef : ((EClass) ecc).getEAllReferences()) {
+						if( "trace".equals(eRef.getName()) && eRef.getEContainingClass().getName().equals("CodeSet") ) {
+							tmp.add(eRef);
+						}
+						
 						if (!names.contains(eRef.getName()))
 							continue;
 						tmp.add(eRef);
