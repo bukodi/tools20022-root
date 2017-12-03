@@ -11,15 +11,16 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.repogenerator.RawRepository;
 
-public abstract class TypeResult extends GenerationResult {
+public abstract class TypeResult extends GenerationResult<RawRepository,GeneratedMetamodelBean> {
 
 	public final GeneratedMetamodelBean mmBean;
 	public final StructuredName baseName;
 
 	public final List<AttrResult> attrGens = new ArrayList<>();
 
-	protected TypeResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+	protected TypeResult(GenerationContext<RawRepository,GeneratedMetamodelBean> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
 		super(ctx);
 		this.mmBean = mmBean;
 		this.baseName = baseName;

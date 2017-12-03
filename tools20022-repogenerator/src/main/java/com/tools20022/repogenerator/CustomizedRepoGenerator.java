@@ -25,6 +25,7 @@ import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
+import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMBusinessArea;
@@ -55,11 +56,19 @@ import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
+	
+	public CustomizedRepoGenerator(GenerationContext<RawRepository, GeneratedMetamodelBean> ctx) {
+		super(ctx);
+	}
 
 	@Override
-	public void accept(RawRepository repo, GenerationContext<RawRepository> ctx) {
+	public void prepare(RawRepository repo, ProgressMonitor monitor) {
+		
+	}
+
+	@Override
+	public void generate(RawRepository repo, ProgressMonitor monitor) {
 		this.repo = repo;
-		this.ctx = ctx;
 
 		repo.getMetamodel().listEnums().forEach(mmEnum -> {
 			this.ctx.addKnownTypeNames(mmEnum.getEnumJavaClass().getName());

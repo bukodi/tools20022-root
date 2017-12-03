@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -29,9 +30,9 @@ public class GenerateRepositoryArtifact {
 			repo = loader.load( ecorePkg, rootEObj);
 		}
 		
-		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
+		GenerationContext<RawRepository,GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,GeneratedMetamodelBean.class);
 		genCtx.setMavenProjectRoot(mvnProjectRoot);
-		genCtx.generate( repo, new CustomizedRepoGenerator() );
+		genCtx.generate( repo, new CustomizedRepoGenerator( genCtx) );
 
 		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		System.out.println("Repo generation : " + (System.currentTimeMillis() - start) + " ms, " + ((usedMem2 - usedMem )/(1024*1024)) + " MB" + " (Max mem: " + (Runtime.getRuntime().maxMemory()/(1024*1024)) + " MB)");

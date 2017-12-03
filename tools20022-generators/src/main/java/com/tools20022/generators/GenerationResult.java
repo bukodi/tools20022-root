@@ -1,11 +1,11 @@
 package com.tools20022.generators;
 
-public abstract class GenerationResult {
+public abstract class GenerationResult<M,B> {
 	
-	public final GenerationContext<?> ctx;
+	public final GenerationContext<M,B> ctx;
 
 	
-	protected GenerationResult( GenerationContext<?> ctx) {
+	protected GenerationResult( GenerationContext<M,B> ctx) {
 		this.ctx = ctx;
 	}
 	

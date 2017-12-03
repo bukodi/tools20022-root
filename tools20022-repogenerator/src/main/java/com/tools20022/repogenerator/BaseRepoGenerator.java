@@ -28,7 +28,9 @@ import org.jboss.forge.roaster.model.source.MethodSource;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.GenerationContext;
+import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMBusinessArea;
@@ -71,7 +73,7 @@ import com.tools20022.repogenerator.resulttypes.PropertyResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
-public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, GenerationContext<RawRepository>> {
+public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,GeneratedMetamodelBean> {
 
 	/*** Customizable options ***/
 	protected String basePackageName = "com.tools20022.repository";
@@ -79,12 +81,13 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 
 	/*** Set in {@link #accept(RawRepository, GenerationContext)} ***/
 	protected RawRepository repo;
-	protected GenerationContext<RawRepository> ctx;
 
+	public BaseRepoGenerator(GenerationContext<RawRepository,GeneratedMetamodelBean> ctx) {
+		 super( ctx );
+	}
+	
 	@Override
-	public abstract void accept(RawRepository repo, GenerationContext<RawRepository> ctx);
-
-	protected StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
+	public StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
 
 		BiFunction<GeneratedMetamodelBean, String, StructuredName> createJavaNameAsMemeber = (parentElem,
 				memberName) -> {
@@ -446,7 +449,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 
 	protected EnumConstantResult defaultEnumConstant(MMCode mmBean, EnumTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
-		EnumConstantResult gen = new EnumConstantResult(containerGen, (MMCode)mmBean, name);
+		EnumConstantResult gen = containerGen.addConstant(mmBean, name);
 		
 		{
 			gen.staticFieldSrc = containerGen.src.addField().setName( name.getMemberName());
@@ -507,7 +510,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		boolean isMultiple = mmBean.getMaxOccurs().orElse(100) > 1; 
 		boolean isOptional = mmBean.getMinOccurs().orElse(0) == 0;
 		
-		PropertyResult gen = new PropertyResult(containerGen, mmBean, name);
+		PropertyResult gen = containerGen.addProperty( mmBean, name);
 		{
 			String fieldName = name.getMemberName().substring(0, 1).toLowerCase() + name.getMemberName().substring(1);
 			fieldName = RoasterHelper.convertToJavaName(fieldName);
@@ -557,7 +560,7 @@ public abstract class BaseRepoGenerator implements BiConsumer<RawRepository, Gen
 		boolean isMultiple = mmBean.getMaxOccurs().orElse(100) > 1; 
 		boolean isOptional = mmBean.getMinOccurs().orElse(0) == 0;
 		
-		JaxbPropertyResult gen = new JaxbPropertyResult(containerGen, mmBean, name);
+		JaxbPropertyResult gen = containerGen.addProperty( mmBean, name);
 		{
 			String fieldName = name.getMemberName().substring(0, 1).toLowerCase() + name.getMemberName().substring(1);
 			fieldName = RoasterHelper.convertToJavaName(fieldName);

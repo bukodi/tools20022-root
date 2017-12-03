@@ -44,7 +44,7 @@ import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;
 import net.sourceforge.plantuml.core.DiagramDescription;
 
-public class GenerationContext<M> {
+public class GenerationContext<M,B> {
 
 	Map<String, JavaSource<?>> unsavedSources = new LinkedHashMap<>();
 	private GeneratorFileManager fileManager;
@@ -60,7 +60,9 @@ public class GenerationContext<M> {
 	
 	private final Set<String> knownTypeNames = new HashSet<>();
 
-	public GenerationContext(Class<M> modelType) {
+	private AbstractGenerator<M,B> activeGenerator;
+
+	public GenerationContext(Class<M> modelType, Class<B> modelBeanType) {
 	}
 
 	protected Properties getFormatterOptions() {
@@ -233,14 +235,21 @@ public class GenerationContext<M> {
 		}
 
 	}
-
-	public final void generate(M model, BiConsumer<M, GenerationContext<M>> generator) {
+	
+	public StructuredName getStructuredName( B modelBean ) {
+		return activeGenerator.getStructuredName(modelBean);		
+	}
+	
+	public final void generate(M model, AbstractGenerator<M, B> generator) {
+		this.activeGenerator = generator;
 		long start = System.currentTimeMillis();
 		// Delete unprotected files
 		fileManager.cleanOutputFolder();
 
 		generationStarted = System.currentTimeMillis();
-		generator.accept(model, this);
+		ProgressMonitor monitor = new ProgressMonitor();
+		generator.prepare(model, monitor );
+		generator.generate( model, monitor );
 
 		// Save the remaining unsaved sources
 
@@ -257,6 +266,7 @@ public class GenerationContext<M> {
 			saveSourceFile(src);
 		}
 		System.out.println("Generation time:" + (System.currentTimeMillis() - start) + " ms");
+		activeGenerator = null;
 	}
 
 	private String toUnformattedString(CompilationUnit unit) {

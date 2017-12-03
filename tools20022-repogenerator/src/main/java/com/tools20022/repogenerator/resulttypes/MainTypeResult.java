@@ -12,15 +12,23 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.repogenerator.RawRepository;
 
 public class MainTypeResult extends TypeResult {
 
 	public JavaClassSource src;
 	public MethodSource<JavaClassSource> mmObjectMethod;
 	public List<String> dontModifyImports = new ArrayList<>();
+	public List<PropertyResult> properties = new ArrayList<>();
 
-	public MainTypeResult(GenerationContext<?> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+	public MainTypeResult(GenerationContext<RawRepository,GeneratedMetamodelBean> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
 		super(ctx, mmBean, baseName);
+	}
+	
+	public PropertyResult addProperty( GeneratedMetamodelBean propertyMMBean, StructuredName propertyBaseName ) {
+		PropertyResult newProperty = new PropertyResult(this, propertyMMBean, propertyBaseName);
+		properties.add(newProperty);
+		return newProperty;
 	}
 
 	@Override

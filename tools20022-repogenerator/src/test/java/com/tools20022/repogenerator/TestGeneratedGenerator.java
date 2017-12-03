@@ -1,11 +1,7 @@
 package com.tools20022.repogenerator;
 
-import java.io.FileNotFoundException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -13,11 +9,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.metamodel.StandardMetamodel2013;
-import com.tools20022.repogenerator.RawRepository;
-import com.tools20022.repogenerator.XMILoader;
 
 public class TestGeneratedGenerator {
 
@@ -55,7 +50,7 @@ public class TestGeneratedGenerator {
 		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 		RawRepository repo = loader.load(ecorePkg, xmiRootObj);
 
-		GenerationContext<RawRepository> genCtx = new GenerationContext<>(RawRepository.class);
+		GenerationContext<RawRepository,GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,GeneratedMetamodelBean.class);
 		genCtx.setSkipDocGeneration(true);
 		genCtx.setMavenProjectRoot(mvnProjectRoot);
 		genCtx.dontChangeIfExists(p -> !p.toString().contains("com/tools20022/repository/"));
@@ -63,7 +58,7 @@ public class TestGeneratedGenerator {
 
 		start = System.currentTimeMillis();
 		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
-		genCtx.generate(repo, new CustomizedRepoGenerator());
+		genCtx.generate(repo, new CustomizedRepoGenerator(genCtx));
 		// genCtx.generate( repo, new DefaultRepoGenerator() );
 		System.out.println("Generation time : " + (System.currentTimeMillis() - start) + " ms ");
 	}

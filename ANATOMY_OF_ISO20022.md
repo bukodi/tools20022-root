@@ -10,3 +10,7 @@ MMMessageBulidingBlock, MMMessageAssociationEnd, MMMessageAttribute
 MMBusinessComponent, MMBusinessAssiciationEnd, MMBusinessAttribute
 
 See derived attributes too!
+
+#MMCodeSet
+* has only one-level hierarchy
+* the MMCode.code inherited from trace

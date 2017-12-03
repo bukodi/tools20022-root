@@ -17,6 +17,7 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.CompilationUnit;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationContext;
@@ -81,11 +82,14 @@ public class GenerateRepoGenerator {
 	
 	void generate() throws Exception {
 		mainSrc = Roaster.create(JavaClassSource.class);
-		mainSrc.setName("GeneratedRepoGenerator").setPackage("com.tools20022.repogenerator").setAbstract(true);				
-		mainSrc.addMethod("	@Override\n" + 
-				"	public abstract void accept(" +RawRepository.class.getName()+" repo, " +GenerationContext.class.getName()+"<" +RawRepository.class.getName()+"> ctx);");
-		mainSrc.extendSuperType(BaseRepoGenerator.class);
-
+		mainSrc.setName("GeneratedRepoGenerator").setPackage("com.tools20022.repogenerator").setAbstract(true);
+		mainSrc.setSuperType(BaseRepoGenerator.class);
+		
+		MethodSource<JavaClassSource> constr = mainSrc.addMethod();
+		constr.setConstructor(true).setProtected();
+		constr.addParameter( GenerationContext.class.getName() + "<" + RawRepository.class.getName() + ", " + GeneratedMetamodelBean.class.getName() + ">", "ctx");
+		constr.setBody("super( ctx );");
+		
 		// List non-abstract types organized by containment hierarchy.
 		StandardMetamodel2013.metamodel().listTypes().filter(t -> !t.isAbstract()).forEachOrdered(mmType -> {
 			if( MMXor.metaType().equals(mmType) ) {
