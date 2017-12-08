@@ -1,0 +1,19 @@
+// Import your custom theme
+@import 'src/theme.scss';
+
+mat-toolbar-row {
+    justify-content: space-between;
+}
+
+.toolbar-fill-remaining-space {
+/*  This fills the remaining space, by using flexbox. 
+   Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.done {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}
