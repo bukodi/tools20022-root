@@ -1,19 +1,52 @@
 // Import your custom theme
+@import '~@angular/material/theming';
 @import 'src/theme.scss';
+
+.main-toolbar {
+  background: mat-color($primary,100);
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+  height: 70px;
+}
+
+.page-content {
+  margin-top: 78px;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+footer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;  
+  background-color: mat-color($primary, 50);
+}
+
+.tools20022-logo {
+  height: 50px;
+  margin: 0 4px 3px 0;
+  vertical-align: middle;
+}
+
+.tools20022-title {
+  font-size: x-large;  
+}
+
+.mat-button {
+  color: mat-color($primary);
+  font-size: large;
+  font-weight: bold;
+}
 
 mat-toolbar-row {
     justify-content: space-between;
 }
 
-.toolbar-fill-remaining-space {
-/*  This fills the remaining space, by using flexbox. 
-   Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-}
-
-.done {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color: white;
-}
