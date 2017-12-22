@@ -17,47 +17,28 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.repository.codeset.CountryCode.InternalXmlAdapter;
 import com.tools20022.repository.GeneratedRepository;
+import java.lang.String;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.LinkedHashMap;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-/**
- * Code to identify a country, a dependency, or another area of particular
- * geopolitical interest, on the basis of country names obtained from the United
- * Nations (ISO 3166, Alpha-2 code).
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
- * <ul>
- * <li>"BE"</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "CountryCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code)."
- * </li>
- * </ul>
- */
-public class CountryCode {
+@XmlJavaTypeAdapter(InternalXmlAdapter.class)
+public class CountryCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
+	final static private LinkedHashMap<String, CountryCode> codesByName = new LinkedHashMap<>();
 
-	static public MMCodeSet mmObject() {
+	protected CountryCode() {
+	}
+
+	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.mmdataDict;
@@ -65,8 +46,33 @@ public class CountryCode {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CountryCode";
 				definition = "Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code).";
+				pattern = "[A-Z]{2,2}";
 			}
 		});
 		return mmObject_lazy.get();
+	}
+
+	static {
+	}
+
+	public static CountryCode valueOf(String codeName) {
+		return codesByName.get(codeName);
+	}
+
+	public static CountryCode[] values() {
+		CountryCode[] values = new CountryCode[codesByName.size()];
+		return codesByName.values().toArray(values);
+	}
+
+	protected static class InternalXmlAdapter extends XmlAdapter<String, CountryCode> {
+		@Override
+		public CountryCode unmarshal(String codeName) {
+			return valueOf(codeName);
+		}
+
+		@Override
+		public String marshal(CountryCode codeObj) {
+			return codeObj.getCodeName().orElse(null);
+		}
 	}
 }

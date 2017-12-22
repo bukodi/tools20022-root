@@ -27,85 +27,17 @@ import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.other.SupplementaryDataEnvelope1;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Additional information that can not be captured in the structured fields
- * and/or any other specific block.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.msg.SupplementaryData1#mmPlaceAndName
- * SupplementaryData1.mmPlaceAndName}</li>
- * <li>{@linkplain com.tools20022.repository.msg.SupplementaryData1#mmEnvelope
- * SupplementaryData1.mmEnvelope}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlock
- * messageBuildingBlock} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04#mmSupplementaryData
- * NotificationOfCaseAssignmentV04.mmSupplementaryData}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "SupplementaryData1"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Additional information that can not be captured in the structured fields and/or any other specific block."
- * </li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "SupplementaryData1", propOrder = {"placeAndName", "envelope"})
 public class SupplementaryData1 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected Max350Text placeAndName;
-	/**
-	 * Unambiguous reference to the location where the supplementary data must
-	 * be inserted in the message instance.<br>
-	 * In the case of XML, this is expressed by a valid XPath.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max350Text
-	 * Max350Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.SupplementaryData1
-	 * SupplementaryData1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "PlcAndNm"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "PlaceAndName"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous reference to the location where the supplementary data must be inserted in the message instance.\r\nIn the case of XML, this is expressed by a valid XPath."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmPlaceAndName = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> SupplementaryData1.mmObject();
@@ -120,33 +52,6 @@ public class SupplementaryData1 {
 		}
 	};
 	protected SupplementaryDataEnvelope1 envelope;
-	/**
-	 * Technical element wrapping the supplementary data.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} =
-	 * {@linkplain com.tools20022.repository.other.SupplementaryDataEnvelope1
-	 * SupplementaryDataEnvelope1}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.SupplementaryData1
-	 * SupplementaryData1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Envlp"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Envelope"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Technical element wrapping the supplementary data."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmEnvelope = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> SupplementaryData1.mmObject();
@@ -176,6 +81,7 @@ public class SupplementaryData1 {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "PlcAndNm")
 	public Max350Text getPlaceAndName() {
 		return placeAndName;
 	}
@@ -184,6 +90,7 @@ public class SupplementaryData1 {
 		this.placeAndName = placeAndName;
 	}
 
+	@XmlElement(name = "Envlp", required = true)
 	public SupplementaryDataEnvelope1 getEnvelope() {
 		return envelope;
 	}

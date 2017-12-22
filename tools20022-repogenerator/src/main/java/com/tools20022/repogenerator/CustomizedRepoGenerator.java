@@ -267,7 +267,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			MMMessageDefinitionIdentifier mmMsgId = mmBean.getMessageDefinitionIdentifier();
 			String ns = "urn:iso:std:iso:20022:tech:xsd:";
 			ns+= mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality();
-			ns+= "." + mmMsgId.getVersion() + "." + mmMsgId.getVersion();
+			ns+= "." + mmMsgId.getFlavour() + "." + mmMsgId.getVersion();
 			docSrc.addAnnotation(XmlRootElement.class).setStringValue("namespace", ns);
 			docSrc.setPublic().setStatic(true);
 			

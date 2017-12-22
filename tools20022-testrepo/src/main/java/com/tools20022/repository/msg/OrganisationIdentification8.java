@@ -26,76 +26,17 @@ import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Unique and unambiguous way to identify an organisation.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.msg.OrganisationIdentification8#mmAnyBIC
- * OrganisationIdentification8.mmAnyBIC}</li>
- * <li>
- * {@linkplain com.tools20022.repository.msg.OrganisationIdentification8#mmOther
- * OrganisationIdentification8.mmOther}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "OrganisationIdentification8"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Unique and unambiguous way to identify an organisation."</li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "OrganisationIdentification8", propOrder = {"anyBIC", "other"})
 public class OrganisationIdentification8 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected AnyBICIdentifier anyBIC;
-	/**
-	 * Code allocated to a financial institution or non financial institution by
-	 * the ISO 9362 Registration Authority as described in ISO 9362
-	 * "Banking - Banking telecommunication messages - Business identifier code (BIC)"
-	 * .
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} =
-	 * {@linkplain com.tools20022.repository.datatype.AnyBICIdentifier
-	 * AnyBICIdentifier}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.OrganisationIdentification8
-	 * OrganisationIdentification8}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "AnyBIC"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "AnyBIC"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Code allocated to a financial institution or non financial institution by the ISO 9362 Registration Authority as described in ISO 9362 \"Banking - Banking telecommunication messages - Business identifier code (BIC)\"."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmAnyBIC = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> OrganisationIdentification8.mmObject();
@@ -110,36 +51,6 @@ public class OrganisationIdentification8 {
 		}
 	};
 	protected List<com.tools20022.repository.msg.GenericOrganisationIdentification1> other;
-	/**
-	 * Unique identification of an organisation, as assigned by an institution,
-	 * using an identification scheme.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} =
-	 * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1
-	 * GenericOrganisationIdentification1}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.OrganisationIdentification8
-	 * OrganisationIdentification8}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Othr"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Other"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique identification of an organisation, as assigned by an institution, using an identification scheme."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmOther = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> OrganisationIdentification8.mmObject();
@@ -167,6 +78,7 @@ public class OrganisationIdentification8 {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "AnyBIC")
 	public AnyBICIdentifier getAnyBIC() {
 		return anyBIC;
 	}
@@ -175,6 +87,7 @@ public class OrganisationIdentification8 {
 		this.anyBIC = anyBIC;
 	}
 
+	@XmlElement(name = "Othr")
 	public List<GenericOrganisationIdentification1> getOther() {
 		return other;
 	}

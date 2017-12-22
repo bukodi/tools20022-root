@@ -26,73 +26,17 @@ import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Information related to an identification of an organisation.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1#mmIdentification
- * GenericOrganisationIdentification1.mmIdentification}</li>
- * <li>
- * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1#mmSchemeName
- * GenericOrganisationIdentification1.mmSchemeName}</li>
- * <li>
- * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1#mmIssuer
- * GenericOrganisationIdentification1.mmIssuer}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "GenericOrganisationIdentification1"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Information related to an identification of an organisation."</li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "GenericOrganisationIdentification1", propOrder = {"identification", "schemeName", "issuer"})
 public class GenericOrganisationIdentification1 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected Max35Text identification;
-	/**
-	 * Identification assigned by an institution.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
-	 * Max35Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1
-	 * GenericOrganisationIdentification1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Id"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Identification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Identification assigned by an institution."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> GenericOrganisationIdentification1.mmObject();
@@ -107,33 +51,6 @@ public class GenericOrganisationIdentification1 {
 		}
 	};
 	protected OrganisationIdentificationSchemeName1Choice schemeName;
-	/**
-	 * Name of the identification scheme.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} =
-	 * {@linkplain com.tools20022.repository.choice.OrganisationIdentificationSchemeName1Choice
-	 * OrganisationIdentificationSchemeName1Choice}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1
-	 * GenericOrganisationIdentification1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "SchmeNm"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "SchemeName"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Name of the identification scheme."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmSchemeName = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> GenericOrganisationIdentification1.mmObject();
@@ -149,33 +66,6 @@ public class GenericOrganisationIdentification1 {
 		}
 	};
 	protected Max35Text issuer;
-	/**
-	 * Entity that assigns the identification.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
-	 * Max35Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1
-	 * GenericOrganisationIdentification1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Issr"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Issuer"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Entity that assigns the identification."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmIssuer = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> GenericOrganisationIdentification1.mmObject();
@@ -203,6 +93,7 @@ public class GenericOrganisationIdentification1 {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "Id", required = true)
 	public Max35Text getIdentification() {
 		return identification;
 	}
@@ -211,6 +102,7 @@ public class GenericOrganisationIdentification1 {
 		this.identification = identification;
 	}
 
+	@XmlElement(name = "SchmeNm")
 	public OrganisationIdentificationSchemeName1Choice getSchemeName() {
 		return schemeName;
 	}
@@ -219,6 +111,7 @@ public class GenericOrganisationIdentification1 {
 		this.schemeName = schemeName;
 	}
 
+	@XmlElement(name = "Issr")
 	public Max35Text getIssuer() {
 		return issuer;
 	}

@@ -22,31 +22,6 @@ import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
- * A particular point in the progression of time in a calendar year expressed in
- * the YYYY-MM-DD format. This representation is defined in
- * "XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004"
- * which is aligned with ISO 8601.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "ISODate"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "A particular point in the progression of time in a calendar year expressed in the YYYY-MM-DD format. This representation is defined in \"XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004\" which is aligned with ISO 8601."
- * </li>
- * </ul>
- */
 public class ISODate {
 
 	final static private AtomicReference<MMDate> mmObject_lazy = new AtomicReference<>();

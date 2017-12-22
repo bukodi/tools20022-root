@@ -12,6 +12,8 @@ import org.junit.Test;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.GenerationContext;
+import com.tools20022.generators.GeneratorFileManager;
+import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class TestGeneratedGenerator {
@@ -49,18 +51,17 @@ public class TestGeneratedGenerator {
 //		 ECoreIOHelper.loadXMIResource("/model/20170713_ISO20022_2013_eRepository.iso20022");
 		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 		RawRepository repo = loader.load(ecorePkg, xmiRootObj);
+		
+		GeneratorFileManager fileManager = new GeneratorFileManager(mvnProjectRoot);
+		fileManager.dontChangeIfExists(p -> !p.toString().contains("com/tools20022/repository/"));
+		fileManager.cleanOutputFolder();
 
-		GenerationContext<RawRepository,GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,GeneratedMetamodelBean.class);
+		GenerationContext<RawRepository,GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,GeneratedMetamodelBean.class, fileManager);
 		genCtx.setSkipDocGeneration(true);
-		genCtx.setMavenProjectRoot(mvnProjectRoot);
-		genCtx.dontChangeIfExists(p -> !p.toString().contains("com/tools20022/repository/"));
 		genCtx.setLicenceHeaderGPLv3();
 
-		start = System.currentTimeMillis();
-		System.out.println("Repo load time : " + (System.currentTimeMillis() - start) + " ms ");
-		genCtx.generate(repo, new CustomizedRepoGenerator(genCtx));
-		// genCtx.generate( repo, new DefaultRepoGenerator() );
-		System.out.println("Generation time : " + (System.currentTimeMillis() - start) + " ms ");
+		ProgressMonitor monitor = new ProgressMonitor();
+		genCtx.generate(repo, new CustomizedRepoGenerator(genCtx),monitor);
 	}
 
 }

@@ -41,12 +41,12 @@ public class GeneratorFileManager implements JavaFileManager {
 	private Path mavenProjectRoot;
 	private Predicate<Path> dontChangeIfExists;
 
-	public GeneratorFileManager(Path mavenProjectRoot, Predicate<Path> dontChangeIfExists) {
+	public GeneratorFileManager(Path mavenProjectRoot) {
 		this.mavenProjectRoot = mavenProjectRoot;
-		this.dontChangeIfExists = dontChangeIfExists;
+		this.dontChangeIfExists = x->false;
 	}
 	
-	protected Path getLocationRoot( Location location ) {
+	public Path getLocationRoot( Location location ) {
 		if( StandardLocation.SOURCE_OUTPUT.equals( location)) {
 			return mavenProjectRoot.resolve("src/main/java");
 		} else if ( StandardLocation.SOURCE_OUTPUT.equals(location) ) {
@@ -65,9 +65,11 @@ public class GeneratorFileManager implements JavaFileManager {
 	}
 	
 	public void cleanOutputFolder() {
-		Path srcOutputPath = getLocationRoot(StandardLocation.SOURCE_OUTPUT);
 		try {
+			Path srcOutputPath = getLocationRoot(StandardLocation.SOURCE_OUTPUT);
 			FileIOHelper.deleteAllExcept(srcOutputPath, dontChangeIfExists);
+			Path docOutputPath = getLocationRoot(DocumentationTool.Location.DOCUMENTATION_OUTPUT);
+			FileIOHelper.deleteAllExcept(docOutputPath, dontChangeIfExists);
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
 		}

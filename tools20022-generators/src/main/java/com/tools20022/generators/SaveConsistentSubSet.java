@@ -172,13 +172,13 @@ public class SaveConsistentSubSet {
 
 			// Loop on objects
 			for (EObject eObj : new HashSet<EObject>(markedForRetain)) {
-				monitor.info("Extend object: " + ECoreIOHelper.toString(eObj));
+				monitor.trace("Extend object: " + ECoreIOHelper.toString(eObj));
 
 				// Add container
 
 				if (eObj.eContainer() != null) {
 					markedForRetain.add(eObj.eContainer());
-					monitor.info("  - add container: " + ECoreIOHelper.toString(eObj.eContainer()));
+					monitor.trace("  - add container: " + ECoreIOHelper.toString(eObj.eContainer()));
 				}
 
 				// Loop on references
@@ -220,17 +220,23 @@ public class SaveConsistentSubSet {
 					optionalBusinessAssoc.add(refObj);
 					return;
 				}
-				monitor.info("  - skip optional businessAssoc " + ECoreIOHelper.toString(refObj));
+				monitor.trace("  - skip optional businessAssoc " + ECoreIOHelper.toString(refObj));
 			}
 
 			newMarks.add(refObj);
-			monitor.info("  - add by ref: " + eRef.getName() + "->" + ECoreIOHelper.toString(refObj));
+			monitor.trace("  - add by ref: " + eRef.getName() + "->" + ECoreIOHelper.toString(refObj));
 		}
 
 		public Map<EClass,List<EObject>> getSatistics(){
 			return markedForRetain.stream().collect(Collectors.groupingBy(EObject::eClass));
 		}
+		
 		public void saveFilteredXmiModel(Path outFile) throws Exception {
+			byte[] xmiBytes = createFilteredXmiModel();
+			Files.write(outFile, xmiBytes);			
+		}
+
+		public byte[] createFilteredXmiModel() throws Exception {
 			Collection<EObject> copySet = EcoreUtil.copyAll(markedForRetain);
 			
 			/*** Phase 3: remove missing references ***/
@@ -270,7 +276,7 @@ public class SaveConsistentSubSet {
 			}
 			
 			byte[] xmiBytes = ECoreIOHelper.writeXMIResource(xmiRootEObj);
-			Files.write(outFile, xmiBytes);
+			return xmiBytes;
 		}
 
 	}

@@ -19,33 +19,18 @@ package com.tools20022.repository.datatype;
 
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.metamodel.MMText;
+import com.tools20022.repository.datatype.Max140Text.InternalXmlAdapter;
 import com.tools20022.repository.GeneratedRepository;
+import java.lang.String;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-/**
- * Specifies a character string with a maximum length of 140 characters.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "Max140Text"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies a character string with a maximum length of 140 characters."</li>
- * </ul>
- */
+@XmlJavaTypeAdapter(InternalXmlAdapter.class)
 public class Max140Text {
 
 	final static private AtomicReference<MMText> mmObject_lazy = new AtomicReference<>();
+	protected String value;
 
 	final static public MMText mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMText() {
@@ -54,8 +39,31 @@ public class Max140Text {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Max140Text";
 				definition = "Specifies a character string with a maximum length of 140 characters.";
+				minLength = 1;
+				maxLength = 140;
 			}
 		});
 		return mmObject_lazy.get();
+	}
+
+	public Max140Text(String value) {
+		this.value = value;
+	}
+
+	@Override
+	public String toString() {
+		return value;
+	}
+
+	protected static class InternalXmlAdapter extends XmlAdapter<String, Max140Text> {
+		@Override
+		public Max140Text unmarshal(String value) {
+			return new Max140Text(value);
+		}
+
+		@Override
+		public String marshal(Max140Text typedData) {
+			return typedData.value;
+		}
 	}
 }

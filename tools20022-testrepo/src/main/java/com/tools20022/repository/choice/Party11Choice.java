@@ -25,70 +25,17 @@ import com.tools20022.repository.msg.OrganisationIdentification8;
 import com.tools20022.repository.msg.PersonIdentification5;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Nature or use of the account.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.choice.Party11Choice#mmOrganisationIdentification
- * Party11Choice.mmOrganisationIdentification}</li>
- * <li>
- * {@linkplain com.tools20022.repository.choice.Party11Choice#mmPrivateIdentification
- * Party11Choice.mmPrivateIdentification}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "Party11Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Nature or use of the account."</li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "Party11Choice", propOrder = {"organisationIdentification", "privateIdentification"})
 public class Party11Choice {
 
 	final static private AtomicReference<MMChoiceComponent> mmObject_lazy = new AtomicReference<>();
 	protected OrganisationIdentification8 organisationIdentification;
-	/**
-	 * Unique and unambiguous way to identify an organisation.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} =
-	 * {@linkplain com.tools20022.repository.msg.OrganisationIdentification8
-	 * OrganisationIdentification8}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.choice.Party11Choice Party11Choice}
-	 * </li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "OrgId"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "OrganisationIdentification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Unique and unambiguous way to identify an organisation."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmOrganisationIdentification = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> Party11Choice.mmObject();
@@ -104,33 +51,6 @@ public class Party11Choice {
 		}
 	};
 	protected PersonIdentification5 privateIdentification;
-	/**
-	 * Unique and unambiguous identification of a person, eg, passport.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} = {@linkplain com.tools20022.repository.msg.PersonIdentification5
-	 * PersonIdentification5}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.choice.Party11Choice Party11Choice}
-	 * </li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "PrvtId"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "PrivateIdentification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique and unambiguous identification of a person, eg, passport."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmPrivateIdentification = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> Party11Choice.mmObject();
@@ -159,6 +79,7 @@ public class Party11Choice {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "OrgId", required = true)
 	public OrganisationIdentification8 getOrganisationIdentification() {
 		return organisationIdentification;
 	}
@@ -167,6 +88,7 @@ public class Party11Choice {
 		this.organisationIdentification = organisationIdentification;
 	}
 
+	@XmlElement(name = "PrvtId", required = true)
 	public PersonIdentification5 getPrivateIdentification() {
 		return privateIdentification;
 	}

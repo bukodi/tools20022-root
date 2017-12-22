@@ -26,73 +26,17 @@ import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Information related to an identification of a person.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.msg.GenericPersonIdentification1#mmIdentification
- * GenericPersonIdentification1.mmIdentification}</li>
- * <li>
- * {@linkplain com.tools20022.repository.msg.GenericPersonIdentification1#mmSchemeName
- * GenericPersonIdentification1.mmSchemeName}</li>
- * <li>
- * {@linkplain com.tools20022.repository.msg.GenericPersonIdentification1#mmIssuer
- * GenericPersonIdentification1.mmIssuer}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "GenericPersonIdentification1"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Information related to an identification of a person."</li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "GenericPersonIdentification1", propOrder = {"identification", "schemeName", "issuer"})
 public class GenericPersonIdentification1 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected Max35Text identification;
-	/**
-	 * Unique and unambiguous identification of a person.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
-	 * Max35Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.GenericPersonIdentification1
-	 * GenericPersonIdentification1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Id"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Identification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Unique and unambiguous identification of a person."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> GenericPersonIdentification1.mmObject();
@@ -107,33 +51,6 @@ public class GenericPersonIdentification1 {
 		}
 	};
 	protected PersonIdentificationSchemeName1Choice schemeName;
-	/**
-	 * Name of the identification scheme.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} =
-	 * {@linkplain com.tools20022.repository.choice.PersonIdentificationSchemeName1Choice
-	 * PersonIdentificationSchemeName1Choice}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.GenericPersonIdentification1
-	 * GenericPersonIdentification1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "SchmeNm"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "SchemeName"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Name of the identification scheme."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmSchemeName = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> GenericPersonIdentification1.mmObject();
@@ -149,33 +66,6 @@ public class GenericPersonIdentification1 {
 		}
 	};
 	protected Max35Text issuer;
-	/**
-	 * Entity that assigns the identification.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
-	 * Max35Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.GenericPersonIdentification1
-	 * GenericPersonIdentification1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Issr"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Issuer"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Entity that assigns the identification."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmIssuer = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> GenericPersonIdentification1.mmObject();
@@ -203,6 +93,7 @@ public class GenericPersonIdentification1 {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "Id", required = true)
 	public Max35Text getIdentification() {
 		return identification;
 	}
@@ -211,6 +102,7 @@ public class GenericPersonIdentification1 {
 		this.identification = identification;
 	}
 
+	@XmlElement(name = "SchmeNm")
 	public PersonIdentificationSchemeName1Choice getSchemeName() {
 		return schemeName;
 	}
@@ -219,6 +111,7 @@ public class GenericPersonIdentification1 {
 		this.schemeName = schemeName;
 	}
 
+	@XmlElement(name = "Issr")
 	public Max35Text getIssuer() {
 		return issuer;
 	}

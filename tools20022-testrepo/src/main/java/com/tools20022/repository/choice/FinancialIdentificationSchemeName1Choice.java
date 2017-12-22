@@ -25,77 +25,17 @@ import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Sets of elements to identify a name of the organisation identification
- * scheme.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice#mmCode
- * FinancialIdentificationSchemeName1Choice.mmCode}</li>
- * <li>
- * {@linkplain com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice#mmProprietary
- * FinancialIdentificationSchemeName1Choice.mmProprietary}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "FinancialIdentificationSchemeName1Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Sets of elements to identify a name of the organisation identification scheme."
- * </li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "FinancialIdentificationSchemeName1Choice", propOrder = {"code", "proprietary"})
 public class FinancialIdentificationSchemeName1Choice {
 
 	final static private AtomicReference<MMChoiceComponent> mmObject_lazy = new AtomicReference<>();
 	protected ExternalFinancialInstitutionIdentification1Code code;
-	/**
-	 * Name of the identification scheme, in a coded form as published in an
-	 * external list.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} =
-	 * {@linkplain com.tools20022.repository.codeset.ExternalFinancialInstitutionIdentification1Code
-	 * ExternalFinancialInstitutionIdentification1Code}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice
-	 * FinancialIdentificationSchemeName1Choice}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Cd"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Name of the identification scheme, in a coded form as published in an external list."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> FinancialIdentificationSchemeName1Choice.mmObject();
@@ -110,33 +50,6 @@ public class FinancialIdentificationSchemeName1Choice {
 		}
 	};
 	protected Max35Text proprietary;
-	/**
-	 * Name of the identification scheme, in a free text form.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
-	 * Max35Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice
-	 * FinancialIdentificationSchemeName1Choice}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Prtry"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Name of the identification scheme, in a free text form."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> FinancialIdentificationSchemeName1Choice.mmObject();
@@ -164,6 +77,7 @@ public class FinancialIdentificationSchemeName1Choice {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "Cd", required = true)
 	public ExternalFinancialInstitutionIdentification1Code getCode() {
 		return code;
 	}
@@ -172,6 +86,7 @@ public class FinancialIdentificationSchemeName1Choice {
 		this.code = code;
 	}
 
+	@XmlElement(name = "Prtry", required = true)
 	public Max35Text getProprietary() {
 		return proprietary;
 	}

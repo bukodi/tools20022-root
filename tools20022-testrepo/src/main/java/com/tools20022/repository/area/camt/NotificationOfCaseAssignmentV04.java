@@ -29,115 +29,12 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.List;
 import javax.xml.bind.annotation.*;
 
-/**
- * <b>Scope</b><br>
- * The Notification Of Case Assignment message is sent by a case assignee to a
- * case creator/case assigner.<br>
- * This message is used to inform the case assigner that:<br>
- * - the assignee is reassigning the case to the next agent in the transaction
- * processing chain for further action<br>
- * - the assignee will work on the case himself, without re-assigning it to
- * another party, and therefore indicating that the re-assignment has reached
- * its end-point<br>
- * <b>Usage</b><br>
- * The Notification Of Case Assignment message is used to notify the case
- * creator or case assigner of further action undertaken by the case assignee in
- * a:<br>
- * - request to cancel payment case<br>
- * - request to modify payment case<br>
- * - unable to apply case<br>
- * - claim non receipt case<br>
- * The Notification Of Case Assignment message<br>
- * - covers one and only one case at a time. If the case assignee needs to
- * inform a case creator or case assigner about several cases, then multiple
- * Notification Of Case Assignment messages must be sent<br>
- * - except in the case where it is used to indicate that an agent is doing the
- * correction himself, this message must be forwarded by all subsequent case
- * assigner(s) until it reaches the case creator<br>
- * - must not be used in place of a Resolution Of Investigation or a Case Status
- * Report message<br>
- * When the assignee does not reassign the case to another party (that is
- * responding with a Notification Of Case Assignment message with notification
- * MINE - The case is processed by the assignee), the case assignment should
- * contain the case assignment elements as received in the original query.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getBusinessArea
- * businessArea} =
- * {@linkplain com.tools20022.repository.area.CashManagementLatestVersion
- * CashManagementLatestVersion}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getXmlTag
- * xmlTag} = "NtfctnOfCaseAssgnmt"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getRootElement
- * rootElement} = "Document"</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageBuildingBlock
- * messageBuildingBlock} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04#mmHeader
- * NotificationOfCaseAssignmentV04.mmHeader}</li>
- * <li>
- * {@linkplain com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04#mmCase
- * NotificationOfCaseAssignmentV04.mmCase}</li>
- * <li>
- * {@linkplain com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04#mmAssignment
- * NotificationOfCaseAssignmentV04.mmAssignment}</li>
- * <li>
- * {@linkplain com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04#mmNotification
- * NotificationOfCaseAssignmentV04.mmNotification}</li>
- * <li>
- * {@linkplain com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04#mmSupplementaryData
- * NotificationOfCaseAssignmentV04.mmSupplementaryData}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageDefinitionIdentifier
- * messageDefinitionIdentifier} = {@code camt.030.001.04}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "NotificationOfCaseAssignmentV04"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Scope\r\nThe Notification Of Case Assignment message is sent by a case assignee to a case creator/case assigner.\r\nThis message is used to inform the case assigner that:\r\n- the assignee is reassigning the case to the next agent in the transaction processing chain for further action\r\n- the assignee will work on the case himself, without re-assigning it to another party, and therefore indicating that the re-assignment has reached its end-point\r\nUsage\r\nThe Notification Of Case Assignment message is used to notify the case creator or case assigner of further action undertaken by the case assignee in a:\r\n- request to cancel payment case\r\n- request to modify payment case\r\n- unable to apply case\r\n- claim non receipt case\r\nThe Notification Of Case Assignment message\r\n- covers one and only one case at a time. If the case assignee needs to inform a case creator or case assigner about several cases, then multiple Notification Of Case Assignment messages must be sent\r\n- except in the case where it is used to indicate that an agent is doing the correction himself, this message must be forwarded by all subsequent case assigner(s) until it reaches the case creator\r\n- must not be used in place of a Resolution Of Investigation or a Case Status Report message\r\nWhen the assignee does not reassign the case to another party (that is responding with a Notification Of Case Assignment message with notification MINE - The case is processed by the assignee), the case assignment should contain the case assignment elements as received in the original query."
- * </li>
- * </ul>
- */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(name = "NotificationOfCaseAssignmentV04", propOrder = {"header", "case", "assignment", "notification", "supplementaryData"})
 public class NotificationOfCaseAssignmentV04 {
 
 	final static private AtomicReference<MMMessageDefinition> mmObject_lazy = new AtomicReference<>();
 	protected ReportHeader4 header;
-	/**
-	 * Specifies generic information about the notification. The receiver of a
-	 * notification must be the party which assigned the case to the sender.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageBuildingBlock#getComplexType
-	 * complexType} = {@linkplain com.tools20022.repository.msg.ReportHeader4
-	 * ReportHeader4}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Hdr"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Header"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Specifies generic information about the notification.\nThe receiver of a notification must be the party which assigned the case to the sender."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageBuildingBlock mmHeader = new MMMessageBuildingBlock() {
 		{
 			xmlTag = "Hdr";
@@ -158,27 +55,6 @@ public class NotificationOfCaseAssignmentV04 {
 		}
 	};
 	protected Case3 case_;
-	/**
-	 * Identifies the investigation case.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageBuildingBlock#getComplexType
-	 * complexType} = {@linkplain com.tools20022.repository.msg.Case3 Case3}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Case"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Case"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Identifies the investigation case."</li>
-	 * </ul>
-	 */
 	public static final MMMessageBuildingBlock mmCase = new MMMessageBuildingBlock() {
 		{
 			xmlTag = "Case";
@@ -199,32 +75,6 @@ public class NotificationOfCaseAssignmentV04 {
 		}
 	};
 	protected CaseAssignment3 assignment;
-	/**
-	 * Identifies the assignment of an investigation case from an assigner to an
-	 * assignee. Usage: The Assigner must be the sender of this confirmation and
-	 * the Assignee must be the receiver.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageBuildingBlock#getComplexType
-	 * complexType} = {@linkplain com.tools20022.repository.msg.CaseAssignment3
-	 * CaseAssignment3}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Assgnmt"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Assignment"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identifies the assignment of an investigation case from an assigner to an assignee.\nUsage: The Assigner must be the sender of this confirmation and the Assignee must be the receiver."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageBuildingBlock mmAssignment = new MMMessageBuildingBlock() {
 		{
 			xmlTag = "Assgnmt";
@@ -245,29 +95,6 @@ public class NotificationOfCaseAssignmentV04 {
 		}
 	};
 	protected CaseForwardingNotification3 notification;
-	/**
-	 * Information about the type of action taken.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageBuildingBlock#getComplexType
-	 * complexType} =
-	 * {@linkplain com.tools20022.repository.msg.CaseForwardingNotification3
-	 * CaseForwardingNotification3}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Ntfctn"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Notification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Information about the type of action taken."</li>
-	 * </ul>
-	 */
 	public static final MMMessageBuildingBlock mmNotification = new MMMessageBuildingBlock() {
 		{
 			xmlTag = "Ntfctn";
@@ -288,32 +115,6 @@ public class NotificationOfCaseAssignmentV04 {
 		}
 	};
 	protected List<SupplementaryData1> supplementaryData;
-	/**
-	 * Additional information that cannot be captured in the structured elements
-	 * and/or any other specific block.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageBuildingBlock#getComplexType
-	 * complexType} =
-	 * {@linkplain com.tools20022.repository.msg.SupplementaryData1
-	 * SupplementaryData1}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "SplmtryData"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "SupplementaryData"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Additional information that cannot be captured in the structured elements and/or any other specific block."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageBuildingBlock mmSupplementaryData = new MMMessageBuildingBlock() {
 		{
 			xmlTag = "SplmtryData";
@@ -408,7 +209,7 @@ public class NotificationOfCaseAssignmentV04 {
 		this.supplementaryData = supplementaryData;
 	}
 
-	@XmlRootElement(namespace = "urn:iso:std:iso:20022:tech:xsd:camt.030.04.04")
+	@XmlRootElement(namespace = "urn:iso:std:iso:20022:tech:xsd:camt.030.001.04")
 	static public class Document {
 		@XmlElement(name = "NtfctnOfCaseAssgnmt", required = true)
 		public NotificationOfCaseAssignmentV04 messageBody;

@@ -22,30 +22,6 @@ import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
- * Indicates a "Yes" or "No" type of answer for an element.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMIndicator#getMeaningWhenTrue
- * meaningWhenTrue} = "Yes"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMIndicator#getMeaningWhenFalse
- * meaningWhenFalse} = "No"</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "YesNoIndicator"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Indicates a \"Yes\" or \"No\" type of answer for an element."</li>
- * </ul>
- */
 public class YesNoIndicator {
 
 	final static private AtomicReference<MMIndicator> mmObject_lazy = new AtomicReference<>();

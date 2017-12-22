@@ -9,6 +9,8 @@ import org.junit.Test;
 import com.tools20022.core.metamodel.Metamodel.MetamodelElement;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.GenerationContext;
+import com.tools20022.generators.GeneratorFileManager;
+import com.tools20022.generators.ProgressMonitor;
 
 public class TestMMCodeGen {
 
@@ -18,15 +20,17 @@ public class TestMMCodeGen {
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
 		RawMetamodel metamodel = new ECoreBackedMetamodel(ecorePkg );
 		
+		GeneratorFileManager fileManager = new GeneratorFileManager(Paths.get("../tools20022-metamodel/"));
+		fileManager.dontChangeIfExists(p -> p.toString().contains( File.separator + "constraints" + File.separator ) || p.toString().contains(File.separator + "derived" + File.separator ));
+		fileManager.cleanOutputFolder();
+		
 		// Create generation context
-		GenerationContext<RawMetamodel,RawMetamodel.MetamodelElement> genCtx = new GenerationContext<>(RawMetamodel.class,RawMetamodel.MetamodelElement.class);
+		GenerationContext<RawMetamodel,RawMetamodel.MetamodelElement> genCtx = new GenerationContext<>(RawMetamodel.class,RawMetamodel.MetamodelElement.class, fileManager);
 		genCtx.setLicenceHeaderGPLv3();
-		genCtx.setMavenProjectRoot(Paths.get("../tools20022-metamodel/"));
-		genCtx.dontChangeIfExists(p -> p.toString().contains( File.separator + "constraints" + File.separator ) || p.toString().contains(File.separator + "derived" + File.separator ));
 
 		// Execute generation
-		genCtx.generate(metamodel, new DefaultMetamodelGenerator(genCtx));
-		System.out.println("Done.");
+		ProgressMonitor monitor = new ProgressMonitor();
+		genCtx.generate(metamodel, new DefaultMetamodelGenerator(genCtx), monitor);
 	}
 
 

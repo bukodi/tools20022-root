@@ -1,5 +1,8 @@
-package com.tools20022.generators;
+package com.tools20022.repogenerator;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -7,90 +10,88 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import org.eclipse.emf.ecore.EClass;
+import javax.tools.StandardLocation;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.junit.Test;
 
+import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.generators.ECoreIOHelper;
+import com.tools20022.generators.FileIOHelper;
+import com.tools20022.generators.GenerationContext;
+import com.tools20022.generators.GeneratorFileManager;
+import com.tools20022.generators.ProgressMonitor;
+import com.tools20022.generators.SaveConsistentSubSet;
 import com.tools20022.generators.SaveConsistentSubSet.ConsistentSubset;
+import com.tools20022.metamodel.StandardMetamodel2013;
 
-public class TestConsistentSubset {
+public class GeneratePublicArtifact {
 	
+	enum BusinessDomain {
+		payments, securities, trade, cards, fx;
+	}
+	
+	static boolean skipBusinessComponents = false;
 
-	@Test
-	public void subsetForBusinessArea() throws Exception {
-		boolean skipBusinessComponents = false;
-		final String code = "pain";
+	static String baseEcoreResourceName = "/model/ISO20022.ecore";
+	static String baseXmiResourceName = "/model/20170713_ISO20022_2013_eRepository.iso20022";
+	
+	static Path coreProject = Paths.get("../tools20022-core" );
+	static Path metamodelProject = Paths.get("../tools20022-metamodel" );
+
+
+	public static void main(String[] args) throws Exception {
+		generateArtifact(BusinessDomain.cards );
+		generateArtifact(BusinessDomain.securities );
+		generateArtifact(BusinessDomain.trade );
+	}
+	public static void generateArtifact( BusinessDomain domain ) throws Exception {
+		Path mvnProjectRoot = Paths.get("../../tools20022-public/tools20022-api-" + domain.name() );
+	
+ 		ProgressMonitor monitor = new ProgressMonitor();
+
+		GeneratorFileManager fileManager = new GeneratorFileManager(mvnProjectRoot);
+		fileManager.cleanOutputFolder();
+
+		Path srcRoot = fileManager.getLocationRoot(StandardLocation.SOURCE_OUTPUT).resolve("");
+		FileIOHelper.copyToDir(srcRoot, coreProject.resolve("src/main/java/com"));
+		FileIOHelper.copyToDir(srcRoot, metamodelProject.resolve("src/main/java/com"));
+		
+		List<String> selectedMsgIds = getMessageIdsByDomains().get(domain);
+		// Add Business Application Header
+		selectedMsgIds.add( "head.001.001.01" );
+
+		byte[] filteredXmiModel = createConsistentSubset( selectedMsgIds, skipBusinessComponents, monitor );		
+		RawRepository repo = loadRepo( ECoreIOHelper.loadECorePackage(baseEcoreResourceName), filteredXmiModel );
+		
+		// TODO: Customize repo
 		
 		
-		long start = System.currentTimeMillis();
-		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore");
-		Path xmiPath = Paths.get(
-				"../tools20022-repogenerator/src/main/resources/model/20170713_ISO20022_2013_eRepository.iso20022");
-		EPackage ecorePackage = ECoreIOHelper.loadECorePackage(ecorePath);
-		EObject xmiRootEObj = ECoreIOHelper.loadXMIResource(xmiPath);
-		System.out.println("EMF Load completed: " + (System.currentTimeMillis() - start) + " ms");
+		fileManager.dontChangeIfExists(p -> p.toString().contains( File.separator + "constraints" + File.separator ) || p.toString().contains(File.separator + "derived" + File.separator ));
+
+		GenerationContext<RawRepository, GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,
+				GeneratedMetamodelBean.class, fileManager);
+		genCtx.setLicenceHeaderGPLv3();
+		genCtx.generate(repo, new CustomizedRepoGenerator(genCtx), monitor);
+		
+	}
+	
+	private static RawRepository loadRepo(  EPackage ecorePackage, byte[] filteredXmiModel ) throws IOException {
+		EObject rootEObj = ECoreIOHelper.loadXMIResource(new ByteArrayInputStream(filteredXmiModel));
+		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
+		return loader.load(ecorePackage, rootEObj);	
+	}
+	
+	private static byte[] createConsistentSubset(List<String> selectedMsgIds, boolean skipBusinessComponents, ProgressMonitor monitor ) throws Exception {
+		final EPackage ecorePackage = ECoreIOHelper.loadECorePackage(baseEcoreResourceName);
+		EObject xmiRootEObj = ECoreIOHelper.loadXMIResource(baseXmiResourceName);
 
 		SaveConsistentSubSet scss = new SaveConsistentSubSet(ecorePackage, xmiRootEObj);
-		ProgressMonitor monitor = new ProgressMonitor();
-		
-		//EObject pain = scss.getBusinessAreaByName("Payments Initiation - Latest version - master");
-		System.out.println( "--- List of business areas ----");
-		Map<String, EObject> areasByCode = scss.getLatestBusinessAreas();
-		for( Entry<String, EObject> e : areasByCode.entrySet() ) {
-			System.out.println( e.getKey() + " : " + e.getValue().eContents().size() );
-		}
-		System.out.println();
-		
-		EObject areaEObj = scss.getLatestBusinessAreaByCode("pain");
-		Set<EObject> seedSet = new HashSet<>();
-		seedSet.addAll(areaEObj.eContents());
-		
-		ConsistentSubset ss = scss.createSubSet(seedSet, skipBusinessComponents, monitor);
-		Map<EClass, List<EObject>> stat = ss.getSatistics();
-
-		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-area-" + code + (skipBusinessComponents ? "-nobuscomp" : "") + ".iso20022");
-		ss.saveFilteredXmiModel(testSubsetFile);
-
-		System.out.println();
-		System.out.println("--- Statistics of " + code + " ---");
-		AtomicInteger summCount = new AtomicInteger();
-		stat.entrySet().forEach(e -> {
-			summCount.addAndGet(e.getValue().size());
-			System.out.println(e.getKey().getName() + " : " + e.getValue().size());
-		});
-		System.out.println("Summ of "+ code +" : " + summCount.get());
-	}
-		
-	@Test
-	public void subsetForBusinessDomains() throws Exception {
-		subsetForBusinessDomain("payments");			
-		subsetForBusinessDomain("cards");			
-		subsetForBusinessDomain("securities");			
-		subsetForBusinessDomain("fx");			
-		subsetForBusinessDomain("trade");			
-	}
-
-	private void subsetForBusinessDomain(String domainCode) throws Exception {
-		boolean skipBusinessComponents = true;
-		
-		long start = System.currentTimeMillis();
-		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore");
-		Path xmiPath = Paths.get(
-				"../tools20022-repogenerator/src/main/resources/model/20170713_ISO20022_2013_eRepository.iso20022");
-		EPackage ecorePackage = ECoreIOHelper.loadECorePackage(ecorePath);
-		EObject xmiRootEObj = ECoreIOHelper.loadXMIResource(xmiPath);
-		System.out.println("EMF Load completed: " + (System.currentTimeMillis() - start) + " ms");
-
-		SaveConsistentSubSet scss = new SaveConsistentSubSet(ecorePackage, xmiRootEObj);
-		ProgressMonitor monitor = new ProgressMonitor();
 				
 		Set<EObject> seedSet = new HashSet<>();
-		for(String msgId : getMessageIdsByDomains().get(domainCode) ) {
+		for(String msgId : selectedMsgIds ) {
 			try {
 				seedSet.add(scss.getMsgDefByMsgId(msgId));							
 			} catch ( Exception e ) {
@@ -101,63 +102,11 @@ public class TestConsistentSubset {
 		seedSet.add( scss.getMsgDefByMsgId("head.001.001.01"));
 		
 		ConsistentSubset ss = scss.createSubSet(seedSet, skipBusinessComponents, monitor);
-		Map<EClass, List<EObject>> stat = ss.getSatistics();
-
-		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-domain-" + domainCode + (skipBusinessComponents ? "-nobuscomp" : "") + ".iso20022");
-		ss.saveFilteredXmiModel(testSubsetFile);
-
-		System.out.println();
-		System.out.println("--- Statistics of " + domainCode + " ---");
-		AtomicInteger summCount = new AtomicInteger();
-		stat.entrySet().forEach(e -> {
-			summCount.addAndGet(e.getValue().size());
-			System.out.println(e.getKey().getName() + " : " + e.getValue().size());
-		});
-		System.out.println("Summ of "+ domainCode +" : " + summCount.get());
-		System.out.println();
+		return ss.createFilteredXmiModel();
 	}
 
-	@Test
-	public void subsetForMessageDef() throws Exception {
-		boolean skipBusinessComponents = true;
-		//final String msgId = "pain.002.001.08";
-		final String msgId = "camt.030.001.04";
-		
-		
-		long start = System.currentTimeMillis();
-		Path ecorePath = Paths.get("../tools20022-repogenerator/src/main/resources/model/ISO20022.ecore");
-		Path xmiPath = Paths.get(
-				"../tools20022-repogenerator/src/main/resources/model/20170713_ISO20022_2013_eRepository.iso20022");
-		EPackage ecorePackage = ECoreIOHelper.loadECorePackage(ecorePath);
-		EObject xmiRootEObj = ECoreIOHelper.loadXMIResource(xmiPath);
-		System.out.println("EMF Load completed: " + (System.currentTimeMillis() - start) + " ms");
-
-		SaveConsistentSubSet scss = new SaveConsistentSubSet(ecorePackage, xmiRootEObj);
-		ProgressMonitor monitor = new ProgressMonitor();
-		scss.getMsgDefByMsgId(msgId);
-				
-		Set<EObject> seedSet = new HashSet<>();
-		seedSet.add(scss.getMsgDefByMsgId(msgId));
-		
-		ConsistentSubset ss = scss.createSubSet(seedSet, skipBusinessComponents, monitor);
-		Map<EClass, List<EObject>> stat = ss.getSatistics();
-
-		String fileName = "msgdef-" + msgId + (skipBusinessComponents ? "-nobuscomp" : "") + ".iso20022"; 
-		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/" + fileName );
-		ss.saveFilteredXmiModel(testSubsetFile);
-
-		System.out.println();
-		System.out.println("--- Statistics of " + msgId + " ---");
-		AtomicInteger summCount = new AtomicInteger();
-		stat.entrySet().forEach(e -> {
-			summCount.addAndGet(e.getValue().size());
-			System.out.println(e.getKey().getName() + " : " + e.getValue().size());
-		});
-		System.out.println("Summ of "+ msgId +" : " + summCount.get());
-	}
-		
-	static Map<String,List<String>> getMessageIdsByDomains() {
-		Map<String,List<String>> msgIdsByDomain = new HashMap<>();
+	public static Map<BusinessDomain,List<String>> getMessageIdsByDomains() {
+		Map<BusinessDomain,List<String>> msgIdsByDomain = new HashMap<>();
 		{
 		  List<String> msgIds = new ArrayList<>();
 		  msgIds.add( "auth.001.001.01");
@@ -238,7 +187,7 @@ public class TestConsistentSubset {
 		  msgIds.add( "pain.018.001.01");
 		  msgIds.add( "remt.001.001.03");
 		  msgIds.add( "remt.002.001.01");
-		  msgIdsByDomain.put("payments", msgIds );
+		  msgIdsByDomain.put(BusinessDomain.payments, msgIds );
 		}
 		{
 		  List<String> msgIds = new ArrayList<>();
@@ -440,7 +389,7 @@ public class TestConsistentSubset {
 		  msgIds.add( "semt.024.001.01");
 		  msgIds.add( "semt.041.001.02");
 		  msgIds.add( "semt.042.001.01");
-		  msgIdsByDomain.put("securities", msgIds );
+		  msgIdsByDomain.put(BusinessDomain.securities, msgIds );
 		}
 		{
 		  List<String> msgIds = new ArrayList<>();
@@ -530,7 +479,7 @@ public class TestConsistentSubset {
 		  msgIds.add( "tsmt.050.001.01");
 		  msgIds.add( "tsmt.051.001.01");
 		  msgIds.add( "tsmt.052.001.01");
-		  msgIdsByDomain.put("trade", msgIds );
+		  msgIdsByDomain.put(BusinessDomain.trade, msgIds );
 		}
 		{
 		  List<String> msgIds = new ArrayList<>();
@@ -603,7 +552,7 @@ public class TestConsistentSubset {
 		  msgIds.add( "catm.006.001.02");
 		  msgIds.add( "catm.007.001.01");
 		  msgIds.add( "catm.008.001.01");
-		  msgIdsByDomain.put("cards", msgIds );
+		  msgIdsByDomain.put(BusinessDomain.cards, msgIds );
 		}
 		{
 		  List<String> msgIds = new ArrayList<>();
@@ -632,9 +581,10 @@ public class TestConsistentSubset {
 		  msgIds.add( "fxtr.016.001.04");
 		  msgIds.add( "fxtr.017.001.04");
 		  msgIds.add( "fxtr.030.001.04");
-		  msgIdsByDomain.put("fx", msgIds );
+		  msgIdsByDomain.put(BusinessDomain.fx, msgIds );
 		}
 		return msgIdsByDomain;
 	}
+
 
 }

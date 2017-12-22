@@ -23,32 +23,6 @@ import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
- * Technical component that contains the validated supplementary data
- * information. This technical envelope allows to segregate the supplementary
- * data information from any other information.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMExternalSchema#getProcessContent
- * processContent} = com.tools20022.metamodel.MMProcessContent.LAX</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "SupplementaryDataEnvelope1"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Technical component that contains the validated supplementary data information. This technical envelope allows to segregate the supplementary data information from any other information."
- * </li>
- * </ul>
- */
 public class SupplementaryDataEnvelope1 {
 
 	final static private AtomicReference<MMExternalSchema> mmObject_lazy = new AtomicReference<>();

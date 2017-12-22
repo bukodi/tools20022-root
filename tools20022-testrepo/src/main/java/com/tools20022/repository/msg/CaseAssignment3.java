@@ -28,83 +28,17 @@ import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Represents the assignment of a case to a party.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.msg.CaseAssignment3#mmIdentification
- * CaseAssignment3.mmIdentification}</li>
- * <li>{@linkplain com.tools20022.repository.msg.CaseAssignment3#mmAssigner
- * CaseAssignment3.mmAssigner}</li>
- * <li>{@linkplain com.tools20022.repository.msg.CaseAssignment3#mmAssignee
- * CaseAssignment3.mmAssignee}</li>
- * <li>
- * {@linkplain com.tools20022.repository.msg.CaseAssignment3#mmCreationDateTime
- * CaseAssignment3.mmCreationDateTime}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlock
- * messageBuildingBlock} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04#mmAssignment
- * NotificationOfCaseAssignmentV04.mmAssignment}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "CaseAssignment3"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Represents the assignment of a case to a party."</li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "CaseAssignment3", propOrder = {"identification", "assigner", "assignee", "creationDateTime"})
 public class CaseAssignment3 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected Max35Text identification;
-	/**
-	 * Uniquely identifies the case assignment.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
-	 * Max35Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.CaseAssignment3
-	 * CaseAssignment3}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Id"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Identification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Uniquely identifies the case assignment."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> CaseAssignment3.mmObject();
@@ -119,35 +53,6 @@ public class CaseAssignment3 {
 		}
 	};
 	protected Party12Choice assigner;
-	/**
-	 * Party who assigns the case. Usage: This is also the sender of the
-	 * message.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} = {@linkplain com.tools20022.repository.choice.Party12Choice
-	 * Party12Choice}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.CaseAssignment3
-	 * CaseAssignment3}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Assgnr"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Assigner"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Party who assigns the case. \nUsage: This is also the sender of the message."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmAssigner = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> CaseAssignment3.mmObject();
@@ -163,35 +68,6 @@ public class CaseAssignment3 {
 		}
 	};
 	protected Party12Choice assignee;
-	/**
-	 * Party to which the case is assigned. Usage: This is also the receiver of
-	 * the message.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} = {@linkplain com.tools20022.repository.choice.Party12Choice
-	 * Party12Choice}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.CaseAssignment3
-	 * CaseAssignment3}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Assgne"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Assignee"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Party to which the case is assigned.\nUsage: This is also the receiver of the message."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmAssignee = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> CaseAssignment3.mmObject();
@@ -207,33 +83,6 @@ public class CaseAssignment3 {
 		}
 	};
 	protected ISODateTime creationDateTime;
-	/**
-	 * Date and time at which the assignment was created.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.ISODateTime
-	 * ISODateTime}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.CaseAssignment3
-	 * CaseAssignment3}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "CreDtTm"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "CreationDateTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Date and time at which the assignment was created."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmCreationDateTime = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> CaseAssignment3.mmObject();
@@ -262,6 +111,7 @@ public class CaseAssignment3 {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "Id", required = true)
 	public Max35Text getIdentification() {
 		return identification;
 	}
@@ -270,6 +120,7 @@ public class CaseAssignment3 {
 		this.identification = identification;
 	}
 
+	@XmlElement(name = "Assgnr", required = true)
 	public Party12Choice getAssigner() {
 		return assigner;
 	}
@@ -278,6 +129,7 @@ public class CaseAssignment3 {
 		this.assigner = assigner;
 	}
 
+	@XmlElement(name = "Assgne", required = true)
 	public Party12Choice getAssignee() {
 		return assignee;
 	}
@@ -286,6 +138,7 @@ public class CaseAssignment3 {
 		this.assignee = assignee;
 	}
 
+	@XmlElement(name = "CreDtTm", required = true)
 	public ISODateTime getCreationDateTime() {
 		return creationDateTime;
 	}

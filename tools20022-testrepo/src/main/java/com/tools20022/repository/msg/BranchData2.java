@@ -26,75 +26,17 @@ import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Information that locates and identifies a specific branch of a financial
- * institution.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>{@linkplain com.tools20022.repository.msg.BranchData2#mmIdentification
- * BranchData2.mmIdentification}</li>
- * <li>{@linkplain com.tools20022.repository.msg.BranchData2#mmName
- * BranchData2.mmName}</li>
- * <li>{@linkplain com.tools20022.repository.msg.BranchData2#mmPostalAddress
- * BranchData2.mmPostalAddress}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "BranchData2"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Information that locates and identifies a specific branch of a financial institution."
- * </li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "BranchData2", propOrder = {"identification", "name", "postalAddress"})
 public class BranchData2 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected Max35Text identification;
-	/**
-	 * Unique and unambiguous identification of a branch of a financial
-	 * institution.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
-	 * Max35Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.BranchData2 BranchData2}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Id"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Identification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique and unambiguous identification of a branch of a financial institution."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> BranchData2.mmObject();
@@ -109,35 +51,6 @@ public class BranchData2 {
 		}
 	};
 	protected Max140Text name;
-	/**
-	 * Name by which an agent is known and which is usually used to identify
-	 * that agent.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
-	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max140Text
-	 * Max140Text}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.BranchData2 BranchData2}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Nm"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Name"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Name by which an agent is known and which is usually used to identify that agent."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAttribute mmName = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> BranchData2.mmObject();
@@ -152,34 +65,6 @@ public class BranchData2 {
 		}
 	};
 	protected PostalAddress6 postalAddress;
-	/**
-	 * Information that locates and identifies a specific address, as defined by
-	 * postal services.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} = {@linkplain com.tools20022.repository.msg.PostalAddress6
-	 * PostalAddress6}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.msg.BranchData2 BranchData2}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "PstlAdr"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "PostalAddress"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Information that locates and identifies a specific address, as defined by postal services."
-	 * </li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmPostalAddress = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> BranchData2.mmObject();
@@ -208,6 +93,7 @@ public class BranchData2 {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "Id")
 	public Max35Text getIdentification() {
 		return identification;
 	}
@@ -216,6 +102,7 @@ public class BranchData2 {
 		this.identification = identification;
 	}
 
+	@XmlElement(name = "Nm")
 	public Max140Text getName() {
 		return name;
 	}
@@ -224,6 +111,7 @@ public class BranchData2 {
 		this.name = name;
 	}
 
+	@XmlElement(name = "PstlAdr")
 	public PostalAddress6 getPostalAddress() {
 		return postalAddress;
 	}

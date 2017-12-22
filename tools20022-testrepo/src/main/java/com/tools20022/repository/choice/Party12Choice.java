@@ -25,68 +25,17 @@ import com.tools20022.repository.msg.BranchAndFinancialInstitutionIdentification
 import com.tools20022.repository.msg.PartyIdentification43;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * Identification of a person, an organisation or a financial institution.
- * <p>
- * <strong>Constant fields:</strong>
- * <ul>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
- * <ul>
- * <li>{@linkplain com.tools20022.repository.choice.Party12Choice#mmParty
- * Party12Choice.mmParty}</li>
- * <li>{@linkplain com.tools20022.repository.choice.Party12Choice#mmAgent
- * Party12Choice.mmAgent}</li>
- * </ul>
- * </li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
- * dataDictionary} =
- * {@linkplain com.tools20022.repository.GeneratedRepository#mmdataDict
- * GeneratedRepository.mmdataDict}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
- * registrationStatus} =
- * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
- * "Party12Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Identification of a person, an organisation or a financial institution."</li>
- * </ul>
- */
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(name = "Party12Choice", propOrder = {"party", "agent"})
 public class Party12Choice {
 
 	final static private AtomicReference<MMChoiceComponent> mmObject_lazy = new AtomicReference<>();
 	protected PartyIdentification43 party;
-	/**
-	 * Identification of a person or an organisation.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} = {@linkplain com.tools20022.repository.msg.PartyIdentification43
-	 * PartyIdentification43}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.choice.Party12Choice Party12Choice}
-	 * </li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Pty"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Party"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Identification of a person or an organisation."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmParty = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> Party12Choice.mmObject();
@@ -102,33 +51,6 @@ public class Party12Choice {
 		}
 	};
 	protected BranchAndFinancialInstitutionIdentification5 agent;
-	/**
-	 * Identification of a financial institution.
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} =
-	 * {@linkplain com.tools20022.repository.msg.BranchAndFinancialInstitutionIdentification5
-	 * BranchAndFinancialInstitutionIdentification5}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
-	 * componentContext} =
-	 * {@linkplain com.tools20022.repository.choice.Party12Choice Party12Choice}
-	 * </li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
-	 * xmlTag} = "Agt"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Agent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Identification of a financial institution."</li>
-	 * </ul>
-	 */
 	public static final MMMessageAssociationEnd mmAgent = new MMMessageAssociationEnd() {
 		{
 			componentContext_lazy = () -> Party12Choice.mmObject();
@@ -157,6 +79,7 @@ public class Party12Choice {
 		return mmObject_lazy.get();
 	}
 
+	@XmlElement(name = "Pty", required = true)
 	public PartyIdentification43 getParty() {
 		return party;
 	}
@@ -165,6 +88,7 @@ public class Party12Choice {
 		this.party = party;
 	}
 
+	@XmlElement(name = "Agt", required = true)
 	public BranchAndFinancialInstitutionIdentification5 getAgent() {
 		return agent;
 	}

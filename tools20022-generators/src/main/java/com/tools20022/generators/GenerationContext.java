@@ -47,7 +47,7 @@ import net.sourceforge.plantuml.core.DiagramDescription;
 public class GenerationContext<M,B> {
 
 	Map<String, JavaSource<?>> unsavedSources = new LinkedHashMap<>();
-	private GeneratorFileManager fileManager;
+	private final GeneratorFileManager fileManager;
 	private Properties formatterOptions;
 	private String licenceHeader;
 
@@ -62,7 +62,8 @@ public class GenerationContext<M,B> {
 
 	private AbstractGenerator<M,B> activeGenerator;
 
-	public GenerationContext(Class<M> modelType, Class<B> modelBeanType) {
+	public GenerationContext(Class<M> modelType, Class<B> modelBeanType, GeneratorFileManager fileManager ) {
+		this.fileManager = fileManager;
 	}
 
 	protected Properties getFormatterOptions() {
@@ -111,38 +112,6 @@ public class GenerationContext<M,B> {
 
 	public void setLicenceHeaderGPLv3() {
 		this.licenceHeader = licenceHeaderGPLv3;
-	}
-
-	public void dontChangeIfExists(Predicate<Path> filter) {
-		getFileManager().dontChangeIfExists(filter);
-	}
-
-	protected GeneratorFileManager getFileManager() {
-		if (fileManager == null) {
-			try {
-				// TODO: use jimfs instead of tmp dir
-				Path mvnProjectRoot = Files.createTempDirectory("generatedMavenProject");
-				setMavenProjectRoot(mvnProjectRoot);
-			} catch (IOException e) {
-				throw new UncheckedIOException(e);
-			}
-		}
-		return fileManager;
-	}
-
-	protected void setFileManager(GeneratorFileManager fileManager) {
-		if (this.fileManager != null)
-			throw new IllegalStateException("fileManager already set");
-		this.fileManager = fileManager;
-	}
-
-	public void setMavenProjectRoot(Path mvnProjectRoot) {
-		if (Files.notExists(mvnProjectRoot)) {
-			throw new UncheckedIOException(
-					new FileNotFoundException(mvnProjectRoot.toFile().getAbsolutePath().toString()));
-		}
-		GeneratorFileManager fm = new GeneratorFileManager(mvnProjectRoot, x -> false);
-		setFileManager(fm);
 	}
 
 	protected boolean isOverwriteProtected(FileObject fileObj) {
@@ -203,7 +172,7 @@ public class GenerationContext<M,B> {
 			throw new IllegalStateException("The " + src.getName() + " wasn't unsaved!");
 		}
 		try {
-			JavaFileObject jf = getFileManager().getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,
+			JavaFileObject jf = fileManager.getJavaFileForOutput(StandardLocation.SOURCE_OUTPUT,
 					src.getQualifiedName(), Kind.SOURCE, null);
 			try (Writer w = jf.openWriter()) {
 				// Clean qualified types
@@ -240,14 +209,11 @@ public class GenerationContext<M,B> {
 		return activeGenerator.getStructuredName(modelBean);		
 	}
 	
-	public final void generate(M model, AbstractGenerator<M, B> generator) {
+	public final void generate(M model, AbstractGenerator<M, B> generator, ProgressMonitor monitor ) {
 		this.activeGenerator = generator;
 		long start = System.currentTimeMillis();
-		// Delete unprotected files
-		fileManager.cleanOutputFolder();
 
 		generationStarted = System.currentTimeMillis();
-		ProgressMonitor monitor = new ProgressMonitor();
 		generator.prepare(model, monitor );
 		generator.generate( model, monitor );
 

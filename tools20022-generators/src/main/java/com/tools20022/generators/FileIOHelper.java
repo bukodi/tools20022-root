@@ -130,4 +130,25 @@ public class FileIOHelper {
 		}
 		return allDeleted;
 	}
+	
+	public static void copyToDir(Path dstDir, Path... filesOrDirs) {
+		try {
+			for (Path fileOrDir : filesOrDirs) {
+				if (Files.isDirectory(fileOrDir)) {
+					Path newDir = dstDir.resolve(fileOrDir.getFileName().toString());
+					if( ! Files.exists(newDir) ) {
+						Files.createDirectory(newDir);
+					}
+					copyToDir(newDir, Files.list(fileOrDir).toArray(Path[]::new));
+				} else {
+					Path newFile = dstDir.resolve(fileOrDir.getFileName().toString()); 
+					byte[] contentBytes = Files.readAllBytes(fileOrDir);					
+					Files.write( newFile, contentBytes);
+				}
+			}
+		} catch (IOException ioe) {
+			throw new UncheckedIOException(ioe);
+		}
+	}
+
 }
