@@ -1,8 +1,10 @@
 package com.tools20022.repogenerator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -44,8 +46,14 @@ import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.MMSemanticMarkup;
+import com.tools20022.metamodel.MMSemanticMarkupElement;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.metamodel.ext.DTCCSynonym;
+import com.tools20022.metamodel.ext.FIXSynonym;
+import com.tools20022.metamodel.ext.ISO15022Synonym;
+import com.tools20022.repogenerator.BaseRepoGenerator.AttrValue;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
 import com.tools20022.repogenerator.resulttypes.DataTypeResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
@@ -285,6 +293,45 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	@Override
 	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
+		
+		if( ! mmBean.getSemanticMarkup().isEmpty() ) {
+			AttrResult attrGen = gen.createAttrResult( MMRepositoryConcept.semanticMarkupAttribute );
+			StringJoiner sjInit = new StringJoiner(", ");
+			StringJoiner sjJavadoc = new StringJoiner(", ");
+			loop_on_markups: for( MMSemanticMarkup sm: mmBean.getSemanticMarkup() ) {
+				if( "Synonym".equals( sm.getType().orElse("") ) ) {
+					String context = null;
+					String value = null;
+					for( MMSemanticMarkupElement elem : sm.getElements() ) {
+						if( "context".equals( elem.getName().orElse("") ) )
+							context = elem.getValue().orElse(null);
+						if( "value".equals( elem.getName().orElse("") ) || "name".equals( elem.getName().orElse("") ) )
+							value = elem.getValue().orElse(null);
+					}
+					if( context != null && context.contains("15022") ) {
+						sjInit.add( "new " + ISO15022Synonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"") + "\")");
+						sjJavadoc.add( ISO15022Synonym.class.getSimpleName()+ ": " + value );
+						continue loop_on_markups;
+					} 
+					if( context != null && context.toUpperCase().contains("FIX") ) {
+						sjInit.add( "new " + FIXSynonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"") + "\")");
+						sjJavadoc.add( FIXSynonym.class.getSimpleName()+ ": " + value );
+						continue loop_on_markups;
+					} 
+					if( context != null && context.contains("DTCC") ) {
+						sjInit.add( "new " + DTCCSynonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"") + "\")");
+						sjJavadoc.add( DTCCSynonym.class.getSimpleName()+ ": " + value );
+						continue loop_on_markups;
+					} 
+				}
+				
+				// TODO Skip OtherSemanticMarkup 
+				
+			}
+			attrGen.initializationSource = "semanticMarkup_lazy = () -> " + Arrays.class.getName() + ".asList( " + sjInit.toString()+ ");";
+			attrGen.valueAsJavaDoc =  sjJavadoc.toString();
+		}
+		
 		// mmBean.getSemanticMarkup());
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet,
 		// mmBean.getDoclet());

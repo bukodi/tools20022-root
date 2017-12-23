@@ -61,7 +61,7 @@ public class MMMessageAttribute implements MMMessageElement {
 	protected Supplier<MMBusinessComponent> businessComponentTrace_lazy;
 	protected Supplier<MMBusinessElement> businessElementTrace_lazy;
 	protected Supplier<MMMessageElementContainer> componentContext_lazy;
-	protected boolean isDerived;
+	protected boolean isDerived = false;
 	protected String xmlTag;
 	protected String name;
 	protected String definition;
@@ -69,7 +69,7 @@ public class MMMessageAttribute implements MMMessageElement {
 	protected Supplier<List<MMDoclet>> doclet_lazy;
 	protected List<String> example;
 	protected Supplier<List<MMConstraint>> constraint_lazy;
-	protected MMRegistrationStatus registrationStatus;
+	protected MMRegistrationStatus registrationStatus = MMRegistrationStatus.REGISTERED;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;

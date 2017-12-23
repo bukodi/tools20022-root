@@ -88,6 +88,14 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	
 	@Override
 	public StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
+		StructuredName name = _getStructuredName(mmElem);
+		if( name == null ) {
+			System.out.println( "Skiped mmElem: " + mmElem.getMetamodel().getName() );
+		}
+		return name;
+	}
+	
+	private StructuredName _getStructuredName(GeneratedMetamodelBean mmElem) {
 
 		BiFunction<GeneratedMetamodelBean, String, StructuredName> createJavaNameAsMemeber = (parentElem,
 				memberName) -> {
@@ -247,8 +255,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			}
 			ret.valueAsSource = "\"" + sb.toString() + "\"";
 			// Replace <, >, & chars
-			ret.valueAsJavaDoc = ret.valueAsSource.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<",
-					"&lt;");
+			ret.valueAsJavaDoc = RoasterHelper.escapeJavaDoc( ret.valueAsSource );
 		} else if (attrValue instanceof Enum) {
 			ret.valueAsSource = attrValue.getClass().getName() + "." + attrValue.toString();
 			ret.valueAsJavaDoc = attrValue.getClass().getName() + "." + attrValue.toString();

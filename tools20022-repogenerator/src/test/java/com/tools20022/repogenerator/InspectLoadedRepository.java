@@ -21,6 +21,7 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.ECoreIOHelper;
+import com.tools20022.generators.RoasterHelper;
 import com.tools20022.metamodel.*;
 
 import gen.lib.dotgen.conc__c;
@@ -161,21 +162,85 @@ public class InspectLoadedRepository {
 		System.out.println("CountRC=" + countRC + ", countDef=" + countDef);
 
 	}
+	
+	enum SynonymContext {
+			  ISO_15022( "ISO 15022"), 
+			  _15022( "15022"), 
+			  ISO_15022_( "ISO 15022 "), 
+			  ISO15002( "ISO15002"), 
+			  ISO15022( "ISO15022"), 
+
+			  FIX( "FIX"), 
+			  FIX_50( "FIX 5.0"), 
+			  FIXProtocol( "FIX Protocol"), 
+			  FIX_( "FIX "), 
+			  FIX50( "FIX5.0"), 
+			  Fix50( "Fix5.0"), 
+
+			  DTCC( "DTCC"), 
+			  DTCC_( "DTCC "), 
+
+			  MIFIDRequirement( "MIFID Requirement"), 
+			  MIFIDrequirement( "MIFID requirement"), 
+			  MiFIR( "MiFIR"), 
+			  EFAMA( "EFAMA"), 
+			  ebXML( "ebXML"), 
+			  ISO( "ISO"), 
+			  RUCMPG( "RU-CMPG"), 
+			  SubSequenceD3Amounts( "SubSequenceD3 Amounts"), 
+			  StatementBusinessModeling( "Statement Business Modeling"), 
+			  ASN1( "ASN.1"),
+			  OTHER("OTHER");
+		
+		public final String contextName; 
+		SynonymContext( String contextName ) {
+			this.contextName = contextName;
+		}
+		
+		static SynonymContext fromContextName( String contextName ) {
+			for( SynonymContext v: values() ) {
+				if( contextName.equals(v.contextName))
+					return v;
+			}
+			return OTHER;
+		}
+	}
 
 	@Test
-	public void semantiMarkups() throws Exception {
+	public void semanticMarkups() throws Exception {
 		Map<String, Set<MMSemanticMarkup>> markupsByType = new LinkedHashMap<>();
 		for (MMRepositoryConcept mmRC : repo.listObjects(MMRepositoryConcept.class).collect(Collectors.toList())) {
 			if (mmRC.getSemanticMarkup().isEmpty())
 				continue;
-			for (MMSemanticMarkup mmSM : mmRC.getSemanticMarkup()) {
+			List<MMSemanticMarkup> markups = mmRC.getSemanticMarkup();
+			if( markups.size() > 1 ) {
+				System.out.print( "More than one markup on elem " + mmRC + ": ");
+				List<String> list = new ArrayList<>();
+				for( MMSemanticMarkup m: markups ) {
+					String type = m.getType().orElse("-null-");
+					if( "Synonym".equals( type) ) {
+						String context = "???";
+						for(MMSemanticMarkupElement e :  m.getElements() ) {
+							if( "context".equals( e.getName().orElse("-null-")) ) {
+								context = e.getValue().orElse("-null-");
+							}
+						}
+						list.add("Syn(" + context + ")");
+					} else {
+						list.add(type);
+					}
+				}
+				System.out.println( list.stream().collect(Collectors.joining(", ")));
+			}
+			for (MMSemanticMarkup mmSM : markups) {
 				String type = mmSM.getType().orElse("NULL");
 				markupsByType.computeIfAbsent(type, x -> new LinkedHashSet<>()).add(mmSM);
 			}
 		}
 
-		Map<String, Set<MMSemanticMarkup>> sysnonymsByContext = new LinkedHashMap<>();
+		Map<SynonymContext, List<String>> sysnonymsByContext = new LinkedHashMap<>();
 		Set<MMSemanticMarkup> sysnonymsWithoutElements = new LinkedHashSet<>();
+		Map<MMRepositoryConcept, String> iso15022Sysnonyms = new LinkedHashMap<>();
 		Set<MMSemanticMarkup> otherSysnonyms = new LinkedHashSet<>();
 		for (MMSemanticMarkup mmSM : markupsByType.get("Synonym")) {
 			if (mmSM.getElements().isEmpty()) {
@@ -185,16 +250,29 @@ public class InspectLoadedRepository {
 
 			String keys = mmSM.getElements().stream().map(sme -> sme.getName().orElse("NULL"))
 					.collect(Collectors.joining(","));
+			String contextText;
+			String value;
 			if ("context,value".equals(keys)) {
-				sysnonymsByContext.computeIfAbsent(mmSM.getElements().get(0).getValue().get(), x -> new HashSet<>())
-						.add(mmSM);
+				contextText = mmSM.getElements().get(0).getValue().get();
+				value = "value=" + mmSM.getElements().get(1).getValue().orElse("-null-");
 			} else if ("name,context".equals(keys)) {
-				sysnonymsByContext.computeIfAbsent(mmSM.getElements().get(1).getValue().get(), x -> new HashSet<>())
-						.add(mmSM);
+				contextText = mmSM.getElements().get(1).getValue().get();
+				value = "name=" + mmSM.getElements().get(0).getValue().orElse("-null-");
 			} else {
-				otherSysnonyms.add(mmSM);
+				contextText = "OTHER";
+				value = keys;
 			}
+			SynonymContext context = SynonymContext.fromContextName(contextText);
+			sysnonymsByContext.computeIfAbsent( context, x -> new ArrayList<>())
+			.add(value);
 		}
+		System.out.println("--- ISO 15022 syonyms ---");
+		for( Map.Entry<MMRepositoryConcept, String > entry : iso15022Sysnonyms.entrySet() ) {
+			String tmp = entry.getValue() + "                                      "; 
+			System.out.print( tmp.substring(0, 20) );
+			System.out.println( ":[" + entry.getKey().getClass().getSimpleName() + "]" + entry.getKey().getName());
+		}
+		
 
 		System.out.println("--- SemanticMarkups where the type='Synonym' ---");
 		System.out.println(
@@ -204,8 +282,18 @@ public class InspectLoadedRepository {
 		System.out.println(
 				"The rest of the synonym markups has two elements with key names [context,value] or [name,context].");
 		System.out.println("Number of synonym markups grouped by context value:");
-		for (Map.Entry<String, Set<MMSemanticMarkup>> e : sysnonymsByContext.entrySet()) {
-			System.out.println(" - context= '" + e.getKey() + "' : " + e.getValue().size());
+		for ( SynonymContext synCtx : SynonymContext.values() ) {
+			List<String> values = sysnonymsByContext.get(synCtx);
+			if( values == null )
+				values = Collections.emptyList();
+			System.out.println();
+			System.out.println(" - context= '" + synCtx.contextName + "' : " + values.size());
+			for( int i = 0; i < values.size(); i++ ) {
+				if( i == 20 )
+					break;
+				String value = values.get(i);
+				System.out.println("    " + value );
+			}
 		}
 		System.out.println();
 		for (MMSemanticMarkup mmSM : otherSysnonyms) {
