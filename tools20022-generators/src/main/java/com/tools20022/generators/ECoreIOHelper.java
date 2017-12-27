@@ -85,7 +85,6 @@ public class ECoreIOHelper {
 			PerformantXMIResourceFactoryImpl loadCache = new PerformantXMIResourceFactoryImpl();
 			load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", loadCache
 					);
-			// TODO: use internal PerformantXMIResourceFactoryImpl class
 
 			Resource load_resource = load_resourceSet.createResource(URI.createURI("*.iso20022"));
 			load_resource.load(new URIConverter.ReadableInputStream(isr, StandardCharsets.UTF_8.name()), null);
@@ -118,12 +117,13 @@ public class ECoreIOHelper {
 		Optional<EAttribute> nameAttr = eObj.eClass().getEAllAttributes().stream().filter(eAttr->eAttr.getName().equalsIgnoreCase("name")).findFirst();
 		return "[" + eObj.eClass().getName() + "]" + (nameAttr.isPresent()? eObj.eGet( nameAttr.get() ) : "-no name-");
 	}
+	
 	public static String toStringWithPath( EObject eObj ) {
-		String conatinerPath;
 		if( eObj.eContainer() != null )
 			return toStringWithPath(eObj.eContainer()) + "/" + toString(eObj);
 		else 
 			return toString(eObj);
 	}
 
+	
 }

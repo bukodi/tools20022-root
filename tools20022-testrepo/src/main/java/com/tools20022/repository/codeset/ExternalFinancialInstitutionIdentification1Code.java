@@ -29,6 +29,37 @@ import java.util.LinkedHashMap;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+/**
+ * Specifies the external financial institution identification scheme name code
+ * in the format of character string with a maximum length of 4 characters.<br>
+ * The list of valid codes is an external code list published separately.<br>
+ * External code sets can be downloaded from www.iso20022.org.
+ * <p>
+ * <strong>Constant fields:</strong>
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
+ * GeneratedRepository.dataDict}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
+ * example} =
+ * <ul>
+ * <li>"EXC1"</li>
+ * </ul>
+ * </li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+ * registrationStatus} =
+ * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
+ * "ExternalFinancialInstitutionIdentification1Code"</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+ * definition} =
+ * "Specifies the external financial institution identification scheme name code in the format of character string with a maximum length of 4 characters.\r\nThe list of valid codes is an external code list published separately.\r\nExternal code sets can be downloaded from www.iso20022.org."
+ * </li>
+ * </ul>
+ */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
 public class ExternalFinancialInstitutionIdentification1Code extends MMCode {
 
@@ -41,7 +72,7 @@ public class ExternalFinancialInstitutionIdentification1Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.mmdataDict;
+				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				example = Arrays.asList("EXC1");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ExternalFinancialInstitutionIdentification1Code";

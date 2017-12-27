@@ -23,6 +23,9 @@ import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.CountryCode;
 import com.tools20022.repository.datatype.ISODate;
 import com.tools20022.repository.datatype.Max35Text;
+import com.tools20022.repository.entity.Country;
+import com.tools20022.repository.entity.Person;
+import com.tools20022.repository.entity.PostalAddress;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -31,14 +34,87 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ * Date and place of birth of a person.
+ * <p>
+ * <strong>Constant fields:</strong>
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
+ * messageElement} =
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth#mmBirthDate
+ * DateAndPlaceOfBirth.mmBirthDate}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth#mmProvinceOfBirth
+ * DateAndPlaceOfBirth.mmProvinceOfBirth}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth#mmCityOfBirth
+ * DateAndPlaceOfBirth.mmCityOfBirth}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth#mmCountryOfBirth
+ * DateAndPlaceOfBirth.mmCountryOfBirth}</li>
+ * </ul>
+ * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
+ * trace} = {@linkplain com.tools20022.repository.entity.Person Person}</li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
+ * GeneratedRepository.dataDict}</li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+ * registrationStatus} =
+ * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
+ * "DateAndPlaceOfBirth"</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+ * definition} = "Date and place of birth of a person."</li>
+ * </ul>
+ */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(name = "DateAndPlaceOfBirth", propOrder = {"birthDate", "provinceOfBirth", "cityOfBirth", "countryOfBirth"})
 public class DateAndPlaceOfBirth {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected ISODate birthDate;
+	/**
+	 * Date on which a person is born.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.ISODate
+	 * ISODate}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.Person#mmBirthDate
+	 * Person.mmBirthDate}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth
+	 * DateAndPlaceOfBirth}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "BirthDt"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "BirthDate"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Date on which a person is born."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmBirthDate = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> Person.mmBirthDate;
 			componentContext_lazy = () -> DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
 			xmlTag = "BirthDt";
@@ -51,8 +127,41 @@ public class DateAndPlaceOfBirth {
 		}
 	};
 	protected Max35Text provinceOfBirth;
+	/**
+	 * Province where a person was born.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
+	 * Max35Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmProvince
+	 * PostalAddress.mmProvince}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth
+	 * DateAndPlaceOfBirth}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "PrvcOfBirth"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ProvinceOfBirth"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Province where a person was born."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmProvinceOfBirth = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmProvince;
 			componentContext_lazy = () -> DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
 			xmlTag = "PrvcOfBirth";
@@ -65,8 +174,41 @@ public class DateAndPlaceOfBirth {
 		}
 	};
 	protected Max35Text cityOfBirth;
+	/**
+	 * City where a person was born.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
+	 * Max35Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmTownName
+	 * PostalAddress.mmTownName}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth
+	 * DateAndPlaceOfBirth}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "CityOfBirth"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "CityOfBirth"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "City where a person was born."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmCityOfBirth = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmTownName;
 			componentContext_lazy = () -> DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
 			xmlTag = "CityOfBirth";
@@ -79,8 +221,41 @@ public class DateAndPlaceOfBirth {
 		}
 	};
 	protected CountryCode countryOfBirth;
+	/**
+	 * Country where a person was born.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.codeset.CountryCode
+	 * CountryCode}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.Country#mmCode
+	 * Country.mmCode}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth
+	 * DateAndPlaceOfBirth}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "CtryOfBirth"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "CountryOfBirth"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Country where a person was born."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmCountryOfBirth = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> Country.mmCode;
 			componentContext_lazy = () -> DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
 			xmlTag = "CtryOfBirth";
@@ -97,7 +272,8 @@ public class DateAndPlaceOfBirth {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
 				messageElement_lazy = () -> Arrays.asList(DateAndPlaceOfBirth.mmBirthDate, DateAndPlaceOfBirth.mmProvinceOfBirth, DateAndPlaceOfBirth.mmCityOfBirth, DateAndPlaceOfBirth.mmCountryOfBirth);
-				dataDictionary_lazy = () -> GeneratedRepository.mmdataDict;
+				trace_lazy = () -> Person.mmObject();
+				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DateAndPlaceOfBirth";
 				definition = "Date and place of birth of a person.";

@@ -14,3 +14,11 @@ See derived attributes too!
 #MMCodeSet
 * has only one-level hierarchy
 * the MMCode.code inherited from trace
+
+
+EClass name | Container | tools200222 implementation | Singleton or StaticType or BeanType? OrphanBean  | DataModel or Message | number of instances in full repo | is RepoConcept instance ?
+
+
+# Semantic markups
+
+- List of ISO15022Synonyms  

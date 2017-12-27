@@ -37,12 +37,12 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 			MainTypeResult containerGen, MMMessagingEndpoint mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMMessagingEndpoint.sentMessageAttribute,
-				mmBean.getSentMessage());
-		defaultAttribute(gen, MMMessagingEndpoint.receivedMessageAttribute,
-				mmBean.getReceivedMessage());
 		defaultAttribute(gen, MMMessagingEndpoint.transportSystemAttribute,
 				mmBean.getTransportSystem());
+		defaultAttribute(gen, MMMessagingEndpoint.receivedMessageAttribute,
+				mmBean.getReceivedMessage());
+		defaultAttribute(gen, MMMessagingEndpoint.sentMessageAttribute,
+				mmBean.getSentMessage());
 		defaultAttribute(gen, MMMessagingEndpoint.locationAttribute,
 				mmBean.getLocation());
 		gen.flush();
@@ -282,9 +282,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMMessageDefinition mmChild : mmBean.getMessageDefinition()) {
 			generateMMMessageDefinition(gen, mmChild);
 		}
-		defaultAttribute(gen, MMBusinessArea.codeAttribute, mmBean.getCode());
 		defaultAttribute(gen, MMBusinessArea.messageDefinitionAttribute,
 				mmBean.getMessageDefinition());
+		defaultAttribute(gen, MMBusinessArea.codeAttribute, mmBean.getCode());
 		gen.flush();
 		return gen;
 	}
@@ -294,14 +294,14 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
+		defaultAttribute(gen, MMXor.messageDefinitionAttribute,
+				mmBean.getMessageDefinition());
 		defaultAttribute(gen, MMXor.messageComponentAttribute,
 				mmBean.getMessageComponent());
 		defaultAttribute(gen, MMXor.impactedElementsAttribute,
 				mmBean.getImpactedElements());
 		defaultAttribute(gen, MMXor.impactedMessageBuildingBlocksAttribute,
 				mmBean.getImpactedMessageBuildingBlocks());
-		defaultAttribute(gen, MMXor.messageDefinitionAttribute,
-				mmBean.getMessageDefinition());
 		gen.flush();
 		return gen;
 	}
@@ -311,14 +311,14 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
+		defaultAttribute(gen, MMXor.messageDefinitionAttribute,
+				mmBean.getMessageDefinition());
 		defaultAttribute(gen, MMXor.messageComponentAttribute,
 				mmBean.getMessageComponent());
 		defaultAttribute(gen, MMXor.impactedElementsAttribute,
 				mmBean.getImpactedElements());
 		defaultAttribute(gen, MMXor.impactedMessageBuildingBlocksAttribute,
 				mmBean.getImpactedMessageBuildingBlocks());
-		defaultAttribute(gen, MMXor.messageDefinitionAttribute,
-				mmBean.getMessageDefinition());
 		gen.flush();
 		return gen;
 	}
@@ -335,18 +335,18 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMBusinessElement mmChild : mmBean.getElement()) {
 			generateMMBusinessElement(gen, mmChild);
 		}
+		defaultAttribute(gen, MMBusinessComponent.elementAttribute,
+				mmBean.getElement());
 		defaultAttribute(gen, MMBusinessComponent.derivationComponentAttribute,
 				mmBean.getDerivationComponent());
 		defaultAttribute(gen, MMBusinessComponent.associationDomainAttribute,
 				mmBean.getAssociationDomain());
 		defaultAttribute(gen, MMBusinessComponent.derivationElementAttribute,
 				mmBean.getDerivationElement());
-		defaultAttribute(gen, MMBusinessComponent.subTypeAttribute,
-				mmBean.getSubType());
 		defaultAttribute(gen, MMBusinessComponent.superTypeAttribute,
 				mmBean.getSuperType());
-		defaultAttribute(gen, MMBusinessComponent.elementAttribute,
-				mmBean.getElement());
+		defaultAttribute(gen, MMBusinessComponent.subTypeAttribute,
+				mmBean.getSubType());
 		gen.flush();
 		return gen;
 	}
@@ -478,9 +478,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMBusinessRole(
+	protected StaticFieldResult generateMMBusinessRole(
 			MainTypeResult containerGen, MMBusinessRole mmBean) {
-		MainTypeResult gen = defaultMainType(mmBean);
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		defaultAttribute(gen, MMBusinessRole.businessProcessAttribute,
@@ -562,9 +562,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		defaultAttribute(gen,
-				MMMessageTransportMode.businessTransactionAttribute,
-				mmBean.getBusinessTransaction());
-		defaultAttribute(gen,
 				MMMessageTransportMode.boundedCommunicationDelayAttribute,
 				mmBean.getBoundedCommunicationDelay());
 		defaultAttribute(gen,
@@ -586,6 +583,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				mmBean.getDurability());
 		defaultAttribute(gen, MMMessageTransportMode.messageCastingAttribute,
 				mmBean.getMessageCasting());
+		defaultAttribute(gen,
+				MMMessageTransportMode.businessTransactionAttribute,
+				mmBean.getBusinessTransaction());
 		defaultAttribute(gen,
 				MMMessageTransportMode.messageDeliveryOrderAttribute,
 				mmBean.getMessageDeliveryOrder());

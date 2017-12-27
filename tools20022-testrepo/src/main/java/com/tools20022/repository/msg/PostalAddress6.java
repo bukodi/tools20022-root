@@ -25,6 +25,8 @@ import com.tools20022.repository.codeset.CountryCode;
 import com.tools20022.repository.datatype.Max16Text;
 import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.datatype.Max70Text;
+import com.tools20022.repository.entity.Country;
+import com.tools20022.repository.entity.PostalAddress;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -34,14 +36,101 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ * Information that locates and identifies a specific address, as defined by
+ * postal services.
+ * <p>
+ * <strong>Constant fields:</strong>
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
+ * messageElement} =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6#mmAddressType
+ * PostalAddress6.mmAddressType}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6#mmDepartment
+ * PostalAddress6.mmDepartment}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6#mmSubDepartment
+ * PostalAddress6.mmSubDepartment}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6#mmStreetName
+ * PostalAddress6.mmStreetName}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msg.PostalAddress6#mmBuildingNumber
+ * PostalAddress6.mmBuildingNumber}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6#mmPostCode
+ * PostalAddress6.mmPostCode}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6#mmTownName
+ * PostalAddress6.mmTownName}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msg.PostalAddress6#mmCountrySubDivision
+ * PostalAddress6.mmCountrySubDivision}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6#mmCountry
+ * PostalAddress6.mmCountry}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6#mmAddressLine
+ * PostalAddress6.mmAddressLine}</li>
+ * </ul>
+ * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
+ * trace} = {@linkplain com.tools20022.repository.entity.PostalAddress
+ * PostalAddress}</li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
+ * GeneratedRepository.dataDict}</li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+ * registrationStatus} =
+ * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
+ * "PostalAddress6"</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+ * definition} =
+ * "Information that locates and identifies a specific address, as defined by postal services."
+ * </li>
+ * </ul>
+ */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(name = "PostalAddress6", propOrder = {"addressType", "department", "subDepartment", "streetName", "buildingNumber", "postCode", "townName", "countrySubDivision", "country", "addressLine"})
 public class PostalAddress6 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected AddressType2Code addressType;
+	/**
+	 * Identifies the nature of the postal address.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} =
+	 * {@linkplain com.tools20022.repository.codeset.AddressType2Code
+	 * AddressType2Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmAddressType
+	 * PostalAddress.mmAddressType}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "AdrTp"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "AddressType"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Identifies the nature of the postal address."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmAddressType = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmAddressType;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "AdrTp";
@@ -54,8 +143,41 @@ public class PostalAddress6 {
 		}
 	};
 	protected Max70Text department;
+	/**
+	 * Identification of a division of a large organisation or building.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max70Text
+	 * Max70Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmDepartment
+	 * PostalAddress.mmDepartment}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "Dept"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Department"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Identification of a division of a large organisation or building."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmDepartment = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmDepartment;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "Dept";
@@ -68,8 +190,41 @@ public class PostalAddress6 {
 		}
 	};
 	protected Max70Text subDepartment;
+	/**
+	 * Identification of a sub-division of a large organisation or building.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max70Text
+	 * Max70Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmSubDepartment
+	 * PostalAddress.mmSubDepartment}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "SubDept"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "SubDepartment"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Identification of a sub-division of a large organisation or building."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmSubDepartment = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmSubDepartment;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "SubDept";
@@ -82,8 +237,40 @@ public class PostalAddress6 {
 		}
 	};
 	protected Max70Text streetName;
+	/**
+	 * Name of a street or thoroughfare.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max70Text
+	 * Max70Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmStreetName
+	 * PostalAddress.mmStreetName}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "StrtNm"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "StreetName"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Name of a street or thoroughfare."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmStreetName = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmStreetName;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "StrtNm";
@@ -96,8 +283,41 @@ public class PostalAddress6 {
 		}
 	};
 	protected Max16Text buildingNumber;
+	/**
+	 * Number that identifies the position of a building on a street.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max16Text
+	 * Max16Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmStreetBuildingIdentification
+	 * PostalAddress.mmStreetBuildingIdentification}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "BldgNb"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "BuildingNumber"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Number that identifies the position of a building on a street."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmBuildingNumber = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmStreetBuildingIdentification;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "BldgNb";
@@ -110,8 +330,43 @@ public class PostalAddress6 {
 		}
 	};
 	protected Max16Text postCode;
+	/**
+	 * Identifier consisting of a group of letters and/or numbers that is added
+	 * to a postal address to assist the sorting of mail.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max16Text
+	 * Max16Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmPostCodeIdentification
+	 * PostalAddress.mmPostCodeIdentification}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "PstCd"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "PostCode"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail."
+	 * </li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmPostCode = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmPostCodeIdentification;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "PstCd";
@@ -124,8 +379,42 @@ public class PostalAddress6 {
 		}
 	};
 	protected Max35Text townName;
+	/**
+	 * Name of a built-up area, with defined boundaries, and a local government.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
+	 * Max35Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmTownName
+	 * PostalAddress.mmTownName}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "TwnNm"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "TownName"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Name of a built-up area, with defined boundaries, and a local government."
+	 * </li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmTownName = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmTownName;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "TwnNm";
@@ -138,8 +427,41 @@ public class PostalAddress6 {
 		}
 	};
 	protected Max35Text countrySubDivision;
+	/**
+	 * Identifies a subdivision of a country such as state, region, county.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
+	 * Max35Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.PostalAddress#mmState
+	 * PostalAddress.mmState}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "CtrySubDvsn"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "CountrySubDivision"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Identifies a subdivision of a country such as state, region, county."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmCountrySubDivision = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> PostalAddress.mmState;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "CtrySubDvsn";
@@ -152,8 +474,40 @@ public class PostalAddress6 {
 		}
 	};
 	protected CountryCode country;
+	/**
+	 * Nation with its own government.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.codeset.CountryCode
+	 * CountryCode}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.Country#mmCode
+	 * Country.mmCode}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "Ctry"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Country"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Nation with its own government."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmCountry = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> Country.mmCode;
 			componentContext_lazy = () -> PostalAddress6.mmObject();
 			isDerived = false;
 			xmlTag = "Ctry";
@@ -166,6 +520,35 @@ public class PostalAddress6 {
 		}
 	};
 	protected List<Max70Text> addressLine;
+	/**
+	 * Information that locates and identifies a specific address, as defined by
+	 * postal services, presented in free format text.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max70Text
+	 * Max70Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msg.PostalAddress6 PostalAddress6}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "AdrLine"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "AddressLine"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Information that locates and identifies a specific address, as defined by postal services, presented in free format text."
+	 * </li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmAddressLine = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> PostalAddress6.mmObject();
@@ -185,7 +568,8 @@ public class PostalAddress6 {
 			{
 				messageElement_lazy = () -> Arrays.asList(PostalAddress6.mmAddressType, PostalAddress6.mmDepartment, PostalAddress6.mmSubDepartment, PostalAddress6.mmStreetName, PostalAddress6.mmBuildingNumber, PostalAddress6.mmPostCode,
 						PostalAddress6.mmTownName, PostalAddress6.mmCountrySubDivision, PostalAddress6.mmCountry, PostalAddress6.mmAddressLine);
-				dataDictionary_lazy = () -> GeneratedRepository.mmdataDict;
+				trace_lazy = () -> PostalAddress.mmObject();
+				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "PostalAddress6";
 				definition = "Information that locates and identifies a specific address, as defined by postal services.";

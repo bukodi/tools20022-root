@@ -29,10 +29,77 @@ import java.util.LinkedHashMap;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+/**
+ * Specifies the action requested when forwarding a case.
+ * <p>
+ * <strong>Constant fields:</strong>
+ * <ul>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
+ * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotificationCode
+ * CaseForwardingNotificationCode}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code#FurtherInvestigation
+ * CaseForwardingNotification3Code.FurtherInvestigation}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code#RequestToCancel
+ * CaseForwardingNotification3Code.RequestToCancel}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code#RequestToModify
+ * CaseForwardingNotification3Code.RequestToModify}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code#RequestDebitAuthorisation
+ * CaseForwardingNotification3Code.RequestDebitAuthorisation}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code#SentAdditionalInformation
+ * CaseForwardingNotification3Code.SentAdditionalInformation}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code#MineInvestigationCase
+ * CaseForwardingNotification3Code.MineInvestigationCase}</li>
+ * </ul>
+ * </li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
+ * GeneratedRepository.dataDict}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
+ * example} =
+ * <ul>
+ * <li>"FTHI"</li>
+ * </ul>
+ * </li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+ * registrationStatus} =
+ * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
+ * "CaseForwardingNotification3Code"</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+ * definition} = "Specifies the action requested when forwarding a case."</li>
+ * </ul>
+ */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
 public class CaseForwardingNotification3Code extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
+	/**
+	 * (No doc)
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code
+	 * CaseForwardingNotification3Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "FurtherInvestigation"</li>
+	 * </ul>
+	 */
 	public static final CaseForwardingNotification3Code FurtherInvestigation = new CaseForwardingNotification3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -41,6 +108,22 @@ public class CaseForwardingNotification3Code extends MMCode {
 			codeName = CaseForwardingNotificationCode.FurtherInvestigation.getCodeName().orElse(name);
 		}
 	};
+	/**
+	 * (No doc)
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code
+	 * CaseForwardingNotification3Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "RequestToCancel"</li>
+	 * </ul>
+	 */
 	public static final CaseForwardingNotification3Code RequestToCancel = new CaseForwardingNotification3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -49,6 +132,22 @@ public class CaseForwardingNotification3Code extends MMCode {
 			codeName = CaseForwardingNotificationCode.RequestToCancel.getCodeName().orElse(name);
 		}
 	};
+	/**
+	 * (No doc)
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code
+	 * CaseForwardingNotification3Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "RequestToModify"</li>
+	 * </ul>
+	 */
 	public static final CaseForwardingNotification3Code RequestToModify = new CaseForwardingNotification3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -57,6 +156,22 @@ public class CaseForwardingNotification3Code extends MMCode {
 			codeName = CaseForwardingNotificationCode.RequestToModify.getCodeName().orElse(name);
 		}
 	};
+	/**
+	 * (No doc)
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code
+	 * CaseForwardingNotification3Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "RequestDebitAuthorisation"</li>
+	 * </ul>
+	 */
 	public static final CaseForwardingNotification3Code RequestDebitAuthorisation = new CaseForwardingNotification3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -65,6 +180,22 @@ public class CaseForwardingNotification3Code extends MMCode {
 			codeName = CaseForwardingNotificationCode.RequestDebitAuthorisation.getCodeName().orElse(name);
 		}
 	};
+	/**
+	 * (No doc)
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code
+	 * CaseForwardingNotification3Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "SentAdditionalInformation"</li>
+	 * </ul>
+	 */
 	public static final CaseForwardingNotification3Code SentAdditionalInformation = new CaseForwardingNotification3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -73,6 +204,22 @@ public class CaseForwardingNotification3Code extends MMCode {
 			codeName = CaseForwardingNotificationCode.SentAdditionalInformation.getCodeName().orElse(name);
 		}
 	};
+	/**
+	 * (No doc)
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code
+	 * CaseForwardingNotification3Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "MineInvestigationCase"</li>
+	 * </ul>
+	 */
 	public static final CaseForwardingNotification3Code MineInvestigationCase = new CaseForwardingNotification3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -89,7 +236,7 @@ public class CaseForwardingNotification3Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.mmdataDict;
+				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				example = Arrays.asList("FTHI");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CaseForwardingNotification3Code";

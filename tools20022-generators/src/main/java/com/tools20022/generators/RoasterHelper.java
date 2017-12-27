@@ -159,8 +159,12 @@ public class RoasterHelper {
 
 
 	public static String escapeJavaDoc( String docTxt) {
-		return docTxt.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<",
+		return docTxt.replace("&", "&amp;").replace(">", "&gt;").replace("<",
 				"&lt;");
+	}
+
+	public static String escapeSourceString( String srcString ) {
+		return srcString.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n");
 	}
 
 	public static void addToJavaDoc(JavaDocCapableSource<?> javaDocHolder, String docTxt) {

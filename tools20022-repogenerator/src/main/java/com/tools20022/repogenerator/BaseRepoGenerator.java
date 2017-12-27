@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
@@ -22,22 +21,18 @@ import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
-import org.jboss.forge.roaster.model.source.JavaEnumSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMBusinessProcess;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMBusinessRole;
 import com.tools20022.metamodel.MMChoiceComponent;
@@ -267,20 +262,30 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			ret.valueAsJavaDoc = "{@linkplain ";
 			ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#"
 					+ refName.getMemberName();
-			ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + ".mm" + refName.getMemberName() + "}";
+			ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + "." + refName.getMemberName() + "}";
 		} else if (attrValue instanceof GeneratedMetamodelBean ) {
-			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;
+			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;					
 			StructuredName refName = getStructuredName(refmmBean);
 			if (refName.isCompilationUnit()) {
 				ret.valueAsSource = refName.getFullName() + ".mmObject()";
 				ret.valueAsJavaDoc = "{@linkplain " + refName.getFullName() + " " + refName.getCompilationUnit() + "}";
 			} else if (refName.isMember() ) {
-				ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + ".mm"
-						+ refName.getMemberName();
+				String memberName;
+				if( refmmBean instanceof MMBusinessAssociationEnd 
+						|| refmmBean instanceof MMBusinessAttribute 
+						|| refmmBean instanceof MMMessageBuildingBlock 
+						|| refmmBean instanceof MMMessageAssociationEnd 
+						|| refmmBean instanceof MMMessageAttribute 
+				) {
+					memberName = "mm" + refName.getMemberName();
+				} else {
+					memberName = refName.getMemberName();
+				}
+				
+				ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + "." + memberName;
 				ret.valueAsJavaDoc = "{@linkplain ";
-				ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#mm"
-						+ refName.getMemberName();
-				ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + ".mm" + refName.getMemberName() + "}";
+				ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#" + memberName;
+				ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + "." + memberName + "}";
 			} else {
 				throw new IllegalArgumentException("Invalid refName: " + refName);
 			}
@@ -471,7 +476,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		StructuredName name = getStructuredName(mmBean);
 		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, name);
 		{
-			gen.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
+			gen.staticFieldSrc = containerGen.src.addField().setName( name.getMemberName());
 			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
 			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
 			createJavaDoc(gen.staticFieldSrc, mmBean);

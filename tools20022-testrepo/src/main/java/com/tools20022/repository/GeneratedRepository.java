@@ -23,35 +23,76 @@ import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.repository.area.CashManagementLatestVersion;
-import com.tools20022.repository.choice.*;
-import com.tools20022.repository.codeset.*;
-import com.tools20022.repository.datatype.*;
-import com.tools20022.repository.msg.*;
-import com.tools20022.repository.other.SupplementaryDataEnvelope1;
+import com.tools20022.repository.other.BUSINESSPROCESS_FOR_ROLES;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * 
+ <p>
+ * <strong>Constant fields:</strong>
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMRepository#getBusinessProcessCatalogue
+ * businessProcessCatalogue} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#catalogue
+ * GeneratedRepository.catalogue}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepository#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
+ * GeneratedRepository.dataDict}</li>
+ * </ul>
+ */
 public class GeneratedRepository extends ReflectionBasedRepository {
 
 	final static private AtomicReference<MMRepository> mmObject_lazy = new AtomicReference<>();
-	public static final MMBusinessProcessCatalogue mmcatalogue = new MMBusinessProcessCatalogue() {
+	/**
+	 * An instance of BusinessProcessCatalogue.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMBusinessProcessCatalogue#getTopLevelCatalogueEntry
+	 * topLevelCatalogueEntry} =
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.repository.area.CashManagementLatestVersion
+	 * CashManagementLatestVersion}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.repository.other.BUSINESSPROCESS_FOR_ROLES
+	 * BUSINESSPROCESS_FOR_ROLES}</li>
+	 * </ul>
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMBusinessProcessCatalogue#getRepository
+	 * repository} = {@linkplain com.tools20022.repository.GeneratedRepository
+	 * GeneratedRepository}</li>
+	 * </ul>
+	 */
+	public static final MMBusinessProcessCatalogue catalogue = new MMBusinessProcessCatalogue() {
 		{
 			repository_lazy = () -> GeneratedRepository.mmObject();
-			topLevelCatalogueEntry_lazy = () -> Arrays.asList(CashManagementLatestVersion.mmObject());
+			topLevelCatalogueEntry_lazy = () -> Arrays.asList(CashManagementLatestVersion.mmObject(), BUSINESSPROCESS_FOR_ROLES.mmObject());
 		}
 	};
-	public static final MMDataDictionary mmdataDict = new MMDataDictionary() {
+	/**
+	 * An instance of DataDictionary.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMDataDictionary#getRepository
+	 * repository} = {@linkplain com.tools20022.repository.GeneratedRepository
+	 * GeneratedRepository}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMDataDictionary#getTopLevelDictionaryEntry
+	 * topLevelDictionaryEntry} = List of 1110 elements</li>
+	 * </ul>
+	 */
+	public static final MMDataDictionary dataDict = new MMDataDictionary() {
 		{
 			repository_lazy = () -> GeneratedRepository.mmObject();
-			topLevelDictionaryEntry_lazy = () -> Arrays.asList(ClearingSystemIdentification2Choice.mmObject(), ClearingSystemMemberIdentification2.mmObject(), FinancialIdentificationSchemeName1Choice.mmObject(),
-					GenericFinancialIdentification1.mmObject(), PostalAddress6.mmObject(), FinancialInstitutionIdentification8.mmObject(), BranchData2.mmObject(), BranchAndFinancialInstitutionIdentification5.mmObject(),
-					DateAndPlaceOfBirth.mmObject(), OrganisationIdentificationSchemeName1Choice.mmObject(), GenericOrganisationIdentification1.mmObject(), PersonIdentificationSchemeName1Choice.mmObject(),
-					GenericPersonIdentification1.mmObject(), PersonIdentification5.mmObject(), ContactDetails2.mmObject(), OrganisationIdentification8.mmObject(), Party11Choice.mmObject(), PartyIdentification43.mmObject(),
-					SupplementaryData1.mmObject(), Party12Choice.mmObject(), CaseAssignment3.mmObject(), Case3.mmObject(), CaseForwardingNotification3.mmObject(), ReportHeader4.mmObject(), SupplementaryDataEnvelope1.mmObject(),
-					Max35Text.mmObject(), ISODateTime.mmObject(), ISODate.mmObject(), CountryCode.mmObject(), Max70Text.mmObject(), Max140Text.mmObject(), Max350Text.mmObject(), YesNoIndicator.mmObject(), AddressTypeCode.mmObject(),
-					AddressType2Code.mmObject(), Max16Text.mmObject(), PhoneNumber.mmObject(), BICFIIdentifier.mmObject(), Max2048Text.mmObject(), AnyBICIdentifier.mmObject(), NamePrefix1Code.mmObject(),
-					ExternalClearingSystemIdentification1Code.mmObject(), ExternalFinancialInstitutionIdentification1Code.mmObject(), ExternalOrganisationIdentification1Code.mmObject(), ExternalPersonIdentification1Code.mmObject(),
-					CaseForwardingNotificationCode.mmObject(), CaseForwardingNotification3Code.mmObject());
+			topLevelDictionaryEntry_lazy = () -> ListBuilderForGeneratedRepository_00.addElems(new ArrayList<>());
 		}
 	};
 
@@ -62,8 +103,8 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	final static public MMRepository mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMRepository() {
 			{
-				businessProcessCatalogue_lazy = () -> GeneratedRepository.mmcatalogue;
-				dataDictionary_lazy = () -> GeneratedRepository.mmdataDict;
+				businessProcessCatalogue_lazy = () -> GeneratedRepository.catalogue;
+				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 			}
 		});
 		return mmObject_lazy.get();

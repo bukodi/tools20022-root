@@ -25,6 +25,8 @@ import com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04;
 import com.tools20022.repository.choice.Party12Choice;
 import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.datatype.YesNoIndicator;
+import com.tools20022.repository.entity.InvestigationCase;
+import com.tools20022.repository.entity.Party;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -33,14 +35,90 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ * Provides further details to identify an investigation case.
+ * <p>
+ * <strong>Constant fields:</strong>
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
+ * messageElement} =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.msg.Case3#mmIdentification
+ * Case3.mmIdentification}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.Case3#mmCreator
+ * Case3.mmCreator}</li>
+ * <li>{@linkplain com.tools20022.repository.msg.Case3#mmReopenCaseIndication
+ * Case3.mmReopenCaseIndication}</li>
+ * </ul>
+ * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
+ * trace} = {@linkplain com.tools20022.repository.entity.InvestigationCase
+ * InvestigationCase}</li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlock
+ * messageBuildingBlock} =
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04#mmCase
+ * NotificationOfCaseAssignmentV04.mmCase}</li>
+ * </ul>
+ * </li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
+ * GeneratedRepository.dataDict}</li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+ * registrationStatus} =
+ * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
+ * "Case3"</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+ * definition} = "Provides further details to identify an investigation case."</li>
+ * </ul>
+ */
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(name = "Case3", propOrder = {"identification", "creator", "reopenCaseIndication"})
 public class Case3 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
 	protected Max35Text identification;
+	/**
+	 * Uniquely identifies the case.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
+	 * Max35Text}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.InvestigationCase#mmIdentification
+	 * InvestigationCase.mmIdentification}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} = {@linkplain com.tools20022.repository.msg.Case3
+	 * Case3}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "Id"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Identification"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Uniquely identifies the case."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
+			businessElementTrace_lazy = () -> InvestigationCase.mmIdentification;
 			componentContext_lazy = () -> Case3.mmObject();
 			isDerived = false;
 			xmlTag = "Id";
@@ -53,8 +131,39 @@ public class Case3 {
 		}
 	};
 	protected Party12Choice creator;
+	/**
+	 * Party that created the investigation case.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
+	 * type} = {@linkplain com.tools20022.repository.choice.Party12Choice
+	 * Party12Choice}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
+	 * businessElementTrace} =
+	 * {@linkplain com.tools20022.repository.entity.Party#mmIdentification
+	 * Party.mmIdentification}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} = {@linkplain com.tools20022.repository.msg.Case3
+	 * Case3}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "Cretr"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Creator"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Party that created the investigation case."</li>
+	 * </ul>
+	 */
 	public static final MMMessageAssociationEnd mmCreator = new MMMessageAssociationEnd() {
 		{
+			businessElementTrace_lazy = () -> Party.mmIdentification;
 			componentContext_lazy = () -> Case3.mmObject();
 			isDerived = false;
 			xmlTag = "Cretr";
@@ -68,6 +177,36 @@ public class Case3 {
 		}
 	};
 	protected YesNoIndicator reopenCaseIndication;
+	/**
+	 * Indicates whether or not the case was previously closed and is now
+	 * re-opened.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} =
+	 * {@linkplain com.tools20022.repository.datatype.YesNoIndicator
+	 * YesNoIndicator}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} = {@linkplain com.tools20022.repository.msg.Case3
+	 * Case3}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "ReopCaseIndctn"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ReopenCaseIndication"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Indicates whether or not the case was previously closed and is now re-opened."
+	 * </li>
+	 * </ul>
+	 */
 	public static final MMMessageAttribute mmReopenCaseIndication = new MMMessageAttribute() {
 		{
 			componentContext_lazy = () -> Case3.mmObject();
@@ -87,7 +226,8 @@ public class Case3 {
 			{
 				messageElement_lazy = () -> Arrays.asList(Case3.mmIdentification, Case3.mmCreator, Case3.mmReopenCaseIndication);
 				messageBuildingBlock_lazy = () -> Arrays.asList(NotificationOfCaseAssignmentV04.mmCase);
-				dataDictionary_lazy = () -> GeneratedRepository.mmdataDict;
+				trace_lazy = () -> InvestigationCase.mmObject();
+				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Case3";
 				definition = "Provides further details to identify an investigation case.";

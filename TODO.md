@@ -8,7 +8,7 @@
 - [ ] Show attributes in correct order (supertype first, then follow order in ecore file)
 - [x] Support metamodel constraints
 - [ ] Implement metamodel constraints, and generate validate() functions
-- [ ] CleanQualifiedTypes in JavaDocs too
+- [ ] CleanQualifiedTypes in JavaDocs todo
 
 # Generators
 - [ ] Inject "Watermark errors" while repository loading. 

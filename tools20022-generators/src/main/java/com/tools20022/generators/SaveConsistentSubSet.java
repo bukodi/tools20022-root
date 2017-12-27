@@ -382,9 +382,9 @@ public class SaveConsistentSubSet {
 				continue;
 			matchingEObjs.add(eObject);
 		}
-		if( matchingEObjs == null )
+		if( matchingEObjs.isEmpty() )
 			throw new NoSuchElementException();
-		if( matchingEObjs == null )
+		if( matchingEObjs.size() > 1 )
 			throw new RuntimeException();
 		return matchingEObjs.iterator().next();
 	}
@@ -440,7 +440,7 @@ public class SaveConsistentSubSet {
 		throw new NoSuchElementException();
 	}
 	
-	public EObject getMsgDefByMsgId( String expected_id ) {
+	public Predicate<EObject> filterMsgDefByMsgIds( List<String> expected_ids ) {
 
 		EClass eClassMsgDefId = (EClass) ecorePackage.getEClassifier("MessageDefinitionIdentifier");
 		EAttribute eAttrMsgDefArea = (EAttribute) eClassMsgDefId.getEStructuralFeature("businessArea");
@@ -448,21 +448,40 @@ public class SaveConsistentSubSet {
 		EAttribute eAttrMsgDefFlavour = (EAttribute) eClassMsgDefId.getEStructuralFeature("flavour");
 		EAttribute eAttrMsgDefVer = (EAttribute) eClassMsgDefId.getEStructuralFeature("version");
 		
+		String[] idArray = new String[expected_ids.size()];
+		expected_ids.toArray(idArray);
+		Arrays.sort( idArray );
 		
-		for( TreeIterator<EObject> tit = xmiRootEObj.eAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
+		Predicate<EObject> filter = eObject-> {
 			if( ! eClassMsgDefId.equals( eObject.eClass()) ) 
-				continue;
+				return false;
+
 			String area = (String)eObject.eGet(eAttrMsgDefArea);
 			String func = (String)eObject.eGet(eAttrMsgDefFunc);
 			String flavour = (String)eObject.eGet(eAttrMsgDefFlavour);
 			String ver = (String)eObject.eGet(eAttrMsgDefVer);
 			
 			String actual_id = area + "." + func + "." + flavour + "." + ver;
-			if( expected_id.equals( actual_id ) )
-				return eObject.eContainer();
-		}
-		throw new NoSuchElementException("MessageDefinition with id=" + expected_id);
+			return Arrays.binarySearch(idArray, actual_id) >= 0;
+
+		};
+		return filter;
+	}
+	
+	public Predicate<EObject> filterEClassAndName( String eClassName, String expectedName ) {
+
+		EClass selectedEClass = (EClass) ecorePackage.getEClassifier(eClassName);
+		EAttribute eAttrName = (EAttribute) (((EClass) ecorePackage.getEClassifier("RepositoryConcept")).getEStructuralFeature("name"));
+		
+		Predicate<EObject> filter = eObject-> {
+			if( ! selectedEClass.equals( eObject.eClass()) ) 
+				return false;
+			
+			String actualName = (String)eObject.eGet(eAttrName);
+			return expectedName.equals(actualName);
+
+		};
+		return filter;
 	}
 	
 

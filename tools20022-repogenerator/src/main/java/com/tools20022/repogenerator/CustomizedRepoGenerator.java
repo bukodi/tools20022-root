@@ -53,6 +53,7 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 import com.tools20022.metamodel.ext.DTCCSynonym;
 import com.tools20022.metamodel.ext.FIXSynonym;
 import com.tools20022.metamodel.ext.ISO15022Synonym;
+import com.tools20022.metamodel.ext.OtherSemanticMarkup;
 import com.tools20022.repogenerator.BaseRepoGenerator.AttrValue;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
 import com.tools20022.repogenerator.resulttypes.DataTypeResult;
@@ -294,11 +295,17 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
 		
-		if( ! mmBean.getSemanticMarkup().isEmpty() ) {
+		List<MMSemanticMarkup> validMarkups = new ArrayList<>();
+		for(MMSemanticMarkup sm :  mmBean.getSemanticMarkup() ) {
+			if( ! sm.getElements().isEmpty() )
+				validMarkups.add(sm);
+		}
+		
+		if( ! validMarkups.isEmpty() ) {
 			AttrResult attrGen = gen.createAttrResult( MMRepositoryConcept.semanticMarkupAttribute );
 			StringJoiner sjInit = new StringJoiner(", ");
 			StringJoiner sjJavadoc = new StringJoiner(", ");
-			loop_on_markups: for( MMSemanticMarkup sm: mmBean.getSemanticMarkup() ) {
+			loop_on_markups: for( MMSemanticMarkup sm: validMarkups ) {
 				if( "Synonym".equals( sm.getType().orElse("") ) ) {
 					String context = null;
 					String value = null;
@@ -308,7 +315,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 						if( "value".equals( elem.getName().orElse("") ) || "name".equals( elem.getName().orElse("") ) )
 							value = elem.getValue().orElse(null);
 					}
-					if( context != null && context.contains("15022") ) {
+					if( context != null && context.contains("150") ) {
 						sjInit.add( "new " + ISO15022Synonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"") + "\")");
 						sjJavadoc.add( ISO15022Synonym.class.getSimpleName()+ ": " + value );
 						continue loop_on_markups;
@@ -325,7 +332,23 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 					} 
 				}
 				
-				// TODO Skip OtherSemanticMarkup 
+				{ // Create OtherSemanticMarkup
+					System.out.println( "Semantic markup on [" + mmBean.getClass().getSimpleName() + "]" + mmBean.getName());
+					
+					String javadoc  = "type=" + sm.getType().orElse("") + ", ";
+					String init = "new " + OtherSemanticMarkup.class.getName() + "( this, ";
+					init += "\"" + sm.getType().orElse("") + "\", ";
+					StringJoiner sji = new StringJoiner(", ");
+					StringJoiner sjd = new StringJoiner(", ");
+					for( MMSemanticMarkupElement elem :  sm.getElements() ) {
+						sji.add( "new String[]{\"" + RoasterHelper.escapeSourceString(elem.getName().orElse("")) 
+						+ "\", \"" + RoasterHelper.escapeSourceString(elem.getValue().orElse("")) + "\"}");
+						sjd.add(elem.getName().orElse("") + "=" + elem.getValue().orElse("") );
+					}
+					init += sji.toString() + " )";
+					sjInit.add(init);
+					sjJavadoc.add(javadoc + sjd.toString() );
+				}
 				
 			}
 			attrGen.initializationSource = "semanticMarkup_lazy = () -> " + Arrays.class.getName() + ".asList( " + sjInit.toString()+ ");";

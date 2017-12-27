@@ -29,10 +29,69 @@ import java.util.LinkedHashMap;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+/**
+ * Specifies the terms used to formally address a person.
+ * <p>
+ * <strong>Constant fields:</strong>
+ * <ul>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#Doctor
+ * NamePrefix1Code.Doctor}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#Mister
+ * NamePrefix1Code.Mister}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#Miss
+ * NamePrefix1Code.Miss}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#Madam
+ * NamePrefix1Code.Madam}</li>
+ * </ul>
+ * </li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
+ * GeneratedRepository.dataDict}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
+ * example} =
+ * <ul>
+ * <li>"DOCT"</li>
+ * </ul>
+ * </li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+ * registrationStatus} =
+ * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
+ * "NamePrefix1Code"</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+ * definition} = "Specifies the terms used to formally address a person."</li>
+ * </ul>
+ */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
 public class NamePrefix1Code extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
+	/**
+	 * Title of the person is Doctor or Dr.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
+	 * NamePrefix1Code}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "DOCT"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Doctor"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Title of the person is Doctor or Dr."</li>
+	 * </ul>
+	 */
 	public static final NamePrefix1Code Doctor = new NamePrefix1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
@@ -42,6 +101,27 @@ public class NamePrefix1Code extends MMCode {
 			codeName = "DOCT";
 		}
 	};
+	/**
+	 * Title of the person is Mister or Mr.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
+	 * NamePrefix1Code}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MIST"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Mister"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Title of the person is Mister or Mr."</li>
+	 * </ul>
+	 */
 	public static final NamePrefix1Code Mister = new NamePrefix1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
@@ -51,6 +131,27 @@ public class NamePrefix1Code extends MMCode {
 			codeName = "MIST";
 		}
 	};
+	/**
+	 * Title of the person is Miss.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
+	 * NamePrefix1Code}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MISS"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Miss"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Title of the person is Miss."</li>
+	 * </ul>
+	 */
 	public static final NamePrefix1Code Miss = new NamePrefix1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
@@ -60,6 +161,27 @@ public class NamePrefix1Code extends MMCode {
 			codeName = "MISS";
 		}
 	};
+	/**
+	 * Title of the person is Madam.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
+	 * NamePrefix1Code}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MADM"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Madam"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} = "Title of the person is Madam."</li>
+	 * </ul>
+	 */
 	public static final NamePrefix1Code Madam = new NamePrefix1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
@@ -77,7 +199,7 @@ public class NamePrefix1Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.mmdataDict;
+				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				example = Arrays.asList("DOCT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "NamePrefix1Code";

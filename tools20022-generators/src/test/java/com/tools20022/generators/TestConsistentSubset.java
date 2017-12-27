@@ -3,6 +3,7 @@ package com.tools20022.generators;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -88,19 +90,13 @@ public class TestConsistentSubset {
 
 		SaveConsistentSubSet scss = new SaveConsistentSubSet(ecorePackage, xmiRootEObj);
 		ProgressMonitor monitor = new ProgressMonitor();
-				
-		Set<EObject> seedSet = new HashSet<>();
-		for(String msgId : getMessageIdsByDomains().get(domainCode) ) {
-			try {
-				seedSet.add(scss.getMsgDefByMsgId(msgId));							
-			} catch ( Exception e ) {
-				System.err.println( e.getMessage() );
-			}
-		}
-		// Add Business Application Header
-		seedSet.add( scss.getMsgDefByMsgId("head.001.001.01"));
 		
-		ConsistentSubset ss = scss.createSubSet(seedSet, skipBusinessComponents, monitor);
+		List<String> msgCodes = getMessageIdsByDomains().get(domainCode);
+		msgCodes.add("head.001.001.01"); // Add Business Application Header
+		
+		Predicate<EObject> seedSetFilter = scss.filterMsgDefByMsgIds(msgCodes);
+		
+		ConsistentSubset ss = scss.createSubSet(seedSetFilter, skipBusinessComponents, monitor);
 		Map<EClass, List<EObject>> stat = ss.getSatistics();
 
 		Path testSubsetFile = Paths.get("../tools20022-repogenerator/src/test/resources/model/business-domain-" + domainCode + (skipBusinessComponents ? "-nobuscomp" : "") + ".iso20022");
@@ -119,7 +115,7 @@ public class TestConsistentSubset {
 
 	@Test
 	public void subsetForMessageDef() throws Exception {
-		boolean skipBusinessComponents = true;
+		boolean skipBusinessComponents = false;
 		//final String msgId = "pain.002.001.08";
 		final String msgId = "camt.030.001.04";
 		
@@ -134,12 +130,12 @@ public class TestConsistentSubset {
 
 		SaveConsistentSubSet scss = new SaveConsistentSubSet(ecorePackage, xmiRootEObj);
 		ProgressMonitor monitor = new ProgressMonitor();
-		scss.getMsgDefByMsgId(msgId);
-				
-		Set<EObject> seedSet = new HashSet<>();
-		seedSet.add(scss.getMsgDefByMsgId(msgId));
+
+		Predicate<EObject> seedSetFilter = scss.filterMsgDefByMsgIds(Arrays.asList(msgId));
+		seedSetFilter = seedSetFilter.or(scss.filterEClassAndName("BusinessProcess", "BUSINESSPROCESS_FOR_ROLES"));
+
 		
-		ConsistentSubset ss = scss.createSubSet(seedSet, skipBusinessComponents, monitor);
+		ConsistentSubset ss = scss.createSubSet(seedSetFilter, skipBusinessComponents, monitor);
 		Map<EClass, List<EObject>> stat = ss.getSatistics();
 
 		String fileName = "msgdef-" + msgId + (skipBusinessComponents ? "-nobuscomp" : "") + ".iso20022"; 
