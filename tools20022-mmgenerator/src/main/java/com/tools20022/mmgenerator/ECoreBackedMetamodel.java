@@ -325,6 +325,11 @@ public class ECoreBackedMetamodel implements RawMetamodel {
 		}
 
 		@Override
+		public String getDeafultValueLiteral() {
+			return eRef != null ? null  : eAttr.getDefaultValueLiteral();
+		}
+
+		@Override
 		public Class<?> getValueJavaClass() {
 			if (eAttr == null)
 				return null;

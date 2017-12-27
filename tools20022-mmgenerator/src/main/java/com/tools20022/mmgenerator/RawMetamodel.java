@@ -108,6 +108,7 @@ interface RawMetamodel {
 		MetamodelType getReferencedType();
 
 		MetamodelAttribute getOpposite();
+		String getDeafultValueLiteral();
 	}
 
 	public interface MetamodelConstraint extends MetamodelElement {
