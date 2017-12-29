@@ -24,7 +24,6 @@ import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.choice.Party11Choice;
 import com.tools20022.repository.codeset.CountryCode;
 import com.tools20022.repository.datatype.Max140Text;
-import com.tools20022.repository.entity.*;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -58,10 +57,6 @@ import javax.xml.bind.annotation.XmlType;
  * PartyIdentification43.mmContactDetails}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} =
- * {@linkplain com.tools20022.repository.entity.PartyIdentificationInformation
- * PartyIdentificationInformation}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -95,11 +90,6 @@ public class PartyIdentification43 {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max140Text
 	 * Max140Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PartyName#mmName
-	 * PartyName.mmName}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.PartyIdentification43
@@ -121,7 +111,6 @@ public class PartyIdentification43 {
 	 */
 	public static final MMMessageAttribute mmName = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> PartyName.mmName;
 			componentContext_lazy = () -> PartyIdentification43.mmObject();
 			isDerived = false;
 			xmlTag = "Nm";
@@ -144,11 +133,6 @@ public class PartyIdentification43 {
 	 * type} = {@linkplain com.tools20022.repository.msg.PostalAddress6
 	 * PostalAddress6}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessComponentTrace
-	 * businessComponentTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PostalAddress PostalAddress}
-	 * </li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.PartyIdentification43
@@ -170,7 +154,6 @@ public class PartyIdentification43 {
 	 */
 	public static final MMMessageAssociationEnd mmPostalAddress = new MMMessageAssociationEnd() {
 		{
-			businessComponentTrace_lazy = () -> PostalAddress.mmObject();
 			componentContext_lazy = () -> PartyIdentification43.mmObject();
 			isDerived = false;
 			xmlTag = "PstlAdr";
@@ -193,11 +176,6 @@ public class PartyIdentification43 {
 	 * type} = {@linkplain com.tools20022.repository.choice.Party11Choice
 	 * Party11Choice}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessComponentTrace
-	 * businessComponentTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PartyIdentificationInformation
-	 * PartyIdentificationInformation}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.PartyIdentification43
@@ -217,7 +195,6 @@ public class PartyIdentification43 {
 	 */
 	public static final MMMessageAssociationEnd mmIdentification = new MMMessageAssociationEnd() {
 		{
-			businessComponentTrace_lazy = () -> PartyIdentificationInformation.mmObject();
 			componentContext_lazy = () -> PartyIdentification43.mmObject();
 			isDerived = false;
 			xmlTag = "Id";
@@ -243,11 +220,6 @@ public class PartyIdentification43 {
 	 * simpleType} = {@linkplain com.tools20022.repository.codeset.CountryCode
 	 * CountryCode}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.Country#mmCode
-	 * Country.mmCode}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.PartyIdentification43
@@ -269,7 +241,6 @@ public class PartyIdentification43 {
 	 */
 	public static final MMMessageAttribute mmCountryOfResidence = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> Country.mmCode;
 			componentContext_lazy = () -> PartyIdentification43.mmObject();
 			isDerived = false;
 			xmlTag = "CtryOfRes";
@@ -291,11 +262,6 @@ public class PartyIdentification43 {
 	 * type} = {@linkplain com.tools20022.repository.msg.ContactDetails2
 	 * ContactDetails2}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.Party#mmContactPoint
-	 * Party.mmContactPoint}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.PartyIdentification43
@@ -316,7 +282,6 @@ public class PartyIdentification43 {
 	 */
 	public static final MMMessageAssociationEnd mmContactDetails = new MMMessageAssociationEnd() {
 		{
-			businessElementTrace_lazy = () -> Party.mmContactPoint;
 			componentContext_lazy = () -> PartyIdentification43.mmObject();
 			isDerived = false;
 			xmlTag = "CtctDtls";
@@ -335,7 +300,6 @@ public class PartyIdentification43 {
 			{
 				messageElement_lazy = () -> Arrays.asList(PartyIdentification43.mmName, PartyIdentification43.mmPostalAddress, PartyIdentification43.mmIdentification, PartyIdentification43.mmCountryOfResidence,
 						PartyIdentification43.mmContactDetails);
-				trace_lazy = () -> PartyIdentificationInformation.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "PartyIdentification43";

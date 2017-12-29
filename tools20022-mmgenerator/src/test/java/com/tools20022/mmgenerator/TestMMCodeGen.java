@@ -21,7 +21,7 @@ public class TestMMCodeGen {
 		RawMetamodel metamodel = new ECoreBackedMetamodel(ecorePkg );
 		
 		GeneratorFileManager fileManager = new GeneratorFileManager(Paths.get("../tools20022-metamodel/"));
-		fileManager.dontChangeIfExists(p -> p.toString().contains( File.separator + "constraints" + File.separator ) || p.toString().contains(File.separator + "derived" + File.separator ));
+		fileManager.dontChangeIfExists(p -> p.toString().contains( File.separator + "constraints" + File.separator ) || p.toString().contains(File.separator + "derived" + File.separator )  || p.toString().contains(File.separator + "ext" + File.separator ) );
 		fileManager.cleanOutputFolder();
 		
 		// Create generation context

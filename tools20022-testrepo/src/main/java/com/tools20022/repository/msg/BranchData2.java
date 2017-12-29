@@ -23,10 +23,6 @@ import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.Max140Text;
 import com.tools20022.repository.datatype.Max35Text;
-import com.tools20022.repository.entity.GenericIdentification;
-import com.tools20022.repository.entity.OrganisationIdentification;
-import com.tools20022.repository.entity.PartyName;
-import com.tools20022.repository.entity.PostalAddress;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -53,10 +49,6 @@ import javax.xml.bind.annotation.XmlType;
  * BranchData2.mmPostalAddress}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} =
- * {@linkplain com.tools20022.repository.entity.OrganisationIdentification
- * OrganisationIdentification}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -91,11 +83,6 @@ public class BranchData2 {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
 	 * Max35Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.GenericIdentification#mmIdentification
-	 * GenericIdentification.mmIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.BranchData2 BranchData2}</li>
@@ -116,7 +103,6 @@ public class BranchData2 {
 	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> GenericIdentification.mmIdentification;
 			componentContext_lazy = () -> BranchData2.mmObject();
 			isDerived = false;
 			xmlTag = "Id";
@@ -140,11 +126,6 @@ public class BranchData2 {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max140Text
 	 * Max140Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PartyName#mmName
-	 * PartyName.mmName}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.BranchData2 BranchData2}</li>
@@ -165,7 +146,6 @@ public class BranchData2 {
 	 */
 	public static final MMMessageAttribute mmName = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> PartyName.mmName;
 			componentContext_lazy = () -> BranchData2.mmObject();
 			isDerived = false;
 			xmlTag = "Nm";
@@ -188,11 +168,6 @@ public class BranchData2 {
 	 * type} = {@linkplain com.tools20022.repository.msg.PostalAddress6
 	 * PostalAddress6}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessComponentTrace
-	 * businessComponentTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PostalAddress PostalAddress}
-	 * </li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.BranchData2 BranchData2}</li>
@@ -213,7 +188,6 @@ public class BranchData2 {
 	 */
 	public static final MMMessageAssociationEnd mmPostalAddress = new MMMessageAssociationEnd() {
 		{
-			businessComponentTrace_lazy = () -> PostalAddress.mmObject();
 			componentContext_lazy = () -> BranchData2.mmObject();
 			isDerived = false;
 			xmlTag = "PstlAdr";
@@ -231,7 +205,6 @@ public class BranchData2 {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
 				messageElement_lazy = () -> Arrays.asList(BranchData2.mmIdentification, BranchData2.mmName, BranchData2.mmPostalAddress);
-				trace_lazy = () -> OrganisationIdentification.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "BranchData2";

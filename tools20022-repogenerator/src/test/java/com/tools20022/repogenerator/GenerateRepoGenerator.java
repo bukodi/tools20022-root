@@ -91,7 +91,7 @@ public class GenerateRepoGenerator {
 		constr.setBody("super( ctx );");
 		
 		// List non-abstract types organized by containment hierarchy.
-		StandardMetamodel2013.metamodel().listTypes().filter(t -> !t.isAbstract()).forEachOrdered(mmType -> {
+		StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> !t.isAbstract()).forEachOrdered(mmType -> {
 			if( MMXor.metaType().equals(mmType) ) {
 				generateNonAbstractType(mmType, MMMessageDefinition.metaType());
 				generateNonAbstractType(mmType, MMMessageComponent.metaType());
@@ -100,7 +100,7 @@ public class GenerateRepoGenerator {
 				generateNonAbstractType(mmType, containerType);
 			}
 		});
-		StandardMetamodel2013.metamodel().listTypes().filter(t -> t.isAbstract()).forEachOrdered(t -> {
+		StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> t.isAbstract()).forEachOrdered(t -> {
 			implementAbstractType(t);
 		});
 		// generateNonAbstractType(MMRepository.metaType());

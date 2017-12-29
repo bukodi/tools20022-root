@@ -69,7 +69,11 @@ public class GeneratorFileManager implements JavaFileManager {
 			Path srcOutputPath = getLocationRoot(StandardLocation.SOURCE_OUTPUT);
 			FileIOHelper.deleteAllExcept(srcOutputPath, dontChangeIfExists);
 			Path docOutputPath = getLocationRoot(DocumentationTool.Location.DOCUMENTATION_OUTPUT);
-			FileIOHelper.deleteAllExcept(docOutputPath, dontChangeIfExists);
+			if( Files.exists(docOutputPath) ) {
+				FileIOHelper.deleteAllExcept(docOutputPath, dontChangeIfExists);				
+			} else {
+				Files.createDirectories(docOutputPath);
+			}
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
 		}

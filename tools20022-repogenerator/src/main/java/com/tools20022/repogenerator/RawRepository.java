@@ -17,6 +17,7 @@ import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 
+// TODO: replace this with a XMIBackedRepository class
 public class RawRepository {
 
 	private final Metamodel metamodel;

@@ -22,7 +22,6 @@ import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.ExternalFinancialInstitutionIdentification1Code;
 import com.tools20022.repository.datatype.Max35Text;
-import com.tools20022.repository.entity.Scheme;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -49,8 +48,6 @@ import javax.xml.bind.annotation.XmlType;
  * FinancialIdentificationSchemeName1Choice.mmProprietary}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} = {@linkplain com.tools20022.repository.entity.Scheme Scheme}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -86,11 +83,6 @@ public class FinancialIdentificationSchemeName1Choice {
 	 * {@linkplain com.tools20022.repository.codeset.ExternalFinancialInstitutionIdentification1Code
 	 * ExternalFinancialInstitutionIdentification1Code}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.Scheme#mmCode Scheme.mmCode}
-	 * </li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice
@@ -112,7 +104,6 @@ public class FinancialIdentificationSchemeName1Choice {
 	 */
 	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> Scheme.mmCode;
 			componentContext_lazy = () -> FinancialIdentificationSchemeName1Choice.mmObject();
 			isDerived = false;
 			xmlTag = "Cd";
@@ -135,11 +126,6 @@ public class FinancialIdentificationSchemeName1Choice {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
 	 * Max35Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.Scheme#mmCode Scheme.mmCode}
-	 * </li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice
@@ -159,7 +145,6 @@ public class FinancialIdentificationSchemeName1Choice {
 	 */
 	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> Scheme.mmCode;
 			componentContext_lazy = () -> FinancialIdentificationSchemeName1Choice.mmObject();
 			isDerived = false;
 			xmlTag = "Prtry";
@@ -176,7 +161,6 @@ public class FinancialIdentificationSchemeName1Choice {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
 				messageElement_lazy = () -> Arrays.asList(FinancialIdentificationSchemeName1Choice.mmCode, FinancialIdentificationSchemeName1Choice.mmProprietary);
-				trace_lazy = () -> Scheme.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "FinancialIdentificationSchemeName1Choice";

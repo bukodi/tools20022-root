@@ -20,7 +20,6 @@ package com.tools20022.repository.msg;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
-import com.tools20022.repository.entity.Organisation;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -48,9 +47,6 @@ import javax.xml.bind.annotation.XmlType;
  * BranchAndFinancialInstitutionIdentification5.mmBranchIdentification}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} = {@linkplain com.tools20022.repository.entity.Organisation
- * Organisation}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -86,11 +82,6 @@ public class BranchAndFinancialInstitutionIdentification5 {
 	 * {@linkplain com.tools20022.repository.msg.FinancialInstitutionIdentification8
 	 * FinancialInstitutionIdentification8}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.Organisation#mmOrganisationIdentification
-	 * Organisation.mmOrganisationIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.BranchAndFinancialInstitutionIdentification5
@@ -112,7 +103,6 @@ public class BranchAndFinancialInstitutionIdentification5 {
 	 */
 	public static final MMMessageAssociationEnd mmFinancialInstitutionIdentification = new MMMessageAssociationEnd() {
 		{
-			businessElementTrace_lazy = () -> Organisation.mmOrganisationIdentification;
 			componentContext_lazy = () -> BranchAndFinancialInstitutionIdentification5.mmObject();
 			isDerived = false;
 			xmlTag = "FinInstnId";
@@ -139,11 +129,6 @@ public class BranchAndFinancialInstitutionIdentification5 {
 	 * type} = {@linkplain com.tools20022.repository.msg.BranchData2
 	 * BranchData2}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.Organisation#mmOrganisationIdentification
-	 * Organisation.mmOrganisationIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.BranchAndFinancialInstitutionIdentification5
@@ -165,7 +150,6 @@ public class BranchAndFinancialInstitutionIdentification5 {
 	 */
 	public static final MMMessageAssociationEnd mmBranchIdentification = new MMMessageAssociationEnd() {
 		{
-			businessElementTrace_lazy = () -> Organisation.mmOrganisationIdentification;
 			componentContext_lazy = () -> BranchAndFinancialInstitutionIdentification5.mmObject();
 			isDerived = false;
 			xmlTag = "BrnchId";
@@ -183,7 +167,6 @@ public class BranchAndFinancialInstitutionIdentification5 {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
 				messageElement_lazy = () -> Arrays.asList(BranchAndFinancialInstitutionIdentification5.mmFinancialInstitutionIdentification, BranchAndFinancialInstitutionIdentification5.mmBranchIdentification);
-				trace_lazy = () -> Organisation.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "BranchAndFinancialInstitutionIdentification5";

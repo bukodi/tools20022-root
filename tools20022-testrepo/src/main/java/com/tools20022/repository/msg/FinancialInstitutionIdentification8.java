@@ -23,9 +23,6 @@ import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.BICFIIdentifier;
 import com.tools20022.repository.datatype.Max140Text;
-import com.tools20022.repository.entity.OrganisationIdentification;
-import com.tools20022.repository.entity.PartyName;
-import com.tools20022.repository.entity.PostalAddress;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -60,10 +57,6 @@ import javax.xml.bind.annotation.XmlType;
  * FinancialInstitutionIdentification8.mmOther}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} =
- * {@linkplain com.tools20022.repository.entity.OrganisationIdentification
- * OrganisationIdentification}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -99,11 +92,6 @@ public class FinancialInstitutionIdentification8 {
 	 * {@linkplain com.tools20022.repository.datatype.BICFIIdentifier
 	 * BICFIIdentifier}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.OrganisationIdentification#mmBICFI
-	 * OrganisationIdentification.mmBICFI}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.FinancialInstitutionIdentification8
@@ -125,7 +113,6 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAttribute mmBICFI = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> OrganisationIdentification.mmBICFI;
 			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "BICFI";
@@ -148,11 +135,6 @@ public class FinancialInstitutionIdentification8 {
 	 * {@linkplain com.tools20022.repository.msg.ClearingSystemMemberIdentification2
 	 * ClearingSystemMemberIdentification2}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.OrganisationIdentification#mmClearingSystemMemberIdentificationType
-	 * OrganisationIdentification.mmClearingSystemMemberIdentificationType}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.FinancialInstitutionIdentification8
@@ -173,7 +155,6 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAssociationEnd mmClearingSystemMemberIdentification = new MMMessageAssociationEnd() {
 		{
-			businessElementTrace_lazy = () -> OrganisationIdentification.mmClearingSystemMemberIdentificationType;
 			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "ClrSysMmbId";
@@ -198,11 +179,6 @@ public class FinancialInstitutionIdentification8 {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max140Text
 	 * Max140Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PartyName#mmName
-	 * PartyName.mmName}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.FinancialInstitutionIdentification8
@@ -224,7 +200,6 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAttribute mmName = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> PartyName.mmName;
 			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "Nm";
@@ -247,11 +222,6 @@ public class FinancialInstitutionIdentification8 {
 	 * type} = {@linkplain com.tools20022.repository.msg.PostalAddress6
 	 * PostalAddress6}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessComponentTrace
-	 * businessComponentTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PostalAddress PostalAddress}
-	 * </li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.FinancialInstitutionIdentification8
@@ -273,7 +243,6 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAssociationEnd mmPostalAddress = new MMMessageAssociationEnd() {
 		{
-			businessComponentTrace_lazy = () -> PostalAddress.mmObject();
 			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "PstlAdr";
@@ -298,11 +267,6 @@ public class FinancialInstitutionIdentification8 {
 	 * {@linkplain com.tools20022.repository.msg.GenericFinancialIdentification1
 	 * GenericFinancialIdentification1}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessComponentTrace
-	 * businessComponentTrace} =
-	 * {@linkplain com.tools20022.repository.entity.OrganisationIdentification
-	 * OrganisationIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.FinancialInstitutionIdentification8
@@ -324,7 +288,6 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAssociationEnd mmOther = new MMMessageAssociationEnd() {
 		{
-			businessComponentTrace_lazy = () -> OrganisationIdentification.mmObject();
 			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "Othr";
@@ -343,7 +306,6 @@ public class FinancialInstitutionIdentification8 {
 			{
 				messageElement_lazy = () -> Arrays.asList(FinancialInstitutionIdentification8.mmBICFI, FinancialInstitutionIdentification8.mmClearingSystemMemberIdentification, FinancialInstitutionIdentification8.mmName,
 						FinancialInstitutionIdentification8.mmPostalAddress, FinancialInstitutionIdentification8.mmOther);
-				trace_lazy = () -> OrganisationIdentification.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "FinancialInstitutionIdentification8";

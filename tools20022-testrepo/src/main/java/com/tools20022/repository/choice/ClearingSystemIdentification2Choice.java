@@ -22,7 +22,6 @@ import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.ExternalClearingSystemIdentification1Code;
 import com.tools20022.repository.datatype.Max35Text;
-import com.tools20022.repository.entity.CashClearingSystem;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -48,9 +47,6 @@ import javax.xml.bind.annotation.XmlType;
  * ClearingSystemIdentification2Choice.mmProprietary}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} = {@linkplain com.tools20022.repository.entity.CashClearingSystem
- * CashClearingSystem}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -84,11 +80,6 @@ public class ClearingSystemIdentification2Choice {
 	 * {@linkplain com.tools20022.repository.codeset.ExternalClearingSystemIdentification1Code
 	 * ExternalClearingSystemIdentification1Code}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.CashClearingSystem#mmIdentification
-	 * CashClearingSystem.mmIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.choice.ClearingSystemIdentification2Choice
@@ -110,7 +101,6 @@ public class ClearingSystemIdentification2Choice {
 	 */
 	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> CashClearingSystem.mmIdentification;
 			componentContext_lazy = () -> ClearingSystemIdentification2Choice.mmObject();
 			isDerived = false;
 			xmlTag = "Cd";
@@ -134,11 +124,6 @@ public class ClearingSystemIdentification2Choice {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
 	 * Max35Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.CashClearingSystem#mmIdentification
-	 * CashClearingSystem.mmIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.choice.ClearingSystemIdentification2Choice
@@ -160,7 +145,6 @@ public class ClearingSystemIdentification2Choice {
 	 */
 	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> CashClearingSystem.mmIdentification;
 			componentContext_lazy = () -> ClearingSystemIdentification2Choice.mmObject();
 			isDerived = false;
 			xmlTag = "Prtry";
@@ -177,7 +161,6 @@ public class ClearingSystemIdentification2Choice {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
 				messageElement_lazy = () -> Arrays.asList(ClearingSystemIdentification2Choice.mmCode, ClearingSystemIdentification2Choice.mmProprietary);
-				trace_lazy = () -> CashClearingSystem.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ClearingSystemIdentification2Choice";

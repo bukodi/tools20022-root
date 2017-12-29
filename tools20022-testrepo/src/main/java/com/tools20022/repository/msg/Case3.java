@@ -25,8 +25,6 @@ import com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04;
 import com.tools20022.repository.choice.Party12Choice;
 import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.datatype.YesNoIndicator;
-import com.tools20022.repository.entity.InvestigationCase;
-import com.tools20022.repository.entity.Party;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -52,9 +50,6 @@ import javax.xml.bind.annotation.XmlType;
  * Case3.mmReopenCaseIndication}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} = {@linkplain com.tools20022.repository.entity.InvestigationCase
- * InvestigationCase}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlock
  * messageBuildingBlock} =
@@ -95,11 +90,6 @@ public class Case3 {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
 	 * Max35Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.InvestigationCase#mmIdentification
-	 * InvestigationCase.mmIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} = {@linkplain com.tools20022.repository.msg.Case3
 	 * Case3}</li>
@@ -118,7 +108,6 @@ public class Case3 {
 	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> InvestigationCase.mmIdentification;
 			componentContext_lazy = () -> Case3.mmObject();
 			isDerived = false;
 			xmlTag = "Id";
@@ -140,11 +129,6 @@ public class Case3 {
 	 * type} = {@linkplain com.tools20022.repository.choice.Party12Choice
 	 * Party12Choice}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.Party#mmIdentification
-	 * Party.mmIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} = {@linkplain com.tools20022.repository.msg.Case3
 	 * Case3}</li>
@@ -163,7 +147,6 @@ public class Case3 {
 	 */
 	public static final MMMessageAssociationEnd mmCreator = new MMMessageAssociationEnd() {
 		{
-			businessElementTrace_lazy = () -> Party.mmIdentification;
 			componentContext_lazy = () -> Case3.mmObject();
 			isDerived = false;
 			xmlTag = "Cretr";
@@ -226,7 +209,6 @@ public class Case3 {
 			{
 				messageElement_lazy = () -> Arrays.asList(Case3.mmIdentification, Case3.mmCreator, Case3.mmReopenCaseIndication);
 				messageBuildingBlock_lazy = () -> Arrays.asList(NotificationOfCaseAssignmentV04.mmCase);
-				trace_lazy = () -> InvestigationCase.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Case3";

@@ -30,7 +30,6 @@ public class ReflectionBasedMetamodel implements Metamodel {
 
 	private final LinkedHashMap<String, MMTypeImpl<?>> mmTypesByName = new LinkedHashMap<>();
 	private final LinkedHashMap<Class<? extends GeneratedMetamodelBean>, MMTypeImpl<?>> mmTypesByClass = new LinkedHashMap<>();
-	private final LinkedHashMap<MMTypeImpl<?>, Class<?>> classesBymmTypes = new LinkedHashMap<>();
 	private final LinkedHashMap<String, MMEnumImpl<?>> mmEnumsByName = new LinkedHashMap<>();
 	private final LinkedHashMap<Class<? extends Enum<?>>, MMEnumImpl<?>> mmEnumsByClass = new LinkedHashMap<>();
 
@@ -38,13 +37,13 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	}
 
 	@Override
-	public Stream<? extends MetamodelType<? extends GeneratedMetamodelBean>> listTypes() {
-		return mmTypesByName.values().stream();
+	public List<? extends MetamodelType<? extends GeneratedMetamodelBean>> getAllTypes() {
+		return new ArrayList<>( mmTypesByName.values());
 	}
 
 	@Override
-	public Stream<? extends MMEnumImpl<?>> listEnums() {
-		return mmEnumsByName.values().stream();
+	public List<? extends MMEnumImpl<?>> getAllEnums() {
+		return new ArrayList<>( mmEnumsByName.values() );
 	}
 
 	@Override
@@ -73,19 +72,6 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	@Override
 	public <B extends GeneratedMetamodelBean> MetamodelType<B> getTypeByClass(Class<B> beanClass) {
 		return getTypeImplByClass(beanClass);
-	}
-
-	private <B extends GeneratedMetamodelBean> Class<B> getClassByType_(MetamodelType<B> mmType) {
-		@SuppressWarnings("unchecked")
-		Class<B> beanClass = (Class<B>) classesBymmTypes.get(mmType);
-		if (beanClass == null)
-			throw new NoSuchElementException("No class for metatype " + beanClass);
-		return beanClass;
-	}
-
-	@Override
-	public <B extends GeneratedMetamodelBean> Class<B> getClassByType(MetamodelType<B> mmType) {
-		return getClassByType_(mmType);
 	}
 
 	@Override
@@ -231,7 +217,6 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				if (prevType != null)
 					throw new IllegalStateException(
 							"MMtype with bean class " + beanClass + " already added: " + prevType);
-				classesBymmTypes.putIfAbsent(this,beanClass);
 			}
 
 			for (Field f : this.beanClass.getDeclaredFields()) {

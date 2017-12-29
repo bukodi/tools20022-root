@@ -20,6 +20,8 @@ import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.core.repo.NextVersion;
@@ -79,12 +81,12 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	public void generate(RawRepository repo, ProgressMonitor monitor) {
 		this.repo = repo;
 
-		repo.getMetamodel().listEnums().forEach(mmEnum -> {
+		for( MetamodelEnum<?> mmEnum : repo.getMetamodel().getAllEnums() ) {
 			this.ctx.addKnownTypeNames(mmEnum.getEnumJavaClass().getName());
-		});
-		repo.getMetamodel().listTypes().forEach(mmType -> {
+		}
+		for( MetamodelType<? extends GeneratedMetamodelBean> mmType : repo.getMetamodel().getAllTypes() ) {
 			this.ctx.addKnownTypeNames(mmType.getBeanClass().getName());
-		});
+		}
 
 		// Count main types to generate
 		{

@@ -51,7 +51,7 @@ public class CategorizeStandardMetamodelTypes {
 
 	@Test
 	public void testCategories() throws Exception {
-		Map<Cat, List<MetamodelType<?>>> mmTypesByCat = metamodel.listTypes()
+		Map<Cat, List<MetamodelType<?>>> mmTypesByCat = metamodel.getAllTypes().stream()
 				.collect(Collectors.groupingBy(mmType -> getCat(mmType)));
 		for (Cat cat : Cat.values()) {
 			List<MetamodelType<?>> mmTypes = mmTypesByCat.computeIfAbsent(cat, x -> Collections.emptyList());

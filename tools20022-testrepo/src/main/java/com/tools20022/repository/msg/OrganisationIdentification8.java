@@ -22,8 +22,6 @@ import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.AnyBICIdentifier;
-import com.tools20022.repository.entity.OrganisationIdentification;
-import com.tools20022.repository.entity.PartyIdentificationInformation;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -50,10 +48,6 @@ import javax.xml.bind.annotation.XmlType;
  * OrganisationIdentification8.mmOther}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} =
- * {@linkplain com.tools20022.repository.entity.OrganisationIdentification
- * OrganisationIdentification}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -89,11 +83,6 @@ public class OrganisationIdentification8 {
 	 * {@linkplain com.tools20022.repository.datatype.AnyBICIdentifier
 	 * AnyBICIdentifier}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.OrganisationIdentification#mmAnyBIC
-	 * OrganisationIdentification.mmAnyBIC}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.OrganisationIdentification8
@@ -115,7 +104,6 @@ public class OrganisationIdentification8 {
 	 */
 	public static final MMMessageAttribute mmAnyBIC = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> OrganisationIdentification.mmAnyBIC;
 			componentContext_lazy = () -> OrganisationIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "AnyBIC";
@@ -139,11 +127,6 @@ public class OrganisationIdentification8 {
 	 * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1
 	 * GenericOrganisationIdentification1}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PartyIdentificationInformation#mmOtherIdentification
-	 * PartyIdentificationInformation.mmOtherIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.OrganisationIdentification8
@@ -165,7 +148,6 @@ public class OrganisationIdentification8 {
 	 */
 	public static final MMMessageAssociationEnd mmOther = new MMMessageAssociationEnd() {
 		{
-			businessElementTrace_lazy = () -> PartyIdentificationInformation.mmOtherIdentification;
 			componentContext_lazy = () -> OrganisationIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "Othr";
@@ -182,7 +164,6 @@ public class OrganisationIdentification8 {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
 				messageElement_lazy = () -> Arrays.asList(OrganisationIdentification8.mmAnyBIC, OrganisationIdentification8.mmOther);
-				trace_lazy = () -> OrganisationIdentification.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "OrganisationIdentification8";

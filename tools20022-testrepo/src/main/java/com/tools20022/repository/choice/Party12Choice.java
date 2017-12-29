@@ -20,8 +20,6 @@ package com.tools20022.repository.choice;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMRegistrationStatus;
-import com.tools20022.repository.entity.FinancialInstitution;
-import com.tools20022.repository.entity.PartyIdentificationInformation;
 import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.msg.BranchAndFinancialInstitutionIdentification5;
 import com.tools20022.repository.msg.PartyIdentification43;
@@ -47,10 +45,6 @@ import javax.xml.bind.annotation.XmlType;
  * Party12Choice.mmAgent}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} =
- * {@linkplain com.tools20022.repository.entity.PartyIdentificationInformation
- * PartyIdentificationInformation}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -82,11 +76,6 @@ public class Party12Choice {
 	 * type} = {@linkplain com.tools20022.repository.msg.PartyIdentification43
 	 * PartyIdentification43}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessComponentTrace
-	 * businessComponentTrace} =
-	 * {@linkplain com.tools20022.repository.entity.PartyIdentificationInformation
-	 * PartyIdentificationInformation}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.choice.Party12Choice Party12Choice}
@@ -106,7 +95,6 @@ public class Party12Choice {
 	 */
 	public static final MMMessageAssociationEnd mmParty = new MMMessageAssociationEnd() {
 		{
-			businessComponentTrace_lazy = () -> PartyIdentificationInformation.mmObject();
 			componentContext_lazy = () -> Party12Choice.mmObject();
 			isDerived = false;
 			xmlTag = "Pty";
@@ -130,11 +118,6 @@ public class Party12Choice {
 	 * {@linkplain com.tools20022.repository.msg.BranchAndFinancialInstitutionIdentification5
 	 * BranchAndFinancialInstitutionIdentification5}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessComponentTrace
-	 * businessComponentTrace} =
-	 * {@linkplain com.tools20022.repository.entity.FinancialInstitution
-	 * FinancialInstitution}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.choice.Party12Choice Party12Choice}
@@ -154,7 +137,6 @@ public class Party12Choice {
 	 */
 	public static final MMMessageAssociationEnd mmAgent = new MMMessageAssociationEnd() {
 		{
-			businessComponentTrace_lazy = () -> FinancialInstitution.mmObject();
 			componentContext_lazy = () -> Party12Choice.mmObject();
 			isDerived = false;
 			xmlTag = "Agt";
@@ -172,7 +154,6 @@ public class Party12Choice {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
 				messageElement_lazy = () -> Arrays.asList(Party12Choice.mmParty, Party12Choice.mmAgent);
-				trace_lazy = () -> PartyIdentificationInformation.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Party12Choice";

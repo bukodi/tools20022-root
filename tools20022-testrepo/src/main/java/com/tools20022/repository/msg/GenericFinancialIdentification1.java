@@ -23,9 +23,6 @@ import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice;
 import com.tools20022.repository.datatype.Max35Text;
-import com.tools20022.repository.entity.GenericIdentification;
-import com.tools20022.repository.entity.IdentificationIssuerRole;
-import com.tools20022.repository.entity.OrganisationIdentification;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -54,10 +51,6 @@ import javax.xml.bind.annotation.XmlType;
  * GenericFinancialIdentification1.mmIssuer}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} =
- * {@linkplain com.tools20022.repository.entity.OrganisationIdentification
- * OrganisationIdentification}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -90,11 +83,6 @@ public class GenericFinancialIdentification1 {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
 	 * Max35Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.GenericIdentification#mmIdentification
-	 * GenericIdentification.mmIdentification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.GenericFinancialIdentification1
@@ -114,7 +102,6 @@ public class GenericFinancialIdentification1 {
 	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> GenericIdentification.mmIdentification;
 			componentContext_lazy = () -> GenericFinancialIdentification1.mmObject();
 			isDerived = false;
 			xmlTag = "Id";
@@ -137,11 +124,6 @@ public class GenericFinancialIdentification1 {
 	 * {@linkplain com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice
 	 * FinancialIdentificationSchemeName1Choice}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.GenericIdentification#mmScheme
-	 * GenericIdentification.mmScheme}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.GenericFinancialIdentification1
@@ -161,7 +143,6 @@ public class GenericFinancialIdentification1 {
 	 */
 	public static final MMMessageAssociationEnd mmSchemeName = new MMMessageAssociationEnd() {
 		{
-			businessElementTrace_lazy = () -> GenericIdentification.mmScheme;
 			componentContext_lazy = () -> GenericFinancialIdentification1.mmObject();
 			isDerived = false;
 			xmlTag = "SchmeNm";
@@ -185,11 +166,6 @@ public class GenericFinancialIdentification1 {
 	 * simpleType} = {@linkplain com.tools20022.repository.datatype.Max35Text
 	 * Max35Text}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessComponentTrace
-	 * businessComponentTrace} =
-	 * {@linkplain com.tools20022.repository.entity.IdentificationIssuerRole
-	 * IdentificationIssuerRole}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.GenericFinancialIdentification1
@@ -209,7 +185,6 @@ public class GenericFinancialIdentification1 {
 	 */
 	public static final MMMessageAttribute mmIssuer = new MMMessageAttribute() {
 		{
-			businessComponentTrace_lazy = () -> IdentificationIssuerRole.mmObject();
 			componentContext_lazy = () -> GenericFinancialIdentification1.mmObject();
 			isDerived = false;
 			xmlTag = "Issr";
@@ -226,7 +201,6 @@ public class GenericFinancialIdentification1 {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
 				messageElement_lazy = () -> Arrays.asList(GenericFinancialIdentification1.mmIdentification, GenericFinancialIdentification1.mmSchemeName, GenericFinancialIdentification1.mmIssuer);
-				trace_lazy = () -> OrganisationIdentification.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "GenericFinancialIdentification1";

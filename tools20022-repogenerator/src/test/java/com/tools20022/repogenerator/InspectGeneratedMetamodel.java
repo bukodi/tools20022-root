@@ -126,7 +126,7 @@ public class InspectGeneratedMetamodel {
 
 	@Test
 	public void testRepoConceptTypes() throws Exception {
-		Set<? extends MetamodelType<? extends GeneratedMetamodelBean>> allTypes = StandardMetamodel2013.metamodel()
+		List<? extends MetamodelType<? extends GeneratedMetamodelBean>> allTypes = StandardMetamodel2013.metamodel()
 				.getAllTypes();
 		allTypes.stream().filter(t -> t instanceof MMRepositoryConcept)
 				.forEachOrdered(t -> System.out.println(t.getName()));
@@ -188,12 +188,12 @@ public class InspectGeneratedMetamodel {
 
 	@Test
 	public void testNonContainedTypes() throws Exception {
-		Set<MetamodelAttribute<?, ?>> refs = StandardMetamodel2013.metamodel().listTypes()
+		Set<MetamodelAttribute<?, ?>> refs = StandardMetamodel2013.metamodel().getAllTypes().stream()
 				.flatMap(t -> t.listAllAttributes()).filter(r -> r.isContainment()).collect(Collectors.toSet());
 		Set<MetamodelType<?>> referencedTypes = refs.stream()
 				.flatMap(r -> r.getReferencedType().listSubTypes(true, true)).filter(t -> !t.isAbstract()).distinct()
 				.collect(Collectors.toSet());
-		Set<? extends MetamodelType<?>> nonAbstractTypes = StandardMetamodel2013.metamodel().listTypes()
+		Set<? extends MetamodelType<?>> nonAbstractTypes = StandardMetamodel2013.metamodel().getAllTypes().stream()
 				.filter(t -> !t.isAbstract()).collect(Collectors.toSet());
 
 		System.out.println("--- Contained types : -----");
@@ -243,20 +243,20 @@ public class InspectGeneratedMetamodel {
 	@Test
 	public void countMMTypes() throws Exception {
 		System.out.println(
-				"Abstract types: " + StandardMetamodel2013.metamodel().listTypes().filter(t -> t.isAbstract()).count());
+				"Abstract types: " + StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> t.isAbstract()).count());
 		System.out.println("Non abstract types: "
-				+ StandardMetamodel2013.metamodel().listTypes().filter(t -> !t.isAbstract()).count());
-		System.out.println("Non abstract and RepositoryConcept: " + StandardMetamodel2013.metamodel().listTypes()
+				+ StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> !t.isAbstract()).count());
+		System.out.println("Non abstract and RepositoryConcept: " + StandardMetamodel2013.metamodel().getAllTypes().stream()
 				.filter(t -> !t.isAbstract())
 				.filter(t -> t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
 				.count());
-		System.out.println("Non abstract and non RepositoryConcept: " + StandardMetamodel2013.metamodel().listTypes()
+		System.out.println("Non abstract and non RepositoryConcept: " + StandardMetamodel2013.metamodel().getAllTypes().stream()
 				.filter(t -> !t.isAbstract())
 				.filter(t -> !t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
 				.count());
 		System.out.println();
 		System.out.println("Non abstract and non RepositoryConcept: ");
-		StandardMetamodel2013.metamodel().listTypes().filter(t -> !t.isAbstract())
+		StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> !t.isAbstract())
 				.filter(t -> !t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
 				.forEachOrdered(t -> {
 					System.out.println(t.getName() + " " + repo.getCountByType(t));

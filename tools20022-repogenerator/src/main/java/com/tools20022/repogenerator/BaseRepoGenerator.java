@@ -84,9 +84,6 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	@Override
 	public StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
 		StructuredName name = _getStructuredName(mmElem);
-		if( name == null ) {
-			System.out.println( "Skiped mmElem: " + mmElem.getMetamodel().getName() );
-		}
 		return name;
 	}
 	

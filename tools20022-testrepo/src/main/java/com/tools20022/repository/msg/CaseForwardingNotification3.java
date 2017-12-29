@@ -22,7 +22,6 @@ import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04;
 import com.tools20022.repository.codeset.CaseForwardingNotification3Code;
-import com.tools20022.repository.entity.Reassignment;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -45,9 +44,6 @@ import javax.xml.bind.annotation.XmlType;
  * CaseForwardingNotification3.mmJustification}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageComponentType#getTrace
- * trace} = {@linkplain com.tools20022.repository.entity.Reassignment
- * Reassignment}</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlock
  * messageBuildingBlock} =
@@ -89,11 +85,6 @@ public class CaseForwardingNotification3 {
 	 * {@linkplain com.tools20022.repository.codeset.CaseForwardingNotification3Code
 	 * CaseForwardingNotification3Code}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getBusinessElementTrace
-	 * businessElementTrace} =
-	 * {@linkplain com.tools20022.repository.entity.Reassignment#mmJustification
-	 * Reassignment.mmJustification}</li>
-	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
 	 * componentContext} =
 	 * {@linkplain com.tools20022.repository.msg.CaseForwardingNotification3
@@ -113,7 +104,6 @@ public class CaseForwardingNotification3 {
 	 */
 	public static final MMMessageAttribute mmJustification = new MMMessageAttribute() {
 		{
-			businessElementTrace_lazy = () -> Reassignment.mmJustification;
 			componentContext_lazy = () -> CaseForwardingNotification3.mmObject();
 			isDerived = false;
 			xmlTag = "Justfn";
@@ -131,7 +121,6 @@ public class CaseForwardingNotification3 {
 			{
 				messageElement_lazy = () -> Arrays.asList(CaseForwardingNotification3.mmJustification);
 				messageBuildingBlock_lazy = () -> Arrays.asList(NotificationOfCaseAssignmentV04.mmNotification);
-				trace_lazy = () -> Reassignment.mmObject();
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CaseForwardingNotification3";
