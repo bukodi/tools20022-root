@@ -21,6 +21,7 @@ import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.CountryCode.InternalXmlAdapter;
+import com.tools20022.repository.constraints.CheckCountry;
 import com.tools20022.repository.GeneratedRepository;
 import java.lang.String;
 import java.util.Arrays;
@@ -43,6 +44,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
+ * constraint} =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.constraints.CheckCountry
+ * CheckCountry}</li>
+ * </ul>
+ * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
  * example} =
  * <ul>
@@ -74,6 +82,7 @@ public class CountryCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				constraint_lazy = () -> Arrays.asList(CheckCountry.mmObject());
 				example = Arrays.asList("BE");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CountryCode";

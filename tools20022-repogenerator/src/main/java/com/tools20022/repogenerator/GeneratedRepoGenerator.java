@@ -141,7 +141,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMConstraint.ownerAttribute, mmBean.getOwner());
 		defaultAttribute(gen, MMConstraint.expressionAttribute,
 				mmBean.getExpression());
 		defaultAttribute(gen, MMConstraint.expressionLanguageAttribute,

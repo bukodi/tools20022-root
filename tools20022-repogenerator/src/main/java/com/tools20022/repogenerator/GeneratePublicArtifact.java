@@ -2,16 +2,14 @@ package com.tools20022.repogenerator;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import javax.tools.StandardLocation;
@@ -44,23 +42,51 @@ public class GeneratePublicArtifact {
 	static Path metamodelProject = Paths.get("../tools20022-metamodel");
 
 	public static void main(String[] args) throws Exception {
-		generateArtifact(null);
-//		generateArtifact(BusinessDomain.payments);
-//		generateArtifact(BusinessDomain.cards);
-//		generateArtifact(BusinessDomain.securities);
-//		generateArtifact(BusinessDomain.fx);
-//		generateArtifact(BusinessDomain.trade);
+		try {
+			generateArtifact(null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			generateArtifact(BusinessDomain.payments);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			generateArtifact(BusinessDomain.cards);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			generateArtifact(BusinessDomain.securities);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			generateArtifact(BusinessDomain.fx);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			generateArtifact(BusinessDomain.trade);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");		
+		System.out.println("**** Gerneration finished " + sdf.format(new Date())+" ****");
 	}
 
 	public static void generateArtifact(BusinessDomain domain) throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");		
+		System.out.println("**** Gerneration started " + sdf.format(new Date())+" [" + domain +  "] ****");
 		ProgressMonitor monitor = new ProgressMonitor();
 		final EPackage ecorePackage = ECoreIOHelper.loadECorePackage(baseEcoreResourceName);
+		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 
 		Path mvnProjectRoot;
 		RawRepository repo;
 		if (domain == null) {
 			mvnProjectRoot = Paths.get("../../tools20022-public/tools20022-api-full");
-			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 			EObject xmiRootObj = ECoreIOHelper.loadXMIResource(baseXmiResourceName);
 			repo = loader.load(ecorePackage, xmiRootObj);
 		} else {
@@ -69,8 +95,10 @@ public class GeneratePublicArtifact {
 			// Add Business Application Header
 			selectedMsgIds.add("head.001.001.01");
 
-			byte[] filteredXmiModel = createConsistentSubset(selectedMsgIds, skipBusinessComponents, monitor);
-			repo = loadRepo(ecorePackage, filteredXmiModel);
+			byte[] filteredXmiModel = createConsistentSubset(selectedMsgIds, skipBusinessComponents, monitor,
+					ecorePackage);
+			EObject xmiRootObj = ECoreIOHelper.loadXMIResource(new ByteArrayInputStream(filteredXmiModel));
+			repo = loader.load(ecorePackage, xmiRootObj);
 		}
 
 		GeneratorFileManager fileManager = new GeneratorFileManager(mvnProjectRoot);
@@ -93,20 +121,13 @@ public class GeneratePublicArtifact {
 
 	}
 
-	private static RawRepository loadRepo(EPackage ecorePackage, byte[] filteredXmiModel) throws IOException {
-		EObject rootEObj = ECoreIOHelper.loadXMIResource(new ByteArrayInputStream(filteredXmiModel));
-		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
-		return loader.load(ecorePackage, rootEObj);
-	}
-
 	private static byte[] createConsistentSubset(List<String> selectedMsgIds, boolean skipBusinessComponents,
-			ProgressMonitor monitor) throws Exception {
-		final EPackage ecorePackage = ECoreIOHelper.loadECorePackage(baseEcoreResourceName);
+			ProgressMonitor monitor, EPackage ecorePackage) throws Exception {
 		EObject xmiRootEObj = ECoreIOHelper.loadXMIResource(baseXmiResourceName);
 
 		SaveConsistentSubSet scss = new SaveConsistentSubSet(ecorePackage, xmiRootEObj);
 		Predicate<EObject> seedSetFilter = scss.filterMsgDefByMsgIds(selectedMsgIds);
-		
+
 		ConsistentSubset ss = scss.createSubSet(seedSetFilter, skipBusinessComponents, monitor);
 		return ss.createFilteredXmiModel();
 	}

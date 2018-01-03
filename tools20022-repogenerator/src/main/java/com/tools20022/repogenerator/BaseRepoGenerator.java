@@ -38,6 +38,7 @@ import com.tools20022.metamodel.MMBusinessRole;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMDataType;
@@ -120,7 +121,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessRole) mmElem).getName());
 		} else if (mmElem instanceof MMCode) {
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
-		}
+		} 
 
 		String pkg;
 		String cuName;
@@ -133,7 +134,10 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		}
 
 		// Package
-		if (mmElem instanceof MMMessageDefinition) {
+		if( mmElem instanceof MMConstraint ) {
+			cuName = "Check" + cuName;
+			pkg = "constraints";
+		} else if (mmElem instanceof MMMessageDefinition) {
 			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
 			String areaCode = msgDef.getBusinessArea() == null ? "other"
 					: msgDef.getBusinessArea().getCode() == null ? "other" : msgDef.getBusinessArea().getCode();

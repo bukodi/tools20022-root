@@ -19,6 +19,7 @@ package com.tools20022.repository.datatype;
 
 import com.tools20022.metamodel.MMIdentifierSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.repository.constraints.CheckAnyBIC;
 import com.tools20022.repository.datatype.AnyBICIdentifier.InternalXmlAdapter;
 import com.tools20022.repository.GeneratedRepository;
 import java.lang.String;
@@ -45,6 +46,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
+ * constraint} =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.constraints.CheckAnyBIC
+ * CheckAnyBIC}</li>
+ * </ul>
+ * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
  * example} =
  * <ul>
@@ -73,6 +81,7 @@ public class AnyBICIdentifier {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				constraint_lazy = () -> Arrays.asList(CheckAnyBIC.mmObject());
 				example = Arrays.asList("CHASUS33");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AnyBICIdentifier";

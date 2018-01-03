@@ -78,6 +78,40 @@ public class TestCleanQualifiedTypes {
 	}
 
 	@Test
+	public void testWildcardImports() throws Exception {
+		String src1 = "package foo;"
+				+ "class Foo {"
+				+ "  void fn1( pkg1.Type1 param1, pkg1.Type2 param2, pkg1.Type3 param3, "
+				+ "		pkg1.Type4 param4, pkg1.Type5 param5, pkg1.Type6 param6   ) {}"
+				+ "}";
+
+		JavaClassSource javaSrc = (JavaClassSource) Roaster.parse(src1);
+		CompilationUnit astCu = (CompilationUnit)javaSrc.getInternal();		
+		CleanQualifiedTypes.cleanAst(astCu);
+		String javaTxt = javaSrc.toString();
+		System.out.println( javaTxt );
+		//assertTrue(javaTxt.contains("pkg1.Type1 param1") && javaTxt.contains("pkg2.Type1 param2"));
+	}
+
+	@Test
+	public void testAmbigousWildcardImports() throws Exception {
+		String src1 = "package foo;"
+				+ "class Foo {"
+				+ "  void fn1( pkg1.Type1 param1, pkg1.Type2 param2, pkg1.Type3 param3, "
+				+ "		pkg1.Type4 param4, pkg1.Type5 param5, pkg1.Type6 param6   ) {}"
+				+ ""
+				+ "  void fn2( pkg2.Type1 param1 ) {}"
+				+ "}";
+
+		JavaClassSource javaSrc = (JavaClassSource) Roaster.parse(src1);
+		CompilationUnit astCu = (CompilationUnit)javaSrc.getInternal();		
+		CleanQualifiedTypes.cleanAst(astCu);
+		String javaTxt = javaSrc.toString();
+		System.out.println( javaTxt );
+		//assertTrue(javaTxt.contains("pkg1.Type1 param1") && javaTxt.contains("pkg2.Type1 param2"));
+	}
+
+	@Test
 	public void testDontModifyImports() throws Exception {
 		String src1 = "package foo;"
 				+ "class Foo {"

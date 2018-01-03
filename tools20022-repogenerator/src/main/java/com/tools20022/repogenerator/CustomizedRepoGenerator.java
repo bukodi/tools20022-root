@@ -39,6 +39,7 @@ import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponentType;
@@ -292,11 +293,26 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		gen.flush();
 		return gen;
 	}
+	
+	
+
+	@Override
+	protected MainTypeResult generateMMConstraint(MainTypeResult containerGen, MMConstraint mmBean) {
+		return super.generateMMConstraint(containerGen, mmBean);
+	}
 
 	@Override
 	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
 		
+		for( MMConstraint mmConst: mmBean.getConstraint() ) {
+			String name = mmConst.getName();
+			generateMMConstraint(null, mmConst);			
+		}
+		
+		defaultAttribute(gen, MMRepositoryConcept.constraintAttribute,
+				mmBean.getConstraint());
+
 		List<MMSemanticMarkup> validMarkups = new ArrayList<>();
 		for(MMSemanticMarkup sm :  mmBean.getSemanticMarkup() ) {
 			if( ! sm.getElements().isEmpty() )
@@ -335,8 +351,6 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 				}
 				
 				{ // Create OtherSemanticMarkup
-					System.out.println( "Semantic markup on [" + mmBean.getClass().getSimpleName() + "]" + mmBean.getName());
-					
 					String javadoc  = "type=" + sm.getType().orElse("") + ", ";
 					String init = "new " + OtherSemanticMarkup.class.getName() + "( this, ";
 					init += "\"" + sm.getType().orElse("") + "\", ";

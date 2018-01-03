@@ -786,6 +786,7 @@ public class InspectLoadedRepository {
 
 		Map<String, Set<MMConstraint>> sameDescMap = new HashMap<>();
 		Map<String, Set<MMConstraint>> sameNameMap = new HashMap<>();
+		Map<String, List<MMRepositoryConcept>> constraintOwners = new HashMap<>();
 
 		List<? extends MMConstraint> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
 		System.out.println("--- Constraints : -----");
@@ -799,11 +800,12 @@ public class InspectLoadedRepository {
 			} else {
 				conutNonMsgDef++;
 			}
-
-			String parent = c.getContainer().getClass().getSimpleName();
-			System.out.println(parent + " @" + c.getName() + ": " + c.getDefinition().orElse("-"));
-			System.out.println(c.getExpression());
-			System.out.println("----");
+			
+			String parentName = "["+ c.getContainer().getClass().getSimpleName() + "]" + c.getContainer().getName();
+//			System.out.println(parent + " @" + c.getName() + ": " + c.getDefinition().orElse("-"));
+//			System.out.println(c.getExpression());
+//			System.out.println("----");
+			constraintOwners.computeIfAbsent(c.getName(), x->new ArrayList<>()).add(c.getContainer());
 
 			if (c.getExpression().isPresent()) {
 				countExpr++;
@@ -822,8 +824,8 @@ public class InspectLoadedRepository {
 		List<String> defs = new ArrayList<>(sameDescMap.keySet());
 		Collections.sort(defs);
 		defs.stream().forEachOrdered(d -> {
-			System.out.print(sameDescMap.get(d).iterator().next().getName() + " : ");
-			System.out.println(d);
+			//System.out.print(sameDescMap.get(d).iterator().next().getName() + " : ");
+			//System.out.println(d);
 		});
 		System.out.println("------------------");
 		System.out.println( "Number of all constraints: " + constr.size() );
@@ -840,6 +842,23 @@ public class InspectLoadedRepository {
 			e.getValue().stream().map(c -> c.getDefinition()).forEach(d -> {
 				System.out.println(" - " + d);
 			});
+			System.out.println();
+		}
+
+		System.out.println("------ List constraints by number of owners ------------");
+		List<Map.Entry<String, List<MMRepositoryConcept>>> byNumOfOwners = new ArrayList<>();
+		byNumOfOwners.addAll(constraintOwners.entrySet());
+		Collections.sort(byNumOfOwners, (a,b)->{
+			return a.getValue().size() - b.getValue().size();
+		});
+		
+		for( Map.Entry<String, List<MMRepositoryConcept>> e : byNumOfOwners ) {
+			System.out.println( e.getKey() + " " + e.getValue().size() );			
+			String desc = sameNameMap.get(e.getKey()).iterator().next().getDefinition().orElse("-no desc");
+			System.out.println("  " + desc );
+			for( MMRepositoryConcept o : e.getValue() ) {
+				System.out.println("   [" + o.getClass().getSimpleName() + "]" + o.getName());
+			}
 			System.out.println();
 		}
 
