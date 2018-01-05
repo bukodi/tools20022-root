@@ -160,7 +160,7 @@ public class RoasterHelper {
 
 	public static String escapeJavaDoc( String docTxt) {
 		return docTxt.replace("&", "&amp;").replace(">", "&gt;").replace("<",
-				"&lt;");
+				"&lt;").replace("\r\n", "<br>\n");
 	}
 
 	public static String escapeSourceString( String srcString ) {

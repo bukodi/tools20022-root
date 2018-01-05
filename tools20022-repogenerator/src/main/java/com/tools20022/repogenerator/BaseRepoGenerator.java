@@ -71,6 +71,8 @@ import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,GeneratedMetamodelBean> {
 
+	int USE_LIST_BUILDER_ABOVE = 500;
+
 	/*** Customizable options ***/
 	protected String basePackageName = "com.tools20022.repository";
 	protected String mainClassSimpleName = "GeneratedRepository";
@@ -121,7 +123,9 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessRole) mmElem).getName());
 		} else if (mmElem instanceof MMCode) {
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
-		} 
+		} else if (mmElem instanceof MMConstraint ) {
+			
+		}
 
 		String pkg;
 		String cuName;
@@ -135,8 +139,11 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 
 		// Package
 		if( mmElem instanceof MMConstraint ) {
-			cuName = "Check" + cuName;
-			pkg = "constraints";
+			MMConstraint mmConstr = (MMConstraint) mmElem;
+			StructuredName mainTypeName = StructuredName.primaryType(basePackageName + ".constraints", RoasterHelper.convertToJavaName("Constraint" + mmConstr.getName()));
+			StructuredName containername = getStructuredName( mmElem.getContainer() );			
+			StructuredName memberName = StructuredName.member(mainTypeName, "for" + containername.getSimpleName());
+			return memberName;
 		} else if (mmElem instanceof MMMessageDefinition) {
 			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
 			String areaCode = msgDef.getBusinessArea() == null ? "other"
@@ -624,14 +631,11 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			docTxt = "An instance of " + repoObj.getMetamodel().getName() + ".";
 		}
 		// Replace <, >, & chars
-		docTxt = docTxt.replaceAll("&", "&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
-		docTxt = docTxt.replaceAll("\r\n", "<br>\n");
+		docTxt = RoasterHelper.escapeJavaDoc(docTxt);
 		docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
 		docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
 		javaDocHolder.getJavaDoc().setText(docTxt);
 	}
-
-	int USE_LIST_BUILDER_ABOVE = 500;
 
 	protected StructuredName createLongListBuilder(TypeResult gen, List<?> elems) {
 

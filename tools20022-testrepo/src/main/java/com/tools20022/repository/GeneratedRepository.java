@@ -76,8 +76,8 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 */
 	public static final MMBusinessProcessCatalogue catalogue = new MMBusinessProcessCatalogue() {
 		{
-			repository_lazy = () -> GeneratedRepository.mmObject();
 			topLevelCatalogueEntry_lazy = () -> Arrays.asList(CashManagementLatestVersion.mmObject(), BUSINESSPROCESS_FOR_ROLES.mmObject());
+			repository_lazy = () -> GeneratedRepository.mmObject();
 		}
 	};
 	/**
@@ -205,7 +205,6 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 */
 	public static final MMDataDictionary dataDict = new MMDataDictionary() {
 		{
-			repository_lazy = () -> GeneratedRepository.mmObject();
 			topLevelDictionaryEntry_lazy = () -> Arrays.asList(ClearingSystemIdentification2Choice.mmObject(), ClearingSystemMemberIdentification2.mmObject(), FinancialIdentificationSchemeName1Choice.mmObject(),
 					GenericFinancialIdentification1.mmObject(), PostalAddress6.mmObject(), FinancialInstitutionIdentification8.mmObject(), BranchData2.mmObject(), BranchAndFinancialInstitutionIdentification5.mmObject(),
 					DateAndPlaceOfBirth.mmObject(), OrganisationIdentificationSchemeName1Choice.mmObject(), GenericOrganisationIdentification1.mmObject(), PersonIdentificationSchemeName1Choice.mmObject(),
@@ -215,6 +214,7 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 					AddressType2Code.mmObject(), Max16Text.mmObject(), PhoneNumber.mmObject(), BICFIIdentifier.mmObject(), Max2048Text.mmObject(), AnyBICIdentifier.mmObject(), NamePrefix1Code.mmObject(),
 					ExternalClearingSystemIdentification1Code.mmObject(), ExternalFinancialInstitutionIdentification1Code.mmObject(), ExternalOrganisationIdentification1Code.mmObject(), ExternalPersonIdentification1Code.mmObject(),
 					CaseForwardingNotificationCode.mmObject(), CaseForwardingNotification3Code.mmObject());
+			repository_lazy = () -> GeneratedRepository.mmObject();
 		}
 	};
 

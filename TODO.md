@@ -25,6 +25,10 @@
 - [ ] Load external codesets  
 - [ ] Rename MsgdefType.Document to MsgdefType.XmlDocument  
 - [ ] replace RawRepository with a XMIBackedRepository class
+- [ ] Generate parametrized MMTypes: MMConstarint<T>, RuntimeInstanceAware<T>, RuntimePropertyAware<T,V>
+- [ ] add newInstance, getValuie, setValue methods and constructorLambda, getterLambda, setterLambda, validatorLambda fields
+- [ ] Use java.utilOption in property getters/setters, and use JAXB annotations on fields instead of property getters 
+ 
 
 # Toolchain
 - [ ] Create tools20022-public repo on github, and copy tools200222-core, tools20022-metamodel and tools20022-repository  

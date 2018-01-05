@@ -17,23 +17,25 @@
 
 package com.tools20022.metamodel;
 
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
+
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import com.tools20022.metamodel.*;
-import java.util.Collections;
-import java.util.Date;
-import java.util.function.Supplier;
-import java.util.List;
-import java.util.Optional;
+import com.tools20022.core.repo.Validator;
 
 /**
  * A rule that must be universally satisfied i.e. all conditions required for
  * the Constraint to be applicable, are known.
  */
-public class MMConstraint implements MMRepositoryConcept {
+public abstract class MMConstraint<T> implements MMRepositoryConcept {
 
 	/**
 	 * The description of a Constraint in a specific language, defined in
@@ -62,6 +64,8 @@ public class MMConstraint implements MMRepositoryConcept {
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
+	
+	protected Validator<T> validator;
 
 	@Override
 	public MMRepositoryConcept getContainer() {
@@ -156,5 +160,9 @@ public class MMConstraint implements MMRepositoryConcept {
 	@Override
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+
+	public Validator<T> getValidator(){
+		return validator;
 	}
 }

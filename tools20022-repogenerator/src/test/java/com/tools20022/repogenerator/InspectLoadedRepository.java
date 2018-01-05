@@ -36,10 +36,10 @@ public class InspectLoadedRepository {
 		try {
 			EPackage ecorePkg = ECoreIOHelper
 					.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
-//			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-//					ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
 			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-					ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
+					ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
+//			EObject rootEObj = ECoreIOHelper.loadXMIResource(
+//					ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 			repo = loader.load(ecorePkg, rootEObj);
 		} catch (IOException e) {
@@ -814,7 +814,7 @@ public class InspectLoadedRepository {
 			Set<MMConstraint> set1 = sameDescMap.computeIfAbsent(c.getDefinition().orElse("-"),
 					x -> new LinkedHashSet<MMConstraint>());
 			set1.add(c);
-			Set<MMConstraint> set = sameNameMap.computeIfAbsent(c.getDefinition().orElse("-"),
+			Set<MMConstraint> set = sameNameMap.computeIfAbsent(c.getName(),
 					x -> new LinkedHashSet<MMConstraint>());
 			set.add(c);
 		}
@@ -853,7 +853,11 @@ public class InspectLoadedRepository {
 		});
 		
 		for( Map.Entry<String, List<MMRepositoryConcept>> e : byNumOfOwners ) {
-			System.out.println( e.getKey() + " " + e.getValue().size() );			
+			System.out.println( e.getKey() + " " + e.getValue().size() );
+			Set<MMConstraint> constrSet = sameNameMap.get(e.getKey());
+			if( constrSet == null ) {
+				System.out.println();
+			}
 			String desc = sameNameMap.get(e.getKey()).iterator().next().getDefinition().orElse("-no desc");
 			System.out.println("  " + desc );
 			for( MMRepositoryConcept o : e.getValue() ) {

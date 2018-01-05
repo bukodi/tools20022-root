@@ -267,6 +267,7 @@ public class GenerateRepoGenerator {
 			MMMessageElementContainer.metaType())); 
 
 	final static Set<MetamodelType<?>> STATIC_FIELD = new HashSet<>( Arrays.asList(MMXor.metaType(),
+			MMConstraint.metaType(),
 			MMBusinessRole.metaType(),
 			MMMessageDefinitionIdentifier.metaType(), 
 			MMBusinessProcessCatalogue.metaType(),

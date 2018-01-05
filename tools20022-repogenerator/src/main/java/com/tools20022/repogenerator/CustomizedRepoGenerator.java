@@ -2,21 +2,22 @@ package com.tools20022.repogenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
+import org.jboss.forge.roaster.model.source.MethodSource;
 import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
@@ -25,6 +26,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.repo.AbstractBusinessComponent;
 import com.tools20022.core.repo.GeneratedRepoBean;
 import com.tools20022.core.repo.NextVersion;
+import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.generators.GenerationContext;
@@ -57,12 +59,9 @@ import com.tools20022.metamodel.ext.DTCCSynonym;
 import com.tools20022.metamodel.ext.FIXSynonym;
 import com.tools20022.metamodel.ext.ISO15022Synonym;
 import com.tools20022.metamodel.ext.OtherSemanticMarkup;
-import com.tools20022.repogenerator.BaseRepoGenerator.AttrValue;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
-import com.tools20022.repogenerator.resulttypes.DataTypeResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
-import com.tools20022.repogenerator.resulttypes.JaxbPropertyResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
@@ -77,6 +76,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	public void prepare(RawRepository repo, ProgressMonitor monitor) {
 		
 	}
+	
+	private Map<String,List<MMConstraint>> constraintsByName = new LinkedHashMap<>();
 
 	@Override
 	public void generate(RawRepository repo, ProgressMonitor monitor) {
@@ -108,7 +109,67 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		// Create repo
 
 		MainTypeResult repoGen = generateMMRepository(repo.getRootObject());
+		
+		for( Entry<String, List<MMConstraint>> e: constraintsByName.entrySet() ) {
+			generateConstraintGroup(e.getValue());			
+		}
+	}
+	
+	protected void generateConstraintGroup( List<MMConstraint> constraintsWithSameName ) {
+		
+		MMConstraint first = constraintsWithSameName.get(0);
+		StructuredName nameOfFirst = getStructuredName(first);
+		StructuredName maintypeName = StructuredName.primaryType(nameOfFirst.getPackage(), nameOfFirst.getCompilationUnit());
+		MainTypeResult genMain = new MainTypeResult(ctx, null, maintypeName) {
+			{
+				src = ctx.createSourceFile(JavaClassSource.class, maintypeName);
+			}
+			@Override
+			public void flush() {
+				if( ! ctx.isSkipDocGeneration()) {
+					String docTxt = RoasterHelper.escapeJavaDoc(first.getDefinition().orElse("-no doc-"));
+					src.getJavaDoc().setText(docTxt);
+				}
 
+				ctx.saveSourceFile(src);
+			}			
+		};
+		
+		for( MMConstraint constr : constraintsWithSameName) {
+			StructuredName containerName = getStructuredName(constr.getContainer());
+			String validatorMethodName = "check" + containerName.getCompilationUnit();
+			StaticFieldResult staticField = generateMMConstraint(genMain, constr, containerName);
+			
+			MethodSource<JavaClassSource> validatorMethod = genMain.src.addMethod().setName(validatorMethodName);
+			validatorMethod.setPublic().setStatic(true);
+			validatorMethod.addThrows(Exception.class);
+			validatorMethod.addParameter(containerName.getFullName(), "obj");
+			validatorMethod.setBody("throw new " + NotImplementedConstraintException.class.getName() + "();");
+			RoasterHelper.addToJavaDoc(validatorMethod, RoasterHelper.escapeJavaDoc(constr.getDefinition().orElse("- no definition -")));
+		}
+		genMain.flush();
+	}
+	
+	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint mmBean, StructuredName containerName ) {
+		StructuredName staticFieldName = getStructuredName(mmBean);
+		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, staticFieldName);
+		gen.staticFieldSrc = containerGen.src.addField().setName( staticFieldName.getMemberName());
+		gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+		String parametrizedType = MMConstraint.class.getName() + "<" + containerName.getFullName() + ">";
+		gen.staticFieldSrc.setType( parametrizedType );
+		gen.staticFieldInitializerBody = new StringJoiner("\n", "new " + parametrizedType + "(){{", "}};");
+		gen.staticFieldInitializerBody.add("validator=" + containerGen.src.getName() + "::check" + containerName.getCompilationUnit() + ";");
+
+		implementMMRepositoryConcept(gen, mmBean);
+		implementMMModelEntity(gen, mmBean);
+		defaultAttribute(gen, MMConstraint.ownerAttribute, mmBean.getOwner());
+		defaultAttribute(gen, MMConstraint.expressionAttribute,
+				mmBean.getExpression());
+		defaultAttribute(gen, MMConstraint.expressionLanguageAttribute,
+				mmBean.getExpressionLanguage());		
+		
+		gen.flush();
+		return gen;
 	}
 
 	@Override
@@ -294,20 +355,12 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		return gen;
 	}
 	
-	
-
-	@Override
-	protected MainTypeResult generateMMConstraint(MainTypeResult containerGen, MMConstraint mmBean) {
-		return super.generateMMConstraint(containerGen, mmBean);
-	}
-
 	@Override
 	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
 		
-		for( MMConstraint mmConst: mmBean.getConstraint() ) {
-			String name = mmConst.getName();
-			generateMMConstraint(null, mmConst);			
+		for( MMConstraint mmConstr: mmBean.getConstraint() ) {
+			constraintsByName.computeIfAbsent(mmConstr.getName(), x->new ArrayList<>()).add(mmConstr);
 		}
 		
 		defaultAttribute(gen, MMRepositoryConcept.constraintAttribute,
@@ -381,181 +434,6 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		defaultAttribute(gen, MMRepositoryConcept.removalDateAttribute, mmBean.getRemovalDate());
 		defaultAttribute(gen, MMRepositoryConcept.nameAttribute, mmBean.getName());
 		defaultAttribute(gen, MMRepositoryConcept.definitionAttribute, mmBean.getDefinition());
-	}
-
-	@Override
-	protected void implementMMMessageConstruct(TypeResult gen, MMMessageConstruct mmBean) {
-		super.implementMMMessageConstruct(gen, mmBean);
-		// TDOD: XMLElement annot
-	}
-
-	protected void _implementMMModelEntity(MainTypeResult gen, MMModelEntity me) {
-		/*** MMModelEntity.Members.previousVersion ***/
-		if (me.getPreviousVersion().isPresent()) {
-			StructuredName prevVer = getStructuredName(me.getPreviousVersion().get());
-			gen.src.addImport(prevVer.getFullName());
-			gen.src.addAnnotation(PreviousVersion.class).setLiteralValue(prevVer.getSimpleName() + ".class");
-		}
-
-		/*** MMModelEntity.Members.nextVersions ***/
-		if (!me.getNextVersions().isEmpty()) {
-			for (MMModelEntity nv : me.getNextVersions()) {
-				StructuredName nextVer = getStructuredName(nv);
-				gen.src.addImport(nextVer.getFullName());
-				AnnotationSource<JavaClassSource> annot = gen.src.addAnnotation(NextVersion.class);
-				annot.setLiteralValue(nextVer.getSimpleName() + ".class");
-			}
-		}
-
-	}
-
-	protected void _implementMMRepositoryConcept(MainTypeResult gen, MMRepositoryConcept rc) {
-		_implementMMModelEntity(gen, rc);
-
-		/*** MMRepositoryConcept.Members.definition ***/
-		if (rc.getDefinition().isPresent()) {
-			String doc = rc.getDefinition().get();
-			// Replace <, >, & chars
-			doc = doc.replaceAll("&", "	&amp;").replaceAll(">", "&gt;").replaceAll("<", "&lt;");
-			gen.src.getJavaDoc().setText(doc);
-		}
-	}
-
-	protected GenerationResult _generateMMBusinessComponent(GenerationResult container, MMBusinessComponent bc) {
-		MainTypeResult gen = _generateDefaultClass(bc);
-		_implementMMRepositoryConcept(gen, bc);
-
-		/*** MMBusinessComponent.superType ***/
-		if (bc.getSuperType().isPresent()) {
-			StructuredName superTypename = getStructuredName(bc.getSuperType().get());
-			gen.src.addImport(superTypename.getFullName());
-			gen.src.setSuperType(superTypename.getSimpleName());
-		} else {
-			gen.src.addImport(AbstractBusinessComponent.class);
-			gen.src.setSuperType(AbstractBusinessComponent.class);
-		}
-
-		/*** MMBusinessComponent.Members.element ***/
-		for (MMBusinessElement elem : bc.getElement()) {
-			try {
-				_generateMMBusinessElements(gen, elem);
-			} catch (Exception e) {
-				System.err.println(bc);
-				e.printStackTrace();
-				System.err.println();
-			}
-		}
-		return gen;
-	}
-
-	protected GenerationResult _generateMMBusinessArea(GenerationResult container, MMBusinessArea ba) {
-		MainTypeResult gen = _generateDefaultClass(ba);
-		_implementMMRepositoryConcept(gen, ba);
-
-		/*** MMBusinessArea.Members.messageDefinition ***/
-		for (MMMessageDefinition md : ba.getMessageDefinition()) {
-			try {
-				_generateMMMessageDefinition(gen, md);
-			} catch (Exception e) {
-				System.err.println(md);
-				e.printStackTrace();
-				System.err.println();
-			}
-		}
-		return gen;
-	}
-
-	protected GenerationResult _generateMMMessageDefinition(GenerationResult container, MMMessageDefinition md) {
-		MainTypeResult gen = _generateDefaultClass(md);
-		_implementMMRepositoryConcept(gen, md);
-
-		/*** MMBusinessArea.Members.messageDefinition ***/
-		for (MMMessageBuildingBlock mbb : md.getMessageBuildingBlock()) {
-			/** MMMessageBuildingBlock.Members.minOccurs **/
-			StructuredName typeName;
-			if (mbb.getComplexType().isPresent()) {
-				MMMessageComponentType ct = mbb.getComplexType().get();
-				typeName = getStructuredName(ct);
-			} else if (mbb.getSimpleType().isPresent()) {
-				MMDataType dt = mbb.getSimpleType().get();
-				typeName = getStructuredName(dt);
-			} else {
-				throw new RuntimeException("Constraint violated:"
-						+ MMMessageBuildingBlock.checkMessageBuildingBlockHasExactlyOneType.getName());
-			}
-
-			gen.src.addImport(typeName.getFullName());
-			String wrappedSimpleTypeName = typeName.getSimpleName();
-			if (mbb.getMaxOccurs().isPresent() && mbb.getMaxOccurs().get() > 1) {
-				gen.src.addImport(List.class);
-				wrappedSimpleTypeName = List.class.getSimpleName() + "<" + wrappedSimpleTypeName + ">";
-			} else if (mbb.getMinOccurs().isPresent() && mbb.getMinOccurs().get() == 0) {
-				gen.src.addImport(Optional.class);
-				wrappedSimpleTypeName = Optional.class.getSimpleName() + "<" + wrappedSimpleTypeName + ">";
-			}
-
-			// TODO: use getJavaName instead of mbb.getName()
-			gen.src.addProperty(wrappedSimpleTypeName, mbb.getName());
-
-		}
-
-		return gen;
-	}
-
-	// TODO: return with property as composite GenerationResult
-	protected GenerationResult _generateMMBusinessElements(MainTypeResult container, MMBusinessElement elem) {
-		StructuredName typeName;
-		if (elem instanceof MMBusinessAttribute) {
-			MMBusinessAttribute attr = (MMBusinessAttribute) elem;
-			if (attr.getSimpleType().isPresent()) {
-				MMDataType st = attr.getSimpleType().get();
-				typeName = getStructuredName(st);
-			} else if (attr.getComplexType().isPresent()) {
-				MMBusinessComponent ct = attr.getComplexType().get();
-				typeName = getStructuredName(ct);
-			} else {
-				throw new RuntimeException(
-						"Constraint violated:" + MMBusinessAttribute.checkBusinessAttributeHasExactlyOneType);
-			}
-		} else if (elem instanceof MMBusinessAssociationEnd) {
-			MMBusinessAssociationEnd assoc = (MMBusinessAssociationEnd) elem;
-			MMBusinessComponent ct = assoc.getType();
-			typeName = getStructuredName(ct);
-		} else {
-			throw new RuntimeException("Invalid type hierarchy :" + elem);
-		}
-
-		// TODO: use getJavaName instead of elem.getName()
-		PropertySource<JavaClassSource> prop = container.src.addProperty(typeName.getFullName(),
-				elem.getName().toString());
-		return null;
-	}
-
-	protected MainTypeResult _generateDefaultClass(GeneratedMetamodelBean mmElem) {
-		StructuredName javaName = null;
-		try {
-			javaName = getStructuredName(mmElem);
-			if (javaName == null)
-				return null;
-
-			Optional<String> doc = Optional.empty();
-			if (mmElem instanceof MMRepositoryConcept)
-				doc = ((MMRepositoryConcept) mmElem).getDefinition();
-
-			MainTypeResult gen = new MainTypeResult(ctx, mmElem, getStructuredName(mmElem));
-			gen.src.addImport(GeneratedRepoBean.class);
-			gen.src.addImport(mmElem.getClass());
-			gen.src.addInterface(
-					GeneratedRepoBean.class.getSimpleName() + "<" + mmElem.getClass().getSimpleName() + ">");
-
-			return gen;
-		} catch (Exception e) {
-			System.err.println("--- " + mmElem.toString() + " ---");
-			System.err.println("Name:" + javaName);
-			e.printStackTrace();
-			System.err.println();
-			return null;
-		}
 	}
 
 }

@@ -22,7 +22,6 @@ import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04;
-import com.tools20022.repository.constraints.CheckSupplementaryDataRule;
 import com.tools20022.repository.datatype.Max350Text;
 import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.other.SupplementaryDataEnvelope1;
@@ -68,8 +67,8 @@ import javax.xml.bind.annotation.XmlType;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraints.CheckSupplementaryDataRule
- * CheckSupplementaryDataRule}</li>
+ * {@linkplain com.tools20022.repository.constraints.ConstraintSupplementaryDataRule#forSupplementaryData1
+ * ConstraintSupplementaryDataRule.forSupplementaryData1}</li>
  * </ul>
  * </li>
  * <li>
@@ -183,7 +182,7 @@ public class SupplementaryData1 {
 				messageElement_lazy = () -> Arrays.asList(SupplementaryData1.mmPlaceAndName, SupplementaryData1.mmEnvelope);
 				messageBuildingBlock_lazy = () -> Arrays.asList(NotificationOfCaseAssignmentV04.mmSupplementaryData);
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(CheckSupplementaryDataRule.mmObject());
+				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraints.ConstraintSupplementaryDataRule.forSupplementaryData1);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "SupplementaryData1";
 				definition = "Additional information that can not be captured in the structured fields and/or any other specific block.";

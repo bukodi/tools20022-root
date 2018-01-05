@@ -16,21 +16,20 @@ public class StaticFieldResult extends TypeResult {
 
 	public final MainTypeResult containerGen;
 	public FieldSource<JavaClassSource> staticFieldSrc;
-	public StringJoiner staticFieldInitializerBody = new StringJoiner(";\n");
+	public StringJoiner staticFieldInitializerBody = new StringJoiner("\n");
 
 	public StaticFieldResult(MainTypeResult containerGen, GeneratedMetamodelBean mmBean, StructuredName baseName) {
 		super(containerGen.ctx, mmBean, baseName);
 		this.containerGen = containerGen;
+		this.staticFieldInitializerBody = new StringJoiner("\n", "new " + mmBean.getMetamodel().getBeanClass().getName() + "(){{", "}};");
 	}
 
 	@Override
 	public void flush() {
-		String init = "new " + mmBean.getMetamodel().getBeanClass().getName() + "(){{";
 		for (AttrResult attrGen : attrGens) {
-			init += attrGen.initializationSource + "\n";
+			staticFieldInitializerBody.add( attrGen.initializationSource );
 		}
-		init += "}};";
-		staticFieldSrc.setLiteralInitializer(init);
+		staticFieldSrc.setLiteralInitializer(staticFieldInitializerBody.toString());
 
 		if (!ctx.isSkipDocGeneration()) {
 			String attrsJavadoc = getJavaDocForAttrs();

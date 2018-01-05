@@ -136,11 +136,12 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		return gen;
 	}
 
-	protected MainTypeResult generateMMConstraint(MainTypeResult containerGen,
-			MMConstraint mmBean) {
-		MainTypeResult gen = defaultMainType(mmBean);
+	protected StaticFieldResult generateMMConstraint(
+			MainTypeResult containerGen, MMConstraint mmBean) {
+		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
+		defaultAttribute(gen, MMConstraint.ownerAttribute, mmBean.getOwner());
 		defaultAttribute(gen, MMConstraint.expressionAttribute,
 				mmBean.getExpression());
 		defaultAttribute(gen, MMConstraint.expressionLanguageAttribute,
@@ -157,11 +158,11 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				.getTopLevelCatalogueEntry()) {
 			generateMMTopLevelCatalogueEntry(gen, mmChild);
 		}
-		defaultAttribute(gen, MMBusinessProcessCatalogue.repositoryAttribute,
-				mmBean.getRepository());
 		defaultAttribute(gen,
 				MMBusinessProcessCatalogue.topLevelCatalogueEntryAttribute,
 				mmBean.getTopLevelCatalogueEntry());
+		defaultAttribute(gen, MMBusinessProcessCatalogue.repositoryAttribute,
+				mmBean.getRepository());
 		gen.flush();
 		return gen;
 	}
@@ -188,11 +189,11 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				.getTopLevelDictionaryEntry()) {
 			generateMMTopLevelDictionaryEntry(gen, mmChild);
 		}
-		defaultAttribute(gen, MMDataDictionary.repositoryAttribute,
-				mmBean.getRepository());
 		defaultAttribute(gen,
 				MMDataDictionary.topLevelDictionaryEntryAttribute,
 				mmBean.getTopLevelDictionaryEntry());
+		defaultAttribute(gen, MMDataDictionary.repositoryAttribute,
+				mmBean.getRepository());
 		gen.flush();
 		return gen;
 	}
@@ -334,18 +335,18 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMBusinessElement mmChild : mmBean.getElement()) {
 			generateMMBusinessElement(gen, mmChild);
 		}
+		defaultAttribute(gen, MMBusinessComponent.subTypeAttribute,
+				mmBean.getSubType());
+		defaultAttribute(gen, MMBusinessComponent.superTypeAttribute,
+				mmBean.getSuperType());
 		defaultAttribute(gen, MMBusinessComponent.elementAttribute,
 				mmBean.getElement());
-		defaultAttribute(gen, MMBusinessComponent.derivationComponentAttribute,
-				mmBean.getDerivationComponent());
 		defaultAttribute(gen, MMBusinessComponent.associationDomainAttribute,
 				mmBean.getAssociationDomain());
 		defaultAttribute(gen, MMBusinessComponent.derivationElementAttribute,
 				mmBean.getDerivationElement());
-		defaultAttribute(gen, MMBusinessComponent.superTypeAttribute,
-				mmBean.getSuperType());
-		defaultAttribute(gen, MMBusinessComponent.subTypeAttribute,
-				mmBean.getSubType());
+		defaultAttribute(gen, MMBusinessComponent.derivationComponentAttribute,
+				mmBean.getDerivationComponent());
 		gen.flush();
 		return gen;
 	}
@@ -461,6 +462,8 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		for (MMBusinessRole mmChild : mmBean.getBusinessRole()) {
 			generateMMBusinessRole(gen, mmChild);
 		}
+		defaultAttribute(gen, MMBusinessProcess.businessProcessTraceAttribute,
+				mmBean.getBusinessProcessTrace());
 		defaultAttribute(gen, MMBusinessProcess.extenderAttribute,
 				mmBean.getExtender());
 		defaultAttribute(gen, MMBusinessProcess.extendedAttribute,
@@ -471,8 +474,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				mmBean.getIncluder());
 		defaultAttribute(gen, MMBusinessProcess.businessRoleAttribute,
 				mmBean.getBusinessRole());
-		defaultAttribute(gen, MMBusinessProcess.businessProcessTraceAttribute,
-				mmBean.getBusinessProcessTrace());
 		gen.flush();
 		return gen;
 	}
@@ -530,15 +531,15 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		defaultAttribute(gen, MMMessageTransmission.derivationAttribute,
 				mmBean.getDerivation());
 		defaultAttribute(gen,
+				MMMessageTransmission.businessTransactionAttribute,
+				mmBean.getBusinessTransaction());
+		defaultAttribute(gen,
 				MMMessageTransmission.messageTypeDescriptionAttribute,
 				mmBean.getMessageTypeDescription());
 		defaultAttribute(gen, MMMessageTransmission.sendAttribute,
 				mmBean.getSend());
 		defaultAttribute(gen, MMMessageTransmission.receiveAttribute,
 				mmBean.getReceive());
-		defaultAttribute(gen,
-				MMMessageTransmission.businessTransactionAttribute,
-				mmBean.getBusinessTransaction());
 		gen.flush();
 		return gen;
 	}
@@ -561,6 +562,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		defaultAttribute(gen,
+				MMMessageTransportMode.businessTransactionAttribute,
+				mmBean.getBusinessTransaction());
+		defaultAttribute(gen,
 				MMMessageTransportMode.boundedCommunicationDelayAttribute,
 				mmBean.getBoundedCommunicationDelay());
 		defaultAttribute(gen,
@@ -582,9 +586,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				mmBean.getDurability());
 		defaultAttribute(gen, MMMessageTransportMode.messageCastingAttribute,
 				mmBean.getMessageCasting());
-		defaultAttribute(gen,
-				MMMessageTransportMode.businessTransactionAttribute,
-				mmBean.getBusinessTransaction());
 		defaultAttribute(gen,
 				MMMessageTransportMode.messageDeliveryOrderAttribute,
 				mmBean.getMessageDeliveryOrder());
