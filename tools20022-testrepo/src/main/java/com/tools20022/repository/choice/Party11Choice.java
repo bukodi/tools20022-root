@@ -25,6 +25,7 @@ import com.tools20022.repository.msg.OrganisationIdentification8;
 import com.tools20022.repository.msg.PersonIdentification5;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
@@ -62,15 +63,16 @@ import javax.xml.bind.annotation.XmlType;
  * definition} = "Nature or use of the account."</li>
  * </ul>
  */
-@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlAccessorType(XmlAccessType.NONE)
 @XmlType(name = "Party11Choice", propOrder = {"organisationIdentification", "privateIdentification"})
 public class Party11Choice {
 
 	final static private AtomicReference<MMChoiceComponent> mmObject_lazy = new AtomicReference<>();
+	@XmlElement(name = "OrgId", required = true)
 	protected OrganisationIdentification8 organisationIdentification;
 	/**
-	 * Unique and unambiguous way to identify an organisation.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -97,7 +99,7 @@ public class Party11Choice {
 	 */
 	public static final MMMessageAssociationEnd mmOrganisationIdentification = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> Party11Choice.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.choice.Party11Choice.mmObject();
 			isDerived = false;
 			xmlTag = "OrgId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -109,10 +111,11 @@ public class Party11Choice {
 			type_lazy = () -> OrganisationIdentification8.mmObject();
 		}
 	};
+	@XmlElement(name = "PrvtId", required = true)
 	protected PersonIdentification5 privateIdentification;
 	/**
-	 * Unique and unambiguous identification of a person, eg, passport.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -139,7 +142,7 @@ public class Party11Choice {
 	 */
 	public static final MMMessageAssociationEnd mmPrivateIdentification = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> Party11Choice.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.choice.Party11Choice.mmObject();
 			isDerived = false;
 			xmlTag = "PrvtId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -155,7 +158,7 @@ public class Party11Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(Party11Choice.mmOrganisationIdentification, Party11Choice.mmPrivateIdentification);
+				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.Party11Choice.mmOrganisationIdentification, com.tools20022.repository.choice.Party11Choice.mmPrivateIdentification);
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Party11Choice";
@@ -165,21 +168,21 @@ public class Party11Choice {
 		return mmObject_lazy.get();
 	}
 
-	@XmlElement(name = "OrgId", required = true)
 	public OrganisationIdentification8 getOrganisationIdentification() {
 		return organisationIdentification;
 	}
 
-	public void setOrganisationIdentification(OrganisationIdentification8 organisationIdentification) {
-		this.organisationIdentification = organisationIdentification;
+	public Party11Choice setOrganisationIdentification(OrganisationIdentification8 organisationIdentification) {
+		this.organisationIdentification = Objects.requireNonNull(organisationIdentification);
+		return this;
 	}
 
-	@XmlElement(name = "PrvtId", required = true)
 	public PersonIdentification5 getPrivateIdentification() {
 		return privateIdentification;
 	}
 
-	public void setPrivateIdentification(PersonIdentification5 privateIdentification) {
-		this.privateIdentification = privateIdentification;
+	public Party11Choice setPrivateIdentification(PersonIdentification5 privateIdentification) {
+		this.privateIdentification = Objects.requireNonNull(privateIdentification);
+		return this;
 	}
 }

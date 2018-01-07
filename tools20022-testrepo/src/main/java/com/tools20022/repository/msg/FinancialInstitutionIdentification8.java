@@ -26,6 +26,7 @@ import com.tools20022.repository.datatype.Max140Text;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Optional;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
@@ -72,18 +73,16 @@ import javax.xml.bind.annotation.XmlType;
  * definition} = "Set of elements used to identify a financial institution."</li>
  * </ul>
  */
-@XmlAccessorType(XmlAccessType.PROPERTY)
-@XmlType(name = "FinancialInstitutionIdentification8", propOrder = {"BICFI", "clearingSystemMemberIdentification", "name", "postalAddress", "other"})
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlType(name = "FinancialInstitutionIdentification8", propOrder = {"bICFI", "clearingSystemMemberIdentification", "name", "postalAddress", "other"})
 public class FinancialInstitutionIdentification8 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
+	@XmlElement(name = "BICFI")
 	protected BICFIIdentifier bICFI;
 	/**
-	 * Code allocated to a financial institution by the ISO 9362 Registration
-	 * Authority as described in ISO 9362
-	 * "Banking - Banking telecommunication messages - Business identifier code (BIC)"
-	 * .
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -113,7 +112,7 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAttribute mmBICFI = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "BICFI";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -124,10 +123,11 @@ public class FinancialInstitutionIdentification8 {
 			simpleType_lazy = () -> BICFIIdentifier.mmObject();
 		}
 	};
+	@XmlElement(name = "ClrSysMmbId")
 	protected ClearingSystemMemberIdentification2 clearingSystemMemberIdentification;
 	/**
-	 * Information used to identify a member within a clearing system.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -155,7 +155,7 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAssociationEnd mmClearingSystemMemberIdentification = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "ClrSysMmbId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -167,11 +167,11 @@ public class FinancialInstitutionIdentification8 {
 			type_lazy = () -> com.tools20022.repository.msg.ClearingSystemMemberIdentification2.mmObject();
 		}
 	};
+	@XmlElement(name = "Nm")
 	protected Max140Text name;
 	/**
-	 * Name by which an agent is known and which is usually used to identify
-	 * that agent.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -200,7 +200,7 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAttribute mmName = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "Nm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -211,11 +211,11 @@ public class FinancialInstitutionIdentification8 {
 			simpleType_lazy = () -> Max140Text.mmObject();
 		}
 	};
+	@XmlElement(name = "PstlAdr")
 	protected PostalAddress6 postalAddress;
 	/**
-	 * Information that locates and identifies a specific address, as defined by
-	 * postal services.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -243,7 +243,7 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAssociationEnd mmPostalAddress = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "PstlAdr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -255,11 +255,11 @@ public class FinancialInstitutionIdentification8 {
 			type_lazy = () -> com.tools20022.repository.msg.PostalAddress6.mmObject();
 		}
 	};
+	@XmlElement(name = "Othr")
 	protected GenericFinancialIdentification1 other;
 	/**
-	 * Unique identification of an agent, as assigned by an institution, using
-	 * an identification scheme.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -288,7 +288,7 @@ public class FinancialInstitutionIdentification8 {
 	 */
 	public static final MMMessageAssociationEnd mmOther = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> FinancialInstitutionIdentification8.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmObject();
 			isDerived = false;
 			xmlTag = "Othr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -304,8 +304,9 @@ public class FinancialInstitutionIdentification8 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(FinancialInstitutionIdentification8.mmBICFI, FinancialInstitutionIdentification8.mmClearingSystemMemberIdentification, FinancialInstitutionIdentification8.mmName,
-						FinancialInstitutionIdentification8.mmPostalAddress, FinancialInstitutionIdentification8.mmOther);
+				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmBICFI, com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmClearingSystemMemberIdentification,
+						com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmName, com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmPostalAddress,
+						com.tools20022.repository.msg.FinancialInstitutionIdentification8.mmOther);
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "FinancialInstitutionIdentification8";
@@ -315,48 +316,48 @@ public class FinancialInstitutionIdentification8 {
 		return mmObject_lazy.get();
 	}
 
-	@XmlElement(name = "BICFI")
-	public BICFIIdentifier getBICFI() {
-		return bICFI;
+	public Optional<BICFIIdentifier> getBICFI() {
+		return bICFI == null ? Optional.empty() : Optional.of(bICFI);
 	}
 
-	public void setBICFI(BICFIIdentifier bICFI) {
+	public FinancialInstitutionIdentification8 setBICFI(BICFIIdentifier bICFI) {
 		this.bICFI = bICFI;
+		return this;
 	}
 
-	@XmlElement(name = "ClrSysMmbId")
-	public ClearingSystemMemberIdentification2 getClearingSystemMemberIdentification() {
-		return clearingSystemMemberIdentification;
+	public Optional<ClearingSystemMemberIdentification2> getClearingSystemMemberIdentification() {
+		return clearingSystemMemberIdentification == null ? Optional.empty() : Optional.of(clearingSystemMemberIdentification);
 	}
 
-	public void setClearingSystemMemberIdentification(com.tools20022.repository.msg.ClearingSystemMemberIdentification2 clearingSystemMemberIdentification) {
+	public FinancialInstitutionIdentification8 setClearingSystemMemberIdentification(com.tools20022.repository.msg.ClearingSystemMemberIdentification2 clearingSystemMemberIdentification) {
 		this.clearingSystemMemberIdentification = clearingSystemMemberIdentification;
+		return this;
 	}
 
-	@XmlElement(name = "Nm")
-	public Max140Text getName() {
-		return name;
+	public Optional<Max140Text> getName() {
+		return name == null ? Optional.empty() : Optional.of(name);
 	}
 
-	public void setName(Max140Text name) {
+	public FinancialInstitutionIdentification8 setName(Max140Text name) {
 		this.name = name;
+		return this;
 	}
 
-	@XmlElement(name = "PstlAdr")
-	public PostalAddress6 getPostalAddress() {
-		return postalAddress;
+	public Optional<PostalAddress6> getPostalAddress() {
+		return postalAddress == null ? Optional.empty() : Optional.of(postalAddress);
 	}
 
-	public void setPostalAddress(com.tools20022.repository.msg.PostalAddress6 postalAddress) {
+	public FinancialInstitutionIdentification8 setPostalAddress(com.tools20022.repository.msg.PostalAddress6 postalAddress) {
 		this.postalAddress = postalAddress;
+		return this;
 	}
 
-	@XmlElement(name = "Othr")
-	public GenericFinancialIdentification1 getOther() {
-		return other;
+	public Optional<GenericFinancialIdentification1> getOther() {
+		return other == null ? Optional.empty() : Optional.of(other);
 	}
 
-	public void setOther(com.tools20022.repository.msg.GenericFinancialIdentification1 other) {
+	public FinancialInstitutionIdentification8 setOther(com.tools20022.repository.msg.GenericFinancialIdentification1 other) {
 		this.other = other;
+		return this;
 	}
 }

@@ -25,6 +25,7 @@ import com.tools20022.repository.msg.BranchAndFinancialInstitutionIdentification
 import com.tools20022.repository.msg.PartyIdentification43;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
@@ -61,15 +62,16 @@ import javax.xml.bind.annotation.XmlType;
  * "Identification of a person, an organisation or a financial institution."</li>
  * </ul>
  */
-@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlAccessorType(XmlAccessType.NONE)
 @XmlType(name = "Party12Choice", propOrder = {"party", "agent"})
 public class Party12Choice {
 
 	final static private AtomicReference<MMChoiceComponent> mmObject_lazy = new AtomicReference<>();
+	@XmlElement(name = "Pty", required = true)
 	protected PartyIdentification43 party;
 	/**
-	 * Identification of a person or an organisation.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -95,7 +97,7 @@ public class Party12Choice {
 	 */
 	public static final MMMessageAssociationEnd mmParty = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> Party12Choice.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.choice.Party12Choice.mmObject();
 			isDerived = false;
 			xmlTag = "Pty";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -107,10 +109,11 @@ public class Party12Choice {
 			type_lazy = () -> PartyIdentification43.mmObject();
 		}
 	};
+	@XmlElement(name = "Agt", required = true)
 	protected BranchAndFinancialInstitutionIdentification5 agent;
 	/**
-	 * Identification of a financial institution.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -137,7 +140,7 @@ public class Party12Choice {
 	 */
 	public static final MMMessageAssociationEnd mmAgent = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> Party12Choice.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.choice.Party12Choice.mmObject();
 			isDerived = false;
 			xmlTag = "Agt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -153,7 +156,7 @@ public class Party12Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(Party12Choice.mmParty, Party12Choice.mmAgent);
+				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.Party12Choice.mmParty, com.tools20022.repository.choice.Party12Choice.mmAgent);
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Party12Choice";
@@ -163,21 +166,21 @@ public class Party12Choice {
 		return mmObject_lazy.get();
 	}
 
-	@XmlElement(name = "Pty", required = true)
 	public PartyIdentification43 getParty() {
 		return party;
 	}
 
-	public void setParty(PartyIdentification43 party) {
-		this.party = party;
+	public Party12Choice setParty(PartyIdentification43 party) {
+		this.party = Objects.requireNonNull(party);
+		return this;
 	}
 
-	@XmlElement(name = "Agt", required = true)
 	public BranchAndFinancialInstitutionIdentification5 getAgent() {
 		return agent;
 	}
 
-	public void setAgent(BranchAndFinancialInstitutionIdentification5 agent) {
-		this.agent = agent;
+	public Party12Choice setAgent(BranchAndFinancialInstitutionIdentification5 agent) {
+		this.agent = Objects.requireNonNull(agent);
+		return this;
 	}
 }

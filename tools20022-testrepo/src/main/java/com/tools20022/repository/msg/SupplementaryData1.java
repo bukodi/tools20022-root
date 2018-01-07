@@ -27,6 +27,8 @@ import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.other.SupplementaryDataEnvelope1;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Objects;
+import java.util.Optional;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
@@ -83,17 +85,16 @@ import javax.xml.bind.annotation.XmlType;
  * </li>
  * </ul>
  */
-@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlAccessorType(XmlAccessType.NONE)
 @XmlType(name = "SupplementaryData1", propOrder = {"placeAndName", "envelope"})
 public class SupplementaryData1 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
+	@XmlElement(name = "PlcAndNm")
 	protected Max350Text placeAndName;
 	/**
-	 * Unambiguous reference to the location where the supplementary data must
-	 * be inserted in the message instance.<br>
-	 * In the case of XML, this is expressed by a valid XPath.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -122,7 +123,7 @@ public class SupplementaryData1 {
 	 */
 	public static final MMMessageAttribute mmPlaceAndName = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> SupplementaryData1.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.SupplementaryData1.mmObject();
 			isDerived = false;
 			xmlTag = "PlcAndNm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -133,10 +134,11 @@ public class SupplementaryData1 {
 			simpleType_lazy = () -> Max350Text.mmObject();
 		}
 	};
+	@XmlElement(name = "Envlp", required = true)
 	protected SupplementaryDataEnvelope1 envelope;
 	/**
-	 * Technical element wrapping the supplementary data.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -163,7 +165,7 @@ public class SupplementaryData1 {
 	 */
 	public static final MMMessageAssociationEnd mmEnvelope = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> SupplementaryData1.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.SupplementaryData1.mmObject();
 			isDerived = false;
 			xmlTag = "Envlp";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -179,7 +181,7 @@ public class SupplementaryData1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(SupplementaryData1.mmPlaceAndName, SupplementaryData1.mmEnvelope);
+				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msg.SupplementaryData1.mmPlaceAndName, com.tools20022.repository.msg.SupplementaryData1.mmEnvelope);
 				messageBuildingBlock_lazy = () -> Arrays.asList(NotificationOfCaseAssignmentV04.mmSupplementaryData);
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraints.ConstraintSupplementaryDataRule.forSupplementaryData1);
@@ -191,21 +193,21 @@ public class SupplementaryData1 {
 		return mmObject_lazy.get();
 	}
 
-	@XmlElement(name = "PlcAndNm")
-	public Max350Text getPlaceAndName() {
-		return placeAndName;
+	public Optional<Max350Text> getPlaceAndName() {
+		return placeAndName == null ? Optional.empty() : Optional.of(placeAndName);
 	}
 
-	public void setPlaceAndName(Max350Text placeAndName) {
+	public SupplementaryData1 setPlaceAndName(Max350Text placeAndName) {
 		this.placeAndName = placeAndName;
+		return this;
 	}
 
-	@XmlElement(name = "Envlp", required = true)
 	public SupplementaryDataEnvelope1 getEnvelope() {
 		return envelope;
 	}
 
-	public void setEnvelope(SupplementaryDataEnvelope1 envelope) {
-		this.envelope = envelope;
+	public SupplementaryData1 setEnvelope(SupplementaryDataEnvelope1 envelope) {
+		this.envelope = Objects.requireNonNull(envelope);
+		return this;
 	}
 }

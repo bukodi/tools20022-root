@@ -130,7 +130,7 @@ public class Unmarshall {
 			NotificationOfCaseAssignmentV04.Document doc = (NotificationOfCaseAssignmentV04.Document)obj;
 			NotificationOfCaseAssignmentV04 msg = doc.messageBody;
 			System.out.println( "ID= " + msg.getHeader().getIdentification() );
-			AddressType2Code addrType = msg.getAssignment().getAssignee().getParty().getPostalAddress().getAddressType();
+			AddressType2Code addrType = msg.getAssignment().getAssignee().getParty().getPostalAddress().get().getAddressType().get();
 			System.out.println( "AddrType=" + addrType.getName());
 
 		}

@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -55,18 +56,13 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	}
 
 	private <B extends GeneratedMetamodelBean> MMTypeImpl<B> getTypeImplByClass(Class<B> beanClass) {
-		Class<?> keyClass;
-		if( ! mmTypesByClass.containsKey(beanClass)) {
-			keyClass = beanClass.getSuperclass();
-		} else {
-			keyClass = beanClass;
+		for( Class<?> keyClass = beanClass; keyClass != null ; keyClass = keyClass.getSuperclass() ) {
+			@SuppressWarnings("unchecked")
+			MMTypeImpl<B> ret = (MMTypeImpl<B>) mmTypesByClass.get(keyClass);
+			if( ret != null )
+				return ret;
 		}
-		
-		@SuppressWarnings("unchecked")
-		MMTypeImpl<B> ret = (MMTypeImpl<B>) mmTypesByClass.get(keyClass);
-		if (ret == null)
-			throw new NoSuchElementException("No metatype for class " + beanClass);
-		return ret;
+		throw new NoSuchElementException("No metatype for class " + beanClass);
 	}
 
 	@Override
@@ -670,6 +666,9 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 	}
+	
+	private static Set<String> NON_GETTER_METHOD_NAMES = new HashSet<>( Arrays.asList(
+			"getContainer", "getValidator", "getValueAccessor", "getValueMutator", "getInstanceCreator"));
 
 	/**
 	 * @return the property name or <code>null</code> if the method isn't a getter
@@ -679,7 +678,9 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			return null;
 		if (Modifier.isStatic(getterMethod.getModifiers()))
 			return null;
-		if ("getContainer".equals(getterMethod.getName()))
+		if ( NON_GETTER_METHOD_NAMES.contains(getterMethod.getName()))
+			return null;
+		if( getterMethod.getParameterTypes().length > 0 )
 			return null;
 		String propName;
 		if (getterMethod.getName().startsWith("get")) {

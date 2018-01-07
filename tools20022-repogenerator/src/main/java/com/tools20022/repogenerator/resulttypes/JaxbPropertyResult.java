@@ -23,13 +23,12 @@ public class JaxbPropertyResult extends PropertyResult {
 		
 		MMMessageConstruct mmMsgConstruct = (MMMessageConstruct)mmBean;
 		
-		AnnotationSource<JavaClassSource> jaxbAnnot = beanGetterSrc.addAnnotation(XmlElement.class);
+		AnnotationSource<JavaClassSource> jaxbAnnot = beanFieldSrc.addAnnotation(XmlElement.class);
 		jaxbAnnot.setStringValue("name", mmMsgConstruct.getXmlTag().get());
 		if( mmMsgConstruct.getMinOccurs().orElse(0) > 0 ) {
 			jaxbAnnot.setLiteralValue("required", "true");				
 		}
-		String fieldName = RoasterHelper.getPropertyNameFromGetterName(beanGetterSrc.getName());
-		((JaxbMainTypeResult)containerGen).propOrder.add(fieldName);	
+		((JaxbMainTypeResult)containerGen).propOrder.add(beanFieldSrc.getName());	
 		
 	}
 	

@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -519,104 +521,19 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			throw new IllegalArgumentException("Unsupported bean type: " + mmBean.getClass());
 		}
 	}
-
+	
+	
 	protected PropertyResult defaultPropertyResult(MMConstruct mmBean, MainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
 
 		// TODO: support optionals 
-		
-		MMRepositoryType propertyMMType = mmBean.getMemberType();
-		String propertyType = getStructuredName(propertyMMType).getFullName();
-		boolean isMultiple = mmBean.getMaxOccurs().orElse(100) > 1; 
-		boolean isOptional = mmBean.getMinOccurs().orElse(0) == 0;
-		
 		PropertyResult gen = containerGen.addProperty( mmBean, name);
-		{
-			String fieldName = name.getMemberName().substring(0, 1).toLowerCase() + name.getMemberName().substring(1);
-			fieldName = RoasterHelper.convertToJavaName(fieldName);
-			gen.beanFieldSrc = containerGen.src.addField().setName(fieldName);
-			gen.beanFieldSrc.setProtected();
-			if( isMultiple )
-				gen.beanFieldSrc.setType(List.class.getName() + "<" + propertyType + ">");
-			else
-				gen.beanFieldSrc.setType(propertyType);
-		}
-		{
-			// TODO: support isXXX() for boolean type
-			gen.beanGetterSrc = containerGen.src.addMethod().setName("get" + name.getMemberName());
-			gen.beanGetterSrc.setPublic();
-			if( isMultiple )
-				gen.beanGetterSrc.setReturnType(List.class.getName() + "<" + propertyType + ">");
-			else
-				gen.beanGetterSrc.setReturnType(propertyType);
-			gen.beanGetterSrc.setBody("return " + gen.beanFieldSrc.getName() + ";");
-		}
-		{
-			// TODO: support isXXX() for boolean type
-			gen.beanSetterSrc = containerGen.src.addMethod().setName("set" + name.getMemberName());
-			gen.beanSetterSrc.setPublic();
-			if( isMultiple )
-				gen.beanSetterSrc.addParameter(List.class.getName() + "<" + propertyType + ">", gen.beanFieldSrc.getName());
-			else
-				gen.beanSetterSrc.addParameter(propertyType, gen.beanFieldSrc.getName());
-			gen.beanSetterSrc.setBody("this." + gen.beanFieldSrc.getName() + " = " + gen.beanFieldSrc.getName() + ";");
-		}
-		{
-			gen.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
-			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
-			createJavaDoc(gen.staticFieldSrc, mmBean);
-		}
 		return gen;
 	}
 
 	protected JaxbPropertyResult defaultJaxbPropertyResult(MMMessageConstruct mmBean, JaxbMainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
-
-		// TODO: support optionals 
-		
-		MMRepositoryType propertyMMType = mmBean.getMemberType();
-		String propertyType = getStructuredName(propertyMMType).getFullName();
-		boolean isMultiple = mmBean.getMaxOccurs().orElse(100) > 1; 
-		boolean isOptional = mmBean.getMinOccurs().orElse(0) == 0;
-		
 		JaxbPropertyResult gen = containerGen.addProperty( mmBean, name);
-		{
-			String fieldName = name.getMemberName().substring(0, 1).toLowerCase() + name.getMemberName().substring(1);
-			fieldName = RoasterHelper.convertToJavaName(fieldName);
-			gen.beanFieldSrc = containerGen.src.addField().setName(fieldName);
-			gen.beanFieldSrc.setProtected();
-			if( isMultiple )
-				gen.beanFieldSrc.setType(List.class.getName() + "<" + propertyType + ">");
-			else
-				gen.beanFieldSrc.setType(propertyType);
-		}
-		{
-			// TODO: support isXXX() for boolean type
-			gen.beanGetterSrc = containerGen.src.addMethod().setName("get" + name.getMemberName());
-			gen.beanGetterSrc.setPublic();
-			if( isMultiple )
-				gen.beanGetterSrc.setReturnType(List.class.getName() + "<" + propertyType + ">");
-			else
-				gen.beanGetterSrc.setReturnType(propertyType);
-			gen.beanGetterSrc.setBody("return " + gen.beanFieldSrc.getName() + ";");
-		}
-		{
-			// TODO: support isXXX() for boolean type
-			gen.beanSetterSrc = containerGen.src.addMethod().setName("set" + name.getMemberName());
-			gen.beanSetterSrc.setPublic();
-			if( isMultiple )
-				gen.beanSetterSrc.addParameter(List.class.getName() + "<" + propertyType + ">", gen.beanFieldSrc.getName());
-			else
-				gen.beanSetterSrc.addParameter(propertyType, gen.beanFieldSrc.getName());
-			gen.beanSetterSrc.setBody("this." + gen.beanFieldSrc.getName() + " = " + gen.beanFieldSrc.getName() + ";");
-		}
-		{
-			gen.staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
-			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
-			createJavaDoc(gen.staticFieldSrc, mmBean);
-		}
 		return gen;
 	}
 

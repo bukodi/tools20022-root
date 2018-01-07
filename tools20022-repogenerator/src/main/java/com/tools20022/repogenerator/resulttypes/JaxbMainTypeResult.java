@@ -13,6 +13,7 @@ import org.jboss.forge.roaster.model.source.JavaClassSource;
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMRepositoryConcept;
@@ -27,7 +28,7 @@ public class JaxbMainTypeResult extends MainTypeResult {
 	}
 
 	@Override
-	public JaxbPropertyResult addProperty( GeneratedMetamodelBean propertyMMBean, StructuredName propertyBaseName ) {
+	public JaxbPropertyResult addProperty( MMConstruct propertyMMBean, StructuredName propertyBaseName ) {
 		JaxbPropertyResult newProperty = new JaxbPropertyResult(this, (MMMessageConstruct) propertyMMBean, propertyBaseName);
 		properties.add(newProperty);
 		return newProperty;
@@ -37,7 +38,7 @@ public class JaxbMainTypeResult extends MainTypeResult {
 	@Override
 	public void flush() {
 		{ // Add JAXB annotations
-			/*@XmlAccessorType(XmlAccessType.FIELD)
+			/*@XmlAccessorType(XmlAccessType.NONE)
 			@XmlType(name = "NotificationOfCaseAssignmentV04", propOrder = {
 			    "hdr",
 			    "_case",
@@ -45,7 +46,7 @@ public class JaxbMainTypeResult extends MainTypeResult {
 			    "ntfctn",
 			    "splmtryData"
 			}) */
-			src.addAnnotation(XmlAccessorType.class).setEnumValue(XmlAccessType.PROPERTY);
+			src.addAnnotation(XmlAccessorType.class).setEnumValue(XmlAccessType.NONE);
 			AnnotationSource<JavaClassSource> jaxbAnnot = src.addAnnotation(XmlType.class);
 			jaxbAnnot.setStringValue("name", ((MMRepositoryConcept)mmBean).getName());
 			if( mmBean instanceof MMMessageDefinition ) {				

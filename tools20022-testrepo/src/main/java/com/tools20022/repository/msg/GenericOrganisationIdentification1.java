@@ -26,6 +26,8 @@ import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Objects;
+import java.util.Optional;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
@@ -66,15 +68,16 @@ import javax.xml.bind.annotation.XmlType;
  * definition} = "Information related to an identification of an organisation."</li>
  * </ul>
  */
-@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlAccessorType(XmlAccessType.NONE)
 @XmlType(name = "GenericOrganisationIdentification1", propOrder = {"identification", "schemeName", "issuer"})
 public class GenericOrganisationIdentification1 {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
+	@XmlElement(name = "Id", required = true)
 	protected Max35Text identification;
 	/**
-	 * Identification assigned by an institution.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -101,7 +104,7 @@ public class GenericOrganisationIdentification1 {
 	 */
 	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> GenericOrganisationIdentification1.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.GenericOrganisationIdentification1.mmObject();
 			isDerived = false;
 			xmlTag = "Id";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -112,10 +115,11 @@ public class GenericOrganisationIdentification1 {
 			simpleType_lazy = () -> Max35Text.mmObject();
 		}
 	};
+	@XmlElement(name = "SchmeNm")
 	protected OrganisationIdentificationSchemeName1Choice schemeName;
 	/**
-	 * Name of the identification scheme.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
@@ -142,7 +146,7 @@ public class GenericOrganisationIdentification1 {
 	 */
 	public static final MMMessageAssociationEnd mmSchemeName = new MMMessageAssociationEnd() {
 		{
-			componentContext_lazy = () -> GenericOrganisationIdentification1.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.GenericOrganisationIdentification1.mmObject();
 			isDerived = false;
 			xmlTag = "SchmeNm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -154,10 +158,11 @@ public class GenericOrganisationIdentification1 {
 			type_lazy = () -> OrganisationIdentificationSchemeName1Choice.mmObject();
 		}
 	};
+	@XmlElement(name = "Issr")
 	protected Max35Text issuer;
 	/**
-	 * Entity that assigns the identification.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -184,7 +189,7 @@ public class GenericOrganisationIdentification1 {
 	 */
 	public static final MMMessageAttribute mmIssuer = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> GenericOrganisationIdentification1.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.GenericOrganisationIdentification1.mmObject();
 			isDerived = false;
 			xmlTag = "Issr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -199,7 +204,8 @@ public class GenericOrganisationIdentification1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(GenericOrganisationIdentification1.mmIdentification, GenericOrganisationIdentification1.mmSchemeName, GenericOrganisationIdentification1.mmIssuer);
+				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msg.GenericOrganisationIdentification1.mmIdentification, com.tools20022.repository.msg.GenericOrganisationIdentification1.mmSchemeName,
+						com.tools20022.repository.msg.GenericOrganisationIdentification1.mmIssuer);
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "GenericOrganisationIdentification1";
@@ -209,30 +215,30 @@ public class GenericOrganisationIdentification1 {
 		return mmObject_lazy.get();
 	}
 
-	@XmlElement(name = "Id", required = true)
 	public Max35Text getIdentification() {
 		return identification;
 	}
 
-	public void setIdentification(Max35Text identification) {
-		this.identification = identification;
+	public GenericOrganisationIdentification1 setIdentification(Max35Text identification) {
+		this.identification = Objects.requireNonNull(identification);
+		return this;
 	}
 
-	@XmlElement(name = "SchmeNm")
-	public OrganisationIdentificationSchemeName1Choice getSchemeName() {
-		return schemeName;
+	public Optional<OrganisationIdentificationSchemeName1Choice> getSchemeName() {
+		return schemeName == null ? Optional.empty() : Optional.of(schemeName);
 	}
 
-	public void setSchemeName(OrganisationIdentificationSchemeName1Choice schemeName) {
+	public GenericOrganisationIdentification1 setSchemeName(OrganisationIdentificationSchemeName1Choice schemeName) {
 		this.schemeName = schemeName;
+		return this;
 	}
 
-	@XmlElement(name = "Issr")
-	public Max35Text getIssuer() {
-		return issuer;
+	public Optional<Max35Text> getIssuer() {
+		return issuer == null ? Optional.empty() : Optional.of(issuer);
 	}
 
-	public void setIssuer(Max35Text issuer) {
+	public GenericOrganisationIdentification1 setIssuer(Max35Text issuer) {
 		this.issuer = issuer;
+		return this;
 	}
 }

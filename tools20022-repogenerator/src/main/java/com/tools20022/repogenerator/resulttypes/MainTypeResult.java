@@ -12,6 +12,7 @@ import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.repogenerator.RawRepository;
 
 public class MainTypeResult extends TypeResult {
@@ -25,7 +26,7 @@ public class MainTypeResult extends TypeResult {
 		super(ctx, mmBean, baseName);
 	}
 	
-	public PropertyResult addProperty( GeneratedMetamodelBean propertyMMBean, StructuredName propertyBaseName ) {
+	public PropertyResult addProperty( MMConstruct propertyMMBean, StructuredName propertyBaseName ) {
 		PropertyResult newProperty = new PropertyResult(this, propertyMMBean, propertyBaseName);
 		properties.add(newProperty);
 		return newProperty;

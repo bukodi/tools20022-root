@@ -26,6 +26,8 @@ import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.GeneratedRepository;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Objects;
+import java.util.Optional;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
@@ -69,15 +71,16 @@ import javax.xml.bind.annotation.XmlType;
  * definition} = "Date and place of birth of a person."</li>
  * </ul>
  */
-@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlAccessorType(XmlAccessType.NONE)
 @XmlType(name = "DateAndPlaceOfBirth", propOrder = {"birthDate", "provinceOfBirth", "cityOfBirth", "countryOfBirth"})
 public class DateAndPlaceOfBirth {
 
 	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
+	@XmlElement(name = "BirthDt", required = true)
 	protected ISODate birthDate;
 	/**
-	 * Date on which a person is born.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -104,7 +107,7 @@ public class DateAndPlaceOfBirth {
 	 */
 	public static final MMMessageAttribute mmBirthDate = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> DateAndPlaceOfBirth.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
 			xmlTag = "BirthDt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -115,10 +118,11 @@ public class DateAndPlaceOfBirth {
 			simpleType_lazy = () -> ISODate.mmObject();
 		}
 	};
+	@XmlElement(name = "PrvcOfBirth")
 	protected Max35Text provinceOfBirth;
 	/**
-	 * Province where a person was born.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -145,7 +149,7 @@ public class DateAndPlaceOfBirth {
 	 */
 	public static final MMMessageAttribute mmProvinceOfBirth = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> DateAndPlaceOfBirth.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
 			xmlTag = "PrvcOfBirth";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -156,10 +160,11 @@ public class DateAndPlaceOfBirth {
 			simpleType_lazy = () -> Max35Text.mmObject();
 		}
 	};
+	@XmlElement(name = "CityOfBirth", required = true)
 	protected Max35Text cityOfBirth;
 	/**
-	 * City where a person was born.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -186,7 +191,7 @@ public class DateAndPlaceOfBirth {
 	 */
 	public static final MMMessageAttribute mmCityOfBirth = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> DateAndPlaceOfBirth.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
 			xmlTag = "CityOfBirth";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -197,10 +202,11 @@ public class DateAndPlaceOfBirth {
 			simpleType_lazy = () -> Max35Text.mmObject();
 		}
 	};
+	@XmlElement(name = "CtryOfBirth", required = true)
 	protected CountryCode countryOfBirth;
 	/**
-	 * Country where a person was born.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
@@ -227,7 +233,7 @@ public class DateAndPlaceOfBirth {
 	 */
 	public static final MMMessageAttribute mmCountryOfBirth = new MMMessageAttribute() {
 		{
-			componentContext_lazy = () -> DateAndPlaceOfBirth.mmObject();
+			componentContext_lazy = () -> com.tools20022.repository.msg.DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
 			xmlTag = "CtryOfBirth";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -242,7 +248,8 @@ public class DateAndPlaceOfBirth {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(DateAndPlaceOfBirth.mmBirthDate, DateAndPlaceOfBirth.mmProvinceOfBirth, DateAndPlaceOfBirth.mmCityOfBirth, DateAndPlaceOfBirth.mmCountryOfBirth);
+				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msg.DateAndPlaceOfBirth.mmBirthDate, com.tools20022.repository.msg.DateAndPlaceOfBirth.mmProvinceOfBirth,
+						com.tools20022.repository.msg.DateAndPlaceOfBirth.mmCityOfBirth, com.tools20022.repository.msg.DateAndPlaceOfBirth.mmCountryOfBirth);
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DateAndPlaceOfBirth";
@@ -252,39 +259,39 @@ public class DateAndPlaceOfBirth {
 		return mmObject_lazy.get();
 	}
 
-	@XmlElement(name = "BirthDt", required = true)
 	public ISODate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(ISODate birthDate) {
-		this.birthDate = birthDate;
+	public DateAndPlaceOfBirth setBirthDate(ISODate birthDate) {
+		this.birthDate = Objects.requireNonNull(birthDate);
+		return this;
 	}
 
-	@XmlElement(name = "PrvcOfBirth")
-	public Max35Text getProvinceOfBirth() {
-		return provinceOfBirth;
+	public Optional<Max35Text> getProvinceOfBirth() {
+		return provinceOfBirth == null ? Optional.empty() : Optional.of(provinceOfBirth);
 	}
 
-	public void setProvinceOfBirth(Max35Text provinceOfBirth) {
+	public DateAndPlaceOfBirth setProvinceOfBirth(Max35Text provinceOfBirth) {
 		this.provinceOfBirth = provinceOfBirth;
+		return this;
 	}
 
-	@XmlElement(name = "CityOfBirth", required = true)
 	public Max35Text getCityOfBirth() {
 		return cityOfBirth;
 	}
 
-	public void setCityOfBirth(Max35Text cityOfBirth) {
-		this.cityOfBirth = cityOfBirth;
+	public DateAndPlaceOfBirth setCityOfBirth(Max35Text cityOfBirth) {
+		this.cityOfBirth = Objects.requireNonNull(cityOfBirth);
+		return this;
 	}
 
-	@XmlElement(name = "CtryOfBirth", required = true)
 	public CountryCode getCountryOfBirth() {
 		return countryOfBirth;
 	}
 
-	public void setCountryOfBirth(CountryCode countryOfBirth) {
-		this.countryOfBirth = countryOfBirth;
+	public DateAndPlaceOfBirth setCountryOfBirth(CountryCode countryOfBirth) {
+		this.countryOfBirth = Objects.requireNonNull(countryOfBirth);
+		return this;
 	}
 }
