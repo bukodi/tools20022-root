@@ -38,6 +38,7 @@ import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.core.metamodel.ReflectionBasedMetamodel;
 import com.tools20022.core.metamodel.RuntimeInstanceAware;
 import com.tools20022.core.metamodel.RuntimePropertyAware;
+import com.tools20022.core.metamodel.RuntimeValidatorAware;
 import com.tools20022.core.metamodel.StaticMemembersBuilder;
 import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.GenerationContext;
@@ -57,13 +58,15 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 	
 	private final static Set<String> BEAN_AWARE_TYPE_NAMES = new HashSet<>();
 	private final static Set<String> PROPRTY_AWARE_TYPE_NAMES = new HashSet<>();
+	private final static Set<String> VALIDATOR_AWARE_TYPE_NAMES = new HashSet<>();
 	
 	static {
 		BEAN_AWARE_TYPE_NAMES.add("MessageDefinition");
 		BEAN_AWARE_TYPE_NAMES.add("BusinessComponent");
 		PROPRTY_AWARE_TYPE_NAMES.add("MessageBuildingBlock");
 		PROPRTY_AWARE_TYPE_NAMES.add("BusinessAttribute");
-		PROPRTY_AWARE_TYPE_NAMES.add("AssociationEnd");		
+		PROPRTY_AWARE_TYPE_NAMES.add("AssociationEnd");
+		VALIDATOR_AWARE_TYPE_NAMES.add("Constraint");
 	}
 
 	protected boolean generateStaticStructs = true;
@@ -256,6 +259,10 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 			// Implement XXXAware interfaces
 			if( PROPRTY_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
 				src.addInterface(RuntimePropertyAware.class);
+			}
+			// Implement XXXAware interfaces
+			if( VALIDATOR_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
+				src.addInterface(RuntimeValidatorAware.class);
 			}
 		}
 

@@ -36,10 +36,12 @@ public class InspectLoadedRepository {
 		try {
 			EPackage ecorePkg = ECoreIOHelper
 					.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
-			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-					ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
+//			EObject rootEObj = ECoreIOHelper.loadXMIResource(
+//					ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
 //			EObject rootEObj = ECoreIOHelper.loadXMIResource(
 //					ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
+			EObject rootEObj = ECoreIOHelper.loadXMIResource(
+					ECoreIOHelper.class.getResourceAsStream("/model/20180205_ISO20022_2013_eRepository.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 			repo = loader.load(ecorePkg, rootEObj);
 		} catch (IOException e) {
@@ -866,6 +868,15 @@ public class InspectLoadedRepository {
 			System.out.println();
 		}
 
+	}
+
+	@Test
+	public void inspectCurrencyTypes() throws Exception {
+		MMAmount acaa = repo.findObjectByTypeAndName(MMAmount.class, "ActiveCurrencyAndAmount");
+		MetamodelType<? extends MMAmount> mmAcas = acaa.getMetamodel();
+		for( MetamodelAttribute<?, ?> mmAttr : mmAcas.getIncomingAttributes() ) {
+			System.out.println(mmAttr.getDeclaringType().getName() + "." + mmAttr.getName() + " : " + mmAttr.getReferencedType().getName());
+		}
 	}
 
 }

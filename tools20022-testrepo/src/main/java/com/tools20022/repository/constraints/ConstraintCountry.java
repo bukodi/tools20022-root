@@ -48,13 +48,17 @@ public class ConstraintCountry {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMConstraint<CountryCode> forCountryCode = new MMConstraint<CountryCode>() {
+	public static final MMConstraint forCountryCode = new MMConstraint() {
 		{
-			validator = ConstraintCountry::checkCountryCode;
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Country";
 			definition = "The code is checked against the list of country names obtained from the United Nations (ISO 3166, Alpha-2 code).";
 			owner_lazy = () -> CountryCode.mmObject();
+		}
+
+		@Override
+		public void executeValidator(Object obj) throws Exception {
+			checkCountryCode((CountryCode) obj);
 		}
 	};
 

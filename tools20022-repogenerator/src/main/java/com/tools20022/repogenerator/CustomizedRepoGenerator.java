@@ -1,12 +1,12 @@
 package com.tools20022.repogenerator;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -18,37 +18,24 @@ import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
-import org.jboss.forge.roaster.model.source.PropertySource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.core.repo.AbstractBusinessComponent;
-import com.tools20022.core.repo.GeneratedRepoBean;
-import com.tools20022.core.repo.NextVersion;
 import com.tools20022.core.repo.NotImplementedConstraintException;
-import com.tools20022.core.repo.PreviousVersion;
 import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
-import com.tools20022.metamodel.MMBusinessArea;
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
-import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMMessageComponentType;
-import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
-import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -155,10 +142,15 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, staticFieldName);
 		gen.staticFieldSrc = containerGen.src.addField().setName( staticFieldName.getMemberName());
 		gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-		String parametrizedType = MMConstraint.class.getName() + "<" + containerName.getFullName() + ">";
-		gen.staticFieldSrc.setType( parametrizedType );
-		gen.staticFieldInitializerBody = new StringJoiner("\n", "new " + parametrizedType + "(){{", "}};");
-		gen.staticFieldInitializerBody.add("validator=" + containerGen.src.getName() + "::check" + containerName.getCompilationUnit() + ";");
+		gen.staticFieldSrc.setType( MMConstraint.class );
+		
+		String getValidatorMethodSrc = "@Override\n";
+		getValidatorMethodSrc += "public void executeValidator(Object obj ) throws Exception {\n"; 
+		getValidatorMethodSrc += "  check" + containerName.getCompilationUnit() + "( (" +containerName.getFullName() + ")obj );\n"; 
+		getValidatorMethodSrc += "}\n";
+		
+		gen.staticFieldInitializerBody = new StringJoiner("\n", "new " + MMConstraint.class.getName() + "(){{", "}\n" + getValidatorMethodSrc + "};");
+		//gen.staticFieldInitializerBody.add("validator=" + containerGen.src.getName() + "::check" + containerName.getCompilationUnit() + ";");
 
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
@@ -341,7 +333,10 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			String ns = "urn:iso:std:iso:20022:tech:xsd:";
 			ns+= mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality();
 			ns+= "." + mmMsgId.getFlavour() + "." + mmMsgId.getVersion();
-			docSrc.addAnnotation(XmlRootElement.class).setStringValue("namespace", ns);
+			AnnotationSource<JavaClassSource> jaxbAnnot = docSrc.addAnnotation(XmlRootElement.class);
+			jaxbAnnot.setStringValue("name", mmBean.getRootElement());
+			jaxbAnnot.setStringValue("namespace", ns);			
+			
 			docSrc.setPublic().setStatic(true);
 			
 			FieldSource<JavaClassSource> msgField = docSrc.addField();

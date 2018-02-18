@@ -37,22 +37,23 @@ public class GeneratePublicArtifact {
 
 	static String baseEcoreResourceName = "/model/ISO20022.ecore";
 	static String baseXmiResourceName = "/model/20170713_ISO20022_2013_eRepository.iso20022";
+	//static String baseXmiResourceName = "/model/20180205_ISO20022_2013_eRepository.iso20022";
 
 	static Path coreProject = Paths.get("../tools20022-core");
 	static Path metamodelProject = Paths.get("../tools20022-metamodel");
 
 	public static void main(String[] args) throws Exception {
-		try {
+		/*try {
 			generateArtifact(null);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		try {
 			generateArtifact(BusinessDomain.payments);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		try {
+		/*try {
 			generateArtifact(BusinessDomain.cards);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,7 +72,7 @@ public class GeneratePublicArtifact {
 			generateArtifact(BusinessDomain.trade);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");		
 		System.out.println("**** Gerneration finished " + sdf.format(new Date())+" ****");
 	}

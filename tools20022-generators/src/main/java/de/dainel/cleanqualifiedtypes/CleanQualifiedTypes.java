@@ -232,7 +232,7 @@ public class CleanQualifiedTypes {
 	}
 
 	private boolean isFiltered(CompilationUnit unit, String qualifiedName) {
-		if (qualifiedName.startsWith("java.lang"))
+		if (qualifiedName.startsWith("java.lang.") && Character.isUpperCase(qualifiedName.charAt("java.lang.".length())) )
 			return true;
 		if (qualifiedName.indexOf('.') == -1) {
 			return true;

@@ -2,17 +2,8 @@ package com.test.camt030.test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -25,20 +16,6 @@ import org.junit.Test;
 import org.xml.sax.InputSource;
 
 import com.test.camt030.ObjectFactory;
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.core.metamodel.RuntimeInstanceAware;
-import com.tools20022.repository.GeneratedRepository;
-import com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04;
-import com.tools20022.repository.area.camt.NotificationOfCaseAssignmentV04.Document;
-import com.tools20022.repository.choice.Party12Choice;
-import com.tools20022.repository.codeset.AddressType2Code;
-import com.tools20022.repository.datatype.Max35Text;
-import com.tools20022.repository.msg.CaseAssignment3;
-import com.tools20022.repository.msg.PartyIdentification43;
-import com.tools20022.repository.msg.PostalAddress6;
-import com.tools20022.repository.msg.ReportHeader4;
 
 public class Unmarshall {
 
@@ -81,6 +58,7 @@ public class Unmarshall {
 		System.out.println(sw.toString());
 	}
 
+	/*
 	@Test
 	public void testTools20022MgsCreation() throws Exception {
 		JAXBContext ctx = createJaxbContext();
@@ -93,7 +71,7 @@ public class Unmarshall {
 			{
 				PostalAddress6 postalAddress = new PostalAddress6();
 				postalAddress.setAddressType(AddressType2Code.Postal);
-				PartyIdentification43 party = new PartyIdentification43();
+				PartyIdentification43 party = new PartyIdentificatio0n43();
 				party.setPostalAddress(postalAddress);
 				Party12Choice assignee = new Party12Choice();
 				assignee.setParty(party);
@@ -197,6 +175,6 @@ public class Unmarshall {
 				}
 			}
 		}
-	}
+	}*/
 
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Document xmlns:ns2="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02">
+	<FIToFICstmrCdtTrf>
+		<GrpHdr>
+			<MsgId>a4d6d720-193a-4f02-a3ee-743929d06b63</MsgId>
+			<CreDtTm>2017-11-07T18:09:59.904Z</CreDtTm>
+			<NbOfTxs>1</NbOfTxs>
+			<TtlIntrBkSttlmAmt Ccy="HUF">3376033</TtlIntrBkSttlmAmt>
+			<IntrBkSttlmDt>2017-11-07</IntrBkSttlmDt>
+			<SttlmInf>
+				<SttlmMtd>CLRG</SttlmMtd>
+			</SttlmInf>
+			<PmtTpInf>
+				<SvcLvl>
+					<Cd>VIPS</Cd>
+				</SvcLvl>
+				<LclInstrm>
+					<Cd>INST</Cd>
+				</LclInstrm>
+			</PmtTpInf>
+		</GrpHdr>
+		<CdtTrfTxInf>
+			<PmtId>
+				<InstrId>d6b3fe80-e98b-47a3-9e2a-09c0d931cd27</InstrId>
+				<EndToEndId>d6b3fe80-e98b-47a3-9e2a-09c0d931cd27</EndToEndId>
+				<TxId>d6b3fe80-e98b-47a3-9e2a-09c0d931cd27</TxId>
+			</PmtId>
+			<IntrBkSttlmAmt Ccy="HUF">3376033</IntrBkSttlmAmt>
+			<AccptncDtTm>2017-11-07T18:09:59.904Z</AccptncDtTm>
+			<ChrgBr>SLEV</ChrgBr>
+			<Dbtr>
+				<Nm>Fel-Adó Andrea</Nm>
+			</Dbtr>
+			<DbtrAcct>
+				<Nm>HU361234567890</Nm>
+			</DbtrAcct>
+			<DbtrAgt>
+				<FinInstnId>
+					<BIC>XYZZHUHB</BIC>
+				</FinInstnId>
+			</DbtrAgt>
+			<CdtrAgt>
+				<FinInstnId>
+					<BIC>ABCDHUHB</BIC>
+				</FinInstnId>
+			</CdtrAgt>
+			<Cdtr>
+				<Nm>Megkapó Anikó</Nm>
+			</Cdtr>
+			<CdtrAcct>
+				<Nm>HU360987654321</Nm>
+			</CdtrAcct>
+			<InstrForNxtAgt>
+				<InstrInf>/STTLMREF/VCSM17117000001</InstrInf>
+			</InstrForNxtAgt>
+		</CdtTrfTxInf>
+	</FIToFICstmrCdtTrf>
+</ns2:Document>
