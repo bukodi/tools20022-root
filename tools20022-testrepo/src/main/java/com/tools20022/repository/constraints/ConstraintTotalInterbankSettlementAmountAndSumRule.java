@@ -54,7 +54,7 @@ public class ConstraintTotalInterbankSettlementAmountAndSumRule {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMConstraint forFIToFICustomerCreditTransferV02 = new MMConstraint() {
+	public static final MMConstraint<FIToFICustomerCreditTransferV02> forFIToFICustomerCreditTransferV02 = new MMConstraint<FIToFICustomerCreditTransferV02>() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "TotalInterbankSettlementAmountAndSumRule";
@@ -64,8 +64,8 @@ public class ConstraintTotalInterbankSettlementAmountAndSumRule {
 		}
 
 		@Override
-		public void executeValidator(Object obj) throws Exception {
-			checkFIToFICustomerCreditTransferV02((FIToFICustomerCreditTransferV02) obj);
+		public void executeValidator(FIToFICustomerCreditTransferV02 obj) throws Exception {
+			checkFIToFICustomerCreditTransferV02(obj);
 		}
 	};
 

@@ -105,7 +105,7 @@ public class InstructionForNextAgent1 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
+	public static final MMMessageAttribute<InstructionForNextAgent1, Optional<Instruction4Code>> mmCode = new MMMessageAttribute<InstructionForNextAgent1, Optional<Instruction4Code>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.InstructionForNextAgent1.mmObject();
 			isDerived = false;
@@ -116,6 +116,16 @@ public class InstructionForNextAgent1 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> Instruction4Code.mmObject();
+		}
+
+		@Override
+		public Optional<Instruction4Code> getValue(InstructionForNextAgent1 obj) {
+			return obj.getCode();
+		}
+
+		@Override
+		public void setValue(InstructionForNextAgent1 obj, Optional<Instruction4Code> value) {
+			obj.setCode(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "InstrInf")
@@ -149,7 +159,7 @@ public class InstructionForNextAgent1 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmInstructionInformation = new MMMessageAttribute() {
+	public static final MMMessageAttribute<InstructionForNextAgent1, Optional<Max140Text>> mmInstructionInformation = new MMMessageAttribute<InstructionForNextAgent1, Optional<Max140Text>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.InstructionForNextAgent1.mmObject();
 			isDerived = false;
@@ -160,6 +170,16 @@ public class InstructionForNextAgent1 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> Max140Text.mmObject();
+		}
+
+		@Override
+		public Optional<Max140Text> getValue(InstructionForNextAgent1 obj) {
+			return obj.getInstructionInformation();
+		}
+
+		@Override
+		public void setValue(InstructionForNextAgent1 obj, Optional<Max140Text> value) {
+			obj.setInstructionInformation(value.orElse(null));
 		}
 	};
 

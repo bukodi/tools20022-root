@@ -22,6 +22,7 @@ import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.Max140Text;
 import com.tools20022.repository.GeneratedRepository;
+import com.tools20022.repository.msg.PostalAddress6;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.Objects;
@@ -96,7 +97,7 @@ public class NameAndAddress10 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmName = new MMMessageAttribute() {
+	public static final MMMessageAttribute<NameAndAddress10, Max140Text> mmName = new MMMessageAttribute<NameAndAddress10, Max140Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.NameAndAddress10.mmObject();
 			isDerived = false;
@@ -107,6 +108,16 @@ public class NameAndAddress10 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max140Text.mmObject();
+		}
+
+		@Override
+		public Max140Text getValue(NameAndAddress10 obj) {
+			return obj.getName();
+		}
+
+		@Override
+		public void setValue(NameAndAddress10 obj, Max140Text value) {
+			obj.setName(value);
 		}
 	};
 	@XmlElement(name = "Adr", required = true)
@@ -138,7 +149,7 @@ public class NameAndAddress10 {
 	 * definition} = "Postal address of a party."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmAddress = new MMMessageAttribute() {
+	public static final MMMessageAttribute<NameAndAddress10, PostalAddress6> mmAddress = new MMMessageAttribute<NameAndAddress10, PostalAddress6>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.NameAndAddress10.mmObject();
 			isDerived = false;
@@ -148,7 +159,17 @@ public class NameAndAddress10 {
 			definition = "Postal address of a party.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			complexType_lazy = () -> com.tools20022.repository.msg.PostalAddress6.mmObject();
+			complexType_lazy = () -> PostalAddress6.mmObject();
+		}
+
+		@Override
+		public PostalAddress6 getValue(NameAndAddress10 obj) {
+			return obj.getAddress();
+		}
+
+		@Override
+		public void setValue(NameAndAddress10 obj, PostalAddress6 value) {
+			obj.setAddress(value);
 		}
 	};
 
@@ -178,7 +199,7 @@ public class NameAndAddress10 {
 		return address;
 	}
 
-	public NameAndAddress10 setAddress(com.tools20022.repository.msg.PostalAddress6 address) {
+	public NameAndAddress10 setAddress(PostalAddress6 address) {
 		this.address = Objects.requireNonNull(address);
 		return this;
 	}

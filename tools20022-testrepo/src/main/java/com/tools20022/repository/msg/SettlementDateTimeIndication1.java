@@ -99,7 +99,7 @@ public class SettlementDateTimeIndication1 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmDebitDateTime = new MMMessageAttribute() {
+	public static final MMMessageAttribute<SettlementDateTimeIndication1, Optional<ISODateTime>> mmDebitDateTime = new MMMessageAttribute<SettlementDateTimeIndication1, Optional<ISODateTime>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.SettlementDateTimeIndication1.mmObject();
 			isDerived = false;
@@ -110,6 +110,16 @@ public class SettlementDateTimeIndication1 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> ISODateTime.mmObject();
+		}
+
+		@Override
+		public Optional<ISODateTime> getValue(SettlementDateTimeIndication1 obj) {
+			return obj.getDebitDateTime();
+		}
+
+		@Override
+		public void setValue(SettlementDateTimeIndication1 obj, Optional<ISODateTime> value) {
+			obj.setDebitDateTime(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "CdtDtTm")
@@ -143,7 +153,7 @@ public class SettlementDateTimeIndication1 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCreditDateTime = new MMMessageAttribute() {
+	public static final MMMessageAttribute<SettlementDateTimeIndication1, Optional<ISODateTime>> mmCreditDateTime = new MMMessageAttribute<SettlementDateTimeIndication1, Optional<ISODateTime>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.SettlementDateTimeIndication1.mmObject();
 			isDerived = false;
@@ -154,6 +164,16 @@ public class SettlementDateTimeIndication1 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> ISODateTime.mmObject();
+		}
+
+		@Override
+		public Optional<ISODateTime> getValue(SettlementDateTimeIndication1 obj) {
+			return obj.getCreditDateTime();
+		}
+
+		@Override
+		public void setValue(SettlementDateTimeIndication1 obj, Optional<ISODateTime> value) {
+			obj.setCreditDateTime(value.orElse(null));
 		}
 	};
 

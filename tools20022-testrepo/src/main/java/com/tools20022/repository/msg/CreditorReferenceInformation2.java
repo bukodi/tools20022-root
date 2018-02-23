@@ -23,6 +23,7 @@ import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.GeneratedRepository;
+import com.tools20022.repository.msg.CreditorReferenceType2;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.Optional;
@@ -99,7 +100,7 @@ public class CreditorReferenceInformation2 {
 	 * definition} = "Specifies the type of creditor reference."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmType = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<CreditorReferenceInformation2, Optional<CreditorReferenceType2>> mmType = new MMMessageAssociationEnd<CreditorReferenceInformation2, Optional<CreditorReferenceType2>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.CreditorReferenceInformation2.mmObject();
 			isDerived = false;
@@ -110,7 +111,17 @@ public class CreditorReferenceInformation2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> com.tools20022.repository.msg.CreditorReferenceType2.mmObject();
+			type_lazy = () -> CreditorReferenceType2.mmObject();
+		}
+
+		@Override
+		public Optional<CreditorReferenceType2> getValue(CreditorReferenceInformation2 obj) {
+			return obj.getType();
+		}
+
+		@Override
+		public void setValue(CreditorReferenceInformation2 obj, Optional<CreditorReferenceType2> value) {
+			obj.setType(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "Ref")
@@ -144,7 +155,7 @@ public class CreditorReferenceInformation2 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmReference = new MMMessageAttribute() {
+	public static final MMMessageAttribute<CreditorReferenceInformation2, Optional<Max35Text>> mmReference = new MMMessageAttribute<CreditorReferenceInformation2, Optional<Max35Text>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.CreditorReferenceInformation2.mmObject();
 			isDerived = false;
@@ -155,6 +166,16 @@ public class CreditorReferenceInformation2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Optional<Max35Text> getValue(CreditorReferenceInformation2 obj) {
+			return obj.getReference();
+		}
+
+		@Override
+		public void setValue(CreditorReferenceInformation2 obj, Optional<Max35Text> value) {
+			obj.setReference(value.orElse(null));
 		}
 	};
 
@@ -175,7 +196,7 @@ public class CreditorReferenceInformation2 {
 		return type == null ? Optional.empty() : Optional.of(type);
 	}
 
-	public CreditorReferenceInformation2 setType(com.tools20022.repository.msg.CreditorReferenceType2 type) {
+	public CreditorReferenceInformation2 setType(CreditorReferenceType2 type) {
 		this.type = type;
 		return this;
 	}

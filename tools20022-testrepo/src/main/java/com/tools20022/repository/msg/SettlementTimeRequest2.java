@@ -107,7 +107,7 @@ public class SettlementTimeRequest2 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCLSTime = new MMMessageAttribute() {
+	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmCLSTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.SettlementTimeRequest2.mmObject();
 			isDerived = false;
@@ -118,6 +118,16 @@ public class SettlementTimeRequest2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> ISOTime.mmObject();
+		}
+
+		@Override
+		public Optional<ISOTime> getValue(SettlementTimeRequest2 obj) {
+			return obj.getCLSTime();
+		}
+
+		@Override
+		public void setValue(SettlementTimeRequest2 obj, Optional<ISOTime> value) {
+			obj.setCLSTime(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "TillTm")
@@ -149,7 +159,7 @@ public class SettlementTimeRequest2 {
 	 * definition} = "Time until when the payment may be settled."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmTillTime = new MMMessageAttribute() {
+	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmTillTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.SettlementTimeRequest2.mmObject();
 			isDerived = false;
@@ -160,6 +170,16 @@ public class SettlementTimeRequest2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> ISOTime.mmObject();
+		}
+
+		@Override
+		public Optional<ISOTime> getValue(SettlementTimeRequest2 obj) {
+			return obj.getTillTime();
+		}
+
+		@Override
+		public void setValue(SettlementTimeRequest2 obj, Optional<ISOTime> value) {
+			obj.setTillTime(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "FrTm")
@@ -191,7 +211,7 @@ public class SettlementTimeRequest2 {
 	 * definition} = "Time as from when the payment may be settled."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmFromTime = new MMMessageAttribute() {
+	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmFromTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.SettlementTimeRequest2.mmObject();
 			isDerived = false;
@@ -202,6 +222,16 @@ public class SettlementTimeRequest2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> ISOTime.mmObject();
+		}
+
+		@Override
+		public Optional<ISOTime> getValue(SettlementTimeRequest2 obj) {
+			return obj.getFromTime();
+		}
+
+		@Override
+		public void setValue(SettlementTimeRequest2 obj, Optional<ISOTime> value) {
+			obj.setFromTime(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "RjctTm")
@@ -234,7 +264,7 @@ public class SettlementTimeRequest2 {
 	 * "Time by when the payment must be settled to avoid rejection."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmRejectTime = new MMMessageAttribute() {
+	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmRejectTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.SettlementTimeRequest2.mmObject();
 			isDerived = false;
@@ -245,6 +275,16 @@ public class SettlementTimeRequest2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> ISOTime.mmObject();
+		}
+
+		@Override
+		public Optional<ISOTime> getValue(SettlementTimeRequest2 obj) {
+			return obj.getRejectTime();
+		}
+
+		@Override
+		public void setValue(SettlementTimeRequest2 obj, Optional<ISOTime> value) {
+			obj.setRejectTime(value.orElse(null));
 		}
 	};
 

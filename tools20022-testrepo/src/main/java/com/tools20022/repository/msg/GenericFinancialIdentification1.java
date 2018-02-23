@@ -103,7 +103,7 @@ public class GenericFinancialIdentification1 {
 	 * definition} = "Unique and unambiguous identification of a person."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
+	public static final MMMessageAttribute<GenericFinancialIdentification1, Max35Text> mmIdentification = new MMMessageAttribute<GenericFinancialIdentification1, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.GenericFinancialIdentification1.mmObject();
 			isDerived = false;
@@ -114,6 +114,16 @@ public class GenericFinancialIdentification1 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(GenericFinancialIdentification1 obj) {
+			return obj.getIdentification();
+		}
+
+		@Override
+		public void setValue(GenericFinancialIdentification1 obj, Max35Text value) {
+			obj.setIdentification(value);
 		}
 	};
 	@XmlElement(name = "SchmeNm")
@@ -145,7 +155,7 @@ public class GenericFinancialIdentification1 {
 	 * definition} = "Name of the identification scheme."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmSchemeName = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<GenericFinancialIdentification1, Optional<FinancialIdentificationSchemeName1Choice>> mmSchemeName = new MMMessageAssociationEnd<GenericFinancialIdentification1, Optional<FinancialIdentificationSchemeName1Choice>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.GenericFinancialIdentification1.mmObject();
 			isDerived = false;
@@ -157,6 +167,16 @@ public class GenericFinancialIdentification1 {
 			minOccurs = 0;
 			isComposite = true;
 			type_lazy = () -> FinancialIdentificationSchemeName1Choice.mmObject();
+		}
+
+		@Override
+		public Optional<FinancialIdentificationSchemeName1Choice> getValue(GenericFinancialIdentification1 obj) {
+			return obj.getSchemeName();
+		}
+
+		@Override
+		public void setValue(GenericFinancialIdentification1 obj, Optional<FinancialIdentificationSchemeName1Choice> value) {
+			obj.setSchemeName(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "Issr")
@@ -188,7 +208,7 @@ public class GenericFinancialIdentification1 {
 	 * definition} = "Entity that assigns the identification."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmIssuer = new MMMessageAttribute() {
+	public static final MMMessageAttribute<GenericFinancialIdentification1, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<GenericFinancialIdentification1, Optional<Max35Text>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.GenericFinancialIdentification1.mmObject();
 			isDerived = false;
@@ -199,6 +219,16 @@ public class GenericFinancialIdentification1 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Optional<Max35Text> getValue(GenericFinancialIdentification1 obj) {
+			return obj.getIssuer();
+		}
+
+		@Override
+		public void setValue(GenericFinancialIdentification1 obj, Optional<Max35Text> value) {
+			obj.setIssuer(value.orElse(null));
 		}
 	};
 

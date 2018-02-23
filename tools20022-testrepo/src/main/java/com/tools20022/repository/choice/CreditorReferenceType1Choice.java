@@ -98,7 +98,7 @@ public class CreditorReferenceType1Choice {
 	 * definition} = "Type of creditor reference, in a coded form."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
+	public static final MMMessageAttribute<CreditorReferenceType1Choice, DocumentType3Code> mmCode = new MMMessageAttribute<CreditorReferenceType1Choice, DocumentType3Code>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.CreditorReferenceType1Choice.mmObject();
 			isDerived = false;
@@ -109,6 +109,16 @@ public class CreditorReferenceType1Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> DocumentType3Code.mmObject();
+		}
+
+		@Override
+		public DocumentType3Code getValue(CreditorReferenceType1Choice obj) {
+			return obj.getCode();
+		}
+
+		@Override
+		public void setValue(CreditorReferenceType1Choice obj, DocumentType3Code value) {
+			obj.setCode(value);
 		}
 	};
 	@XmlElement(name = "Prtry", required = true)
@@ -140,7 +150,7 @@ public class CreditorReferenceType1Choice {
 	 * definition} = "Creditor reference type, in a proprietary form."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
+	public static final MMMessageAttribute<CreditorReferenceType1Choice, Max35Text> mmProprietary = new MMMessageAttribute<CreditorReferenceType1Choice, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.CreditorReferenceType1Choice.mmObject();
 			isDerived = false;
@@ -151,6 +161,16 @@ public class CreditorReferenceType1Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(CreditorReferenceType1Choice obj) {
+			return obj.getProprietary();
+		}
+
+		@Override
+		public void setValue(CreditorReferenceType1Choice obj, Max35Text value) {
+			obj.setProprietary(value);
 		}
 	};
 

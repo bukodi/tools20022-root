@@ -496,27 +496,27 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 
 	protected MMRepositoryConcept getPropertyType(MMConstruct mmBean) {
 		if (mmBean instanceof MMMessageBuildingBlock) {
-			return ((MMMessageBuildingBlock) mmBean).getXmlMemberType();
+			return ((MMMessageBuildingBlock<?,?>) mmBean).getXmlMemberType();
 		} else if (mmBean instanceof MMBusinessAttribute) {
-			if (((MMBusinessAttribute) mmBean).getSimpleType().isPresent()) {
-				return ((MMBusinessAttribute) mmBean).getSimpleType().get();
-			} else if (((MMBusinessAttribute) mmBean).getComplexType().isPresent()) {
-				return ((MMBusinessAttribute) mmBean).getComplexType().get();
+			if (((MMBusinessAttribute<?,?>) mmBean).getSimpleType().isPresent()) {
+				return ((MMBusinessAttribute<?,?>) mmBean).getSimpleType().get();
+			} else if (((MMBusinessAttribute<?,?>) mmBean).getComplexType().isPresent()) {
+				return ((MMBusinessAttribute<?,?>) mmBean).getComplexType().get();
 			} else {
 				throw new IllegalArgumentException("Unsupported bean instance : " + mmBean);
 			}
 		} else if (mmBean instanceof MMMessageAttribute) {
-			if (((MMMessageAttribute) mmBean).getSimpleType().isPresent()) {
-				return ((MMMessageAttribute) mmBean).getSimpleType().get();
-			} else if (((MMMessageAttribute) mmBean).getComplexType().isPresent()) {
-				return ((MMMessageAttribute) mmBean).getComplexType().get();
+			if (((MMMessageAttribute<?,?>) mmBean).getSimpleType().isPresent()) {
+				return ((MMMessageAttribute<?,?>) mmBean).getSimpleType().get();
+			} else if (((MMMessageAttribute<?,?>) mmBean).getComplexType().isPresent()) {
+				return ((MMMessageAttribute<?,?>) mmBean).getComplexType().get();
 			} else {
 				throw new IllegalArgumentException("Unsupported bean instance : " + mmBean);
 			}
 		} else if (mmBean instanceof MMBusinessAssociationEnd) {
-			return ((MMBusinessAssociationEnd) mmBean).getType();
+			return ((MMBusinessAssociationEnd<?,?>) mmBean).getType();
 		} else if (mmBean instanceof MMMessageAssociationEnd) {
-			return ((MMMessageAssociationEnd) mmBean).getType();
+			return ((MMMessageAssociationEnd<?,?>) mmBean).getType();
 		} else {
 			throw new IllegalArgumentException("Unsupported bean type: " + mmBean.getClass());
 		}

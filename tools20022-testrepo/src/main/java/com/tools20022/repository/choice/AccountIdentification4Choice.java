@@ -104,7 +104,7 @@ public class AccountIdentification4Choice {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmIBAN = new MMMessageAttribute() {
+	public static final MMMessageAttribute<AccountIdentification4Choice, IBAN2007Identifier> mmIBAN = new MMMessageAttribute<AccountIdentification4Choice, IBAN2007Identifier>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.AccountIdentification4Choice.mmObject();
 			isDerived = false;
@@ -115,6 +115,16 @@ public class AccountIdentification4Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> IBAN2007Identifier.mmObject();
+		}
+
+		@Override
+		public IBAN2007Identifier getValue(AccountIdentification4Choice obj) {
+			return obj.getIBAN();
+		}
+
+		@Override
+		public void setValue(AccountIdentification4Choice obj, IBAN2007Identifier value) {
+			obj.setIBAN(value);
 		}
 	};
 	@XmlElement(name = "Othr", required = true)
@@ -148,7 +158,7 @@ public class AccountIdentification4Choice {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmOther = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<AccountIdentification4Choice, GenericAccountIdentification1> mmOther = new MMMessageAssociationEnd<AccountIdentification4Choice, GenericAccountIdentification1>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.AccountIdentification4Choice.mmObject();
 			isDerived = false;
@@ -160,6 +170,16 @@ public class AccountIdentification4Choice {
 			minOccurs = 1;
 			isComposite = true;
 			type_lazy = () -> GenericAccountIdentification1.mmObject();
+		}
+
+		@Override
+		public GenericAccountIdentification1 getValue(AccountIdentification4Choice obj) {
+			return obj.getOther();
+		}
+
+		@Override
+		public void setValue(AccountIdentification4Choice obj, GenericAccountIdentification1 value) {
+			obj.setOther(value);
 		}
 	};
 

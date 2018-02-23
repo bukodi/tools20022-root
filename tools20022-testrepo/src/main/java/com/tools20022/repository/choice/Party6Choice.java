@@ -96,7 +96,7 @@ public class Party6Choice {
 	 * definition} = "Unique and unambiguous way to identify an organisation."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmOrganisationIdentification = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<Party6Choice, OrganisationIdentification4> mmOrganisationIdentification = new MMMessageAssociationEnd<Party6Choice, OrganisationIdentification4>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.Party6Choice.mmObject();
 			isDerived = false;
@@ -108,6 +108,16 @@ public class Party6Choice {
 			minOccurs = 1;
 			isComposite = true;
 			type_lazy = () -> OrganisationIdentification4.mmObject();
+		}
+
+		@Override
+		public OrganisationIdentification4 getValue(Party6Choice obj) {
+			return obj.getOrganisationIdentification();
+		}
+
+		@Override
+		public void setValue(Party6Choice obj, OrganisationIdentification4 value) {
+			obj.setOrganisationIdentification(value);
 		}
 	};
 	@XmlElement(name = "PrvtId", required = true)
@@ -138,7 +148,7 @@ public class Party6Choice {
 	 * "Unique and unambiguous identification of a person, eg, passport."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmPrivateIdentification = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<Party6Choice, PersonIdentification5> mmPrivateIdentification = new MMMessageAssociationEnd<Party6Choice, PersonIdentification5>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.Party6Choice.mmObject();
 			isDerived = false;
@@ -150,6 +160,16 @@ public class Party6Choice {
 			minOccurs = 1;
 			isComposite = true;
 			type_lazy = () -> PersonIdentification5.mmObject();
+		}
+
+		@Override
+		public PersonIdentification5 getValue(Party6Choice obj) {
+			return obj.getPrivateIdentification();
+		}
+
+		@Override
+		public void setValue(Party6Choice obj, PersonIdentification5 value) {
+			obj.setPrivateIdentification(value);
 		}
 	};
 

@@ -137,7 +137,7 @@ class CreateConsistentSubset {
 				.collect(Collectors.toSet());
 		for (GeneratedMetamodelBean childObj : content) {
 			if (childObj instanceof MMBusinessAssociationEnd) {
-				MMBusinessAssociationEnd mmBAE = ((MMBusinessAssociationEnd) childObj);
+				MMBusinessAssociationEnd<?,?> mmBAE = ((MMBusinessAssociationEnd<?,?>) childObj);
 				if (!mmBAE.getMinOccurs().isPresent() || mmBAE.getMinOccurs().get() == 0)
 					continue;
 				if (!keepRequiredBusinessAssociationEnds)

@@ -53,7 +53,7 @@ public class TestXMIModel {
 		domainModel.listObjects(MMBusinessAssociationEnd.metaType()).forEach(a->{
 			if( processedAssoc.contains(a))
 				return;
-			MMBusinessAssociationEnd o = a.getOpposite().orElseThrow(()->new RuntimeException());
+			MMBusinessAssociationEnd o = (MMBusinessAssociationEnd) a.getOpposite().get();
 			String msg = "";
 			msg += "(" + a.getMinOccurs() + ".." + a.getMaxOccurs() + ") - (" + o.getMinOccurs() + ".." + o.getMaxOccurs() + ")"; 
 			msg +=  "  " + a.getAggregation() + "-" + o.getAggregation() ;

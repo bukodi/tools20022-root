@@ -52,7 +52,7 @@ public class ConstraintTotalInterbankSettlementAmountAndDateRule {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMConstraint forGroupHeader33 = new MMConstraint() {
+	public static final MMConstraint<GroupHeader33> forGroupHeader33 = new MMConstraint<GroupHeader33>() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "TotalInterbankSettlementAmountAndDateRule";
@@ -62,8 +62,8 @@ public class ConstraintTotalInterbankSettlementAmountAndDateRule {
 		}
 
 		@Override
-		public void executeValidator(Object obj) throws Exception {
-			checkGroupHeader33((GroupHeader33) obj);
+		public void executeValidator(GroupHeader33 obj) throws Exception {
+			checkGroupHeader33(obj);
 		}
 	};
 

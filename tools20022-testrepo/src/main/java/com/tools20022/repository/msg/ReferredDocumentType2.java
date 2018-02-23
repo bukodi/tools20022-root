@@ -99,7 +99,7 @@ public class ReferredDocumentType2 {
 	 * definition} = "Provides the type details of the referred document."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmCodeOrProprietary = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<ReferredDocumentType2, ReferredDocumentType1Choice> mmCodeOrProprietary = new MMMessageAssociationEnd<ReferredDocumentType2, ReferredDocumentType1Choice>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.ReferredDocumentType2.mmObject();
 			isDerived = false;
@@ -111,6 +111,16 @@ public class ReferredDocumentType2 {
 			minOccurs = 1;
 			isComposite = true;
 			type_lazy = () -> ReferredDocumentType1Choice.mmObject();
+		}
+
+		@Override
+		public ReferredDocumentType1Choice getValue(ReferredDocumentType2 obj) {
+			return obj.getCodeOrProprietary();
+		}
+
+		@Override
+		public void setValue(ReferredDocumentType2 obj, ReferredDocumentType1Choice value) {
+			obj.setCodeOrProprietary(value);
 		}
 	};
 	@XmlElement(name = "Issr")
@@ -143,7 +153,7 @@ public class ReferredDocumentType2 {
 	 * "Identification of the issuer of the reference document type."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmIssuer = new MMMessageAttribute() {
+	public static final MMMessageAttribute<ReferredDocumentType2, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<ReferredDocumentType2, Optional<Max35Text>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.ReferredDocumentType2.mmObject();
 			isDerived = false;
@@ -154,6 +164,16 @@ public class ReferredDocumentType2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Optional<Max35Text> getValue(ReferredDocumentType2 obj) {
+			return obj.getIssuer();
+		}
+
+		@Override
+		public void setValue(ReferredDocumentType2 obj, Optional<Max35Text> value) {
+			obj.setIssuer(value.orElse(null));
 		}
 	};
 

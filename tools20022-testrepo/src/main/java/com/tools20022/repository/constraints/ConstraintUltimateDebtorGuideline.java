@@ -47,7 +47,7 @@ public class ConstraintUltimateDebtorGuideline {
 	 * "UltimateDebtor may only be present if different from Debtor."</li>
 	 * </ul>
 	 */
-	public static final MMConstraint forCreditTransferTransactionInformation11 = new MMConstraint() {
+	public static final MMConstraint<CreditTransferTransactionInformation11> forCreditTransferTransactionInformation11 = new MMConstraint<CreditTransferTransactionInformation11>() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "UltimateDebtorGuideline";
@@ -56,8 +56,8 @@ public class ConstraintUltimateDebtorGuideline {
 		}
 
 		@Override
-		public void executeValidator(Object obj) throws Exception {
-			checkCreditTransferTransactionInformation11((CreditTransferTransactionInformation11) obj);
+		public void executeValidator(CreditTransferTransactionInformation11 obj) throws Exception {
+			checkCreditTransferTransactionInformation11(obj);
 		}
 	};
 

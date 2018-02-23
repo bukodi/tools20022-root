@@ -64,7 +64,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		
 	}
 	
-	private Map<String,List<MMConstraint>> constraintsByName = new LinkedHashMap<>();
+	private Map<String,List<MMConstraint<?>>> constraintsByName = new LinkedHashMap<>();
 
 	@Override
 	public void generate(RawRepository repo, ProgressMonitor monitor) {
@@ -97,14 +97,14 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 
 		MainTypeResult repoGen = generateMMRepository(repo.getRootObject());
 		
-		for( Entry<String, List<MMConstraint>> e: constraintsByName.entrySet() ) {
+		for( Entry<String, List<MMConstraint<?>>> e: constraintsByName.entrySet() ) {
 			generateConstraintGroup(e.getValue());			
 		}
 	}
 	
-	protected void generateConstraintGroup( List<MMConstraint> constraintsWithSameName ) {
+	protected void generateConstraintGroup( List<MMConstraint<?>> constraintsWithSameName ) {
 		
-		MMConstraint first = constraintsWithSameName.get(0);
+		MMConstraint<?> first = constraintsWithSameName.get(0);
 		StructuredName nameOfFirst = getStructuredName(first);
 		StructuredName maintypeName = StructuredName.primaryType(nameOfFirst.getPackage(), nameOfFirst.getCompilationUnit());
 		MainTypeResult genMain = new MainTypeResult(ctx, null, maintypeName) {
@@ -122,7 +122,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			}			
 		};
 		
-		for( MMConstraint constr : constraintsWithSameName) {
+		for( MMConstraint<?> constr : constraintsWithSameName) {
 			StructuredName containerName = getStructuredName(constr.getContainer());
 			String validatorMethodName = "check" + containerName.getCompilationUnit();
 			StaticFieldResult staticField = generateMMConstraint(genMain, constr, containerName);
@@ -137,19 +137,19 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		genMain.flush();
 	}
 	
-	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint mmBean, StructuredName containerName ) {
+	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint<?> mmBean, StructuredName containerName ) {
 		StructuredName staticFieldName = getStructuredName(mmBean);
 		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, staticFieldName);
 		gen.staticFieldSrc = containerGen.src.addField().setName( staticFieldName.getMemberName());
 		gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-		gen.staticFieldSrc.setType( MMConstraint.class );
+		gen.staticFieldSrc.setType( MMConstraint.class.getName() + "<" + containerName.getFullName() + ">" );
 		
 		String getValidatorMethodSrc = "@Override\n";
-		getValidatorMethodSrc += "public void executeValidator(Object obj ) throws Exception {\n"; 
-		getValidatorMethodSrc += "  check" + containerName.getCompilationUnit() + "( (" +containerName.getFullName() + ")obj );\n"; 
+		getValidatorMethodSrc += "public void executeValidator(" +containerName.getFullName() + " obj ) throws Exception {\n"; 
+		getValidatorMethodSrc += "  check" + containerName.getCompilationUnit() + "( obj );\n"; 
 		getValidatorMethodSrc += "}\n";
 		
-		gen.staticFieldInitializerBody = new StringJoiner("\n", "new " + MMConstraint.class.getName() + "(){{", "}\n" + getValidatorMethodSrc + "};");
+		gen.staticFieldInitializerBody = new StringJoiner("\n", "new " + MMConstraint.class.getName() + "<" + containerName.getFullName() + ">" + "(){{", "}\n" + getValidatorMethodSrc + "};");
 		//gen.staticFieldInitializerBody.add("validator=" + containerGen.src.getName() + "::check" + containerName.getCompilationUnit() + ";");
 
 		implementMMRepositoryConcept(gen, mmBean);

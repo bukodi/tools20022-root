@@ -99,7 +99,7 @@ public class ReferredDocumentType1Choice {
 	 * definition} = "Document type in a coded form."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
+	public static final MMMessageAttribute<ReferredDocumentType1Choice, DocumentType5Code> mmCode = new MMMessageAttribute<ReferredDocumentType1Choice, DocumentType5Code>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.ReferredDocumentType1Choice.mmObject();
 			isDerived = false;
@@ -110,6 +110,16 @@ public class ReferredDocumentType1Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> DocumentType5Code.mmObject();
+		}
+
+		@Override
+		public DocumentType5Code getValue(ReferredDocumentType1Choice obj) {
+			return obj.getCode();
+		}
+
+		@Override
+		public void setValue(ReferredDocumentType1Choice obj, DocumentType5Code value) {
+			obj.setCode(value);
 		}
 	};
 	@XmlElement(name = "Prtry", required = true)
@@ -142,7 +152,7 @@ public class ReferredDocumentType1Choice {
 	 * "Proprietary identification of the type of the remittance document."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
+	public static final MMMessageAttribute<ReferredDocumentType1Choice, Max35Text> mmProprietary = new MMMessageAttribute<ReferredDocumentType1Choice, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.ReferredDocumentType1Choice.mmObject();
 			isDerived = false;
@@ -153,6 +163,16 @@ public class ReferredDocumentType1Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(ReferredDocumentType1Choice obj) {
+			return obj.getProprietary();
+		}
+
+		@Override
+		public void setValue(ReferredDocumentType1Choice obj, Max35Text value) {
+			obj.setProprietary(value);
 		}
 	};
 

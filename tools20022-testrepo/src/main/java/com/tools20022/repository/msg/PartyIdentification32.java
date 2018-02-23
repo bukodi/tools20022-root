@@ -25,6 +25,8 @@ import com.tools20022.repository.choice.Party6Choice;
 import com.tools20022.repository.codeset.CountryCode;
 import com.tools20022.repository.datatype.Max140Text;
 import com.tools20022.repository.GeneratedRepository;
+import com.tools20022.repository.msg.ContactDetails2;
+import com.tools20022.repository.msg.PostalAddress6;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.Optional;
@@ -110,7 +112,7 @@ public class PartyIdentification32 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmName = new MMMessageAttribute() {
+	public static final MMMessageAttribute<PartyIdentification32, Optional<Max140Text>> mmName = new MMMessageAttribute<PartyIdentification32, Optional<Max140Text>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.PartyIdentification32.mmObject();
 			isDerived = false;
@@ -121,6 +123,16 @@ public class PartyIdentification32 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> Max140Text.mmObject();
+		}
+
+		@Override
+		public Optional<Max140Text> getValue(PartyIdentification32 obj) {
+			return obj.getName();
+		}
+
+		@Override
+		public void setValue(PartyIdentification32 obj, Optional<Max140Text> value) {
+			obj.setName(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "PstlAdr")
@@ -153,7 +165,7 @@ public class PartyIdentification32 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmPostalAddress = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<PartyIdentification32, Optional<PostalAddress6>> mmPostalAddress = new MMMessageAssociationEnd<PartyIdentification32, Optional<PostalAddress6>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.PartyIdentification32.mmObject();
 			isDerived = false;
@@ -164,7 +176,17 @@ public class PartyIdentification32 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> com.tools20022.repository.msg.PostalAddress6.mmObject();
+			type_lazy = () -> PostalAddress6.mmObject();
+		}
+
+		@Override
+		public Optional<PostalAddress6> getValue(PartyIdentification32 obj) {
+			return obj.getPostalAddress();
+		}
+
+		@Override
+		public void setValue(PartyIdentification32 obj, Optional<PostalAddress6> value) {
+			obj.setPostalAddress(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "Id")
@@ -195,7 +217,7 @@ public class PartyIdentification32 {
 	 * definition} = "Unique and unambiguous identification of a party."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmIdentification = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<PartyIdentification32, Optional<Party6Choice>> mmIdentification = new MMMessageAssociationEnd<PartyIdentification32, Optional<Party6Choice>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.PartyIdentification32.mmObject();
 			isDerived = false;
@@ -207,6 +229,16 @@ public class PartyIdentification32 {
 			minOccurs = 0;
 			isComposite = true;
 			type_lazy = () -> Party6Choice.mmObject();
+		}
+
+		@Override
+		public Optional<Party6Choice> getValue(PartyIdentification32 obj) {
+			return obj.getIdentification();
+		}
+
+		@Override
+		public void setValue(PartyIdentification32 obj, Optional<Party6Choice> value) {
+			obj.setIdentification(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "CtryOfRes")
@@ -240,7 +272,7 @@ public class PartyIdentification32 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCountryOfResidence = new MMMessageAttribute() {
+	public static final MMMessageAttribute<PartyIdentification32, Optional<CountryCode>> mmCountryOfResidence = new MMMessageAttribute<PartyIdentification32, Optional<CountryCode>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.PartyIdentification32.mmObject();
 			isDerived = false;
@@ -251,6 +283,16 @@ public class PartyIdentification32 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> CountryCode.mmObject();
+		}
+
+		@Override
+		public Optional<CountryCode> getValue(PartyIdentification32 obj) {
+			return obj.getCountryOfResidence();
+		}
+
+		@Override
+		public void setValue(PartyIdentification32 obj, Optional<CountryCode> value) {
+			obj.setCountryOfResidence(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "CtctDtls")
@@ -282,7 +324,7 @@ public class PartyIdentification32 {
 	 * "Set of elements used to indicate how to contact the party."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmContactDetails = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<PartyIdentification32, Optional<ContactDetails2>> mmContactDetails = new MMMessageAssociationEnd<PartyIdentification32, Optional<ContactDetails2>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.PartyIdentification32.mmObject();
 			isDerived = false;
@@ -293,7 +335,17 @@ public class PartyIdentification32 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> com.tools20022.repository.msg.ContactDetails2.mmObject();
+			type_lazy = () -> ContactDetails2.mmObject();
+		}
+
+		@Override
+		public Optional<ContactDetails2> getValue(PartyIdentification32 obj) {
+			return obj.getContactDetails();
+		}
+
+		@Override
+		public void setValue(PartyIdentification32 obj, Optional<ContactDetails2> value) {
+			obj.setContactDetails(value.orElse(null));
 		}
 	};
 
@@ -324,7 +376,7 @@ public class PartyIdentification32 {
 		return postalAddress == null ? Optional.empty() : Optional.of(postalAddress);
 	}
 
-	public PartyIdentification32 setPostalAddress(com.tools20022.repository.msg.PostalAddress6 postalAddress) {
+	public PartyIdentification32 setPostalAddress(PostalAddress6 postalAddress) {
 		this.postalAddress = postalAddress;
 		return this;
 	}
@@ -351,7 +403,7 @@ public class PartyIdentification32 {
 		return contactDetails == null ? Optional.empty() : Optional.of(contactDetails);
 	}
 
-	public PartyIdentification32 setContactDetails(com.tools20022.repository.msg.ContactDetails2 contactDetails) {
+	public PartyIdentification32 setContactDetails(ContactDetails2 contactDetails) {
 		this.contactDetails = contactDetails;
 		return this;
 	}

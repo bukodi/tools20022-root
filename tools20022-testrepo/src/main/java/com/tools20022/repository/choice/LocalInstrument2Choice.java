@@ -103,7 +103,7 @@ public class LocalInstrument2Choice {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
+	public static final MMMessageAttribute<LocalInstrument2Choice, ExternalLocalInstrument1Code> mmCode = new MMMessageAttribute<LocalInstrument2Choice, ExternalLocalInstrument1Code>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.LocalInstrument2Choice.mmObject();
 			isDerived = false;
@@ -114,6 +114,16 @@ public class LocalInstrument2Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> ExternalLocalInstrument1Code.mmObject();
+		}
+
+		@Override
+		public ExternalLocalInstrument1Code getValue(LocalInstrument2Choice obj) {
+			return obj.getCode();
+		}
+
+		@Override
+		public void setValue(LocalInstrument2Choice obj, ExternalLocalInstrument1Code value) {
+			obj.setCode(value);
 		}
 	};
 	@XmlElement(name = "Prtry", required = true)
@@ -145,7 +155,7 @@ public class LocalInstrument2Choice {
 	 * definition} = "Specifies the local instrument, as a proprietary code."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
+	public static final MMMessageAttribute<LocalInstrument2Choice, Max35Text> mmProprietary = new MMMessageAttribute<LocalInstrument2Choice, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.LocalInstrument2Choice.mmObject();
 			isDerived = false;
@@ -156,6 +166,16 @@ public class LocalInstrument2Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(LocalInstrument2Choice obj) {
+			return obj.getProprietary();
+		}
+
+		@Override
+		public void setValue(LocalInstrument2Choice obj, Max35Text value) {
+			obj.setProprietary(value);
 		}
 	};
 

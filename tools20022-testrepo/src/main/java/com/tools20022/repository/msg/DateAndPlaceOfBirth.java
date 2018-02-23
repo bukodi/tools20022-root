@@ -105,7 +105,7 @@ public class DateAndPlaceOfBirth {
 	 * definition} = "Date on which a person is born."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmBirthDate = new MMMessageAttribute() {
+	public static final MMMessageAttribute<DateAndPlaceOfBirth, ISODate> mmBirthDate = new MMMessageAttribute<DateAndPlaceOfBirth, ISODate>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
@@ -116,6 +116,16 @@ public class DateAndPlaceOfBirth {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> ISODate.mmObject();
+		}
+
+		@Override
+		public ISODate getValue(DateAndPlaceOfBirth obj) {
+			return obj.getBirthDate();
+		}
+
+		@Override
+		public void setValue(DateAndPlaceOfBirth obj, ISODate value) {
+			obj.setBirthDate(value);
 		}
 	};
 	@XmlElement(name = "PrvcOfBirth")
@@ -147,7 +157,7 @@ public class DateAndPlaceOfBirth {
 	 * definition} = "Province where a person was born."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmProvinceOfBirth = new MMMessageAttribute() {
+	public static final MMMessageAttribute<DateAndPlaceOfBirth, Optional<Max35Text>> mmProvinceOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, Optional<Max35Text>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
@@ -158,6 +168,16 @@ public class DateAndPlaceOfBirth {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Optional<Max35Text> getValue(DateAndPlaceOfBirth obj) {
+			return obj.getProvinceOfBirth();
+		}
+
+		@Override
+		public void setValue(DateAndPlaceOfBirth obj, Optional<Max35Text> value) {
+			obj.setProvinceOfBirth(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "CityOfBirth", required = true)
@@ -189,7 +209,7 @@ public class DateAndPlaceOfBirth {
 	 * definition} = "City where a person was born."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCityOfBirth = new MMMessageAttribute() {
+	public static final MMMessageAttribute<DateAndPlaceOfBirth, Max35Text> mmCityOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
@@ -200,6 +220,16 @@ public class DateAndPlaceOfBirth {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(DateAndPlaceOfBirth obj) {
+			return obj.getCityOfBirth();
+		}
+
+		@Override
+		public void setValue(DateAndPlaceOfBirth obj, Max35Text value) {
+			obj.setCityOfBirth(value);
 		}
 	};
 	@XmlElement(name = "CtryOfBirth", required = true)
@@ -231,7 +261,7 @@ public class DateAndPlaceOfBirth {
 	 * definition} = "Country where a person was born."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCountryOfBirth = new MMMessageAttribute() {
+	public static final MMMessageAttribute<DateAndPlaceOfBirth, CountryCode> mmCountryOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, CountryCode>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.DateAndPlaceOfBirth.mmObject();
 			isDerived = false;
@@ -242,6 +272,16 @@ public class DateAndPlaceOfBirth {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> CountryCode.mmObject();
+		}
+
+		@Override
+		public CountryCode getValue(DateAndPlaceOfBirth obj) {
+			return obj.getCountryOfBirth();
+		}
+
+		@Override
+		public void setValue(DateAndPlaceOfBirth obj, CountryCode value) {
+			obj.setCountryOfBirth(value);
 		}
 	};
 

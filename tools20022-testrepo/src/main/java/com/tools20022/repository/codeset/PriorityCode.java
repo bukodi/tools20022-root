@@ -34,6 +34,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
+ * =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.codeset.Priority2Code
+ * Priority2Code}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code
+ * Priority3Code}</li>
+ * </ul>
+ * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#Urgent
@@ -44,15 +53,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * PriorityCode.Normal}</li>
  * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#Low
  * PriorityCode.Low}</li>
- * </ul>
- * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
- * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.Priority2Code
- * Priority2Code}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code
- * Priority3Code}</li>
  * </ul>
  * </li>
  * <li>

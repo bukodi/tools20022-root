@@ -103,7 +103,7 @@ public class GenericAccountIdentification1 {
 	 * definition} = "Identification assigned by an institution."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmIdentification = new MMMessageAttribute() {
+	public static final MMMessageAttribute<GenericAccountIdentification1, Max34Text> mmIdentification = new MMMessageAttribute<GenericAccountIdentification1, Max34Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.GenericAccountIdentification1.mmObject();
 			isDerived = false;
@@ -114,6 +114,16 @@ public class GenericAccountIdentification1 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max34Text.mmObject();
+		}
+
+		@Override
+		public Max34Text getValue(GenericAccountIdentification1 obj) {
+			return obj.getIdentification();
+		}
+
+		@Override
+		public void setValue(GenericAccountIdentification1 obj, Max34Text value) {
+			obj.setIdentification(value);
 		}
 	};
 	@XmlElement(name = "SchmeNm")
@@ -145,7 +155,7 @@ public class GenericAccountIdentification1 {
 	 * definition} = "Name of the identification scheme."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmSchemeName = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<GenericAccountIdentification1, Optional<AccountSchemeName1Choice>> mmSchemeName = new MMMessageAssociationEnd<GenericAccountIdentification1, Optional<AccountSchemeName1Choice>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.GenericAccountIdentification1.mmObject();
 			isDerived = false;
@@ -157,6 +167,16 @@ public class GenericAccountIdentification1 {
 			minOccurs = 0;
 			isComposite = true;
 			type_lazy = () -> AccountSchemeName1Choice.mmObject();
+		}
+
+		@Override
+		public Optional<AccountSchemeName1Choice> getValue(GenericAccountIdentification1 obj) {
+			return obj.getSchemeName();
+		}
+
+		@Override
+		public void setValue(GenericAccountIdentification1 obj, Optional<AccountSchemeName1Choice> value) {
+			obj.setSchemeName(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "Issr")
@@ -188,7 +208,7 @@ public class GenericAccountIdentification1 {
 	 * definition} = "Entity that assigns the identification."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmIssuer = new MMMessageAttribute() {
+	public static final MMMessageAttribute<GenericAccountIdentification1, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<GenericAccountIdentification1, Optional<Max35Text>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.GenericAccountIdentification1.mmObject();
 			isDerived = false;
@@ -199,6 +219,16 @@ public class GenericAccountIdentification1 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Optional<Max35Text> getValue(GenericAccountIdentification1 obj) {
+			return obj.getIssuer();
+		}
+
+		@Override
+		public void setValue(GenericAccountIdentification1 obj, Optional<Max35Text> value) {
+			obj.setIssuer(value.orElse(null));
 		}
 	};
 

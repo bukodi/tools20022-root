@@ -108,7 +108,7 @@ public class CashAccountType2 {
 	 * definition} = "Account type, in a coded form."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
+	public static final MMMessageAttribute<CashAccountType2, CashAccountType4Code> mmCode = new MMMessageAttribute<CashAccountType2, CashAccountType4Code>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.CashAccountType2.mmObject();
 			isDerived = false;
@@ -119,6 +119,16 @@ public class CashAccountType2 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> CashAccountType4Code.mmObject();
+		}
+
+		@Override
+		public CashAccountType4Code getValue(CashAccountType2 obj) {
+			return obj.getCode();
+		}
+
+		@Override
+		public void setValue(CashAccountType2 obj, CashAccountType4Code value) {
+			obj.setCode(value);
 		}
 	};
 	@XmlElement(name = "Prtry", required = true)
@@ -150,7 +160,7 @@ public class CashAccountType2 {
 	 * definition} = "Nature or use of the account in a proprietary form."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
+	public static final MMMessageAttribute<CashAccountType2, Max35Text> mmProprietary = new MMMessageAttribute<CashAccountType2, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.CashAccountType2.mmObject();
 			isDerived = false;
@@ -161,6 +171,16 @@ public class CashAccountType2 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(CashAccountType2 obj) {
+			return obj.getProprietary();
+		}
+
+		@Override
+		public void setValue(CashAccountType2 obj, Max35Text value) {
+			obj.setProprietary(value);
 		}
 	};
 	/**

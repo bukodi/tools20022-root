@@ -99,7 +99,7 @@ public class ServiceLevel8Choice {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
+	public static final MMMessageAttribute<ServiceLevel8Choice, ExternalServiceLevel1Code> mmCode = new MMMessageAttribute<ServiceLevel8Choice, ExternalServiceLevel1Code>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.ServiceLevel8Choice.mmObject();
 			isDerived = false;
@@ -110,6 +110,16 @@ public class ServiceLevel8Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> ExternalServiceLevel1Code.mmObject();
+		}
+
+		@Override
+		public ExternalServiceLevel1Code getValue(ServiceLevel8Choice obj) {
+			return obj.getCode();
+		}
+
+		@Override
+		public void setValue(ServiceLevel8Choice obj, ExternalServiceLevel1Code value) {
+			obj.setCode(value);
 		}
 	};
 	@XmlElement(name = "Prtry", required = true)
@@ -143,7 +153,7 @@ public class ServiceLevel8Choice {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
+	public static final MMMessageAttribute<ServiceLevel8Choice, Max35Text> mmProprietary = new MMMessageAttribute<ServiceLevel8Choice, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.ServiceLevel8Choice.mmObject();
 			isDerived = false;
@@ -154,6 +164,16 @@ public class ServiceLevel8Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(ServiceLevel8Choice obj) {
+			return obj.getProprietary();
+		}
+
+		@Override
+		public void setValue(ServiceLevel8Choice obj, Max35Text value) {
+			obj.setProprietary(value);
 		}
 	};
 

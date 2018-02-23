@@ -31,6 +31,20 @@ public class TestCleanQualifiedTypes {
 	}
 
 	@Test
+	public void testSystemType() throws Exception {
+		String src1 = "package foo;"
+				+ "class Foo {"
+				+ "  void fn1( pkg1.System param1, pkg2.Type2 param2 ) {}"
+				+ "}";
+	
+		JavaClassSource javaSrc = (JavaClassSource) Roaster.parse(src1);
+		CompilationUnit astCu = (CompilationUnit)javaSrc.getInternal();		
+		CleanQualifiedTypes.cleanAst(astCu);
+		String javaTxt = javaSrc.toString();
+		assertTrue(javaTxt.contains("import pkg1.System;") && javaTxt.contains("import pkg2.Type2;"));
+	}
+
+	@Test
 	public void testQualifiedSelfReference() throws Exception {
 		String src1 = "package foo;"
 				+ "class Foo {"

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
@@ -26,9 +27,10 @@ public class PropertyResult extends StaticFieldResult {
 	public MethodSource<JavaClassSource> beanSetterSrc;
 	public MethodSource<JavaClassSource> beanWithSrc;
 
-	PropertyResult(MainTypeResult containerGen, MMConstruct mmBean, StructuredName name) {
+	PropertyResult(MainTypeResult containerGen, MMConstruct mmBean, StructuredName name) {		
 		super(containerGen, mmBean, name);
-		
+		if( ! (mmBean instanceof RuntimePropertyAware) )
+			throw new RuntimeException(mmBean.getName() + " isn't an instance of " + RuntimePropertyAware.class.getName());		
 		
 		MMRepositoryType propertyMMType = mmBean.getMemberType();
 		String propertyType = ctx.getStructuredName(propertyMMType).getFullName();
@@ -49,6 +51,7 @@ public class PropertyResult extends StaticFieldResult {
 				beanFieldSrc.setType(propertyType);
 		}
 
+		containerGen.src.addImport(propertyType);
 		String wrappedtype; 
 		if( isMultiple )
 			wrappedtype = List.class.getName() + "<" + propertyType + ">";
@@ -102,8 +105,29 @@ public class PropertyResult extends StaticFieldResult {
 		{
 			staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
 			staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-			staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
+			staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass().getName() + "<" + containerGen.src.getName()+ "," + beanGetterSrc.getReturnType().getQualifiedNameWithGenerics() +">");
 			
+			String initPrefix = "new " + mmBean.getMetamodel().getBeanClass().getName() + "<" + containerGen.src.getName()+ "," + beanGetterSrc.getReturnType().getQualifiedNameWithGenerics() +">" + "(){{";
+			String initSuffix = "}\n";
+			
+			initSuffix+= "@" + Override.class.getName() + "\n"; 
+			initSuffix+= "public " + beanGetterSrc.getReturnType().getQualifiedNameWithGenerics() + " getValue(" +  containerGen.src.getName()+ " obj) {\n";
+			initSuffix+= "  return obj." + beanGetterSrc.getName() + "();\n";
+			initSuffix+= "}\n";						
+
+			initSuffix+= "@" + Override.class.getName() + "\n"; 
+			initSuffix+= "public void setValue(" +  containerGen.src.getName()+ " obj, " + beanGetterSrc.getReturnType().getQualifiedNameWithGenerics() + " value ) {\n";
+			if( isOptional && !isMultiple ) {
+				initSuffix+= "  obj." + beanSetterSrc.getName() + "( value.orElse(null) );\n";
+			} else {
+				initSuffix+= "  obj." + beanSetterSrc.getName() + "( value );\n";				
+			}
+			initSuffix+= "}\n";						
+			
+			
+			initSuffix += "};";
+			staticFieldInitializerBody = new StringJoiner("\n", initPrefix, initSuffix);
+
 			// TODO:
 			//createJavaDoc(staticFieldSrc, mmBean);
 		}
@@ -112,24 +136,10 @@ public class PropertyResult extends StaticFieldResult {
 
 	@Override
 	public void flush() {
-		String init = "new " + mmBean.getMetamodel().getBeanClass().getName() + "(){{";
 		for (AttrResult attrGen : attrGens) {
-			init += attrGen.initializationSource + "\n";
+			staticFieldInitializerBody.add( attrGen.initializationSource );
 		}
-		init += "}\n";
-		if( mmBean instanceof RuntimePropertyAware ) {
-			beanGetterSrc.getOrigin().addImport(Method.class);
-			init+= "public " + Method.class.getSimpleName() + " getGetterMethod() {\n";
-			init+= "  try {\n";
-			init+= "    return "+ beanGetterSrc.getOrigin().getName()+".class.getMethod(\"" + beanGetterSrc.getName()+ "\", new Class[]{} );\n";
-			init+= "  } catch (NoSuchMethodException e) {	throw new RuntimeException(e);}\n"; 
-			init+= "}\n";
-			
-			// TODO: Add getSetterMethod()
-		}
-		
-		init += "};";
-		staticFieldSrc.setLiteralInitializer(init);
+		staticFieldSrc.setLiteralInitializer(staticFieldInitializerBody.toString());
 
 		if (!ctx.isSkipDocGeneration()) {
 			String attrsJavadoc = getJavaDocForAttrs();

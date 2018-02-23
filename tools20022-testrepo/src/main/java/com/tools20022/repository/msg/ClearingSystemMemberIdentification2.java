@@ -104,7 +104,7 @@ public class ClearingSystemMemberIdentification2 {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAssociationEnd mmClearingSystemIdentification = new MMMessageAssociationEnd() {
+	public static final MMMessageAssociationEnd<ClearingSystemMemberIdentification2, Optional<ClearingSystemIdentification2Choice>> mmClearingSystemIdentification = new MMMessageAssociationEnd<ClearingSystemMemberIdentification2, Optional<ClearingSystemIdentification2Choice>>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.ClearingSystemMemberIdentification2.mmObject();
 			isDerived = false;
@@ -116,6 +116,16 @@ public class ClearingSystemMemberIdentification2 {
 			minOccurs = 0;
 			isComposite = true;
 			type_lazy = () -> ClearingSystemIdentification2Choice.mmObject();
+		}
+
+		@Override
+		public Optional<ClearingSystemIdentification2Choice> getValue(ClearingSystemMemberIdentification2 obj) {
+			return obj.getClearingSystemIdentification();
+		}
+
+		@Override
+		public void setValue(ClearingSystemMemberIdentification2 obj, Optional<ClearingSystemIdentification2Choice> value) {
+			obj.setClearingSystemIdentification(value.orElse(null));
 		}
 	};
 	@XmlElement(name = "MmbId", required = true)
@@ -147,7 +157,7 @@ public class ClearingSystemMemberIdentification2 {
 	 * definition} = "Identification of a member of a clearing system."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmMemberIdentification = new MMMessageAttribute() {
+	public static final MMMessageAttribute<ClearingSystemMemberIdentification2, Max35Text> mmMemberIdentification = new MMMessageAttribute<ClearingSystemMemberIdentification2, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.msg.ClearingSystemMemberIdentification2.mmObject();
 			isDerived = false;
@@ -158,6 +168,16 @@ public class ClearingSystemMemberIdentification2 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(ClearingSystemMemberIdentification2 obj) {
+			return obj.getMemberIdentification();
+		}
+
+		@Override
+		public void setValue(ClearingSystemMemberIdentification2 obj, Max35Text value) {
+			obj.setMemberIdentification(value);
 		}
 	};
 

@@ -517,7 +517,7 @@ public class InspectLoadedRepository {
 			if (processedMMRef.contains(mmRef))
 				continue;
 			processedMMRef.add(mmRef);
-			mmRef.getOpposite().ifPresent(opposite -> processedMMRef.add(opposite));
+			mmRef.getOpposite().ifPresent(opposite -> processedMMRef.add((MMBusinessAssociationEnd) opposite));
 
 			refsByAggr.computeIfAbsent(mmRef.getAggregation(), x -> new ArrayList<>()).add(mmRef);
 
@@ -526,7 +526,7 @@ public class InspectLoadedRepository {
 			arity += mmRef.getMaxOccurs().isPresent() ? mmRef.getMaxOccurs().get().toString() : "?";
 
 			if (mmRef.getOpposite().isPresent()) {
-				MMBusinessAssociationEnd mmOp = mmRef.getOpposite().get();
+				MMBusinessAssociationEnd<?,?> mmOp = (MMBusinessAssociationEnd<?, ?>) mmRef.getOpposite().get();
 				arity += "-";
 				arity += mmOp.getMinOccurs().isPresent() ? mmOp.getMinOccurs().get().toString() : "?";
 				arity += "..";
@@ -786,13 +786,13 @@ public class InspectLoadedRepository {
 		int countExpr = 0;
 		int conutNonMsgDef = 0;
 
-		Map<String, Set<MMConstraint>> sameDescMap = new HashMap<>();
-		Map<String, Set<MMConstraint>> sameNameMap = new HashMap<>();
+		Map<String, Set<MMConstraint<?>>> sameDescMap = new HashMap<>();
+		Map<String, Set<MMConstraint<?>>> sameNameMap = new HashMap<>();
 		Map<String, List<MMRepositoryConcept>> constraintOwners = new HashMap<>();
 
-		List<? extends MMConstraint> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
+		List<? extends MMConstraint<?>> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
 		System.out.println("--- Constraints : -----");
-		for (MMConstraint c : constr) {
+		for (MMConstraint<?> c : constr) {
 			// if(! c.getName().equals("ControlSumAndGroupReversalRule") )
 			// continue;
 
@@ -813,11 +813,11 @@ public class InspectLoadedRepository {
 				countExpr++;
 			}
 
-			Set<MMConstraint> set1 = sameDescMap.computeIfAbsent(c.getDefinition().orElse("-"),
-					x -> new LinkedHashSet<MMConstraint>());
+			Set<MMConstraint<?>> set1 = sameDescMap.computeIfAbsent(c.getDefinition().orElse("-"),
+					x -> new LinkedHashSet<MMConstraint<?>>());
 			set1.add(c);
-			Set<MMConstraint> set = sameNameMap.computeIfAbsent(c.getName(),
-					x -> new LinkedHashSet<MMConstraint>());
+			Set<MMConstraint<?>> set = sameNameMap.computeIfAbsent(c.getName(),
+					x -> new LinkedHashSet<MMConstraint<?>>());
 			set.add(c);
 		}
 		;
@@ -837,7 +837,7 @@ public class InspectLoadedRepository {
 		System.out.println( "Number different contrains containing \"During ISO 15022 – 20022 coexistence\" : " + sameDescMap.keySet().stream().filter(d->d.contains("During ISO 15022 – 20022 coexistence")).count() );
 		
 		System.out.println("---- Same name but different description -----------");
-		for (Map.Entry<String, Set<MMConstraint>> e : sameNameMap.entrySet()) {
+		for (Map.Entry<String, Set<MMConstraint<?>>> e : sameNameMap.entrySet()) {
 			if (e.getValue().stream().map(c -> c.getDefinition()).distinct().count() <= 1)
 				continue;
 			System.out.println("***" + e.getKey() + "***");
@@ -856,7 +856,7 @@ public class InspectLoadedRepository {
 		
 		for( Map.Entry<String, List<MMRepositoryConcept>> e : byNumOfOwners ) {
 			System.out.println( e.getKey() + " " + e.getValue().size() );
-			Set<MMConstraint> constrSet = sameNameMap.get(e.getKey());
+			Set<MMConstraint<?>> constrSet = sameNameMap.get(e.getKey());
 			if( constrSet == null ) {
 				System.out.println();
 			}

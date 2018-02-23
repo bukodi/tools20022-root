@@ -103,7 +103,7 @@ public class OrganisationIdentificationSchemeName1Choice {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmCode = new MMMessageAttribute() {
+	public static final MMMessageAttribute<OrganisationIdentificationSchemeName1Choice, ExternalOrganisationIdentification1Code> mmCode = new MMMessageAttribute<OrganisationIdentificationSchemeName1Choice, ExternalOrganisationIdentification1Code>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.OrganisationIdentificationSchemeName1Choice.mmObject();
 			isDerived = false;
@@ -114,6 +114,16 @@ public class OrganisationIdentificationSchemeName1Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> ExternalOrganisationIdentification1Code.mmObject();
+		}
+
+		@Override
+		public ExternalOrganisationIdentification1Code getValue(OrganisationIdentificationSchemeName1Choice obj) {
+			return obj.getCode();
+		}
+
+		@Override
+		public void setValue(OrganisationIdentificationSchemeName1Choice obj, ExternalOrganisationIdentification1Code value) {
+			obj.setCode(value);
 		}
 	};
 	@XmlElement(name = "Prtry", required = true)
@@ -145,7 +155,7 @@ public class OrganisationIdentificationSchemeName1Choice {
 	 * definition} = "Name of the identification scheme, in a free text form."</li>
 	 * </ul>
 	 */
-	public static final MMMessageAttribute mmProprietary = new MMMessageAttribute() {
+	public static final MMMessageAttribute<OrganisationIdentificationSchemeName1Choice, Max35Text> mmProprietary = new MMMessageAttribute<OrganisationIdentificationSchemeName1Choice, Max35Text>() {
 		{
 			componentContext_lazy = () -> com.tools20022.repository.choice.OrganisationIdentificationSchemeName1Choice.mmObject();
 			isDerived = false;
@@ -156,6 +166,16 @@ public class OrganisationIdentificationSchemeName1Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = () -> Max35Text.mmObject();
+		}
+
+		@Override
+		public Max35Text getValue(OrganisationIdentificationSchemeName1Choice obj) {
+			return obj.getProprietary();
+		}
+
+		@Override
+		public void setValue(OrganisationIdentificationSchemeName1Choice obj, Max35Text value) {
+			obj.setProprietary(value);
 		}
 	};
 

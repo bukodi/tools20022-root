@@ -26,6 +26,7 @@ import org.jboss.forge.roaster.model.source.JavaInterfaceSource;
 import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 import org.jboss.forge.roaster.model.source.PropertyHolderSource;
+import org.jboss.forge.roaster.model.source.TypeVariableSource;
 
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
@@ -63,9 +64,11 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 	static {
 		BEAN_AWARE_TYPE_NAMES.add("MessageDefinition");
 		BEAN_AWARE_TYPE_NAMES.add("BusinessComponent");
+		PROPRTY_AWARE_TYPE_NAMES.add("MessageAttribute");
+		PROPRTY_AWARE_TYPE_NAMES.add("MessageAssociationEnd");
 		PROPRTY_AWARE_TYPE_NAMES.add("MessageBuildingBlock");
 		PROPRTY_AWARE_TYPE_NAMES.add("BusinessAttribute");
-		PROPRTY_AWARE_TYPE_NAMES.add("AssociationEnd");
+		PROPRTY_AWARE_TYPE_NAMES.add("BusinessAssociationEnd");
 		VALIDATOR_AWARE_TYPE_NAMES.add("Constraint");
 	}
 
@@ -258,11 +261,15 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 			}
 			// Implement XXXAware interfaces
 			if( PROPRTY_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
-				src.addInterface(RuntimePropertyAware.class);
+				src.addTypeVariable().setName("T");
+				src.addTypeVariable().setName("V");
+				src.addInterface(RuntimePropertyAware.class.getName() + "<T,V>");
 			}
 			// Implement XXXAware interfaces
 			if( VALIDATOR_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
-				src.addInterface(RuntimeValidatorAware.class);
+				TypeVariableSource<JavaClassSource> tvs = src.addTypeVariable();
+				tvs.setName("T");
+				src.addInterface(RuntimeValidatorAware.class.getName() + "<T>");
 			}
 		}
 

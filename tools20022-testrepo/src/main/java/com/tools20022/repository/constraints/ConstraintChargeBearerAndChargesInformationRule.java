@@ -20,7 +20,6 @@ package com.tools20022.repository.constraints;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
-import com.tools20022.repository.codeset.ChargeBearerType1Code;
 import com.tools20022.repository.msg.CreditTransferTransactionInformation11;
 
 /**
@@ -58,7 +57,7 @@ public class ConstraintChargeBearerAndChargesInformationRule {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMConstraint forCreditTransferTransactionInformation11 = new MMConstraint() {
+	public static final MMConstraint<CreditTransferTransactionInformation11> forCreditTransferTransactionInformation11 = new MMConstraint<CreditTransferTransactionInformation11>() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "ChargeBearerAndChargesInformationRule";
@@ -68,8 +67,8 @@ public class ConstraintChargeBearerAndChargesInformationRule {
 		}
 
 		@Override
-		public void executeValidator(Object obj) throws Exception {
-			checkCreditTransferTransactionInformation11((CreditTransferTransactionInformation11) obj);
+		public void executeValidator(CreditTransferTransactionInformation11 obj) throws Exception {
+			checkCreditTransferTransactionInformation11(obj);
 		}
 	};
 

@@ -53,7 +53,7 @@ public class ConstraintSettlementMethodAgentRule {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMConstraint forSettlementInformation13 = new MMConstraint() {
+	public static final MMConstraint<SettlementInformation13> forSettlementInformation13 = new MMConstraint<SettlementInformation13>() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "SettlementMethodAgentRule";
@@ -63,8 +63,8 @@ public class ConstraintSettlementMethodAgentRule {
 		}
 
 		@Override
-		public void executeValidator(Object obj) throws Exception {
-			checkSettlementInformation13((SettlementInformation13) obj);
+		public void executeValidator(SettlementInformation13 obj) throws Exception {
+			checkSettlementInformation13(obj);
 		}
 	};
 

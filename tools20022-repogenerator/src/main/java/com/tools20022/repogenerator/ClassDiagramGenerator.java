@@ -31,7 +31,7 @@ public class ClassDiagramGenerator {
 	}
 
 	private final Map<MMBusinessComponent, EntityRole> addedEntities = new LinkedHashMap<>();
-	private final Set<MMBusinessAssociationEnd> addedRefs = new LinkedHashSet<>();
+	private final Set<MMBusinessAssociationEnd<?,?>> addedRefs = new LinkedHashSet<>();
 
 	private final MMBusinessComponent mmBC;
 	private final StringWriter sw = new StringWriter();
@@ -126,8 +126,8 @@ public class ClassDiagramGenerator {
 
 					String otherCardinality = "?";
 					if (mmRef.getOpposite().isPresent()) {
-						addedRefs.add(mmRef.getOpposite().get());
-						MMBusinessAssociationEnd mmOp = mmRef.getOpposite().get();
+						addedRefs.add((MMBusinessAssociationEnd<?, ?>) mmRef.getOpposite().get());
+						MMBusinessAssociationEnd<?,?> mmOp = (MMBusinessAssociationEnd<?, ?>) mmRef.getOpposite().get();
 						otherCardinality = mmOp.getMinOccurs().isPresent() ? mmOp.getMinOccurs().get().toString()
 								: "?";
 						otherCardinality += "..";
@@ -171,7 +171,7 @@ public class ClassDiagramGenerator {
 			for (MMBusinessElement mmElem : mmBC.getElement()) {
 				if (!(mmElem instanceof MMBusinessAttribute))
 					continue;
-				MMBusinessAttribute mmAttr = (MMBusinessAttribute) mmElem;
+				MMBusinessAttribute<?,?> mmAttr = (MMBusinessAttribute<?,?>) mmElem;
 				String typeName;
 				if( mmAttr.getSimpleType().isPresent() ) {
 					typeName = mmAttr.getSimpleType().get().getName();

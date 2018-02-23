@@ -50,7 +50,7 @@ public class ConstraintBIC {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMConstraint forBICIdentifier = new MMConstraint() {
+	public static final MMConstraint<BICIdentifier> forBICIdentifier = new MMConstraint<BICIdentifier>() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "BIC";
@@ -59,8 +59,8 @@ public class ConstraintBIC {
 		}
 
 		@Override
-		public void executeValidator(Object obj) throws Exception {
-			checkBICIdentifier((BICIdentifier) obj);
+		public void executeValidator(BICIdentifier obj) throws Exception {
+			checkBICIdentifier(obj);
 		}
 	};
 

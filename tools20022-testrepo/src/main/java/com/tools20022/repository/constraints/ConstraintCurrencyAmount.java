@@ -50,7 +50,7 @@ public class ConstraintCurrencyAmount {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMConstraint forActiveCurrencyAndAmount = new MMConstraint() {
+	public static final MMConstraint<ActiveCurrencyAndAmount> forActiveCurrencyAndAmount = new MMConstraint<ActiveCurrencyAndAmount>() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CurrencyAmount";
@@ -59,8 +59,8 @@ public class ConstraintCurrencyAmount {
 		}
 
 		@Override
-		public void executeValidator(Object obj) throws Exception {
-			checkActiveCurrencyAndAmount((ActiveCurrencyAndAmount) obj);
+		public void executeValidator(ActiveCurrencyAndAmount obj) throws Exception {
+			checkActiveCurrencyAndAmount(obj);
 		}
 	};
 	/**
@@ -84,7 +84,7 @@ public class ConstraintCurrencyAmount {
 	 * </li>
 	 * </ul>
 	 */
-	public static final MMConstraint forActiveOrHistoricCurrencyAndAmount = new MMConstraint() {
+	public static final MMConstraint<ActiveOrHistoricCurrencyAndAmount> forActiveOrHistoricCurrencyAndAmount = new MMConstraint<ActiveOrHistoricCurrencyAndAmount>() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CurrencyAmount";
@@ -93,8 +93,8 @@ public class ConstraintCurrencyAmount {
 		}
 
 		@Override
-		public void executeValidator(Object obj) throws Exception {
-			checkActiveOrHistoricCurrencyAndAmount((ActiveOrHistoricCurrencyAndAmount) obj);
+		public void executeValidator(ActiveOrHistoricCurrencyAndAmount obj) throws Exception {
+			checkActiveOrHistoricCurrencyAndAmount(obj);
 		}
 	};
 
