@@ -871,12 +871,101 @@ public class InspectLoadedRepository {
 	}
 
 	@Test
-	public void inspectCurrencyTypes() throws Exception {
-		MMAmount acaa = repo.findObjectByTypeAndName(MMAmount.class, "ActiveCurrencyAndAmount");
-		MetamodelType<? extends MMAmount> mmAcas = acaa.getMetamodel();
-		for( MetamodelAttribute<?, ?> mmAttr : mmAcas.getIncomingAttributes() ) {
-			System.out.println(mmAttr.getDeclaringType().getName() + "." + mmAttr.getName() + " : " + mmAttr.getReferencedType().getName());
+	public void inspectAmmountTypes() throws Exception {
+		List<? extends MMAmount> mmAmounts = repo.listObjects(MMAmount.metaType()).collect(Collectors.toList());
+		for( MMAmount mmAmount : mmAmounts ) {
+			System.out.println("**> " + mmAmount.getName() + ":");
+			if( mmAmount.getCurrencyIdentifierSet().isPresent() ) {
+				MMDataType currIdSet = mmAmount.getCurrencyIdentifierSet().get();
+				System.out.println("CurrencyIdentifierSet: " + "[" + currIdSet.getClass().getSimpleName() + "]" + currIdSet.getName());							 
+				System.out.println("CurrencyIdSet def: " + currIdSet.getDefinition().orElse("-nod doc-"));							 
+			} else {
+				System.out.println("CurrencyIdentifierSet: no curr id set ");			
+			}
+			System.out.println("Doc: " + mmAmount.getDefinition().orElse("-no doc-"));
+			System.out.println();
 		}
 	}
 
+	@Test
+	public void listEmptyCodesets() throws Exception {
+		List<? extends MMCodeSet> mmCodesets = repo.listObjects(MMCodeSet.metaType()).filter(cs->cs.getCode().isEmpty()).sorted((c1,c2)->Collator.getInstance().compare(c1.getName(), c2.getName())).collect(Collectors.toList());
+		int i = 1;
+		for( MMCodeSet mmCodeSet : mmCodesets ) {
+			System.out.println( i++ + ": " + mmCodeSet.getName());
+		}
+	}
+
+	static List<String> externalCodesetNames = new ArrayList<String>();
+	static {
+		externalCodesetNames.add( "ExternalAccountIdentification1Code");
+		externalCodesetNames.add( "ExternalBalanceSubType1Code");
+		externalCodesetNames.add( "ExternalCashClearingSystem1Code");
+		externalCodesetNames.add( "ExternalCategoryPurpose1Code");
+		externalCodesetNames.add( "ExternalClearingSystemIdentification1Code");
+		externalCodesetNames.add( "ExternalFinancialInstitutionIdentification1Code");
+		externalCodesetNames.add( "ExternalLocalInstrument1Code");
+		externalCodesetNames.add( "ExternalMandateReason1Code");
+		externalCodesetNames.add( "ExternalOrganisationIdentification1Code");
+		externalCodesetNames.add( "ExternalPersonIdentification1Code");
+		externalCodesetNames.add( "ExternalPurpose1Code");
+		externalCodesetNames.add( "ExternalReportingSource1Code");
+		externalCodesetNames.add( "ExternalReturnReason1Code");
+		externalCodesetNames.add( "ExternalReversalReason1Code");
+		externalCodesetNames.add( "ExternalServiceLevel1Code");
+		externalCodesetNames.add( "ExternalStatusReason1Code");
+		externalCodesetNames.add( "ExternalTechnicalInputChannel1Code");
+		externalCodesetNames.add( "ExternalVerificationReason1Code");
+		externalCodesetNames.add( "ExternalDocumentPurpose1Code");
+		externalCodesetNames.add( "ExternalDocumentType1Code");
+		externalCodesetNames.add( "ExternalIncoterms1Code");
+		externalCodesetNames.add( "ExternalInformationType1Code");
+		externalCodesetNames.add( "ExternalPackagingType1Code");
+		externalCodesetNames.add( "ExternalFinancialInstrumentIdentificationType1Code");
+		externalCodesetNames.add( "ExternalTradeTransactionCondition1Code");
+		externalCodesetNames.add( "ExternalChargeType1Code");
+		externalCodesetNames.add( "ExternalCashAccountType1Code");
+		externalCodesetNames.add( "ExternalDiscountAmountType1Code");
+		externalCodesetNames.add( "ExternalTaxAmountType1Code");
+		externalCodesetNames.add( "ExternalCardTransactionCategory1Code");
+		externalCodesetNames.add( "ExternalBillingBalanceType1Code");
+		externalCodesetNames.add( "ExternalBillingCompensationType1Code");
+		externalCodesetNames.add( "ExternalBillingRateIdentification1Code");
+		externalCodesetNames.add( "ExternalRePresentmentReason1Code");
+		externalCodesetNames.add( "ExternalChannel1Code");
+		externalCodesetNames.add( "ExternalDateFrequency1Code");
+		externalCodesetNames.add( "ExternalDocumentFormat1Code");
+		externalCodesetNames.add( "ExternalModelFormIdentification1Code");
+		externalCodesetNames.add( "ExternalNarrativeType1Code");
+		externalCodesetNames.add( "ExternalRelativeTo1Code");
+		externalCodesetNames.add( "ExternalTypeOfParty1Code");
+		externalCodesetNames.add( "ExternalUnderlyingTradeTransactionType1Code");
+		externalCodesetNames.add( "ExternalUndertakingAmountType1Code");
+		externalCodesetNames.add( "ExternalUndertakingChargeType1Code");
+		externalCodesetNames.add( "ExternalUndertakingDocumentType1Code");
+		externalCodesetNames.add( "ExternalUndertakingDocumentType2Code");
+		externalCodesetNames.add( "ExternalUndertakingStatusCategory1Code");
+		externalCodesetNames.add( "ExternalUndertakingType1Code");
+		externalCodesetNames.add( "ExternalDocumentLineType1Code");
+		externalCodesetNames.add( "ExternalGarnishmentType1Code");
+		externalCodesetNames.add( "ExternalTradeMarket1Code");
+		externalCodesetNames.add( "ExternalMandateSetupReason1Code");
+		externalCodesetNames.add( "ExternalValidationRuleIdentification1Code");
+		externalCodesetNames.add( "ExternalContractClosureReason1Code");
+		externalCodesetNames.add( "ExternalContractBalanceType1Code");
+		externalCodesetNames.add( "ExternalShipmentCondition1Code");
+		externalCodesetNames.add( "ExternalMarketArea1Code");
+		externalCodesetNames.add( "ExternalEffectiveDateParameter1Code");
+		externalCodesetNames.add( "ExternalSecuritiesPurpose1Code");
+		externalCodesetNames.add( "ExternalReceivedReason1Code");
+		externalCodesetNames.add( "ExternalAcceptedReason1Code");
+		externalCodesetNames.add( "ExternalPendingProcessingReason1Code");
+		externalCodesetNames.add( "ExternalRejectedReason1Code");
+		externalCodesetNames.add( "ExternalPaymentTransactionStatus1Code");
+		externalCodesetNames.add( "ExternalPaymentGroupStatus1Code");
+		externalCodesetNames.add( "ExternalCancellationReason1Code");
+		externalCodesetNames.add( "ExternalMandateStatus1Code");
+		externalCodesetNames.add( "ExternalMandateSuspensionReason1Code");
+		externalCodesetNames.add( "ExternalAuthenticationChannel1Code");
+	}
 }
