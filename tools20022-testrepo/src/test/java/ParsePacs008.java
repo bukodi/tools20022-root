@@ -16,6 +16,7 @@ import com.test.camt030.NotificationOfCaseAssignmentV04;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.Document;
 import com.tools20022.repository.codeset.AddressType2Code;
+import com.tools20022.repository.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.msg.GroupHeader33;
 
@@ -54,7 +55,9 @@ public class ParsePacs008 {
 		FIToFICustomerCreditTransferV02.Document doc = (FIToFICustomerCreditTransferV02.Document) obj;
 		FIToFICustomerCreditTransferV02 msg = doc.messageBody;
 		
-		System.out.println(msg);
+		ActiveCurrencyAndAmount currAndAmount = msg.getGroupHeader().getTotalInterbankSettlementAmount().get();
+		
+		System.out.println(currAndAmount);
 
 		
 	}

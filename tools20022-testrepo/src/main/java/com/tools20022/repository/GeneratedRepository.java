@@ -360,7 +360,7 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 					Purpose2Choice.mmObject(), NameAndAddress10.mmObject(), RemittanceLocation2.mmObject(), ReferredDocumentType1Choice.mmObject(), ReferredDocumentType2.mmObject(), ReferredDocumentInformation3.mmObject(),
 					DocumentAdjustment1.mmObject(), RemittanceAmount1.mmObject(), CreditorReferenceType1Choice.mmObject(), CreditorReferenceType2.mmObject(), CreditorReferenceInformation2.mmObject(),
 					StructuredRemittanceInformation7.mmObject(), RemittanceInformation5.mmObject(), InstructionForCreditorAgent1.mmObject(), ServiceLevel8Choice.mmObject(), LocalInstrument2Choice.mmObject(),
-					CategoryPurpose1Choice.mmObject(), RegulatoryAuthority2.mmObject(), StructuredRegulatoryReporting3.mmObject(), RegulatoryReporting3.mmObject(), SettlementInformation13.mmObject(), ChargesInformation5.mmObject(),
+					CategoryPurpose1Choice_.mmObject(), RegulatoryAuthority2.mmObject(), StructuredRegulatoryReporting3.mmObject(), RegulatoryReporting3.mmObject(), SettlementInformation13.mmObject(), ChargesInformation5.mmObject(),
 					SettlementDateTimeIndication1.mmObject(), InstructionForNextAgent1.mmObject(), PaymentTypeInformation21.mmObject(), GroupHeader33.mmObject(), PaymentIdentification3.mmObject(), SettlementTimeRequest2.mmObject(),
 					CreditTransferTransactionInformation11.mmObject(), Max35Text.mmObject(), ISODateTime.mmObject(), ISODate.mmObject(), CountryCode.mmObject(), Max70Text.mmObject(), Max140Text.mmObject(),
 					ActiveCurrencyAndAmount.mmObject(), DecimalNumber.mmObject(), AddressTypeCode.mmObject(), AddressType2Code.mmObject(), Max16Text.mmObject(), PhoneNumber.mmObject(), BICIdentifier.mmObject(), ISOTime.mmObject(),

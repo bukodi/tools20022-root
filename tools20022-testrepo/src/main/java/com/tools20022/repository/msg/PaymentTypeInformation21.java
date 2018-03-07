@@ -17,23 +17,26 @@
 
 package com.tools20022.repository.msg;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.choice.CategoryPurpose1Choice;
+import com.tools20022.repository.choice.CategoryPurpose1Choice_;
 import com.tools20022.repository.choice.LocalInstrument2Choice;
 import com.tools20022.repository.choice.ServiceLevel8Choice;
 import com.tools20022.repository.codeset.ClearingChannel2Code;
 import com.tools20022.repository.codeset.Priority2Code;
-import com.tools20022.repository.GeneratedRepository;
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.Optional;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  * Set of elements used to provide further details of the type of payment.
@@ -343,7 +346,7 @@ public class PaymentTypeInformation21 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CategoryPurpose1Choice.mmObject();
+			type_lazy = () -> CategoryPurpose1Choice_.mmObject();
 		}
 
 		@Override

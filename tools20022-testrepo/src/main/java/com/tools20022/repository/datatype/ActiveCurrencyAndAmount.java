@@ -17,15 +17,19 @@
 
 package com.tools20022.repository.datatype;
 
-import com.tools20022.metamodel.MMAmount;
-import com.tools20022.metamodel.MMRegistrationStatus;
-import com.tools20022.repository.datatype.ActiveCurrencyAndAmount.InternalXmlAdapter;
-import com.tools20022.repository.GeneratedRepository;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
+
+import com.tools20022.metamodel.MMAmount;
+import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.repository.GeneratedRepository;
 
 /**
  * A number of monetary units specified in an active currency where the unit of
@@ -66,11 +70,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * </li>
  * </ul>
  */
-@XmlJavaTypeAdapter(InternalXmlAdapter.class)
-public class ActiveCurrencyAndAmount {
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ActiveCurrencyAndAmount", propOrder = {
+    "amount"
+})
+public class ActiveCurrencyAndAmount {
 	final static private AtomicReference<MMAmount> mmObject_lazy = new AtomicReference<>();
-	protected BigDecimal value;
+    @XmlValue
+	protected BigDecimal amount;
+
+    @XmlAttribute(name = "Ccy", required = true)
+    protected String currency;
 
 	final static public MMAmount mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMAmount() {
@@ -89,23 +100,28 @@ public class ActiveCurrencyAndAmount {
 		return mmObject_lazy.get();
 	}
 
-	public ActiveCurrencyAndAmount(BigDecimal value) {
-		this.value = value;
+	public ActiveCurrencyAndAmount() {
+		
 	}
 
-	public BigDecimal toBigDecimal() {
-		return value;
+	public ActiveCurrencyAndAmount(BigDecimal value, String ccy) {
+		this.amount = value;
+		this.currency = ccy;
 	}
 
-	protected static class InternalXmlAdapter extends XmlAdapter<BigDecimal, ActiveCurrencyAndAmount> {
-		@Override
-		public ActiveCurrencyAndAmount unmarshal(BigDecimal value) {
-			return new ActiveCurrencyAndAmount(value);
-		}
+	public BigDecimal getAmount() {
+		return amount;
+	}
 
-		@Override
-		public BigDecimal marshal(ActiveCurrencyAndAmount typedData) {
-			return typedData.value;
-		}
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 }
