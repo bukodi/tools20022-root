@@ -17,19 +17,14 @@
 
 package com.tools20022.repository.datatype;
 
+import com.tools20022.metamodel.MMAmount;
+import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.repository.codeset.ActiveCurrencyCode;
+import com.tools20022.repository.GeneratedRepository;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
-
-import com.tools20022.metamodel.MMAmount;
-import com.tools20022.metamodel.MMRegistrationStatus;
-import com.tools20022.repository.GeneratedRepository;
+import javax.xml.bind.annotation.*;
 
 /**
  * A number of monetary units specified in an active currency where the unit of
@@ -37,6 +32,10 @@ import com.tools20022.repository.GeneratedRepository;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
+ * <li>{@linkplain com.tools20022.metamodel.MMAmount#getCurrencyIdentifierSet
+ * currencyIdentifierSet} =
+ * {@linkplain com.tools20022.repository.codeset.ActiveCurrencyCode
+ * ActiveCurrencyCode}</li>
  * <li>{@linkplain com.tools20022.metamodel.MMDecimal#getMinInclusive
  * minInclusive} = "0"</li>
  * <li>
@@ -70,18 +69,15 @@ import com.tools20022.repository.GeneratedRepository;
  * </li>
  * </ul>
  */
-
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ActiveCurrencyAndAmount", propOrder = {
-    "amount"
-})
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlType
 public class ActiveCurrencyAndAmount {
-	final static private AtomicReference<MMAmount> mmObject_lazy = new AtomicReference<>();
-    @XmlValue
-	protected BigDecimal amount;
 
-    @XmlAttribute(name = "Ccy", required = true)
-    protected String currency;
+	final static private AtomicReference<MMAmount> mmObject_lazy = new AtomicReference<>();
+	@XmlValue
+	protected BigDecimal amount;
+	@XmlAttribute(name = "ccy", required = true)
+	protected ActiveCurrencyCode currency;
 
 	final static public MMAmount mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMAmount() {
@@ -92,6 +88,7 @@ public class ActiveCurrencyAndAmount {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ActiveCurrencyAndAmount";
 				definition = "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.";
+				currencyIdentifierSet_lazy = () -> ActiveCurrencyCode.mmObject();
 				minInclusive = "0";
 				totalDigits = 18;
 				fractionDigits = 5;
@@ -101,27 +98,28 @@ public class ActiveCurrencyAndAmount {
 	}
 
 	public ActiveCurrencyAndAmount() {
-		
 	}
 
-	public ActiveCurrencyAndAmount(BigDecimal value, String ccy) {
-		this.amount = value;
-		this.currency = ccy;
+	public ActiveCurrencyAndAmount(BigDecimal amount, ActiveCurrencyCode currency) {
+		this.amount = amount;
+		this.currency = currency;
 	}
 
 	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
-	}
-
-	public String getCurrency() {
+	public ActiveCurrencyCode getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setAmountAndCurrency(BigDecimal amount, ActiveCurrencyCode currency) {
+		this.amount = amount;
 		this.currency = currency;
+	}
+
+	@Override
+	public String toString() {
+		return amount + " " + currency;
 	}
 }

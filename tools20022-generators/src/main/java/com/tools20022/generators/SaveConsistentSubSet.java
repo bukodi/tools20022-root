@@ -121,6 +121,9 @@ public class SaveConsistentSubSet {
 					}
 				}
 				tmp.add(assocDomainRef);
+				tmp.add((EReference) ((EClass) ecorePackage.getEClassifier("Amount"))
+						.getEStructuralFeature("currencyIdentifierSet"));
+
 				keepRefs = Collections.unmodifiableSet(tmp);
 			}
 
@@ -173,6 +176,15 @@ public class SaveConsistentSubSet {
 			// Loop on objects
 			for (EObject eObj : new HashSet<EObject>(markedForRetain)) {
 				monitor.trace("Extend object: " + ECoreIOHelper.toString(eObj));
+				if( "Amount".equals( eObj.eClass().getName()) ) {
+					EAttribute nameAttr = (EAttribute) ((EClass) ecorePackage.getEClassifier("Amount"))
+							.getEStructuralFeature("name");
+					EReference ccyRef = (EReference) ((EClass) ecorePackage.getEClassifier("Amount"))
+							.getEStructuralFeature("currencyIdentifierSet");
+					String name = (String) eObj.eGet(nameAttr);
+					EObject ccy = (EObject) eObj.eGet(ccyRef);
+					System.out.println(name + ": " + ccy);
+				}
 
 				// Add container
 

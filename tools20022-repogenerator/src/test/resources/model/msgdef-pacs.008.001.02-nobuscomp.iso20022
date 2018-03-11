@@ -2,11 +2,11 @@
 <iso20022:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:iso20022="urn:iso:std:iso:20022:2013:ecore">
   <dataDictionary>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ClearingSystemIdentification3Choice" definition="Specifies the clearing system identification." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Infrastructure through which the payment instruction is processed, as published in an external clearing system identification code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Infrastructure through which the payment instruction is processed, as published in an external clearing system identification code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.75"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Clearing system identification in a proprietary form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ClearingSystemIdentification2Choice" definition="Choice of a clearing system identifier." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Identification of a clearing system, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.75"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Identification of a clearing system, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.76"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Identification code for a clearing system, that has not yet been identified in the list of clearing systems." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ClearingSystemMemberIdentification2" definition="Unique identification, as assigned by a clearing system, to unambiguously identify a member of the clearing system." registrationStatus="Registered">
@@ -14,7 +14,7 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="MemberIdentification" definition="Identification of a member of a clearing system." maxOccurs="1" minOccurs="1" xmlTag="MmbId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="FinancialIdentificationSchemeName1Choice" definition="Sets of elements to identify a name of the organisation identification scheme." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.76"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.77"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Name of the identification scheme, in a free text form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericFinancialIdentification1" definition="Information related to an identification of a financial institution." registrationStatus="Registered">
@@ -23,12 +23,12 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Entity that assigns the identification." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PostalAddress6" definition="Information that locates and identifies a specific address, as defined by postal services." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="AddressType" definition="Identifies the nature of the postal address." maxOccurs="1" xmlTag="AdrTp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.62"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AddressType" definition="Identifies the nature of the postal address." maxOccurs="1" xmlTag="AdrTp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.63"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Department" definition="Identification of a division of a large organisation or building." maxOccurs="1" xmlTag="Dept" simpleType="//@dataDictionary/@topLevelDictionaryEntry.57"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="SubDepartment" definition="Identification of a sub-division of a large organisation or building." maxOccurs="1" xmlTag="SubDept" simpleType="//@dataDictionary/@topLevelDictionaryEntry.57"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="StreetName" definition="Name of a street or thoroughfare." maxOccurs="1" xmlTag="StrtNm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.57"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="BuildingNumber" definition="Number that identifies the position of a building on a street." maxOccurs="1" xmlTag="BldgNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.63"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="PostCode" definition="Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail." maxOccurs="1" xmlTag="PstCd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.63"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BuildingNumber" definition="Number that identifies the position of a building on a street." maxOccurs="1" xmlTag="BldgNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.64"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="PostCode" definition="Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail." maxOccurs="1" xmlTag="PstCd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.64"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="TownName" definition="Name of a built-up area, with defined boundaries, and a local government." maxOccurs="1" xmlTag="TwnNm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="CountrySubDivision" definition="Identifies a subdivision of a country such as state, region, county." maxOccurs="1" xmlTag="CtrySubDvsn" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Country" definition="Nation with its own government." maxOccurs="1" xmlTag="Ctry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.56"/>
@@ -40,20 +40,20 @@
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PostalAddress" definition="Information that locates and identifies a specific address, as defined by postal services." maxOccurs="1" xmlTag="PstlAdr" type="//@dataDictionary/@topLevelDictionaryEntry.5"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="AccountSchemeName1Choice" definition="Sets of elements to identify a name of the identification scheme" registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.81"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.82"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Name of the identification scheme, in a free text form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericAccountIdentification1" definition="Information related to a generic account identification." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Identification assigned by an institution." maxOccurs="1" minOccurs="1" xmlTag="Id" simpleType="//@dataDictionary/@topLevelDictionaryEntry.80"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Identification assigned by an institution." maxOccurs="1" minOccurs="1" xmlTag="Id" simpleType="//@dataDictionary/@topLevelDictionaryEntry.81"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="SchemeName" definition="Name of the identification scheme." maxOccurs="1" xmlTag="SchmeNm" type="//@dataDictionary/@topLevelDictionaryEntry.7"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Entity that assigns the identification." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="AccountIdentification4Choice" definition="Specifies the unique identification of an account as assigned by the account servicer." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="IBAN" definition="International Bank Account Number (IBAN) - identifier used internationally by financial institutions to uniquely identify the account of a customer. Further specifications of the format and content of the IBAN can be found in the standard ISO 13616 &quot;Banking and related financial services - International Bank Account Number (IBAN)&quot; version 1997-10-01, or later revisions." maxOccurs="1" minOccurs="1" xmlTag="IBAN" simpleType="//@dataDictionary/@topLevelDictionaryEntry.67"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="IBAN" definition="International Bank Account Number (IBAN) - identifier used internationally by financial institutions to uniquely identify the account of a customer. Further specifications of the format and content of the IBAN can be found in the standard ISO 13616 &quot;Banking and related financial services - International Bank Account Number (IBAN)&quot; version 1997-10-01, or later revisions." maxOccurs="1" minOccurs="1" xmlTag="IBAN" simpleType="//@dataDictionary/@topLevelDictionaryEntry.68"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Other" definition="Unique identification of an account, as assigned by the account servicer, using an identification scheme." maxOccurs="1" minOccurs="1" xmlTag="Othr" type="//@dataDictionary/@topLevelDictionaryEntry.8"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CashAccountType2" definition="Nature or use of the account." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Account type, in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.82"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Account type, in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.83"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Nature or use of the account in a proprietary form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
       <xors name="CodeOrProprietaryRule" definition="Either Code or Proprietary must be present, but not both." impactedElements="//@dataDictionary/@topLevelDictionaryEntry.10/@messageElement.0 //@dataDictionary/@topLevelDictionaryEntry.10/@messageElement.1"/>
     </topLevelDictionaryEntry>
@@ -64,7 +64,7 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="CountryOfBirth" definition="Country where a person was born." maxOccurs="1" minOccurs="1" xmlTag="CtryOfBirth" simpleType="//@dataDictionary/@topLevelDictionaryEntry.56"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="OrganisationIdentificationSchemeName1Choice" definition="Sets of elements to identify a name of the organisation identification scheme." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.83"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.84"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Name of the identification scheme, in a free text form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericOrganisationIdentification1" definition="Information related to an identification of an organisation." registrationStatus="Registered">
@@ -73,11 +73,11 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Entity that assigns the identification." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="OrganisationIdentification4" definition="Unique and unambiguous way to identify an organisation." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="BICOrBEI" definition="Code allocated to a financial institution or non financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BICOrBEI" simpleType="//@dataDictionary/@topLevelDictionaryEntry.69"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BICOrBEI" definition="Code allocated to a financial institution or non financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BICOrBEI" simpleType="//@dataDictionary/@topLevelDictionaryEntry.70"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Other" definition="Unique identification of an organisation, as assigned by an institution, using an identification scheme." xmlTag="Othr" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="PersonIdentificationSchemeName1Choice" definition="Sets of elements to identify a name of the identification scheme." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.84"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Name of the identification scheme, in a coded form as published in an external list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.85"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Name of the identification scheme, in a free text form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericPersonIdentification1" definition="Information related to an identification of a person." registrationStatus="Registered">
@@ -94,12 +94,12 @@
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PrivateIdentification" definition="Unique and unambiguous identification of a person, eg, passport." maxOccurs="1" minOccurs="1" xmlTag="PrvtId" type="//@dataDictionary/@topLevelDictionaryEntry.17"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ContactDetails2" definition="Communication device number or electronic address used for communication." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="NamePrefix" definition="Specifies the terms used to formally address a person." maxOccurs="1" xmlTag="NmPrfx" simpleType="//@dataDictionary/@topLevelDictionaryEntry.72"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="NamePrefix" definition="Specifies the terms used to formally address a person." maxOccurs="1" xmlTag="NmPrfx" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name by which a party is known and which is usually used to identify that party." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.58"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="PhoneNumber" definition="Collection of information that identifies a phone number, as defined by telecom services." maxOccurs="1" xmlTag="PhneNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.64"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="MobileNumber" definition="Collection of information that identifies a mobile phone number, as defined by telecom services." maxOccurs="1" xmlTag="MobNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.64"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="FaxNumber" definition="Collection of information that identifies a FAX number, as defined by telecom services." maxOccurs="1" xmlTag="FaxNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.64"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="EmailAddress" definition="Address for electronic mail (e-mail)." maxOccurs="1" xmlTag="EmailAdr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.68"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="PhoneNumber" definition="Collection of information that identifies a phone number, as defined by telecom services." maxOccurs="1" xmlTag="PhneNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.65"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="MobileNumber" definition="Collection of information that identifies a mobile phone number, as defined by telecom services." maxOccurs="1" xmlTag="MobNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.65"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="FaxNumber" definition="Collection of information that identifies a FAX number, as defined by telecom services." maxOccurs="1" xmlTag="FaxNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.65"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="EmailAddress" definition="Address for electronic mail (e-mail)." maxOccurs="1" xmlTag="EmailAdr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.69"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Other" definition="Contact details in an other form." maxOccurs="1" xmlTag="Othr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PartyIdentification32" definition="Set of elements used to identify a person or an organisation." registrationStatus="Registered">
@@ -112,11 +112,11 @@
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CashAccount16" definition="Set of elements used to identify an account." registrationStatus="Registered">
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Identification" definition="Unique and unambiguous identification for the account between the account owner and the account servicer." maxOccurs="1" minOccurs="1" xmlTag="Id" type="//@dataDictionary/@topLevelDictionaryEntry.9"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Type" definition="Specifies the nature, or use of the account." maxOccurs="1" xmlTag="Tp" type="//@dataDictionary/@topLevelDictionaryEntry.10"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Currency" definition="Identification of the currency in which the account is held. &#xA;&#xA;Usage: Currency should only be used in case one and the same account number covers several currencies&#xA;and the initiating party needs to identify which currency needs to be used for settlement on the account." maxOccurs="1" xmlTag="Ccy" simpleType="//@dataDictionary/@topLevelDictionaryEntry.71"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Currency" definition="Identification of the currency in which the account is held. &#xA;&#xA;Usage: Currency should only be used in case one and the same account number covers several currencies&#xA;and the initiating party needs to identify which currency needs to be used for settlement on the account." maxOccurs="1" xmlTag="Ccy" simpleType="//@dataDictionary/@topLevelDictionaryEntry.72"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.&#xA;&#xA;Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.57"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="FinancialInstitutionIdentification7" definition="Set of elements used to identify a financial institution." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="BIC" definition="Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BIC" simpleType="//@dataDictionary/@topLevelDictionaryEntry.65"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BIC" definition="Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BIC" simpleType="//@dataDictionary/@topLevelDictionaryEntry.66"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ClearingSystemMemberIdentification" definition="Information used to identify a member within a clearing system." maxOccurs="1" xmlTag="ClrSysMmbId" type="//@dataDictionary/@topLevelDictionaryEntry.2"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name by which an agent is known and which is usually used to identify that agent." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.58"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PostalAddress" definition="Information that locates and identifies a specific address, as defined by postal services." maxOccurs="1" xmlTag="PstlAdr" type="//@dataDictionary/@topLevelDictionaryEntry.5"/>
@@ -127,7 +127,7 @@
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="BranchIdentification" definition="Identifies a specific branch of a financial institution.&#xA;&#xA;Usage: This component should be used in case the identification information in the financial institution component does not provide identification up to branch level." maxOccurs="1" xmlTag="BrnchId" type="//@dataDictionary/@topLevelDictionaryEntry.6"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="Purpose2Choice" definition="Specifies the underlying reason for the payment transaction.&#xA;Usage: Purpose is used by the end-customers, that is initiating party, (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose is a content element, which is not used for processing by any of the agents involved in the payment chain." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Underlying reason for the payment transaction, as published in an external purpose code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.95"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Underlying reason for the payment transaction, as published in an external purpose code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.96"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Purpose, in a proprietary form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="NameAndAddress10" definition="Information that locates and identifies a party." registrationStatus="Registered">
@@ -136,12 +136,12 @@
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="RemittanceLocation2" definition="Set of elements used to provide information on the remittance advice." registrationStatus="Registered">
       <messageElement xsi:type="iso20022:MessageAttribute" name="RemittanceIdentification" definition="Unique identification, as assigned by the initiating party, to unambiguously identify the remittance information sent separately from the payment instruction, such as a remittance advice." maxOccurs="1" xmlTag="RmtId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="RemittanceLocationMethod" definition="Method used to deliver the remittance advice information." maxOccurs="1" xmlTag="RmtLctnMtd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.96"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="RemittanceLocationElectronicAddress" definition="Electronic address to which an agent is to send the remittance information." maxOccurs="1" xmlTag="RmtLctnElctrncAdr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.68"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="RemittanceLocationMethod" definition="Method used to deliver the remittance advice information." maxOccurs="1" xmlTag="RmtLctnMtd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.97"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="RemittanceLocationElectronicAddress" definition="Electronic address to which an agent is to send the remittance information." maxOccurs="1" xmlTag="RmtLctnElctrncAdr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.69"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="RemittanceLocationPostalAddress" definition="Postal address to which an agent is to send the remittance information." maxOccurs="1" xmlTag="RmtLctnPstlAdr" type="//@dataDictionary/@topLevelDictionaryEntry.25"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ReferredDocumentType1Choice" definition="Specifies the type of the document referred in the remittance information." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Document type in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.97"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Document type in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.98"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Proprietary identification of the type of the remittance document." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ReferredDocumentType2" definition="Specifies the type of the document referred in the remittance information." registrationStatus="Registered">
@@ -154,21 +154,21 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="RelatedDate" definition="Date associated with the referred document." maxOccurs="1" xmlTag="RltdDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.55"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="DocumentAdjustment1" definition="Set of elements used to provide information on the amount and reason of the document adjustment." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Amount" definition="Amount of money of the document adjustment." maxOccurs="1" minOccurs="1" xmlTag="Amt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="CreditDebitIndicator" definition="Specifies whether the adjustment must be substracted or added to the total amount." maxOccurs="1" xmlTag="CdtDbtInd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.78"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Reason" definition="Specifies the reason for the adjustment." maxOccurs="1" xmlTag="Rsn" simpleType="//@dataDictionary/@topLevelDictionaryEntry.90"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Amount" definition="Amount of money of the document adjustment." maxOccurs="1" minOccurs="1" xmlTag="Amt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CreditDebitIndicator" definition="Specifies whether the adjustment must be substracted or added to the total amount." maxOccurs="1" xmlTag="CdtDbtInd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.79"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Reason" definition="Specifies the reason for the adjustment." maxOccurs="1" xmlTag="Rsn" simpleType="//@dataDictionary/@topLevelDictionaryEntry.91"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="AdditionalInformation" definition="Provides further details on the document adjustment." maxOccurs="1" xmlTag="AddtlInf" simpleType="//@dataDictionary/@topLevelDictionaryEntry.58"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="RemittanceAmount1" definition="Nature of the amount and currency on a document referred to in the remittance section, typically either the original amount due/payable or the amount actually remitted for the referenced document." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="DuePayableAmount" definition="Amount specified is the exact amount due and payable to the creditor." maxOccurs="1" xmlTag="DuePyblAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="DiscountAppliedAmount" definition="Amount of money that results from the application of an agreed discount to the amount due and payable to the creditor." maxOccurs="1" xmlTag="DscntApldAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="CreditNoteAmount" definition="Amount specified for the referred document is the amount of a credit note." maxOccurs="1" xmlTag="CdtNoteAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="TaxAmount" definition="Quantity of cash resulting from the calculation of the tax." maxOccurs="1" xmlTag="TaxAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DuePayableAmount" definition="Amount specified is the exact amount due and payable to the creditor." maxOccurs="1" xmlTag="DuePyblAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DiscountAppliedAmount" definition="Amount of money that results from the application of an agreed discount to the amount due and payable to the creditor." maxOccurs="1" xmlTag="DscntApldAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CreditNoteAmount" definition="Amount specified for the referred document is the amount of a credit note." maxOccurs="1" xmlTag="CdtNoteAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="TaxAmount" definition="Quantity of cash resulting from the calculation of the tax." maxOccurs="1" xmlTag="TaxAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="AdjustmentAmountAndReason" definition="Set of elements used to provide information on the amount and reason of the document adjustment." xmlTag="AdjstmntAmtAndRsn" type="//@dataDictionary/@topLevelDictionaryEntry.30"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="RemittedAmount" definition="Amount of money remitted for the referred document." maxOccurs="1" xmlTag="RmtdAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="RemittedAmount" definition="Amount of money remitted for the referred document." maxOccurs="1" xmlTag="RmtdAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="CreditorReferenceType1Choice" definition="Specifies the type of document referred by the creditor." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Type of creditor reference, in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.94"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Type of creditor reference, in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.95"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Creditor reference type, in a proprietary form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CreditorReferenceType2" definition="Specifies the type of creditor reference." registrationStatus="Registered">
@@ -192,19 +192,19 @@
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Structured" definition="Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in a structured form." xmlTag="Strd" type="//@dataDictionary/@topLevelDictionaryEntry.35"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="InstructionForCreditorAgent1" definition="Further information related to the processing of the payment instruction that may need to be acted upon by the creditor's agent. The instruction may relate to a level of service, or may be an instruction that has to be executed by the creditor's agent, or may be information required by the creditor's agent." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Coded information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor's agent." maxOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.102"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Coded information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor's agent." maxOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.103"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="InstructionInformation" definition="Further information complementing the coded instruction or instruction to the creditor's agent that is bilaterally agreed or specific to a user community." maxOccurs="1" xmlTag="InstrInf" simpleType="//@dataDictionary/@topLevelDictionaryEntry.58"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ServiceLevel8Choice" definition="Specifies the service level of the transaction." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Specifies a pre-agreed service or level of service between the parties, as published in an external service level code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.105"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Specifies a pre-agreed service or level of service between the parties, as published in an external service level code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.106"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Specifies a pre-agreed service or level of service between the parties, as a proprietary code." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="LocalInstrument2Choice" definition="Set of elements that further identifies the type of local instruments being requested by the initiating party." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Specifies the local instrument, as published in an external local instrument code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.106"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Specifies the local instrument, as published in an external local instrument code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.107"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Specifies the local instrument, as a proprietary code." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="CategoryPurpose1Choice" definition="Specifies the high level purpose of the instruction based on a set of pre-defined categories.&#xA;Usage: This is used by the initiating party to provide information concerning the processing of the payment. It is likely to trigger special processing by any of the agents involved in the payment chain." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Category purpose, as published in an external category purpose code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.107"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Category purpose, as published in an external category purpose code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.108"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Category purpose, in a proprietary form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="RegulatoryAuthority2" definition="Entity requiring the regulatory reporting information." registrationStatus="Registered">
@@ -215,12 +215,12 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="Type" definition="Specifies the type of the information supplied in the regulatory reporting details." maxOccurs="1" xmlTag="Tp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Date" definition="Date related to the specified type of regulatory reporting details." maxOccurs="1" xmlTag="Dt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.55"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Country" definition="Country related to the specified type of regulatory reporting details." maxOccurs="1" xmlTag="Ctry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.56"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Specifies the nature, purpose, and reason for the transaction to be reported for regulatory and statutory requirements in a coded form." maxOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.79"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Amount" definition="Amount of money to be reported for regulatory and statutory requirements." maxOccurs="1" xmlTag="Amt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Specifies the nature, purpose, and reason for the transaction to be reported for regulatory and statutory requirements in a coded form." maxOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.80"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Amount" definition="Amount of money to be reported for regulatory and statutory requirements." maxOccurs="1" xmlTag="Amt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="Information" definition="Additional details that cater for specific domestic regulatory requirements." xmlTag="Inf" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="RegulatoryReporting3" definition="Information needed due to regulatory and/or statutory requirements." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="DebitCreditReportingIndicator" definition="Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction." maxOccurs="1" xmlTag="DbtCdtRptgInd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.104"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DebitCreditReportingIndicator" definition="Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction." maxOccurs="1" xmlTag="DbtCdtRptgInd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.105"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Authority" definition="Entity requiring the regulatory reporting information." maxOccurs="1" xmlTag="Authrty" type="//@dataDictionary/@topLevelDictionaryEntry.41"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Details" definition="Set of elements used to provide details on the regulatory reporting information." xmlTag="Dtls" type="//@dataDictionary/@topLevelDictionaryEntry.42"/>
     </topLevelDictionaryEntry>
@@ -233,7 +233,7 @@
       <constraint name="InstructingReimbursementAgentAccountRule" definition="If InstructingReimbursementAgentAccount is present, then InstructingReimbursementAgent must be present." expression="&lt;RuleDefinition xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;>&lt;ComplexRule xsi:type=&quot;ComplexRule&quot;>&lt;mustBe>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Absence&quot;>&lt;leftOperand>/InstructingReimbursementAgentAccount&lt;/leftOperand>&lt;/BooleanRule>&lt;/mustBe>&lt;onCondition>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Absence&quot;>&lt;leftOperand>/InstructingReimbursementAgent&lt;/leftOperand>&lt;/BooleanRule>&lt;/onCondition>&lt;/ComplexRule>&lt;/RuleDefinition>&#xA;"/>
       <constraint name="InstructedReimbursementAgentAccountRule" definition="If InstructedReimbursementAgentAccount is present, then InstructedReimbursementAgent must be present." expression="&lt;RuleDefinition xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;>&lt;ComplexRule xsi:type=&quot;ComplexRule&quot;>&lt;mustBe>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Absence&quot;>&lt;leftOperand>/InstructedReimbursementAgentAccount&lt;/leftOperand>&lt;/BooleanRule>&lt;/mustBe>&lt;onCondition>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Absence&quot;>&lt;leftOperand>/InstructedReimbursementAgent&lt;/leftOperand>&lt;/BooleanRule>&lt;/onCondition>&lt;/ComplexRule>&lt;/RuleDefinition>&#xA;"/>
       <constraint name="ThirdReimbursementAgentAccountRule" definition="If ThirdReimbursementAgentAccount is present, then ThirdReimbursementAgent must be present." expression="&lt;RuleDefinition xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;>&lt;ComplexRule xsi:type=&quot;ComplexRule&quot;>&lt;mustBe>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Absence&quot;>&lt;leftOperand>/ThirdReimbursementAgentAccount&lt;/leftOperand>&lt;/BooleanRule>&lt;/mustBe>&lt;onCondition>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Absence&quot;>&lt;leftOperand>/ThirdReimbursementAgent&lt;/leftOperand>&lt;/BooleanRule>&lt;/onCondition>&lt;/ComplexRule>&lt;/RuleDefinition>&#xA;"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="SettlementMethod" definition="Method used to settle the (batch of) payment instructions." maxOccurs="1" minOccurs="1" xmlTag="SttlmMtd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.109"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="SettlementMethod" definition="Method used to settle the (batch of) payment instructions." maxOccurs="1" minOccurs="1" xmlTag="SttlmMtd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.110"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="SettlementAccount" definition="A specific purpose account used to post debit and credit entries as a result of the transaction." maxOccurs="1" xmlTag="SttlmAcct" type="//@dataDictionary/@topLevelDictionaryEntry.21"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ClearingSystem" definition="Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed." maxOccurs="1" xmlTag="ClrSys" type="//@dataDictionary/@topLevelDictionaryEntry.0"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructingReimbursementAgent" definition="Agent through which the instructing agent will reimburse the instructed agent.&#xA;&#xA;Usage: If InstructingAgent and InstructedAgent have the same reimbursement agent, then only InstructingReimbursementAgent must be used." maxOccurs="1" xmlTag="InstgRmbrsmntAgt" type="//@dataDictionary/@topLevelDictionaryEntry.23"/>
@@ -244,7 +244,7 @@
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ThirdReimbursementAgentAccount" definition="Unambiguous identification of the account of the third reimbursement agent account at its servicing agent in the payment chain." maxOccurs="1" xmlTag="ThrdRmbrsmntAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.21"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ChargesInformation5" definition="Set of elements used to provide information on the charges related to the payment transaction." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Amount" definition="Transaction charges to be paid by the charge bearer." maxOccurs="1" minOccurs="1" xmlTag="Amt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Amount" definition="Transaction charges to be paid by the charge bearer." maxOccurs="1" minOccurs="1" xmlTag="Amt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Party" definition="Party that takes the transaction charges or to which the transaction charges are due." maxOccurs="1" minOccurs="1" xmlTag="Pty" type="//@dataDictionary/@topLevelDictionaryEntry.23"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="SettlementDateTimeIndication1" definition="Information on the occurred settlement time(s) of the payment transaction." registrationStatus="Registered">
@@ -252,12 +252,12 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="CreditDateTime" definition="Date and time at which a payment has been credited at the transaction administrator. In the case of TARGET, the date and time at which the payment has been credited at the receiving central bank, expressed in Central European Time (CET)." maxOccurs="1" xmlTag="CdtDtTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.54"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="InstructionForNextAgent1" definition="Further information related to the processing of the payment instruction that may need to be acted upon by an other agent. The instruction may relate to a level of service, or may be an instruction that has to be executed by the creditor's agent, or may be information required by the other agent." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Coded information related to the processing of the payment instruction, provided by the initiating party, and intended for the next agent in the payment chain." maxOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.110"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Coded information related to the processing of the payment instruction, provided by the initiating party, and intended for the next agent in the payment chain." maxOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.111"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="InstructionInformation" definition="Further information complementing the coded instruction or instruction to the next agent that is bilaterally agreed or specific to a user community." maxOccurs="1" xmlTag="InstrInf" simpleType="//@dataDictionary/@topLevelDictionaryEntry.58"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PaymentTypeInformation21" definition="Set of elements used to provide further details of the type of payment." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="InstructionPriority" definition="Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction." maxOccurs="1" xmlTag="InstrPrty" simpleType="//@dataDictionary/@topLevelDictionaryEntry.101"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="ClearingChannel" definition="Specifies the clearing channel to be used to process the payment instruction." maxOccurs="1" xmlTag="ClrChanl" simpleType="//@dataDictionary/@topLevelDictionaryEntry.100"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="InstructionPriority" definition="Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction." maxOccurs="1" xmlTag="InstrPrty" simpleType="//@dataDictionary/@topLevelDictionaryEntry.102"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ClearingChannel" definition="Specifies the clearing channel to be used to process the payment instruction." maxOccurs="1" xmlTag="ClrChanl" simpleType="//@dataDictionary/@topLevelDictionaryEntry.101"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ServiceLevel" definition="Agreement under which or rules under which the transaction should be processed." maxOccurs="1" xmlTag="SvcLvl" type="//@dataDictionary/@topLevelDictionaryEntry.38"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="LocalInstrument" definition="User community specific instrument.&#xA;&#xA;Usage: This element is used to specify a local instrument, local clearing option and/or further qualify the service or service level." maxOccurs="1" xmlTag="LclInstrm" type="//@dataDictionary/@topLevelDictionaryEntry.39"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CategoryPurpose" definition="Specifies the high level purpose of the instruction based on a set of pre-defined categories.&#xA;Usage: This is used by the initiating party to provide information concerning the processing of the payment. It is likely to trigger special processing by any of the agents involved in the payment chain." maxOccurs="1" xmlTag="CtgyPurp" type="//@dataDictionary/@topLevelDictionaryEntry.40"/>
@@ -266,10 +266,10 @@
       <constraint name="TotalInterbankSettlementAmountAndDateRule" definition="If TotalInterbankSettlementAmount is present, then InterbankSettlementDate must be present." expression="&lt;RuleDefinition xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;>&lt;ComplexRule xsi:type=&quot;ComplexRule&quot;>&lt;mustBe>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Presence&quot;>&lt;leftOperand>/InterbankSettlementDate&lt;/leftOperand>&lt;/BooleanRule>&lt;/mustBe>&lt;onCondition>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Presence&quot;>&lt;leftOperand>/TotalInterbankSettlementAmount&lt;/leftOperand>&lt;/BooleanRule>&lt;/onCondition>&lt;/ComplexRule>&lt;/RuleDefinition>&#xA;"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="MessageIdentification" definition="Point to point reference, as assigned by the instructing party, and sent to the next party in the chain to unambiguously identify the message.&#xA;Usage: The instructing party has to make sure that MessageIdentification is unique per instructed party for a pre-agreed period." maxOccurs="1" minOccurs="1" xmlTag="MsgId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="CreationDateTime" definition="Date and time at which the message was created." maxOccurs="1" minOccurs="1" xmlTag="CreDtTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.54"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="BatchBooking" definition="Identifies whether a single entry per individual transaction or a batch entry for the sum of the amounts of all transactions within the group of a message is requested.&#xA;Usage: Batch booking is used to request and not order a possible batch booking." maxOccurs="1" xmlTag="BtchBookg" simpleType="//@dataDictionary/@topLevelDictionaryEntry.98"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="NumberOfTransactions" definition="Number of individual transactions contained in the message." maxOccurs="1" minOccurs="1" xmlTag="NbOfTxs" simpleType="//@dataDictionary/@topLevelDictionaryEntry.87"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="ControlSum" definition="Total of all individual amounts included in the message, irrespective of currencies." maxOccurs="1" xmlTag="CtrlSum" simpleType="//@dataDictionary/@topLevelDictionaryEntry.60"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="TotalInterbankSettlementAmount" definition="Total amount of money moved between the instructing agent and the instructed agent." maxOccurs="1" xmlTag="TtlIntrBkSttlmAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.59"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BatchBooking" definition="Identifies whether a single entry per individual transaction or a batch entry for the sum of the amounts of all transactions within the group of a message is requested.&#xA;Usage: Batch booking is used to request and not order a possible batch booking." maxOccurs="1" xmlTag="BtchBookg" simpleType="//@dataDictionary/@topLevelDictionaryEntry.99"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="NumberOfTransactions" definition="Number of individual transactions contained in the message." maxOccurs="1" minOccurs="1" xmlTag="NbOfTxs" simpleType="//@dataDictionary/@topLevelDictionaryEntry.88"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ControlSum" definition="Total of all individual amounts included in the message, irrespective of currencies." maxOccurs="1" xmlTag="CtrlSum" simpleType="//@dataDictionary/@topLevelDictionaryEntry.61"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="TotalInterbankSettlementAmount" definition="Total amount of money moved between the instructing agent and the instructed agent." maxOccurs="1" xmlTag="TtlIntrBkSttlmAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.60"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="InterbankSettlementDate" definition="Date on which the amount of money ceases to be available to the agent that owes it and when the amount of money becomes available to the agent to which it is due." maxOccurs="1" xmlTag="IntrBkSttlmDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.55"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="SettlementInformation" definition="Specifies the details on how the settlement of the transaction(s) between the instructing agent and the instructed agent is completed." maxOccurs="1" minOccurs="1" xmlTag="SttlmInf" type="//@dataDictionary/@topLevelDictionaryEntry.44"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PaymentTypeInformation" definition="Set of elements used to further specify the type of transaction." maxOccurs="1" xmlTag="PmtTpInf" type="//@dataDictionary/@topLevelDictionaryEntry.48"/>
@@ -283,10 +283,10 @@
       <messageElement xsi:type="iso20022:MessageAttribute" name="ClearingSystemReference" definition="Unique reference, as assigned by a clearing system, to unambiguously identify the instruction." maxOccurs="1" xmlTag="ClrSysRef" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="SettlementTimeRequest2" definition="Provides information on the requested settlement time(s) of the payment instruction." registrationStatus="Registered">
-      <messageElement xsi:type="iso20022:MessageAttribute" name="CLSTime" definition="Time by which the amount of money must be credited, with confirmation, to the CLS Bank's account at the central bank.&#xA;Usage: Time must be expressed in Central European Time (CET)." maxOccurs="1" xmlTag="CLSTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.66"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="TillTime" definition="Time until when the payment may be settled." maxOccurs="1" xmlTag="TillTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.66"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="FromTime" definition="Time as from when the payment may be settled." maxOccurs="1" xmlTag="FrTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.66"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="RejectTime" definition="Time by when the payment must be settled to avoid rejection." maxOccurs="1" xmlTag="RjctTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.66"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CLSTime" definition="Time by which the amount of money must be credited, with confirmation, to the CLS Bank's account at the central bank.&#xA;Usage: Time must be expressed in Central European Time (CET)." maxOccurs="1" xmlTag="CLSTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.67"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="TillTime" definition="Time until when the payment may be settled." maxOccurs="1" xmlTag="TillTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.67"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="FromTime" definition="Time as from when the payment may be settled." maxOccurs="1" xmlTag="FrTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.67"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="RejectTime" definition="Time by when the payment must be settled to avoid rejection." maxOccurs="1" xmlTag="RjctTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.67"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CreditTransferTransactionInformation11" definition="Set of elements used to provide information specific to the individual transaction(s) included in the message." registrationStatus="Registered" messageBuildingBlock="//@businessProcessCatalogue/@topLevelCatalogueEntry.0/@messageDefinition.0/@messageBuildingBlock.1">
       <constraint name="ChargesInformationGuideline" definition="The repetitive ChargesInformation should contain all information on charges amount and which party has taken the charges, separately for each agent along the payment chain."/>
@@ -309,16 +309,16 @@
       <constraint name="InstructedAmountAndExchangeRate3Rule" definition="If InstructedAmount is not present, then ExchangeRate is not allowed." expression="&lt;RuleDefinition xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;>&lt;ComplexRule xsi:type=&quot;ComplexRule&quot;>&lt;mustBe>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Absence&quot;>&lt;leftOperand>/ExchangeRate&lt;/leftOperand>&lt;/BooleanRule>&lt;/mustBe>&lt;onCondition>&lt;connector>AND&lt;/connector>&lt;BooleanRule xsi:type=&quot;Absence&quot;>&lt;leftOperand>/InstructedAmount&lt;/leftOperand>&lt;/BooleanRule>&lt;/onCondition>&lt;/ComplexRule>&lt;/RuleDefinition>&#xA;"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PaymentIdentification" definition="Set of elements used to reference a payment instruction." maxOccurs="1" minOccurs="1" xmlTag="PmtId" type="//@dataDictionary/@topLevelDictionaryEntry.50"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PaymentTypeInformation" definition="Set of elements used to further specify the type of transaction." maxOccurs="1" xmlTag="PmtTpInf" type="//@dataDictionary/@topLevelDictionaryEntry.48"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="InterbankSettlementAmount" definition="Amount of money moved between the instructing agent and the instructed agent." maxOccurs="1" minOccurs="1" xmlTag="IntrBkSttlmAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.59"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="InterbankSettlementAmount" definition="Amount of money moved between the instructing agent and the instructed agent." maxOccurs="1" minOccurs="1" xmlTag="IntrBkSttlmAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.60"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="InterbankSettlementDate" definition="Date on which the amount of money ceases to be available to the agent that owes it and when the amount of money becomes available to the agent to which it is due." maxOccurs="1" xmlTag="IntrBkSttlmDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.55"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="SettlementPriority" definition="Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the settlement instruction." maxOccurs="1" xmlTag="SttlmPrty" simpleType="//@dataDictionary/@topLevelDictionaryEntry.111"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="SettlementPriority" definition="Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the settlement instruction." maxOccurs="1" xmlTag="SttlmPrty" simpleType="//@dataDictionary/@topLevelDictionaryEntry.112"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="SettlementTimeIndication" definition="Provides information on the occurred settlement time(s) of the payment transaction." maxOccurs="1" xmlTag="SttlmTmIndctn" type="//@dataDictionary/@topLevelDictionaryEntry.46"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="SettlementTimeRequest" definition="Provides information on the requested settlement time(s) of the payment instruction." maxOccurs="1" xmlTag="SttlmTmReq" type="//@dataDictionary/@topLevelDictionaryEntry.51"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="AcceptanceDateTime" definition="Point in time when the payment order from the initiating party meets the processing conditions of the account servicing agent. This means that the account servicing agent has received the payment order and has applied checks such as authorisation, availability of funds." maxOccurs="1" xmlTag="AccptncDtTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.54"/>
       <messageElement xsi:type="iso20022:MessageAttribute" name="PoolingAdjustmentDate" definition="Date used for the correction of the value date of a cash pool movement that has been posted with a different value date." maxOccurs="1" xmlTag="PoolgAdjstmntDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.55"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="InstructedAmount" definition="Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party." maxOccurs="1" xmlTag="InstdAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.73"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="ExchangeRate" definition="Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency." maxOccurs="1" xmlTag="XchgRate" simpleType="//@dataDictionary/@topLevelDictionaryEntry.89"/>
-      <messageElement xsi:type="iso20022:MessageAttribute" name="ChargeBearer" definition="Specifies which party/parties will bear the charges associated with the processing of the payment transaction." maxOccurs="1" minOccurs="1" xmlTag="ChrgBr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.91"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="InstructedAmount" definition="Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party." maxOccurs="1" xmlTag="InstdAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ExchangeRate" definition="Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency." maxOccurs="1" xmlTag="XchgRate" simpleType="//@dataDictionary/@topLevelDictionaryEntry.90"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ChargeBearer" definition="Specifies which party/parties will bear the charges associated with the processing of the payment transaction." maxOccurs="1" minOccurs="1" xmlTag="ChrgBr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.92"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ChargesInformation" definition="Provides information on the charges to be paid by the charge bearer(s) related to the payment transaction." xmlTag="ChrgsInf" type="//@dataDictionary/@topLevelDictionaryEntry.45"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PreviousInstructingAgent" definition="Agent immediately prior to the instructing agent." maxOccurs="1" xmlTag="PrvsInstgAgt" type="//@dataDictionary/@topLevelDictionaryEntry.23"/>
       <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PreviousInstructingAgentAccount" definition="Unambiguous identification of the account of the previous instructing agent at its servicing agent in the payment chain." maxOccurs="1" xmlTag="PrvsInstgAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.21"/>
@@ -357,14 +357,18 @@
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max70Text" definition="Specifies a character string with a maximum length of 70characters." registrationStatus="Registered" minLength="1" maxLength="70"/>
     <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max140Text" definition="Specifies a character string with a maximum length of 140 characters." registrationStatus="Registered" minLength="1" maxLength="140"/>
-    <topLevelDictionaryEntry xsi:type="iso20022:Amount" name="ActiveCurrencyAndAmount" definition="A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217." registrationStatus="Registered" minInclusive="0" totalDigits="18" fractionDigits="5">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ActiveCurrencyCode" definition="A code allocated to a currency by a Maintenance Agency under an international identification scheme as described in the latest edition of the international standard ISO 4217 &quot;Codes for the representation of currencies and funds&quot;." registrationStatus="Registered" pattern="[A-Z]{3,3}">
+      <example>EUR</example>
+      <constraint name="ActiveCurrency" definition="The currency code must be a valid active currency code, not yet withdrawn on the day the message containing the currency is exchanged. Valid active currency codes are registered with the ISO 4217 Maintenance Agency, consist of three (3) contiguous letters, and are not yet withdrawn on the day the message containing the Currency is exchanged."/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Amount" name="ActiveCurrencyAndAmount" definition="A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217." registrationStatus="Registered" minInclusive="0" totalDigits="18" fractionDigits="5" currencyIdentifierSet="//@dataDictionary/@topLevelDictionaryEntry.59">
       <example>6545.56</example>
       <constraint name="CurrencyAmount" definition="The number of fractional digits (or minor unit of currency) must comply with ISO 4217.&#xA;Note: The decimal separator is a dot."/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:Quantity" name="DecimalNumber" definition="Number of objects represented as a decimal number, eg, 0.75 or 45.6." registrationStatus="Registered" totalDigits="18" fractionDigits="17">
       <example>123456789.123456789</example>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressTypeCode" definition="Specifies the type of address." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.62">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressTypeCode" definition="Specifies the type of address." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.63">
       <example>HOME</example>
       <code name="Residential" definition="Address is the home address." registrationStatus="Registered" codeName="HOME"/>
       <code name="Business" definition="Address is the business address." registrationStatus="Registered" codeName="BIZZ"/>
@@ -373,7 +377,7 @@
       <code name="MailTo" definition="Address is the address to which mail is sent." registrationStatus="Registered" codeName="MLTO"/>
       <code name="DeliveryTo" definition="Address is the address to which delivery is to take place." registrationStatus="Registered" codeName="DLVY"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressType2Code" definition="Specifies the type of address." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.61">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressType2Code" definition="Specifies the type of address." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.62">
       <example>ADDR</example>
       <code name="Postal"/>
       <code name="POBox"/>
@@ -398,7 +402,7 @@
       <example>CHASUS33</example>
       <constraint name="AnyBIC" definition="Only a valid Business identifier code is allowed. Business identifier codes for financial or non-financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consists of eight (8) or eleven (11) contiguous characters."/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CashAccountTypeCode" definition="Specifies the nature, or  use, of the cash account." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.82">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CashAccountTypeCode" definition="Specifies the nature, or  use, of the cash account." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.83">
       <semanticMarkup type="Synonym">
         <elements name="context" value="ISO 15022"/>
         <elements name="value" value=":97A::CASH"/>
@@ -457,7 +461,7 @@
       <code name="Miss" definition="Title of the person is Miss." registrationStatus="Registered" codeName="MISS"/>
       <code name="Madam" definition="Title of the person is Madam." registrationStatus="Registered" codeName="MADM"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:Amount" name="ActiveOrHistoricCurrencyAndAmount" definition="A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217." registrationStatus="Registered" minInclusive="0" totalDigits="18" fractionDigits="5" currencyIdentifierSet="//@dataDictionary/@topLevelDictionaryEntry.71">
+    <topLevelDictionaryEntry xsi:type="iso20022:Amount" name="ActiveOrHistoricCurrencyAndAmount" definition="A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217." registrationStatus="Registered" minInclusive="0" totalDigits="18" fractionDigits="5" currencyIdentifierSet="//@dataDictionary/@topLevelDictionaryEntry.72">
       <example>6284534</example>
       <constraint name="CurrencyAmount" definition="The number of fractional digits (or minor unit of currency) must comply with ISO 4217.&#xA;Note: The decimal separator is a dot."/>
     </topLevelDictionaryEntry>
@@ -470,14 +474,14 @@
     <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ExternalFinancialInstitutionIdentification1Code" definition="Specifies the external financial institution identification scheme name code in the format of character string with a maximum length of 4 characters.&#xD;&#xA;The list of valid codes is an external code list published separately.&#xD;&#xA;External code sets can be downloaded from www.iso20022.org." registrationStatus="Registered" minLength="1" maxLength="4">
       <example>EXC1</example>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AmountDirectionCode" definition="Specifies if an operation is an increase or a decrease or the result of a reversal operation." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.78">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AmountDirectionCode" definition="Specifies if an operation is an increase or a decrease or the result of a reversal operation." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.79">
       <example>DBIT</example>
       <code name="Debit" definition="Operation is a decrease." registrationStatus="Registered" codeName="DBIT"/>
       <code name="Credit" definition="Operation is an increase." registrationStatus="Registered" codeName="CRDT"/>
       <code name="ReversalDebit" definition="Credit entry used to reverse a previously booked debit entry." registrationStatus="Registered" codeName="RVDB"/>
       <code name="ReversalCredit" definition="Debit entry used to reverse a previously booked credit entry." registrationStatus="Registered" codeName="RVCD"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CreditDebitCode" definition="Specifies if an operation is an increase or a decrease." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.77">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CreditDebitCode" definition="Specifies if an operation is an increase or a decrease." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.78">
       <semanticMarkup type="Synonym">
         <elements name="context" value="ISO 15022"/>
         <elements name="value" value=":22F::CRDB"/>
@@ -491,7 +495,7 @@
     <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ExternalAccountIdentification1Code" definition="Specifies the external account identification scheme name code in the format of character string with a maximum length of 4 characters.&#xD;&#xA;The list of valid codes is an external code list published separately.&#xD;&#xA;External code sets can be downloaded from www.iso20022.org." registrationStatus="Registered" minLength="1" maxLength="4">
       <example>BBAN</example>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CashAccountType4Code" definition="Specifies the nature, or use, of the cash account." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.70">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CashAccountType4Code" definition="Specifies the nature, or use, of the cash account." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.71">
       <example>CASH</example>
       <code name="CashPayment"/>
       <code name="Charges"/>
@@ -516,14 +520,14 @@
     <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ExternalPersonIdentification1Code" definition="Specifies the external person identification scheme name code in the format of character string with a maximum length of 4 characters.&#xD;&#xA;The list of valid codes is an external code list published separately.&#xD;&#xA;External code sets can be downloaded from www.iso20022.org." registrationStatus="Registered" minLength="1" maxLength="4">
       <example>ARNU</example>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="PriorityCode" definition="Specifies the priority level of an event." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.101 //@dataDictionary/@topLevelDictionaryEntry.111">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="PriorityCode" definition="Specifies the priority level of an event." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.102 //@dataDictionary/@topLevelDictionaryEntry.112">
       <example>URGT</example>
       <code name="Urgent" definition="Priority level is urgent (highest priority possible)" registrationStatus="Registered" codeName="URGT"/>
       <code name="High" definition="Priority level is high." registrationStatus="Registered" codeName="HIGH"/>
       <code name="Normal" definition="Priority level is normal." registrationStatus="Registered" codeName="NORM"/>
       <code name="Low" definition="Priority level is low." registrationStatus="Registered" codeName="LOWW"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="InstructionCode" definition="Specifies further instructions concerning the processing of a payment instruction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.102 //@dataDictionary/@topLevelDictionaryEntry.110">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="InstructionCode" definition="Specifies further instructions concerning the processing of a payment instruction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.103 //@dataDictionary/@topLevelDictionaryEntry.111">
       <example>PBEN</example>
       <code name="PayTheBeneficiary" definition="(Ultimate) creditor to be paid only after verification of identity." registrationStatus="Registered" codeName="PBEN"/>
       <code name="TimeTill" definition="Payment instruction is valid and eligible for execution until the date and time stipulated. Otherwise, the payment instruction will be rejected." registrationStatus="Registered" codeName="TTIL"/>
@@ -536,7 +540,7 @@
       <code name="TelecomNextAgent" definition="Please advise/contact next agent by the most efficient means of telecommunication." registrationStatus="Registered" codeName="TELA"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max15NumericText" definition="Specifies a numeric string with a maximum length of 15 digits." registrationStatus="Registered" pattern="[0-9]{1,15}"/>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ChargeBearerTypeCode" definition="Specifies which party(ies) will pay charges due for processing of the instruction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.91">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ChargeBearerTypeCode" definition="Specifies which party(ies) will pay charges due for processing of the instruction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.92">
       <example>DEBT</example>
       <code name="BorneByDebtor" definition="All transaction charges are to be borne by the debtor." codeName="DEBT"/>
       <code name="BorneByCreditor" definition="All transaction charges are to be borne by the creditor." codeName="CRED"/>
@@ -547,14 +551,14 @@
       <example>0.60</example>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max4Text" definition="Specifies a character string with a maximum length of 4 characters." registrationStatus="Registered" minLength="1" maxLength="4"/>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ChargeBearerType1Code" definition="Specifies which party(ies) will pay charges due for processing of the instruction." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.88">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ChargeBearerType1Code" definition="Specifies which party(ies) will pay charges due for processing of the instruction." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.89">
       <example>DEBT</example>
       <code name="BorneByDebtor"/>
       <code name="BorneByCreditor"/>
       <code name="Shared"/>
       <code name="FollowingServiceLevel"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="RemittanceLocationMethodCode" definition="Specifies the method used to deliver the remittance advice information." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.96">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="RemittanceLocationMethodCode" definition="Specifies the method used to deliver the remittance advice information." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.97">
       <example>FAXI</example>
       <code name="Fax" definition="Remittance advice information must be faxed." registrationStatus="Registered" codeName="FAXI"/>
       <code name="ElectronicDataInterchange" definition="Remittance advice information must be sent through Electronic Data Interchange (EDI)." registrationStatus="Registered" codeName="EDIC"/>
@@ -563,7 +567,7 @@
       <code name="Post" definition="Remittance advice information must be sent through postal services." registrationStatus="Registered" codeName="POST"/>
       <code name="SMS" definition="Remittance advice  information must be sent through by phone as a short message service (SMS)." registrationStatus="Registered" codeName="SMSM"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentTypeCode" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.94 //@dataDictionary/@topLevelDictionaryEntry.97">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentTypeCode" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.95 //@dataDictionary/@topLevelDictionaryEntry.98">
       <example>MSIN</example>
       <code name="MeteredServiceInvoice" definition="Document is an invoice claiming payment for the supply of metered services, for example gas or electricity supplied to a fixed meter." registrationStatus="Registered" codeName="MSIN"/>
       <code name="CreditNoteRelatedToFinancialAdjustment" definition="Document is a credit note for the final amount settled for a commercial transaction." registrationStatus="Registered" codeName="CNFA"/>
@@ -586,7 +590,7 @@
       <code name="AccountReceivableOpenItem" definition="Document is a payment that applies to a specific source document." registrationStatus="Registered" codeName="AROI"/>
       <code name="TradeServicesUtilityTransaction" definition="Document is a transaction identifier as assigned by the Trade Services Utility." registrationStatus="Registered" codeName="TSUT"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentType3Code" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.93">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentType3Code" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.94">
       <example>RADM</example>
       <code name="RemittanceAdviceMessage"/>
       <code name="RelatedPaymentInstruction"/>
@@ -598,7 +602,7 @@
     <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ExternalPurpose1Code" definition="Specifies the external purpose code in the format of character string with a maximum length of 4 characters.&#xD;&#xA;The list of valid codes is an external code list published separately.&#xD;&#xA;External code sets can be downloaded from www.iso20022.org." registrationStatus="Registered" minLength="1" maxLength="4">
       <example>ACCT</example>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="RemittanceLocationMethod2Code" definition="Specifies the method used to deliver the remittance advice information." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.92">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="RemittanceLocationMethod2Code" definition="Specifies the method used to deliver the remittance advice information." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.93">
       <example>FAXI</example>
       <code name="Fax"/>
       <code name="ElectronicDataInterchange"/>
@@ -607,7 +611,7 @@
       <code name="Post"/>
       <code name="SMS"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentType5Code" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.93">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentType5Code" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.94">
       <example>MSIN</example>
       <code name="MeteredServiceInvoice"/>
       <code name="CreditNoteRelatedToFinancialAdjustment"/>
@@ -626,39 +630,39 @@
       <code name="TradeServicesUtilityTransaction"/>
     </topLevelDictionaryEntry>
     <topLevelDictionaryEntry xsi:type="iso20022:Indicator" name="BatchBookingIndicator" definition="Identifies whether the sending party requests a single debit or credit entry per individual transaction or a batch entry for the sum of the amounts of all transactions." registrationStatus="Registered" meaningWhenTrue="Identifies that a batch entry for the sum of the amounts of all transactions in the batch or message is requested." meaningWhenFalse="Identifies that a single entry for each of the transactions in the batch or message is requested. "/>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ClearingChannelCode" definition="Specifies the clearing channel for the routing of the transaction, as part of the payment type identification." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.100">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ClearingChannelCode" definition="Specifies the clearing channel for the routing of the transaction, as part of the payment type identification." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.101">
       <example>RTGS</example>
       <code name="RealTimeGrossSettlementSystem" definition="Clearing channel is a real-time gross settlement system." registrationStatus="Registered" codeName="RTGS"/>
       <code name="RealTimeNetSettlementSystem" definition="Clearing channel is a real-time net settlement system." registrationStatus="Registered" codeName="RTNS"/>
       <code name="MassPaymentNetSystem" definition="Clearing channel is a mass payment net settlement system." registrationStatus="Registered" codeName="MPNS"/>
       <code name="BookTransfer" definition="Payment through internal book transfer." registrationStatus="Registered" codeName="BOOK"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ClearingChannel2Code" definition="Specifies the clearing channel for the routing of the transaction, as part of the payment type identification." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.99">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ClearingChannel2Code" definition="Specifies the clearing channel for the routing of the transaction, as part of the payment type identification." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.100">
       <example>RTGS</example>
       <code name="RealTimeGrossSettlementSystem"/>
       <code name="RealTimeNetSettlementSystem"/>
       <code name="MassPaymentNetSystem"/>
       <code name="BookTransfer"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Priority2Code" definition="Specifies the priority level of an event." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.85">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Priority2Code" definition="Specifies the priority level of an event." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.86">
       <example>HIGH</example>
       <code name="High"/>
       <code name="Normal"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Instruction3Code" definition="Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s)." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.86">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Instruction3Code" definition="Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s)." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.87">
       <example>CHQB</example>
       <code name="PayCreditorByCheque"/>
       <code name="HoldCashForCreditor"/>
       <code name="PhoneBeneficiary"/>
       <code name="Telecom"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="RegulatoryReportingTypeCode" definition="Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.104">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="RegulatoryReportingTypeCode" definition="Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.105">
       <example>CRED</example>
       <code name="Credit" definition="Regulatory information applies to the credit side." registrationStatus="Registered" codeName="CRED"/>
       <code name="Debit" definition="Regulatory information applies to the debit side." registrationStatus="Registered" codeName="DEBT"/>
       <code name="Both" definition="Regulatory information applies to both credit and debit sides." registrationStatus="Registered" codeName="BOTH"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="RegulatoryReportingType1Code" definition="Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.103">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="RegulatoryReportingType1Code" definition="Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.104">
       <example>CRED</example>
       <code name="Credit"/>
       <code name="Debit"/>
@@ -673,26 +677,26 @@
     <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ExternalCategoryPurpose1Code" definition="Specifies the category purpose, as published in an external category purpose code list.&#xD;&#xA;External code sets can be downloaded from www.iso20022.org." registrationStatus="Registered" minLength="1" maxLength="4">
       <example>CORT</example>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="SettlementMethodCode" definition="Specifies the method used to settle the payment instruction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.109">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="SettlementMethodCode" definition="Specifies the method used to settle the payment instruction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.110">
       <example>INDA</example>
       <code name="InstructedAgent" definition="Settlement is done by the agent instructed to execute a payment instruction." registrationStatus="Registered" codeName="INDA"/>
       <code name="InstructingAgent" definition="Settlement is done by the agent instructing and forwarding the payment to the next party in the payment chain." registrationStatus="Registered" codeName="INGA"/>
       <code name="CoverMethod" definition="Settlement is done through a cover payment." registrationStatus="Registered" codeName="COVE"/>
       <code name="ClearingSystem" definition="Settlement is done through a payment clearing system." registrationStatus="Registered" codeName="CLRG"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="SettlementMethod1Code" definition="Specifies the method used to settle the credit transfer instruction." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.108">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="SettlementMethod1Code" definition="Specifies the method used to settle the credit transfer instruction." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.109">
       <example>INDA</example>
       <code name="InstructedAgent"/>
       <code name="InstructingAgent"/>
       <code name="CoverMethod"/>
       <code name="ClearingSystem"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Instruction4Code" definition="Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s)." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.86">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Instruction4Code" definition="Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s)." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.87">
       <example>PHOA</example>
       <code name="PhoneNextAgent"/>
       <code name="TelecomNextAgent"/>
     </topLevelDictionaryEntry>
-    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Priority3Code" definition="Specifies the priority level of an event." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.85">
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Priority3Code" definition="Specifies the priority level of an event." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.86">
       <example>URGT</example>
       <code name="Urgent"/>
       <code name="High"/>

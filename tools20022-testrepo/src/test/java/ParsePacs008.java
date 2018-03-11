@@ -1,7 +1,6 @@
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 
 import javax.xml.bind.JAXBContext;
@@ -12,10 +11,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.junit.Test;
 import org.xml.sax.InputSource;
 
-import com.test.camt030.NotificationOfCaseAssignmentV04;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
-import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.Document;
-import com.tools20022.repository.codeset.AddressType2Code;
 import com.tools20022.repository.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.datatype.Max35Text;
 import com.tools20022.repository.msg.GroupHeader33;
@@ -55,9 +51,14 @@ public class ParsePacs008 {
 		FIToFICustomerCreditTransferV02.Document doc = (FIToFICustomerCreditTransferV02.Document) obj;
 		FIToFICustomerCreditTransferV02 msg = doc.messageBody;
 		
-		ActiveCurrencyAndAmount currAndAmount = msg.getGroupHeader().getTotalInterbankSettlementAmount().get();
-		
-		System.out.println(currAndAmount);
+		{
+			ActiveCurrencyAndAmount currAndAmount = msg.getGroupHeader().getTotalInterbankSettlementAmount().get();		
+			System.out.println( "GroupHeader/TotalInterbankSettlementAmount: " + currAndAmount.getAmount() + " "+ currAndAmount.getCurrency());			
+		}
+		{
+			Max35Text msgId = msg.getGroupHeader().getMessageIdentification();		
+			System.out.println( "GroupHeader/MessageIdentification: " + msgId);			
+		}
 
 		
 	}

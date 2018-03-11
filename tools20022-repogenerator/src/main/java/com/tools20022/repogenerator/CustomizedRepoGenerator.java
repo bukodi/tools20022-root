@@ -28,6 +28,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMAmount;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMCode;
@@ -47,6 +48,7 @@ import com.tools20022.metamodel.ext.FIXSynonym;
 import com.tools20022.metamodel.ext.ISO15022Synonym;
 import com.tools20022.metamodel.ext.OtherSemanticMarkup;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
+import com.tools20022.repogenerator.resulttypes.DataTypeResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
@@ -430,5 +432,12 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		defaultAttribute(gen, MMRepositoryConcept.nameAttribute, mmBean.getName());
 		defaultAttribute(gen, MMRepositoryConcept.definitionAttribute, mmBean.getDefinition());
 	}
+
+	@Override
+	protected DataTypeResult generateMMAmount(StaticFieldResult containerGen, MMAmount mmBean) {
+		return super.generateMMAmount(containerGen, mmBean);
+	}
+	
+	
 
 }

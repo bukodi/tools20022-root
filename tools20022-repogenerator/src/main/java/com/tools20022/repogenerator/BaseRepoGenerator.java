@@ -15,6 +15,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -31,6 +36,7 @@ import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMAmount;
 import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
@@ -71,7 +77,7 @@ import com.tools20022.repogenerator.resulttypes.PropertyResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
-public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,GeneratedMetamodelBean> {
+public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository, GeneratedMetamodelBean> {
 
 	int USE_LIST_BUILDER_ABOVE = 500;
 
@@ -82,16 +88,16 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	/*** Set in {@link #accept(RawRepository, GenerationContext)} ***/
 	protected RawRepository repo;
 
-	public BaseRepoGenerator(GenerationContext<RawRepository,GeneratedMetamodelBean> ctx) {
-		 super( ctx );
+	public BaseRepoGenerator(GenerationContext<RawRepository, GeneratedMetamodelBean> ctx) {
+		super(ctx);
 	}
-	
+
 	@Override
 	public StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
 		StructuredName name = _getStructuredName(mmElem);
 		return name;
 	}
-	
+
 	private StructuredName _getStructuredName(GeneratedMetamodelBean mmElem) {
 
 		BiFunction<GeneratedMetamodelBean, String, StructuredName> createJavaNameAsMemeber = (parentElem,
@@ -125,8 +131,8 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessRole) mmElem).getName());
 		} else if (mmElem instanceof MMCode) {
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
-		} else if (mmElem instanceof MMConstraint ) {
-			
+		} else if (mmElem instanceof MMConstraint) {
+
 		}
 
 		String pkg;
@@ -140,10 +146,11 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		}
 
 		// Package
-		if( mmElem instanceof MMConstraint ) {
+		if (mmElem instanceof MMConstraint) {
 			MMConstraint mmConstr = (MMConstraint) mmElem;
-			StructuredName mainTypeName = StructuredName.primaryType(basePackageName + ".constraints", RoasterHelper.convertToJavaName("Constraint" + mmConstr.getName()));
-			StructuredName containername = getStructuredName( mmElem.getContainer() );			
+			StructuredName mainTypeName = StructuredName.primaryType(basePackageName + ".constraints",
+					RoasterHelper.convertToJavaName("Constraint" + mmConstr.getName()));
+			StructuredName containername = getStructuredName(mmElem.getContainer());
 			StructuredName memberName = StructuredName.member(mainTypeName, "for" + containername.getSimpleName());
 			return memberName;
 		} else if (mmElem instanceof MMMessageDefinition) {
@@ -260,11 +267,11 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			}
 			ret.valueAsSource = "\"" + sb.toString() + "\"";
 			// Replace <, >, & chars
-			ret.valueAsJavaDoc = RoasterHelper.escapeJavaDoc( ret.valueAsSource );
+			ret.valueAsJavaDoc = RoasterHelper.escapeJavaDoc(ret.valueAsSource);
 		} else if (attrValue instanceof Enum) {
 			ret.valueAsSource = attrValue.getClass().getName() + "." + attrValue.toString();
 			ret.valueAsJavaDoc = attrValue.getClass().getName() + "." + attrValue.toString();
-		} else if (attrValue instanceof MMCode ) {
+		} else if (attrValue instanceof MMCode) {
 			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;
 			StructuredName refName = getStructuredName(refmmBean);
 			ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + "."
@@ -273,25 +280,22 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#"
 					+ refName.getMemberName();
 			ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + "." + refName.getMemberName() + "}";
-		} else if (attrValue instanceof GeneratedMetamodelBean ) {
-			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;					
+		} else if (attrValue instanceof GeneratedMetamodelBean) {
+			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;
 			StructuredName refName = getStructuredName(refmmBean);
 			if (refName.isCompilationUnit()) {
 				ret.valueAsSource = refName.getFullName() + ".mmObject()";
 				ret.valueAsJavaDoc = "{@linkplain " + refName.getFullName() + " " + refName.getCompilationUnit() + "}";
-			} else if (refName.isMember() ) {
+			} else if (refName.isMember()) {
 				String memberName;
-				if( refmmBean instanceof MMBusinessAssociationEnd 
-						|| refmmBean instanceof MMBusinessAttribute 
-						|| refmmBean instanceof MMMessageBuildingBlock 
-						|| refmmBean instanceof MMMessageAssociationEnd 
-						|| refmmBean instanceof MMMessageAttribute 
-				) {
+				if (refmmBean instanceof MMBusinessAssociationEnd || refmmBean instanceof MMBusinessAttribute
+						|| refmmBean instanceof MMMessageBuildingBlock || refmmBean instanceof MMMessageAssociationEnd
+						|| refmmBean instanceof MMMessageAttribute) {
 					memberName = "mm" + refName.getMemberName();
 				} else {
 					memberName = refName.getMemberName();
 				}
-				
+
 				ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + "." + memberName;
 				ret.valueAsJavaDoc = "{@linkplain ";
 				ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#" + memberName;
@@ -345,7 +349,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
 			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
-		
+
 		return gen;
 	}
 
@@ -369,7 +373,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
 			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
-		
+
 		return gen;
 	}
 
@@ -393,58 +397,114 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
 			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
-		
+
 		Class<?> javaType = getMMDataTypeBaseType(mmBean);
-		if( javaType != null ) {
-			FieldSource<JavaClassSource> valueField = gen.src.addField();
-			valueField.setName("value").setProtected();
-			valueField.setType(javaType);
-			
+		if (javaType != null) {
+
+			String ccyCodesetFQN = null;
+			if (mmBean instanceof MMAmount) {
+				Optional<MMDataType> optCcySet = ((MMAmount) mmBean).getCurrencyIdentifierSet();
+				if (optCcySet.isPresent()) {
+					ccyCodesetFQN = getStructuredName(optCcySet.get()).getFullName();
+				}
+			}
+
+			if (ccyCodesetFQN != null) {
+				FieldSource<JavaClassSource> amountField = gen.src.addField();
+				amountField.setName("amount").setProtected();
+				amountField.setType(javaType);
+				amountField.addAnnotation(XmlValue.class);
+
+				FieldSource<JavaClassSource> currencyField = gen.src.addField();
+				currencyField.setName("currency").setProtected();
+				currencyField.setType(ccyCodesetFQN);
+				currencyField.addAnnotation(XmlAttribute.class).setStringValue("name", "ccy")
+						.setLiteralValue("required", "true");
+
+			} else {
+				FieldSource<JavaClassSource> valueField = gen.src.addField();
+				valueField.setName("value").setProtected();
+				valueField.setType(javaType);
+				valueField.addAnnotation(XmlValue.class);
+			}
+
+			// Default constructor
 			MethodSource<JavaClassSource> constr = gen.src.addMethod();
 			constr.setConstructor(true).setPublic();
-			constr.addParameter(javaType, "value");
-			constr.setBody("this.value = value;");
-			
-			MethodSource<JavaClassSource> getter = gen.src.addMethod().setPublic();
-			getter.setName("to" + javaType.getSimpleName() );
-			getter.setReturnType(javaType);
-			getter.setBody("return value;");
-			if( "toString".equals( getter.getName()) ) {
-				getter.addAnnotation(Override.class);
-			}
-			
-			JavaClassSource xmlAdapter = gen.src.addNestedType(JavaClassSource.class);
-			xmlAdapter.setName("InternalXmlAdapter");
-			xmlAdapter.setProtected().setStatic(true);
-			xmlAdapter.setSuperType(XmlAdapter.class.getName() + "<" + javaType.getName() + ", " + gen.src.getName() + ">");
-			
-			MethodSource<JavaClassSource> unmarshal = xmlAdapter.addMethod().setName("unmarshal");
-			unmarshal.setPublic().addAnnotation(Override.class);
-			unmarshal.setReturnType(gen.src);
-			//unmarshall.addParameter(gen.src, "value");
-			unmarshal.addParameter(javaType, "value");
-			unmarshal.setBody("return new " + gen.src.getName() + "( value );");
+			constr.setBody("");
 
-			MethodSource<JavaClassSource> marshal = xmlAdapter.addMethod().setName("marshal");
-			marshal.setPublic().addAnnotation(Override.class);
-			marshal.setReturnType(javaType);
-			marshal.addParameter(gen.src.getName(), "typedData");
-			marshal.setBody("return typedData.value;");
-			
-			AnnotationSource<JavaClassSource> jaxbAnnot = gen.src.addAnnotation(XmlJavaTypeAdapter.class);
-			jaxbAnnot.setLiteralValue("value", gen.src.getQualifiedName() + ".InternalXmlAdapter.class");
+			// Constructor vith value
+			if (ccyCodesetFQN != null) {
+				MethodSource<JavaClassSource> constr2 = gen.src.addMethod();
+				constr2.setConstructor(true).setPublic();
+				constr2.addParameter(javaType, "amount");
+				constr2.addParameter(ccyCodesetFQN, "currency");
+				constr2.setBody("this.amount = amount; this.currency = currency;");
+			} else {
+				MethodSource<JavaClassSource> constr2 = gen.src.addMethod();
+				constr2.setConstructor(true).setPublic();
+				constr2.addParameter(javaType, "value");
+				constr2.setBody("this.value = value;");
+			}
+
+			// Getter
+			if (ccyCodesetFQN != null) {
+				MethodSource<JavaClassSource> getter = gen.src.addMethod().setPublic();
+				getter.setName("getAmount");
+				getter.setReturnType(javaType);
+				getter.setBody("return amount;");
+
+				MethodSource<JavaClassSource> getterCcy = gen.src.addMethod().setPublic();
+				getterCcy.setName("getCurrency");
+				getterCcy.setReturnType(ccyCodesetFQN);
+				getterCcy.setBody("return currency;");
+			} else {
+				MethodSource<JavaClassSource> getter = gen.src.addMethod().setPublic();
+				getter.setName("getValue");
+				getter.setReturnType(javaType);
+				getter.setBody("return value;");
+			}
+
+			// Setter
+			if (ccyCodesetFQN != null) {
+				MethodSource<JavaClassSource> setter = gen.src.addMethod().setPublic();
+				setter.setName("setAmountAndCurrency");
+				setter.addParameter(javaType, "amount");
+				setter.addParameter(ccyCodesetFQN, "currency");
+				setter.setBody("this.amount = amount; this.currency = currency;");
+			} else {
+				MethodSource<JavaClassSource> setter = gen.src.addMethod().setPublic();
+				setter.setName("setValue");
+				setter.addParameter(javaType, "value");
+				setter.setBody("this.value = value;");
+			}
+
+			// toString
+			MethodSource<JavaClassSource> toString = gen.src.addMethod().setPublic();
+			toString.setName("toString");
+			toString.setReturnType(String.class);
+			toString.addAnnotation(Override.class);
+			if (ccyCodesetFQN != null) {
+				toString.setBody("return amount + \" \" + currency;");				
+			} else {
+				toString.setBody("return value == null ? null : value.toString();");								
+			}
+
+
+			gen.src.addAnnotation(XmlAccessorType.class).setEnumValue(XmlAccessType.NONE);
+			gen.src.addAnnotation(XmlType.class);
 		}
-		
+
 		return gen;
 	}
 
 	protected EnumTypeResult defaultEnumType(MMCodeSet mmBean) {
 		StructuredName name = getStructuredName(mmBean);
 		EnumTypeResult gen = new EnumTypeResult(ctx, mmBean, name);
-		
+
 		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
 		createJavaDoc(gen.src, mmBean);
-		
+
 		gen.src.extendSuperType(MMCode.class);
 		MethodSource<JavaClassSource> privConstructor = gen.src.addMethod();
 		privConstructor.setConstructor(true);
@@ -465,18 +525,18 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			gen.mmObjectMethod.setFinal(true).setStatic(true).setPublic();
 			gen.mmObjectMethod.setReturnType(mmBean.getMetamodel().getBeanClass().getName());
 		}
-		
+
 		return gen;
 	}
 
 	protected EnumConstantResult defaultEnumConstant(MMCode mmBean, EnumTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
 		EnumConstantResult gen = containerGen.addConstant(mmBean, name);
-		
+
 		{
-			gen.staticFieldSrc = containerGen.src.addField().setName( name.getMemberName());
+			gen.staticFieldSrc = containerGen.src.addField().setName(name.getMemberName());
 			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-			gen.staticFieldSrc.setType( containerGen.src);
+			gen.staticFieldSrc.setType(containerGen.src);
 			createJavaDoc(gen.staticFieldSrc, mmBean);
 		}
 		return gen;
@@ -486,7 +546,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		StructuredName name = getStructuredName(mmBean);
 		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, name);
 		{
-			gen.staticFieldSrc = containerGen.src.addField().setName( name.getMemberName());
+			gen.staticFieldSrc = containerGen.src.addField().setName(name.getMemberName());
 			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
 			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
 			createJavaDoc(gen.staticFieldSrc, mmBean);
@@ -496,44 +556,43 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 
 	protected MMRepositoryConcept getPropertyType(MMConstruct mmBean) {
 		if (mmBean instanceof MMMessageBuildingBlock) {
-			return ((MMMessageBuildingBlock<?,?>) mmBean).getXmlMemberType();
+			return ((MMMessageBuildingBlock<?, ?>) mmBean).getXmlMemberType();
 		} else if (mmBean instanceof MMBusinessAttribute) {
-			if (((MMBusinessAttribute<?,?>) mmBean).getSimpleType().isPresent()) {
-				return ((MMBusinessAttribute<?,?>) mmBean).getSimpleType().get();
-			} else if (((MMBusinessAttribute<?,?>) mmBean).getComplexType().isPresent()) {
-				return ((MMBusinessAttribute<?,?>) mmBean).getComplexType().get();
+			if (((MMBusinessAttribute<?, ?>) mmBean).getSimpleType().isPresent()) {
+				return ((MMBusinessAttribute<?, ?>) mmBean).getSimpleType().get();
+			} else if (((MMBusinessAttribute<?, ?>) mmBean).getComplexType().isPresent()) {
+				return ((MMBusinessAttribute<?, ?>) mmBean).getComplexType().get();
 			} else {
 				throw new IllegalArgumentException("Unsupported bean instance : " + mmBean);
 			}
 		} else if (mmBean instanceof MMMessageAttribute) {
-			if (((MMMessageAttribute<?,?>) mmBean).getSimpleType().isPresent()) {
-				return ((MMMessageAttribute<?,?>) mmBean).getSimpleType().get();
-			} else if (((MMMessageAttribute<?,?>) mmBean).getComplexType().isPresent()) {
-				return ((MMMessageAttribute<?,?>) mmBean).getComplexType().get();
+			if (((MMMessageAttribute<?, ?>) mmBean).getSimpleType().isPresent()) {
+				return ((MMMessageAttribute<?, ?>) mmBean).getSimpleType().get();
+			} else if (((MMMessageAttribute<?, ?>) mmBean).getComplexType().isPresent()) {
+				return ((MMMessageAttribute<?, ?>) mmBean).getComplexType().get();
 			} else {
 				throw new IllegalArgumentException("Unsupported bean instance : " + mmBean);
 			}
 		} else if (mmBean instanceof MMBusinessAssociationEnd) {
-			return ((MMBusinessAssociationEnd<?,?>) mmBean).getType();
+			return ((MMBusinessAssociationEnd<?, ?>) mmBean).getType();
 		} else if (mmBean instanceof MMMessageAssociationEnd) {
-			return ((MMMessageAssociationEnd<?,?>) mmBean).getType();
+			return ((MMMessageAssociationEnd<?, ?>) mmBean).getType();
 		} else {
 			throw new IllegalArgumentException("Unsupported bean type: " + mmBean.getClass());
 		}
 	}
-	
-	
+
 	protected PropertyResult defaultPropertyResult(MMConstruct mmBean, MainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
 
-		// TODO: support optionals 
-		PropertyResult gen = containerGen.addProperty( mmBean, name);
+		// TODO: support optionals
+		PropertyResult gen = containerGen.addProperty(mmBean, name);
 		return gen;
 	}
 
 	protected JaxbPropertyResult defaultJaxbPropertyResult(MMMessageConstruct mmBean, JaxbMainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
-		JaxbPropertyResult gen = containerGen.addProperty( mmBean, name);
+		JaxbPropertyResult gen = containerGen.addProperty(mmBean, name);
 		return gen;
 	}
 
@@ -592,15 +651,16 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 
 		return firstBuilderName;
 	}
-	
-	Class<?> getMMDataTypeBaseType(MMDataType mmDt ) {
+
+	Class<?> getMMDataTypeBaseType(MMDataType mmDt) {
 		Set<?> st = mmDt.getMetamodel().getSuperTypes(true, true);
-		if( st.contains(MMString.metaType()) ) {
+		if (st.contains(MMString.metaType())) {
 			return String.class;
-		} else if ( st.contains(MMDecimal.metaType() ) ) {
+		} else if (st.contains(MMDecimal.metaType())) {
 			return BigDecimal.class;
 		} else {
-			return null;
+			System.out.println("" + mmDt.getName() + " base type not supported.");
+			return String.class;
 		}
 	}
 
