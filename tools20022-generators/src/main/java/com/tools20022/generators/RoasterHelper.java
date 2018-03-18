@@ -133,6 +133,14 @@ public class RoasterHelper {
 				.get();
 	}
 
+	public static String convertToFieldName( String name ) {
+		String ret = convertToJavaName(name);
+		ret = ret.substring(0, 1).toLowerCase() + ret.substring(1);
+		if (JAVA_RESERVED_WORDS.contains(ret))
+			ret = ret + "_";
+		return ret;
+	}
+	
 	/**
 	 * Converts the input string to a valid Java identifier name.
 	 * 

@@ -15,5 +15,19 @@ public class RepoGeneratorOptions {
 	String basePackageName;
 	Properties formatterOptions;
 	
+	boolean runCleanQualifiedTypes;
+	boolean skipBusinessModel;
+	boolean skipJavadoc;
+	
+	
+	/*** Phases ***/
+	// Load ecore
+	// Extends ecore
+	// Generate metamodel
+	// Load Repo
+	// Customize repo
+	// Create subset
+	// Generate code
+	// Build artifact
 	
 }
