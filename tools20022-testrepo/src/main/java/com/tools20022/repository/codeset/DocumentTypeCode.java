@@ -34,15 +34,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
- * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.DocumentType3Code
- * DocumentType3Code}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.DocumentType5Code
- * DocumentType5Code}</li>
- * </ul>
- * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
@@ -103,6 +94,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>
  * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#TradeServicesUtilityTransaction
  * DocumentTypeCode.TradeServicesUtilityTransaction}</li>
+ * </ul>
+ * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
+ * =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.codeset.DocumentType3Code
+ * DocumentType3Code}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.DocumentType5Code
+ * DocumentType5Code}</li>
  * </ul>
  * </li>
  * <li>

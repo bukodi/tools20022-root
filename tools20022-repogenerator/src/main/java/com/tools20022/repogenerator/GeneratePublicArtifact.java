@@ -36,50 +36,40 @@ public class GeneratePublicArtifact {
 	static boolean skipBusinessComponents = false;
 
 	static String baseEcoreResourceName = "/model/ISO20022.ecore";
-	static String baseXmiResourceName = "/model/20170713_ISO20022_2013_eRepository.iso20022";
-	//static String baseXmiResourceName = "/model/20180205_ISO20022_2013_eRepository.iso20022";
+	// static String baseXmiResourceName =
+	// "/model/20170713_ISO20022_2013_eRepository.iso20022";
+	// static String baseXmiResourceName =
+	// "/model/20180205_ISO20022_2013_eRepository.iso20022";
+	static String baseXmiResourceName = "/model/20180314_ISO20022_2013_eRepository.iso20022";
 
 	static Path coreProject = Paths.get("../tools20022-core");
 	static Path metamodelProject = Paths.get("../tools20022-metamodel");
 
 	public static void main(String[] args) throws Exception {
-		/*try {
-			generateArtifact(null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
+		/*
+		 * try { generateArtifact(null); } catch (Exception e) { e.printStackTrace(); }
+		 * try { generateArtifact(BusinessDomain.payments); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
 		try {
-			generateArtifact(BusinessDomain.payments);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		/*try {
 			generateArtifact(BusinessDomain.cards);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		try {
-			generateArtifact(BusinessDomain.securities);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			generateArtifact(BusinessDomain.fx);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			generateArtifact(BusinessDomain.trade);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");		
-		System.out.println("**** Gerneration finished " + sdf.format(new Date())+" ****");
+		/*
+		 * try { generateArtifact(BusinessDomain.securities); } catch (Exception e) {
+		 * e.printStackTrace(); } try { generateArtifact(BusinessDomain.fx); } catch
+		 * (Exception e) { e.printStackTrace(); } try {
+		 * generateArtifact(BusinessDomain.trade); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		System.out.println("**** Gerneration finished " + sdf.format(new Date()) + " ****");
 	}
 
 	public static void generateArtifact(BusinessDomain domain) throws Exception {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");		
-		System.out.println("**** Gerneration started " + sdf.format(new Date())+" [" + domain +  "] ****");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		System.out.println("**** Gerneration started " + sdf.format(new Date()) + " [" + domain + "] ****");
 		ProgressMonitor monitor = new ProgressMonitor();
 		final EPackage ecorePackage = ECoreIOHelper.loadECorePackage(baseEcoreResourceName);
 		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
@@ -137,6 +127,17 @@ public class GeneratePublicArtifact {
 		Map<BusinessDomain, List<String>> msgIdsByDomain = new HashMap<>();
 		{
 			List<String> msgIds = new ArrayList<>();
+			msgIds.add("acmt.027.001.01");
+			msgIds.add("acmt.028.001.01");
+			msgIds.add("acmt.029.001.01");
+			msgIds.add("acmt.030.001.01");
+			msgIds.add("acmt.031.001.01");
+			msgIds.add("acmt.032.001.01");
+			msgIds.add("acmt.033.001.01");
+			msgIds.add("acmt.034.001.01");
+			msgIds.add("acmt.035.001.01");
+			msgIds.add("acmt.036.001.01");
+			msgIds.add("acmt.037.001.01");
 			msgIds.add("auth.001.001.01");
 			msgIds.add("auth.002.001.01");
 			msgIds.add("auth.003.001.01");
@@ -155,10 +156,10 @@ public class GeneratePublicArtifact {
 			msgIds.add("acmt.019.001.02");
 			msgIds.add("acmt.020.001.02");
 			msgIds.add("acmt.021.001.02");
-			msgIds.add("camt.052.001.06");
-			msgIds.add("camt.053.001.06");
-			msgIds.add("camt.054.001.06");
-			msgIds.add("camt.060.001.03");
+			msgIds.add("camt.052.001.07");
+			msgIds.add("camt.053.001.07");
+			msgIds.add("camt.054.001.07");
+			msgIds.add("camt.060.001.04");
 			msgIds.add("camt.086.001.02");
 			msgIds.add("acmt.022.001.02");
 			msgIds.add("acmt.023.001.02");
@@ -175,37 +176,37 @@ public class GeneratePublicArtifact {
 			msgIds.add("auth.025.001.01");
 			msgIds.add("auth.026.001.01");
 			msgIds.add("auth.027.001.01");
-			msgIds.add("camt.026.001.05");
-			msgIds.add("camt.027.001.05");
-			msgIds.add("camt.028.001.07");
-			msgIds.add("camt.029.001.07");
+			msgIds.add("camt.026.001.06");
+			msgIds.add("camt.027.001.06");
+			msgIds.add("camt.028.001.08");
+			msgIds.add("camt.029.001.08");
 			msgIds.add("camt.030.001.04");
-			msgIds.add("camt.031.001.04");
+			msgIds.add("camt.031.001.05");
 			msgIds.add("camt.032.001.03");
-			msgIds.add("camt.033.001.04");
-			msgIds.add("camt.034.001.04");
-			msgIds.add("camt.035.001.03");
-			msgIds.add("camt.036.001.03");
-			msgIds.add("camt.037.001.05");
+			msgIds.add("camt.033.001.05");
+			msgIds.add("camt.034.001.05");
+			msgIds.add("camt.035.001.04");
+			msgIds.add("camt.036.001.04");
+			msgIds.add("camt.037.001.06");
 			msgIds.add("camt.038.001.03");
 			msgIds.add("camt.039.001.04");
-			msgIds.add("camt.055.001.06");
-			msgIds.add("camt.056.001.06");
-			msgIds.add("camt.087.001.04");
+			msgIds.add("camt.055.001.07");
+			msgIds.add("camt.056.001.07");
+			msgIds.add("camt.087.001.05");
 			msgIds.add("camt.057.001.05");
 			msgIds.add("camt.058.001.05");
 			msgIds.add("camt.059.001.05");
-			msgIds.add("pacs.002.001.08");
+			msgIds.add("pacs.002.001.09");
 			msgIds.add("pacs.003.001.07");
-			msgIds.add("pacs.004.001.07");
-			msgIds.add("pacs.007.001.07");
-			msgIds.add("pacs.008.001.06");
-			msgIds.add("pacs.009.001.06");
+			msgIds.add("pacs.004.001.08");
+			msgIds.add("pacs.007.001.08");
+			msgIds.add("pacs.008.001.07");
+			msgIds.add("pacs.009.001.07");
 			msgIds.add("pacs.010.001.02");
-			msgIds.add("pacs.028.001.01");
+			msgIds.add("pacs.028.001.02");
 			msgIds.add("pain.001.001.08");
-			msgIds.add("pain.002.001.08");
-			msgIds.add("pain.007.001.07");
+			msgIds.add("pain.002.001.09");
+			msgIds.add("pain.007.001.08");
 			msgIds.add("pain.008.001.07");
 			msgIds.add("pain.009.001.05");
 			msgIds.add("pain.010.001.05");
@@ -243,19 +244,19 @@ public class GeneratePublicArtifact {
 			msgIds.add("colr.014.001.04");
 			msgIds.add("colr.015.001.04");
 			msgIds.add("colr.016.001.03");
-			msgIds.add("seev.031.001.07");
+			msgIds.add("seev.031.001.08");
 			msgIds.add("seev.032.001.06");
-			msgIds.add("seev.033.001.07");
-			msgIds.add("seev.034.001.08");
-			msgIds.add("seev.035.001.08");
-			msgIds.add("seev.036.001.08");
-			msgIds.add("seev.037.001.08");
+			msgIds.add("seev.033.001.08");
+			msgIds.add("seev.034.001.09");
+			msgIds.add("seev.035.001.09");
+			msgIds.add("seev.036.001.09");
+			msgIds.add("seev.037.001.09");
 			msgIds.add("seev.038.001.04");
-			msgIds.add("seev.039.001.07");
+			msgIds.add("seev.039.001.08");
 			msgIds.add("seev.040.001.07");
-			msgIds.add("seev.041.001.07");
-			msgIds.add("seev.042.001.06");
-			msgIds.add("seev.044.001.07");
+			msgIds.add("seev.041.001.08");
+			msgIds.add("seev.042.001.07");
+			msgIds.add("seev.044.001.08");
 			msgIds.add("auth.016.001.01");
 			msgIds.add("auth.017.001.01");
 			msgIds.add("auth.031.001.01");
@@ -296,22 +297,22 @@ public class GeneratePublicArtifact {
 			msgIds.add("semt.005.001.02");
 			msgIds.add("semt.006.001.03");
 			msgIds.add("semt.007.001.03");
-			msgIds.add("sese.001.001.07");
-			msgIds.add("sese.002.001.07");
-			msgIds.add("sese.003.001.07");
-			msgIds.add("sese.004.001.07");
-			msgIds.add("sese.005.001.07");
-			msgIds.add("sese.006.001.07");
-			msgIds.add("sese.007.001.07");
-			msgIds.add("sese.008.001.07");
-			msgIds.add("sese.009.001.05");
-			msgIds.add("sese.010.001.05");
-			msgIds.add("sese.011.001.05");
-			msgIds.add("sese.012.001.07");
-			msgIds.add("sese.013.001.07");
-			msgIds.add("sese.014.001.07");
-			msgIds.add("sese.018.001.05");
-			msgIds.add("sese.019.001.04");
+			msgIds.add("sese.001.001.08");
+			msgIds.add("sese.002.001.08");
+			msgIds.add("sese.003.001.08");
+			msgIds.add("sese.004.001.08");
+			msgIds.add("sese.005.001.08");
+			msgIds.add("sese.006.001.08");
+			msgIds.add("sese.007.001.08");
+			msgIds.add("sese.008.001.08");
+			msgIds.add("sese.009.001.06");
+			msgIds.add("sese.010.001.06");
+			msgIds.add("sese.011.001.06");
+			msgIds.add("sese.012.001.08");
+			msgIds.add("sese.013.001.08");
+			msgIds.add("sese.014.001.08");
+			msgIds.add("sese.018.001.06");
+			msgIds.add("sese.019.001.05");
 			msgIds.add("setr.001.001.04");
 			msgIds.add("setr.002.001.04");
 			msgIds.add("setr.003.001.04");
@@ -381,33 +382,33 @@ public class GeneratePublicArtifact {
 			msgIds.add("semt.003.001.09");
 			msgIds.add("semt.013.001.04");
 			msgIds.add("semt.014.001.05");
-			msgIds.add("semt.015.001.06");
-			msgIds.add("semt.016.001.06");
-			msgIds.add("semt.017.001.07");
-			msgIds.add("semt.018.001.08");
-			msgIds.add("semt.019.001.06");
+			msgIds.add("semt.015.001.07");
+			msgIds.add("semt.016.001.07");
+			msgIds.add("semt.017.001.08");
+			msgIds.add("semt.018.001.09");
+			msgIds.add("semt.019.001.07");
 			msgIds.add("semt.020.001.05");
 			msgIds.add("semt.021.001.06");
 			msgIds.add("semt.022.001.03");
 			msgIds.add("sese.020.001.05");
 			msgIds.add("sese.021.001.04");
 			msgIds.add("sese.022.001.04");
-			msgIds.add("sese.023.001.07");
-			msgIds.add("sese.024.001.08");
-			msgIds.add("sese.025.001.07");
-			msgIds.add("sese.026.001.06");
+			msgIds.add("sese.023.001.08");
+			msgIds.add("sese.024.001.09");
+			msgIds.add("sese.025.001.08");
+			msgIds.add("sese.026.001.07");
 			msgIds.add("sese.027.001.05");
-			msgIds.add("sese.028.001.06");
+			msgIds.add("sese.028.001.07");
 			msgIds.add("sese.029.001.04");
 			msgIds.add("sese.030.001.07");
 			msgIds.add("sese.031.001.07");
-			msgIds.add("sese.032.001.07");
-			msgIds.add("sese.033.001.07");
+			msgIds.add("sese.032.001.08");
+			msgIds.add("sese.033.001.08");
 			msgIds.add("sese.034.001.07");
-			msgIds.add("sese.035.001.07");
+			msgIds.add("sese.035.001.08");
 			msgIds.add("sese.036.001.06");
-			msgIds.add("sese.037.001.04");
-			msgIds.add("sese.038.001.05");
+			msgIds.add("sese.037.001.05");
+			msgIds.add("sese.038.001.06");
 			msgIds.add("sese.039.001.04");
 			msgIds.add("sese.040.001.02");
 			msgIds.add("reda.056.001.01");
@@ -524,10 +525,10 @@ public class GeneratePublicArtifact {
 			msgIds.add("cain.011.001.01");
 			msgIds.add("cain.012.001.01");
 			msgIds.add("cain.013.001.01");
-			msgIds.add("caam.001.001.02");
-			msgIds.add("caam.002.001.02");
-			msgIds.add("caam.003.001.02");
-			msgIds.add("caam.004.001.02");
+			msgIds.add("caam.001.001.03");
+			msgIds.add("caam.002.001.03");
+			msgIds.add("caam.003.001.03");
+			msgIds.add("caam.004.001.03");
 			msgIds.add("caam.005.001.02");
 			msgIds.add("caam.006.001.02");
 			msgIds.add("caam.007.001.01");
@@ -553,33 +554,32 @@ public class GeneratePublicArtifact {
 			msgIds.add("catp.015.001.01");
 			msgIds.add("catp.016.001.01");
 			msgIds.add("catp.017.001.01");
-			msgIds.add("caaa.001.001.06");
-			msgIds.add("caaa.002.001.06");
-			msgIds.add("caaa.003.001.06");
-			msgIds.add("caaa.004.001.06");
-			msgIds.add("caaa.005.001.06");
-			msgIds.add("caaa.006.001.06");
-			msgIds.add("caaa.007.001.06");
-			msgIds.add("caaa.008.001.06");
-			msgIds.add("caaa.009.001.06");
-			msgIds.add("caaa.010.001.05");
-			msgIds.add("caaa.011.001.06");
-			msgIds.add("caaa.012.001.06");
-			msgIds.add("caaa.013.001.06");
-			msgIds.add("caaa.014.001.05");
+			msgIds.add("caaa.001.001.07");
+			msgIds.add("caaa.002.001.07");
+			msgIds.add("caaa.003.001.07");
+			msgIds.add("caaa.004.001.07");
+			msgIds.add("caaa.006.001.07");
+			msgIds.add("caaa.007.001.07");
+			msgIds.add("caaa.008.001.07");
+			msgIds.add("caaa.009.001.07");
+			msgIds.add("caaa.010.001.06");
+			msgIds.add("caaa.011.001.07");
+			msgIds.add("caaa.012.001.07");
+			msgIds.add("caaa.013.001.07");
+			msgIds.add("caaa.014.001.06");
 			msgIds.add("caaa.015.001.05");
-			msgIds.add("caaa.016.001.04");
-			msgIds.add("caaa.017.001.04");
-			msgIds.add("caaa.018.001.01");
-			msgIds.add("caaa.019.001.01");
-			msgIds.add("catm.001.001.06");
-			msgIds.add("catm.002.001.06");
-			msgIds.add("catm.003.001.06");
+			msgIds.add("caaa.016.001.05");
+			msgIds.add("caaa.017.001.05");
+			msgIds.add("caaa.018.001.02");
+			msgIds.add("caaa.019.001.02");
+			msgIds.add("catm.001.001.07");
+			msgIds.add("catm.002.001.07");
+			msgIds.add("catm.003.001.07");
 			msgIds.add("catm.004.001.04");
-			msgIds.add("catm.005.001.03");
-			msgIds.add("catm.006.001.02");
-			msgIds.add("catm.007.001.01");
-			msgIds.add("catm.008.001.01");
+			msgIds.add("catm.005.001.04");
+			msgIds.add("catm.006.001.03");
+			msgIds.add("catm.007.001.02");
+			msgIds.add("catm.008.001.02");
 			msgIdsByDomain.put(BusinessDomain.cards, msgIds);
 		}
 		{

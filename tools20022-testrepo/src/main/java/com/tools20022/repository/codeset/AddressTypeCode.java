@@ -34,13 +34,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
- * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressType2Code
- * AddressType2Code}</li>
- * </ul>
- * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
@@ -56,6 +49,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * AddressTypeCode.MailTo}</li>
  * <li>{@linkplain com.tools20022.repository.codeset.AddressTypeCode#DeliveryTo
  * AddressTypeCode.DeliveryTo}</li>
+ * </ul>
+ * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
+ * =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.codeset.AddressType2Code
+ * AddressType2Code}</li>
  * </ul>
  * </li>
  * <li>

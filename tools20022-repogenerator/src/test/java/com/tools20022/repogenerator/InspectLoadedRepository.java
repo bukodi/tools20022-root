@@ -41,7 +41,7 @@ public class InspectLoadedRepository {
 //			EObject rootEObj = ECoreIOHelper.loadXMIResource(
 //					ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
 			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-					ECoreIOHelper.class.getResourceAsStream("/model/20180205_ISO20022_2013_eRepository.iso20022"));
+					ECoreIOHelper.class.getResourceAsStream("/model/20180314_ISO20022_2013_eRepository.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 			repo = loader.load(ecorePkg, rootEObj);
 		} catch (IOException e) {
@@ -761,14 +761,14 @@ public class InspectLoadedRepository {
 				.collect(Collectors.toList())) {
 			if( ! mmMsgDef.getNextVersions().isEmpty() )
 				continue;
-			System.out.println( msgIdToString(mmMsgDef.getMessageDefinitionIdentifier()) + " - " +  mmMsgDef.getName() );
+			System.out.println( msgIdToString(mmMsgDef.getMessageDefinitionIdentifier()) + " - " +  mmMsgDef.getName() + " (" + mmMsgDef.getRegistrationStatus() + ")");
 			countLatestVersions ++;
 			for( MMMessageDefinition prevVer = mmMsgDef;; ) {
 				Optional<MMModelEntity> optPrevVer = prevVer.getPreviousVersion();
 				if( ! optPrevVer.isPresent())
 					break;
 				prevVer = (MMMessageDefinition)(optPrevVer.get());
-				System.out.println( "   " + msgIdToString(prevVer.getMessageDefinitionIdentifier()) + " - " +  prevVer.getName() );
+				System.out.println( "   " + msgIdToString(prevVer.getMessageDefinitionIdentifier()) + " - " +  prevVer.getName() + " (" + mmMsgDef.getRegistrationStatus() + ")");
 				countPreviousVersions ++;
 			}
 		}		

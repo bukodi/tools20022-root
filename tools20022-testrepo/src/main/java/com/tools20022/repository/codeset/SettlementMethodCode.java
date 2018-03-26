@@ -34,13 +34,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
- * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.SettlementMethod1Code
- * SettlementMethod1Code}</li>
- * </ul>
- * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
@@ -55,6 +48,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>
  * {@linkplain com.tools20022.repository.codeset.SettlementMethodCode#ClearingSystem
  * SettlementMethodCode.ClearingSystem}</li>
+ * </ul>
+ * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
+ * =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.codeset.SettlementMethod1Code
+ * SettlementMethod1Code}</li>
  * </ul>
  * </li>
  * <li>
