@@ -75,8 +75,8 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 */
 	public static final MMBusinessProcessCatalogue catalogue = new MMBusinessProcessCatalogue() {
 		{
-			topLevelCatalogueEntry_lazy = () -> Arrays.asList(PaymentsClearingandSettlementArchive.mmObject(), BUSINESSPROCESS_FOR_ROLES.mmObject());
 			repository_lazy = () -> GeneratedRepository.mmObject();
+			topLevelCatalogueEntry_lazy = () -> Arrays.asList(PaymentsClearingandSettlementArchive.mmObject(), BUSINESSPROCESS_FOR_ROLES.mmObject());
 		}
 	};
 	/**
@@ -354,6 +354,7 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 */
 	public static final MMDataDictionary dataDict = new MMDataDictionary() {
 		{
+			repository_lazy = () -> GeneratedRepository.mmObject();
 			topLevelDictionaryEntry_lazy = () -> Arrays.asList(ClearingSystemIdentification3Choice.mmObject(), ClearingSystemIdentification2Choice.mmObject(), ClearingSystemMemberIdentification2.mmObject(),
 					FinancialIdentificationSchemeName1Choice.mmObject(), GenericFinancialIdentification1.mmObject(), PostalAddress6.mmObject(), BranchData2.mmObject(), AccountSchemeName1Choice.mmObject(),
 					GenericAccountIdentification1.mmObject(), AccountIdentification4Choice.mmObject(), CashAccountType2.mmObject(), DateAndPlaceOfBirth.mmObject(), OrganisationIdentificationSchemeName1Choice.mmObject(),
@@ -374,7 +375,6 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 					RemittanceLocationMethod2Code.mmObject(), DocumentType5Code.mmObject(), BatchBookingIndicator.mmObject(), ClearingChannelCode.mmObject(), ClearingChannel2Code.mmObject(), Priority2Code.mmObject(),
 					Instruction3Code.mmObject(), RegulatoryReportingTypeCode.mmObject(), RegulatoryReportingType1Code.mmObject(), ExternalServiceLevel1Code.mmObject(), ExternalLocalInstrument1Code.mmObject(),
 					ExternalCategoryPurpose1Code.mmObject(), SettlementMethodCode.mmObject(), SettlementMethod1Code.mmObject(), Instruction4Code.mmObject(), Priority3Code.mmObject());
-			repository_lazy = () -> GeneratedRepository.mmObject();
 		}
 	};
 

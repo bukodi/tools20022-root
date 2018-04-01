@@ -105,24 +105,55 @@ public class GenerateRepoGenerator {
 		});
 		// generateNonAbstractType(MMRepository.metaType());
 		
-		addSwitchGenerators(MMTopLevelCatalogueEntry.metaType(), StaticFieldResult.class);
-		addSwitchGenerators(MMTopLevelDictionaryEntry.metaType(), StaticFieldResult.class);
-		addSwitchGenerators(MMBusinessElement.metaType(), MainTypeResult.class);
-		addSwitchGenerators(MMMessageElement.metaType(), JaxbMainTypeResult.class);
+		addSwitchGenerators(MMTopLevelCatalogueEntry.metaType(), StaticFieldResult.class, MainTypeResult.class);
+		addSwitchGenerators(MMTopLevelDictionaryEntry.metaType(), StaticFieldResult.class, MainTypeResult.class);
+		addSwitchGenerators(MMBusinessElement.metaType(), MainTypeResult.class, PropertyResult.class);
+		addSwitchGenerators(MMMessageElement.metaType(), JaxbMainTypeResult.class, JaxbPropertyResult.class);
+		
+		addMainTypeSwitch();
 	}
 	
-	void addSwitchGenerators(MetamodelType<?> switchOntype, Class<? extends GenerationResult> typeOfGenArg ) {
+	void addSwitchGenerators(MetamodelType<?> switchOntype, Class<? extends GenerationResult> typeOfGenArg, Class<? extends GenerationResult<?, ?>> typeOfGenResult ) {
 		MethodSource<JavaClassSource> method = mainSrc.addMethod().setName("generate" + switchOntype.getBeanClass().getSimpleName());
 		method.setProtected();
 		method.addParameter( typeOfGenArg, "gen");
 		method.addParameter(switchOntype.getBeanClass(), "mmBean");
-		method.setReturnType(GenerationResult.class);
+		method.setReturnType( typeOfGenResult);
 		StringJoiner sj = new StringJoiner(" else ");
 		for( MetamodelType<?> mmSubType : switchOntype.getSubTypes(false, true) ) {
 			if( mmSubType.isAbstract() )
 				continue;
+			String returnStmt;
+
+			Class<? extends GenerationResult> refResType = getResultType(mmSubType);
+			if( MainTypeResult.class.isAssignableFrom(refResType)) {
+				returnStmt = "  return generate" + mmSubType.getBeanClass().getSimpleName() + "( (" + mmSubType.getBeanClass().getName() + ")mmBean );"; 				
+			} else {
+				returnStmt = "  return generate" + mmSubType.getBeanClass().getSimpleName() + "( gen, (" + mmSubType.getBeanClass().getName() + ")mmBean );"; 
+			}
+			
 			sj.add( "if( " + mmSubType.getBeanClass().getName() + ".class.equals( mmBean.getClass() ) ) {\n"
-					+ "  return generate" + mmSubType.getBeanClass().getSimpleName() + "( gen, (" + mmSubType.getBeanClass().getName() + ")mmBean );\n"
+					+ returnStmt + "\n"
+					+ "}" );
+		}
+		
+		method.setBody(sj.toString() + " else {\n"
+				+ "  throw new IllegalArgumentException( \"Invalid type hierarchy: \" + mmBean.getClass() );\n"
+				+ "}");
+	}
+	
+	void addMainTypeSwitch() {
+		MethodSource<JavaClassSource> method = mainSrc.addMethod().setName("generateMainResultType");
+		method.setProtected();
+		method.addParameter( GeneratedMetamodelBean.class, "mmBean");
+		method.setReturnType( MainTypeResult.class);
+		StringJoiner sj = new StringJoiner(" else ");
+		for( MetamodelType<?> mmType : StandardMetamodel2013.metamodel().getAllTypes() ) {
+			if( isResultMain(mmType) )
+				continue;
+
+			sj.add( "if( " + mmType.getBeanClass().getName() + ".class.equals( mmBean.getClass() ) ) {\n"
+					+ "  return generate" + mmType.getBeanClass().getSimpleName() + "( (" + mmType.getBeanClass().getName() + ")mmBean );\n"
 					+ "}" );
 		}
 		
@@ -133,10 +164,12 @@ public class GenerateRepoGenerator {
 	
 	void generateNonAbstractType(MetamodelType<?> mmType, MetamodelType<?> mmContainerType) {		
 		
+		Class<? extends GenerationResult> rt = getResultType(mmType);
+
 		MethodSource<JavaClassSource> method = mainSrc.addMethod().setProtected();
 		method.setName("generate" + mmType.getBeanClass().getSimpleName() + ( MMXor.class.equals(mmType.getBeanClass()) ? "In" + mmContainerType.getName() : ""));
 		method.setReturnType(getResultType(mmType));
-		if( mmContainerType != null ) {
+		if( !(mmContainerType == null || isResultMain(mmType) ) ) {
 			//essageAssociationEnd
 			Class<? extends GenerationResult> containerResultType = getResultType(mmContainerType);
 			method.addParameter(containerResultType, "containerGen");			
@@ -146,7 +179,6 @@ public class GenerateRepoGenerator {
 		StringBuilder bodySb = new StringBuilder();
 		/*** Create generationResult ***/
 
-		Class<? extends GenerationResult> rt = getResultType(mmType);
 		if( MainTypeResult.class.equals(rt)) {
 			bodySb.append( MainTypeResult.class.getName() + " gen = defaultMainType(mmBean);\n");			
 		} else if( JaxbMainTypeResult.class.equals(rt)) {
@@ -189,12 +221,20 @@ public class GenerateRepoGenerator {
 //					generateMMMessageDefinition(gen, mmChild);
 //				}
 				bodySb.append("for( " + refClass.getName() + " mmChild : mmBean." + attr.getGetterMethod().getName() + "() ) {" );
-				bodySb.append("  " + genmethodName + "( gen, mmChild );");
+				if( isResultMain(attr.getReferencedType()) ) {
+					bodySb.append("  " + genmethodName + "( mmChild );");
+				} else {
+					bodySb.append("  " + genmethodName + "( gen, mmChild );");					
+				}
 				bodySb.append("}" );
 			} else if (attr.isOptional()) {
 				//bodySb.append("defaultOptionalAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 			} else {
-				bodySb.append("  " + genmethodName + "( gen, mmBean." +attr.getGetterMethod().getName()+ "());");
+				if( isResultMain(attr.getReferencedType()) ) {
+					bodySb.append("  " + genmethodName + "( mmBean." +attr.getGetterMethod().getName()+ "());");
+				} else {
+					bodySb.append("  " + genmethodName + "( gen, mmBean." +attr.getGetterMethod().getName()+ "());");
+				}
 			}			
 		}
 		
@@ -285,6 +325,15 @@ public class GenerateRepoGenerator {
 			MMRepository.metaType(), 
 			MMBusinessProcessCatalogue.metaType(), 
 			MMDataDictionary.metaType())); 
+	
+	protected boolean isResultMain(MetamodelType<?> mmtype) {
+		Class<? extends GenerationResult> rt = getResultType( mmtype );
+		if( mmtype.isAbstract() )
+			return false;
+		if( ! MainTypeResult.class.isAssignableFrom(rt) )
+			return false;
+		return true;
+	}
 	
 	protected Class<? extends GenerationResult> getResultType( MetamodelType<?> mmtype ) {
 		if( STATIC_FIELD.contains(mmtype) )

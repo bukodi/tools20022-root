@@ -46,22 +46,25 @@ public class GeneratePublicArtifact {
 	static Path metamodelProject = Paths.get("../tools20022-metamodel");
 
 	public static void main(String[] args) throws Exception {
-		/*
-		 * try { generateArtifact(null); } catch (Exception e) { e.printStackTrace(); }
-		 * try { generateArtifact(BusinessDomain.payments); } catch (Exception e) {
-		 * e.printStackTrace(); }
-		 */
+
 		try {
-			generateArtifact(BusinessDomain.cards);
+			generateArtifact(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		/*try {
+			generateArtifact(BusinessDomain.payments);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		/*
-		 * try { generateArtifact(BusinessDomain.securities); } catch (Exception e) {
-		 * e.printStackTrace(); } try { generateArtifact(BusinessDomain.fx); } catch
-		 * (Exception e) { e.printStackTrace(); } try {
-		 * generateArtifact(BusinessDomain.trade); } catch (Exception e) {
-		 * e.printStackTrace(); }
+		 * try { generateArtifact(BusinessDomain.cards); } catch (Exception e) {
+		 * e.printStackTrace(); }  try { generateArtifact(BusinessDomain.securities);
+		 * } catch (Exception e) { e.printStackTrace(); } try {
+		 * generateArtifact(BusinessDomain.fx); } catch (Exception e) {
+		 * e.printStackTrace(); } try { generateArtifact(BusinessDomain.trade); } catch
+		 * (Exception e) { e.printStackTrace(); }
 		 */
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		System.out.println("**** Gerneration finished " + sdf.format(new Date()) + " ****");

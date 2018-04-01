@@ -3,6 +3,7 @@ package com.tools20022.repogenerator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,23 +81,24 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		}
 
 		// Count main types to generate
+		Map<StructuredName,GeneratedMetamodelBean> mainTypes = new HashMap<>();
 		{
 			long start = System.currentTimeMillis();
-			AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
+			//AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
 			repo.listContent(repo.getRootObject(), true, true).forEach(repoObj -> {
 				StructuredName javaName = getStructuredName(repoObj);
 				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null) {
-					totalNumberOfMainTypesToGenerate.incrementAndGet();
+					mainTypes.put(javaName, repoObj);
 					this.ctx.addKnownTypeNames(javaName.getFullName());
 				}
 			});
-			ctx.setTotalNumberOfMainTypesToGenerate(totalNumberOfMainTypesToGenerate.get());
-			System.out.println("Found " + totalNumberOfMainTypesToGenerate
+			ctx.setTotalNumberOfMainTypesToGenerate(mainTypes.size());
+			System.out.println("Found " + mainTypes.size()
 					+ " java sources to generate. ( Calculated in " + (System.currentTimeMillis() - start) + " msec )");
 		}
 
 		// Create repo
-
+		
 		MainTypeResult repoGen = generateMMRepository(repo.getRootObject());
 		
 		for( Entry<String, List<MMConstraint<?>>> e: constraintsByName.entrySet() ) {
@@ -198,8 +200,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 
 	@Override
-	protected EnumTypeResult generateMMCodeSet(StaticFieldResult containerGen, MMCodeSet mmBean) {
-		return super.generateMMCodeSet(containerGen, mmBean);
+	protected EnumTypeResult generateMMCodeSet(MMCodeSet mmBean) {
+		return super.generateMMCodeSet(mmBean);
 	}
 
 	private void collectDontModifyImports(MMCodeSet mmBean, List<String> dontModifyImports) {
@@ -218,7 +220,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	
 	
 	@Override
-	protected MainTypeResult generateMMBusinessComponent(StaticFieldResult containerGen, MMBusinessComponent mmBean) {
+	protected MainTypeResult generateMMBusinessComponent(MMBusinessComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		gen.mmObjectMethod.setFinal(false);
 		mmBean.getSuperType().ifPresent(mmST -> {
@@ -273,7 +275,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 
 	
 	@Override
-	protected JaxbMainTypeResult generateMMMessageDefinition(MainTypeResult containerGen, MMMessageDefinition mmBean) {
+	protected JaxbMainTypeResult generateMMMessageDefinition(MMMessageDefinition mmBean) {
 		JaxbMainTypeResult gen = defaultJaxbMainType(mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
@@ -434,8 +436,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 
 	@Override
-	protected DataTypeResult generateMMAmount(StaticFieldResult containerGen, MMAmount mmBean) {
-		return super.generateMMAmount(containerGen, mmBean);
+	protected DataTypeResult generateMMAmount(MMAmount mmBean) {
+		return super.generateMMAmount(mmBean);
 	}
 	
 	
