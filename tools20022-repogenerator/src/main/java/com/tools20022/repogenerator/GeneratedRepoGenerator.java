@@ -52,9 +52,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 			MMMessageTransportSystem mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		for (MMMessagingEndpoint mmChild : mmBean.getEndpoint()) {
-			generateMMMessagingEndpoint(mmChild);
-		}
 		defaultAttribute(gen, MMMessageTransportSystem.endpointAttribute,
 				mmBean.getEndpoint());
 		gen.flush();
@@ -102,9 +99,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 	protected MainTypeResult generateMMSemanticMarkup(MMSemanticMarkup mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
-		for (MMSemanticMarkupElement mmChild : mmBean.getElements()) {
-			generateMMSemanticMarkupElement(mmChild);
-		}
 		defaultAttribute(gen, MMSemanticMarkup.elementsAttribute,
 				mmBean.getElements());
 		defaultAttribute(gen, MMSemanticMarkup.typeAttribute, mmBean.getType());
@@ -151,10 +145,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 			MainTypeResult containerGen, MMBusinessProcessCatalogue mmBean) {
 		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMModelEntity(gen, mmBean);
-		for (MMTopLevelCatalogueEntry mmChild : mmBean
-				.getTopLevelCatalogueEntry()) {
-			generateMMTopLevelCatalogueEntry(gen, mmChild);
-		}
 		defaultAttribute(gen,
 				MMBusinessProcessCatalogue.topLevelCatalogueEntryAttribute,
 				mmBean.getTopLevelCatalogueEntry());
@@ -182,10 +172,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 			MainTypeResult containerGen, MMDataDictionary mmBean) {
 		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMModelEntity(gen, mmBean);
-		for (MMTopLevelDictionaryEntry mmChild : mmBean
-				.getTopLevelDictionaryEntry()) {
-			generateMMTopLevelDictionaryEntry(gen, mmChild);
-		}
 		defaultAttribute(gen,
 				MMDataDictionary.topLevelDictionaryEntryAttribute,
 				mmBean.getTopLevelDictionaryEntry());
@@ -242,10 +228,10 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMMessageSet.messageDefinitionAttribute,
-				mmBean.getMessageDefinition());
 		defaultAttribute(gen, MMMessageSet.validEncodingAttribute,
 				mmBean.getValidEncoding());
+		defaultAttribute(gen, MMMessageSet.messageDefinitionAttribute,
+				mmBean.getMessageDefinition());
 		gen.flush();
 		return gen;
 	}
@@ -274,12 +260,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		for (MMMessageDefinition mmChild : mmBean.getMessageDefinition()) {
-			generateMMMessageDefinition(mmChild);
-		}
+		defaultAttribute(gen, MMBusinessArea.codeAttribute, mmBean.getCode());
 		defaultAttribute(gen, MMBusinessArea.messageDefinitionAttribute,
 				mmBean.getMessageDefinition());
-		defaultAttribute(gen, MMBusinessArea.codeAttribute, mmBean.getCode());
 		gen.flush();
 		return gen;
 	}
@@ -289,14 +272,14 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMXor.messageDefinitionAttribute,
-				mmBean.getMessageDefinition());
 		defaultAttribute(gen, MMXor.messageComponentAttribute,
 				mmBean.getMessageComponent());
 		defaultAttribute(gen, MMXor.impactedElementsAttribute,
 				mmBean.getImpactedElements());
 		defaultAttribute(gen, MMXor.impactedMessageBuildingBlocksAttribute,
 				mmBean.getImpactedMessageBuildingBlocks());
+		defaultAttribute(gen, MMXor.messageDefinitionAttribute,
+				mmBean.getMessageDefinition());
 		gen.flush();
 		return gen;
 	}
@@ -306,14 +289,14 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		StaticFieldResult gen = defaultStaticFieldResult(mmBean, containerGen);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		defaultAttribute(gen, MMXor.messageDefinitionAttribute,
-				mmBean.getMessageDefinition());
 		defaultAttribute(gen, MMXor.messageComponentAttribute,
 				mmBean.getMessageComponent());
 		defaultAttribute(gen, MMXor.impactedElementsAttribute,
 				mmBean.getImpactedElements());
 		defaultAttribute(gen, MMXor.impactedMessageBuildingBlocksAttribute,
 				mmBean.getImpactedMessageBuildingBlocks());
+		defaultAttribute(gen, MMXor.messageDefinitionAttribute,
+				mmBean.getMessageDefinition());
 		gen.flush();
 		return gen;
 	}
@@ -327,9 +310,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMBusinessConcept(gen, mmBean);
-		for (MMBusinessElement mmChild : mmBean.getElement()) {
-			generateMMBusinessElement(gen, mmChild);
-		}
 		defaultAttribute(gen, MMBusinessComponent.subTypeAttribute,
 				mmBean.getSubType());
 		defaultAttribute(gen, MMBusinessComponent.superTypeAttribute,
@@ -422,12 +402,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMTopLevelCatalogueEntry(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		for (MMParticipant mmChild : mmBean.getParticipant()) {
-			generateMMParticipant(mmChild);
-		}
-		for (MMMessageTransmission mmChild : mmBean.getTransmission()) {
-			generateMMMessageTransmission(mmChild);
-		}
 		defaultAttribute(gen, MMBusinessTransaction.traceAttribute,
 				mmBean.getTrace());
 		defaultAttribute(gen,
@@ -490,13 +464,13 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		implementMMMultiplicityEntity(gen, mmBean);
+		defaultAttribute(gen, MMParticipant.businessRoleTraceAttribute,
+				mmBean.getBusinessRoleTrace());
 		defaultAttribute(gen, MMParticipant.businessTransactionAttribute,
 				mmBean.getBusinessTransaction());
 		defaultAttribute(gen, MMParticipant.receivesAttribute,
 				mmBean.getReceives());
 		defaultAttribute(gen, MMParticipant.sendsAttribute, mmBean.getSends());
-		defaultAttribute(gen, MMParticipant.businessRoleTraceAttribute,
-				mmBean.getBusinessRoleTrace());
 		gen.flush();
 		return gen;
 	}
@@ -516,10 +490,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		generateMMSend(mmBean.getSend());
-		for (MMReceive mmChild : mmBean.getReceive()) {
-			generateMMReceive(mmChild);
-		}
 		defaultAttribute(gen, MMMessageTransmission.derivationAttribute,
 				mmBean.getDerivation());
 		defaultAttribute(gen,
@@ -1310,92 +1280,12 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected MainTypeResult generateMMTopLevelCatalogueEntry(
 			StaticFieldResult gen, MMTopLevelCatalogueEntry mmBean) {
-		if (MMSyntaxMessageScheme.class.equals(mmBean.getClass())) {
-			return generateMMSyntaxMessageScheme((MMSyntaxMessageScheme) mmBean);
-		} else if (MMMessageSet.class.equals(mmBean.getClass())) {
-			return generateMMMessageSet((MMMessageSet) mmBean);
-		} else if (MMBusinessArea.class.equals(mmBean.getClass())) {
-			return generateMMBusinessArea((MMBusinessArea) mmBean);
-		} else if (MMMessageChoreography.class.equals(mmBean.getClass())) {
-			return generateMMMessageChoreography((MMMessageChoreography) mmBean);
-		} else if (MMBusinessTransaction.class.equals(mmBean.getClass())) {
-			return generateMMBusinessTransaction((MMBusinessTransaction) mmBean);
-		} else if (MMBusinessProcess.class.equals(mmBean.getClass())) {
-			return generateMMBusinessProcess((MMBusinessProcess) mmBean);
-		} else if (MMMessageTransportMode.class.equals(mmBean.getClass())) {
-			return generateMMMessageTransportMode((MMMessageTransportMode) mmBean);
-		} else if (MMIndustryMessageSet.class.equals(mmBean.getClass())) {
-			return generateMMIndustryMessageSet((MMIndustryMessageSet) mmBean);
-		} else if (MMISO15022MessageSet.class.equals(mmBean.getClass())) {
-			return generateMMISO15022MessageSet((MMISO15022MessageSet) mmBean);
-		} else if (MMConvergenceDocumentation.class.equals(mmBean.getClass())) {
-			return generateMMConvergenceDocumentation((MMConvergenceDocumentation) mmBean);
-		} else {
-			throw new IllegalArgumentException("Invalid type hierarchy: "
-					+ mmBean.getClass());
-		}
+		throw new RuntimeException("Empty switch: " + mmBean.getClass());
 	}
 
 	protected MainTypeResult generateMMTopLevelDictionaryEntry(
 			StaticFieldResult gen, MMTopLevelDictionaryEntry mmBean) {
-		if (MMBusinessComponent.class.equals(mmBean.getClass())) {
-			return generateMMBusinessComponent((MMBusinessComponent) mmBean);
-		} else if (MMMessageComponent.class.equals(mmBean.getClass())) {
-			return generateMMMessageComponent((MMMessageComponent) mmBean);
-		} else if (MMChoiceComponent.class.equals(mmBean.getClass())) {
-			return generateMMChoiceComponent((MMChoiceComponent) mmBean);
-		} else if (MMExternalSchema.class.equals(mmBean.getClass())) {
-			return generateMMExternalSchema((MMExternalSchema) mmBean);
-		} else if (MMUserDefined.class.equals(mmBean.getClass())) {
-			return generateMMUserDefined((MMUserDefined) mmBean);
-		} else if (MMString.class.equals(mmBean.getClass())) {
-			return generateMMString((MMString) mmBean);
-		} else if (MMText.class.equals(mmBean.getClass())) {
-			return generateMMText((MMText) mmBean);
-		} else if (MMIdentifierSet.class.equals(mmBean.getClass())) {
-			return generateMMIdentifierSet((MMIdentifierSet) mmBean);
-		} else if (MMCodeSet.class.equals(mmBean.getClass())) {
-			return generateMMCodeSet((MMCodeSet) mmBean);
-		} else if (MMBoolean.class.equals(mmBean.getClass())) {
-			return generateMMBoolean((MMBoolean) mmBean);
-		} else if (MMIndicator.class.equals(mmBean.getClass())) {
-			return generateMMIndicator((MMIndicator) mmBean);
-		} else if (MMDecimal.class.equals(mmBean.getClass())) {
-			return generateMMDecimal((MMDecimal) mmBean);
-		} else if (MMRate.class.equals(mmBean.getClass())) {
-			return generateMMRate((MMRate) mmBean);
-		} else if (MMQuantity.class.equals(mmBean.getClass())) {
-			return generateMMQuantity((MMQuantity) mmBean);
-		} else if (MMAmount.class.equals(mmBean.getClass())) {
-			return generateMMAmount((MMAmount) mmBean);
-		} else if (MMDate.class.equals(mmBean.getClass())) {
-			return generateMMDate((MMDate) mmBean);
-		} else if (MMDateTime.class.equals(mmBean.getClass())) {
-			return generateMMDateTime((MMDateTime) mmBean);
-		} else if (MMDay.class.equals(mmBean.getClass())) {
-			return generateMMDay((MMDay) mmBean);
-		} else if (MMDuration.class.equals(mmBean.getClass())) {
-			return generateMMDuration((MMDuration) mmBean);
-		} else if (MMMonth.class.equals(mmBean.getClass())) {
-			return generateMMMonth((MMMonth) mmBean);
-		} else if (MMMonthDay.class.equals(mmBean.getClass())) {
-			return generateMMMonthDay((MMMonthDay) mmBean);
-		} else if (MMTime.class.equals(mmBean.getClass())) {
-			return generateMMTime((MMTime) mmBean);
-		} else if (MMYear.class.equals(mmBean.getClass())) {
-			return generateMMYear((MMYear) mmBean);
-		} else if (MMYearMonth.class.equals(mmBean.getClass())) {
-			return generateMMYearMonth((MMYearMonth) mmBean);
-		} else if (MMBinary.class.equals(mmBean.getClass())) {
-			return generateMMBinary((MMBinary) mmBean);
-		} else if (MMSchemaType.class.equals(mmBean.getClass())) {
-			return generateMMSchemaType((MMSchemaType) mmBean);
-		} else if (MMEndPointCategory.class.equals(mmBean.getClass())) {
-			return generateMMEndPointCategory((MMEndPointCategory) mmBean);
-		} else {
-			throw new IllegalArgumentException("Invalid type hierarchy: "
-					+ mmBean.getClass());
-		}
+		throw new RuntimeException("Empty switch: " + mmBean.getClass());
 	}
 
 	protected PropertyResult generateMMBusinessElement(MainTypeResult gen,

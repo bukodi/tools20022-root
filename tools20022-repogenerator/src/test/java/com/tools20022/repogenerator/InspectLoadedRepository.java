@@ -36,10 +36,10 @@ public class InspectLoadedRepository {
 		try {
 			EPackage ecorePkg = ECoreIOHelper
 					.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
-//			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-//					ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
-//			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-//					ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
+			// EObject rootEObj = ECoreIOHelper.loadXMIResource(
+			// ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
+			// EObject rootEObj = ECoreIOHelper.loadXMIResource(
+			// ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
 			EObject rootEObj = ECoreIOHelper.loadXMIResource(
 					ECoreIOHelper.class.getResourceAsStream("/model/20180314_ISO20022_2013_eRepository.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
@@ -52,60 +52,60 @@ public class InspectLoadedRepository {
 		System.out.println("Model load: " + (System.currentTimeMillis() - start) + " ms, "
 				+ ((usedMem2 - usedMem) / (1024 * 1024)) + " MB");
 	}
-	
+
 	@Test
 	public void inspectSpecificObject() throws Exception {
 		GeneratedMetamodelBean obj = repo.findObjectByTypeAndName(MMCodeSet.class, "AddressType2Code");
-		
-		System.out.println( obj);
-		
+
+		System.out.println(obj);
+
 	}
 
 	@Test
-	public void dataTypes() throws Exception {	
-		Map<MetamodelType<?>,List<MMDataType>> dataTypesBy = new HashMap<>();
+	public void dataTypes() throws Exception {
+		Map<MetamodelType<?>, List<MMDataType>> dataTypesBy = new HashMap<>();
 		MMDataType.metaType().listSubTypes(false, true).forEach(mmDT -> {
 			dataTypesBy.put(mmDT, new ArrayList<>());
-		});;
-		
-		for (MMDataType mmDataType : repo.listObjects(MMDataType.class).collect(Collectors.toList()) ) {
+		});
+		;
+
+		for (MMDataType mmDataType : repo.listObjects(MMDataType.class).collect(Collectors.toList())) {
 			MetamodelType<? extends GeneratedMetamodelBean> mmType = mmDataType.getMetamodel();
-			dataTypesBy.computeIfAbsent(mmType, x->new ArrayList<>()).add(mmDataType);
+			dataTypesBy.computeIfAbsent(mmType, x -> new ArrayList<>()).add(mmDataType);
 		}
-		
+
 		int max = 10;
-		for( Map.Entry<MetamodelType<?>,List<MMDataType>> e : dataTypesBy.entrySet()) {
+		for (Map.Entry<MetamodelType<?>, List<MMDataType>> e : dataTypesBy.entrySet()) {
 			System.out.println();
-			System.out.println( "*** " + e.getKey().getName() + ": " + e.getValue().size() + " ***");
-			
-			for( MetamodelType<?> st : e.getKey().getSuperTypes(false, true) ) {
-				if( !st.getSuperTypes(false, true).contains(MMDataType.metaType())) 
+			System.out.println("*** " + e.getKey().getName() + ": " + e.getValue().size() + " ***");
+
+			for (MetamodelType<?> st : e.getKey().getSuperTypes(false, true)) {
+				if (!st.getSuperTypes(false, true).contains(MMDataType.metaType()))
 					continue;
-				System.out.println("  supertype: " + st.getName() );
+				System.out.println("  supertype: " + st.getName());
 			}
-			
-			for( MetamodelAttribute<?, ?> coreAttr : e.getKey().getAllAttributes() ) {
-				if( ! coreAttr.getDeclaringType().getSuperTypes(false, true).contains(MMDataType.metaType()) )
+
+			for (MetamodelAttribute<?, ?> coreAttr : e.getKey().getAllAttributes()) {
+				if (!coreAttr.getDeclaringType().getSuperTypes(false, true).contains(MMDataType.metaType()))
 					continue;
-				System.out.println("  attr: " + coreAttr.getDeclaringType().getName() + "." + coreAttr.getName() );
+				System.out.println("  attr: " + coreAttr.getDeclaringType().getName() + "." + coreAttr.getName());
 			}
-			
-			
-			for( int i = 0; i < e.getValue().size(); i++ ) {
-				MMDataType dt = e.getValue().get(i);				
-				if( i < max ) {
-					System.out.println( "  - " + dt.getName());
-				} else if( i == max ) {
-					System.out.println("  ( " + (e.getValue().size() - max) + " subsequent items...)" );
+
+			for (int i = 0; i < e.getValue().size(); i++) {
+				MMDataType dt = e.getValue().get(i);
+				if (i < max) {
+					System.out.println("  - " + dt.getName());
+				} else if (i == max) {
+					System.out.println("  ( " + (e.getValue().size() - max) + " subsequent items...)");
 				}
 			}
-			
+
 		}
 
 	}
 
 	@Test
-	//@Ignore
+	// @Ignore
 	public void codeSetRelations() throws Exception {
 		for (MMCodeSet mmCodeSet : repo.listObjects(MMCodeSet.class).filter(cs -> cs.getName().startsWith("Repurchase"))
 				.collect(Collectors.toList())) {
@@ -164,44 +164,28 @@ public class InspectLoadedRepository {
 		System.out.println("CountRC=" + countRC + ", countDef=" + countDef);
 
 	}
-	
+
 	enum SynonymContext {
-			  ISO_15022( "ISO 15022"), 
-			  _15022( "15022"), 
-			  ISO_15022_( "ISO 15022 "), 
-			  ISO15002( "ISO15002"), 
-			  ISO15022( "ISO15022"), 
+		ISO_15022("ISO 15022"), _15022("15022"), ISO_15022_("ISO 15022 "), ISO15002("ISO15002"), ISO15022("ISO15022"),
 
-			  FIX( "FIX"), 
-			  FIX_50( "FIX 5.0"), 
-			  FIXProtocol( "FIX Protocol"), 
-			  FIX_( "FIX "), 
-			  FIX50( "FIX5.0"), 
-			  Fix50( "Fix5.0"), 
+		FIX("FIX"), FIX_50("FIX 5.0"), FIXProtocol("FIX Protocol"), FIX_("FIX "), FIX50("FIX5.0"), Fix50("Fix5.0"),
 
-			  DTCC( "DTCC"), 
-			  DTCC_( "DTCC "), 
+		DTCC("DTCC"), DTCC_("DTCC "),
 
-			  MIFIDRequirement( "MIFID Requirement"), 
-			  MIFIDrequirement( "MIFID requirement"), 
-			  MiFIR( "MiFIR"), 
-			  EFAMA( "EFAMA"), 
-			  ebXML( "ebXML"), 
-			  ISO( "ISO"), 
-			  RUCMPG( "RU-CMPG"), 
-			  SubSequenceD3Amounts( "SubSequenceD3 Amounts"), 
-			  StatementBusinessModeling( "Statement Business Modeling"), 
-			  ASN1( "ASN.1"),
-			  OTHER("OTHER");
-		
-		public final String contextName; 
-		SynonymContext( String contextName ) {
+		MIFIDRequirement("MIFID Requirement"), MIFIDrequirement("MIFID requirement"), MiFIR("MiFIR"), EFAMA(
+				"EFAMA"), ebXML("ebXML"), ISO("ISO"), RUCMPG("RU-CMPG"), SubSequenceD3Amounts(
+						"SubSequenceD3 Amounts"), StatementBusinessModeling(
+								"Statement Business Modeling"), ASN1("ASN.1"), OTHER("OTHER");
+
+		public final String contextName;
+
+		SynonymContext(String contextName) {
 			this.contextName = contextName;
 		}
-		
-		static SynonymContext fromContextName( String contextName ) {
-			for( SynonymContext v: values() ) {
-				if( contextName.equals(v.contextName))
+
+		static SynonymContext fromContextName(String contextName) {
+			for (SynonymContext v : values()) {
+				if (contextName.equals(v.contextName))
 					return v;
 			}
 			return OTHER;
@@ -215,15 +199,15 @@ public class InspectLoadedRepository {
 			if (mmRC.getSemanticMarkup().isEmpty())
 				continue;
 			List<MMSemanticMarkup> markups = mmRC.getSemanticMarkup();
-			if( markups.size() > 1 ) {
-				System.out.print( "More than one markup on elem " + mmRC + ": ");
+			if (markups.size() > 1) {
+				System.out.print("More than one markup on elem " + mmRC + ": ");
 				List<String> list = new ArrayList<>();
-				for( MMSemanticMarkup m: markups ) {
+				for (MMSemanticMarkup m : markups) {
 					String type = m.getType().orElse("-null-");
-					if( "Synonym".equals( type) ) {
+					if ("Synonym".equals(type)) {
 						String context = "???";
-						for(MMSemanticMarkupElement e :  m.getElements() ) {
-							if( "context".equals( e.getName().orElse("-null-")) ) {
+						for (MMSemanticMarkupElement e : m.getElements()) {
+							if ("context".equals(e.getName().orElse("-null-"))) {
 								context = e.getValue().orElse("-null-");
 							}
 						}
@@ -232,7 +216,7 @@ public class InspectLoadedRepository {
 						list.add(type);
 					}
 				}
-				System.out.println( list.stream().collect(Collectors.joining(", ")));
+				System.out.println(list.stream().collect(Collectors.joining(", ")));
 			}
 			for (MMSemanticMarkup mmSM : markups) {
 				String type = mmSM.getType().orElse("NULL");
@@ -265,16 +249,14 @@ public class InspectLoadedRepository {
 				value = keys;
 			}
 			SynonymContext context = SynonymContext.fromContextName(contextText);
-			sysnonymsByContext.computeIfAbsent( context, x -> new ArrayList<>())
-			.add(value);
+			sysnonymsByContext.computeIfAbsent(context, x -> new ArrayList<>()).add(value);
 		}
 		System.out.println("--- ISO 15022 syonyms ---");
-		for( Map.Entry<MMRepositoryConcept, String > entry : iso15022Sysnonyms.entrySet() ) {
-			String tmp = entry.getValue() + "                                      "; 
-			System.out.print( tmp.substring(0, 20) );
-			System.out.println( ":[" + entry.getKey().getClass().getSimpleName() + "]" + entry.getKey().getName());
+		for (Map.Entry<MMRepositoryConcept, String> entry : iso15022Sysnonyms.entrySet()) {
+			String tmp = entry.getValue() + "                                      ";
+			System.out.print(tmp.substring(0, 20));
+			System.out.println(":[" + entry.getKey().getClass().getSimpleName() + "]" + entry.getKey().getName());
 		}
-		
 
 		System.out.println("--- SemanticMarkups where the type='Synonym' ---");
 		System.out.println(
@@ -284,17 +266,17 @@ public class InspectLoadedRepository {
 		System.out.println(
 				"The rest of the synonym markups has two elements with key names [context,value] or [name,context].");
 		System.out.println("Number of synonym markups grouped by context value:");
-		for ( SynonymContext synCtx : SynonymContext.values() ) {
+		for (SynonymContext synCtx : SynonymContext.values()) {
 			List<String> values = sysnonymsByContext.get(synCtx);
-			if( values == null )
+			if (values == null)
 				values = Collections.emptyList();
 			System.out.println();
 			System.out.println(" - context= '" + synCtx.contextName + "' : " + values.size());
-			for( int i = 0; i < values.size(); i++ ) {
-				if( i == 20 )
+			for (int i = 0; i < values.size(); i++) {
+				if (i == 20)
 					break;
 				String value = values.get(i);
-				System.out.println("    " + value );
+				System.out.println("    " + value);
 			}
 		}
 		System.out.println();
@@ -337,18 +319,17 @@ public class InspectLoadedRepository {
 	@Test
 	public void codeSets() throws Exception {
 
-
 		List<? extends MMCodeSet> allCodesets = repo.listObjects(MMCodeSet.class).collect(Collectors.toList());
 		Map<Integer, List<MMCodeSet>> csByCodesetSize = new HashMap<>();
 		for (MMCodeSet mmCS : allCodesets) {
-			csByCodesetSize.computeIfAbsent(mmCS.getCode().size(), x -> new ArrayList<>()).add(mmCS);			
+			csByCodesetSize.computeIfAbsent(mmCS.getCode().size(), x -> new ArrayList<>()).add(mmCS);
 		}
 
 		List<MMCodeSet> csNoParent = new ArrayList<>();
 		Map<MMCodeSet, List<MMCodeSet>> csByParent = new HashMap<>();
 		for (MMCodeSet mmCS : allCodesets) {
-			if( mmCS.getTrace().isPresent()  ) {
-				csByParent.computeIfAbsent(mmCS.getTrace().get(), x -> new ArrayList<>()).add(mmCS);							
+			if (mmCS.getTrace().isPresent()) {
+				csByParent.computeIfAbsent(mmCS.getTrace().get(), x -> new ArrayList<>()).add(mmCS);
 			} else {
 				csNoParent.add(mmCS);
 			}
@@ -358,7 +339,7 @@ public class InspectLoadedRepository {
 		csByCodesetSize.entrySet().stream().forEachOrdered(e -> {
 			System.out.println(e.getKey() + " : " + e.getValue().size());
 		});
-		System.out.println( "Summ: " + allCodesets.size() + " codesets");
+		System.out.println("Summ: " + allCodesets.size() + " codesets");
 		System.out.println();
 
 		csByCodesetSize.get(1).stream().forEachOrdered(cs -> {
@@ -367,83 +348,89 @@ public class InspectLoadedRepository {
 			System.out.print(", " + (cs.getTrace().isPresent() ? cs.getTrace().get().getName() : "-"));
 			System.out.println(", " + (cs.getDerivation().size()));
 		});
-		
+
 		System.out.println();
 		System.out.println("--- Codeset hierarchy ---");
-		PrintWriter pw = new PrintWriter(System.out); 
-		for( MMCodeSet mmCs : csNoParent ) {
-			dumpCodeSetSubTree(mmCs, csByParent, pw, "");			
+		PrintWriter pw = new PrintWriter(System.out);
+		for (MMCodeSet mmCs : csNoParent) {
+			dumpCodeSetSubTree(mmCs, csByParent, pw, "");
 		}
 		pw.flush();
 
 		System.out.println();
 		System.out.println("--- Find MMCode instances without effectiveCode value --- ");
-		for( MMCodeSet mmCs : allCodesets) {			
-			for( MMCode mmCode : mmCs.getCode() ) {
-				if( mmCode.getCodeName().isPresent() ) {
-					
+		for (MMCodeSet mmCs : allCodesets) {
+			for (MMCode mmCode : mmCs.getCode()) {
+				if (mmCode.getCodeName().isPresent()) {
+
 				} else {
 					Optional<MMCodeSet> optSuperCs = mmCode.getContainer().getTrace();
-					if( ! optSuperCs.isPresent() ) {
-						System.out.println( "(Root codeset)" + mmCs.getName() + "." + mmCode.getName() );
+					if (!optSuperCs.isPresent()) {
+						System.out.println("(Root codeset)" + mmCs.getName() + "." + mmCode.getName());
 						continue;
 					}
-					
-					Optional<MMCode> optSuperCode = optSuperCs.get().getCode().stream().filter(sc -> sc.getName().equals(mmCode.getName())).findFirst();
-					if( ! optSuperCode.isPresent()) {
-						System.out.println( "(Derived codeset)" + mmCs.getName() + "." + mmCode.getName() );
-						continue;						
+
+					Optional<MMCode> optSuperCode = optSuperCs.get().getCode().stream()
+							.filter(sc -> sc.getName().equals(mmCode.getName())).findFirst();
+					if (!optSuperCode.isPresent()) {
+						System.out.println("(Derived codeset)" + mmCs.getName() + "." + mmCode.getName());
+						continue;
 					}
 				}
 			}
 		}
 
 		System.out.println();
-		System.out.println("--- Find MMCode in primary CodeSet without codeName, or derived codeset with codeName --- ");
-		for( MMCodeSet mmCs : allCodesets) {
-			if( mmCs.getTrace().isPresent() ) {
+		System.out
+				.println("--- Find MMCode in primary CodeSet without codeName, or derived codeset with codeName --- ");
+		for (MMCodeSet mmCs : allCodesets) {
+			if (mmCs.getTrace().isPresent()) {
 				// Derived codeset
-				if( ! mmCs.getTrace().isPresent() ) {
-					System.out.println( "Base codeset not exists: " + mmCs.getName()  );
+				if (!mmCs.getTrace().isPresent()) {
+					System.out.println("Base codeset not exists: " + mmCs.getName());
 					continue;
 				}
 				MMCodeSet baseCs = mmCs.getTrace().get();
-				for( MMCode mmCode : mmCs.getCode() ) {
-					Optional<MMCode> optSuperCode = baseCs.getCode().stream().filter(sc -> sc.getName().equals(mmCode.getName())).findFirst();
-					if( ! optSuperCode.isPresent()) {
-						System.out.println( "Base code not exists:" + mmCs.getName() + "." + mmCode.getName() );
-						continue;						
+				for (MMCode mmCode : mmCs.getCode()) {
+					Optional<MMCode> optSuperCode = baseCs.getCode().stream()
+							.filter(sc -> sc.getName().equals(mmCode.getName())).findFirst();
+					if (!optSuperCode.isPresent()) {
+						System.out.println("Base code not exists:" + mmCs.getName() + "." + mmCode.getName());
+						continue;
 					}
 
-					if( mmCode.getCodeName().isPresent() ) {						
-						System.out.println( "Codename exists in a derived codeset: " + mmCs.getName() + "." + mmCode.getName() + " [" + mmCode.getCodeName().get() + "] overrides [" + optSuperCode.get().getCodeName().get() + "]" );
+					if (mmCode.getCodeName().isPresent()) {
+						System.out.println("Codename exists in a derived codeset: " + mmCs.getName() + "."
+								+ mmCode.getName() + " [" + mmCode.getCodeName().get() + "] overrides ["
+								+ optSuperCode.get().getCodeName().get() + "]");
 					}
-				}			
+				}
 			} else {
-				// Base codeset 
-				for( MMCode mmCode : mmCs.getCode() ) {
-					if( ! mmCode.getCodeName().isPresent() ) {
-						System.out.println( "No codeName in a base codeset:" + mmCs.getName() + "." + mmCode.getName() );
+				// Base codeset
+				for (MMCode mmCode : mmCs.getCode()) {
+					if (!mmCode.getCodeName().isPresent()) {
+						System.out.println("No codeName in a base codeset:" + mmCs.getName() + "." + mmCode.getName());
 					}
-				}			
+				}
 			}
 		}
 
 		System.out.println();
 		System.out.println("--- Base codesets without any derived codeset --- ");
-		for( MMCodeSet cs : csNoParent ) {
-			if( ! csByParent.containsKey(cs) ) {
-				System.out.println( "No derived codeset:" + cs.getName()  );				
+		for (MMCodeSet cs : csNoParent) {
+			if (!csByParent.containsKey(cs)) {
+				System.out.println("No derived codeset:" + cs.getName());
 			}
 		}
 	}
-	
-	private void dumpCodeSetSubTree( MMCodeSet mmCs, Map<MMCodeSet, List<MMCodeSet>> csByParent, PrintWriter pw, String tab ) {
-		pw.println( tab + "" + mmCs.getName() );
+
+	private void dumpCodeSetSubTree(MMCodeSet mmCs, Map<MMCodeSet, List<MMCodeSet>> csByParent, PrintWriter pw,
+			String tab) {
+		pw.println(tab + "" + mmCs.getName());
 		List<MMCodeSet> derivedCsList = csByParent.get(mmCs);
-		if( derivedCsList == null )
+		if (derivedCsList == null)
 			return;
-		for( MMCodeSet derivedCs: derivedCsList) {
+		for (MMCodeSet derivedCs : derivedCsList) {
 			dumpCodeSetSubTree(derivedCs, csByParent, pw, tab + "  ");
 		}
 	}
@@ -481,16 +468,19 @@ public class InspectLoadedRepository {
 		inspectTraces(MMBusinessAttribute.class, mmObj -> !mmObj.getDerivation().isEmpty());
 		inspectTraces(MMBusinessAssociationEnd.class, mmObj -> !mmObj.getDerivation().isEmpty());
 
-		inspectTraces(MMMessageAttribute.class, mmObj -> mmObj.getBusinessComponentTrace().isPresent() || mmObj.getBusinessElementTrace().isPresent());
-		inspectTraces(MMMessageAssociationEnd.class, mmObj -> mmObj.getBusinessComponentTrace().isPresent() || mmObj.getBusinessElementTrace().isPresent());
+		inspectTraces(MMMessageAttribute.class,
+				mmObj -> mmObj.getBusinessComponentTrace().isPresent() || mmObj.getBusinessElementTrace().isPresent());
+		inspectTraces(MMMessageAssociationEnd.class,
+				mmObj -> mmObj.getBusinessComponentTrace().isPresent() || mmObj.getBusinessElementTrace().isPresent());
 
 		inspectTraces(MMExternalSchema.class, mmObj -> mmObj.getTrace().isPresent());
 		inspectTraces(MMUserDefined.class, mmObj -> mmObj.getTrace().isPresent());
 		inspectTraces(MMChoiceComponent.class, mmObj -> mmObj.getTrace().isPresent());
 		inspectTraces(MMMessageComponent.class, mmObj -> mmObj.getTrace().isPresent());
-		
-		for(Class<?> mmType :  noTrace.keySet() ) {
-			System.out.println( mmType.getSimpleName() + ": no=" + noTrace.get(mmType).size() + " with=" + withTrace.get(mmType).size());
+
+		for (Class<?> mmType : noTrace.keySet()) {
+			System.out.println(mmType.getSimpleName() + ": no=" + noTrace.get(mmType).size() + " with="
+					+ withTrace.get(mmType).size());
 		}
 
 	}
@@ -526,7 +516,7 @@ public class InspectLoadedRepository {
 			arity += mmRef.getMaxOccurs().isPresent() ? mmRef.getMaxOccurs().get().toString() : "?";
 
 			if (mmRef.getOpposite().isPresent()) {
-				MMBusinessAssociationEnd<?,?> mmOp = (MMBusinessAssociationEnd<?, ?>) mmRef.getOpposite().get();
+				MMBusinessAssociationEnd<?, ?> mmOp = (MMBusinessAssociationEnd<?, ?>) mmRef.getOpposite().get();
 				arity += "-";
 				arity += mmOp.getMinOccurs().isPresent() ? mmOp.getMinOccurs().get().toString() : "?";
 				arity += "..";
@@ -753,32 +743,122 @@ public class InspectLoadedRepository {
 		/*** Count entities with single area code ***/
 		return (int) entitiesByAreaCodes.entrySet().stream().filter(e -> e.getValue().size() == 1).count();
 	}
-	
+
 	@Test
 	public void listMsgDefsWithVersionHistory() throws Exception {
 		int countLatestVersions = 0, countPreviousVersions = 0;
-		for (MMMessageDefinition mmMsgDef : repo.listObjects(MMMessageDefinition.class)
-				.collect(Collectors.toList())) {
-			if( ! mmMsgDef.getNextVersions().isEmpty() )
+		for (MMMessageDefinition mmMsgDef : repo.listObjects(MMMessageDefinition.class).collect(Collectors.toList())) {
+			if (!mmMsgDef.getNextVersions().isEmpty())
 				continue;
-			System.out.println( msgIdToString(mmMsgDef.getMessageDefinitionIdentifier()) + " - " +  mmMsgDef.getName() + " (" + mmMsgDef.getRegistrationStatus() + ")");
-			countLatestVersions ++;
-			for( MMMessageDefinition prevVer = mmMsgDef;; ) {
+			System.out.println(msgIdToString(mmMsgDef.getMessageDefinitionIdentifier()) + " - " + mmMsgDef.getName()
+					+ " (" + mmMsgDef.getRegistrationStatus() + ")");
+			countLatestVersions++;
+			for (MMMessageDefinition prevVer = mmMsgDef;;) {
 				Optional<MMModelEntity> optPrevVer = prevVer.getPreviousVersion();
-				if( ! optPrevVer.isPresent())
+				if (!optPrevVer.isPresent())
 					break;
-				prevVer = (MMMessageDefinition)(optPrevVer.get());
-				System.out.println( "   " + msgIdToString(prevVer.getMessageDefinitionIdentifier()) + " - " +  prevVer.getName() + " (" + mmMsgDef.getRegistrationStatus() + ")");
-				countPreviousVersions ++;
+				prevVer = (MMMessageDefinition) (optPrevVer.get());
+				System.out.println("   " + msgIdToString(prevVer.getMessageDefinitionIdentifier()) + " - "
+						+ prevVer.getName() + " (" + mmMsgDef.getRegistrationStatus() + ")");
+				countPreviousVersions++;
 			}
-		}		
-		
+		}
+
 		System.out.println();
-		System.out.println("" + countLatestVersions + " latest msgDefs, and " + countPreviousVersions + " previous versions");
+		System.out.println(
+				"" + countLatestVersions + " latest msgDefs, and " + countPreviousVersions + " previous versions");
 	}
-	
-	static String msgIdToString( MMMessageDefinitionIdentifier mmMsgId ) {
-		return mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality()  + "." + mmMsgId.getFlavour() + "." + mmMsgId.getVersion();
+
+	static String msgIdToString(MMMessageDefinitionIdentifier mmMsgId) {
+		return mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality() + "." + mmMsgId.getFlavour() + "."
+				+ mmMsgId.getVersion();
+	}
+
+	@Test
+	public void testMsgDefAmbiguousNames() throws Exception {
+		List<MMMessageDefinition> wrongAreaCode = new ArrayList<>();
+		Map<String, List<MMMessageDefinition>> defById = new HashMap<>();
+		Map<String, List<MMMessageDefinition>> defByName = new HashMap<>();
+		for (MMMessageDefinition def : repo.listObjects(MMMessageDefinition.class).collect(Collectors.toList())) {
+			try {
+				defByName.computeIfAbsent(def.getName(), x -> new ArrayList<>()).add(def);
+				defById.computeIfAbsent(msgIdToString(def.getMessageDefinitionIdentifier()), x -> new ArrayList<>())
+						.add(def);
+
+				if (!def.getBusinessArea().getCode().equals(def.getMessageDefinitionIdentifier().getBusinessArea())) {
+					wrongAreaCode.add(def);
+				}
+			} catch (Exception e) {
+				System.out.println("Error at " + def.getName() + " (" + msgIdToString(def.getMessageDefinitionIdentifier())+") : " + e.toString());
+			}
+		}
+
+		System.out.println("---- Test MsgDef names: wrong area code ----");
+		for (MMMessageDefinition def : wrongAreaCode) {
+			System.out.println(def.getBusinessArea().getCode() + "-" + def.getName() + ": "
+					+ msgIdToString(def.getMessageDefinitionIdentifier()) + "  " + def.getRegistrationStatus());
+		}
+
+		System.out.println("---- Test MsgDef names: duplicated name ----");
+		for (Map.Entry<String, List<MMMessageDefinition>> e : defByName.entrySet()) {
+			if (e.getValue().size() <= 1)
+				continue;
+			System.out.println(e.getKey());
+			for (MMMessageDefinition def : e.getValue()) {
+				MMMessageDefinitionIdentifier id = def.getMessageDefinitionIdentifier();
+				System.out.println(def.getBusinessArea().getCode() + ": " + msgIdToString(id) + "  "
+						+ def.getRegistrationStatus());
+			}
+			System.out.println();
+		}
+
+		System.out.println("---- Test MsgDef names: duplicated id ----");
+		for (Map.Entry<String, List<MMMessageDefinition>> e : defById.entrySet()) {
+			if (e.getValue().size() <= 1)
+				continue;
+			System.out.println(e.getKey());
+			for (MMMessageDefinition def : e.getValue()) {
+				MMMessageDefinitionIdentifier id = def.getMessageDefinitionIdentifier();
+				System.out.println(
+						def.getBusinessArea().getCode() + ": " + def.getName() + "  " + def.getRegistrationStatus());
+			}
+			System.out.println();
+		}
+
+	}
+
+	@Test
+	public void testConstraintOwners() throws Exception {
+		Map<String, List<MMRepositoryConcept>> ownersByType = new HashMap<>();
+		List<? extends MMConstraint<?>> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
+		for (MMConstraint<?> c : constr) {
+			String typeName = c.getContainer().getClass().getSimpleName();
+			ownersByType.computeIfAbsent(typeName, x -> new ArrayList<>()).add(c.getContainer());
+		}
+
+		System.out.println("------ List constraint owners by type ------------");
+		for (Map.Entry<String, List<MMRepositoryConcept>> e : ownersByType.entrySet()) {
+			System.out.println(e.getKey() + " : " + e.getValue().size());
+		}
+
+		System.out.println("------ Constraints on " + MMMessageAttribute.class.getSimpleName() + " ------------");
+		for (MMRepositoryConcept x : ownersByType.get(MMMessageAttribute.class.getSimpleName())) {
+			MMMessageAttribute<?, ?> mmMsgAttr = (MMMessageAttribute<?, ?>) x;
+			MMConstraint<?> c = mmMsgAttr.getConstraint().get(0);
+
+			System.out.println(c.getName() + " constraint on " + mmMsgAttr.getContainer().getName() + "."
+					+ mmMsgAttr.getName() + "(" + mmMsgAttr.getMemberType().getName() + ")");
+			System.out.println("  ( def:" + c.getDefinition().get() + ")");
+
+			// System.out.println( mmMsgAttr.getMemberType().getName() + " " +
+			// mmMsgAttr.getContainer().getName() + "." + mmMsgAttr.getName() + "
+			// constraints: ");
+			// for( MMConstraint<?> c : mmMsgAttr.getConstraint() ) {
+			// System.out.println(" - " + c.getName() + " : " +
+			// c.getDefinition().orElse("-no def"));
+			// }
+		}
+
 	}
 
 	@Test
@@ -802,12 +882,13 @@ public class InspectLoadedRepository {
 			} else {
 				conutNonMsgDef++;
 			}
-			
-			String parentName = "["+ c.getContainer().getClass().getSimpleName() + "]" + c.getContainer().getName();
-//			System.out.println(parent + " @" + c.getName() + ": " + c.getDefinition().orElse("-"));
-//			System.out.println(c.getExpression());
-//			System.out.println("----");
-			constraintOwners.computeIfAbsent(c.getName(), x->new ArrayList<>()).add(c.getContainer());
+
+			String parentName = "[" + c.getContainer().getClass().getSimpleName() + "]" + c.getContainer().getName();
+			// System.out.println(parent + " @" + c.getName() + ": " +
+			// c.getDefinition().orElse("-"));
+			// System.out.println(c.getExpression());
+			// System.out.println("----");
+			constraintOwners.computeIfAbsent(c.getName(), x -> new ArrayList<>()).add(c.getContainer());
 
 			if (c.getExpression().isPresent()) {
 				countExpr++;
@@ -826,61 +907,67 @@ public class InspectLoadedRepository {
 		List<String> defs = new ArrayList<>(sameDescMap.keySet());
 		Collections.sort(defs);
 		defs.stream().forEachOrdered(d -> {
-			//System.out.print(sameDescMap.get(d).iterator().next().getName() + " : ");
-			//System.out.println(d);
+			// System.out.print(sameDescMap.get(d).iterator().next().getName() + " : ");
+			// System.out.println(d);
 		});
 		System.out.println("------------------");
-		System.out.println( "Number of all constraints: " + constr.size() );
-		System.out.println( "Number constraints not connected to MsgDefs: " + conutNonMsgDef );
-		System.out.println( "Number constraints with different name: " + sameNameMap.keySet().size() );
-		System.out.println( "Number constraints with different desc: " + sameDescMap.keySet().size() );
-		System.out.println( "Number different contrains containing \"During ISO 15022 – 20022 coexistence\" : " + sameDescMap.keySet().stream().filter(d->d.contains("During ISO 15022 – 20022 coexistence")).count() );
-		
-		System.out.println("---- Same name but different description -----------");
-		for (Map.Entry<String, Set<MMConstraint<?>>> e : sameNameMap.entrySet()) {
-			if (e.getValue().stream().map(c -> c.getDefinition()).distinct().count() <= 1)
-				continue;
-			System.out.println("***" + e.getKey() + "***");
-			e.getValue().stream().map(c -> c.getDefinition()).forEach(d -> {
-				System.out.println(" - " + d);
-			});
-			System.out.println();
-		}
+		System.out.println("Number of all constraints: " + constr.size());
+		System.out.println("Number constraints not connected to MsgDefs: " + conutNonMsgDef);
+		System.out.println("Number constraints with different name: " + sameNameMap.keySet().size());
+		System.out.println("Number constraints with different desc: " + sameDescMap.keySet().size());
+		System.out.println(
+				"Number different contrains containing \"During ISO 15022 – 20022 coexistence\" : " + sameDescMap
+						.keySet().stream().filter(d -> d.contains("During ISO 15022 – 20022 coexistence")).count());
 
-		System.out.println("------ List constraints by number of owners ------------");
-		List<Map.Entry<String, List<MMRepositoryConcept>>> byNumOfOwners = new ArrayList<>();
-		byNumOfOwners.addAll(constraintOwners.entrySet());
-		Collections.sort(byNumOfOwners, (a,b)->{
-			return a.getValue().size() - b.getValue().size();
-		});
-		
-		for( Map.Entry<String, List<MMRepositoryConcept>> e : byNumOfOwners ) {
-			System.out.println( e.getKey() + " " + e.getValue().size() );
-			Set<MMConstraint<?>> constrSet = sameNameMap.get(e.getKey());
-			if( constrSet == null ) {
+		if (Boolean.parseBoolean("false")) {
+			System.out.println("---- Same name but different description -----------");
+			for (Map.Entry<String, Set<MMConstraint<?>>> e : sameNameMap.entrySet()) {
+				if (e.getValue().stream().map(c -> c.getDefinition()).distinct().count() <= 1)
+					continue;
+				System.out.println("***" + e.getKey() + "***");
+				e.getValue().stream().map(c -> c.getDefinition()).forEach(d -> {
+					System.out.println(" - " + d);
+				});
 				System.out.println();
 			}
-			String desc = sameNameMap.get(e.getKey()).iterator().next().getDefinition().orElse("-no desc");
-			System.out.println("  " + desc );
-			for( MMRepositoryConcept o : e.getValue() ) {
-				System.out.println("   [" + o.getClass().getSimpleName() + "]" + o.getName());
-			}
-			System.out.println();
 		}
 
+		if (Boolean.parseBoolean("false")) {
+			System.out.println("------ List constraints by number of owners ------------");
+			List<Map.Entry<String, List<MMRepositoryConcept>>> byNumOfOwners = new ArrayList<>();
+			byNumOfOwners.addAll(constraintOwners.entrySet());
+			Collections.sort(byNumOfOwners, (a, b) -> {
+				return a.getValue().size() - b.getValue().size();
+			});
+
+			for (Map.Entry<String, List<MMRepositoryConcept>> e : byNumOfOwners) {
+				System.out.println(e.getKey() + " " + e.getValue().size());
+				Set<MMConstraint<?>> constrSet = sameNameMap.get(e.getKey());
+				if (constrSet == null) {
+					System.out.println();
+				}
+				String desc = sameNameMap.get(e.getKey()).iterator().next().getDefinition().orElse("-no desc");
+				System.out.println("  " + desc);
+				for (MMRepositoryConcept o : e.getValue()) {
+					System.out.println("   [" + o.getClass().getSimpleName() + "]" + o.getName());
+				}
+				System.out.println();
+			}
+		}
 	}
 
 	@Test
 	public void inspectAmmountTypes() throws Exception {
 		List<? extends MMAmount> mmAmounts = repo.listObjects(MMAmount.metaType()).collect(Collectors.toList());
-		for( MMAmount mmAmount : mmAmounts ) {
+		for (MMAmount mmAmount : mmAmounts) {
 			System.out.println("**> " + mmAmount.getName() + ":");
-			if( mmAmount.getCurrencyIdentifierSet().isPresent() ) {
+			if (mmAmount.getCurrencyIdentifierSet().isPresent()) {
 				MMDataType currIdSet = mmAmount.getCurrencyIdentifierSet().get();
-				System.out.println("CurrencyIdentifierSet: " + "[" + currIdSet.getClass().getSimpleName() + "]" + currIdSet.getName());							 
-				System.out.println("CurrencyIdSet def: " + currIdSet.getDefinition().orElse("-nod doc-"));							 
+				System.out.println("CurrencyIdentifierSet: " + "[" + currIdSet.getClass().getSimpleName() + "]"
+						+ currIdSet.getName());
+				System.out.println("CurrencyIdSet def: " + currIdSet.getDefinition().orElse("-nod doc-"));
 			} else {
-				System.out.println("CurrencyIdentifierSet: no curr id set ");			
+				System.out.println("CurrencyIdentifierSet: no curr id set ");
 			}
 			System.out.println("Doc: " + mmAmount.getDefinition().orElse("-no doc-"));
 			System.out.println();
@@ -889,83 +976,86 @@ public class InspectLoadedRepository {
 
 	@Test
 	public void listEmptyCodesets() throws Exception {
-		List<? extends MMCodeSet> mmCodesets = repo.listObjects(MMCodeSet.metaType()).filter(cs->cs.getCode().isEmpty()).sorted((c1,c2)->Collator.getInstance().compare(c1.getName(), c2.getName())).collect(Collectors.toList());
+		List<? extends MMCodeSet> mmCodesets = repo.listObjects(MMCodeSet.metaType())
+				.filter(cs -> cs.getCode().isEmpty())
+				.sorted((c1, c2) -> Collator.getInstance().compare(c1.getName(), c2.getName()))
+				.collect(Collectors.toList());
 		int i = 1;
-		for( MMCodeSet mmCodeSet : mmCodesets ) {
-			System.out.println( i++ + ": " + mmCodeSet.getName());
+		for (MMCodeSet mmCodeSet : mmCodesets) {
+			System.out.println(i++ + ": " + mmCodeSet.getName());
 		}
 	}
 
 	static List<String> externalCodesetNames = new ArrayList<String>();
 	static {
-		externalCodesetNames.add( "ExternalAccountIdentification1Code");
-		externalCodesetNames.add( "ExternalBalanceSubType1Code");
-		externalCodesetNames.add( "ExternalCashClearingSystem1Code");
-		externalCodesetNames.add( "ExternalCategoryPurpose1Code");
-		externalCodesetNames.add( "ExternalClearingSystemIdentification1Code");
-		externalCodesetNames.add( "ExternalFinancialInstitutionIdentification1Code");
-		externalCodesetNames.add( "ExternalLocalInstrument1Code");
-		externalCodesetNames.add( "ExternalMandateReason1Code");
-		externalCodesetNames.add( "ExternalOrganisationIdentification1Code");
-		externalCodesetNames.add( "ExternalPersonIdentification1Code");
-		externalCodesetNames.add( "ExternalPurpose1Code");
-		externalCodesetNames.add( "ExternalReportingSource1Code");
-		externalCodesetNames.add( "ExternalReturnReason1Code");
-		externalCodesetNames.add( "ExternalReversalReason1Code");
-		externalCodesetNames.add( "ExternalServiceLevel1Code");
-		externalCodesetNames.add( "ExternalStatusReason1Code");
-		externalCodesetNames.add( "ExternalTechnicalInputChannel1Code");
-		externalCodesetNames.add( "ExternalVerificationReason1Code");
-		externalCodesetNames.add( "ExternalDocumentPurpose1Code");
-		externalCodesetNames.add( "ExternalDocumentType1Code");
-		externalCodesetNames.add( "ExternalIncoterms1Code");
-		externalCodesetNames.add( "ExternalInformationType1Code");
-		externalCodesetNames.add( "ExternalPackagingType1Code");
-		externalCodesetNames.add( "ExternalFinancialInstrumentIdentificationType1Code");
-		externalCodesetNames.add( "ExternalTradeTransactionCondition1Code");
-		externalCodesetNames.add( "ExternalChargeType1Code");
-		externalCodesetNames.add( "ExternalCashAccountType1Code");
-		externalCodesetNames.add( "ExternalDiscountAmountType1Code");
-		externalCodesetNames.add( "ExternalTaxAmountType1Code");
-		externalCodesetNames.add( "ExternalCardTransactionCategory1Code");
-		externalCodesetNames.add( "ExternalBillingBalanceType1Code");
-		externalCodesetNames.add( "ExternalBillingCompensationType1Code");
-		externalCodesetNames.add( "ExternalBillingRateIdentification1Code");
-		externalCodesetNames.add( "ExternalRePresentmentReason1Code");
-		externalCodesetNames.add( "ExternalChannel1Code");
-		externalCodesetNames.add( "ExternalDateFrequency1Code");
-		externalCodesetNames.add( "ExternalDocumentFormat1Code");
-		externalCodesetNames.add( "ExternalModelFormIdentification1Code");
-		externalCodesetNames.add( "ExternalNarrativeType1Code");
-		externalCodesetNames.add( "ExternalRelativeTo1Code");
-		externalCodesetNames.add( "ExternalTypeOfParty1Code");
-		externalCodesetNames.add( "ExternalUnderlyingTradeTransactionType1Code");
-		externalCodesetNames.add( "ExternalUndertakingAmountType1Code");
-		externalCodesetNames.add( "ExternalUndertakingChargeType1Code");
-		externalCodesetNames.add( "ExternalUndertakingDocumentType1Code");
-		externalCodesetNames.add( "ExternalUndertakingDocumentType2Code");
-		externalCodesetNames.add( "ExternalUndertakingStatusCategory1Code");
-		externalCodesetNames.add( "ExternalUndertakingType1Code");
-		externalCodesetNames.add( "ExternalDocumentLineType1Code");
-		externalCodesetNames.add( "ExternalGarnishmentType1Code");
-		externalCodesetNames.add( "ExternalTradeMarket1Code");
-		externalCodesetNames.add( "ExternalMandateSetupReason1Code");
-		externalCodesetNames.add( "ExternalValidationRuleIdentification1Code");
-		externalCodesetNames.add( "ExternalContractClosureReason1Code");
-		externalCodesetNames.add( "ExternalContractBalanceType1Code");
-		externalCodesetNames.add( "ExternalShipmentCondition1Code");
-		externalCodesetNames.add( "ExternalMarketArea1Code");
-		externalCodesetNames.add( "ExternalEffectiveDateParameter1Code");
-		externalCodesetNames.add( "ExternalSecuritiesPurpose1Code");
-		externalCodesetNames.add( "ExternalReceivedReason1Code");
-		externalCodesetNames.add( "ExternalAcceptedReason1Code");
-		externalCodesetNames.add( "ExternalPendingProcessingReason1Code");
-		externalCodesetNames.add( "ExternalRejectedReason1Code");
-		externalCodesetNames.add( "ExternalPaymentTransactionStatus1Code");
-		externalCodesetNames.add( "ExternalPaymentGroupStatus1Code");
-		externalCodesetNames.add( "ExternalCancellationReason1Code");
-		externalCodesetNames.add( "ExternalMandateStatus1Code");
-		externalCodesetNames.add( "ExternalMandateSuspensionReason1Code");
-		externalCodesetNames.add( "ExternalAuthenticationChannel1Code");
+		externalCodesetNames.add("ExternalAccountIdentification1Code");
+		externalCodesetNames.add("ExternalBalanceSubType1Code");
+		externalCodesetNames.add("ExternalCashClearingSystem1Code");
+		externalCodesetNames.add("ExternalCategoryPurpose1Code");
+		externalCodesetNames.add("ExternalClearingSystemIdentification1Code");
+		externalCodesetNames.add("ExternalFinancialInstitutionIdentification1Code");
+		externalCodesetNames.add("ExternalLocalInstrument1Code");
+		externalCodesetNames.add("ExternalMandateReason1Code");
+		externalCodesetNames.add("ExternalOrganisationIdentification1Code");
+		externalCodesetNames.add("ExternalPersonIdentification1Code");
+		externalCodesetNames.add("ExternalPurpose1Code");
+		externalCodesetNames.add("ExternalReportingSource1Code");
+		externalCodesetNames.add("ExternalReturnReason1Code");
+		externalCodesetNames.add("ExternalReversalReason1Code");
+		externalCodesetNames.add("ExternalServiceLevel1Code");
+		externalCodesetNames.add("ExternalStatusReason1Code");
+		externalCodesetNames.add("ExternalTechnicalInputChannel1Code");
+		externalCodesetNames.add("ExternalVerificationReason1Code");
+		externalCodesetNames.add("ExternalDocumentPurpose1Code");
+		externalCodesetNames.add("ExternalDocumentType1Code");
+		externalCodesetNames.add("ExternalIncoterms1Code");
+		externalCodesetNames.add("ExternalInformationType1Code");
+		externalCodesetNames.add("ExternalPackagingType1Code");
+		externalCodesetNames.add("ExternalFinancialInstrumentIdentificationType1Code");
+		externalCodesetNames.add("ExternalTradeTransactionCondition1Code");
+		externalCodesetNames.add("ExternalChargeType1Code");
+		externalCodesetNames.add("ExternalCashAccountType1Code");
+		externalCodesetNames.add("ExternalDiscountAmountType1Code");
+		externalCodesetNames.add("ExternalTaxAmountType1Code");
+		externalCodesetNames.add("ExternalCardTransactionCategory1Code");
+		externalCodesetNames.add("ExternalBillingBalanceType1Code");
+		externalCodesetNames.add("ExternalBillingCompensationType1Code");
+		externalCodesetNames.add("ExternalBillingRateIdentification1Code");
+		externalCodesetNames.add("ExternalRePresentmentReason1Code");
+		externalCodesetNames.add("ExternalChannel1Code");
+		externalCodesetNames.add("ExternalDateFrequency1Code");
+		externalCodesetNames.add("ExternalDocumentFormat1Code");
+		externalCodesetNames.add("ExternalModelFormIdentification1Code");
+		externalCodesetNames.add("ExternalNarrativeType1Code");
+		externalCodesetNames.add("ExternalRelativeTo1Code");
+		externalCodesetNames.add("ExternalTypeOfParty1Code");
+		externalCodesetNames.add("ExternalUnderlyingTradeTransactionType1Code");
+		externalCodesetNames.add("ExternalUndertakingAmountType1Code");
+		externalCodesetNames.add("ExternalUndertakingChargeType1Code");
+		externalCodesetNames.add("ExternalUndertakingDocumentType1Code");
+		externalCodesetNames.add("ExternalUndertakingDocumentType2Code");
+		externalCodesetNames.add("ExternalUndertakingStatusCategory1Code");
+		externalCodesetNames.add("ExternalUndertakingType1Code");
+		externalCodesetNames.add("ExternalDocumentLineType1Code");
+		externalCodesetNames.add("ExternalGarnishmentType1Code");
+		externalCodesetNames.add("ExternalTradeMarket1Code");
+		externalCodesetNames.add("ExternalMandateSetupReason1Code");
+		externalCodesetNames.add("ExternalValidationRuleIdentification1Code");
+		externalCodesetNames.add("ExternalContractClosureReason1Code");
+		externalCodesetNames.add("ExternalContractBalanceType1Code");
+		externalCodesetNames.add("ExternalShipmentCondition1Code");
+		externalCodesetNames.add("ExternalMarketArea1Code");
+		externalCodesetNames.add("ExternalEffectiveDateParameter1Code");
+		externalCodesetNames.add("ExternalSecuritiesPurpose1Code");
+		externalCodesetNames.add("ExternalReceivedReason1Code");
+		externalCodesetNames.add("ExternalAcceptedReason1Code");
+		externalCodesetNames.add("ExternalPendingProcessingReason1Code");
+		externalCodesetNames.add("ExternalRejectedReason1Code");
+		externalCodesetNames.add("ExternalPaymentTransactionStatus1Code");
+		externalCodesetNames.add("ExternalPaymentGroupStatus1Code");
+		externalCodesetNames.add("ExternalCancellationReason1Code");
+		externalCodesetNames.add("ExternalMandateStatus1Code");
+		externalCodesetNames.add("ExternalMandateSuspensionReason1Code");
+		externalCodesetNames.add("ExternalAuthenticationChannel1Code");
 	}
 }

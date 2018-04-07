@@ -35,11 +35,14 @@ import com.tools20022.metamodel.MMBusinessElement;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMConstraint;
+import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
+import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.MMRepositoryType;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMSemanticMarkupElement;
 import com.tools20022.metamodel.MMXor;
@@ -88,7 +91,9 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			repo.listContent(repo.getRootObject(), true, true).forEach(repoObj -> {
 				StructuredName javaName = getStructuredName(repoObj);
 				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null) {
-					mainTypes.put(javaName, repoObj);
+					GeneratedMetamodelBean prevBean = mainTypes.put(javaName, repoObj);
+					if( prevBean != null )
+						throw new RuntimeException();
 					this.ctx.addKnownTypeNames(javaName.getFullName());
 				}
 			});
@@ -98,8 +103,12 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		}
 
 		// Create repo
-		
-		MainTypeResult repoGen = generateMMRepository(repo.getRootObject());
+		Map<GeneratedMetamodelBean,MainTypeResult> mainResults = new HashMap<>();
+		for( GeneratedMetamodelBean mmBean : mainTypes.values() ) {
+			MainTypeResult genResult = generateMainResultType(mmBean);
+			mainResults.put(mmBean, genResult);
+		}
+		//MainTypeResult repoGen = generateMMRepository(repo.getRootObject());
 		
 		for( Entry<String, List<MMConstraint<?>>> e: constraintsByName.entrySet() ) {
 			generateConstraintGroup(e.getValue());			
@@ -127,34 +136,49 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		};
 		
 		for( MMConstraint<?> constr : constraintsWithSameName) {
-			StructuredName containerName = getStructuredName(constr.getContainer());
-			String validatorMethodName = "check" + containerName.getCompilationUnit();
-			StaticFieldResult staticField = generateMMConstraint(genMain, constr, containerName);
-			
-			MethodSource<JavaClassSource> validatorMethod = genMain.src.addMethod().setName(validatorMethodName);
-			validatorMethod.setPublic().setStatic(true);
-			validatorMethod.addThrows(Exception.class);
-			validatorMethod.addParameter(containerName.getFullName(), "obj");
-			validatorMethod.setBody("throw new " + NotImplementedConstraintException.class.getName() + "();");
-			RoasterHelper.addToJavaDoc(validatorMethod, RoasterHelper.escapeJavaDoc(constr.getDefinition().orElse("- no definition -")));
+			String validatorParamType;
+			{
+				StructuredName containerName = getStructuredName(constr.getContainer());
+				if( constr.getContainer() instanceof MMConstruct ) {
+					MMRepositoryType mmType = ((MMConstruct)constr.getContainer()).getMemberType();
+					validatorParamType = getStructuredName(mmType).getFullName();
+				} else {
+					validatorParamType = containerName.getFullName();
+				}				
+			}
+
+			// Generate constraint meta class		
+			StaticFieldResult staticField = generateMMConstraint(genMain, constr, validatorParamType);
+
+			{
+				// Generate validator function
+				String validatorBaseName = "check" + staticField.staticFieldSrc.getName().substring("for".length()); 
+				MethodSource<JavaClassSource> validatorMethod = genMain.src.addMethod().setName(validatorBaseName);
+				validatorMethod.setPublic().setStatic(true);
+				validatorMethod.addThrows(Exception.class);
+				validatorMethod.addParameter(validatorParamType, "obj");
+				validatorMethod.setBody("throw new " + NotImplementedConstraintException.class.getName() + "();");
+				RoasterHelper.addToJavaDoc(validatorMethod, RoasterHelper.escapeJavaDoc(constr.getDefinition().orElse("- no definition -")));				
+			}
+			// This is a workaround, while FieldSourceImpl.setType() automatically add an import
+			genMain.src.removeImport(validatorParamType);
 		}
 		genMain.flush();
 	}
 	
-	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint<?> mmBean, StructuredName containerName ) {
+	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint<?> mmBean, String validatorParamType ) {
 		StructuredName staticFieldName = getStructuredName(mmBean);
 		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, staticFieldName);
 		gen.staticFieldSrc = containerGen.src.addField().setName( staticFieldName.getMemberName());
 		gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-		gen.staticFieldSrc.setType( MMConstraint.class.getName() + "<" + containerName.getFullName() + ">" );
+		gen.staticFieldSrc.setType( MMConstraint.class.getName() + "<" + validatorParamType + ">" );
 		
 		String getValidatorMethodSrc = "@Override\n";
-		getValidatorMethodSrc += "public void executeValidator(" +containerName.getFullName() + " obj ) throws Exception {\n"; 
-		getValidatorMethodSrc += "  check" + containerName.getCompilationUnit() + "( obj );\n"; 
+		getValidatorMethodSrc += "public void executeValidator(" +validatorParamType + " obj ) throws Exception {\n"; 
+		getValidatorMethodSrc += "  check" + staticFieldName.getMemberName().substring("for".length()) + "( obj );\n"; 
 		getValidatorMethodSrc += "}\n";
 		
-		gen.staticFieldInitializerBody = new StringJoiner("\n", "new " + MMConstraint.class.getName() + "<" + containerName.getFullName() + ">" + "(){{", "}\n" + getValidatorMethodSrc + "};");
-		//gen.staticFieldInitializerBody.add("validator=" + containerGen.src.getName() + "::check" + containerName.getCompilationUnit() + ";");
+		gen.staticFieldInitializerBody = new StringJoiner("\n", "new " + MMConstraint.class.getName() + "<" + validatorParamType + ">" + "(){{", "}\n" + getValidatorMethodSrc + "};");
 
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
@@ -438,6 +462,15 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	@Override
 	protected DataTypeResult generateMMAmount(MMAmount mmBean) {
 		return super.generateMMAmount(mmBean);
+	}
+
+	@Override
+	protected JaxbMainTypeResult generateMMMessageComponent(MMMessageComponent mmBean) {
+		JaxbMainTypeResult ret = super.generateMMMessageComponent(mmBean);
+		if( "CreditTransferTransactionInformation11".equals( ret.baseName.getCompilationUnit()) ) {
+			System.out.println( ret.baseName );
+		}
+		return ret;
 	}
 	
 	

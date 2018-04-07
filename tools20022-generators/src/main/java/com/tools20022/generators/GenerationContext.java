@@ -176,7 +176,7 @@ public class GenerationContext<M,B> {
 					src.getQualifiedName(), Kind.SOURCE, null);
 			try (Writer w = jf.openWriter()) {
 				// Clean qualified types
-				CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal(), dontModifyImports, knownTypeNames);
+				//CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal(), dontModifyImports, knownTypeNames);
 
 				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
 				if (licenceHeader != null)

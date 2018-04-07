@@ -25,7 +25,6 @@ import com.tools20022.metamodel.StandardMetamodel2013;
 public class TestGeneratedGenerator {
 
 	static long usedMem, start;
-	
 
 	@BeforeClass
 	public static void setup() {
@@ -44,51 +43,64 @@ public class TestGeneratedGenerator {
 	@Test
 	public void generateRepoSrc() throws Exception {
 		Path mvnProjectRoot = Paths.get("../tools20022-testrepo/").toRealPath();
-		//Path srcRoot = Paths.get("/tmp/1019/").toRealPath();
+		// Path srcRoot = Paths.get("/tmp/1019/").toRealPath();
 
 		EPackage ecorePkg = ECoreIOHelper.loadECorePackage("/model/ISO20022.ecore");
-		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04.iso20022");
-		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04-nobuscomp.iso20022");
-		// EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-area-pain.iso20022");
-		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-domain-payments.iso20022");
-		// EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/business-domain-payments-nobuscomp.iso20022");
+		// EObject xmiRootObj =
+		// ECoreIOHelper.loadXMIResource("/model/msgdef-pain.002.001.02-nobuscomp.iso20022");
+		// EObject xmiRootObj =
+		// ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04.iso20022");
+		// EObject xmiRootObj =
+		// ECoreIOHelper.loadXMIResource("/model/msgdef-camt.030.001.04-nobuscomp.iso20022");
+		// EObject xmiRootObj =
+		// ECoreIOHelper.loadXMIResource("/model/business-area-pain.iso20022");
+		// EObject xmiRootObj =
+		// ECoreIOHelper.loadXMIResource("/model/business-domain-payments.iso20022");
+		// EObject xmiRootObj =
+		// ECoreIOHelper.loadXMIResource("/model/business-domain-payments-nobuscomp.iso20022");
 		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-pacs.008.001.02-nobuscomp.iso20022");
 		// EObject xmiRootObj = ECoreIOHelper
 		// .loadXMIResource("/model/MandateInitiationRequestV05-with-BusinessConceptsV2.iso20022");
-//		EObject xmiRootObj =
-//		 ECoreIOHelper.loadXMIResource("/model/20170713_ISO20022_2013_eRepository.iso20022");
+		// EObject xmiRootObj =
+		// ECoreIOHelper.loadXMIResource("/model/20170713_ISO20022_2013_eRepository.iso20022");
 		XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 		RawRepository repo = loader.load(ecorePkg, xmiRootObj);
-		
-		{
-			MMCodeSet externalCodeSet = repo.findObjectByTypeAndName(MMCodeSet.class, "ExternalPersonIdentification1Code");
+
+		if (Boolean.parseBoolean("false")) {
+			MMCodeSet externalCodeSet = repo.findObjectByTypeAndName(MMCodeSet.class,
+					"ExternalPersonIdentification1Code");
 			ArrayList<MMCode> codes = new ArrayList<>();
-			codes.add( new MMCode() {{
-				this.owner_lazy = ()->externalCodeSet;
-				this.codeName = "ABC1";
-				this.name = "Abc 1";
-			}}); 
-			codes.add( new MMCode() {{
-				this.owner_lazy = ()->externalCodeSet;
-				this.codeName = "DEF2";
-				this.name = "Def 21";
-			}}); 
-			Supplier<List<MMCode>> code_lazy = ()->codes;
-			Field field = MMCodeSet.class.getDeclaredField("code_lazy"); 
-			field.setAccessible(true);			
+			codes.add(new MMCode() {
+				{
+					this.owner_lazy = () -> externalCodeSet;
+					this.codeName = "ABC1";
+					this.name = "Abc 1";
+				}
+			});
+			codes.add(new MMCode() {
+				{
+					this.owner_lazy = () -> externalCodeSet;
+					this.codeName = "DEF2";
+					this.name = "Def 21";
+				}
+			});
+			Supplier<List<MMCode>> code_lazy = () -> codes;
+			Field field = MMCodeSet.class.getDeclaredField("code_lazy");
+			field.setAccessible(true);
 			field.set(externalCodeSet, code_lazy);
 		}
-		
+
 		GeneratorFileManager fileManager = new GeneratorFileManager(mvnProjectRoot);
 		fileManager.dontChangeIfExists(p -> !p.toString().contains("com/tools20022/repository/"));
 		fileManager.cleanOutputFolder();
 
-		GenerationContext<RawRepository,GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,GeneratedMetamodelBean.class, fileManager);
+		GenerationContext<RawRepository, GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,
+				GeneratedMetamodelBean.class, fileManager);
 		genCtx.setSkipDocGeneration(false);
 		genCtx.setLicenceHeaderGPLv3();
 
 		ProgressMonitor monitor = new ProgressMonitor();
-		genCtx.generate(repo, new CustomizedRepoGenerator(genCtx),monitor);
+		genCtx.generate(repo, new CustomizedRepoGenerator(genCtx), monitor);
 	}
 
 }

@@ -119,8 +119,13 @@ public class GenerateRepoGenerator {
 		method.addParameter( typeOfGenArg, "gen");
 		method.addParameter(switchOntype.getBeanClass(), "mmBean");
 		method.setReturnType( typeOfGenResult);
-		StringJoiner sj = new StringJoiner(" else ");
+		StringJoiner sj = new StringJoiner(" else ", "", " else {\n"
+				+ "  throw new IllegalArgumentException( \"Invalid type hierarchy: \" + mmBean.getClass() );\n"
+				+ "}");
+		sj.setEmptyValue("  throw new RuntimeException( \"Empty switch: \" + mmBean.getClass() );\n");
 		for( MetamodelType<?> mmSubType : switchOntype.getSubTypes(false, true) ) {
+			if( isResultMain( mmSubType ) )
+				continue;
 			if( mmSubType.isAbstract() )
 				continue;
 			String returnStmt;
@@ -137,9 +142,7 @@ public class GenerateRepoGenerator {
 					+ "}" );
 		}
 		
-		method.setBody(sj.toString() + " else {\n"
-				+ "  throw new IllegalArgumentException( \"Invalid type hierarchy: \" + mmBean.getClass() );\n"
-				+ "}");
+		method.setBody(sj.toString() );
 	}
 	
 	void addMainTypeSwitch() {
@@ -149,7 +152,9 @@ public class GenerateRepoGenerator {
 		method.setReturnType( MainTypeResult.class);
 		StringJoiner sj = new StringJoiner(" else ");
 		for( MetamodelType<?> mmType : StandardMetamodel2013.metamodel().getAllTypes() ) {
-			if( isResultMain(mmType) )
+			if( ! isResultMain(mmType) )
+				continue;
+			if( mmType.isAbstract() )
 				continue;
 
 			sj.add( "if( " + mmType.getBeanClass().getName() + ".class.equals( mmBean.getClass() ) ) {\n"
@@ -214,6 +219,8 @@ public class GenerateRepoGenerator {
 
 		/*** Create contained types ***/
 		for( MetamodelAttribute<?, ?> attr : mmType.listDeclaredAttributes().filter(a->a.isContainment()).collect(Collectors.toList()) ) {
+			if( isResultMain(attr.getReferencedType()) )
+				continue;
 			Class<?> refClass = attr.getReferencedType().getBeanClass();
 			String genmethodName = "generate" + refClass.getSimpleName() + ( MMXor.class.equals(refClass) ? "In" + mmType.getName() : "");
 			if (attr.isMultiple()) {
@@ -221,20 +228,12 @@ public class GenerateRepoGenerator {
 //					generateMMMessageDefinition(gen, mmChild);
 //				}
 				bodySb.append("for( " + refClass.getName() + " mmChild : mmBean." + attr.getGetterMethod().getName() + "() ) {" );
-				if( isResultMain(attr.getReferencedType()) ) {
-					bodySb.append("  " + genmethodName + "( mmChild );");
-				} else {
-					bodySb.append("  " + genmethodName + "( gen, mmChild );");					
-				}
+				bodySb.append("  " + genmethodName + "( gen, mmChild );");					
 				bodySb.append("}" );
 			} else if (attr.isOptional()) {
 				//bodySb.append("defaultOptionalAttribute( gen, " + mmAttrAsSrc + ", " + attrValueAsSrc + " );\n");
 			} else {
-				if( isResultMain(attr.getReferencedType()) ) {
-					bodySb.append("  " + genmethodName + "( mmBean." +attr.getGetterMethod().getName()+ "());");
-				} else {
-					bodySb.append("  " + genmethodName + "( gen, mmBean." +attr.getGetterMethod().getName()+ "());");
-				}
+				bodySb.append("  " + genmethodName + "( gen, mmBean." +attr.getGetterMethod().getName()+ "());");
 			}			
 		}
 		
@@ -328,8 +327,8 @@ public class GenerateRepoGenerator {
 	
 	protected boolean isResultMain(MetamodelType<?> mmtype) {
 		Class<? extends GenerationResult> rt = getResultType( mmtype );
-		if( mmtype.isAbstract() )
-			return false;
+//		if( mmtype.isAbstract() )
+//			return false;
 		if( ! MainTypeResult.class.isAssignableFrom(rt) )
 			return false;
 		return true;

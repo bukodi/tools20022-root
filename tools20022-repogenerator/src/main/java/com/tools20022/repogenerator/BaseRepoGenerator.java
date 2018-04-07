@@ -4,10 +4,8 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -20,11 +18,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.jboss.forge.roaster.model.Visibility;
-import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
@@ -36,7 +31,9 @@ import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMAbstractDateTimeConcept;
 import com.tools20022.metamodel.MMAmount;
+import com.tools20022.metamodel.MMBoolean;
 import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
@@ -61,7 +58,6 @@ import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
-import com.tools20022.metamodel.MMRepositoryType;
 import com.tools20022.metamodel.MMString;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
@@ -147,12 +143,24 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 
 		// Package
 		if (mmElem instanceof MMConstraint) {
-			MMConstraint mmConstr = (MMConstraint) mmElem;
+			MMConstraint<?> mmConstr = (MMConstraint<?>) mmElem;
 			StructuredName mainTypeName = StructuredName.primaryType(basePackageName + ".constraints",
 					RoasterHelper.convertToJavaName("Constraint" + mmConstr.getName()));
-			StructuredName containername = getStructuredName(mmElem.getContainer());
-			StructuredName memberName = StructuredName.member(mainTypeName, "for" + containername.getSimpleName());
-			return memberName;
+			MMRepositoryConcept owner = mmConstr.getOwner();			
+			StructuredName containername = getStructuredName(owner);
+			String membernamebase = containername.getCompilationUnit();
+			if( containername.isMember() ) {
+				membernamebase += "_" + containername.getMemberName();
+			}
+			if(owner instanceof MMMessageDefinition ) {
+				MMBusinessArea area = ((MMMessageDefinition)owner).getBusinessArea();				
+				String areaCode = area.getCode();
+				if( areaCode == null )
+					areaCode = area.getName();
+				membernamebase = "_" + areaCode + "_" + membernamebase;
+			}
+			StructuredName memberFullName = StructuredName.member(mainTypeName, "for" + membernamebase);
+			return memberFullName;
 		} else if (mmElem instanceof MMMessageDefinition) {
 			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
 			String areaCode = msgDef.getBusinessArea() == null ? "other"
@@ -658,6 +666,10 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			return String.class;
 		} else if (st.contains(MMDecimal.metaType())) {
 			return BigDecimal.class;
+		} else if (st.contains(MMBoolean.metaType())) {
+			return Boolean.class;
+		} else if (st.contains(MMAbstractDateTimeConcept.metaType())) {
+			return Date.class;
 		} else {
 			System.out.println("" + mmDt.getName() + " base type not supported.");
 			return String.class;

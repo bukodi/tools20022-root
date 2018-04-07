@@ -1,0 +1,1179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iso20022:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:iso20022="urn:iso:std:iso:20022:2013:ecore">
+  <dataDictionary>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PostalAddress1" definition="Information that locates and identifies a specific address, as defined by postal services." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AddressType" definition="Identifies the nature of the postal address." maxOccurs="1" xmlTag="AdrTp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.53"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AddressLine" definition="Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text." maxOccurs="5" xmlTag="AdrLine" simpleType="//@dataDictionary/@topLevelDictionaryEntry.46"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="StreetName" definition="Name of a street or thoroughfare." maxOccurs="1" xmlTag="StrtNm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.46"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BuildingNumber" definition="Number that identifies the position of a building on a street." maxOccurs="1" xmlTag="BldgNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.54"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="PostCode" definition="Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail." maxOccurs="1" xmlTag="PstCd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.54"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="TownName" definition="Name of a built-up area, with defined boundaries, and a local government." maxOccurs="1" xmlTag="TwnNm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CountrySubDivision" definition="Identifies a subdivision of a country for example, state, region, county." maxOccurs="1" xmlTag="CtrySubDvsn" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Country" definition="Nation with its own government." maxOccurs="1" minOccurs="1" xmlTag="Ctry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.45"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="BranchData" definition="Information that locates and identifies a specific branch of a financial institution." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Unique and unambiguous identification of a branch of a financial institution." maxOccurs="1" xmlTag="Id" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name by which a party is known and which is usually used to identify that party." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PostalAddress" definition="Information that locates and identifies a specific address, as defined by postal services." maxOccurs="1" xmlTag="PstlAdr" type="//@dataDictionary/@topLevelDictionaryEntry.0"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ClearingSystemIdentification1Choice" definition="Information used to identify a cash clearing system." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ClearingSystemIdentification" definition="Infrastructure through which the payment instruction is processed." maxOccurs="1" minOccurs="1" xmlTag="ClrSysId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.63"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Proprietary clearing system service selected for a transaction." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ClearingSystemMemberIdentification3Choice" definition="Choice of identifiers for a clearing system member, as assigned by the clearing system. In some clearing systems, the accounts of the clearing system members are also assigned an identifier." registrationStatus="Obsolete" removalDate="2018-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Identification for a clearing system member, identified in the list of clearing system member identifications published externally." maxOccurs="1" minOccurs="1" xmlTag="Id" simpleType="//@dataDictionary/@topLevelDictionaryEntry.64"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Identification Code for a clearing system, that has not yet been identified in the list of clearing systems." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericIdentification3" definition="Information related to an identification, eg, party identification or account identification." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Name or number assigned by an entity to enable recognition of that entity, eg, account identifier." maxOccurs="1" minOccurs="1" xmlTag="Id" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Entity that assigns the identification." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="SimpleIdentificationInformation2" definition="Information related to a party identification or account identification." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Name or number assigned by an entity to enable recognition of that entity, eg, account identifier." maxOccurs="1" minOccurs="1" xmlTag="Id" simpleType="//@dataDictionary/@topLevelDictionaryEntry.65"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="AccountIdentification3Choice" definition="Unique identifier of an account as assigned by the account servicer." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="IBAN" definition="International Bank Account Number (IBAN) - identifier used internationally by financial institutions to uniquely identify the account of a customer. Further specifications of the format and content of the IBAN can be found in the standard ISO 13616 &quot;Banking and related financial services - International Bank Account Number (IBAN)&quot; version 1997-10-01, or later revisions." maxOccurs="1" minOccurs="1" xmlTag="IBAN" simpleType="//@dataDictionary/@topLevelDictionaryEntry.56"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BBAN" definition="Basic Bank Account Number (BBAN) - identifier used nationally by financial institutions, ie, in individual countries, generally as part of a National Account Numbering Scheme(s), to uniquely identify the account of a customer." maxOccurs="1" minOccurs="1" xmlTag="BBAN" simpleType="//@dataDictionary/@topLevelDictionaryEntry.57"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="UPIC" definition="Universal Payment Identification Code (UPIC) - identifier used by the New York Clearing House to mask confidential data, such as bank accounts and bank routing numbers. UPIC numbers remain with business customers, regardless of banking relationship changes." maxOccurs="1" minOccurs="1" xmlTag="UPIC" simpleType="//@dataDictionary/@topLevelDictionaryEntry.58"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ProprietaryAccount" definition="Account number used by financial institutions in individual countries to identify an account of a customer, but not necessarily the bank and branch of the financial institution in which the account is held." maxOccurs="1" minOccurs="1" xmlTag="PrtryAcct" type="//@dataDictionary/@topLevelDictionaryEntry.5"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CashAccountType2" definition="Nature or use of the account." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Account type, in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.66"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Nature or use of the account in a proprietary form." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <xors name="CodeOrProprietaryRule" definition="Either Code or Proprietary must be present, but not both." impactedElements="//@dataDictionary/@topLevelDictionaryEntry.7/@messageElement.0 //@dataDictionary/@topLevelDictionaryEntry.7/@messageElement.1"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="OrganisationIdentification2" definition="Unique and unambiguous way to identify an organisation." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BIC" definition="Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BIC" simpleType="//@dataDictionary/@topLevelDictionaryEntry.55"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="IBEI" definition="International Business Entity Identifier to uniquely identify business entities playing a role in the lifecycle of and events related to a financial instrument. (tentative - to be confirmed)." maxOccurs="1" xmlTag="IBEI" simpleType="//@dataDictionary/@topLevelDictionaryEntry.67"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BEI" definition="Code allocated to a non-financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BEI" simpleType="//@dataDictionary/@topLevelDictionaryEntry.68"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="EANGLN" definition="Global Location Number. A non-significant reference number used to identify legal entities, functional entities, or physical entities according to the European Association for Numbering (EAN) numbering scheme rules.The number is used to retrieve detailed information that is linked to it." maxOccurs="1" xmlTag="EANGLN" simpleType="//@dataDictionary/@topLevelDictionaryEntry.69"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CHIPSUniversalIdentification" definition="(United States) Clearing House Interbank Payments System (CHIPS) Universal Identification (UID) - identifies entities that own accounts at CHIPS participating financial institutions, through which CHIPS payments are effected. The CHIPS UID is assigned by the New York Clearing House." maxOccurs="1" xmlTag="USCHU" simpleType="//@dataDictionary/@topLevelDictionaryEntry.61"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DUNS" definition="Data Universal Numbering System. A unique identification number provided by Dun &amp; Bradstreet to identify an organization." maxOccurs="1" xmlTag="DUNS" simpleType="//@dataDictionary/@topLevelDictionaryEntry.70"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BankPartyIdentification" definition="Unique and unambiguous assignment made by a specific bank to identify a relationship as defined between the bank and its client." maxOccurs="1" xmlTag="BkPtyId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="TaxIdentificationNumber" definition="Number assigned by a tax authority to an entity." maxOccurs="1" xmlTag="TaxIdNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ProprietaryIdentification" definition="Unique and unambiguous identifier for an organisation that is allocated by an institution." maxOccurs="1" xmlTag="PrtryId" type="//@dataDictionary/@topLevelDictionaryEntry.4"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="DateAndPlaceOfBirth" definition="Date and place of birth of a person." registrationStatus="Obsolete" removalDate="2018-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BirthDate" definition="Date on which a person is born." maxOccurs="1" minOccurs="1" xmlTag="BirthDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ProvinceOfBirth" definition="Province where a person was born." maxOccurs="1" xmlTag="PrvcOfBirth" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CityOfBirth" definition="City where a person was born." maxOccurs="1" minOccurs="1" xmlTag="CityOfBirth" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CountryOfBirth" definition="Country where a person was born." maxOccurs="1" minOccurs="1" xmlTag="CtryOfBirth" simpleType="//@dataDictionary/@topLevelDictionaryEntry.45"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GenericIdentification4" definition="Information related to an identification, eg, party identification or account identification." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Identifier issued to a person for which no specific identifier has been defined." maxOccurs="1" minOccurs="1" xmlTag="Id" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="IdentificationType" definition="Specifies the nature of the identifier.&#xA;Usage: IdentificationType is used to specify what kind of identifier is used. It should be used in case the identifier is different from the identifiers listed in the pre-defined identifier list." maxOccurs="1" minOccurs="1" xmlTag="IdTp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PersonIdentification3" definition="Unique and unambiguous way to identify a person." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DriversLicenseNumber" definition="Number assigned by a license authority to a driver's license." maxOccurs="1" minOccurs="1" xmlTag="DrvrsLicNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":95S::ALTE//DRLC"/>
+        </semanticMarkup>
+      </messageElement>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CustomerNumber" definition="Number assigned by an agent to identify its customer." maxOccurs="1" minOccurs="1" xmlTag="CstmrNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="SocialSecurityNumber" definition="Number assigned by a social security agency." maxOccurs="1" minOccurs="1" xmlTag="SclSctyNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":95S::ALTE//SSNX"/>
+        </semanticMarkup>
+      </messageElement>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AlienRegistrationNumber" definition="Number assigned by a government agency to identify foreign nationals." maxOccurs="1" minOccurs="1" xmlTag="AlnRegnNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":95S::ALTE//ARNU"/>
+        </semanticMarkup>
+      </messageElement>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="PassportNumber" definition="Number assigned by a passport authority to a passport." maxOccurs="1" minOccurs="1" xmlTag="PsptNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":95S::ALTE//CCPT"/>
+        </semanticMarkup>
+      </messageElement>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="TaxIdentificationNumber" definition="Number assigned by a tax authority to an entity." maxOccurs="1" minOccurs="1" xmlTag="TaxIdNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":95S::ALTE//TXID"/>
+        </semanticMarkup>
+      </messageElement>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="IdentityCardNumber" definition="Number assigned by a national authority to an identity card." maxOccurs="1" minOccurs="1" xmlTag="IdntyCardNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="EmployerIdentificationNumber" definition="Number assigned to an employer by a registration authority." maxOccurs="1" minOccurs="1" xmlTag="MplyrIdNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":95S::ALTE//EINX"/>
+        </semanticMarkup>
+      </messageElement>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="DateAndPlaceOfBirth" definition="Date and place of birth of a person." maxOccurs="1" minOccurs="1" xmlTag="DtAndPlcOfBirth" type="//@dataDictionary/@topLevelDictionaryEntry.9"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OtherIdentification" definition="Identifier issued to a person for which no specific identifier has been defined." maxOccurs="1" minOccurs="1" xmlTag="OthrId" type="//@dataDictionary/@topLevelDictionaryEntry.10"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Entity that assigns the identifier." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <xors name="PersonIdentificationRule" definition="One and only one Message Element in the list (DateAndPlaceOfBirth, CustomerNumber, DriversLicenseNumber, SocialSecurityNumber, AlienRegistrationNumber, PassportNumber, TaxIdentificationNumber, IdentityCardNumber, EmployerIdentificationNumber, OtherIdentification, DateAndPlaceOfBirth) must be present." impactedElements="//@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.0 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.1 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.2 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.3 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.4 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.5 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.6 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.7 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.8 //@dataDictionary/@topLevelDictionaryEntry.11/@messageElement.9"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="Party2Choice" definition="Choice between the identification of a person and the identification of a non-financial institution." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OrganisationIdentification" definition="Unique and unambiguous way of identifying an organisation." maxOccurs="1" minOccurs="1" xmlTag="OrgId" complexType="//@dataDictionary/@topLevelDictionaryEntry.8"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PrivateIdentification" definition="Unique and unambiguous identification of a person, eg, passport." maxOccurs="4" minOccurs="1" xmlTag="PrvtId" type="//@dataDictionary/@topLevelDictionaryEntry.11"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PartyIdentification8" definition="Identification of a person, a financial institution or a non-financial institution." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name by which a party is known and which is usually used to identify that party." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.46"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PostalAddress" definition="Information that locates and identifies a specific address, as defined by postal services." maxOccurs="1" xmlTag="PstlAdr" type="//@dataDictionary/@topLevelDictionaryEntry.0"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Identification" definition="Unique and unambiguous way of identifying an organisation or an individual person." maxOccurs="1" xmlTag="Id" type="//@dataDictionary/@topLevelDictionaryEntry.12"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CountryOfResidence" definition="Country in which a person resides (the place of a person's home). In the case of a company, it is the country from which the affairs of that company are directed." maxOccurs="1" xmlTag="CtryOfRes" simpleType="//@dataDictionary/@topLevelDictionaryEntry.45"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CashAccount7" definition="Information used for identifying an account." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Identification" definition="Unique and unambiguous identification of the account between the account owner and the account servicer." maxOccurs="1" minOccurs="1" xmlTag="Id" complexType="//@dataDictionary/@topLevelDictionaryEntry.6"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Type" definition="Nature, or use, of the account." maxOccurs="1" xmlTag="Tp" type="//@dataDictionary/@topLevelDictionaryEntry.7"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Currency" definition="Identification of the currency in which the account is held. &#xA;&#xA;Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account." maxOccurs="1" xmlTag="Ccy" simpleType="//@dataDictionary/@topLevelDictionaryEntry.48"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name of the account, assigned by the account servicing institution in agreement with the account owner in order to provide an additional means of identification of the account.&#xA;&#xA;Usage: the account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.46"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="NameAndAddress7" definition="Name and address of an institution." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name by which a party is known and which is usually used to identify that party." maxOccurs="1" minOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.46"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PostalAddress" definition="Information that locates and identifies a specific address, as defined by postal services." maxOccurs="1" minOccurs="1" xmlTag="PstlAdr" type="//@dataDictionary/@topLevelDictionaryEntry.0"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="FinancialInstitutionIdentification3" definition="Unique and unambiguous identifier of a financial institution, as assigned under an internationally recognised or proprietary identification scheme." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BIC" definition="Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" xmlTag="BIC" simpleType="//@dataDictionary/@topLevelDictionaryEntry.55"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ClearingSystemMemberIdentification" definition="Unique and unambiguous identifier of a clearing system member, as assigned by the system or system administrator." maxOccurs="1" xmlTag="ClrSysMmbId" complexType="//@dataDictionary/@topLevelDictionaryEntry.3"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Name" definition="Name by which a party is known and which is usually used to identify that party." maxOccurs="1" xmlTag="Nm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.46"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PostalAddress" definition="Information that locates and identifies a specific address, as defined by postal services." maxOccurs="1" xmlTag="PstlAdr" type="//@dataDictionary/@topLevelDictionaryEntry.0"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ProprietaryIdentification" definition="Unique and unambiguous identifier, as assigned to a financial institution using a proprietary identification scheme." maxOccurs="1" xmlTag="PrtryId" type="//@dataDictionary/@topLevelDictionaryEntry.4"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="FinancialInstitutionIdentification5Choice" definition="Unique and unambiguous identifier of a financial institution, as assigned under an internationally recognised or proprietary identification scheme." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="BIC" definition="Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." maxOccurs="1" minOccurs="1" xmlTag="BIC" simpleType="//@dataDictionary/@topLevelDictionaryEntry.55"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ClearingSystemMemberIdentification" definition="Unique and unambiguous identifier of a clearing system member, as assigned by the system or system administrator." maxOccurs="1" minOccurs="1" xmlTag="ClrSysMmbId" complexType="//@dataDictionary/@topLevelDictionaryEntry.3"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="NameAndAddress" definition="Identifies the name and address of a financial institution." maxOccurs="1" minOccurs="1" xmlTag="NmAndAdr" type="//@dataDictionary/@topLevelDictionaryEntry.15"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ProprietaryIdentification" definition="Unique and unambiguous identifier, as assigned to a financial institution using a proprietary identification scheme." maxOccurs="1" minOccurs="1" xmlTag="PrtryId" type="//@dataDictionary/@topLevelDictionaryEntry.4"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CombinedIdentification" definition="Unique and unambiguous identification of a financial institution, through a combimation of globally recognised or proprietary identification scheme." maxOccurs="1" minOccurs="1" xmlTag="CmbndId" type="//@dataDictionary/@topLevelDictionaryEntry.16"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="BranchAndFinancialInstitutionIdentification3" definition="Unique and unambiguous identifier of a financial institution or a branch of a financial institution, as assigned under an internationally recognised or proprietary identification scheme." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="FinancialInstitutionIdentification" definition="Unique and unambiguous identifier of a financial institution, as assigned under an internationally recognised or proprietary identification scheme." maxOccurs="1" minOccurs="1" xmlTag="FinInstnId" type="//@dataDictionary/@topLevelDictionaryEntry.17"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="BranchIdentification" definition="Information identifying a specific branch of a financial institution.&#xA;&#xA;Usage: this component should be used in case the identification information in the financial institution component does not provide identification up to branch level." maxOccurs="1" xmlTag="BrnchId" type="//@dataDictionary/@topLevelDictionaryEntry.1"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ReferredDocumentType1" definition="Specifies the type of the document referred in the remittance information." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Document type in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.77"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Proprietary identification of the type of the remittance document." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Identification of the issuer of the reference document type." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <xors name="CodeOrProprietaryRule" definition="If Code is present then Proprietary must not be present.&#xA;If Proprietary is present then Code must not be present." impactedElements="//@dataDictionary/@topLevelDictionaryEntry.19/@messageElement.0 //@dataDictionary/@topLevelDictionaryEntry.19/@messageElement.1"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ReferredDocumentInformation1" definition="Structured information supplied to fully identify the documents referred to in the remittance information." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ReferredDocumentType" definition="Provides the type of the referred document." maxOccurs="1" xmlTag="RfrdDocTp" type="//@dataDictionary/@topLevelDictionaryEntry.19"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ReferredDocumentNumber" definition="Unique and unambiguous identification number of the referred document." maxOccurs="1" xmlTag="RfrdDocNb" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ReferredDocumentAmount1Choice" definition="Nature of the amount and currency on a document referred to in the remittance section, typically either the original amount due/payable or the amount actually remitted for the referenced document." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DuePayableAmount" definition="Amount specified is the exact amount due and payable to the creditor." maxOccurs="1" minOccurs="1" xmlTag="DuePyblAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DiscountAppliedAmount" definition="Amount of money that results from the application of an agreed discount to the amount due and payable to the creditor." maxOccurs="1" minOccurs="1" xmlTag="DscntApldAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="RemittedAmount" definition="Amount of money remitted for the referred document." maxOccurs="1" minOccurs="1" xmlTag="RmtdAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CreditNoteAmount" definition="Amount specified for the referred document is the amount of a credit note." maxOccurs="1" minOccurs="1" xmlTag="CdtNoteAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="TaxAmount" definition="Quantity of cash resulting from the calculation of the tax." maxOccurs="1" minOccurs="1" xmlTag="TaxAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CreditorReferenceType1" definition="Specifies the type of the documents referred by the creditor." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Coded creditor reference type." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.78"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Creditor reference type not avilable in a coded format." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Issuer" definition="Identification of the issuer of the credit reference type." maxOccurs="1" xmlTag="Issr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <xors name="CodeOrProprietaryRule" definition="If Code is present then Proprietary must not be present.&#xA;If Proprietary is present then Code must not be present." impactedElements="//@dataDictionary/@topLevelDictionaryEntry.22/@messageElement.0 //@dataDictionary/@topLevelDictionaryEntry.22/@messageElement.1"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="CreditorReferenceInformation1" definition="Structured information supplied to enable the matching, i.e. reconciliation, of a payment with the items that the payment is intended to settle, eg, commercial invoices in an accounts receivable system." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CreditorReferenceType" definition="Provides the type of the creditor reference." maxOccurs="1" xmlTag="CdtrRefTp" type="//@dataDictionary/@topLevelDictionaryEntry.22"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CreditorReference" definition="Unique and unambiguous reference assigned by the creditor to refer to the payment transaction.&#xA;&#xA;Usage: if available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the cash.&#xA;&#xA;If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification." maxOccurs="1" xmlTag="CdtrRef" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="StructuredRemittanceInformation6" definition="Structured information supplied to enable the matching, i.e. reconciliation, of a payment with the items that the payment is intended to settle, eg, commercial invoices in an accounts receivable system." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ReferredDocumentInformation" definition="Reference information to allow the identification of the underlying reference documents." maxOccurs="1" xmlTag="RfrdDocInf" type="//@dataDictionary/@topLevelDictionaryEntry.20"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ReferredDocumentRelatedDate" definition="Date associated with the referred document, eg, date of issue." maxOccurs="1" xmlTag="RfrdDocRltdDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ReferredDocumentAmount" definition="Amount of money and currency of a document referred to in the remittance section. The amount is typically either the original amount due and payable, or the amount actually remitted for the referred document." xmlTag="RfrdDocAmt" complexType="//@dataDictionary/@topLevelDictionaryEntry.21"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CreditorReferenceInformation" definition="Reference information provided by the creditor to allow the identification of the underlying documents." maxOccurs="1" xmlTag="CdtrRefInf" type="//@dataDictionary/@topLevelDictionaryEntry.23"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Invoicer" definition="Identification of the organization issuing the invoice when different than the creditor or final party." maxOccurs="1" xmlTag="Invcr" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Invoicee" definition="Identification of the party to whom an invoice is issued, when different than the originator or debtor." maxOccurs="1" xmlTag="Invcee" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AdditionalRemittanceInformation" definition="Additional information, in free text form, to complement the structured remittance information." maxOccurs="1" xmlTag="AddtlRmtInf" simpleType="//@dataDictionary/@topLevelDictionaryEntry.47"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="RemittanceInformation1" definition="Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, eg, commercial invoices in an accounts' receivable system." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Unstructured" definition="Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, eg, commercial invoices in an accounts' receivable system in an unstructured form." xmlTag="Ustrd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.47"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Structured" definition="Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, eg, commercial invoices in an accounts' receivable system in a structured form." xmlTag="Strd" type="//@dataDictionary/@topLevelDictionaryEntry.24"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="ServiceLevel2Choice" definition="Specifies the service level of the transaction." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Identification of a pre-agreed level of service between the parties in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.83"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Proprietary identification of a pre-agreed level of service between the parties." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="LocalInstrument1Choice" definition="Set of elements that further identifies the type of local instruments being requested by the initiating party." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Specifies the local instrument published in an external local instrument code list." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.87"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Specifies the local instrument as a proprietary code." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="EquivalentAmount" definition="Amount of money to be transferred between the debtor and creditor, before deduction of charges, expressed in the currency of the debtor's account, and to be transferred into a different currency." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Amount" definition="Amount of money to be transferred between debtor and creditor, before deduction of charges, expressed in the currency of the debtor's account, and to be transferred in a different currency. &#xA;&#xA;Usage: Currency of the amount is expressed in the currency of the debtor's account, but the amount to be transferred is in another currency. The first agent will convert the amount and currency to the to be transferred amount and currency, eg, 'pay equivalent of 100000 EUR in JPY'(and account is in EUR)." maxOccurs="1" minOccurs="1" xmlTag="Amt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CurrencyOfTransfer" definition="Specifies the currency of the to be transferred amount, which is different from the currency of the debtor's account." maxOccurs="1" minOccurs="1" xmlTag="CcyOfTrf" simpleType="//@dataDictionary/@topLevelDictionaryEntry.48"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="AmountType2Choice" definition="Amount of money to be moved between the debtor and creditor, expressed in debtor's account currency or converted in another currency." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="InstructedAmount" definition="Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party." maxOccurs="1" minOccurs="1" xmlTag="InstdAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="EquivalentAmount" definition="Amount of money to be transferred between the debtor and creditor, before deduction of charges, expressed in the currency of the debtor's account, and to be transferred into a different currency. &#xA;&#xA;Usage: Currency of the amount is expressed in the currency of the debtor's account, but the amount to be transferred is in another currency. The debtor agent will convert the amount and currency to the to be transferred amount and currency, eg, 'pay equivalent of 100000 EUR in JPY'(and account is in EUR)." maxOccurs="1" minOccurs="1" xmlTag="EqvtAmt" type="//@dataDictionary/@topLevelDictionaryEntry.28"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="AmendmentInformationDetails1" definition="Amendment information details providing the list of direct debit mandate elements that have been modified when the amendment indicator has been set." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalMandateIdentification" definition="Original mandate identification that has been modified." maxOccurs="1" xmlTag="OrgnlMndtId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OriginalCreditorSchemeIdentification" definition="Original creditor scheme identification that has been modified." maxOccurs="1" xmlTag="OrgnlCdtrSchmeId" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OriginalCreditorAgent" definition="Original creditor agent that has been modified." maxOccurs="1" xmlTag="OrgnlCdtrAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OriginalCreditorAgentAccount" definition="Original creditor agent acount that has been modified." maxOccurs="1" xmlTag="OrgnlCdtrAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OriginalDebtor" definition="Original debtor that has been modified." maxOccurs="1" xmlTag="OrgnlDbtr" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OriginalDebtorAccount" definition="Original debtor account that has been modified." maxOccurs="1" xmlTag="OrgnlDbtrAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OriginalDebtorAgent" definition="Original debtor's agent that has been modified." maxOccurs="1" xmlTag="OrgnlDbtrAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OriginalDebtorAgentAccount" definition="Original debtor agent account that has been modified." maxOccurs="1" xmlTag="OrgnlDbtrAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalFinalCollectionDate" definition="Original final collection date that has been modified." maxOccurs="1" xmlTag="OrgnlFnlColltnDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalFrequency" definition="Original frequency that has been modified." maxOccurs="1" xmlTag="OrgnlFrqcy" simpleType="//@dataDictionary/@topLevelDictionaryEntry.60"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="MandateRelatedInformation1" definition="Set of elements used to provide further details related to a direct debit mandate signed between the creditor and the debtor." registrationStatus="Registered">
+      <constraint name="AmendmentIndicatorRule" definition="If AmendmentIndicator is true, then AmendementInformationDetails must be present, with amended mandate information.&#xA;&#xA;If AmendmentIndicator is false, then AmendmentInformationDetails is not allowed."/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="MandateIdentification" definition="Reference of the direct debit mandate that has been signed between by the debtor and the creditor." maxOccurs="1" xmlTag="MndtId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DateOfSignature" definition="Date on which the direct debit mandate has been signed by the debtor." maxOccurs="1" xmlTag="DtOfSgntr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AmendmentIndicator" definition="Indicator notifying whether the underlying mandate is amended or not." maxOccurs="1" xmlTag="AmdmntInd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.71"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="AmendmentInformationDetails" definition="List of direct debit mandate elements that have been modified." maxOccurs="1" xmlTag="AmdmntInfDtls" type="//@dataDictionary/@topLevelDictionaryEntry.30"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ElectronicSignature" definition="Additional security provisions, such as a digital signature, as provided by the debtor." maxOccurs="1" xmlTag="ElctrncSgntr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.92"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="FirstCollectionDate" definition="Date of the first collection of a direct debit as per the mandate." maxOccurs="1" xmlTag="FrstColltnDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="FinalCollectionDate" definition="Date of the final collection of a direct debit as per the mandate." maxOccurs="1" xmlTag="FnlColltnDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Frequency" definition="Regularity with which direct debit instructions are to be created and processed." maxOccurs="1" xmlTag="Frqcy" simpleType="//@dataDictionary/@topLevelDictionaryEntry.60"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="SettlementInformation3" definition="Further information required for the settlement the transaction." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="SettlementMethod" definition="Method used to settle the (batch of) payment instructions." maxOccurs="1" minOccurs="1" xmlTag="SttlmMtd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.94"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="SettlementAccount" definition="A specific purpose account used to post debit and credit entries as a result of the transaction." maxOccurs="1" xmlTag="SttlmAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ClearingSystem" definition="Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed." maxOccurs="1" xmlTag="ClrSys" type="//@dataDictionary/@topLevelDictionaryEntry.2"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructingReimbursementAgent" definition="Specifies the agent through which the instructing agent will reimburse the instructed agent.&#xA;&#xA;Usage: If the instructing and instructed agents have the same reimbursement agent, then only InstructingReimbursementAgent must be used." maxOccurs="1" xmlTag="InstgRmbrsmntAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructingReimbursementAgentAccount" definition="Unambiguous identification of the account of the instructing reimbursement agent account at its servicing agent in the payment chain." maxOccurs="1" xmlTag="InstgRmbrsmntAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructedReimbursementAgent" definition="Agent at which the instructed agent will be reimbursed.&#xA;&#xA;Usage: If InstructedReimbursementAgent contains a branch of the InstructedAgent, then the instructed agent will claim reimbursement from that branch/will be paid by that branch.&#xA;&#xA;Usage: If InstructingAgent and InstructedAgent have the same reimbursement agent, then only InstructingReimbursementAgent must be used." maxOccurs="1" xmlTag="InstdRmbrsmntAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructedReimbursementAgentAccount" definition="Unambiguous identification of the account of the instructed reimbursement agent account at its servicing agent in the payment chain." maxOccurs="1" xmlTag="InstdRmbrsmntAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ThirdReimbursementAgent" definition="Specifies the branch of the instructed agent where the amount of money will be made available when different from the instructed reimbursement agent." maxOccurs="1" xmlTag="ThrdRmbrsmntAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ThirdReimbursementAgentAccount" definition="Unambiguous identification of the account of the third reimbursement agent account at its servicing agent in the payment chain." maxOccurs="1" xmlTag="ThrdRmbrsmntAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PaymentTypeInformation6" definition="Set of elements that further details the information related to the type of payment." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="InstructionPriority" definition="Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction." maxOccurs="1" xmlTag="InstrPrty" simpleType="//@dataDictionary/@topLevelDictionaryEntry.86"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ServiceLevel" definition="Agreement under which or rules under which the transaction should be processed." maxOccurs="1" xmlTag="SvcLvl" type="//@dataDictionary/@topLevelDictionaryEntry.26"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ClearingChannel" definition="Specifies the clearing channel to be used to process the payment instruction." maxOccurs="1" xmlTag="ClrChanl" simpleType="//@dataDictionary/@topLevelDictionaryEntry.85"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="LocalInstrument" definition="User community specific instrument.&#xA;&#xA;Usage: When available, codes provided by local authorities should be used." maxOccurs="1" xmlTag="LclInstrm" type="//@dataDictionary/@topLevelDictionaryEntry.27"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="SequenceType" definition="Identifies the direct debit sequence, eg, first, recurrent, final or one-off." maxOccurs="1" xmlTag="SeqTp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.91"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CategoryPurpose" definition="Specifies the high level purpose of the instruction based on a set of pre-defined categories." maxOccurs="1" xmlTag="CtgyPurp" simpleType="//@dataDictionary/@topLevelDictionaryEntry.89"/>
+      <xors name="ServiceLevelOrClearingChannelRule" definition="If ServiceLevel is present then ClearingChannel must is not allowed.&#xA;If ClearingChannel is present then ServiceLevel must is not allowed." impactedElements="//@dataDictionary/@topLevelDictionaryEntry.33/@messageElement.1 //@dataDictionary/@topLevelDictionaryEntry.33/@messageElement.2"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="OriginalTransactionReference1" definition="Set of key elements of the original transaction being referred to." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="InterbankSettlementAmount" definition="Amount of money moved between the instructing agent and the instructed agent." maxOccurs="1" xmlTag="IntrBkSttlmAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Amount" definition="Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party." maxOccurs="1" xmlTag="Amt" type="//@dataDictionary/@topLevelDictionaryEntry.29"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="InterbankSettlementDate" definition="Date on which the amount of money ceases to be available to the agent that owes it and when the amount of money becomes available to the agent to which it is due." maxOccurs="1" xmlTag="IntrBkSttlmDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="RequestedExecutionDate" definition="Date at which the initiating party requests that the clearing agent to process the payment. If payment by cheque, the date when the cheque must be generated by the bank.&#xA;&#xA;Usage: This is the date on which the debtor's account(s) is (are) to be debited." maxOccurs="1" xmlTag="ReqdExctnDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="RequestedCollectionDate" definition="Date at which the creditor requests the amount of money to be collected from the debtor." maxOccurs="1" xmlTag="ReqdColltnDt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.44"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CreditorSchemeIdentification" definition="Credit party that signs the direct debit mandate." maxOccurs="1" xmlTag="CdtrSchmeId" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="SettlementInformation" definition="Specifies the details on how the settlement of the original transaction(s) between the instructing agent and the instructed agent was completed." maxOccurs="1" xmlTag="SttlmInf" type="//@dataDictionary/@topLevelDictionaryEntry.32"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="PaymentTypeInformation" definition="Set of elements used to further specify the type of transaction." maxOccurs="1" xmlTag="PmtTpInf" type="//@dataDictionary/@topLevelDictionaryEntry.33"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="PaymentMethod" definition="Specifies the transfer method that will be used by the instructing agent to transfer the funds to the creditor." maxOccurs="1" xmlTag="PmtMtd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.95"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="MandateRelatedInformation" definition="Set of elements used to provide further details related to a direct debit mandate signed between the creditor and the debtor.&#xA;&#xA;Usage: Mandate related information is to be used only when the direct debit relates to a mandate signed between the debtor and the creditor." maxOccurs="1" xmlTag="MndtRltdInf" type="//@dataDictionary/@topLevelDictionaryEntry.31"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="RemittanceInformation" definition="Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system." maxOccurs="1" xmlTag="RmtInf" type="//@dataDictionary/@topLevelDictionaryEntry.25"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="UltimateDebtor" definition="Ultimate party that owes an amount of money to the (ultimate) creditor." maxOccurs="1" xmlTag="UltmtDbtr" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Debtor" definition="Party that owes an amount of money to the (ultimate) creditor." maxOccurs="1" xmlTag="Dbtr" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="DebtorAccount" definition="Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction." maxOccurs="1" xmlTag="DbtrAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="DebtorAgent" definition="Financial institution servicing an account for the debtor." maxOccurs="1" xmlTag="DbtrAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="DebtorAgentAccount" definition="Unambiguous identification of the account of the debtor agent at its servicing agent in the payment chain." maxOccurs="1" xmlTag="DbtrAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CreditorAgent" definition="Financial institution servicing an account for the creditor." maxOccurs="1" xmlTag="CdtrAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CreditorAgentAccount" definition="Unambiguous identification of the account of the creditor agent at its servicing agent to which a credit entry will be made as a result of the payment transaction." maxOccurs="1" xmlTag="CdtrAgtAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="Creditor" definition="Party to which an amount of money is due." maxOccurs="1" xmlTag="Cdtr" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CreditorAccount" definition="Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction." maxOccurs="1" xmlTag="CdtrAcct" type="//@dataDictionary/@topLevelDictionaryEntry.14"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="UltimateCreditor" definition="Ultimate party to which an amount of money is due." maxOccurs="1" xmlTag="UltmtCdtr" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <xors name="RequestedExecutionDateOrRequestedCollectionDate" definition="If RequestedExecutionDate is present, then RequestedCollectionDate is not allowed.&#xA;If RequestedCollectionDate is present, then RequestedExecutionDate is not allowed." impactedElements="//@dataDictionary/@topLevelDictionaryEntry.34/@messageElement.3 //@dataDictionary/@topLevelDictionaryEntry.34/@messageElement.4"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="GroupHeader5" definition="Set of characteristics shared by all individual transactions included in the message." registrationStatus="Registered" messageBuildingBlock="//@businessProcessCatalogue/@topLevelCatalogueEntry.0/@messageDefinition.0/@messageBuildingBlock.0 //@businessProcessCatalogue/@topLevelCatalogueEntry.1/@messageDefinition.0/@messageBuildingBlock.0">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="MessageIdentification" definition="Point to point reference assigned by the instructing party and sent to the next party in the chain to unambiguously identify the message.&#xA;&#xA;Usage: The instructing party has to make sure that 'MessageIdentification' is unique per instructed party for a pre-agreed period." maxOccurs="1" minOccurs="1" xmlTag="MsgId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="CreationDateTime" definition="Date and time at which the status report was created by the instructing party." maxOccurs="1" minOccurs="1" xmlTag="CreDtTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.43"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InitiatingParty" definition="Party initiating the payment. In the payment context, this can either be the debtor (in a credit transfer), the creditor (in a direct debit), or the party that initiates the payment on behalf of the debtor or creditor." maxOccurs="1" xmlTag="InitgPty" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ForwardingAgent" definition="Financial institution that receives the instruction from the initiating party and forwards it to the next agent in the payment chain." maxOccurs="1" xmlTag="FwdgAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="DebtorAgent" definition="Financial institution servicing an account for the debtor." maxOccurs="1" xmlTag="DbtrAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="CreditorAgent" definition="Financial institution servicing an account for the creditor." maxOccurs="1" xmlTag="CdtrAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructingAgent" definition="Agent that instructs the next party in the chain to carry out the (set of) instruction(s)." maxOccurs="1" xmlTag="InstgAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructedAgent" definition="Agent that is instructed by the previous party in the chain to carry out the (set of) instruction(s)." maxOccurs="1" xmlTag="InstdAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:ChoiceComponent" name="StatusReason1Choice" definition="Reason for the status of the transaction." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Code" definition="Reason for the status in a coded form." maxOccurs="1" minOccurs="1" xmlTag="Cd" simpleType="//@dataDictionary/@topLevelDictionaryEntry.80"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="Proprietary" definition="Reason for the status not catered for by the available codes." maxOccurs="1" minOccurs="1" xmlTag="Prtry" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="StatusReasonInformation1" definition="Further information on the status reason of the transaction." registrationStatus="Registered">
+      <constraint name="StatusReasonRule" definition="If StatusReason/Code is equal to 'NARR', then at least one occurrence of AddititionalStatusReasonInformation must be present."/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="StatusOriginator" definition="Party issuing the status." maxOccurs="1" xmlTag="StsOrgtr" type="//@dataDictionary/@topLevelDictionaryEntry.13"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="StatusReason" definition="Specifies the reason for the status report." maxOccurs="1" xmlTag="StsRsn" type="//@dataDictionary/@topLevelDictionaryEntry.36"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AdditionalStatusReasonInformation" definition="Further details on the status reason.&#xA;&#xA;Usage: Additional information can be used for several purposes, e.g. to report repaired information, or to further detail the status reason." xmlTag="AddtlStsRsnInf" simpleType="//@dataDictionary/@topLevelDictionaryEntry.75"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="NumberOfTransactionsPerStatus1" definition="Set of additional elements to provide detailed information on the number of transactions that are reported with a specific transaction status." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DetailedNumberOfTransactions" definition="Number of individual transactions contained in the message, detailed per status." maxOccurs="1" minOccurs="1" xmlTag="DtldNbOfTxs" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DetailedStatus" definition="Common transaction status for all individual transactions reported with the same status." maxOccurs="1" minOccurs="1" xmlTag="DtldSts" simpleType="//@dataDictionary/@topLevelDictionaryEntry.97"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="DetailedControlSum" definition="Total of all individual amounts included in the message, irrespective of currencies, detailed per status." maxOccurs="1" xmlTag="DtldCtrlSum" simpleType="//@dataDictionary/@topLevelDictionaryEntry.51"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="OriginalGroupInformation1" definition="Unique and unambiguous identifier of the group of transactions as assigned by the original instructing party." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200" messageBuildingBlock="//@businessProcessCatalogue/@topLevelCatalogueEntry.0/@messageDefinition.0/@messageBuildingBlock.1 //@businessProcessCatalogue/@topLevelCatalogueEntry.1/@messageDefinition.0/@messageBuildingBlock.1">
+      <constraint name="StatusReasonInformationRule" definition="StatusReasonInformation/AdditionalStatusReasonInformation may only be present when GroupStatus is present and is equal to RJCTor PDNG."/>
+      <constraint name="NumberOfTransactionPerStatusGuideline" definition="OriginalGroupInformationAndStatus/NumberOfTransactionsPerStatus should only be present if GroupStatus equals 'PART'."/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalMessageIdentification" definition="Point to point reference assigned by the original instructing party to unambiguously identify the original group of individual transactions." maxOccurs="1" minOccurs="1" xmlTag="OrgnlMsgId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="NetworkFileName" definition="Name assigned by the sending party to unambiguously identify the file transmitted on the network." maxOccurs="1" minOccurs="1" xmlTag="NtwkFileNm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalMessageNameIdentification" definition="Specifies the original message name identifier to which the message refers, eg, pacs.003.001.01 or MT103." maxOccurs="1" minOccurs="1" xmlTag="OrgnlMsgNmId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalCreationDateTime" definition="Date and time at which the original message was created." maxOccurs="1" xmlTag="OrgnlCreDtTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.43"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="FileOriginator" definition="Party that sent the file for which the status has been generated.&#xA;&#xA;Usage: this field will only be used when the content of the message could not be decoded at the receiving side." maxOccurs="1" xmlTag="FileOrgtr" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalNumberOfTransactions" definition="Number of individual transactions contained in the original message." maxOccurs="1" xmlTag="OrgnlNbOfTxs" simpleType="//@dataDictionary/@topLevelDictionaryEntry.74"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalControlSum" definition="Total of all individual amounts included in the original message, irrespective of currencies." maxOccurs="1" xmlTag="OrgnlCtrlSum" simpleType="//@dataDictionary/@topLevelDictionaryEntry.51"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="GroupStatus" definition="Specifies the status of a group of transactions." maxOccurs="1" xmlTag="GrpSts" simpleType="//@dataDictionary/@topLevelDictionaryEntry.96"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="StatusReasonInformation" definition="Detailed information on the status reason." xmlTag="StsRsnInf" type="//@dataDictionary/@topLevelDictionaryEntry.37"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="NumberOfTransactionsPerStatus" definition="Detailed information on the number of transactions for each identical individual transaction status." xmlTag="NbOfTxsPerSts" type="//@dataDictionary/@topLevelDictionaryEntry.38"/>
+      <xors name="OriginalMessageIdentificationOrNetworkFileNameRule" definition="If OriginalMessageIdentification is present, then NetworkFileName is not allowed.&#xA;If NetworkFileName is present, then OriginalMessageIdentification is not allowed." impactedElements="//@dataDictionary/@topLevelDictionaryEntry.39/@messageElement.0 //@dataDictionary/@topLevelDictionaryEntry.39/@messageElement.1"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="ChargesInformation1" definition="Information on the charges related to the payment transaction." registrationStatus="Registered">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="ChargesAmount" definition="Transaction charges to be paid by the charge bearer." maxOccurs="1" minOccurs="1" xmlTag="ChrgsAmt" simpleType="//@dataDictionary/@topLevelDictionaryEntry.50"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ChargesParty" definition="Party that takes the transaction charges or to which the transaction charges are due." maxOccurs="1" minOccurs="1" xmlTag="ChrgsPty" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:MessageComponent" name="PaymentTransactionInformation1" definition="Information concerning the original transactions, to which the status report message refers." registrationStatus="Registered" messageBuildingBlock="//@businessProcessCatalogue/@topLevelCatalogueEntry.0/@messageDefinition.0/@messageBuildingBlock.2 //@businessProcessCatalogue/@topLevelCatalogueEntry.1/@messageDefinition.0/@messageBuildingBlock.2">
+      <messageElement xsi:type="iso20022:MessageAttribute" name="StatusIdentification" definition="Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the reported status." maxOccurs="1" xmlTag="StsId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalPaymentInformationIdentification" definition="Unique and unambiguous identifier of the original payment information block as assigned by the original sending party." maxOccurs="1" xmlTag="OrgnlPmtInfId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalInstructionIdentification" definition="Original unique instruction identification as assigned by an instructing party for an instructed party to unambiguously identify the original instruction.&#xA;&#xA;Usage: the original instruction identification is the original point to point reference used between the instructing party and the instructed party to refer to the original instruction." maxOccurs="1" xmlTag="OrgnlInstrId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalEndToEndIdentification" definition="Original unique identification assigned by the initiating party to unambiguously identify the original transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain." maxOccurs="1" xmlTag="OrgnlEndToEndId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="OriginalTransactionIdentification" definition="Original identification of a transaction, as assigned by the first instructing agent and passed on, unchanged, throughout the entire interbank chain." maxOccurs="1" xmlTag="OrgnlTxId" simpleType="//@dataDictionary/@topLevelDictionaryEntry.42"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="TransactionStatus" definition="Specifies the status of a transaction, in a coded form." maxOccurs="1" xmlTag="TxSts" simpleType="//@dataDictionary/@topLevelDictionaryEntry.97"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="StatusReasonInformation" definition="Detailed information on the status reason." xmlTag="StsRsnInf" type="//@dataDictionary/@topLevelDictionaryEntry.37"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="ChargesInformation" definition="Information on charges related to the processing of the rejection of the instruction.&#xA;&#xA;Usage: ChargesInformation is past on for information purposes only. Settlement of the charges will be done separately." xmlTag="ChrgsInf" type="//@dataDictionary/@topLevelDictionaryEntry.40"/>
+      <messageElement xsi:type="iso20022:MessageAttribute" name="AcceptanceDateTime" definition="Point in time when the payment order from the initiating party meets the processing conditions of the account servicing agent (debtor's agent in case of a credit transfer, creditor's agent in case of a direct debit). This means - amongst others - that the account servicing agent has received the payment order and has applied checks as eg, authorisation, availability of funds." maxOccurs="1" xmlTag="AccptncDtTm" simpleType="//@dataDictionary/@topLevelDictionaryEntry.43"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructingAgent" definition="Agent that instructs the next party in the chain to carry out the (set of) instruction(s)." maxOccurs="1" xmlTag="InstgAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="InstructedAgent" definition="Agent that is instructed by the previous party in the chain to carry out the (set of) instruction(s)." maxOccurs="1" xmlTag="InstdAgt" type="//@dataDictionary/@topLevelDictionaryEntry.18"/>
+      <messageElement xsi:type="iso20022:MessageAssociationEnd" name="OriginalTransactionReference" definition="Set of key elements of the original transaction being referred to." maxOccurs="1" xmlTag="OrgnlTxRef" type="//@dataDictionary/@topLevelDictionaryEntry.34"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max35Text" definition="Specifies a character string with a maximum length of 35 characters." registrationStatus="Registered" minLength="1" maxLength="35"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:DateTime" name="ISODateTime" definition="A particular point in the progression of time defined by a mandatory date and a mandatory time component, expressed in either UTC time format (YYYY-MM-DDThh:mm:ss.sssZ), local time with UTC offset format (YYYY-MM-DDThh:mm:ss.sss+/-hh:mm), or local time format (YYYY-MM-DDThh:mm:ss.sss). These representations are defined in &quot;XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004&quot; which is aligned with ISO 8601.&#xA;Note on the time format:&#xA;1) beginning / end of calendar day&#xA;00:00:00 = the beginning of a calendar day&#xA;24:00:00 = the end of a calendar day&#xA;2) fractions of second in time format&#xA;Decimal fractions of seconds may be included. In this case, the involved parties shall agree on the maximum number of digits that are allowed." registrationStatus="Registered"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:Date" name="ISODate" definition="A particular point in the progression of time in a calendar year expressed in the YYYY-MM-DD format. This representation is defined in &quot;XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004&quot; which is aligned with ISO 8601." registrationStatus="Registered"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CountryCode" definition="Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code)." registrationStatus="Registered" pattern="[A-Z]{2,2}">
+      <example>BE</example>
+      <constraint name="Country" definition="The code is checked against the list of country names obtained from the United Nations (ISO 3166, Alpha-2 code)."/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max70Text" definition="Specifies a character string with a maximum length of 70characters." registrationStatus="Registered" minLength="1" maxLength="70"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max140Text" definition="Specifies a character string with a maximum length of 140 characters." registrationStatus="Registered" minLength="1" maxLength="140"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CurrencyCode" definition="Code allocated to a currency, by a maintenance agency, under an international identification scheme as described in the latest edition of the international standard ISO 4217 &quot;Codes for the representation of currencies and funds&quot;. Valid currency codes are registered with the ISO 4217 Maintenance Agency, and consist of three contiguous letters." registrationStatus="Registered" pattern="[A-Z]{3,3}">
+      <example>AWG</example>
+      <constraint name="ValidationByTable" definition="Must be a valid currency code which is registered with the ISO 4217 Maintenance Agency, and consist of three contiguous letters."/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="FrequencyCode" definition="Specifies the regularity of an event." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.60">
+      <example>YEAR</example>
+      <code name="Annual" definition="Event takes place every year or once a year." registrationStatus="Registered" codeName="YEAR">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::PFRE//ANNU"/>
+        </semanticMarkup>
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO15022"/>
+          <elements name="value" value=":22F::SFRE//YEAR"/>
+        </semanticMarkup>
+      </code>
+      <code name="Monthly" definition="Event takes place every month or once a month." registrationStatus="Registered" codeName="MNTH">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::PFRE//MNTH"/>
+        </semanticMarkup>
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::SFRE//MNTH"/>
+        </semanticMarkup>
+      </code>
+      <code name="Quarterly" definition="Event takes place every three months or four times a year." registrationStatus="Registered" codeName="QURT">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::PFRE//QUTR"/>
+        </semanticMarkup>
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::SFRE//QUAR"/>
+        </semanticMarkup>
+      </code>
+      <code name="SemiAnnual" definition="Event takes place every six months or two times a year." registrationStatus="Registered" codeName="MIAN">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::PFRE//SEMI"/>
+        </semanticMarkup>
+      </code>
+      <code name="Weekly" definition="Event takes place once a week." registrationStatus="Registered" codeName="WEEK">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::PFRE//WEEK"/>
+        </semanticMarkup>
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO15002"/>
+          <elements name="value" value=":22F::SFRE//WEEK"/>
+        </semanticMarkup>
+      </code>
+      <code name="Daily" definition="Event takes place every day." registrationStatus="Registered" codeName="DAIL">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::SFRE//DAIL"/>
+        </semanticMarkup>
+      </code>
+      <code name="Adhoc" definition="Event takes place on request or as necessary." registrationStatus="Registered" codeName="ADHO">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::SFRE//ADHO"/>
+        </semanticMarkup>
+      </code>
+      <code name="IntraDay" definition="Event takes place several times a day." registrationStatus="Registered" codeName="INDA">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":22F::SFRE//INDA"/>
+        </semanticMarkup>
+      </code>
+      <code name="Overnight" definition="Event takes place overnight." registrationStatus="Registered" codeName="OVNG"/>
+      <code name="TenDays" definition="Event takes place every ten business days." registrationStatus="Registered" codeName="TEND"/>
+      <code name="Fortnightly" definition="Event takes place every two weeks." registrationStatus="Registered" codeName="FRTN"/>
+      <code name="TriggeredByMovement" definition="Event takes place at the end of the day if there was a movement on the account, otherwise nothing is sent that day." codeName="MOVE"/>
+      <code name="Never" definition="Event does never take place." registrationStatus="Registered" codeName="NEVR"/>
+      <code name="Rate" definition="Event takes place based on a change of a rate." registrationStatus="Registered" codeName="RATE"/>
+      <code name="OnCreditEvent" definition="Event occurs due to a credit event occurring for an issuer." codeName="CRED"/>
+      <code name="Upfront" definition="Event that takes place at the initiation of a trade or agreement." codeName="UPFR"/>
+      <code name="OnExpiry" definition="Event occurs on expiry of a financial contract." codeName="EXPI"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Amount" name="CurrencyAndAmount" definition="Number of monetary units specified in a currency, where the unit of currency is explicit and compliant with ISO 4217. The decimal separator is a dot.&#xA;Note: A zero amount is considered a positive amount." registrationStatus="Registered" minInclusive="0" totalDigits="18" fractionDigits="5" currencyIdentifierSet="//@dataDictionary/@topLevelDictionaryEntry.48">
+      <example>100000</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Quantity" name="DecimalNumber" definition="Number of objects represented as a decimal number, eg, 0.75 or 45.6." registrationStatus="Registered" totalDigits="18" fractionDigits="17">
+      <example>123456789.123456789</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressTypeCode" definition="Specifies the type of address." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.53">
+      <example>HOME</example>
+      <code name="Residential" definition="Address is the home address." registrationStatus="Registered" codeName="HOME"/>
+      <code name="Business" definition="Address is the business address." registrationStatus="Registered" codeName="BIZZ"/>
+      <code name="Postal" definition="Address is the complete postal address." registrationStatus="Registered" codeName="ADDR"/>
+      <code name="POBox" definition="Address is a postal office (PO) box." registrationStatus="Registered" codeName="PBOX"/>
+      <code name="MailTo" definition="Address is the address to which mail is sent." registrationStatus="Registered" codeName="MLTO"/>
+      <code name="DeliveryTo" definition="Address is the address to which delivery is to take place." registrationStatus="Registered" codeName="DLVY"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="AddressType2Code" definition="Specifies the type of address." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.52">
+      <example>ADDR</example>
+      <code name="Postal"/>
+      <code name="POBox"/>
+      <code name="Residential"/>
+      <code name="Business"/>
+      <code name="MailTo"/>
+      <code name="DeliveryTo"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max16Text" definition="Specifies a character string with a maximum length of 16 characters." registrationStatus="Registered" minLength="1" maxLength="16"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="BICIdentifier" definition="Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200" pattern="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}" identificationScheme="SWIFT; BICIdentifier">
+      <example>CHASUS33</example>
+      <constraint name="BIC" definition="Valid BICs for financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consist of eight (8) or eleven (11) contiguous characters."/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="IBANIdentifier" definition="An identifier used internationally by financial institutions to uniquely identify the account of a customer at a financial institution, as described in the latest edition of the international standard ISO 13616. &quot;Banking and related financial services - International Bank Account Number (IBAN)&quot;." registrationStatus="Registered" pattern="[a-zA-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}" identificationScheme="National Banking Association; International Bank Account Number (ISO 13616)">
+      <example>AT611904300234573201</example>
+      <constraint name="IBAN" definition="A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN."/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="BBANIdentifier" definition="Basic Bank Account Number (BBAN). Identifier used nationally by financial institutions, ie, in individual countries, generally as part of a National Account Numbering Scheme(s), which uniquely identifies the account of a customer." registrationStatus="Registered" pattern="[a-zA-Z0-9]{1,30}" identificationScheme="National Banking Association; Basic Bank Account Number">
+      <example>BARC12345612345678</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="UPICIdentifier" definition="Universal Payment Identification Code (UPIC). Identifier used by the New York Clearing House to mask confidential data, such as bank accounts and bank routing numbers. UPIC numbers remain with business customers, regardless of banking relationship changes." registrationStatus="Registered" pattern="[0-9]{8,17}" identificationScheme="The Clearing House (formerly The New York Clearing House); Universal Payment Identification Code">
+      <example>12345678</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CashAccountTypeCode" definition="Specifies the nature, or use, of the cash account." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.66">
+      <semanticMarkup type="Synonym">
+        <elements name="context" value="ISO 15022"/>
+        <elements name="value" value=":97A::CASH"/>
+      </semanticMarkup>
+      <example>CASH</example>
+      <code name="CashPayment" definition="Account used for the payment of cash." registrationStatus="Registered" codeName="CASH">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":97A::CASH"/>
+        </semanticMarkup>
+      </code>
+      <code name="Charges" definition="Account used for charges if different from the account for payment." registrationStatus="Registered" codeName="CHAR">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":97A::CHAR"/>
+        </semanticMarkup>
+      </code>
+      <code name="Commission" definition="Account used for commission if different from the account for payment." registrationStatus="Registered" codeName="COMM">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":97A::COMM"/>
+        </semanticMarkup>
+      </code>
+      <code name="Tax" definition="Account used for taxes if different from the account for payment." registrationStatus="Registered" codeName="TAXE">
+        <semanticMarkup type="Synonym">
+          <elements name="context" value="ISO 15022"/>
+          <elements name="value" value=":97A::TAXE"/>
+        </semanticMarkup>
+      </code>
+      <code name="CashIncome" definition="Account used for payment of income if different from the current cash account." registrationStatus="Registered" codeName="CISH"/>
+      <code name="CashTrading" definition="Account used for trading if different from the current cash account." registrationStatus="Registered" codeName="TRAS"/>
+      <code name="Settlement" definition="Account used to post debit and credit entries, as a result of transactions cleared and settled through a specific clearing and settlement system." registrationStatus="Registered" codeName="SACC"/>
+      <code name="Current" definition="Account used to post debits and credits when no specific account has been nominated." registrationStatus="Registered" codeName="CACC"/>
+      <code name="Savings" definition="Account used for savings." registrationStatus="Registered" codeName="SVGS"/>
+      <code name="OverNightDeposit" definition="Account used for overnight deposits." registrationStatus="Registered" codeName="ONDP"/>
+      <code name="MarginalLending" definition="Account used for a marginal lending facility." registrationStatus="Registered" codeName="MGLD"/>
+      <code name="NonResidentExternal" definition="Account used for non-resident external." registrationStatus="Registered" codeName="NREX"/>
+      <code name="MoneyMarket" definition="Account used for money markets if different from the cash account." registrationStatus="Registered" codeName="MOMA"/>
+      <code name="Loan" definition="Account used for loans." registrationStatus="Registered" codeName="LOAN"/>
+      <code name="Salary" definition="Accounts used for salary payments." registrationStatus="Registered" codeName="SLRY"/>
+      <code name="Overdraft" definition="Account is used for overdrafts." registrationStatus="Registered" codeName="ODFT"/>
+      <code name="Lending" definition="Account is for the coverage of lending." codeName="LEND"/>
+      <code name="Collateral" definition="Account is for collateral." codeName="COLL"/>
+      <code name="FinancialSettlement" definition="Account is for financial settlements." codeName="SETT"/>
+      <code name="MarginReturn" definition="Account is for margin returns." codeName="MARR"/>
+      <code name="Segregated" definition="Account is an segregated account." codeName="SEGT"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Frequency1Code" definition="Specifies the regularity of an event." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.49">
+      <semanticMarkup type="Synonym">
+        <elements name="context" value="ISO 15022"/>
+        <elements name="value" value=":22F::PFRE"/>
+      </semanticMarkup>
+      <semanticMarkup type="Synonym">
+        <elements name="context" value="ISO 15022"/>
+        <elements name="value" value=":22F::SFRE"/>
+      </semanticMarkup>
+      <example>YEAR</example>
+      <code name="Annual"/>
+      <code name="Monthly"/>
+      <code name="Quarterly"/>
+      <code name="SemiAnnual"/>
+      <code name="Weekly"/>
+      <code name="Daily"/>
+      <code name="Adhoc"/>
+      <code name="IntraDay"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="CHIPSUniversalIdentifier" definition="(United States) Clearing House Interbank Payments System (CHIPS) Universal Identification (UID). Identifies entities that own accounts at CHIPS participating financial institutions, through which CHIPS payments are effected. The CHIPS UID is assigned by the New York Clearing House." registrationStatus="Registered" pattern="CH[0-9]{6,6}" identificationScheme="American Banker's Association (ABA); CHIPS UID">
+      <example>CH123456</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CashClearingSystemCode" definition="Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is to be processed." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.63">
+      <example>ABE</example>
+      <code name="EBAEuro1Step1" definition="Scheme code for EBA Euro1/Step1." registrationStatus="Registered" codeName="ABE"/>
+      <code name="Austrian" definition="Scheme code for AT (Austria) - Austrian RTGS (ARTIS)." registrationStatus="Registered" codeName="ART"/>
+      <code name="NewZealand" definition="Scheme code for NZ (New Zealand) - New Zealand Assured Value Payments." registrationStatus="Registered" codeName="AVP"/>
+      <code name="Azerbaijan" definition="Scheme code for AZ (Azerbaijan) - Azerbaijan Interbank Payment System (AZIPS)." registrationStatus="Registered" codeName="AZM"/>
+      <code name="BosniaHerzegovina" definition="Scheme code for BA (Bosnia and Herzegovina)." registrationStatus="Registered" codeName="BAP"/>
+      <code name="Belgium" definition="Scheme code for BE (Belgium) - Belgium RTGS (ELLIPS)." registrationStatus="Registered" codeName="BEL"/>
+      <code name="Finland" definition="Scheme code for FI (Finland) - RTGS (BOF)." registrationStatus="Registered" codeName="BOF"/>
+      <code name="Italy" definition="Scheme code for IT (Italy) - Italy RTGS (BIREL)." registrationStatus="Registered" codeName="BRL"/>
+      <code name="Canada" definition="Scheme code for CA (Canada) - Canadian Large Value Transfer System (LVTS)." registrationStatus="Registered" codeName="CAD"/>
+      <code name="SpainCAM" definition="Scheme code for ES (Spain)." registrationStatus="Registered" codeName="CAM"/>
+      <code name="Ireland" definition="Scheme code for IE (Ireland) - Irish RTGS (IRIS)." registrationStatus="Registered" codeName="CBJ"/>
+      <code name="UnitedKingdom" definition="Scheme code for GB (UK) - British Euro RTGS (CHAPS)." registrationStatus="Registered" codeName="CHP"/>
+      <code name="Denmark" definition="Scheme code for DK (Denmark) - Danish Euro RTGS (KRONOS)." registrationStatus="Registered" codeName="DKC"/>
+      <code name="GermanyRTGSPlus" definition="Scheme code for DE (Germany)." registrationStatus="Registered" codeName="RTP"/>
+      <code name="EBAEuro1" definition="Scheme code for EBA Euro1." registrationStatus="Registered" codeName="EBA"/>
+      <code name="GermanyELS" definition="Scheme code for DE (Germany)." registrationStatus="Registered" codeName="ELS"/>
+      <code name="EBAStep1" definition="Scheme code for EBA step 1 (members)." registrationStatus="Registered" codeName="ERP"/>
+      <code name="EBAStep2" definition="Scheme code for EBA step 2." registrationStatus="Registered" codeName="XCT"/>
+      <code name="Croatia" definition="Scheme code for HR (Croatia) - HSVP." registrationStatus="Registered" codeName="HRK"/>
+      <code name="Greece" definition="Scheme code for GR (Greece) - Greek RTGS (HERMES)." registrationStatus="Registered" codeName="HRM"/>
+      <code name="Hungary" definition="Scheme code for HU (Hungary) - VIBER." registrationStatus="Registered" codeName="HUF"/>
+      <code name="Luxemburg" definition="Scheme code for LU (Luxemburg) - Luxembourg RTGS (LIPS)." registrationStatus="Registered" codeName="LGS"/>
+      <code name="Latvia" definition="Scheme code for LV (Latvia)." registrationStatus="Registered" codeName="LVL"/>
+      <code name="SouthAfrica" definition="Scheme code for ZA (South Africa) - South-African Multiple Option Settlement." registrationStatus="Registered" codeName="MOS"/>
+      <code name="Mauritius" definition="Scheme code for MU (Mauritius)." registrationStatus="Registered" codeName="MUP"/>
+      <code name="Norway" definition="Scheme code for NO (Norway)." registrationStatus="Registered" codeName="NOC"/>
+      <code name="Switzerland" definition="Scheme code for CH (Switzerland)." registrationStatus="Registered" codeName="PCH"/>
+      <code name="Australia" definition="Scheme code for AU (Australia)." registrationStatus="Registered" codeName="PDS"/>
+      <code name="Egypt" definition="Scheme code for EG (Egypt)." registrationStatus="Registered" codeName="PEG"/>
+      <code name="FrancePNS" definition="Scheme code for FR (France)." registrationStatus="Registered" codeName="PNS"/>
+      <code name="Venezuela" definition="Scheme code for Ve (Venezuela)." registrationStatus="Registered" codeName="PVE"/>
+      <code name="SwedenSEC" definition="Scheme code for SE (Sweden) - Swedish Euro RTGS (SEC)." registrationStatus="Registered" codeName="SEC"/>
+      <code name="Slovania" definition="Scheme code for SI (Slovenia)." registrationStatus="Registered" codeName="SIT"/>
+      <code name="SpainES" definition="Scheme code for ES (Spain) - Spanish RTGS (SLBE)." registrationStatus="Registered" codeName="SLB"/>
+      <code name="Portugal" definition="Scheme code for PT (Portugal) - Portuguese RTGS (SPGT)." registrationStatus="Registered" codeName="SPG"/>
+      <code name="SwedenSSK" definition="Scheme code for SE (Sweden) - SEK RTGS (RIX)." registrationStatus="Registered" codeName="SSK"/>
+      <code name="FranceFR" definition="Scheme code for FR (France) - French RTGS (TBF)." registrationStatus="Registered" codeName="TBF"/>
+      <code name="Target" definition="Scheme code for Target." registrationStatus="Registered" codeName="TGT"/>
+      <code name="Netherlands" definition="Scheme code for NL (Netherlands) - Dutch RTGS (TOP)." registrationStatus="Registered" codeName="TOP"/>
+      <code name="Fedwire" definition="Scheme code for the US national real time gross settlement system." registrationStatus="Registered" codeName="FDW"/>
+      <code name="BankOfJapanNet" definition="Scheme code for the Bank of Japan clearing system." registrationStatus="Registered" codeName="BOJ"/>
+      <code name="ForeignExchangeYenClearing" definition="Scheme code for the Foreign Exchange Yen Clearing system (FEYCS). It is the Japanese electronic interbank system for sending guaranteed and unconditional yen payments of FX deals for same day settlement from one settlement bank, on behalf of itself or its customers, to another settlement bank." registrationStatus="Registered" codeName="FEY"/>
+      <code name="Zengin" definition="Scheme code for the Zengin system. The electronic payment system for domestic third party transfers managed by the Tokyo Bankers Association." registrationStatus="Registered" codeName="ZEN"/>
+      <code name="RTGS" definition="Real Time Gross Settlement System. Payment system that simultaneously clears individual transfers and settles them in central bank money." registrationStatus="Registered" codeName="RTG"/>
+      <code name="ACH" definition="Automated Clearing House. Payment system that clears cash transfers and settles the proceeds in a lump sum, usually on a multilateral netting basis." registrationStatus="Registered" codeName="ACH"/>
+      <code name="USChips" definition="CHIPS is the Clearing House Interbank Payment System in the US." registrationStatus="Registered" codeName="CHI"/>
+      <code name="FedNet" definition="FedNet is a link to a Federal Bank account via the internet. FedNet enables checking of account balance, transactions, take print outs of account statement, transfer funds to third party accounts, E-shopping, BSNL Payments, Deposit opening, Deposit Renewal, Request for Demand Draft, Cheque Book etc." registrationStatus="Registered" codeName="FDN"/>
+      <code name="DenmarkDDK" definition="Scheme code for DK (Denmark) - Danish Krone RTGS (KRONOS)." registrationStatus="Registered" codeName="DDK"/>
+      <code name="Albania" definition="Scheme code for AL (Albania) - Albania Interbank Payment System." registrationStatus="Registered" codeName="AIP"/>
+      <code name="SwedenBGC" definition="Scheme code for SE (Sweden) - Sweden BGC Clearing CUG." registrationStatus="Registered" codeName="BCC"/>
+      <code name="Barbados" definition="Scheme code for BB (Barbados) - Barbados RTGS (CBRTGS)." registrationStatus="Registered" codeName="BDS"/>
+      <code name="Bulgaria" definition="Scheme code for BG (Bulgaria) - Bulgaria RTGS." registrationStatus="Registered" codeName="BGN"/>
+      <code name="Bahamas" definition="Scheme code for BS (Bahamas) - Bahamas RTGS." registrationStatus="Registered" codeName="BHS"/>
+      <code name="Botswana" definition="Scheme code for BW (Botswana) - Botswana Interbank Settlement System." registrationStatus="Registered" codeName="BIS"/>
+      <code name="Philippines" definition="Scheme code for PH (Philippines) - Philippines Payment System." registrationStatus="Registered" codeName="BSP"/>
+      <code name="ECB" definition="Scheme code for ECB (European Central Bank) - ECB Payment Mechanism." registrationStatus="Registered" codeName="EPM"/>
+      <code name="USChipsACH" definition="Scheme code for the US CHIPS-ACH." registrationStatus="Registered" codeName="EPN"/>
+      <code name="USFedACH" definition="Scheme code for the US FED-ACH." registrationStatus="Registered" codeName="FDA"/>
+      <code name="Ghana" definition="Scheme code for GH (Ghana) - Ghana Interbank Settlement System (GISS)." registrationStatus="Registered" codeName="GIS"/>
+      <code name="NetherlandsIP" definition="Scheme code for NL (Netherlands) - Netherlands Interpay CUG." registrationStatus="Registered" codeName="INC"/>
+      <code name="Jordan" definition="Scheme code for JO (Jordan) - Jordan RTGS." registrationStatus="Registered" codeName="JOD"/>
+      <code name="Kenya" definition="Scheme code for KE (Kenya) - Kenyan Electronic Payment Settlement System." registrationStatus="Registered" codeName="KPS"/>
+      <code name="SriLanka" definition="Scheme code for LK (Sri Lanka) - Sri Lanka (Lankasettle)." registrationStatus="Registered" codeName="LKB"/>
+      <code name="Singapore" definition="Scheme code for SG (Singapore) - Singapore RTGS (MEPS+)." registrationStatus="Registered" codeName="MEP"/>
+      <code name="Malta" definition="Scheme code for MT (Malta) - Malta Realtime Interbank Settlement System." registrationStatus="Registered" codeName="MRS"/>
+      <code name="Namibia" definition="Scheme code for NA (Namibian) - Namibian Interbank Settlement System." registrationStatus="Registered" codeName="NAM"/>
+      <code name="Angola" definition="Scheme code for AO (Angola) - Angola RTGS." registrationStatus="Registered" codeName="PTR"/>
+      <code name="RomaniaEPO" definition="Scheme code for RO (Romania) - Romanian Electronic Payment Operations RT." registrationStatus="Registered" codeName="ROL"/>
+      <code name="RomaniaGSRS" definition="Scheme code for RO (Romania) - Romanian GSRS." registrationStatus="Registered" codeName="ROS"/>
+      <code name="Chili" definition="Scheme code for CL (Chile) - Chilean Interbank Payment System." registrationStatus="Registered" codeName="SCP"/>
+      <code name="UnitedKingdomGBP" definition="Scheme code for UK (United Kingdom) - CHAPS Sterling RTGS." registrationStatus="Registered" codeName="STG"/>
+      <code name="Thailand" definition="Scheme code for TH (Thailand) - Thailand Payment System (Bahtnet/2)." registrationStatus="Registered" codeName="THB"/>
+      <code name="Tanzania" definition="Scheme code for TZ (Tanzania) - Tanzania Interbank Settlement System (TISS)." registrationStatus="Registered" codeName="TIS"/>
+      <code name="TrinidadAndTobago" definition="Scheme code for TT (Trinidad and Tobago ) - Trinidad and Tobago SAFE-TT." registrationStatus="Registered" codeName="TTD"/>
+      <code name="Uganda" definition="Scheme code for UG (Uganda) - Uganda National Interbank Settlement System." registrationStatus="Registered" codeName="UIS"/>
+      <code name="Zimbabwe" definition="Scheme code for ZW (Zimbabwe) - Zimbabwe Electronic Transfer &amp; Settlement System." registrationStatus="Registered" codeName="ZET"/>
+      <code name="Zambia" definition="Scheme code for ZM (Zambia) - Zambian Interbank Payment &amp;Settlement System." registrationStatus="Registered" codeName="ZIS"/>
+      <code name="Columbia" definition="Scheme code for Columbia (CO) - Colombian ACH CENIT Central Bank Payment System." registrationStatus="Registered" codeName="COP"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CashClearingSystem3Code" definition="Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is to be processed." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.62">
+      <example>ABE</example>
+      <code name="EBAEuro1Step1"/>
+      <code name="Austrian"/>
+      <code name="NewZealand"/>
+      <code name="Azerbaijan"/>
+      <code name="BosniaHerzegovina"/>
+      <code name="Belgium"/>
+      <code name="Finland"/>
+      <code name="Italy"/>
+      <code name="Canada"/>
+      <code name="SpainCAM"/>
+      <code name="Ireland"/>
+      <code name="UnitedKingdom"/>
+      <code name="Denmark"/>
+      <code name="GermanyRTGSPlus"/>
+      <code name="EBAEuro1"/>
+      <code name="GermanyELS"/>
+      <code name="EBAStep1"/>
+      <code name="EBAStep2"/>
+      <code name="Croatia"/>
+      <code name="Greece"/>
+      <code name="Hungary"/>
+      <code name="Luxemburg"/>
+      <code name="Latvia"/>
+      <code name="Mauritius"/>
+      <code name="Norway"/>
+      <code name="Switzerland"/>
+      <code name="Australia"/>
+      <code name="Egypt"/>
+      <code name="FrancePNS"/>
+      <code name="Venezuela"/>
+      <code name="SwedenSEC"/>
+      <code name="Slovania"/>
+      <code name="SpainES"/>
+      <code name="Portugal"/>
+      <code name="SwedenSSK"/>
+      <code name="FranceFR"/>
+      <code name="Target"/>
+      <code name="Netherlands"/>
+      <code name="Fedwire"/>
+      <code name="BankOfJapanNet"/>
+      <code name="ForeignExchangeYenClearing"/>
+      <code name="Zengin"/>
+      <code name="DenmarkDDK"/>
+      <code name="Albania"/>
+      <code name="SwedenBGC"/>
+      <code name="Barbados"/>
+      <code name="Bulgaria"/>
+      <code name="Bahamas"/>
+      <code name="Botswana"/>
+      <code name="Philippines"/>
+      <code name="ECB"/>
+      <code name="USChipsACH"/>
+      <code name="USFedACH"/>
+      <code name="Ghana"/>
+      <code name="NetherlandsIP"/>
+      <code name="Jordan"/>
+      <code name="Kenya"/>
+      <code name="SriLanka"/>
+      <code name="Singapore"/>
+      <code name="Malta"/>
+      <code name="Namibia"/>
+      <code name="Angola"/>
+      <code name="RomaniaEPO"/>
+      <code name="RomaniaGSRS"/>
+      <code name="Chili"/>
+      <code name="UnitedKingdomGBP"/>
+      <code name="Thailand"/>
+      <code name="Tanzania"/>
+      <code name="TrinidadAndTobago"/>
+      <code name="Uganda"/>
+      <code name="SouthAfrica"/>
+      <code name="Zimbabwe"/>
+      <code name="Zambia"/>
+      <code name="USChips"/>
+      <code name="Columbia"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ExternalClearingSystemMemberCode" definition="Specifies the external clearing system member code in the format of character string with a maximum length of 35 characters.&#xD;&#xA;The list of valid codes is an external code list published separately.&#xD;&#xA;External code sets can be downloaded from www.iso20022.org." registrationStatus="Registered" minLength="1" maxLength="35">
+      <example>External Member Code 1</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max34Text" definition="Specifies a character string with a maximum length of 34 characters." registrationStatus="Registered" minLength="1" maxLength="34"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="CashAccountType4Code" definition="Specifies the nature, or use, of the cash account." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.59">
+      <example>CASH</example>
+      <code name="CashPayment"/>
+      <code name="Charges"/>
+      <code name="Commission"/>
+      <code name="Tax"/>
+      <code name="CashIncome"/>
+      <code name="CashTrading"/>
+      <code name="Settlement"/>
+      <code name="Current"/>
+      <code name="Savings"/>
+      <code name="OverNightDeposit"/>
+      <code name="MarginalLending"/>
+      <code name="NonResidentExternal"/>
+      <code name="MoneyMarket"/>
+      <code name="Loan"/>
+      <code name="Salary"/>
+      <code name="Overdraft"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="IBEIIdentifier" definition="International Business Entity Identifier to uniquely identify business entities playing a role in the lifecycle of and events related to a financial instrument. (tentative - to be confirmed)." registrationStatus="Registered" pattern="[A-Z]{2,2}[B-DF-HJ-NP-TV-XZ0-9]{7,7}[0-9]{1,1}" identificationScheme="SWIFT; IBEI">
+      <example>DEXBC823N0</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="BEIIdentifier" definition="Code allocated to a non-financial institution by the ISO 9362 Registration Authority as described in ISO 9362 &quot;Banking - Banking telecommunication messages - Business identifier code (BIC)&quot;." registrationStatus="Obsolete" removalDate="2016-09-09T00:00:00.000+0200" pattern="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}" identificationScheme="SWIFT; BEIIdentifier">
+      <example>USINFRPP</example>
+      <constraint name="BEI" definition="Valid BICs for non-financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consist of eight (8) or eleven (11) contiguous characters."/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="EANGLNIdentifier" definition="Global Location Number. A non-significant reference number used to identify legal entities, functional entities or physical entities according to the European Association for Numbering (EAN) numbering scheme rules. The number is used to retrieve the detailed information linked to it." registrationStatus="Registered" pattern="[0-9]{13,13}" identificationScheme="European Association for Numbering; EAN Global Location Number">
+      <example>7265658971233</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:IdentifierSet" name="DunsIdentifier" definition="Data Universal Numbering System. A unique identification number provided by Dun &amp; Bradstreet to identify an organization." registrationStatus="Registered" pattern="[0-9]{9,9}" identificationScheme="Dun &amp; Bradstreet; DunsIdentifier">
+      <example>578942538</example>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Indicator" name="TrueFalseIndicator" definition="A flag indicating a True or False value." registrationStatus="Registered" meaningWhenTrue="True" meaningWhenFalse="False"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="PaymentStatusCode" definition="Indicates the status of a single payment transaction or of a group of payment transactions." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.96 //@dataDictionary/@topLevelDictionaryEntry.97">
+      <example>ACTC</example>
+      <code name="AcceptedTechnicalValidation" definition="Authentication and syntactical and semantical validation are successful." registrationStatus="Registered" codeName="ACTC"/>
+      <code name="Received" definition="Payment initiation has been received by the receiving agent." registrationStatus="Registered" codeName="RCVD"/>
+      <code name="PartiallyAccepted" definition="A number of transactions have been accepted, whereas another number of transactions have not yet achieved 'accepted' status." registrationStatus="Registered" codeName="PART"/>
+      <code name="Rejected" definition="Payment initiation or individual transaction included in the payment initiation has been rejected." registrationStatus="Registered" codeName="RJCT"/>
+      <code name="Pending" definition="Payment initiation or individual transaction included in the payment initiation is pending. Further checks and status update will be performed." registrationStatus="Registered" codeName="PDNG"/>
+      <code name="AcceptedCustomerProfile" definition="Preceding check of technical validation was successful. Customer profile check was also successful." registrationStatus="Registered" codeName="ACCP"/>
+      <code name="AcceptedSettlementInProcess" definition="All preceding checks such as technical validation and customer profile were successful and therefore the payment initiation has been accepted for execution." registrationStatus="Registered" codeName="ACSP"/>
+      <code name="AcceptedSettlementCompleted" definition="Settlement on the debtor's account has been completed. &#xA;&#xA;Usage: this can be used by the first agent to report to the debtor that the transaction has been completed. Warning: this status is provided for transaction status reasons, not for financial information. It can only be used after bilateral agreement." registrationStatus="Registered" codeName="ACSC"/>
+      <code name="Accepted" definition="Request is accepted." registrationStatus="Registered" codeName="ACPT"/>
+      <code name="AcceptedCancellationRequest" definition="Cancellation is accepted." registrationStatus="Registered" codeName="ACCR"/>
+      <code name="RejectedCancellationRequest" definition="Cancellation request is rejected." registrationStatus="Registered" codeName="RJCR"/>
+      <code name="AcceptedWithChange" definition="Instruction is accepted but a change will be made, such as date or remittance not sent." registrationStatus="Registered" codeName="ACWC"/>
+      <code name="PartiallyAcceptedCancellationRequest" definition="Cancellation is partially accepted." registrationStatus="Registered" codeName="PACR"/>
+      <code name="PendingCancellationRequest" definition="Cancellation request is pending." registrationStatus="Registered" codeName="PDCR"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="PriorityCode" definition="Specifies the priority level of an event." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.86">
+      <example>URGT</example>
+      <code name="Urgent" definition="Priority level is urgent (highest priority possible)." registrationStatus="Registered" codeName="URGT"/>
+      <code name="High" definition="Priority level is high." registrationStatus="Registered" codeName="HIGH"/>
+      <code name="Normal" definition="Priority level is normal." registrationStatus="Registered" codeName="NORM"/>
+      <code name="Low" definition="Priority level is low." registrationStatus="Registered" codeName="LOWW"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max15NumericText" definition="Specifies a numeric string with a maximum length of 15 digits." registrationStatus="Registered" pattern="[0-9]{1,15}"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max105Text" definition="Specifies a character string with a maximum length of 105 characters." registrationStatus="Registered" minLength="1" maxLength="105"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentTypeCode" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.77 //@dataDictionary/@topLevelDictionaryEntry.78">
+      <example>MSIN</example>
+      <code name="MeteredServiceInvoice" definition="Document is an invoice claiming payment for the supply of metered services, for example gas or electricity supplied to a fixed meter." registrationStatus="Registered" codeName="MSIN"/>
+      <code name="CreditNoteRelatedToFinancialAdjustment" definition="Document is a credit note for the final amount settled for a commercial transaction." registrationStatus="Registered" codeName="CNFA"/>
+      <code name="DebitNoteRelatedToFinancialAdjustment" definition="Document is a debit note for the final amount settled for a commercial transaction." registrationStatus="Registered" codeName="DNFA"/>
+      <code name="CommercialInvoice" definition="Document is an invoice." registrationStatus="Registered" codeName="CINV"/>
+      <code name="CreditNote" definition="Document is a credit note." registrationStatus="Registered" codeName="CREN"/>
+      <code name="DebitNote" definition="Document is a debit note." registrationStatus="Registered" codeName="DEBN"/>
+      <code name="HireInvoice" definition="Document is an invoice for the hiring of human resources or renting goods or equipment." registrationStatus="Registered" codeName="HIRI"/>
+      <code name="SelfBilledInvoice" definition="Document is an invoice issued by the debtor." registrationStatus="Registered" codeName="SBIN"/>
+      <code name="RemittanceAdviceMessage" definition="Document is a remittance advice sent separately from the current transaction." registrationStatus="Registered" codeName="RADM"/>
+      <code name="RelatedPaymentInstruction" definition="Document is a linked payment instruction to which the current payment instruction is related, eg, in a cover scenario." registrationStatus="Registered" codeName="RPIN"/>
+      <code name="CommercialContract" definition="Document is an agreement between the parties, stipulating the terms and conditions of the delivery of goods or services." registrationStatus="Registered" codeName="CMCN"/>
+      <code name="ForeignExchangeDealReference" definition="Document is a pre-agreed or pre-arranged foreign exchange transaction to which the payment transaction refers." registrationStatus="Registered" codeName="FXDR"/>
+      <code name="StatementOfAccount" definition="Document is a statement of the transactions posted to the debtor's account at the supplier." registrationStatus="Registered" codeName="SOAC"/>
+      <code name="DispatchAdvice" definition="Document is a dispatch advice." registrationStatus="Registered" codeName="DISP"/>
+      <code name="PurchaseOrder" definition="Document is a purchase order." registrationStatus="Registered" codeName="PUOR"/>
+      <code name="StructuredCommunicationReference" definition="Document is a structured communication reference provided by the creditor to identify the referred transaction." registrationStatus="Registered" codeName="SCOR"/>
+      <code name="BillOfLading" definition="Document is a shipping notice." registrationStatus="Registered" codeName="BOLD"/>
+      <code name="Voucher" definition="Document is an electronic payment document." registrationStatus="Registered" codeName="VCHR"/>
+      <code name="AccountReceivableOpenItem" definition="Document is a payment that applies to a specific source document." registrationStatus="Registered" codeName="AROI"/>
+      <code name="TradeServicesUtilityTransaction" definition="Document is a transaction identifier as assigned by the Trade Services Utility." registrationStatus="Registered" codeName="TSUT"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentType2Code" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.76">
+      <example>MSIN</example>
+      <code name="MeteredServiceInvoice"/>
+      <code name="CreditNoteRelatedToFinancialAdjustment"/>
+      <code name="DebitNoteRelatedToFinancialAdjustment"/>
+      <code name="CommercialInvoice"/>
+      <code name="CreditNote"/>
+      <code name="DebitNote"/>
+      <code name="HireInvoice"/>
+      <code name="SelfBilledInvoice"/>
+      <code name="CommercialContract"/>
+      <code name="StatementOfAccount"/>
+      <code name="DispatchAdvice"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="DocumentType3Code" definition="Specifies a type of financial or commercial document." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.76">
+      <example>RADM</example>
+      <code name="RemittanceAdviceMessage"/>
+      <code name="RelatedPaymentInstruction"/>
+      <code name="ForeignExchangeDealReference"/>
+      <code name="DispatchAdvice"/>
+      <code name="PurchaseOrder"/>
+      <code name="StructuredCommunicationReference"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="TransactionReasonCode" definition="Specifies the reason for a transaction to be rejected, returned or reversed by an instructed agent or somebody acting on behalf of an instructed agent." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.80">
+      <example>AC01</example>
+      <code name="IncorrectAccountNumber" definition="Format of the account number specified is not correct." registrationStatus="Registered" codeName="AC01"/>
+      <code name="NonNumericAccountNumber" definition="Format of the account number specified is non-numeric." registrationStatus="Registered" codeName="AC02"/>
+      <code name="InvalidAccountNumberForClearingCode" definition="Format of the account number specified is not valid for local Sort/National Clearing Code." registrationStatus="Registered" codeName="AC03"/>
+      <code name="ClosedAccountNumber" definition="Account number specified has been closed on the Receiver's books." registrationStatus="Registered" codeName="AC04"/>
+      <code name="InvalidAccountNumberWithInstitution" definition="Account number specified is not a valid account at the Final Agent." registrationStatus="Registered" codeName="AC05"/>
+      <code name="BlockedAccount" definition="Account specified is blocked, prohibiting posting of transactions against it." registrationStatus="Registered" codeName="AC06"/>
+      <code name="ZeroAmount" definition="Specified message amount is equal to zero." registrationStatus="Registered" codeName="AM01"/>
+      <code name="NotAllowedAmount" definition="Specified transaction/message amount is greater than allowed maximum." registrationStatus="Registered" codeName="AM02"/>
+      <code name="NotAllowedCurrency" definition="Specified message amount is in an non processable currency outside of existing agreement." registrationStatus="Registered" codeName="AM03"/>
+      <code name="InsufficientFunds" definition="Amount of funds available to cover specified message amount is insufficient." registrationStatus="Registered" codeName="AM04"/>
+      <code name="Duplication" definition="This message appears to have been duplicated." registrationStatus="Registered" codeName="AM05"/>
+      <code name="TooLowAmount" definition="Specified transaction amount is less than agreed minimum." registrationStatus="Registered" codeName="AM06"/>
+      <code name="BlockedAmount" definition="Amount specified in message has been blocked by regulatory authorities." registrationStatus="Registered" codeName="AM07"/>
+      <code name="ChargeDisagreement" definition="Specified charges amount is not as agreed between sender and receiver." registrationStatus="Registered" codeName="AM08"/>
+      <code name="InconsistentWithEndCustomer" definition="Identification of end customer is not consistent with associated account number. (formerly CreditorConsistency)." registrationStatus="Registered" codeName="BE01"/>
+      <code name="UnknownCreditor" definition="Creditor specified is not known at associated Sort/National Clearing code." registrationStatus="Registered" codeName="BE02"/>
+      <code name="NoLongerValidCreditor" definition="Creditor specified no longer exists in the books." registrationStatus="Registered" codeName="BE03"/>
+      <code name="MissingCreditorAddress" definition="Specification of creditor's address, which is required for payment, is missing/not correct (formerly IncorrectCreditorAddress)." registrationStatus="Registered" codeName="BE04"/>
+      <code name="UnrecognisedInitiatingParty" definition="Party who initiated the message is not recognised by the end customer." registrationStatus="Registered" codeName="BE05"/>
+      <code name="TransactionForbidden" definition="Transaction forbidden on this type of account (formerly NoAgreement)." registrationStatus="Registered" codeName="AG01"/>
+      <code name="InvalidBankOperationCode" definition="Bank Operation code specified in the message is not valid for receiver." registrationStatus="Registered" codeName="AG02"/>
+      <code name="InvalidDate" definition="Invalid date (eg, wrong settlement date)." registrationStatus="Registered" codeName="DT01"/>
+      <code name="NotSpecifiedReason" definition="Reason has not been specified due to sensitivities." registrationStatus="Registered" codeName="MS01"/>
+      <code name="UnknownAccount" definition="Unknown account with institution." registrationStatus="Registered" codeName="PY01"/>
+      <code name="NotUniqueTransactionReference" definition="Transaction reference is not unique within the message." registrationStatus="Registered" codeName="RF01"/>
+      <code name="BankIdentifierIncorrect" definition="Bank identifier code specified in the message has an incorrect format (formerly IncorrectFormatForRoutingCode)." registrationStatus="Registered" codeName="RC01"/>
+      <code name="NonNumericRoutingCode" definition="Routing code specified in the transaction/message is not numeric." registrationStatus="Registered" codeName="RC02"/>
+      <code name="NotValidRoutingCode" definition="Routing code specified in the transaction/message is not valid for local clearing." registrationStatus="Registered" codeName="RC03"/>
+      <code name="ClosedBranch" definition="Routing code specified in the transaction/message refers to a closed branch." registrationStatus="Registered" codeName="RC04"/>
+      <code name="CutOffTime" definition="Associated message was received after agreed processing cut-off time." registrationStatus="Registered" codeName="TM01"/>
+      <code name="CorrespondentBankNotPossible" definition="Correspondent bank not possible." registrationStatus="Registered" codeName="ED01"/>
+      <code name="TransactionReasonNonReportable" definition="Transaction reason non reportable." registrationStatus="Registered" codeName="ED02"/>
+      <code name="BalanceInfoRequested" definition="Balance of payments complementary info is requested." registrationStatus="Registered" codeName="ED03"/>
+      <code name="ChargeDetailsNotCorrect" definition="Charge details not correct." registrationStatus="Registered" codeName="ED04"/>
+      <code name="NotSpecifiedReasonAgentGenerated" definition="Reason has not been specified by agent." registrationStatus="Registered" codeName="MS03"/>
+      <code name="NotSpecifiedReasonCustomerGenerated" definition="Reason has not been specified by end customer." registrationStatus="Registered" codeName="MS02"/>
+      <code name="UnknownEndCustomer" definition="End customer specified is not known at associated Sort/National Bank Code or does no longer exist in the books." registrationStatus="Registered" codeName="BE06"/>
+      <code name="MissingDebtorAddress" definition="Specification of debtor's address, which is required for payment, is missing/not correct." registrationStatus="Registered" codeName="BE07"/>
+      <code name="WrongAmount" definition="Amount received is not the amount agreed or expected." registrationStatus="Registered" codeName="AM09"/>
+      <code name="InvalidControlSum" definition="Sum of instructed amounts does not equal the control sum." registrationStatus="Registered" codeName="AM10"/>
+      <code name="NoMandate" definition="Mandate is cancelled or invalid." registrationStatus="Registered" codeName="MD01"/>
+      <code name="MissingMandatoryInformationInMandate" definition="Mandate related information data required by the scheme is missing." registrationStatus="Registered" codeName="MD02"/>
+      <code name="InvalidFileFormatForOtherReasonThanGroupingIndicator" definition="File format incomplete or invalid." registrationStatus="Registered" codeName="MD03"/>
+      <code name="InvalidFileFormatForGroupingIndicator" definition="File format incorrect in terms of grouping indicator." registrationStatus="Registered" codeName="MD04"/>
+      <code name="RefundRequestByEndCustomer" definition="Return of funds requested by end customer." registrationStatus="Registered" codeName="MD06"/>
+      <code name="EndCustomerDeceased" definition="End customer is deceased." registrationStatus="Registered" codeName="MD07"/>
+      <code name="CollectionNotDue" definition="Creditor or creditor's agent should not have collected the direct debit." registrationStatus="Registered" codeName="MD05"/>
+      <code name="InvalidName" definition="Name provided is not valid." registrationStatus="Registered" codeName="AC07"/>
+      <code name="SettlementFailed" definition="Settlement of the transaction has failed." registrationStatus="Registered" codeName="ED05"/>
+      <code name="Narrative" definition="Reason is provided as narrative information in the additional reason information." registrationStatus="Registered" codeName="NARR"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="TransactionRejectReason2Code" definition="Specifies the reason for a transaction to be rejected or returned by an instructed agent or somebody acting on behalf of an instructed agent." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.79">
+      <example>AC01</example>
+      <code name="IncorrectAccountNumber"/>
+      <code name="ClosedAccountNumber"/>
+      <code name="BlockedAccount"/>
+      <code name="ZeroAmount"/>
+      <code name="NotAllowedAmount"/>
+      <code name="NotAllowedCurrency"/>
+      <code name="InsufficientFunds"/>
+      <code name="Duplication"/>
+      <code name="TooLowAmount"/>
+      <code name="BlockedAmount"/>
+      <code name="InconsistentWithEndCustomer"/>
+      <code name="MissingCreditorAddress"/>
+      <code name="UnrecognisedInitiatingParty"/>
+      <code name="TransactionForbidden"/>
+      <code name="InvalidBankOperationCode"/>
+      <code name="InvalidDate"/>
+      <code name="NotUniqueTransactionReference"/>
+      <code name="BankIdentifierIncorrect"/>
+      <code name="CutOffTime"/>
+      <code name="CorrespondentBankNotPossible"/>
+      <code name="BalanceInfoRequested"/>
+      <code name="NotSpecifiedReasonAgentGenerated"/>
+      <code name="NotSpecifiedReasonCustomerGenerated"/>
+      <code name="UnknownEndCustomer"/>
+      <code name="MissingDebtorAddress"/>
+      <code name="WrongAmount"/>
+      <code name="InvalidControlSum"/>
+      <code name="NoMandate"/>
+      <code name="MissingMandatoryInformationInMandate"/>
+      <code name="InvalidFileFormatForOtherReasonThanGroupingIndicator"/>
+      <code name="InvalidFileFormatForGroupingIndicator"/>
+      <code name="RefundRequestByEndCustomer"/>
+      <code name="EndCustomerDeceased"/>
+      <code name="SettlementFailed"/>
+      <code name="Narrative"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="PaymentMethodCode" definition="Specifies the transfer method that will be used to transfer the cash." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.95">
+      <example>CHK</example>
+      <code name="Cheque" definition="Written order to a bank to pay a certain amount of money from one person to another person." registrationStatus="Registered" codeName="CHK"/>
+      <code name="CreditTransfer" definition="Transfer of an amount of money in the books of the account servicer." registrationStatus="Registered" codeName="TRF"/>
+      <code name="DirectDebit" definition="Collection of an amount of money from the debtor's bank account by the creditor. The amount of money and dates of collections may vary." registrationStatus="Registered" codeName="DD"/>
+      <code name="TransferAdvice" definition="Transfer of an amount of money in the books of the account servicer. An advice should be sent back to the account owner." registrationStatus="Registered" codeName="TRA"/>
+      <code name="Direct" definition="Direct method." registrationStatus="Registered" codeName="DIRE"/>
+      <code name="Classical" definition="Classical method." registrationStatus="Registered" codeName="CLAS"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ServiceLevelCode" definition="Specifies the pre-agreed level of service between the parties." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.83">
+      <example>SDVA</example>
+      <code name="SameDayValue" definition="Payment must be executed with same day value to the creditor." registrationStatus="Registered" codeName="SDVA"/>
+      <code name="SingleEuroPaymentsArea" definition="Payment must be executed following the Single Euro Payments Area scheme." registrationStatus="Registered" codeName="SEPA"/>
+      <code name="EBAPriorityService" definition="Transaction must be processed according to the EBA&#xA;Priority Service." registrationStatus="Registered" codeName="PRPT"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ServiceLevel1Code" definition="Specifies the pre-agreed level of service between the parties." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.82">
+      <example>SEPA</example>
+      <code name="SingleEuroPaymentsArea"/>
+      <code name="SameDayValue"/>
+      <code name="EBAPriorityService"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ClearingChannelCode" definition="Specifies the clearing channel for the routing of the transaction, as part of the payment type identification." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.85">
+      <example>RTGS</example>
+      <code name="RealTimeGrossSettlementSystem" definition="Clearing channel is a real-time gross settlement system." registrationStatus="Registered" codeName="RTGS"/>
+      <code name="RealTimeNetSettlementSystem" definition="Clearing channel is a real-time net settlement system." registrationStatus="Registered" codeName="RTNS"/>
+      <code name="MassPaymentNetSystem" definition="Clearing channel is a mass payment net settlement system." registrationStatus="Registered" codeName="MPNS"/>
+      <code name="BookTransfer" definition="Payment through internal book transfer." registrationStatus="Registered" codeName="BOOK"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="ClearingChannel2Code" definition="Specifies the clearing channel for the routing of the transaction, as part of the payment type identification." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.84">
+      <example>RTGS</example>
+      <code name="RealTimeGrossSettlementSystem"/>
+      <code name="RealTimeNetSettlementSystem"/>
+      <code name="MassPaymentNetSystem"/>
+      <code name="BookTransfer"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="Priority2Code" definition="Specifies the priority level of an event." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.73">
+      <example>HIGH</example>
+      <code name="High"/>
+      <code name="Normal"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="ExternalLocalInstrumentCode_Obsolete" definition="Specifies the external local instrument code in the format of character string with a maximum length of 35 characters.&#xA;The list of valid codes is an external code list published separately." registrationStatus="Obsolete" removalDate="2016-10-10T00:00:00.000+0200" minLength="1" maxLength="35"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="PaymentCategoryPurposeCode" definition="Specifies the type of transaction that resulted in the payment." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.89">
+      <example>INTC</example>
+      <code name="IntraCompanyPayment" definition="Transaction is an intra-company payment, ie, a payment between two companies belonging to the same group." registrationStatus="Registered" codeName="INTC"/>
+      <code name="TradeSettlementPayment" definition="Transaction is related to settlement of a trade, eg a foreign exchange deal or a securities transaction." registrationStatus="Registered" codeName="CORT"/>
+      <code name="SalaryPayment" definition="Transaction is the payment of salaries." registrationStatus="Registered" codeName="SALA"/>
+      <code name="TreasuryPayment" definition="Transaction is related to treasury operations." registrationStatus="Registered" codeName="TREA"/>
+      <code name="CashManagementTransfer" definition="Transaction is a general cash management instruction." registrationStatus="Registered" codeName="CASH"/>
+      <code name="Dividend" definition="Transaction is the payment of dividends." registrationStatus="Registered" codeName="DIVI"/>
+      <code name="GovernmentPayment" definition="Transaction is a payment to or from a government department." registrationStatus="Registered" codeName="GOVT"/>
+      <code name="Interest" definition="Transaction is the payment of interest." registrationStatus="Registered" codeName="INTE"/>
+      <code name="Loan" definition="Transaction is related to the transfer of a loan to a borrower." registrationStatus="Registered" codeName="LOAN"/>
+      <code name="PensionPayment" definition="Transaction is the payment of pension." registrationStatus="Registered" codeName="PENS"/>
+      <code name="Securities" definition="Transaction is the payment of securities." registrationStatus="Registered" codeName="SECU"/>
+      <code name="SocialSecurityBenefit" definition="Transaction is a social security benefit, ie payment made by a government to support individuals." registrationStatus="Registered" codeName="SSBE"/>
+      <code name="TaxPayment" definition="Transaction is the payment of taxes." registrationStatus="Registered" codeName="TAXS"/>
+      <code name="ValueAddedTaxPayment" definition="Transaction is the payment of value added tax." registrationStatus="Registered" codeName="VATX"/>
+      <code name="SupplierPayment" definition="Transaction is related to a payment to a supplier." registrationStatus="Registered" codeName="SUPP"/>
+      <code name="Hedging" definition="Transaction is related to the payment of a hedging operation." registrationStatus="Registered" codeName="HEDG"/>
+      <code name="Trade" definition="Transaction is related to the payment of a trade transaction." registrationStatus="Registered" codeName="TRAD"/>
+      <code name="WithHolding" definition="Transaction is the payment of withholding tax." registrationStatus="Registered" codeName="WHLD"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="PaymentCategoryPurpose1Code" definition="Specifies the type of transaction that resulted in the payment." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.88">
+      <example>CORT</example>
+      <code name="TradeSettlementPayment"/>
+      <code name="SalaryPayment"/>
+      <code name="TreasuryPayment"/>
+      <code name="CashManagementTransfer"/>
+      <code name="Dividend"/>
+      <code name="GovernmentPayment"/>
+      <code name="Interest"/>
+      <code name="Loan"/>
+      <code name="PensionPayment"/>
+      <code name="Securities"/>
+      <code name="SocialSecurityBenefit"/>
+      <code name="SupplierPayment"/>
+      <code name="TaxPayment"/>
+      <code name="Trade"/>
+      <code name="ValueAddedTaxPayment"/>
+      <code name="Hedging"/>
+      <code name="IntraCompanyPayment"/>
+      <code name="WithHolding"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="SequenceTypeCode" definition="Specifies the type of the current transaction that belongs to a sequence of transactions." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.91">
+      <example>FRST</example>
+      <code name="First" definition="First collection of a series of direct debit instructions." registrationStatus="Registered" codeName="FRST"/>
+      <code name="Recurring" definition="Direct debit instruction where the debtor's authorisation is used for regular direct debit transactions initiated by the creditor." registrationStatus="Registered" codeName="RCUR"/>
+      <code name="Final" definition="Final collection of a series of direct debit instructions." registrationStatus="Registered" codeName="FNAL"/>
+      <code name="OneOff" definition="Direct debit instruction where the debtor's authorisation is used to initiate one single direct debit transaction." registrationStatus="Registered" codeName="OOFF"/>
+      <code name="Represented" definition="Collection used to re-present previously reversed or returned direct debit transactions." registrationStatus="Registered" codeName="RPRE"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="SequenceType1Code" definition="Specifies the type of the current transaction that belongs to a sequence of transactions. Specific attributes are required for the first, the recurring and the last instructions of a series, as well as the specification of a unique transaction (one-off direct debit transaction)." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.90">
+      <example>FRST</example>
+      <code name="First"/>
+      <code name="Recurring"/>
+      <code name="Final"/>
+      <code name="OneOff"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:Text" name="Max1025Text" definition="Specifies a character string with a maximum length of 1025 characters." registrationStatus="Registered" minLength="1" maxLength="1025"/>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="SettlementMethodCode" definition="Specifies the method used to settle the payment instruction." registrationStatus="Registered" derivation="//@dataDictionary/@topLevelDictionaryEntry.94">
+      <example>INDA</example>
+      <code name="InstructedAgent" definition="Settlement is done by the agent instructed to execute a payment instruction." registrationStatus="Registered" codeName="INDA"/>
+      <code name="InstructingAgent" definition="Settlement is done by the agent instructing and forwarding the payment to the next party in the payment chain." registrationStatus="Registered" codeName="INGA"/>
+      <code name="CoverMethod" definition="Settlement is done through a cover payment." registrationStatus="Registered" codeName="COVE"/>
+      <code name="ClearingSystem" definition="Settlement is done through a payment clearing system." registrationStatus="Registered" codeName="CLRG"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="SettlementMethod1Code" definition="Specifies the method used to settle the credit transfer instruction." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.93">
+      <example>INDA</example>
+      <code name="InstructedAgent"/>
+      <code name="InstructingAgent"/>
+      <code name="CoverMethod"/>
+      <code name="ClearingSystem"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="PaymentMethod4Code" definition="Specifies the transfer method that will be used to transfer an amount of money." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.81">
+      <example>CHK</example>
+      <code name="Cheque"/>
+      <code name="CreditTransfer"/>
+      <code name="DirectDebit"/>
+      <code name="TransferAdvice"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="TransactionGroupStatus1Code" definition="Specifies the status of a group of payment transactions." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.72">
+      <example>ACTC</example>
+      <code name="AcceptedTechnicalValidation"/>
+      <code name="Received"/>
+      <code name="PartiallyAccepted"/>
+      <code name="Rejected"/>
+      <code name="Pending"/>
+      <code name="AcceptedCustomerProfile"/>
+      <code name="AcceptedSettlementInProcess"/>
+      <code name="AcceptedSettlementCompleted"/>
+      <code name="AcceptedCancellationRequest"/>
+      <code name="AcceptedWithChange"/>
+    </topLevelDictionaryEntry>
+    <topLevelDictionaryEntry xsi:type="iso20022:CodeSet" name="TransactionIndividualStatus1Code" definition="Specifies the status of a single payment transaction." registrationStatus="Registered" trace="//@dataDictionary/@topLevelDictionaryEntry.72">
+      <example>ACTC</example>
+      <code name="AcceptedTechnicalValidation"/>
+      <code name="Rejected"/>
+      <code name="Pending"/>
+      <code name="AcceptedCustomerProfile"/>
+      <code name="AcceptedSettlementInProcess"/>
+      <code name="AcceptedSettlementCompleted"/>
+      <code name="AcceptedCancellationRequest"/>
+      <code name="AcceptedWithChange"/>
+    </topLevelDictionaryEntry>
+  </dataDictionary>
+  <businessProcessCatalogue>
+    <topLevelCatalogueEntry xsi:type="iso20022:BusinessArea" name="Payments Initiation - Archive - master" definition="Messages that support the initiation of a payment from the ordering customer to a financial institution that services a cash account and reporting its status." code="pain">
+      <messageDefinition name="PaymentStatusReportV02" definition="Scope&#xD;&#xA;The PaymentStatusReport message is sent by an instructed agent to the previous party in the payment chain. It is used to inform this party about the positive or negative status of an instruction (either single or file). It is also used to report on a pending instruction.&#xD;&#xA;Usage&#xD;&#xA;The PaymentStatusReport message is exchanged between an agent and a non-financial institution customer to provide status information on instructions previously sent. Its usage will always be governed by a bilateral agreement between the agent and the non-financial institution customer.&#xD;&#xA;The PaymentStatusReport message can be used to provide information about the status (e.g. rejection, acceptance) of the initiation of a credit transfer, a direct debit, as well as on the initiation of other customer instructions (e.g. PaymentCancellationRequest).&#xD;&#xA;The PaymentStatusReport message refers to the original instruction(s) by means of references only or by means of references and a set of elements from the original instruction.&#xD;&#xA;The PaymentStatusReport message can be used in domestic and cross-border scenarios.&#xD;&#xA;The PaymentStatusReport message exchanged between agents and non-financial institution customers is identified in the schema as follows: urn:iso:std:iso:20022:tech:xsd:pain.002.001.02." registrationStatus="Registered" xmlName="pain.002.001.02" xmlTag="pain.002.001.02">
+        <constraint name="GroupAndTransactionStatus1Rule" definition="If OriginalGroupInformationAndStatus/GroupStatus is present and is equal to ACTC, ACCP, ACSP or ACSC, ACCR or ACWC, then TransactionInformationAndStatus/TransactionStatus must be different from RJCT."/>
+        <constraint name="GroupAndTransactionStatus2Rule" definition="If OriginalGroupInformationAndStatus/GroupStatus is present and is equal to PDNG, then TransactionInformationAndStatus/TransactionStatus must be different from RJCT."/>
+        <constraint name="GroupAndTransactionStatus3Rule" definition="If OriginalGroupInformationAndStatus/GroupStatus is present and is equal to RJCT, then TransactionInformationAndStatus/TransactionStatus must be different from ACTC, ACCP, ACSP, ACSC, ACCR, ACWC or PDNG."/>
+        <constraint name="GroupAndTransactionStatus4Rule" definition="If OriginalGroupInformationAndStatus/GroupStatus is present and is equal to RCVD, then TransactionInformationAndStatus/TransactionStatus is not allowed."/>
+        <constraint name="InstructedAgentRule" definition="GroupHeader/InstructedAgent is not allowed."/>
+        <constraint name="InstructingAgentRule" definition="GroupHeader/InstructingAgent is not allowed."/>
+        <messageBuildingBlock name="GroupHeader" definition="Set of characteristics shared by all individual transactions included in the status report message." maxOccurs="1" minOccurs="1" xmlTag="GrpHdr" complexType="//@dataDictionary/@topLevelDictionaryEntry.35"/>
+        <messageBuildingBlock name="OriginalGroupInformationAndStatus" definition="Original group information concerning the group of transactions, to which the status report message refers to." maxOccurs="1" minOccurs="1" xmlTag="OrgnlGrpInfAndSts" complexType="//@dataDictionary/@topLevelDictionaryEntry.39"/>
+        <messageBuildingBlock name="TransactionInformationAndStatus" definition="Information concerning the original transactions, to which the status report message refers." xmlTag="TxInfAndSts" complexType="//@dataDictionary/@topLevelDictionaryEntry.41"/>
+        <messageDefinitionIdentifier businessArea="pain" messageFunctionality="002" flavour="001" version="02"/>
+      </messageDefinition>
+    </topLevelCatalogueEntry>
+    <topLevelCatalogueEntry xsi:type="iso20022:BusinessArea" name="Payments Clearing and Settlement - Archive - master" definition="Messages that support the clearing and settlement processes for payment transactions between financial institutions." code="pacs">
+      <messageDefinition name="PaymentStatusReportV02" definition="Scope&#xD;&#xA;The PaymentStatusReport message is sent by an instructed agent to the previous party in the payment chain. It is used to inform this party about the positive or negative status of an instruction (either single or file). It is also used to report on a pending instruction.&#xD;&#xA;Usage&#xD;&#xA;The PaymentStatusReport message is exchanged between agents to provide status information about instructions previously sent. Its usage will always be governed by a bilateral agreement between the agents.&#xD;&#xA;The PaymentStatusReport message can be used to provide information about the status (e.g. rejection, acceptance) of a credit transfer instruction, a direct debit instruction, as well as other intra-agent instructions (e.g. PaymentCancellationRequest).&#xD;&#xA;The PaymentStatusReport message refers to the original instruction(s) by means of references only or by means of references and a set of elements from the original instruction.&#xD;&#xA;The PaymentStatusReport message can be used in domestic and cross-border scenarios.&#xD;&#xA;The PaymentStatusReport message exchanged between agents is identified in the schema as follows: &#xA;urn:iso:std:iso:20022:tech:xsd:pacs.002.001.02&#xD;." registrationStatus="Registered" xmlName="pacs.002.001.02" xmlTag="pacs.002.001.02">
+        <constraint name="GroupAndTransactionStatus1Rule" definition="If OriginalGroupInformationAndStatus/GroupStatus is present and is equal to ACTC, ACCP, ACSP or ACSC, ACCR or ACWC, then TransactionInformationAndStatus/TransactionStatus must be different from RJCT.&#xA;."/>
+        <constraint name="GroupAndTransactionStatus2Rule" definition="If OriginalGroupInformationAndStatus/GroupStatus is present and is equal to PDNG, then TransactionInformationAndStatus/TransactionStatus must be different from RJCT.&#xA;."/>
+        <constraint name="GroupAndTransactionStatus3Rule" definition="If OriginalGroupInformationAndStatus/GroupStatus is present and is equal to RJCT, then TransactionInformationAndStatus/TransactionStatus must be different from ACTC, ACCP, ACSP, ACSC, ACCR, ACWC or PDNG. &#xA;."/>
+        <constraint name="GroupAndTransactionStatus4Rule" definition="If OriginalGroupInformationAndStatus/GroupStatus is present and is equal to RCVD, then TransactionInformationAndStatus/TransactionStatus is not allowed.&#xA;."/>
+        <constraint name="InstructedAgentRule" definition="If GroupHeader/InstructedAgent is present, then TransactionInformationAndStatus/InstructedAgent is not allowed.&#xA;."/>
+        <constraint name="InstructingAgentRule" definition="If GroupHeader/InstructingAgent is present, then TransactionInformationAndStatus/InstructingAgent is not allowed.&#xA;&#xA;."/>
+        <constraint name="ForwardingAgentRule" definition="GroupHeader/ForwardingAgent is not allowed.&#xA;&#xA;."/>
+        <constraint name="InitiatingPartyRule" definition="GroupHeader/InitiatingParty is not allowed.&#xA;&#xA;."/>
+        <constraint name="CreditorAgentRule" definition="GroupHeader/CreditorAgent is not allowed."/>
+        <constraint name="DebtorAgentRule" definition="GroupHeader/DebtorAgent is not allowed.&#xA;&#xA;."/>
+        <messageBuildingBlock name="GroupHeader" definition="Set of characteristics shared by all individual transactions included in the message." maxOccurs="1" minOccurs="1" xmlTag="GrpHdr" complexType="//@dataDictionary/@topLevelDictionaryEntry.35"/>
+        <messageBuildingBlock name="OriginalGroupInformationAndStatus" definition="Original group information concerning the group of transactions, to which the message refers to." maxOccurs="1" minOccurs="1" xmlTag="OrgnlGrpInfAndSts" complexType="//@dataDictionary/@topLevelDictionaryEntry.39"/>
+        <messageBuildingBlock name="TransactionInformationAndStatus" definition="Information concerning the original transactions, to which the status report message refers." xmlTag="TxInfAndSts" complexType="//@dataDictionary/@topLevelDictionaryEntry.41"/>
+        <messageDefinitionIdentifier businessArea="pacs" messageFunctionality="002" flavour="001" version="02"/>
+      </messageDefinition>
+    </topLevelCatalogueEntry>
+    <topLevelCatalogueEntry xsi:type="iso20022:BusinessProcess" name="BUSINESSPROCESS_FOR_ROLES">
+      <businessRole name="OrderGiver" definition="Firm which instructs an order, also known as the ordering firm or orderer."/>
+      <businessRole name="Trustee" definition="Individual or institution who holds or manages assets for the benefit of another."/>
+      <businessRole name="AffirmingParty" definition="Party which affirms the trade."/>
+      <businessRole name="ExecutingBroker" definition="Financial institution that partners with the investment manager to communicate details, execute modifications and settle financial instrument transactions. The executing broker generally executes the trade in the local market."/>
+      <businessRole name="InstitutionalInvestor" definition="Pension funds, mutual funds, money managers, insurance company, investment banks, commercial trusts, endowment funds, hedge funds, accountable for high volumes of trades, moving large blocks of shares on the stock market's movements."/>
+      <businessRole name="PrimeBroker" definition="Financial insitution that acts as settlement agent, provides custody for assets, provides financing for leverage, and prepares daily account statements for its clients, who are money managers, hedge funds, market makers, arbitrageurs, specialists and other professional investors."/>
+      <businessRole name="Underwriter" definition="Company or other entity that administers the public issuance and distribution of securities from a corporation or other issuing body."/>
+      <businessRole name="CentralMatchingUtility" definition="Mediates communication between the broker/dealer and investment manager to exchange trade details, match settlement criteria and confirm completion of financial instrument transactions. The Central Matching Utility (CMU) may be operated as a separate utility or as part of another market utility, for example, a Central Securities Depository (CSD)."/>
+      <businessRole name="NonClearingMember" definition="Party (an exchange member firm) that chooses not to clear transactions, and uses/subcontracts a general clearing member to access the central counterparty ’s services. All trades must be cleared through a clearing member."/>
+      <businessRole name="ClearingMember" definition="Party that is a member of a clearing house. All trades must be settled through a clearing member. There are two types of clearing members:&#xD;&#xA;&#xD;&#xA;- a general clearing member is able to settle its own obligations as well as those of clients. However, so-called general clearing members may settle both their own obligations and those of their customers.&#xD;&#xA;- a direct clearing member is able to settle only its own obligations.&#xD;&#xA;&#xD;&#xA;"/>
+      <businessRole name="MasterTerminalManager" definition="Party which is responsible for the point of interaction (POI), and has the control of the access rights." registrationStatus="Registered"/>
+      <businessRole name="TerminalManager" definition="Party which is responsible for one security domain of the point of interaction (POI) application. The master terminal manager (MTM) delegates the necessary access rights for the terminal manager (TM) configuration tasks." registrationStatus="Registered"/>
+      <businessRole name="Buyer" definition="Party which acquires, or agrees to acquire, ownership (in case of goods), or benefit or usage (in case of services), in exchange for money or other consideration under a contract of sale."/>
+      <businessRole name="BuyersBank" definition="Financial institution that holds the buyer's account."/>
+      <businessRole name="Seller" definition="Entity that makes, or offers or contracts to make, a sale to an actual or potential buyer."/>
+      <businessRole name="SellersBank" definition="Financial institution that holds the seller's account."/>
+      <businessRole name="Acquirer" definition="Party in contractual relation with merchants and card schemes accepting payments, that acquires card payment from the merchant, forwards the transaction to the relevant card issuer, and makes payments to the merchant." registrationStatus="Registered"/>
+      <businessRole name="CardAcceptor" definition="Party accepting the card and presenting transaction data to the acquirer." registrationStatus="Registered"/>
+      <businessRole name="Cardholder" definition="Party who presents the card to the merchant for provision of goods or services. The cardholder signs the agreement with the card issuer to use a card linked to an account." registrationStatus="Registered"/>
+      <businessRole name="Merchant" definition="Party who provides goods or services at one or several sites (physical or virtual). The merchant signs the acquiring agreement with the acquirer." registrationStatus="Registered"/>
+      <businessRole name="CreditorAgent" definition="Financial institution servicing an account for the Creditor."/>
+      <businessRole name="CreditorSendingParty" definition="Party initiating the payment request to an agent. In the payment request context, this can either be the creator, or a party that initiates the payment request on behalf of the creditor."/>
+      <businessRole name="DebtorAgent" definition="Financial institution servicing an account for the Debtor."/>
+      <businessRole name="DebtorReceivingParty" definition="The Debtor himself or a party receiving the Creditor Payment Activation Request on behalf of the Debtor."/>
+      <businessRole name="CollateralGiver" definition="Entity that is associated with the collateral agreement and that will deliver collateral to secure an obligation vis-à-vis the other party (the collateral taker)."/>
+      <businessRole name="CollateralTaker" definition="Entity that is associated with the collateral agreement and that will receive collateral from the other party (the collateral giver)."/>
+      <businessRole name="CAAccountServicer" registrationStatus="Registered"/>
+      <businessRole name="CAAccountOwner" registrationStatus="Registered"/>
+      <businessRole name="SettlementAgent" definition="Party that provides settlement, custody, and accounting services for its own, or someone else's, assets." registrationStatus="Registered"/>
+      <businessRole name="GlobalSettlementAgent" definition="Party that holds another party's inventory of financial instruments, and effects or receives deliveries versus payment, or free of payment. Deliveries, receipts, and payments may be effected within the facilities of the global settlement agent, or within the facilities of a local settlement agent, and directed by the global settlement agent. A global settlement agent may be a custodian and/or a clearing broker." registrationStatus="Registered"/>
+      <businessRole name="LocalSettlementAgent" definition="Party that holds a portion of another party's inventory of financial instruments within a location or market, effects or receives local deliveries versus payment, or free of payment, as directed by the global settlement agent. A local settlement agent may be a local custodian and/or a local clearing broker." registrationStatus="Registered"/>
+      <businessRole name="InterestedAgent" definition="Party that receives information from other parties about transactions that are being processed, and performs functions such as regulatory oversight and accounting." registrationStatus="Registered"/>
+      <businessRole name="Regulator" definition="Government agency, or a self-regulated body, that sets the rules for the regulation of the market, as well as the relationship between the different parties in the market." registrationStatus="Registered"/>
+      <businessRole name="Investor" definition="Party, either an individual or organisation, whose assets are being invested." registrationStatus="Registered"/>
+      <businessRole name="MarketMaker" definition="Party that makes a market in one or more specific instruments. May frequently adjust or revise the published quote depending on market conditions but may be prohibited from withdrawing it. Will often function within an organized market, eg, a stock exchange, in which case it's quotes and trades are made within the context of the market's rules and membership criteria.&#xD;&#xA;To make a market in an instrument, a party must extend a continuous offer to buy or sell financial instruments with any qualified counterparty at a price quote published by the party, without respect to the identity of the qualified counterparty." registrationStatus="Registered"/>
+      <businessRole name="TradingParty" definition="Party that plays an active role in planning and executing the transactions that create or liquidate investments of the investors assets, or that move the investor's assets from one investment to another. A trading party is a trade instructor, an investment decision-maker, a post trade administrator, or a trader. In the context of treasury, it is the party negotiates and executes the treasury transaction." registrationStatus="Registered"/>
+      <businessRole name="InvestmentDecisionMaker" definition="Individual investor that makes its own investment decision, a financial analyst that advises the investor, or a portfolio manager that has received the investor's cash to be invested. It decides upon an investment strategy for the investor's assets." registrationStatus="Registered"/>
+      <businessRole name="TradeInstructor" definition="Party that decides upon one or more specific trades to follow the investment decision maker's strategy. This may be an individual within an investment firm, that selects a market in which to execute the investment decision maker's orders, and adds instructions for hedging and leveraging." registrationStatus="Registered"/>
+      <businessRole name="PostTradeAdministrator" definition="Party ensuring thatall the details of the trade have been collected and reported, as required to all parties involved in the trade transaction including counterparties, the investor, and settlement parties." registrationStatus="Registered"/>
+      <businessRole name="Trader" definition="Party that interacts with counterparties in the context of a market (that is, an exchange, network, or over-the-counter network), to execute trades." registrationStatus="Registered"/>
+      <businessRole name="Infrastructure" definition="Party that provides, through common membership, services to create a fair and open process for the execution of transactions between trading parties, and the creation of settlement obligations." registrationStatus="Registered"/>
+      <businessRole name="ConfirmationParty" definition="Infrastructure that issues trade confirmations, receives trade affirmations, matches allocations to confirmations and confirmations to instructions, and generates standing or special instructions to create settlement instructions." registrationStatus="Registered"/>
+      <businessRole name="CentralCounterparty" definition="Infrastructure that is very often a component of a clearinghouse, and facilitates clearing and settlement for its members by standing between the buyer and the seller of a trade. It may net transactions, and substitutes itself as a settlement counterparty to each position." registrationStatus="Registered">
+        <semanticMarkup type="BUSINESSCOMMENT">
+          <elements name="comment" value="Controls the Custody activities for one market."/>
+        </semanticMarkup>
+        <semanticMarkup type="ADMINCOMMENT">
+          <elements name="comment" value="Controls the Custody activities for one market."/>
+        </semanticMarkup>
+      </businessRole>
+      <businessRole name="CentralSecuritiesDepository" definition="Infrastructure that, holds or controls, the holding of physical or dematerialised financial instruments belonging to all, or a large portion of, the investors in a securities market. This effects the centralised transfer of ownership of such securities by entries on its books and records." registrationStatus="Registered"/>
+      <businessRole name="SystemTransactionAdministrator" definition="In a central system, the entity or neutral body, in charge of providing services to the system's members. It is in charge of performing specified tasks on behalf and under the responsibility of the system's direct members. It can be a matching engine, a settlement engine, or a financial institution. It also maintains accounts or netting positions for the direct members of the system, registers transactions, performs checks and validations, and manages the settlement cycle or other value added processes, as specified in the functional specifications of the system." registrationStatus="Registered"/>
+      <businessRole name="ThirdParty" definition="Party that is a customer of either a direct or indirect system member. It is not known by the system transaction administrator, and does not have any liability nor rights, vis-a-vis the system." registrationStatus="Registered"/>
+      <businessRole name="SystemMember" definition="Party that is entitled to make full or partial use of the system transaction administrator, to make it perform business processes on its behalf. A member can submit transactions, and request and/or receive information. A member can be a direct or indirect member." registrationStatus="Registered"/>
+      <businessRole name="SystemDirectMember" definition="Party that is a member, and granted full access to the functions of the system transaction administrator. A direct member owns an account with the system transaction administrator and is entitled to input transactions on its own behalf and on behalf of sponsored indirect members or customers.&#xD;&#xA;It is ultimately responsible for any financial liability due to its membership level. All business processes performed by the system transaction administrator are made under the financial responsibility of the direct members." registrationStatus="Registered"/>
+      <businessRole name="SystemIndirectMember" definition="Party that is sponsored by a direct member, and has limited access to the system transaction administrator functions. An indirect member does not own an account with the system transaction administrator, and can only submit transactions for settlement on its direct member account. Access to information and functions offered by the system transaction administrator are dependent upon the system considered." registrationStatus="Registered"/>
+      <businessRole name="Agent" definition="Party that acts on behalf, or upon request, of another party." registrationStatus="Registered"/>
+      <businessRole name="AgreementParty" definition="Party involved in a - usually commercial (buying, selling, acquiring, providing products or services) - relationship, which materialises in an agreement with a counterparty. Both counterparties are also referred to as agreement parties." registrationStatus="Registered"/>
+      <businessRole name="InitiatingParty" definition="Party initiating the payment to an agent. In the payment context, this can either be the debtor (in a credit transfer), the creditor (in a direct debit), or a party that initiates the payment on behalf of the debtor or creditor. In the context of treasury, the party that instructs the trading party to execute a treasury deal on its behalf." registrationStatus="Registered"/>
+      <businessRole name="DebitParty" definition="Party that gives cash. In the payment chain, it may be an agent or the debtor. Furthermore, for each pair of consecutive parties in the payment chain, one party always plays the role of the debit party, and the other, the role of the credit party." registrationStatus="Registered"/>
+      <businessRole name="CreditParty" definition="Party that receives the cash. In the payment chain, it may be an agent or the creditor. Furthermore, for each pair of consecutive parties in the payment chain, one party always plays the role of the debit party, and the other, the role of the credit party." registrationStatus="Registered"/>
+      <businessRole name="PaymentClearingAgent" definition="Agent that instructs the next party in the payment chain to carry out the payment." registrationStatus="Registered"/>
+      <businessRole name="PaymentSettlementAgent" definition="Agent that executes the cash transfer upon the request of either an agreement party, or a clearing agent." registrationStatus="Registered"/>
+      <businessRole name="FinalAgent" definition="Financial institution that receives the payment transaction on behalf of an account owner, or other nominated party, and credits the account." registrationStatus="Registered"/>
+      <businessRole name="FirstAgent" definition="Financial institution that receives the payment transaction from the account owner, or other authorised party, and processes the instruction." registrationStatus="Registered"/>
+      <businessRole name="ForwardingAgent" definition="Party that receives the payment instruction from the originator and forwards it to the first agent in the payment chain." registrationStatus="Registered"/>
+      <businessRole name="Creditor" definition="Party that receives an amount of money from the debtor. In the context of the payment model, the creditor is also the credit account owner." registrationStatus="Registered"/>
+      <businessRole name="Debtor" definition="Party that owes an amount of money to the creditor. In the context of the payment model, the debtor is also the debit account owner." registrationStatus="Registered"/>
+      <businessRole name="FinalParty" definition="Party that is the ultimate beneficiary of the credit transfer. The final party is mentioned when different from the creditor, whose account will be credited by the final agent." registrationStatus="Registered"/>
+      <businessRole name="OriginatingParty" definition="Party that owes an amount of money to the creditor, eg, for the receipt of goods and services. This party orders the payment, and may or may not be the debtor." registrationStatus="Registered"/>
+      <businessRole name="TransferAgent" definition="Party appointed by the Fund Management Company. It updates records of investor accounts to reflect the daily investor purchases, redemptions, switches, transfers, and re-registrations. It ensures the timely settlement of transactions, and may provide tax information to the investor and/or to its intermediaries. It may calculate, collect, and rebate commissions. It prepares and distributes confirmations reflecting transactions, resulting in unit or cash account movements to the investor or the investor's intermediary. It responds to inquiries concerning account status, and processes the income distribution." registrationStatus="Registered"/>
+      <businessRole name="Intermediary" definition="Party that provides services to investors relating to financial products. These services may include some, or all of, provision of information and advice on products, placement of investment orders, transmission of payment, custody of assets, and the administration of rights and benefits. In the specific framework of investment funds industry, an intermediary may present information about Funds to potential investors, and solicit orders for the Fund. It may facilitate the transmission of the orders and information from/to the investors and/or other intermediaries. The intermediary receives commission from the Fund and/or fees from the investor." registrationStatus="Registered"/>
+      <businessRole name="Custodian" definition="Party that safekeeps and administers assets on behalf of the owner." registrationStatus="Registered"/>
+      <businessRole name="PayingAgent" definition="Agent that executes the payment. In the context of the Funds industry, the paying agent is the legal representative of the Fund locally. It may pay out dividends, and collects money for the purchase of funds when a client deals directly with the Fund and/or when a client deals with bearer shares. It pays out the redemption of the Fund, may distribute information about the fund, and provides legal information about the Fund." registrationStatus="Registered"/>
+      <businessRole name="FundAccountant" definition="Party that keeps accounting records of the available assets and liabilities of the Fund. It calculates dealing prices, the Net Asset Value (NAV) of the Fund, and may provide fund performance and tax data." registrationStatus="Registered"/>
+      <businessRole name="InvestmentManager" definition="Party that implements the investment strategy, ie, selects portfolio investments in accordance with the objectives and strategy in the fund's prospectus, and places orders to effect or liquidate selected investments in accordance with net flow of capital into or out of the fund." registrationStatus="Registered"/>
+      <businessRole name="FundManagementCompany" definition="Party that sets up the Fund, decides the investment strategy, appoints the agents, and is responsible for the promotion and the marketing of the Fund. It makes all of the important decisions related to the Fund." registrationStatus="Registered"/>
+      <businessRole name="Registrar" definition="Party that is responsible for keeping track of the owners of securities. In the context of Funds, the party appointed by the Fund Management Company that keeps the investor registry of the Fund, and administers investor accounts and related records. These records represent the liability accounts of the Fund Management Company. It prepares and distributes account statements (holdings and transactions) to the investor and/or its intermediary, on a periodical or upon request basis. It may provide tax information to the investor and/or to its intermediary, can be the corporate secretary for the proxy voting, reports to the regulator on shareholder identity, and can appoint the sub-registrar." registrationStatus="Registered"/>
+      <businessRole name="CashCorrespondent" definition="Financial institution that executes cash transfers on behalf of its clients." registrationStatus="Registered"/>
+      <businessRole name="DataProvider" definition="Party that is a source of financial information. It provides financial news and data (for example, facts, statistics and analysis), for professional and individual investors through various media (for example, the Internet, magazines)." registrationStatus="Registered"/>
+      <businessRole name="TreasurySettlementParty" definition="Party which settles a deal through its own accounts without being party to that deal, for example, custodians, settlement systems." registrationStatus="Registered"/>
+      <businessRole name="BuySideParty" definition="Individual or institution, that purchases or sells financial instruments, for its own account, or on behalf of an investor." registrationStatus="Registered"/>
+      <businessRole name="RedistributorAgent" definition="Institution that receives and redistributes certain business information, for example, quote or order details, or facilitating trading. It may add or modify the information if necessary. Examples include: alternative trading systems (ATS)- mechanisms whereby the direct trading of stocks can occur without the presence of brokers or other intermediaries), or Electronic Communications Networks (ECN)-electronic stock markets anonymously matching buy and sell orders." registrationStatus="Registered"/>
+      <businessRole name="SellSideParty" definition="Broker that sells its services (for example, research, analysis and recommendation), to buy-side parties." registrationStatus="Registered"/>
+      <businessRole name="Invoicee" definition="Party identified in a commercial invoice as the liable party." registrationStatus="Registered"/>
+      <businessRole name="Invoicer" definition="Party identified as the issuer of an invoice on the face of a commercial invoice." registrationStatus="Registered"/>
+      <businessRole name="AccountOwner" definition="Party that legally owns the account." registrationStatus="Registered"/>
+      <businessRole name="AccountServicer" definition="Party that manages the account on behalf of the account owner, ie, manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account." registrationStatus="Registered"/>
+      <businessRole name="CaseAssignee" definition="Party which is assigned an investigation case." registrationStatus="Registered"/>
+      <businessRole name="CaseAssigner" definition="Party assigning an investigation case." registrationStatus="Registered"/>
+      <businessRole name="InvestigationManager" definition="Party involved in investigations management." registrationStatus="Registered"/>
+      <businessRole name="Facilitator" definition="Party that forwards meeting information and meeting results to the Investor, checks position with the Custodian and collects voting instructions from the Investor and forwards to the next."/>
+      <businessRole name="ProxyVotingInitiator" definition="Party that is responsible for making meeting information available to the market, collecting the votes and publishing the meeting results.&#xD;&#xA;This party can delegate to a registrar, transfer agent or a bank."/>
+      <businessRole name="ProxyInformationProvider" definition="Intermediary in the Proxy voting chain that forwards and makes information available that was received/collected from the Proxy Initiator."/>
+      <businessRole name="CustodyServiceProvider" definition="Party that provides custody services for shares affected by proxy voting, that is, share blocking and unblocking, share registration, position keeping, securities lending services."/>
+      <businessRole name="LocalMarketIntermediary" definition="Intermediary in the proxy voting chain that is active in the same market as where the shares are safekept. Collects and receives meeting information from the initiator and/or the proxy information provider and forwards it to the facilitator and/or investor. Collects voting instructions from the faciliatator and/or investor and forwards them to the initiator. May verify the entitlement."/>
+      <businessRole name="VotingParty" definition="Party that issues voting instructions instructions. It can be:&#xD;&#xA;&#xD;&#xA;- Beneficial Owner (the effective owner of the shares)&#xD;&#xA;- Investment Manager&#xD;&#xA;- Proxy Agency."/>
+      <businessRole name="Investigator" definition="Party, physical person or legal entity that starts or follows-up an investigation case."/>
+      <businessRole name="CorporateInvestigator" definition="Party, physical person or legal entity that starts or follows-up an investigation case within a corporate."/>
+      <businessRole name="FinancialInvestigator" definition="Party, physical person or legal entity that starts or follows-up an investigation case within a financial institution."/>
+      <businessRole name="CentralSettlementSystem" definition="System which provides cash settlement for trades submitted by its members." registrationStatus="Registered"/>
+      <businessRole name="SettlementMember" definition="Party which is member of a cash settlement system and which submits trades to be settled between members." registrationStatus="Registered"/>
+      <businessRole name="ReportingInstitution" definition="Organisation that is legally responsible for reporting securities trade transactions to a regulator or a competent authority."/>
+      <businessRole name="FinancialInstitutionApplication" definition="Messaging application used by a financial institution."/>
+      <businessRole name="NonFinancialInstitutionApplication"/>
+      <businessRole name="SystemApplication"/>
+      <businessRole name="CSDParticipant" definition="Account holder in a Central Securities Depository." registrationStatus="Registered"/>
+      <businessRole name="InternationalCentralSecuritiesDepository" definition="Party which holds and administers securities for example, Eurobonds or other financial assets, holds issuance accounts and enables transactions to be processed by book entry. An ICSD also settles trades in international securities and in various domestic securities, usually through direct or indirect (through local agents) links to local CSDs. Assets may exist either physically (but immobilized within the CSD) or in a dematerialised form." registrationStatus="Registered"/>
+      <businessRole name="Issuer" definition="Entity which is obligated on a security or other financial instrument. For example, a corporation or government having the authority to issue and sell a security, or a bank that approves a letter of credit. Issuer is sometimes used to refer to a financial institution that issues credit or debit cards." registrationStatus="Registered"/>
+      <businessRole name="IssuerAgent" definition="Organisation appointed by the issuer for the purposes of administration of a security issue or processing of a corporate action or a meeting event. In some cases, the issuer acts as its own agent." registrationStatus="Registered"/>
+      <businessRole name="NationalCentralBank" definition="Principal monetary authority of a nation, a central bank performs several key functions, including issuing currency and regulating the supply of credit in the economy." registrationStatus="Registered"/>
+      <businessRole name="StockExchange" definition="Corporation or mutual organization which provides the facilities for stock brokers to trade company stocks and other financial instruments in the secondary market. Stock exchanges also provide facilities for the issue and redemption of securities, as well as other financial instruments and capital events including the payment of income and dividends." registrationStatus="Registered"/>
+    </topLevelCatalogueEntry>
+  </businessProcessCatalogue>
+</iso20022:Repository>
