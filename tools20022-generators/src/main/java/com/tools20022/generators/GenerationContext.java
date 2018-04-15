@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
@@ -61,6 +62,11 @@ public class GenerationContext<M,B> {
 	private final Set<String> knownTypeNames = new HashSet<>();
 
 	private AbstractGenerator<M,B> activeGenerator;
+	
+	/**
+	 * Default set of don't modify imports. 
+	 */
+	private List<String> dontModifyImports = Collections.emptyList();
 
 	public GenerationContext(Class<M> modelType, Class<B> modelBeanType, GeneratorFileManager fileManager ) {
 		this.fileManager = fileManager;
@@ -90,6 +96,10 @@ public class GenerationContext<M,B> {
 	
 	public void addKnownTypeNames( String ...  knownTypeNames ) {
 		this.knownTypeNames.addAll( Arrays.asList(knownTypeNames));
+	}
+	
+	public void setDontModifyImports( List<String> dontModifyImports ) {
+		this.dontModifyImports = Objects.requireNonNull(dontModifyImports);
 	}
 
 	public void setFormatterOptions(Properties formatterOptions) {
@@ -164,7 +174,7 @@ public class GenerationContext<M,B> {
 	private long lastPrinted = System.currentTimeMillis();
 
 	public void saveSourceFile(JavaSource<?> src) {
-		saveSourceFile(src, Collections.emptyList());
+		saveSourceFile(src, dontModifyImports);
 	}
 
 	public void saveSourceFile(JavaSource<?> src, List<String> dontModifyImports) {
@@ -176,7 +186,7 @@ public class GenerationContext<M,B> {
 					src.getQualifiedName(), Kind.SOURCE, null);
 			try (Writer w = jf.openWriter()) {
 				// Clean qualified types
-				//CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal(), dontModifyImports, knownTypeNames);
+				CleanQualifiedTypes.cleanAst((CompilationUnit) src.getInternal(), dontModifyImports, knownTypeNames);
 
 				String srcAsFormattedString = Formatter.format(getFormatterOptions(), src.toUnformattedString());
 				if (licenceHeader != null)

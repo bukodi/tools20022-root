@@ -62,6 +62,18 @@ public class InspectLoadedRepository {
 	}
 
 	@Test
+	public void inspectRequestToModifyPaymentV03() throws Exception {
+		MMMessageDefinition objRequestToModifyPaymentV03 = repo.findObjectByTypeAndName(MMMessageDefinition.class,
+				"RequestToModifyPaymentV03");
+		MMMessageDefinition objRequestToModifyPaymentV04 = repo.findObjectByTypeAndName(MMMessageDefinition.class,
+				"RequestToModifyPaymentV04");
+
+		System.out.println(objRequestToModifyPaymentV03);
+		System.out.println(objRequestToModifyPaymentV03);
+
+	}
+
+	@Test
 	public void dataTypes() throws Exception {
 		Map<MetamodelType<?>, List<MMDataType>> dataTypesBy = new HashMap<>();
 		MMDataType.metaType().listSubTypes(false, true).forEach(mmDT -> {
@@ -789,7 +801,8 @@ public class InspectLoadedRepository {
 					wrongAreaCode.add(def);
 				}
 			} catch (Exception e) {
-				System.out.println("Error at " + def.getName() + " (" + msgIdToString(def.getMessageDefinitionIdentifier())+") : " + e.toString());
+				System.out.println("Error at " + def.getName() + " ("
+						+ msgIdToString(def.getMessageDefinitionIdentifier()) + ") : " + e.toString());
 			}
 		}
 
@@ -859,6 +872,30 @@ public class InspectLoadedRepository {
 			// }
 		}
 
+	}
+
+	@Test
+	public void testConstraintNames() throws Exception {
+		List<? extends MMConstraint<?>> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
+		for (MMConstraint<?> c : constr) {
+			String javaNme = RoasterHelper.convertToJavaName(c.getName());
+			if( c.getName().equals(javaNme) )
+				continue;
+
+			System.out.println("Wrong constraint name: \""+c.getName() + "\" on " + getFullName(c.getOwner()));
+			
+		}		
+	}
+	
+	private String getFullName( GeneratedMetamodelBean mmBean ) {
+		String name = "["+ mmBean.getMetamodel().getName()+"]";
+		if( mmBean instanceof MMRepositoryConcept ) {
+			name += ((MMRepositoryConcept)mmBean).getName();
+		}
+		if( mmBean.getContainer() != null && !(mmBean.getContainer() instanceof MMRepository)) {
+			name = getFullName(mmBean.getContainer()) + "/" + name;
+		}
+		return name;
 	}
 
 	@Test

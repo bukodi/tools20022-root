@@ -97,4 +97,29 @@ camt: camt.087.001.03  REGISTERED
 ---- Test MsgDef names: duplicated id ----
 auth.031.001.01
 auth: FinancialInstrumentReportingStatusAdviceV01  REGISTERED
-null: FinancialInstrumentReportingStatusAdviceV01  PROVISIONALLY_REGISTERED  
+null: FinancialInstrumentReportingStatusAdviceV01  PROVISIONALLY_REGISTERED
+
+-------------------
+Wrong constraint name: "ReportParameterRule#1" on [DataDictionary]/[ChoiceComponent]FundParameters3Choice
+Wrong constraint name: "ContractDates1Rule " on [DataDictionary]/[MessageComponent]AccountReport1
+Wrong constraint name: "ContractDates2Rule " on [DataDictionary]/[MessageComponent]AccountReport1
+Wrong constraint name: "ContractDates1Rule " on [DataDictionary]/[MessageComponent]AccountReport15
+Wrong constraint name: "ContractDates2Rule " on [DataDictionary]/[MessageComponent]AccountReport15
+Wrong constraint name: " DateTimeAndCondition1Rule" on [DataDictionary]/[MessageComponent]ExpiryTerms1
+Wrong constraint name: " DateTimeAndCondition2Rule" on [DataDictionary]/[MessageComponent]ExpiryTerms1
+Wrong constraint name: " DateTimeAndCondition3Rule" on [DataDictionary]/[MessageComponent]ExpiryTerms1
+Wrong constraint name: " DateTimeAndCondition4Rule" on [DataDictionary]/[MessageComponent]ExpiryTerms1
+Wrong constraint name: " DateTimeAndCondition5Rule" on [DataDictionary]/[MessageComponent]ExpiryTerms2
+Wrong constraint name: " DateTimeAndCondition6Rule" on [DataDictionary]/[MessageComponent]ExpiryTerms2
+Wrong constraint name: " DateTimeAndCondition7Rule" on [DataDictionary]/[MessageComponent]ExpiryTerms2
+Wrong constraint name: " DateTimeAndCondition8Rule" on [DataDictionary]/[MessageComponent]ExpiryTerms2
+Wrong constraint name: "ContractDates1Rule " on [DataDictionary]/[MessageComponent]AccountReport14
+Wrong constraint name: "ContractDates2Rule " on [DataDictionary]/[MessageComponent]AccountReport14
+Wrong constraint name: "ContractDates1Rule " on [DataDictionary]/[MessageComponent]AccountReport20
+Wrong constraint name: "ContractDates2Rule " on [DataDictionary]/[MessageComponent]AccountReport20
+Wrong constraint name: "TotalSettlementCurrency Rule" on [DataDictionary]/[MessageComponent]RedemptionMultipleExecution5
+Wrong constraint name: "TotalSettlementCurrency Rule" on [DataDictionary]/[MessageComponent]SubscriptionMultipleOrder6
+Wrong constraint name: "TotalSettlementCurrency Rule" on [DataDictionary]/[MessageComponent]SubscriptionMultipleExecution5
+
+(Other constraint names are valid java identifier names)  
+----------------

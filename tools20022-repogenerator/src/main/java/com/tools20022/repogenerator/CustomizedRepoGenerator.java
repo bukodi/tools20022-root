@@ -1,6 +1,5 @@
 package com.tools20022.repogenerator;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringJoiner;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -40,6 +38,7 @@ import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
+import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMRepositoryType;
@@ -60,134 +59,158 @@ import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
-	
+
 	public CustomizedRepoGenerator(GenerationContext<RawRepository, GeneratedMetamodelBean> ctx) {
 		super(ctx);
 	}
 
 	@Override
-	public void prepare(RawRepository repo, ProgressMonitor monitor) {
-		
+	public StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
+		StructuredName name = super.getStructuredName(mmElem);
+		if (mmElem instanceof MMMessageDefinition) {
+			// Please note that the RequestToModifyPayment (camt.007.002.03) was replaced by
+			// the RequestToModifyPayment (camt.087.001.01).
+			// See: https://www.iso20022.org/message_archive.page
+			// This is the only replacement with same name
+			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
+			MMMessageDefinitionIdentifier id = msgDef.getMessageDefinitionIdentifier();
+			String idTxt = id.getBusinessArea() + id.getMessageFunctionality() + id.getFlavour() + id.getVersion();
+			if( "camt00700203".endsWith(idTxt) ) {
+				name = StructuredName.primaryType(name.getPackage(), name.getCompilationUnit() + "_replaced"); 
+			}
+
+		}
+		return name;
 	}
-	
-	private Map<String,List<MMConstraint<?>>> constraintsByName = new LinkedHashMap<>();
+
+	@Override
+	public void prepare(RawRepository repo, ProgressMonitor monitor) {
+
+	}
+
+	private Map<String, List<MMConstraint<?>>> constraintsByName = new LinkedHashMap<>();
 
 	@Override
 	public void generate(RawRepository repo, ProgressMonitor monitor) {
 		this.repo = repo;
 
-		for( MetamodelEnum<?> mmEnum : repo.getMetamodel().getAllEnums() ) {
+		for (MetamodelEnum<?> mmEnum : repo.getMetamodel().getAllEnums()) {
 			this.ctx.addKnownTypeNames(mmEnum.getEnumJavaClass().getName());
 		}
-		for( MetamodelType<? extends GeneratedMetamodelBean> mmType : repo.getMetamodel().getAllTypes() ) {
+		for (MetamodelType<? extends GeneratedMetamodelBean> mmType : repo.getMetamodel().getAllTypes()) {
 			this.ctx.addKnownTypeNames(mmType.getBeanClass().getName());
 		}
 
 		// Count main types to generate
-		Map<StructuredName,GeneratedMetamodelBean> mainTypes = new HashMap<>();
+		Map<StructuredName, GeneratedMetamodelBean> mainTypes = new HashMap<>();
 		{
 			long start = System.currentTimeMillis();
-			//AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
+			// AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
 			repo.listContent(repo.getRootObject(), true, true).forEach(repoObj -> {
 				StructuredName javaName = getStructuredName(repoObj);
 				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null) {
 					GeneratedMetamodelBean prevBean = mainTypes.put(javaName, repoObj);
-					if( prevBean != null )
+					if (prevBean != null)
 						throw new RuntimeException();
 					this.ctx.addKnownTypeNames(javaName.getFullName());
 				}
 			});
 			ctx.setTotalNumberOfMainTypesToGenerate(mainTypes.size());
-			System.out.println("Found " + mainTypes.size()
-					+ " java sources to generate. ( Calculated in " + (System.currentTimeMillis() - start) + " msec )");
+			System.out.println("Found " + mainTypes.size() + " java sources to generate. ( Calculated in "
+					+ (System.currentTimeMillis() - start) + " msec )");
 		}
 
 		// Create repo
-		Map<GeneratedMetamodelBean,MainTypeResult> mainResults = new HashMap<>();
-		for( GeneratedMetamodelBean mmBean : mainTypes.values() ) {
-			MainTypeResult genResult = generateMainResultType(mmBean);
-			mainResults.put(mmBean, genResult);
+		Map<GeneratedMetamodelBean, MainTypeResult> mainResults = new HashMap<>();
+		for (GeneratedMetamodelBean mmBean : mainTypes.values()) {
+			MainTypeResult genResult = generateMainResultType(mmBean);					
+			// mainResults.put(mmBean, genResult);
 		}
-		//MainTypeResult repoGen = generateMMRepository(repo.getRootObject());
-		
-		for( Entry<String, List<MMConstraint<?>>> e: constraintsByName.entrySet() ) {
-			generateConstraintGroup(e.getValue());			
+		// MainTypeResult repoGen = generateMMRepository(repo.getRootObject());
+
+		for (Entry<String, List<MMConstraint<?>>> e : constraintsByName.entrySet()) {
+			generateConstraintGroup(e.getValue());
 		}
 	}
-	
-	protected void generateConstraintGroup( List<MMConstraint<?>> constraintsWithSameName ) {
-		
+
+	protected void generateConstraintGroup(List<MMConstraint<?>> constraintsWithSameName) {
+
 		MMConstraint<?> first = constraintsWithSameName.get(0);
 		StructuredName nameOfFirst = getStructuredName(first);
-		StructuredName maintypeName = StructuredName.primaryType(nameOfFirst.getPackage(), nameOfFirst.getCompilationUnit());
+		StructuredName maintypeName = StructuredName.primaryType(nameOfFirst.getPackage(),
+				nameOfFirst.getCompilationUnit());
 		MainTypeResult genMain = new MainTypeResult(ctx, null, maintypeName) {
 			{
 				src = ctx.createSourceFile(JavaClassSource.class, maintypeName);
 			}
+
 			@Override
 			public void flush() {
-				if( ! ctx.isSkipDocGeneration()) {
+				if (!ctx.isSkipDocGeneration()) {
 					String docTxt = RoasterHelper.escapeJavaDoc(first.getDefinition().orElse("-no doc-"));
 					src.getJavaDoc().setText(docTxt);
 				}
 
 				ctx.saveSourceFile(src);
-			}			
+			}
 		};
-		
-		for( MMConstraint<?> constr : constraintsWithSameName) {
+
+		for (MMConstraint<?> constr : constraintsWithSameName) {
 			String validatorParamType;
 			{
 				StructuredName containerName = getStructuredName(constr.getContainer());
-				if( constr.getContainer() instanceof MMConstruct ) {
-					MMRepositoryType mmType = ((MMConstruct)constr.getContainer()).getMemberType();
+				if (constr.getContainer() instanceof MMConstruct) {
+					MMRepositoryType mmType = ((MMConstruct) constr.getContainer()).getMemberType();
 					validatorParamType = getStructuredName(mmType).getFullName();
 				} else {
 					validatorParamType = containerName.getFullName();
-				}				
+				}
 			}
 
-			// Generate constraint meta class		
+			// Generate constraint meta class
 			StaticFieldResult staticField = generateMMConstraint(genMain, constr, validatorParamType);
 
 			{
 				// Generate validator function
-				String validatorBaseName = "check" + staticField.staticFieldSrc.getName().substring("for".length()); 
+				String validatorBaseName = "check" + staticField.staticFieldSrc.getName().substring("for".length());
 				MethodSource<JavaClassSource> validatorMethod = genMain.src.addMethod().setName(validatorBaseName);
 				validatorMethod.setPublic().setStatic(true);
 				validatorMethod.addThrows(Exception.class);
 				validatorMethod.addParameter(validatorParamType, "obj");
 				validatorMethod.setBody("throw new " + NotImplementedConstraintException.class.getName() + "();");
-				RoasterHelper.addToJavaDoc(validatorMethod, RoasterHelper.escapeJavaDoc(constr.getDefinition().orElse("- no definition -")));				
+				RoasterHelper.addToJavaDoc(validatorMethod,
+						RoasterHelper.escapeJavaDoc(constr.getDefinition().orElse("- no definition -")));
 			}
-			// This is a workaround, while FieldSourceImpl.setType() automatically add an import
+			// This is a workaround, while FieldSourceImpl.setType() automatically add an
+			// import
 			genMain.src.removeImport(validatorParamType);
 		}
 		genMain.flush();
 	}
-	
-	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint<?> mmBean, String validatorParamType ) {
+
+	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint<?> mmBean,
+			String validatorParamType) {
 		StructuredName staticFieldName = getStructuredName(mmBean);
 		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, staticFieldName);
-		gen.staticFieldSrc = containerGen.src.addField().setName( staticFieldName.getMemberName());
+		gen.staticFieldSrc = containerGen.src.addField().setName(staticFieldName.getMemberName());
 		gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-		gen.staticFieldSrc.setType( MMConstraint.class.getName() + "<" + validatorParamType + ">" );
-		
+		gen.staticFieldSrc.setType(MMConstraint.class.getName() + "<" + validatorParamType + ">");
+
 		String getValidatorMethodSrc = "@Override\n";
-		getValidatorMethodSrc += "public void executeValidator(" +validatorParamType + " obj ) throws Exception {\n"; 
-		getValidatorMethodSrc += "  check" + staticFieldName.getMemberName().substring("for".length()) + "( obj );\n"; 
+		getValidatorMethodSrc += "public void executeValidator(" + validatorParamType + " obj ) throws Exception {\n";
+		getValidatorMethodSrc += "  check" + staticFieldName.getMemberName().substring("for".length()) + "( obj );\n";
 		getValidatorMethodSrc += "}\n";
-		
-		gen.staticFieldInitializerBody = new StringJoiner("\n", "new " + MMConstraint.class.getName() + "<" + validatorParamType + ">" + "(){{", "}\n" + getValidatorMethodSrc + "};");
+
+		gen.staticFieldInitializerBody = new StringJoiner("\n",
+				"new " + MMConstraint.class.getName() + "<" + validatorParamType + ">" + "(){{",
+				"}\n" + getValidatorMethodSrc + "};");
 
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
 		defaultAttribute(gen, MMConstraint.ownerAttribute, mmBean.getOwner());
-		defaultAttribute(gen, MMConstraint.expressionAttribute,
-				mmBean.getExpression());
-		defaultAttribute(gen, MMConstraint.expressionLanguageAttribute,
-				mmBean.getExpressionLanguage());		
-		
+		defaultAttribute(gen, MMConstraint.expressionAttribute, mmBean.getExpression());
+		defaultAttribute(gen, MMConstraint.expressionLanguageAttribute, mmBean.getExpressionLanguage());
+
 		gen.flush();
 		return gen;
 	}
@@ -241,8 +264,6 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		});
 	}
 
-	
-	
 	@Override
 	protected MainTypeResult generateMMBusinessComponent(MMBusinessComponent mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
@@ -297,156 +318,157 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		});
 	}
 
-	
 	@Override
 	protected JaxbMainTypeResult generateMMMessageDefinition(MMMessageDefinition mmBean) {
 		JaxbMainTypeResult gen = defaultJaxbMainType(mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);
-		
+
 		for (MMXor mmChild : mmBean.getXors()) {
 			generateMMXorInMessageDefinition(gen, mmChild);
 		}
 		for (MMMessageBuildingBlock mmChild : mmBean.getMessageBuildingBlock()) {
 			generateMMMessageBuildingBlock(gen, mmChild);
 		}
-		defaultAttribute(gen, MMMessageDefinition.messageSetAttribute,
-				mmBean.getMessageSet());
+		defaultAttribute(gen, MMMessageDefinition.messageSetAttribute, mmBean.getMessageSet());
 		defaultAttribute(gen, MMMessageDefinition.xorsAttribute, mmBean.getXors());
-		defaultAttribute(gen, MMMessageDefinition.rootElementAttribute,
-				mmBean.getRootElement());
-		defaultAttribute(gen, MMMessageDefinition.choreographyAttribute,
-				mmBean.getChoreography());
+		defaultAttribute(gen, MMMessageDefinition.rootElementAttribute, mmBean.getRootElement());
+		defaultAttribute(gen, MMMessageDefinition.choreographyAttribute, mmBean.getChoreography());
 		defaultAttribute(gen, MMMessageDefinition.xmlTagAttribute, mmBean.getXmlTag());
 		defaultAttribute(gen, MMMessageDefinition.traceAttribute, mmBean.getTrace());
-		defaultAttribute(gen, MMMessageDefinition.derivationAttribute,
-				mmBean.getDerivation());
-		defaultAttribute(gen, MMMessageDefinition.businessAreaAttribute,
-				mmBean.getBusinessArea());
+		defaultAttribute(gen, MMMessageDefinition.derivationAttribute, mmBean.getDerivation());
+		defaultAttribute(gen, MMMessageDefinition.businessAreaAttribute, mmBean.getBusinessArea());
 		defaultAttribute(gen, MMMessageDefinition.xmlNameAttribute, mmBean.getXmlName());
-		defaultAttribute(gen, MMMessageDefinition.messageBuildingBlockAttribute,
-				mmBean.getMessageBuildingBlock());
+		defaultAttribute(gen, MMMessageDefinition.messageBuildingBlockAttribute, mmBean.getMessageBuildingBlock());
 
 		{
-			
+
 			// Create this block:
-			
-//			messageDefinitionIdentifier_lazy = () -> new MMMessageDefinitionIdentifier() {
-//				{
-//					businessArea = "camt";
-//					messageFunctionality = "030";
-//					version = "04";
-//					flavour = "001";
-//				}
-//			};
+
+			// messageDefinitionIdentifier_lazy = () -> new MMMessageDefinitionIdentifier()
+			// {
+			// {
+			// businessArea = "camt";
+			// messageFunctionality = "030";
+			// version = "04";
+			// flavour = "001";
+			// }
+			// };
 
 			MMMessageDefinitionIdentifier mmMsgId = mmBean.getMessageDefinitionIdentifier();
 			AttrResult attrGen = gen.createAttrResult(MMMessageDefinition.messageDefinitionIdentifierAttribute);
-			attrGen.initializationSource = "messageDefinitionIdentifier_lazy = () -> new " + MMMessageDefinitionIdentifier.class.getName() + "() {{";			
-			attrGen.initializationSource += "businessArea = \""+ mmMsgId.getBusinessArea()+"\";"; 
-			attrGen.initializationSource += "messageFunctionality = \""+ mmMsgId.getMessageFunctionality()+"\";"; 
-			attrGen.initializationSource += "version = \""+ mmMsgId.getVersion()+"\";"; 
-			attrGen.initializationSource += "flavour = \""+ mmMsgId.getFlavour()+"\";"; 
-			attrGen.initializationSource += "}};"; 
-			attrGen.valueAsJavaDoc = mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality()+ "." + mmMsgId.getFlavour() + "." + mmMsgId.getVersion() ;
+			attrGen.initializationSource = "messageDefinitionIdentifier_lazy = () -> new "
+					+ MMMessageDefinitionIdentifier.class.getName() + "() {{";
+			attrGen.initializationSource += "businessArea = \"" + mmMsgId.getBusinessArea() + "\";";
+			attrGen.initializationSource += "messageFunctionality = \"" + mmMsgId.getMessageFunctionality() + "\";";
+			attrGen.initializationSource += "version = \"" + mmMsgId.getVersion() + "\";";
+			attrGen.initializationSource += "flavour = \"" + mmMsgId.getFlavour() + "\";";
+			attrGen.initializationSource += "}};";
+			attrGen.valueAsJavaDoc = mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality() + "."
+					+ mmMsgId.getFlavour() + "." + mmMsgId.getVersion();
 			attrGen.valueAsJavaDoc = "{@code " + attrGen.valueAsJavaDoc + "}";
 		}
-		
+
 		{ // Add Document inner class
 			JavaClassSource docSrc = gen.src.addNestedType(JavaClassSource.class);
 			docSrc.setName("Document");
 			docSrc.setPublic().setStatic(true);
 			MMMessageDefinitionIdentifier mmMsgId = mmBean.getMessageDefinitionIdentifier();
 			String ns = "urn:iso:std:iso:20022:tech:xsd:";
-			ns+= mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality();
-			ns+= "." + mmMsgId.getFlavour() + "." + mmMsgId.getVersion();
+			ns += mmMsgId.getBusinessArea() + "." + mmMsgId.getMessageFunctionality();
+			ns += "." + mmMsgId.getFlavour() + "." + mmMsgId.getVersion();
 			AnnotationSource<JavaClassSource> jaxbAnnot = docSrc.addAnnotation(XmlRootElement.class);
 			jaxbAnnot.setStringValue("name", mmBean.getRootElement());
-			jaxbAnnot.setStringValue("namespace", ns);			
-			
+			jaxbAnnot.setStringValue("namespace", ns);
+
 			docSrc.setPublic().setStatic(true);
-			
+
 			FieldSource<JavaClassSource> msgField = docSrc.addField();
 			msgField.setName("messageBody");
-			msgField.addAnnotation(XmlElement.class).setStringValue("name", mmBean.getXmlTag().get()).setLiteralValue("required", "true");
+			msgField.addAnnotation(XmlElement.class).setStringValue("name", mmBean.getXmlTag().get())
+					.setLiteralValue("required", "true");
 			msgField.setType(gen.src);
 			msgField.setPublic();
 		}
-		
+
 		gen.flush();
 		return gen;
 	}
-	
+
 	@Override
 	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
-		
-		for( MMConstraint mmConstr: mmBean.getConstraint() ) {
-			constraintsByName.computeIfAbsent(mmConstr.getName(), x->new ArrayList<>()).add(mmConstr);
+
+		for (MMConstraint mmConstr : mmBean.getConstraint()) {
+			String ctrJavaName = RoasterHelper.convertToJavaName(mmConstr.getName());
+			constraintsByName.computeIfAbsent(ctrJavaName, x -> new ArrayList<>()).add(mmConstr);
 		}
-		
-		defaultAttribute(gen, MMRepositoryConcept.constraintAttribute,
-				mmBean.getConstraint());
+
+		defaultAttribute(gen, MMRepositoryConcept.constraintAttribute, mmBean.getConstraint());
 
 		List<MMSemanticMarkup> validMarkups = new ArrayList<>();
-		for(MMSemanticMarkup sm :  mmBean.getSemanticMarkup() ) {
-			if( ! sm.getElements().isEmpty() )
+		for (MMSemanticMarkup sm : mmBean.getSemanticMarkup()) {
+			if (!sm.getElements().isEmpty())
 				validMarkups.add(sm);
 		}
-		
-		if( ! validMarkups.isEmpty() ) {
-			AttrResult attrGen = gen.createAttrResult( MMRepositoryConcept.semanticMarkupAttribute );
+
+		if (!validMarkups.isEmpty()) {
+			AttrResult attrGen = gen.createAttrResult(MMRepositoryConcept.semanticMarkupAttribute);
 			StringJoiner sjInit = new StringJoiner(", ");
 			StringJoiner sjJavadoc = new StringJoiner(", ");
-			loop_on_markups: for( MMSemanticMarkup sm: validMarkups ) {
-				if( "Synonym".equals( sm.getType().orElse("") ) ) {
+			loop_on_markups: for (MMSemanticMarkup sm : validMarkups) {
+				if ("Synonym".equals(sm.getType().orElse(""))) {
 					String context = null;
 					String value = null;
-					for( MMSemanticMarkupElement elem : sm.getElements() ) {
-						if( "context".equals( elem.getName().orElse("") ) )
+					for (MMSemanticMarkupElement elem : sm.getElements()) {
+						if ("context".equals(elem.getName().orElse("")))
 							context = elem.getValue().orElse(null);
-						if( "value".equals( elem.getName().orElse("") ) || "name".equals( elem.getName().orElse("") ) )
+						if ("value".equals(elem.getName().orElse("")) || "name".equals(elem.getName().orElse("")))
 							value = elem.getValue().orElse(null);
 					}
-					if( context != null && context.contains("150") ) {
-						sjInit.add( "new " + ISO15022Synonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"") + "\")");
-						sjJavadoc.add( ISO15022Synonym.class.getSimpleName()+ ": " + value );
+					if (context != null && context.contains("150")) {
+						sjInit.add("new " + ISO15022Synonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"")
+								+ "\")");
+						sjJavadoc.add(ISO15022Synonym.class.getSimpleName() + ": " + value);
 						continue loop_on_markups;
-					} 
-					if( context != null && context.toUpperCase().contains("FIX") ) {
-						sjInit.add( "new " + FIXSynonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"") + "\")");
-						sjJavadoc.add( FIXSynonym.class.getSimpleName()+ ": " + value );
+					}
+					if (context != null && context.toUpperCase().contains("FIX")) {
+						sjInit.add("new " + FIXSynonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"")
+								+ "\")");
+						sjJavadoc.add(FIXSynonym.class.getSimpleName() + ": " + value);
 						continue loop_on_markups;
-					} 
-					if( context != null && context.contains("DTCC") ) {
-						sjInit.add( "new " + DTCCSynonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"") + "\")");
-						sjJavadoc.add( DTCCSynonym.class.getSimpleName()+ ": " + value );
+					}
+					if (context != null && context.contains("DTCC")) {
+						sjInit.add("new " + DTCCSynonym.class.getName() + "( this, \"" + value.replace("\"", "\\\"")
+								+ "\")");
+						sjJavadoc.add(DTCCSynonym.class.getSimpleName() + ": " + value);
 						continue loop_on_markups;
-					} 
+					}
 				}
-				
+
 				{ // Create OtherSemanticMarkup
-					String javadoc  = "type=" + sm.getType().orElse("") + ", ";
+					String javadoc = "type=" + sm.getType().orElse("") + ", ";
 					String init = "new " + OtherSemanticMarkup.class.getName() + "( this, ";
 					init += "\"" + sm.getType().orElse("") + "\", ";
 					StringJoiner sji = new StringJoiner(", ");
 					StringJoiner sjd = new StringJoiner(", ");
-					for( MMSemanticMarkupElement elem :  sm.getElements() ) {
-						sji.add( "new String[]{\"" + RoasterHelper.escapeSourceString(elem.getName().orElse("")) 
-						+ "\", \"" + RoasterHelper.escapeSourceString(elem.getValue().orElse("")) + "\"}");
-						sjd.add(elem.getName().orElse("") + "=" + elem.getValue().orElse("") );
+					for (MMSemanticMarkupElement elem : sm.getElements()) {
+						sji.add("new String[]{\"" + RoasterHelper.escapeSourceString(elem.getName().orElse(""))
+								+ "\", \"" + RoasterHelper.escapeSourceString(elem.getValue().orElse("")) + "\"}");
+						sjd.add(elem.getName().orElse("") + "=" + elem.getValue().orElse(""));
 					}
 					init += sji.toString() + " )";
 					sjInit.add(init);
-					sjJavadoc.add(javadoc + sjd.toString() );
+					sjJavadoc.add(javadoc + sjd.toString());
 				}
-				
+
 			}
-			attrGen.initializationSource = "semanticMarkup_lazy = () -> " + Arrays.class.getName() + ".asList( " + sjInit.toString()+ ");";
-			attrGen.valueAsJavaDoc =  sjJavadoc.toString();
+			attrGen.initializationSource = "semanticMarkup_lazy = () -> " + Arrays.class.getName() + ".asList( "
+					+ sjInit.toString() + ");";
+			attrGen.valueAsJavaDoc = sjJavadoc.toString();
 		}
-		
+
 		// mmBean.getSemanticMarkup());
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet,
 		// mmBean.getDoclet());
@@ -467,12 +489,10 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	@Override
 	protected JaxbMainTypeResult generateMMMessageComponent(MMMessageComponent mmBean) {
 		JaxbMainTypeResult ret = super.generateMMMessageComponent(mmBean);
-		if( "CreditTransferTransactionInformation11".equals( ret.baseName.getCompilationUnit()) ) {
-			System.out.println( ret.baseName );
+		if ("CreditTransferTransactionInformation11".equals(ret.baseName.getCompilationUnit())) {
+			System.out.println(ret.baseName);
 		}
 		return ret;
 	}
-	
-	
 
 }

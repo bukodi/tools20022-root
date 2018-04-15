@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -47,11 +48,6 @@ public class GeneratePublicArtifact {
 
 	public static void main(String[] args) throws Exception {
 
-		try {
-			generateArtifact(null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 //		try {
 //			generateArtifact(BusinessDomain.payments);
 //		} catch (Exception e) {
@@ -79,6 +75,12 @@ public class GeneratePublicArtifact {
 //			e.printStackTrace();
 //		}
 
+		try {
+			generateArtifact(null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		System.out.println("**** Gerneration finished " + sdf.format(new Date()) + " ****");
 	}
@@ -124,6 +126,7 @@ public class GeneratePublicArtifact {
 				GeneratedMetamodelBean.class, fileManager);
 		genCtx.setSkipDocGeneration(false);
 		genCtx.setLicenceHeaderGPLv3();
+		genCtx.setDontModifyImports(Arrays.asList("com.tools20022.repository.area.tsmt.StatusReportV03", "com.tools20022.repository.area.catm.StatusReportV03"));
 		genCtx.generate(repo, new CustomizedRepoGenerator(genCtx), monitor);
 
 	}
