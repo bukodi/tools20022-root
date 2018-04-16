@@ -71,9 +71,7 @@ public class PropertyResult extends StaticFieldResult {
 								+ beanFieldSrc.getName() + " ;");
 			} else if ( isOptional ) { 
 				beanGetterSrc.setBody( 
-						"return " + beanFieldSrc.getName() + " == null ? "
-								+ Optional.class.getName() + ".empty() : "
-								+ Optional.class.getName() + ".of( " + beanFieldSrc.getName() + ") ;");
+						"return " + Optional.class.getName() + ".ofNullable( " + beanFieldSrc.getName() + ");");
 			} else {
 				beanGetterSrc.setBody("return " + beanFieldSrc.getName() + ";");				
 			}

@@ -27,6 +27,8 @@ import org.jboss.forge.roaster.model.source.MethodSource;
 
 import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
+import com.tools20022.core.metamodel.RuntimeInstanceAware;
+import com.tools20022.core.metamodel.RuntimePropertyAware;
 import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
@@ -144,7 +146,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		// Package
 		if (mmElem instanceof MMConstraint) {
 			MMConstraint<?> mmConstr = (MMConstraint<?>) mmElem;
-			StructuredName mainTypeName = StructuredName.primaryType(basePackageName + ".constraints",
+			StructuredName mainTypeName = StructuredName.primaryType(basePackageName + ".constraint",
 					RoasterHelper.convertToJavaName("Constraint" + mmConstr.getName()));
 			MMRepositoryConcept owner = mmConstr.getOwner();			
 			StructuredName containername = getStructuredName(owner);
@@ -182,7 +184,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			} else if (mmElem instanceof MMBusinessComponent) {
 				pkg = "entity";
 			} else if (mmElem instanceof MMMessageComponent) {
-				pkg = "msg";
+				pkg = "msgpart";
 			} else if (mmElem instanceof MMChoiceComponent) {
 				pkg = "choice";
 			} else {
@@ -205,7 +207,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			if (cuName.endsWith("version"))
 				cuName = cuName.substring(0, cuName.length() - "version".length()) + "Version";
 		}
-
+		
 		return StructuredName.primaryType(pkg, cuName);
 	}
 
