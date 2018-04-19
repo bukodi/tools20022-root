@@ -10,11 +10,13 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -149,6 +151,29 @@ public class FileIOHelper {
 		} catch (IOException ioe) {
 			throw new UncheckedIOException(ioe);
 		}
+	}
+	
+	public static boolean isSubPath( Path pathToTest, String subPath ) {
+		return isSubPath(pathToTest, Paths.get(subPath));
+	}
+
+	public static boolean isSubPath( Path pathToTest, Path subPath ) {
+		int i=0, j = 0;
+		for( ; i < pathToTest.getNameCount() && j < subPath.getNameCount();) {
+			if( Objects.equals( pathToTest.getName(i), subPath.getName(j) ) ) {
+				j++;
+				i++;
+				if( j == subPath.getNameCount() )
+					return true;
+			} else {
+				if( j == 0 ) {
+					i++;
+				} else {
+					j = 0;					
+				}
+			}
+		}
+		return false;
 	}
 
 }

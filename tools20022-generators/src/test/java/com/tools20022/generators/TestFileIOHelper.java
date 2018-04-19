@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.Test;
 
@@ -25,4 +26,19 @@ public class TestFileIOHelper {
 			Files.delete(src);
 		}
 	}
+
+	@Test
+	public void testIsSubPath() throws Exception {
+		assertTrue(FileIOHelper.isSubPath(Paths.get("a/b/c/d"), Paths.get("b/c")));
+		assertTrue(FileIOHelper.isSubPath(Paths.get("a/b/c/d"), Paths.get("/b/c")));
+		assertTrue(FileIOHelper.isSubPath(Paths.get("a/b/c/d"), Paths.get("b/c/")));
+		assertTrue(FileIOHelper.isSubPath(Paths.get("a/b/c/d"), Paths.get("c/d")));
+		assertFalse(FileIOHelper.isSubPath(Paths.get("a/b/c/d"), Paths.get("b/b")));
+		assertFalse(FileIOHelper.isSubPath(Paths.get("a/b/c/d"), Paths.get("c/d/e")));
+		assertTrue(FileIOHelper.isSubPath(Paths.get("a/b/a/b/c/d"), Paths.get("a/b/c")));
+		assertTrue(FileIOHelper.isSubPath(Paths.get("a/b/a/a/b/c/d"), Paths.get("a/b/c")));
+
+		assertTrue(FileIOHelper.isSubPath(Paths.get("a/b/a/a/b/c/d"), "a/b/c"));
+	}
+
 }
