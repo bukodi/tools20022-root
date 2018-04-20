@@ -99,8 +99,22 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		// Add domain model classes and enums
 		metamodel.listEnums().forEachOrdered(e -> generateMMEnum(srcMetamodelMain, e));
 
-		metamodel.listTypes().filter(c -> !c.isAbstract()).forEachOrdered(t -> generateMMClass(srcMetamodelMain, t));
-		metamodel.listTypes().filter(c -> c.isAbstract()).forEachOrdered(t -> generateMMInterface(srcMetamodelMain, t));
+		for( MetamodelType mmType : metamodel.getAllTypes()) {
+			StructuredName name = getStructuredName(mmType);
+			try {
+				Class<?> clazz = Class.forName(name.getFullName());
+				continue;
+			} catch ( ClassNotFoundException e ) {
+				// no problem, we generating it now ..
+			}
+
+			
+			if( mmType.isAbstract() ) {
+				generateMMInterface(srcMetamodelMain, mmType);
+			} else {
+				generateMMClass(srcMetamodelMain, mmType);
+			}
+		}
 
 		{
 			// Add constructor
