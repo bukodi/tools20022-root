@@ -3,6 +3,9 @@ package com.tools20022.core.repo;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
+import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.metamodel.MMModelEntity;
+
 /**
  * Generic utility methods.
  */
@@ -31,5 +34,5 @@ public class Tools20022Helper {
 			return foo;
 		}
 	}
-
+	
 }
