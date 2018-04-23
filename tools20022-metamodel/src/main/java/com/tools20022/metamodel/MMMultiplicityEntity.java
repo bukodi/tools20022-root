@@ -17,16 +17,16 @@
 
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+import com.tools20022.metamodel.MMModelEntity;
 import java.util.Optional;
 
 /**
  * Any model entity where a multiplicity can be defined.
  */
-public interface MMMultiplicityEntity extends GeneratedMetamodelBean {
+public interface MMMultiplicityEntity extends MMModelEntity {
 
 	/**
 	 * MaxOccurs is an integer with a value greater than or equal to the lower

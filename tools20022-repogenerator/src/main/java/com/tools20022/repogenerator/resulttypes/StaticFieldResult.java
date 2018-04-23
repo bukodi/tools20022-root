@@ -4,13 +4,10 @@ import java.util.StringJoiner;
 
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
-import org.jboss.forge.roaster.model.source.MethodSource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMModelEntity;
 
 public class StaticFieldResult extends TypeResult {
 
@@ -18,7 +15,7 @@ public class StaticFieldResult extends TypeResult {
 	public FieldSource<JavaClassSource> staticFieldSrc;
 	public StringJoiner staticFieldInitializerBody = new StringJoiner("\n");
 
-	public StaticFieldResult(MainTypeResult containerGen, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+	public StaticFieldResult(MainTypeResult containerGen, MMModelEntity mmBean, StructuredName baseName) {
 		super(containerGen.ctx, mmBean, baseName);
 		this.containerGen = containerGen;
 		this.staticFieldInitializerBody = new StringJoiner("\n", "new " + mmBean.getMetamodel().getBeanClass().getName() + "(){{", "}};");

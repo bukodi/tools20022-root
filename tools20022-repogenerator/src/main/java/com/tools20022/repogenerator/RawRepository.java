@@ -9,11 +9,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 
@@ -22,7 +21,7 @@ public class RawRepository {
 
 	private final Metamodel metamodel;
 	
-	private final HashMap<MetamodelType<?>, LinkedHashSet<GeneratedMetamodelBean>> objectsByType = new HashMap<>();
+	private final HashMap<MetamodelType<?>, LinkedHashSet<MMModelEntity>> objectsByType = new HashMap<>();
 
 	private final MMRepository rootObject;
 	
@@ -39,30 +38,30 @@ public class RawRepository {
 		return rootObject;
 	}
 		
-	void addObject(GeneratedMetamodelBean repoObject ) {
-		MetamodelType<? extends GeneratedMetamodelBean> mmType = repoObject.getMetamodel();
+	void addObject(MMModelEntity repoObject ) {
+		MetamodelType<? extends MMModelEntity> mmType = repoObject.getMetamodel();
 		objectsByType.computeIfAbsent(mmType, x->new LinkedHashSet<>()).add(repoObject);
 	}
 
 	@SuppressWarnings("unchecked")
-	public <B extends GeneratedMetamodelBean> Stream<B> listObjects(MetamodelType<B> mmtype) {
+	public <B extends MMModelEntity> Stream<B> listObjects(MetamodelType<B> mmtype) {
 		return (Stream<B>) objectsByType.get(mmtype).stream();
 	}
 
-	public Stream<? extends GeneratedMetamodelBean> listObjects() {
+	public Stream<? extends MMModelEntity> listObjects() {
 		return objectsByType.values().stream().flatMap(l->l.stream());
 	}
 
 	@SuppressWarnings("unchecked")
-	public <B extends GeneratedMetamodelBean> Stream<? extends B> listObjects(Class<B> mmClass) {
+	public <B extends MMModelEntity> Stream<? extends B> listObjects(Class<B> mmClass) {
 		MetamodelType<B> mmType = metamodel.getTypeByClass(mmClass);
 		List<B> repoObjects = new ArrayList<>();
 		Set<? extends MetamodelType<? extends B>> subTypes = mmType.getSubTypes(true, true);
 		for( MetamodelType<? extends B> subType : subTypes ) {
-			LinkedHashSet<GeneratedMetamodelBean> objects = objectsByType.get(subType);
+			LinkedHashSet<MMModelEntity> objects = objectsByType.get(subType);
 			if( objects == null )
 				continue;
-			for( GeneratedMetamodelBean obj : objects ) {
+			for( MMModelEntity obj : objects ) {
 				repoObjects.add((B)obj);
 			}
 		}
@@ -72,12 +71,12 @@ public class RawRepository {
 	}
 
 	public int getCountByType(MetamodelType<?> mmType) {
-		LinkedHashSet<GeneratedMetamodelBean> set = objectsByType.get(mmType);
+		LinkedHashSet<MMModelEntity> set = objectsByType.get(mmType);
 		return set == null ? 0 : set.size();
 	}
 
-	public Stream<? extends GeneratedMetamodelBean> listContent( GeneratedMetamodelBean container, boolean includeThis, boolean recursive ) {
-		Stream<? extends GeneratedMetamodelBean> subTreeStream;
+	public Stream<? extends MMModelEntity> listContent( MMModelEntity container, boolean includeThis, boolean recursive ) {
+		Stream<? extends MMModelEntity> subTreeStream;
 		if (recursive) {
 			subTreeStream = listContent( container,false, false).flatMap(c -> listContent(c, true, true));
 		} else {
@@ -93,8 +92,8 @@ public class RawRepository {
 		
 	}
 
-	private Stream<? extends GeneratedMetamodelBean> listDirectContent( GeneratedMetamodelBean mmContainer ) {
-		List<GeneratedMetamodelBean> ret = new ArrayList<>();
+	private Stream<? extends MMModelEntity> listDirectContent( MMModelEntity mmContainer ) {
+		List<MMModelEntity> ret = new ArrayList<>();
 		for (MetamodelAttribute<?, ?> mmAttr : mmContainer.getMetamodel().getAllAttributes()) {
 			if( mmAttr.getReferencedType() == null || mmAttr.isDerived() || ! mmAttr.isContainment() )
 				continue;
@@ -103,16 +102,16 @@ public class RawRepository {
 			if( value == null )
 				continue;
 			
-			if( value instanceof GeneratedMetamodelBean ) {
-				ret.add((GeneratedMetamodelBean) value);
+			if( value instanceof MMModelEntity ) {
+				ret.add((MMModelEntity) value);
 			} else if( value instanceof Optional<?> && ((Optional<?>)value).isPresent()) {
 				Object value2 = ((Optional<?>)value).get();
-				if( value2 instanceof GeneratedMetamodelBean )
-					ret.add((GeneratedMetamodelBean) value2);
+				if( value2 instanceof MMModelEntity )
+					ret.add((MMModelEntity) value2);
 			} else if( value instanceof List) {
 				for(Object elem : (List<?>)value) {
-					if( elem instanceof GeneratedMetamodelBean )
-						ret.add((GeneratedMetamodelBean) elem);
+					if( elem instanceof MMModelEntity )
+						ret.add((MMModelEntity) elem);
 				}
 			} else {
 				throw new IllegalStateException( "Invalid value in " + mmContainer + " in attribute " + mmAttr );
@@ -123,7 +122,7 @@ public class RawRepository {
 	
 	public <T extends MMRepositoryConcept> T findObjectByTypeAndName( Class<T> type, String name ) {
 		MetamodelType<T> mmType = metamodel.getTypeByClass(type);
-		for( GeneratedMetamodelBean obj : objectsByType.get(mmType) ) {
+		for( MMModelEntity obj : objectsByType.get(mmType) ) {
 			if( ! (obj instanceof MMRepositoryConcept ))
 				continue;
 			String objName = ((MMRepositoryConcept)obj).getName();

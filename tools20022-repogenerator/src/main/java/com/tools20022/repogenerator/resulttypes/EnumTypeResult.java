@@ -13,13 +13,13 @@ import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.RuntimeInstanceAware;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.repogenerator.RawRepository;
 
 public class EnumTypeResult extends MainTypeResult {
@@ -28,7 +28,7 @@ public class EnumTypeResult extends MainTypeResult {
 	public List<EnumConstantResult> enumConstants = new ArrayList<>(); 
 	
 
-	public EnumTypeResult(GenerationContext<RawRepository,GeneratedMetamodelBean> ctx, MMCodeSet mmBean, StructuredName baseName) {
+	public EnumTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMCodeSet mmBean, StructuredName baseName) {
 		super(ctx, mmBean, baseName);
 	}
 	

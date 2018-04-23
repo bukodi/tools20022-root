@@ -17,7 +17,6 @@
 
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.OrphanMetamodelType;
 import com.tools20022.metamodel.MMModelEntity;
@@ -37,7 +36,7 @@ public class MMConversation implements OrphanMetamodelType, MMModelEntity {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
+	public MMModelEntity getContainer() {
 		return null;
 	}
 

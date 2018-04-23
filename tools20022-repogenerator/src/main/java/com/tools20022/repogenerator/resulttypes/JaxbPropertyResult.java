@@ -5,9 +5,6 @@ import javax.xml.bind.annotation.XmlElement;
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
-import com.tools20022.generators.GenerationContext;
-import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMMessageConstruct;
 

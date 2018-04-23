@@ -1,30 +1,62 @@
 package com.tools20022.repogenerator;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.Collator;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.RoasterHelper;
-import com.tools20022.metamodel.*;
-
-import gen.lib.dotgen.conc__c;
+import com.tools20022.metamodel.MMAggregation;
+import com.tools20022.metamodel.MMAmount;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessAttribute;
+import com.tools20022.metamodel.MMBusinessComponent;
+import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMChoiceComponent;
+import com.tools20022.metamodel.MMCode;
+import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstraint;
+import com.tools20022.metamodel.MMDataType;
+import com.tools20022.metamodel.MMDoclet;
+import com.tools20022.metamodel.MMExternalSchema;
+import com.tools20022.metamodel.MMMessageAssociationEnd;
+import com.tools20022.metamodel.MMMessageAttribute;
+import com.tools20022.metamodel.MMMessageComponent;
+import com.tools20022.metamodel.MMMessageConstruct;
+import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
+import com.tools20022.metamodel.MMModelEntity;
+import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.metamodel.MMRepository;
+import com.tools20022.metamodel.MMRepositoryConcept;
+import com.tools20022.metamodel.MMRepositoryType;
+import com.tools20022.metamodel.MMSemanticMarkup;
+import com.tools20022.metamodel.MMSemanticMarkupElement;
+import com.tools20022.metamodel.MMUserDefined;
+import com.tools20022.metamodel.MMXor;
+import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class InspectLoadedRepository {
 
@@ -55,7 +87,7 @@ public class InspectLoadedRepository {
 
 	@Test
 	public void inspectSpecificObject() throws Exception {
-		GeneratedMetamodelBean obj = repo.findObjectByTypeAndName(MMCodeSet.class, "AddressType2Code");
+		MMModelEntity obj = repo.findObjectByTypeAndName(MMCodeSet.class, "AddressType2Code");
 
 		System.out.println(obj);
 
@@ -82,7 +114,7 @@ public class InspectLoadedRepository {
 		;
 
 		for (MMDataType mmDataType : repo.listObjects(MMDataType.class).collect(Collectors.toList())) {
-			MetamodelType<? extends GeneratedMetamodelBean> mmType = mmDataType.getMetamodel();
+			MetamodelType<? extends MMModelEntity> mmType = mmDataType.getMetamodel();
 			dataTypesBy.computeIfAbsent(mmType, x -> new ArrayList<>()).add(mmDataType);
 		}
 
@@ -887,7 +919,7 @@ public class InspectLoadedRepository {
 		}		
 	}
 	
-	private String getFullName( GeneratedMetamodelBean mmBean ) {
+	private String getFullName( MMModelEntity mmBean ) {
 		String name = "["+ mmBean.getMetamodel().getName()+"]";
 		if( mmBean instanceof MMRepositoryConcept ) {
 			name += ((MMRepositoryConcept)mmBean).getName();

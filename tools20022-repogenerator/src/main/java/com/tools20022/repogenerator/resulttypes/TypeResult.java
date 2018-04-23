@@ -5,22 +5,22 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.repogenerator.RawRepository;
 
-public abstract class TypeResult extends GenerationResult<RawRepository,GeneratedMetamodelBean> {
+public abstract class TypeResult extends GenerationResult<RawRepository,MMModelEntity> {
 
-	public final GeneratedMetamodelBean mmBean;
+	public final MMModelEntity mmBean;
 	public final StructuredName baseName;
 
 	public final List<AttrResult> attrGens = new ArrayList<>();
 
-	protected TypeResult(GenerationContext<RawRepository,GeneratedMetamodelBean> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+	protected TypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMModelEntity mmBean, StructuredName baseName) {
 		super(ctx);
 		this.mmBean = mmBean;
 		this.baseName = baseName;

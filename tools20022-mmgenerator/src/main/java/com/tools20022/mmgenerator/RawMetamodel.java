@@ -5,11 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
-import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 
 interface RawMetamodel {
 

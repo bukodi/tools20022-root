@@ -26,11 +26,12 @@ import java.util.stream.Stream;
 import com.tools20022.core.metamodel.ISODoc.Basis;
 import com.tools20022.core.metamodel.StaticMemembersBuilder.AttrWrapper;
 import com.tools20022.core.metamodel.StaticMemembersBuilder.ConstrWrapper;
+import com.tools20022.metamodel.MMModelEntity;
 
 public class ReflectionBasedMetamodel implements Metamodel {
 
 	private final LinkedHashMap<String, MMTypeImpl<?>> mmTypesByName = new LinkedHashMap<>();
-	private final LinkedHashMap<Class<? extends GeneratedMetamodelBean>, MMTypeImpl<?>> mmTypesByClass = new LinkedHashMap<>();
+	private final LinkedHashMap<Class<? extends MMModelEntity>, MMTypeImpl<?>> mmTypesByClass = new LinkedHashMap<>();
 	private final LinkedHashMap<String, MMEnumImpl<?>> mmEnumsByName = new LinkedHashMap<>();
 	private final LinkedHashMap<Class<? extends Enum<?>>, MMEnumImpl<?>> mmEnumsByClass = new LinkedHashMap<>();
 
@@ -38,7 +39,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	}
 
 	@Override
-	public List<? extends MetamodelType<? extends GeneratedMetamodelBean>> getAllTypes() {
+	public List<? extends MetamodelType<? extends MMModelEntity>> getAllTypes() {
 		return new ArrayList<>(mmTypesByName.values());
 	}
 
@@ -55,7 +56,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		return ret;
 	}
 
-	private <B extends GeneratedMetamodelBean> MMTypeImpl<B> getTypeImplByClass(Class<B> beanClass) {
+	private <B extends MMModelEntity> MMTypeImpl<B> getTypeImplByClass(Class<B> beanClass) {
 		for (Class<?> keyClass = beanClass; keyClass != null; keyClass = keyClass.getSuperclass()) {
 			@SuppressWarnings("unchecked")
 			MMTypeImpl<B> ret = (MMTypeImpl<B>) mmTypesByClass.get(keyClass);
@@ -66,7 +67,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	}
 
 	@Override
-	public <B extends GeneratedMetamodelBean> MetamodelType<B> getTypeByClass(Class<B> beanClass) {
+	public <B extends MMModelEntity> MetamodelType<B> getTypeByClass(Class<B> beanClass) {
 		return getTypeImplByClass(beanClass);
 	}
 
@@ -89,11 +90,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 	}
 
 	@SafeVarargs
-	public final void registerTypesFromClasses(Class<? extends GeneratedMetamodelBean>... beanClasses) {
+	public final void registerTypesFromClasses(Class<? extends MMModelEntity>... beanClasses) {
 		try {
 			// First phase: register classes
 			List<MMTypeImpl<?>> mmTypes = new ArrayList<>();
-			for (Class<? extends GeneratedMetamodelBean> beanClass : beanClasses) {
+			for (Class<? extends MMModelEntity> beanClass : beanClasses) {
 				mmTypes.add(new MMTypeImpl<>(beanClass));
 			}
 			// Second phase: add inheritance
@@ -111,7 +112,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				for (MMAttributeImpl<?, ?> mmAttr : mmType.attrsByName.values()) {
 					Opposite annotOp = mmAttr.getterMethod.getAnnotation(Opposite.class);
 					if (annotOp != null) {
-						MMTypeImpl<? extends GeneratedMetamodelBean> opType = getTypeImplByClass(annotOp.bean());
+						MMTypeImpl<? extends MMModelEntity> opType = getTypeImplByClass(annotOp.bean());
 						MMAttributeImpl<?, ?> opAttr = opType.attrsByName.get(annotOp.attribute());
 						mmAttr.setOpposite((MMAttributeImpl<?, ?>) opAttr);
 					}
@@ -156,7 +157,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 	}
 
-	public <B extends GeneratedMetamodelBean> MetamodelType<B> createTypeFromClass(Class<B> beanClass) {
+	public <B extends MMModelEntity> MetamodelType<B> createTypeFromClass(Class<B> beanClass) {
 		try {
 			return new MMTypeImpl<>(beanClass);
 		} catch (Exception e) {
@@ -179,7 +180,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		return m.getName(); // TODO
 	}
 
-	private class MMTypeImpl<B extends GeneratedMetamodelBean> extends MModelElementImpl implements MetamodelType<B> {
+	private class MMTypeImpl<B extends MMModelEntity> extends MModelElementImpl implements MetamodelType<B> {
 		private final Class<B> beanClass;
 		private final LinkedHashMap<String, MMAttributeImpl<B, ?>> attrsByName = new LinkedHashMap<>();
 		private final LinkedHashMap<String, MMConstraintImpl<B>> constraintsByName = new LinkedHashMap<>();
@@ -225,8 +226,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 					: Stream.of(beanClass.getSuperclass());
 			Stream<Class<?>> interfaceStream = Stream.of(beanClass.getInterfaces());
 			Stream<Class<?>> filteredClasses = Stream.concat(superClassStream, interfaceStream)
-					.filter(c -> GeneratedMetamodelBean.class.isAssignableFrom(c))
-					.filter(c -> !c.equals(GeneratedMetamodelBean.class));
+					.filter(c -> MMModelEntity.class.isAssignableFrom(c));
 
 			filteredClasses.forEachOrdered(superBean -> {
 				@SuppressWarnings("unchecked")
@@ -261,6 +261,12 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				// Fileter inherited attrs
 				if (methodsBySignature.containsKey(getMethodSignature(method)))
 					continue;
+				
+				if( MMModelEntity.class.equals( beanClass ) ) {
+					if( "getMetamodel".equals( method.getName()) || "getContainer".equals( method.getName()) ) {
+						continue;
+					}
+				}
 
 				String propName = getPropertyName(method);
 				if (propName == null)
@@ -373,7 +379,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 	}
 
-	private class MMAttributeImpl<B extends GeneratedMetamodelBean, T> extends MModelElementImpl
+	private class MMAttributeImpl<B extends MMModelEntity, T> extends MModelElementImpl
 			implements MetamodelAttribute<B, T> {
 
 		private final MMTypeImpl<B> metaType;
@@ -421,9 +427,9 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				enumType = (MMEnumImpl<?>) getEnumByClass(enumClass);
 				valueJavaClass = null;
 				referncedType = null;
-			} else if (GeneratedMetamodelBean.class.isAssignableFrom(pt.baseClass)) {
+			} else if (MMModelEntity.class.isAssignableFrom(pt.baseClass)) {
 				@SuppressWarnings("unchecked")
-				Class<? extends GeneratedMetamodelBean> refClass = (Class<? extends GeneratedMetamodelBean>) pt.baseClass;
+				Class<? extends MMModelEntity> refClass = (Class<? extends MMModelEntity>) pt.baseClass;
 				enumType = null;
 				valueJavaClass = null;
 				referncedType = getTypeImplByClass(refClass);
@@ -445,7 +451,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		@Override
-		public Object get(GeneratedMetamodelBean repoObj) {
+		public Object get(MMModelEntity repoObj) {
 			try {
 				return getterMethod.invoke(repoObj);
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
@@ -459,7 +465,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		@Override
-		public void set(GeneratedMetamodelBean repoObj, Object value) {
+		public void set(MMModelEntity repoObj, Object value) {
 			try {
 				Field field = null;
 				for (Class<?> declClass = repoObj.getClass(); field == null && declClass != null;) {
@@ -547,7 +553,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 	}
 
-	private class MMConstraintImpl<B extends GeneratedMetamodelBean> extends MModelElementImpl
+	private class MMConstraintImpl<B extends MMModelEntity> extends MModelElementImpl
 			implements MetamodelConstraint<B> {
 		private final MetamodelType<B> metaType;
 		private final String name;

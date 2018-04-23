@@ -17,7 +17,6 @@
 
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -47,7 +46,7 @@ public class MMBroadcastList implements OrphanMetamodelType, MMModelEntity {
 	protected String objectIdentifier;
 
 	@Override
-	public GeneratedMetamodelBean getContainer() {
+	public MMModelEntity getContainer() {
 		return null;
 	}
 

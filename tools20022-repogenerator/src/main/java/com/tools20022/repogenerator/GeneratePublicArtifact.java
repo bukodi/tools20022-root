@@ -18,7 +18,6 @@ import javax.tools.StandardLocation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.FileIOHelper;
 import com.tools20022.generators.GenerationContext;
@@ -26,6 +25,7 @@ import com.tools20022.generators.GeneratorFileManager;
 import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.SaveConsistentSubSet;
 import com.tools20022.generators.SaveConsistentSubSet.ConsistentSubset;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class GeneratePublicArtifact {
@@ -122,8 +122,8 @@ public class GeneratePublicArtifact {
 		fileManager.dontChangeIfExists(p -> p.toString().contains(File.separator + "constraints" + File.separator)
 				|| p.toString().contains(File.separator + "derived" + File.separator));
 
-		GenerationContext<RawRepository, GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,
-				GeneratedMetamodelBean.class, fileManager);
+		GenerationContext<RawRepository, MMModelEntity> genCtx = new GenerationContext<>(RawRepository.class,
+				MMModelEntity.class, fileManager);
 		genCtx.setSkipDocGeneration(false);
 		genCtx.setLicenceHeaderGPLv3();
 		genCtx.setDontModifyImports(Arrays.asList("com.tools20022.repository.area.tsmt.StatusReportV03", "com.tools20022.repository.area.catm.StatusReportV03"));

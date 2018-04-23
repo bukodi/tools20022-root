@@ -12,26 +12,25 @@ import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
 
-import com.test.camt030.NotificationOfCaseAssignmentV04;
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.RuntimeInstanceAware;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
 
 public class TestUtil {
 
 	public static JAXBContext createJaxbContext() throws Exception {
-		Map<MetamodelType<?>, Set<GeneratedMetamodelBean>> mmBeansByType = new HashMap<>();
+		Map<MetamodelType<?>, Set<MMModelEntity>> mmBeansByType = new HashMap<>();
 		collectContents(GeneratedRepository.mmObject(), mmBeansByType);
 
 		Set<Class<?>> classes = new HashSet<>();
-		for (Entry<MetamodelType<?>, Set<GeneratedMetamodelBean>> e : mmBeansByType.entrySet()) {
+		for (Entry<MetamodelType<?>, Set<MMModelEntity>> e : mmBeansByType.entrySet()) {
 			if (!RuntimeInstanceAware.class.isAssignableFrom(e.getKey().getBeanClass()))
 				continue;
 
-			for (GeneratedMetamodelBean mmBean : e.getValue()) {
+			for (MMModelEntity mmBean : e.getValue()) {
 				RuntimeInstanceAware x = (RuntimeInstanceAware) mmBean;
 				Class instanceClazz = x.getInstanceClass();
 				classes.add(instanceClazz);
@@ -46,9 +45,9 @@ public class TestUtil {
 		return ctx;
 	}
 
-	private static void collectContents(GeneratedMetamodelBean mmBean,
-			Map<MetamodelType<?>, Set<GeneratedMetamodelBean>> mmBeansByType) {
-		MetamodelType<? extends GeneratedMetamodelBean> mmType = mmBean.getMetamodel();
+	private static void collectContents(MMModelEntity mmBean,
+			Map<MetamodelType<?>, Set<MMModelEntity>> mmBeansByType) {
+		MetamodelType<? extends MMModelEntity> mmType = mmBean.getMetamodel();
 		mmBeansByType.computeIfAbsent(mmType, x -> new LinkedHashSet<>()).add(mmBean);
 
 		for (MetamodelAttribute<?, ?> attr : mmBean.getMetamodel().getAllAttributes()) {
@@ -58,14 +57,14 @@ public class TestUtil {
 				Object wrappedValue = attr.get(mmBean);
 				if (wrappedValue instanceof Optional<?>) {
 					((Optional<?>) wrappedValue).ifPresent(v -> {
-						collectContents((GeneratedMetamodelBean) v, mmBeansByType);
+						collectContents((MMModelEntity) v, mmBeansByType);
 					});
 				} else if (wrappedValue instanceof List<?>) {
 					((List<?>) wrappedValue).forEach(v -> {
-						collectContents((GeneratedMetamodelBean) v, mmBeansByType);
+						collectContents((MMModelEntity) v, mmBeansByType);
 					});
 				} else {
-					collectContents((GeneratedMetamodelBean) wrappedValue, mmBeansByType);
+					collectContents((MMModelEntity) wrappedValue, mmBeansByType);
 				}
 			}
 		}

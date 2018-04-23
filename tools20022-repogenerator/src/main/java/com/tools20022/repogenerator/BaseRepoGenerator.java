@@ -25,10 +25,7 @@ import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
-import com.tools20022.core.metamodel.RuntimeInstanceAware;
-import com.tools20022.core.metamodel.RuntimePropertyAware;
 import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
@@ -58,6 +55,7 @@ import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMString;
@@ -75,7 +73,7 @@ import com.tools20022.repogenerator.resulttypes.PropertyResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
 
-public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository, GeneratedMetamodelBean> {
+public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository, MMModelEntity> {
 
 	int USE_LIST_BUILDER_ABOVE = 500;
 
@@ -86,19 +84,19 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	/*** Set in {@link #accept(RawRepository, GenerationContext)} ***/
 	protected RawRepository repo;
 
-	public BaseRepoGenerator(GenerationContext<RawRepository, GeneratedMetamodelBean> ctx) {
+	public BaseRepoGenerator(GenerationContext<RawRepository, MMModelEntity> ctx) {
 		super(ctx);
 	}
 
 	@Override
-	public StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
+	public StructuredName getStructuredName(MMModelEntity mmElem) {
 		StructuredName name = _getStructuredName(mmElem);
 		return name;
 	}
 
-	private StructuredName _getStructuredName(GeneratedMetamodelBean mmElem) {
+	private StructuredName _getStructuredName(MMModelEntity mmElem) {
 
-		BiFunction<GeneratedMetamodelBean, String, StructuredName> createJavaNameAsMemeber = (parentElem,
+		BiFunction<MMModelEntity, String, StructuredName> createJavaNameAsMemeber = (parentElem,
 				memberName) -> {
 			StructuredName parentStructName = getStructuredName(parentElem.getContainer());
 			memberName = RoasterHelper.convertToJavaName(memberName);
@@ -282,7 +280,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			ret.valueAsSource = attrValue.getClass().getName() + "." + attrValue.toString();
 			ret.valueAsJavaDoc = attrValue.getClass().getName() + "." + attrValue.toString();
 		} else if (attrValue instanceof MMCode) {
-			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;
+			MMModelEntity refmmBean = (MMModelEntity) attrValue;
 			StructuredName refName = getStructuredName(refmmBean);
 			ret.valueAsSource = refName.getPackage() + "." + refName.getCompilationUnit() + "."
 					+ refName.getMemberName();
@@ -290,8 +288,8 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 			ret.valueAsJavaDoc += refName.getPackage() + "." + refName.getCompilationUnit() + "#"
 					+ refName.getMemberName();
 			ret.valueAsJavaDoc += " " + refName.getCompilationUnit() + "." + refName.getMemberName() + "}";
-		} else if (attrValue instanceof GeneratedMetamodelBean) {
-			GeneratedMetamodelBean refmmBean = (GeneratedMetamodelBean) attrValue;
+		} else if (attrValue instanceof MMModelEntity) {
+			MMModelEntity refmmBean = (MMModelEntity) attrValue;
 			StructuredName refName = getStructuredName(refmmBean);
 			if (refName.isCompilationUnit()) {
 				ret.valueAsSource = refName.getFullName() + ".mmObject()";
@@ -339,7 +337,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		public String valueAsJavaDoc;
 	}
 
-	protected MainTypeResult defaultMainType(GeneratedMetamodelBean mmBean) {
+	protected MainTypeResult defaultMainType(MMModelEntity mmBean) {
 		StructuredName name = getStructuredName(mmBean);
 		MainTypeResult gen = new MainTypeResult(ctx, mmBean, name);
 		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
@@ -552,7 +550,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		return gen;
 	}
 
-	protected StaticFieldResult defaultStaticFieldResult(GeneratedMetamodelBean mmBean, MainTypeResult containerGen) {
+	protected StaticFieldResult defaultStaticFieldResult(MMModelEntity mmBean, MainTypeResult containerGen) {
 		StructuredName name = getStructuredName(mmBean);
 		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, name);
 		{
@@ -606,7 +604,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		return gen;
 	}
 
-	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, GeneratedMetamodelBean repoObj) {
+	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, MMModelEntity repoObj) {
 		if (ctx.isSkipDocGeneration())
 			return;
 		String docTxt;

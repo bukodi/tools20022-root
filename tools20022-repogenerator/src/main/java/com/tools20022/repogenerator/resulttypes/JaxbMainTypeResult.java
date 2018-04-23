@@ -10,12 +10,12 @@ import javax.xml.bind.annotation.XmlType;
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.repogenerator.RawRepository;
 
@@ -23,7 +23,7 @@ public class JaxbMainTypeResult extends MainTypeResult {
 	
 	public List<String> propOrder = new ArrayList<>();
 
-	public JaxbMainTypeResult(GenerationContext<RawRepository,GeneratedMetamodelBean> ctx, MMRepositoryConcept mmBean, StructuredName baseName) {
+	public JaxbMainTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMRepositoryConcept mmBean, StructuredName baseName) {
 		super(ctx, mmBean, baseName);
 	}
 

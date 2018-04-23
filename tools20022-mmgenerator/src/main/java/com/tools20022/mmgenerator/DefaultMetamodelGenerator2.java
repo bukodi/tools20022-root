@@ -10,12 +10,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.AnnotationTargetSource;
 import org.jboss.forge.roaster.model.source.EnumConstantSource;
-import org.jboss.forge.roaster.model.source.FieldHolderSource;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.Importer;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
@@ -25,13 +23,10 @@ import org.jboss.forge.roaster.model.source.JavaEnumSource;
 import org.jboss.forge.roaster.model.source.JavaInterfaceSource;
 import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
-import org.jboss.forge.roaster.model.source.PropertyHolderSource;
-import org.jboss.forge.roaster.model.source.TypeVariableSource;
 
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Derived;
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
 import com.tools20022.core.metamodel.Opposite;
@@ -46,6 +41,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelAttribute;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelConstraint;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelElement;
@@ -288,7 +284,7 @@ public class DefaultMetamodelGenerator2 extends AbstractGenerator<RawMetamodel, 
 			srcIfGetContainer.setPublic();
 			
 			// TODO: should remove this
-			srcIf.addInterface(GeneratedMetamodelBean.class);
+			srcIf.addInterface(MMModelEntity.class);
 		}
 		
 		// If no container ref, mark as an OrphanType, except the Repository

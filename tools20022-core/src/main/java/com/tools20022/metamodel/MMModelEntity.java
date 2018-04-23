@@ -17,21 +17,20 @@
 
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
+import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
+
+import java.util.List;
+import java.util.Optional;
+
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
-import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
-import com.tools20022.metamodel.MMModelEntity;
-import java.util.function.Supplier;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Abstract definition of a model entity. The common meta class which is the
  * generalisation of all Meta Classes.
  */
-public interface MMModelEntity extends GeneratedMetamodelBean {
+public interface MMModelEntity {
 
 	/**
 	 * List of next versions of a ModelEntity that stem from this ModelEntity.
@@ -74,4 +73,10 @@ public interface MMModelEntity extends GeneratedMetamodelBean {
 	 * Uniquely identifies the RepositoryConcept
 	 */
 	public Optional<String> getObjectIdentifier();
+	
+	default MetamodelType<? extends MMModelEntity> getMetamodel() {
+		return null; // XXX
+	}
+
+	MMModelEntity getContainer();
 }

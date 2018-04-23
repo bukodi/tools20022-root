@@ -8,17 +8,19 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.tools20022.metamodel.MMModelEntity;
+
 /**
  * @author bukodi
  *
  */
 public interface Metamodel {
 
-	List<? extends MetamodelType<? extends GeneratedMetamodelBean>> getAllTypes();
+	List<? extends MetamodelType<? extends MMModelEntity>> getAllTypes();
 
-	MetamodelType<? extends GeneratedMetamodelBean> getTypeByName( String name );
+	MetamodelType<? extends MMModelEntity> getTypeByName( String name );
 
-	<B extends GeneratedMetamodelBean> MetamodelType<B> getTypeByClass( Class<B> beanClass );
+	<B extends MMModelEntity> MetamodelType<B> getTypeByClass( Class<B> beanClass );
 		
 	List<? extends MetamodelEnum<?>> getAllEnums();
 
@@ -31,7 +33,7 @@ public interface Metamodel {
 		MetamodelDocImpl getDocumentation();
 	}
 
-	public interface MetamodelType<B extends GeneratedMetamodelBean> extends MetamodelElement {
+	public interface MetamodelType<B extends MMModelEntity> extends MetamodelElement {
 		boolean isAbstract();
 		Class<B> getBeanClass();
 		B newInstance();
@@ -81,7 +83,7 @@ public interface Metamodel {
 
 	}
 
-	public interface MetamodelAttribute<B extends GeneratedMetamodelBean,T> extends MetamodelElement {
+	public interface MetamodelAttribute<B extends MMModelEntity,T> extends MetamodelElement {
 		MetamodelType<B> getDeclaringType();
 		boolean isDerived();
 		boolean isOptional();
@@ -95,12 +97,12 @@ public interface Metamodel {
 		MetamodelType<?> getReferencedType();
 		MetamodelEnum<?> getEnumType();
 
-		Object get(GeneratedMetamodelBean repoObj);
-		void set(GeneratedMetamodelBean repoObj,Object value);
+		Object get(MMModelEntity repoObj);
+		void set(MMModelEntity repoObj,Object value);
 		Method getGetterMethod();
 	}
 
-	public interface MetamodelConstraint<B extends GeneratedMetamodelBean> extends MetamodelElement {
+	public interface MetamodelConstraint<B extends MMModelEntity> extends MetamodelElement {
 		MetamodelType<B> getDeclaringType();
 		Consumer<B> checker();
 	}

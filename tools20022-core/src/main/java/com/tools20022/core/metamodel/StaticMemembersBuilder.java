@@ -9,6 +9,7 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelElement;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
+import com.tools20022.metamodel.MMModelEntity;
 
 public class StaticMemembersBuilder {
 
@@ -17,13 +18,13 @@ public class StaticMemembersBuilder {
 	private final LinkedHashSet<AttrWrapper<?, ?>> attrs = new LinkedHashSet<>();
 	private final LinkedHashSet<ConstrWrapper<?>> constrs = new LinkedHashSet<>();
 
-	public static <B extends GeneratedMetamodelBean, T> MetamodelAttribute<B, T> newAttribute() {
+	public static <B extends MMModelEntity, T> MetamodelAttribute<B, T> newAttribute() {
 		AttrWrapper<B, T> wrapper = builderInstance.new AttrWrapper<>();
 		builderInstance.attrs.add(wrapper);
 		return wrapper;
 	}
 
-	public static <B extends GeneratedMetamodelBean> MetamodelConstraint<B> newConstraint(Consumer<B> checker ) {
+	public static <B extends MMModelEntity> MetamodelConstraint<B> newConstraint(Consumer<B> checker ) {
 		ConstrWrapper<B> wrapper = builderInstance.new ConstrWrapper<>( checker );
 		builderInstance.constrs.add(wrapper);
 		return wrapper;
@@ -67,7 +68,7 @@ public class StaticMemembersBuilder {
 
 	}
 
-	class AttrWrapper<B extends GeneratedMetamodelBean, T>
+	class AttrWrapper<B extends MMModelEntity, T>
 			extends AbstractWrapper<MetamodelAttribute<B, T>>
 			implements MetamodelAttribute<B, T> {
 
@@ -131,12 +132,12 @@ public class StaticMemembersBuilder {
 		}
 
 		@Override
-		public Object get(GeneratedMetamodelBean repoObj) {
+		public Object get(MMModelEntity repoObj) {
 			return impl().get(repoObj);
 		}
 
 		@Override
-		public void set(GeneratedMetamodelBean repoObj, Object value) {
+		public void set(MMModelEntity repoObj, Object value) {
 			impl().set(repoObj, value);			
 		}
 		
@@ -147,7 +148,7 @@ public class StaticMemembersBuilder {
 
 	}
 
-	class ConstrWrapper<B extends GeneratedMetamodelBean>
+	class ConstrWrapper<B extends MMModelEntity>
 			extends AbstractWrapper<MetamodelConstraint<B>>
 			implements MetamodelConstraint<B> {
 

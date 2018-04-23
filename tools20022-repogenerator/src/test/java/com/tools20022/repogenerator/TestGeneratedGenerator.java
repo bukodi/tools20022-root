@@ -13,13 +13,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GeneratorFileManager;
 import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class TestGeneratedGenerator {
@@ -94,8 +94,8 @@ public class TestGeneratedGenerator {
 		fileManager.dontChangeIfExists(p -> !p.toString().contains("com/tools20022/repository/"));
 		fileManager.cleanOutputFolder();
 
-		GenerationContext<RawRepository, GeneratedMetamodelBean> genCtx = new GenerationContext<>(RawRepository.class,
-				GeneratedMetamodelBean.class, fileManager);
+		GenerationContext<RawRepository, MMModelEntity> genCtx = new GenerationContext<>(RawRepository.class,
+				MMModelEntity.class, fileManager);
 		genCtx.setSkipDocGeneration(false);
 		genCtx.setLicenceHeaderGPLv3();
 

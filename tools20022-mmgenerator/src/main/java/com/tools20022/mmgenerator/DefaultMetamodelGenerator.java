@@ -31,7 +31,6 @@ import org.jboss.forge.roaster.model.source.TypeVariableSource;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Derived;
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
 import com.tools20022.core.metamodel.Opposite;
@@ -46,6 +45,7 @@ import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelAttribute;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelConstraint;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelElement;
@@ -229,8 +229,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 					src.addInterface(OrphanMetamodelType.class.getSimpleName());					
 				}
 				
-				src.addImport(GeneratedMetamodelBean.class);
-				getContainerMethod.setReturnType(GeneratedMetamodelBean.class);
+				getContainerMethod.setReturnType(MMModelEntity.class);
 				getContainerMethod.setBody("return null;");
 			} else {
 				// Exactly one containing ref
@@ -290,8 +289,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		// TODO: optimize this block
 		List<? extends MetamodelType> superTypes = mmType.listSuperTypes(false, false).collect(Collectors.toList());
 		if (superTypes.isEmpty()) {
-			src.addImport(GeneratedMetamodelBean.class);
-			src.addInterface(GeneratedMetamodelBean.class.getSimpleName());
+			src.addInterface(MMModelEntity.class.getName());
 		} else {
 			for (MetamodelType sc : superTypes) {
 				src.addImport(getStructuredName(sc).getFullName());
@@ -411,8 +409,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 
 		List<? extends MetamodelType> superTypes = mmType.listSuperTypes(false, false).collect(Collectors.toList());
 		if (superTypes.isEmpty()) {
-			src.addImport(GeneratedMetamodelBean.class);
-			src.addInterface(GeneratedMetamodelBean.class.getSimpleName());
+			src.addInterface(MMModelEntity.class);
 		} else {
 			for (MetamodelType sc : superTypes) {
 				addImport(src, sc);

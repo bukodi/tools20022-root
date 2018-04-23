@@ -89,9 +89,9 @@ public class ActiveOrHistoricCurrencyAndAmount {
 				name = "ActiveOrHistoricCurrencyAndAmount";
 				definition = "A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217.";
 				currencyIdentifierSet_lazy = () -> ActiveOrHistoricCurrencyCode.mmObject();
-				fractionDigits = 5;
 				minInclusive = "0";
 				totalDigits = 18;
+				fractionDigits = 5;
 			}
 		});
 		return mmObject_lazy.get();

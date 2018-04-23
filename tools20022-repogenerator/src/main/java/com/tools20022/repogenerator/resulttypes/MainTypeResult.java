@@ -8,11 +8,11 @@ import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
 import com.tools20022.core.metamodel.RuntimeInstanceAware;
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMConstruct;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.repogenerator.RawRepository;
 
 public class MainTypeResult extends TypeResult {
@@ -22,7 +22,7 @@ public class MainTypeResult extends TypeResult {
 	public List<String> dontModifyImports = new ArrayList<>();
 	public List<PropertyResult> properties = new ArrayList<>();
 
-	public MainTypeResult(GenerationContext<RawRepository,GeneratedMetamodelBean> ctx, GeneratedMetamodelBean mmBean, StructuredName baseName) {
+	public MainTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMModelEntity mmBean, StructuredName baseName) {
 		super(ctx, mmBean, baseName);
 	}
 	

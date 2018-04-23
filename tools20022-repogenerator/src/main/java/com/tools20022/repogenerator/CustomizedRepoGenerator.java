@@ -18,7 +18,6 @@ import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.repo.NotImplementedConstraintException;
@@ -35,10 +34,9 @@ import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
-import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
-import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMRepositoryType;
@@ -60,12 +58,12 @@ import com.tools20022.repogenerator.resulttypes.TypeResult;
 
 public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 
-	public CustomizedRepoGenerator(GenerationContext<RawRepository, GeneratedMetamodelBean> ctx) {
+	public CustomizedRepoGenerator(GenerationContext<RawRepository, MMModelEntity> ctx) {
 		super(ctx);
 	}
 
 	@Override
-	public StructuredName getStructuredName(GeneratedMetamodelBean mmElem) {
+	public StructuredName getStructuredName(MMModelEntity mmElem) {
 		StructuredName name = super.getStructuredName(mmElem);
 		if (mmElem instanceof MMMessageDefinition) {
 			// Please note that the RequestToModifyPayment (camt.007.002.03) was replaced by
@@ -97,19 +95,19 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		for (MetamodelEnum<?> mmEnum : repo.getMetamodel().getAllEnums()) {
 			this.ctx.addKnownTypeNames(mmEnum.getEnumJavaClass().getName());
 		}
-		for (MetamodelType<? extends GeneratedMetamodelBean> mmType : repo.getMetamodel().getAllTypes()) {
+		for (MetamodelType<? extends MMModelEntity> mmType : repo.getMetamodel().getAllTypes()) {
 			this.ctx.addKnownTypeNames(mmType.getBeanClass().getName());
 		}
 
 		// Count main types to generate
-		Map<StructuredName, GeneratedMetamodelBean> mainTypes = new HashMap<>();
+		Map<StructuredName, MMModelEntity> mainTypes = new HashMap<>();
 		{
 			long start = System.currentTimeMillis();
 			// AtomicInteger totalNumberOfMainTypesToGenerate = new AtomicInteger();
 			repo.listContent(repo.getRootObject(), true, true).forEach(repoObj -> {
 				StructuredName javaName = getStructuredName(repoObj);
 				if (javaName != null && javaName.getMemberName() == null && javaName.getNestedTypeName() == null) {
-					GeneratedMetamodelBean prevBean = mainTypes.put(javaName, repoObj);
+					MMModelEntity prevBean = mainTypes.put(javaName, repoObj);
 					if (prevBean != null)
 						throw new RuntimeException();
 					this.ctx.addKnownTypeNames(javaName.getFullName());
@@ -121,8 +119,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		}
 
 		// Create repo
-		Map<GeneratedMetamodelBean, MainTypeResult> mainResults = new HashMap<>();
-		for (GeneratedMetamodelBean mmBean : mainTypes.values()) {
+		Map<MMModelEntity, MainTypeResult> mainResults = new HashMap<>();
+		for (MMModelEntity mmBean : mainTypes.values()) {
 			MainTypeResult genResult = generateMainResultType(mmBean);					
 			// mainResults.put(mmBean, genResult);
 		}

@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
@@ -30,8 +29,8 @@ import com.tools20022.core.metamodel.Metamodel.MetamodelEnum;
 import com.tools20022.core.metamodel.Metamodel.MetamodelEnumLiteral;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.ECoreIOHelper;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
-import com.tools20022.metamodel.MMRepositoryConcept;
 
 public class XMILoader {
 
@@ -42,7 +41,7 @@ public class XMILoader {
 
 	}
 
-	final LinkedHashSet<GeneratedMetamodelBean> loadedObjects = new LinkedHashSet();
+	final LinkedHashSet<MMModelEntity> loadedObjects = new LinkedHashSet();
 
 	private class ECoreToMetamodelMapping {
 		final Map<EClass, MetamodelType<?>> mmTypesByEClass = new HashMap<>();
@@ -57,9 +56,9 @@ public class XMILoader {
 			for (EClassifier e : ecorePkg.getEClassifiers()) {
 				if (e instanceof EClass) {
 					EClass eClass = (EClass) e;
-					MetamodelType<? extends GeneratedMetamodelBean> mmType = metamodel.getTypeByName(eClass.getName());
+					MetamodelType<? extends MMModelEntity> mmType = metamodel.getTypeByName(eClass.getName());
 					mapping.mmTypesByEClass.put(eClass, mmType);
-					for (MetamodelAttribute<? extends GeneratedMetamodelBean, ?> mmAttr : mmType
+					for (MetamodelAttribute<? extends MMModelEntity, ?> mmAttr : mmType
 							.getDeclaredAttributes()) {
 						EStructuralFeature eSF = eClass.getEStructuralFeature(mmAttr.getName());
 						mapping.eSFsBymmAttr.put(mmAttr, eSF);
@@ -68,7 +67,7 @@ public class XMILoader {
 					eClass.getEOperations().forEach(eOp -> {
 						eOpsByName.put(eOp.getName(), eOp);
 					});
-					for (MetamodelConstraint<? extends GeneratedMetamodelBean> mmConstr : mmType
+					for (MetamodelConstraint<? extends MMModelEntity> mmConstr : mmType
 							.getDeclaredConstraints()) {
 						EOperation eOp = eOpsByName.get(mmConstr.getName());
 						mapping.eOpsBymmConstr.put(mmConstr, eOp);
@@ -89,9 +88,9 @@ public class XMILoader {
 
 	}
 
-	private void loadWithContents(EObject eObj, GeneratedMetamodelBean container, ECoreToMetamodelMapping mapping,
-			Map<EObject, GeneratedMetamodelBean> repoObjectsByEObj) {
-		GeneratedMetamodelBean repoObj;
+	private void loadWithContents(EObject eObj, MMModelEntity container, ECoreToMetamodelMapping mapping,
+			Map<EObject, MMModelEntity> repoObjectsByEObj) {
+		MMModelEntity repoObj;
 		try {
 			EClass eClass = eObj.eClass();
 			MetamodelType<?> mmType = mapping.mmTypesByEClass.get(eClass);
@@ -129,8 +128,8 @@ public class XMILoader {
 		}
 	}
 
-	private void setAttributeValue(MetamodelAttribute mmAttr, GeneratedMetamodelBean repoObj, Object value,
-			Map<EObject, GeneratedMetamodelBean> repoObjsByEObj) {
+	private void setAttributeValue(MetamodelAttribute mmAttr, MMModelEntity repoObj, Object value,
+			Map<EObject, MMModelEntity> repoObjsByEObj) {
 		if (value == null)
 			return;
 		if (value instanceof EList<?> && ((EList<?>) value).isEmpty())
@@ -146,7 +145,7 @@ public class XMILoader {
 			} else if (mmAttr.getReferencedType() != null && !mmAttr.isMultiple()) {
 				/*** Singular reference ***/
 				EObject refObj = (EObject) value;
-				GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(refObj);
+				MMModelEntity refIsoObj = repoObjsByEObj.get(refObj);
 				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived();
 				if (!isLazyReference) {
 					mmAttr.set(repoObj, refIsoObj);
@@ -156,9 +155,9 @@ public class XMILoader {
 				}
 			} else if (mmAttr.getReferencedType() != null && mmAttr.isMultiple()) {
 				/*** Multiple reference ***/
-				List<GeneratedMetamodelBean> isoList = new ArrayList<>();
+				List<MMModelEntity> isoList = new ArrayList<>();
 				for (Object x : (EList) value) {
-					GeneratedMetamodelBean refIsoObj = repoObjsByEObj.get(x);
+					MMModelEntity refIsoObj = repoObjsByEObj.get(x);
 					isoList.add(refIsoObj);
 				}
 				boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived();
@@ -196,12 +195,12 @@ public class XMILoader {
 		final ECoreToMetamodelMapping mapping = createECoreToMetamodelMapping(ecorePkg);
 
 		// Load XMI objects
-		Map<EObject, GeneratedMetamodelBean> repoObjsByEObj = new HashMap<>();
+		Map<EObject, MMModelEntity> repoObjsByEObj = new HashMap<>();
 		loadWithContents(rootEObj, null, mapping, repoObjsByEObj);
 
 		// Set values
-		for (Entry<EObject, GeneratedMetamodelBean> entry : repoObjsByEObj.entrySet()) {
-			GeneratedMetamodelBean repoObj = entry.getValue();
+		for (Entry<EObject, MMModelEntity> entry : repoObjsByEObj.entrySet()) {
+			MMModelEntity repoObj = entry.getValue();
 			EObject eObj = entry.getKey();
 
 			MetamodelType<?> mmType = repoObj.getMetamodel();
@@ -221,7 +220,7 @@ public class XMILoader {
 				setAttributeValue(mmAttr, repoObj, value, repoObjsByEObj);
 			}
 		}
-		GeneratedMetamodelBean rootRepoObj = repoObjsByEObj.get(rootEObj);
+		MMModelEntity rootRepoObj = repoObjsByEObj.get(rootEObj);
 		RawRepository rawRepo = new RawRepository(metamodel, (MMRepository) rootRepoObj);
 		loadedObjects.forEach(o -> rawRepo.addObject(o));
 		System.out.println("" + objectCount.get() + " objects with " + attributeCount.get() + " attributes loaded.");

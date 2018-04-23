@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.ECoreIOHelper;
@@ -37,6 +36,7 @@ import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageSet;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMSemanticMarkup;
@@ -76,16 +76,16 @@ public class InspectGeneratedMetamodel {
 
 	@Test
 	public void categorizeMMTypes() {
-		Map<String, Set<MetamodelType<? extends GeneratedMetamodelBean>>> typesByCategorie = new HashMap<>();
-		BiConsumer<MetamodelType<? extends GeneratedMetamodelBean>, String> printType = (mmType, name) -> {
+		Map<String, Set<MetamodelType<? extends MMModelEntity>>> typesByCategorie = new HashMap<>();
+		BiConsumer<MetamodelType<? extends MMModelEntity>, String> printType = (mmType, name) -> {
 			typesByCategorie
-					.computeIfAbsent(name, x -> new LinkedHashSet<MetamodelType<? extends GeneratedMetamodelBean>>())
+					.computeIfAbsent(name, x -> new LinkedHashSet<MetamodelType<? extends MMModelEntity>>())
 					.add(mmType);
 		};
 
 		System.out.println("------------------------");
 
-		for (MetamodelType<? extends GeneratedMetamodelBean> mmType : StandardMetamodel2013.metamodel().getAllTypes()) {
+		for (MetamodelType<? extends MMModelEntity> mmType : StandardMetamodel2013.metamodel().getAllTypes()) {
 
 			if (MMDataType.class.isAssignableFrom(mmType.getBeanClass())) {
 				printType.accept(mmType, "DataType");
@@ -108,7 +108,7 @@ public class InspectGeneratedMetamodel {
 		}
 
 		for (String name : typesByCategorie.keySet().stream().sorted().collect(Collectors.toSet())) {
-			for (MetamodelType<? extends GeneratedMetamodelBean> mmType : typesByCategorie.get(name)) {
+			for (MetamodelType<? extends MMModelEntity> mmType : typesByCategorie.get(name)) {
 				System.out.println(name + " - " + mmType.getName() + " ( " + repo.getCountByType(mmType) + ")");
 				if ("MainType".equals(name) || "SubType".equals(name)) {
 					mmType.listAllAttributes().filter(a -> a.isContainment()).map(a -> a.getReferencedType()).distinct()
@@ -126,7 +126,7 @@ public class InspectGeneratedMetamodel {
 
 	@Test
 	public void testRepoConceptTypes() throws Exception {
-		List<? extends MetamodelType<? extends GeneratedMetamodelBean>> allTypes = StandardMetamodel2013.metamodel()
+		List<? extends MetamodelType<? extends MMModelEntity>> allTypes = StandardMetamodel2013.metamodel()
 				.getAllTypes();
 		allTypes.stream().filter(t -> t instanceof MMRepositoryConcept)
 				.forEachOrdered(t -> System.out.println(t.getName()));
@@ -273,8 +273,8 @@ public class InspectGeneratedMetamodel {
 
 	@Test
 	public void listContainerTypes() throws Exception {
-		LinkedHashMap<MetamodelType<? extends GeneratedMetamodelBean>, Set<MetamodelAttribute<?, ?>>> containerRefsByTypes = new LinkedHashMap<>();
-		for (MetamodelType<? extends GeneratedMetamodelBean> mmType : StandardMetamodel2013.metamodel().getAllTypes()) {
+		LinkedHashMap<MetamodelType<? extends MMModelEntity>, Set<MetamodelAttribute<?, ?>>> containerRefsByTypes = new LinkedHashMap<>();
+		for (MetamodelType<? extends MMModelEntity> mmType : StandardMetamodel2013.metamodel().getAllTypes()) {
 			if( mmType.isAbstract() )
 				continue;
 			Set<MetamodelAttribute<?, ?>> containerRefs = new LinkedHashSet<>();
@@ -284,7 +284,7 @@ public class InspectGeneratedMetamodel {
 			containerRefsByTypes.put(mmType, containerRefs);
 		}
 
-		Consumer<Map.Entry<MetamodelType<? extends GeneratedMetamodelBean>, Set<MetamodelAttribute<?, ?>>>> printEntry = e -> {
+		Consumer<Map.Entry<MetamodelType<? extends MMModelEntity>, Set<MetamodelAttribute<?, ?>>>> printEntry = e -> {
 			System.out.println(e.getKey().getName());
 			e.getValue().stream().forEachOrdered(mmAttr -> {
 				System.out.print("    - " + mmAttr.getDeclaringType().getName() + "." + mmAttr.getName());

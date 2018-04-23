@@ -17,7 +17,6 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.CompilationUnit;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.generators.GenerationContext;
@@ -25,7 +24,6 @@ import com.tools20022.generators.GenerationResult;
 import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessElement;
-import com.tools20022.metamodel.MMBusinessProcess;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMBusinessRole;
 import com.tools20022.metamodel.MMChoiceComponent;
@@ -43,6 +41,7 @@ import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
 import com.tools20022.metamodel.MMMessageElement;
 import com.tools20022.metamodel.MMMessageElementContainer;
+import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
@@ -87,7 +86,7 @@ public class GenerateRepoGenerator {
 		
 		MethodSource<JavaClassSource> constr = mainSrc.addMethod();
 		constr.setConstructor(true).setProtected();
-		constr.addParameter( GenerationContext.class.getName() + "<" + RawRepository.class.getName() + ", " + GeneratedMetamodelBean.class.getName() + ">", "ctx");
+		constr.addParameter( GenerationContext.class.getName() + "<" + RawRepository.class.getName() + ", " + MMModelEntity.class.getName() + ">", "ctx");
 		constr.setBody("super( ctx );");
 		
 		// List non-abstract types organized by containment hierarchy.
@@ -148,7 +147,7 @@ public class GenerateRepoGenerator {
 	void addMainTypeSwitch() {
 		MethodSource<JavaClassSource> method = mainSrc.addMethod().setName("generateMainResultType");
 		method.setProtected();
-		method.addParameter( GeneratedMetamodelBean.class, "mmBean");
+		method.addParameter( MMModelEntity.class, "mmBean");
 		method.setReturnType( MainTypeResult.class);
 		StringJoiner sj = new StringJoiner(" else ");
 		for( MetamodelType<?> mmType : StandardMetamodel2013.metamodel().getAllTypes() ) {

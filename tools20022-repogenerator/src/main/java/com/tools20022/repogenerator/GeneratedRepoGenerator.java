@@ -1,6 +1,5 @@
 package com.tools20022.repogenerator;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.metamodel.*;
 import com.tools20022.repogenerator.BaseRepoGenerator;
@@ -9,7 +8,7 @@ import com.tools20022.repogenerator.resulttypes.*;
 public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected GeneratedRepoGenerator(
-			GenerationContext<RawRepository, GeneratedMetamodelBean> ctx) {
+			GenerationContext<RawRepository, MMModelEntity> ctx) {
 		super(ctx);
 	}
 
@@ -36,12 +35,12 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 			MMMessagingEndpoint mmBean) {
 		MainTypeResult gen = defaultMainType(mmBean);
 		implementMMModelEntity(gen, mmBean);
+		defaultAttribute(gen, MMMessagingEndpoint.sentMessageAttribute,
+				mmBean.getSentMessage());
 		defaultAttribute(gen, MMMessagingEndpoint.transportSystemAttribute,
 				mmBean.getTransportSystem());
 		defaultAttribute(gen, MMMessagingEndpoint.receivedMessageAttribute,
 				mmBean.getReceivedMessage());
-		defaultAttribute(gen, MMMessagingEndpoint.sentMessageAttribute,
-				mmBean.getSentMessage());
 		defaultAttribute(gen, MMMessagingEndpoint.locationAttribute,
 				mmBean.getLocation());
 		gen.flush();
@@ -310,12 +309,12 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMBusinessConcept(gen, mmBean);
+		defaultAttribute(gen, MMBusinessComponent.elementAttribute,
+				mmBean.getElement());
 		defaultAttribute(gen, MMBusinessComponent.subTypeAttribute,
 				mmBean.getSubType());
 		defaultAttribute(gen, MMBusinessComponent.superTypeAttribute,
 				mmBean.getSuperType());
-		defaultAttribute(gen, MMBusinessComponent.elementAttribute,
-				mmBean.getElement());
 		defaultAttribute(gen, MMBusinessComponent.derivationComponentAttribute,
 				mmBean.getDerivationComponent());
 		defaultAttribute(gen, MMBusinessComponent.associationDomainAttribute,
@@ -751,9 +750,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		defaultAttribute(gen, MMRate.baseValueAttribute, mmBean.getBaseValue());
 		defaultAttribute(gen, MMRate.baseUnitCodeAttribute,
 				mmBean.getBaseUnitCode());
-		defaultAttribute(gen, MMRate.fractionDigitsAttribute,
-				mmBean.getFractionDigits());
-		defaultAttribute(gen, MMRate.patternAttribute, mmBean.getPattern());
 		defaultAttribute(gen, MMRate.minInclusiveAttribute,
 				mmBean.getMinInclusive());
 		defaultAttribute(gen, MMRate.minExclusiveAttribute,
@@ -764,6 +760,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				mmBean.getMaxExclusive());
 		defaultAttribute(gen, MMRate.totalDigitsAttribute,
 				mmBean.getTotalDigits());
+		defaultAttribute(gen, MMRate.fractionDigitsAttribute,
+				mmBean.getFractionDigits());
+		defaultAttribute(gen, MMRate.patternAttribute, mmBean.getPattern());
 		gen.flush();
 		return gen;
 	}
@@ -777,9 +776,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMLogicalType(gen, mmBean);
-		defaultAttribute(gen, MMDecimal.fractionDigitsAttribute,
-				mmBean.getFractionDigits());
-		defaultAttribute(gen, MMDecimal.patternAttribute, mmBean.getPattern());
 		defaultAttribute(gen, MMDecimal.minInclusiveAttribute,
 				mmBean.getMinInclusive());
 		defaultAttribute(gen, MMDecimal.minExclusiveAttribute,
@@ -790,6 +786,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				mmBean.getMaxExclusive());
 		defaultAttribute(gen, MMDecimal.totalDigitsAttribute,
 				mmBean.getTotalDigits());
+		defaultAttribute(gen, MMDecimal.fractionDigitsAttribute,
+				mmBean.getFractionDigits());
+		defaultAttribute(gen, MMDecimal.patternAttribute, mmBean.getPattern());
 		gen.flush();
 		return gen;
 	}
@@ -822,9 +821,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMLogicalType(gen, mmBean);
 		defaultAttribute(gen, MMQuantity.unitCodeAttribute,
 				mmBean.getUnitCode());
-		defaultAttribute(gen, MMQuantity.fractionDigitsAttribute,
-				mmBean.getFractionDigits());
-		defaultAttribute(gen, MMQuantity.patternAttribute, mmBean.getPattern());
 		defaultAttribute(gen, MMQuantity.minInclusiveAttribute,
 				mmBean.getMinInclusive());
 		defaultAttribute(gen, MMQuantity.minExclusiveAttribute,
@@ -835,6 +831,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				mmBean.getMaxExclusive());
 		defaultAttribute(gen, MMQuantity.totalDigitsAttribute,
 				mmBean.getTotalDigits());
+		defaultAttribute(gen, MMQuantity.fractionDigitsAttribute,
+				mmBean.getFractionDigits());
+		defaultAttribute(gen, MMQuantity.patternAttribute, mmBean.getPattern());
 		gen.flush();
 		return gen;
 	}
@@ -889,9 +888,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		implementMMLogicalType(gen, mmBean);
 		defaultAttribute(gen, MMAmount.currencyIdentifierSetAttribute,
 				mmBean.getCurrencyIdentifierSet());
-		defaultAttribute(gen, MMAmount.fractionDigitsAttribute,
-				mmBean.getFractionDigits());
-		defaultAttribute(gen, MMAmount.patternAttribute, mmBean.getPattern());
 		defaultAttribute(gen, MMAmount.minInclusiveAttribute,
 				mmBean.getMinInclusive());
 		defaultAttribute(gen, MMAmount.minExclusiveAttribute,
@@ -902,6 +898,9 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				mmBean.getMaxExclusive());
 		defaultAttribute(gen, MMAmount.totalDigitsAttribute,
 				mmBean.getTotalDigits());
+		defaultAttribute(gen, MMAmount.fractionDigitsAttribute,
+				mmBean.getFractionDigits());
+		defaultAttribute(gen, MMAmount.patternAttribute, mmBean.getPattern());
 		gen.flush();
 		return gen;
 	}
@@ -1266,8 +1265,6 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 
 	protected void implementMMAbstractDateTimeConcept(TypeResult gen,
 			MMAbstractDateTimeConcept mmBean) {
-		defaultAttribute(gen, MMAbstractDateTimeConcept.patternAttribute,
-				mmBean.getPattern());
 		defaultAttribute(gen, MMAbstractDateTimeConcept.minInclusiveAttribute,
 				mmBean.getMinInclusive());
 		defaultAttribute(gen, MMAbstractDateTimeConcept.minExclusiveAttribute,
@@ -1276,6 +1273,8 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 				mmBean.getMaxInclusive());
 		defaultAttribute(gen, MMAbstractDateTimeConcept.maxExclusiveAttribute,
 				mmBean.getMaxExclusive());
+		defaultAttribute(gen, MMAbstractDateTimeConcept.patternAttribute,
+				mmBean.getPattern());
 	}
 
 	protected MainTypeResult generateMMTopLevelCatalogueEntry(
@@ -1315,8 +1314,7 @@ public abstract class GeneratedRepoGenerator extends BaseRepoGenerator {
 		}
 	}
 
-	protected MainTypeResult generateMainResultType(
-			GeneratedMetamodelBean mmBean) {
+	protected MainTypeResult generateMainResultType(MMModelEntity mmBean) {
 		if (MMAddress.class.equals(mmBean.getClass())) {
 			return generateMMAddress((MMAddress) mmBean);
 		} else if (MMBroadcastList.class.equals(mmBean.getClass())) {

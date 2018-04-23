@@ -1,8 +1,6 @@
 package com.tools20022.repogenerator.resulttypes;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,7 +10,6 @@ import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
-import com.tools20022.core.metamodel.GeneratedMetamodelBean;
 import com.tools20022.core.metamodel.RuntimePropertyAware;
 import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
