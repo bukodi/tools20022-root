@@ -26,7 +26,7 @@ import com.tools20022.repository.area.PaymentsClearingandSettlementArchive;
 import com.tools20022.repository.choice.*;
 import com.tools20022.repository.codeset.*;
 import com.tools20022.repository.datatype.*;
-import com.tools20022.repository.msg.*;
+import com.tools20022.repository.msgpart.*;
 import com.tools20022.repository.other.BUSINESSPROCESS_FOR_ROLES;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
@@ -56,6 +56,10 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMBusinessProcessCatalogue#getRepository
+	 * repository} = {@linkplain com.tools20022.repository.GeneratedRepository
+	 * GeneratedRepository}</li>
+	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMBusinessProcessCatalogue#getTopLevelCatalogueEntry
 	 * topLevelCatalogueEntry} =
 	 * <ul>
@@ -67,10 +71,6 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 * BUSINESSPROCESS_FOR_ROLES}</li>
 	 * </ul>
 	 * </li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMBusinessProcessCatalogue#getRepository
-	 * repository} = {@linkplain com.tools20022.repository.GeneratedRepository
-	 * GeneratedRepository}</li>
 	 * </ul>
 	 */
 	public static final MMBusinessProcessCatalogue catalogue = new MMBusinessProcessCatalogue() {
@@ -98,94 +98,95 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 * {@linkplain com.tools20022.repository.choice.ClearingSystemIdentification2Choice
 	 * ClearingSystemIdentification2Choice}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.ClearingSystemMemberIdentification2
+	 * {@linkplain com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2
 	 * ClearingSystemMemberIdentification2}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.repository.choice.FinancialIdentificationSchemeName1Choice
 	 * FinancialIdentificationSchemeName1Choice}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.GenericFinancialIdentification1
+	 * {@linkplain com.tools20022.repository.msgpart.GenericFinancialIdentification1
 	 * GenericFinancialIdentification1}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.PostalAddress6
+	 * <li>{@linkplain com.tools20022.repository.msgpart.PostalAddress6
 	 * PostalAddress6}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.BranchData2 BranchData2}</li>
+	 * <li>{@linkplain com.tools20022.repository.msgpart.BranchData2
+	 * BranchData2}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.repository.choice.AccountSchemeName1Choice
 	 * AccountSchemeName1Choice}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.GenericAccountIdentification1
+	 * {@linkplain com.tools20022.repository.msgpart.GenericAccountIdentification1
 	 * GenericAccountIdentification1}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.repository.choice.AccountIdentification4Choice
 	 * AccountIdentification4Choice}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.CashAccountType2
+	 * <li>{@linkplain com.tools20022.repository.msgpart.CashAccountType2
 	 * CashAccountType2}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.DateAndPlaceOfBirth
+	 * <li>{@linkplain com.tools20022.repository.msgpart.DateAndPlaceOfBirth
 	 * DateAndPlaceOfBirth}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.repository.choice.OrganisationIdentificationSchemeName1Choice
 	 * OrganisationIdentificationSchemeName1Choice}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.GenericOrganisationIdentification1
+	 * {@linkplain com.tools20022.repository.msgpart.GenericOrganisationIdentification1
 	 * GenericOrganisationIdentification1}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.OrganisationIdentification4
+	 * {@linkplain com.tools20022.repository.msgpart.OrganisationIdentification4
 	 * OrganisationIdentification4}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.repository.choice.PersonIdentificationSchemeName1Choice
 	 * PersonIdentificationSchemeName1Choice}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.GenericPersonIdentification1
+	 * {@linkplain com.tools20022.repository.msgpart.GenericPersonIdentification1
 	 * GenericPersonIdentification1}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.PersonIdentification5
+	 * <li>{@linkplain com.tools20022.repository.msgpart.PersonIdentification5
 	 * PersonIdentification5}</li>
 	 * <li>{@linkplain com.tools20022.repository.choice.Party6Choice
 	 * Party6Choice}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.ContactDetails2
+	 * <li>{@linkplain com.tools20022.repository.msgpart.ContactDetails2
 	 * ContactDetails2}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.PartyIdentification32
+	 * <li>{@linkplain com.tools20022.repository.msgpart.PartyIdentification32
 	 * PartyIdentification32}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.CashAccount16
+	 * <li>{@linkplain com.tools20022.repository.msgpart.CashAccount16
 	 * CashAccount16}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.FinancialInstitutionIdentification7
+	 * {@linkplain com.tools20022.repository.msgpart.FinancialInstitutionIdentification7
 	 * FinancialInstitutionIdentification7}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.BranchAndFinancialInstitutionIdentification4
+	 * {@linkplain com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4
 	 * BranchAndFinancialInstitutionIdentification4}</li>
 	 * <li>{@linkplain com.tools20022.repository.choice.Purpose2Choice
 	 * Purpose2Choice}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.NameAndAddress10
+	 * <li>{@linkplain com.tools20022.repository.msgpart.NameAndAddress10
 	 * NameAndAddress10}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.RemittanceLocation2
+	 * <li>{@linkplain com.tools20022.repository.msgpart.RemittanceLocation2
 	 * RemittanceLocation2}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.repository.choice.ReferredDocumentType1Choice
 	 * ReferredDocumentType1Choice}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.ReferredDocumentType2
+	 * <li>{@linkplain com.tools20022.repository.msgpart.ReferredDocumentType2
 	 * ReferredDocumentType2}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.ReferredDocumentInformation3
+	 * {@linkplain com.tools20022.repository.msgpart.ReferredDocumentInformation3
 	 * ReferredDocumentInformation3}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.DocumentAdjustment1
+	 * <li>{@linkplain com.tools20022.repository.msgpart.DocumentAdjustment1
 	 * DocumentAdjustment1}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.RemittanceAmount1
+	 * <li>{@linkplain com.tools20022.repository.msgpart.RemittanceAmount1
 	 * RemittanceAmount1}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.repository.choice.CreditorReferenceType1Choice
 	 * CreditorReferenceType1Choice}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.CreditorReferenceType2
+	 * <li>{@linkplain com.tools20022.repository.msgpart.CreditorReferenceType2
 	 * CreditorReferenceType2}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.CreditorReferenceInformation2
+	 * {@linkplain com.tools20022.repository.msgpart.CreditorReferenceInformation2
 	 * CreditorReferenceInformation2}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.StructuredRemittanceInformation7
+	 * {@linkplain com.tools20022.repository.msgpart.StructuredRemittanceInformation7
 	 * StructuredRemittanceInformation7}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.RemittanceInformation5
+	 * <li>{@linkplain com.tools20022.repository.msgpart.RemittanceInformation5
 	 * RemittanceInformation5}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.InstructionForCreditorAgent1
+	 * {@linkplain com.tools20022.repository.msgpart.InstructionForCreditorAgent1
 	 * InstructionForCreditorAgent1}</li>
 	 * <li>{@linkplain com.tools20022.repository.choice.ServiceLevel8Choice
 	 * ServiceLevel8Choice}</li>
@@ -193,32 +194,35 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 * LocalInstrument2Choice}</li>
 	 * <li>{@linkplain com.tools20022.repository.choice.CategoryPurpose1Choice
 	 * CategoryPurpose1Choice}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.RegulatoryAuthority2
+	 * <li>{@linkplain com.tools20022.repository.msgpart.RegulatoryAuthority2
 	 * RegulatoryAuthority2}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.StructuredRegulatoryReporting3
+	 * {@linkplain com.tools20022.repository.msgpart.StructuredRegulatoryReporting3
 	 * StructuredRegulatoryReporting3}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.RegulatoryReporting3
+	 * <li>{@linkplain com.tools20022.repository.msgpart.RegulatoryReporting3
 	 * RegulatoryReporting3}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.SettlementInformation13
+	 * <li>
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
 	 * SettlementInformation13}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.ChargesInformation5
+	 * <li>{@linkplain com.tools20022.repository.msgpart.ChargesInformation5
 	 * ChargesInformation5}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.SettlementDateTimeIndication1
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementDateTimeIndication1
 	 * SettlementDateTimeIndication1}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.InstructionForNextAgent1
+	 * <li>
+	 * {@linkplain com.tools20022.repository.msgpart.InstructionForNextAgent1
 	 * InstructionForNextAgent1}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.PaymentTypeInformation21
+	 * <li>
+	 * {@linkplain com.tools20022.repository.msgpart.PaymentTypeInformation21
 	 * PaymentTypeInformation21}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.GroupHeader33
+	 * <li>{@linkplain com.tools20022.repository.msgpart.GroupHeader33
 	 * GroupHeader33}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.PaymentIdentification3
+	 * <li>{@linkplain com.tools20022.repository.msgpart.PaymentIdentification3
 	 * PaymentIdentification3}</li>
-	 * <li>{@linkplain com.tools20022.repository.msg.SettlementTimeRequest2
+	 * <li>{@linkplain com.tools20022.repository.msgpart.SettlementTimeRequest2
 	 * SettlementTimeRequest2}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.repository.msg.CreditTransferTransactionInformation11
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
 	 * CreditTransferTransactionInformation11}</li>
 	 * <li>{@linkplain com.tools20022.repository.datatype.Max35Text Max35Text}</li>
 	 * <li>{@linkplain com.tools20022.repository.datatype.ISODateTime

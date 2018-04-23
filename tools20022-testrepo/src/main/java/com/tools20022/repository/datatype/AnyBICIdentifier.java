@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlValue;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraints.ConstraintAnyBIC#forAnyBICIdentifier
+ * {@linkplain com.tools20022.repository.constraint.ConstraintAnyBIC#forAnyBICIdentifier
  * ConstraintAnyBIC.forAnyBICIdentifier}</li>
  * </ul>
  * </li>
@@ -83,7 +83,7 @@ public class AnyBICIdentifier {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraints.ConstraintAnyBIC.forAnyBICIdentifier);
+				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintAnyBIC.forAnyBICIdentifier);
 				example = Arrays.asList("CHASUS33");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AnyBICIdentifier";

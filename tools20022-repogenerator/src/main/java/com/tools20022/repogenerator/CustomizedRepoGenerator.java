@@ -486,13 +486,4 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		return super.generateMMAmount(mmBean);
 	}
 
-	@Override
-	protected JaxbMainTypeResult generateMMMessageComponent(MMMessageComponent mmBean) {
-		JaxbMainTypeResult ret = super.generateMMMessageComponent(mmBean);
-		if ("CreditTransferTransactionInformation11".equals(ret.baseName.getCompilationUnit())) {
-			System.out.println(ret.baseName);
-		}
-		return ret;
-	}
-
 }

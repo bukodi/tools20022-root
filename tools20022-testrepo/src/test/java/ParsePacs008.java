@@ -14,7 +14,7 @@ import org.xml.sax.InputSource;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
 import com.tools20022.repository.datatype.ActiveCurrencyAndAmount;
 import com.tools20022.repository.datatype.Max35Text;
-import com.tools20022.repository.msg.GroupHeader33;
+import com.tools20022.repository.msgpart.GroupHeader33;
 
 public class ParsePacs008 {
 	

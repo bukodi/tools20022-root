@@ -71,8 +71,8 @@ public class DecimalNumber {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DecimalNumber";
 				definition = "Number of objects represented as a decimal number, eg, 0.75 or 45.6.";
-				totalDigits = 18;
 				fractionDigits = 17;
+				totalDigits = 18;
 			}
 		});
 		return mmObject_lazy.get();

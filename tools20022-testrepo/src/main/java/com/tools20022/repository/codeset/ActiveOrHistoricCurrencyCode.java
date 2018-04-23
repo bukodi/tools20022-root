@@ -48,7 +48,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraints.ConstraintActiveOrHistoricCurrency#forActiveOrHistoricCurrencyCode
+ * {@linkplain com.tools20022.repository.constraint.ConstraintActiveOrHistoricCurrency#forActiveOrHistoricCurrencyCode
  * ConstraintActiveOrHistoricCurrency.forActiveOrHistoricCurrencyCode}</li>
  * </ul>
  * </li>
@@ -83,7 +83,7 @@ public class ActiveOrHistoricCurrencyCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraints.ConstraintActiveOrHistoricCurrency.forActiveOrHistoricCurrencyCode);
+				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintActiveOrHistoricCurrency.forActiveOrHistoricCurrencyCode);
 				example = Arrays.asList("USD");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ActiveOrHistoricCurrencyCode";

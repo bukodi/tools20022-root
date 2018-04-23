@@ -37,16 +37,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code#Abc1
- * ExternalPersonIdentification1Code.Abc1}</li>
- * <li>
- * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code#Def21
- * ExternalPersonIdentification1Code.Def21}</li>
- * </ul>
- * </li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -74,48 +64,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class ExternalPersonIdentification1Code extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
-	/**
-	 * (No doc)
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code
-	 * ExternalPersonIdentification1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "ABC1"</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Abc 1"</li>
-	 * </ul>
-	 */
-	public static final ExternalPersonIdentification1Code Abc1 = new ExternalPersonIdentification1Code() {
-		{
-			name = "Abc 1";
-			owner_lazy = () -> com.tools20022.repository.codeset.ExternalPersonIdentification1Code.mmObject();
-			codeName = "ABC1";
-		}
-	};
-	/**
-	 * (No doc)
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code
-	 * ExternalPersonIdentification1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DEF2"</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Def 21"</li>
-	 * </ul>
-	 */
-	public static final ExternalPersonIdentification1Code Def21 = new ExternalPersonIdentification1Code() {
-		{
-			name = "Def 21";
-			owner_lazy = () -> com.tools20022.repository.codeset.ExternalPersonIdentification1Code.mmObject();
-			codeName = "DEF2";
-		}
-	};
 	final static private LinkedHashMap<String, ExternalPersonIdentification1Code> codesByName = new LinkedHashMap<>();
 
 	protected ExternalPersonIdentification1Code() {
@@ -129,7 +77,6 @@ public class ExternalPersonIdentification1Code extends MMCode {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ExternalPersonIdentification1Code";
 				definition = "Specifies the external person identification scheme name code in the format of character string with a maximum length of 4 characters.\r\nThe list of valid codes is an external code list published separately.\r\nExternal code sets can be downloaded from www.iso20022.org.";
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.ExternalPersonIdentification1Code.Abc1, com.tools20022.repository.codeset.ExternalPersonIdentification1Code.Def21);
 				minLength = 1;
 				maxLength = 4;
 			}
@@ -138,8 +85,6 @@ public class ExternalPersonIdentification1Code extends MMCode {
 	}
 
 	static {
-		codesByName.put(Abc1.getCodeName().get(), Abc1);
-		codesByName.put(Def21.getCodeName().get(), Def21);
 	}
 
 	public static ExternalPersonIdentification1Code valueOf(String codeName) {

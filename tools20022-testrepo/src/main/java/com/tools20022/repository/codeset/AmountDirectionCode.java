@@ -35,13 +35,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
- * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.CreditDebitCode
- * CreditDebitCode}</li>
- * </ul>
- * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.AmountDirectionCode#Debit
@@ -54,6 +47,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>
  * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode#ReversalCredit
  * AmountDirectionCode.ReversalCredit}</li>
+ * </ul>
+ * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
+ * =
+ * <ul>
+ * <li>{@linkplain com.tools20022.repository.codeset.CreditDebitCode
+ * CreditDebitCode}</li>
  * </ul>
  * </li>
  * <li>

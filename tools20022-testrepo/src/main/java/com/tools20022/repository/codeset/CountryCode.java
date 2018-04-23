@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraints.ConstraintCountry#forCountryCode
+ * {@linkplain com.tools20022.repository.constraint.ConstraintCountry#forCountryCode
  * ConstraintCountry.forCountryCode}</li>
  * </ul>
  * </li>
@@ -82,7 +82,7 @@ public class CountryCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraints.ConstraintCountry.forCountryCode);
+				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintCountry.forCountryCode);
 				example = Arrays.asList("BE");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CountryCode";

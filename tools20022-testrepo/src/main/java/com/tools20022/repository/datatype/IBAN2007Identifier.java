@@ -52,7 +52,7 @@ import javax.xml.bind.annotation.XmlValue;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraints.ConstraintIBAN#forIBAN2007Identifier
+ * {@linkplain com.tools20022.repository.constraint.ConstraintIBAN#forIBAN2007Identifier
  * ConstraintIBAN.forIBAN2007Identifier}</li>
  * </ul>
  * </li>
@@ -86,7 +86,7 @@ public class IBAN2007Identifier {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraints.ConstraintIBAN.forIBAN2007Identifier);
+				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintIBAN.forIBAN2007Identifier);
 				example = Arrays.asList("AT611904300234573201");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "IBAN2007Identifier";

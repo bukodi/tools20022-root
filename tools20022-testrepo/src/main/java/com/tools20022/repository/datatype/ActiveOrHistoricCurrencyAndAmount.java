@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.*;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraints.ConstraintCurrencyAmount#forActiveOrHistoricCurrencyAndAmount
+ * {@linkplain com.tools20022.repository.constraint.ConstraintCurrencyAmount#forActiveOrHistoricCurrencyAndAmount
  * ConstraintCurrencyAmount.forActiveOrHistoricCurrencyAndAmount}</li>
  * </ul>
  * </li>
@@ -83,15 +83,15 @@ public class ActiveOrHistoricCurrencyAndAmount {
 		mmObject_lazy.compareAndSet(null, new MMAmount() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraints.ConstraintCurrencyAmount.forActiveOrHistoricCurrencyAndAmount);
+				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintCurrencyAmount.forActiveOrHistoricCurrencyAndAmount);
 				example = Arrays.asList("6284534");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ActiveOrHistoricCurrencyAndAmount";
 				definition = "A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217.";
 				currencyIdentifierSet_lazy = () -> ActiveOrHistoricCurrencyCode.mmObject();
+				fractionDigits = 5;
 				minInclusive = "0";
 				totalDigits = 18;
-				fractionDigits = 5;
 			}
 		});
 		return mmObject_lazy.get();

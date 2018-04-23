@@ -52,7 +52,7 @@ import javax.xml.bind.annotation.XmlValue;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraints.ConstraintBIC#forBICIdentifier
+ * {@linkplain com.tools20022.repository.constraint.ConstraintBIC#forBICIdentifier
  * ConstraintBIC.forBICIdentifier}</li>
  * </ul>
  * </li>
@@ -87,7 +87,7 @@ public class BICIdentifier {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
 				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraints.ConstraintBIC.forBICIdentifier);
+				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintBIC.forBICIdentifier);
 				example = Arrays.asList("CHASUS33");
 				registrationStatus = MMRegistrationStatus.OBSOLETE;
 				removalDate = ((Supplier<Date>) (() -> {

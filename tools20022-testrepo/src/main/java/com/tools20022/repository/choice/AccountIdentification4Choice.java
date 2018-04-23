@@ -23,7 +23,7 @@ import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.IBAN2007Identifier;
 import com.tools20022.repository.GeneratedRepository;
-import com.tools20022.repository.msg.GenericAccountIdentification1;
+import com.tools20022.repository.msgpart.GenericAccountIdentification1;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.Objects;
@@ -136,7 +136,7 @@ public class AccountIdentification4Choice {
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
 	 * type} =
-	 * {@linkplain com.tools20022.repository.msg.GenericAccountIdentification1
+	 * {@linkplain com.tools20022.repository.msgpart.GenericAccountIdentification1
 	 * GenericAccountIdentification1}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext

@@ -21,8 +21,8 @@ import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.GeneratedRepository;
-import com.tools20022.repository.msg.OrganisationIdentification4;
-import com.tools20022.repository.msg.PersonIdentification5;
+import com.tools20022.repository.msgpart.OrganisationIdentification4;
+import com.tools20022.repository.msgpart.PersonIdentification5;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.Objects;
@@ -77,7 +77,7 @@ public class Party6Choice {
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
 	 * type} =
-	 * {@linkplain com.tools20022.repository.msg.OrganisationIdentification4
+	 * {@linkplain com.tools20022.repository.msgpart.OrganisationIdentification4
 	 * OrganisationIdentification4}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
@@ -128,7 +128,8 @@ public class Party6Choice {
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMMessageAssociationEnd#getType
-	 * type} = {@linkplain com.tools20022.repository.msg.PersonIdentification5
+	 * type} =
+	 * {@linkplain com.tools20022.repository.msgpart.PersonIdentification5
 	 * PersonIdentification5}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
