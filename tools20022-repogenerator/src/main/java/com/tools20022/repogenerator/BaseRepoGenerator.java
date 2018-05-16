@@ -26,6 +26,7 @@ import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.generators.AbstractGenerator;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.RoasterHelper;
@@ -236,7 +237,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 
 		AttrResult attrGen = gen.createAttrResult(mmAttr);
 		if (mmAttr.getReferencedType() != null) {
-			attrGen.initializationSource = mmAttr.getName() + "_lazy = () -> " + attrValue.valueAsSource + ";";
+			attrGen.initializationSource = mmAttr.getName() + "_lazy = " + LazyReference.class.getName() + ".create( () -> " + attrValue.valueAsSource + ");";
 		} else {
 			attrGen.initializationSource = mmAttr.getName() + " = " + attrValue.valueAsSource + ";";
 		}
