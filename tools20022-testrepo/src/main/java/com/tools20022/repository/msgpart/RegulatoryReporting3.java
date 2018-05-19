@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -107,7 +108,7 @@ public class RegulatoryReporting3 {
 	 */
 	public static final MMMessageAttribute<RegulatoryReporting3, Optional<RegulatoryReportingType1Code>> mmDebitCreditReportingIndicator = new MMMessageAttribute<RegulatoryReporting3, Optional<RegulatoryReportingType1Code>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "DbtCdtRptgInd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -115,7 +116,7 @@ public class RegulatoryReporting3 {
 			definition = "Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> RegulatoryReportingType1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> RegulatoryReportingType1Code.mmObject());
 		}
 
 		@Override
@@ -159,7 +160,7 @@ public class RegulatoryReporting3 {
 	 */
 	public static final MMMessageAssociationEnd<RegulatoryReporting3, Optional<RegulatoryAuthority2>> mmAuthority = new MMMessageAssociationEnd<RegulatoryReporting3, Optional<RegulatoryAuthority2>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "Authrty";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -168,7 +169,7 @@ public class RegulatoryReporting3 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> RegulatoryAuthority2.mmObject();
+			type_lazy = LazyReference.create(() -> RegulatoryAuthority2.mmObject());
 		}
 
 		@Override
@@ -214,7 +215,7 @@ public class RegulatoryReporting3 {
 	 */
 	public static final MMMessageAssociationEnd<RegulatoryReporting3, List<StructuredRegulatoryReporting3>> mmDetails = new MMMessageAssociationEnd<RegulatoryReporting3, List<StructuredRegulatoryReporting3>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "Dtls";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -222,7 +223,7 @@ public class RegulatoryReporting3 {
 			definition = "Set of elements used to provide details on the regulatory reporting information.";
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> StructuredRegulatoryReporting3.mmObject();
+			type_lazy = LazyReference.create(() -> StructuredRegulatoryReporting3.mmObject());
 		}
 
 		@Override
@@ -239,9 +240,9 @@ public class RegulatoryReporting3 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.RegulatoryReporting3.mmDebitCreditReportingIndicator, com.tools20022.repository.msgpart.RegulatoryReporting3.mmAuthority,
-						com.tools20022.repository.msgpart.RegulatoryReporting3.mmDetails);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.RegulatoryReporting3.mmDebitCreditReportingIndicator, com.tools20022.repository.msgpart.RegulatoryReporting3.mmAuthority,
+						com.tools20022.repository.msgpart.RegulatoryReporting3.mmDetails));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "RegulatoryReporting3";
 				definition = "Information needed due to regulatory and/or statutory requirements.";

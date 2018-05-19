@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -116,7 +117,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Fax";
 			definition = "Remittance advice information must be faxed.";
-			owner_lazy = () -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "FAXI";
 		}
 	};
@@ -149,7 +150,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ElectronicDataInterchange";
 			definition = "Remittance advice information must be sent through Electronic Data Interchange (EDI).";
-			owner_lazy = () -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "EDIC";
 		}
 	};
@@ -185,7 +186,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "UniformResourceIdentifier";
 			definition = "Remittance advice  information needs to be sent to a Uniform Resource Identifier (URI). URI  is a compact string of characters that uniquely identify an abstract or physical resource.  URI's are the super-set of identifiers, such as URLs, email addresses, ftp sites, etc, and as such, provide the syntax for all of the identification schemes.";
-			owner_lazy = () -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "URID";
 		}
 	};
@@ -216,7 +217,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "EMail";
 			definition = "Remittance advice  information must be sent through e-mail.";
-			owner_lazy = () -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "EMAL";
 		}
 	};
@@ -247,7 +248,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Post";
 			definition = "Remittance advice information must be sent through postal services.";
-			owner_lazy = () -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "POST";
 		}
 	};
@@ -280,7 +281,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "SMS";
 			definition = "Remittance advice  information must be sent through by phone as a short message service (SMS).";
-			owner_lazy = () -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "SMSM";
 		}
 	};
@@ -292,15 +293,15 @@ public class RemittanceLocationMethodCode extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("FAXI");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "RemittanceLocationMethodCode";
 				definition = "Specifies the method used to deliver the remittance advice information.";
-				derivation_lazy = () -> Arrays.asList(RemittanceLocationMethod2Code.mmObject());
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethodCode.Fax, com.tools20022.repository.codeset.RemittanceLocationMethodCode.ElectronicDataInterchange,
+				derivation_lazy = LazyReference.create(() -> Arrays.asList(RemittanceLocationMethod2Code.mmObject()));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethodCode.Fax, com.tools20022.repository.codeset.RemittanceLocationMethodCode.ElectronicDataInterchange,
 						com.tools20022.repository.codeset.RemittanceLocationMethodCode.UniformResourceIdentifier, com.tools20022.repository.codeset.RemittanceLocationMethodCode.EMail,
-						com.tools20022.repository.codeset.RemittanceLocationMethodCode.Post, com.tools20022.repository.codeset.RemittanceLocationMethodCode.SMS);
+						com.tools20022.repository.codeset.RemittanceLocationMethodCode.Post, com.tools20022.repository.codeset.RemittanceLocationMethodCode.SMS));
 			}
 		});
 		return mmObject_lazy.get();

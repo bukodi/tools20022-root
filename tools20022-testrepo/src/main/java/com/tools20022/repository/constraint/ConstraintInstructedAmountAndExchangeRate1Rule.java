@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -58,7 +59,7 @@ public class ConstraintInstructedAmountAndExchangeRate1Rule {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "InstructedAmountAndExchangeRate1Rule";
 			definition = "If InstructedAmount is present and the currency is different from the currency in InterbankSettlementAmount, then ExchangeRate must be present.";
-			owner_lazy = () -> CreditTransferTransactionInformation11.mmObject();
+			owner_lazy = LazyReference.create(() -> CreditTransferTransactionInformation11.mmObject());
 			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/ExchangeRate</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructedAmount</leftOperand></BooleanRule><BooleanRule xsi:type=\"DifferentFromNode\"><leftOperand>/InstructedAmount/@Currency</leftOperand><rightOperand>/InterbankSettlementAmount/@Currency</rightOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
 		}
 

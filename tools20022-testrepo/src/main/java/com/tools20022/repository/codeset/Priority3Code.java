@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -91,7 +92,7 @@ public class Priority3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Urgent";
-			owner_lazy = () -> com.tools20022.repository.codeset.Priority3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority3Code.mmObject());
 			codeName = PriorityCode.Urgent.getCodeName().orElse(name);
 		}
 	};
@@ -115,7 +116,7 @@ public class Priority3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "High";
-			owner_lazy = () -> com.tools20022.repository.codeset.Priority3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority3Code.mmObject());
 			codeName = PriorityCode.High.getCodeName().orElse(name);
 		}
 	};
@@ -139,7 +140,7 @@ public class Priority3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Normal";
-			owner_lazy = () -> com.tools20022.repository.codeset.Priority3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority3Code.mmObject());
 			codeName = PriorityCode.Normal.getCodeName().orElse(name);
 		}
 	};
@@ -151,13 +152,13 @@ public class Priority3Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("URGT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Priority3Code";
 				definition = "Specifies the priority level of an event.";
-				trace_lazy = () -> PriorityCode.mmObject();
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.Priority3Code.Urgent, com.tools20022.repository.codeset.Priority3Code.High, com.tools20022.repository.codeset.Priority3Code.Normal);
+				trace_lazy = LazyReference.create(() -> PriorityCode.mmObject());
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Priority3Code.Urgent, com.tools20022.repository.codeset.Priority3Code.High, com.tools20022.repository.codeset.Priority3Code.Normal));
 			}
 		});
 		return mmObject_lazy.get();

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.ext.ISO15022Synonym;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
@@ -94,7 +95,7 @@ public class CreditDebitCode extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Credit";
-			owner_lazy = () -> com.tools20022.repository.codeset.CreditDebitCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CreditDebitCode.mmObject());
 			codeName = AmountDirectionCode.Credit.getCodeName().orElse(name);
 		}
 	};
@@ -118,7 +119,7 @@ public class CreditDebitCode extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Debit";
-			owner_lazy = () -> com.tools20022.repository.codeset.CreditDebitCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CreditDebitCode.mmObject());
 			codeName = AmountDirectionCode.Debit.getCodeName().orElse(name);
 		}
 	};
@@ -130,14 +131,14 @@ public class CreditDebitCode extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":22F::CRDB"));
 				example = Arrays.asList("CRDT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CreditDebitCode";
 				definition = "Specifies if an operation is an increase or a decrease.";
-				trace_lazy = () -> AmountDirectionCode.mmObject();
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.CreditDebitCode.Credit, com.tools20022.repository.codeset.CreditDebitCode.Debit);
+				trace_lazy = LazyReference.create(() -> AmountDirectionCode.mmObject());
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CreditDebitCode.Credit, com.tools20022.repository.codeset.CreditDebitCode.Debit));
 			}
 		});
 		return mmObject_lazy.get();

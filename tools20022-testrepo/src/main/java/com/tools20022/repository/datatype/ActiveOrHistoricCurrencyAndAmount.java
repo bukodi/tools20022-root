@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.datatype;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMAmount;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode;
@@ -82,13 +83,13 @@ public class ActiveOrHistoricCurrencyAndAmount {
 	final static public MMAmount mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMAmount() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintCurrencyAmount.forActiveOrHistoricCurrencyAndAmount);
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintCurrencyAmount.forActiveOrHistoricCurrencyAndAmount));
 				example = Arrays.asList("6284534");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ActiveOrHistoricCurrencyAndAmount";
 				definition = "A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217.";
-				currencyIdentifierSet_lazy = () -> ActiveOrHistoricCurrencyCode.mmObject();
+				currencyIdentifierSet_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyCode.mmObject());
 				minInclusive = "0";
 				totalDigits = 18;
 				fractionDigits = 5;

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -126,7 +127,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PayTheBeneficiary";
 			definition = "(Ultimate) creditor to be paid only after verification of identity.";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "PBEN";
 		}
 	};
@@ -159,7 +160,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "TimeTill";
 			definition = "Payment instruction is valid and eligible for execution until the date and time stipulated. Otherwise, the payment instruction will be rejected.";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "TTIL";
 		}
 	};
@@ -192,7 +193,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "TimeFrom";
 			definition = "Payment instruction will be valid and eligible for execution from the date and time stipulated.";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "TFRO";
 		}
 	};
@@ -222,7 +223,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PayCreditorByCheque";
 			definition = "(Ultimate) creditor must be paid by cheque.";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "CHQB";
 		}
 	};
@@ -255,7 +256,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "HoldCashForCreditor";
 			definition = "Amount of money must be held for the (ultimate) creditor, who will call. Pay on identification.";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "HOLD";
 		}
 	};
@@ -286,7 +287,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PhoneBeneficiary";
 			definition = "Please advise/contact (ultimate) creditor/claimant by phone";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "PHOB";
 		}
 	};
@@ -319,7 +320,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Telecom";
 			definition = "Please advise/contact (ultimate) creditor/claimant by the most efficient means of telecommunication.";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "TELB";
 		}
 	};
@@ -349,7 +350,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PhoneNextAgent";
 			definition = "Please advise/contact next agent by phone.";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "PHOA";
 		}
 	};
@@ -382,7 +383,7 @@ public class InstructionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "TelecomNextAgent";
 			definition = "Please advise/contact next agent by the most efficient means of telecommunication.";
-			owner_lazy = () -> com.tools20022.repository.codeset.InstructionCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.InstructionCode.mmObject());
 			codeName = "TELA";
 		}
 	};
@@ -394,15 +395,16 @@ public class InstructionCode extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("PBEN");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "InstructionCode";
 				definition = "Specifies further instructions concerning the processing of a payment instruction.";
-				derivation_lazy = () -> Arrays.asList(Instruction3Code.mmObject(), Instruction4Code.mmObject());
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.InstructionCode.PayTheBeneficiary, com.tools20022.repository.codeset.InstructionCode.TimeTill, com.tools20022.repository.codeset.InstructionCode.TimeFrom,
-						com.tools20022.repository.codeset.InstructionCode.PayCreditorByCheque, com.tools20022.repository.codeset.InstructionCode.HoldCashForCreditor, com.tools20022.repository.codeset.InstructionCode.PhoneBeneficiary,
-						com.tools20022.repository.codeset.InstructionCode.Telecom, com.tools20022.repository.codeset.InstructionCode.PhoneNextAgent, com.tools20022.repository.codeset.InstructionCode.TelecomNextAgent);
+				derivation_lazy = LazyReference.create(() -> Arrays.asList(Instruction3Code.mmObject(), Instruction4Code.mmObject()));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.InstructionCode.PayTheBeneficiary, com.tools20022.repository.codeset.InstructionCode.TimeTill,
+						com.tools20022.repository.codeset.InstructionCode.TimeFrom, com.tools20022.repository.codeset.InstructionCode.PayCreditorByCheque, com.tools20022.repository.codeset.InstructionCode.HoldCashForCreditor,
+						com.tools20022.repository.codeset.InstructionCode.PhoneBeneficiary, com.tools20022.repository.codeset.InstructionCode.Telecom, com.tools20022.repository.codeset.InstructionCode.PhoneNextAgent,
+						com.tools20022.repository.codeset.InstructionCode.TelecomNextAgent));
 			}
 		});
 		return mmObject_lazy.get();

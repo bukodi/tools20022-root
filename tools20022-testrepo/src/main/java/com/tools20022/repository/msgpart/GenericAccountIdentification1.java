@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -105,7 +106,7 @@ public class GenericAccountIdentification1 {
 	 */
 	public static final MMMessageAttribute<GenericAccountIdentification1, Max34Text> mmIdentification = new MMMessageAttribute<GenericAccountIdentification1, Max34Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GenericAccountIdentification1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GenericAccountIdentification1.mmObject());
 			isDerived = false;
 			xmlTag = "Id";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -113,7 +114,7 @@ public class GenericAccountIdentification1 {
 			definition = "Identification assigned by an institution.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max34Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max34Text.mmObject());
 		}
 
 		@Override
@@ -157,7 +158,7 @@ public class GenericAccountIdentification1 {
 	 */
 	public static final MMMessageAssociationEnd<GenericAccountIdentification1, Optional<AccountSchemeName1Choice>> mmSchemeName = new MMMessageAssociationEnd<GenericAccountIdentification1, Optional<AccountSchemeName1Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GenericAccountIdentification1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GenericAccountIdentification1.mmObject());
 			isDerived = false;
 			xmlTag = "SchmeNm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -166,7 +167,7 @@ public class GenericAccountIdentification1 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> AccountSchemeName1Choice.mmObject();
+			type_lazy = LazyReference.create(() -> AccountSchemeName1Choice.mmObject());
 		}
 
 		@Override
@@ -210,7 +211,7 @@ public class GenericAccountIdentification1 {
 	 */
 	public static final MMMessageAttribute<GenericAccountIdentification1, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<GenericAccountIdentification1, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GenericAccountIdentification1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GenericAccountIdentification1.mmObject());
 			isDerived = false;
 			xmlTag = "Issr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -218,7 +219,7 @@ public class GenericAccountIdentification1 {
 			definition = "Entity that assigns the identification.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -235,9 +236,9 @@ public class GenericAccountIdentification1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.GenericAccountIdentification1.mmIdentification, com.tools20022.repository.msgpart.GenericAccountIdentification1.mmSchemeName,
-						com.tools20022.repository.msgpart.GenericAccountIdentification1.mmIssuer);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.GenericAccountIdentification1.mmIdentification, com.tools20022.repository.msgpart.GenericAccountIdentification1.mmSchemeName,
+						com.tools20022.repository.msgpart.GenericAccountIdentification1.mmIssuer));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "GenericAccountIdentification1";
 				definition = "Information related to a generic account identification.";

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -99,7 +100,7 @@ public class RegulatoryReportingType1Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Credit";
-			owner_lazy = () -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject());
 			codeName = RegulatoryReportingTypeCode.Credit.getCodeName().orElse(name);
 		}
 	};
@@ -123,7 +124,7 @@ public class RegulatoryReportingType1Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Debit";
-			owner_lazy = () -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject());
 			codeName = RegulatoryReportingTypeCode.Debit.getCodeName().orElse(name);
 		}
 	};
@@ -147,7 +148,7 @@ public class RegulatoryReportingType1Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Both";
-			owner_lazy = () -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject());
 			codeName = RegulatoryReportingTypeCode.Both.getCodeName().orElse(name);
 		}
 	};
@@ -159,14 +160,14 @@ public class RegulatoryReportingType1Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("CRED");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "RegulatoryReportingType1Code";
 				definition = "Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.";
-				trace_lazy = () -> RegulatoryReportingTypeCode.mmObject();
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingType1Code.Credit, com.tools20022.repository.codeset.RegulatoryReportingType1Code.Debit,
-						com.tools20022.repository.codeset.RegulatoryReportingType1Code.Both);
+				trace_lazy = LazyReference.create(() -> RegulatoryReportingTypeCode.mmObject());
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingType1Code.Credit, com.tools20022.repository.codeset.RegulatoryReportingType1Code.Debit,
+						com.tools20022.repository.codeset.RegulatoryReportingType1Code.Both));
 			}
 		});
 		return mmObject_lazy.get();

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -100,7 +101,7 @@ public class AddressType2Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Postal";
-			owner_lazy = () -> com.tools20022.repository.codeset.AddressType2Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
 			codeName = AddressTypeCode.Postal.getCodeName().orElse(name);
 		}
 	};
@@ -124,7 +125,7 @@ public class AddressType2Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "POBox";
-			owner_lazy = () -> com.tools20022.repository.codeset.AddressType2Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
 			codeName = AddressTypeCode.POBox.getCodeName().orElse(name);
 		}
 	};
@@ -148,7 +149,7 @@ public class AddressType2Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Residential";
-			owner_lazy = () -> com.tools20022.repository.codeset.AddressType2Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
 			codeName = AddressTypeCode.Residential.getCodeName().orElse(name);
 		}
 	};
@@ -172,7 +173,7 @@ public class AddressType2Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Business";
-			owner_lazy = () -> com.tools20022.repository.codeset.AddressType2Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
 			codeName = AddressTypeCode.Business.getCodeName().orElse(name);
 		}
 	};
@@ -196,7 +197,7 @@ public class AddressType2Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "MailTo";
-			owner_lazy = () -> com.tools20022.repository.codeset.AddressType2Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
 			codeName = AddressTypeCode.MailTo.getCodeName().orElse(name);
 		}
 	};
@@ -220,7 +221,7 @@ public class AddressType2Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "DeliveryTo";
-			owner_lazy = () -> com.tools20022.repository.codeset.AddressType2Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
 			codeName = AddressTypeCode.DeliveryTo.getCodeName().orElse(name);
 		}
 	};
@@ -232,14 +233,15 @@ public class AddressType2Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("ADDR");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AddressType2Code";
 				definition = "Specifies the type of address.";
-				trace_lazy = () -> AddressTypeCode.mmObject();
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.AddressType2Code.Postal, com.tools20022.repository.codeset.AddressType2Code.POBox, com.tools20022.repository.codeset.AddressType2Code.Residential,
-						com.tools20022.repository.codeset.AddressType2Code.Business, com.tools20022.repository.codeset.AddressType2Code.MailTo, com.tools20022.repository.codeset.AddressType2Code.DeliveryTo);
+				trace_lazy = LazyReference.create(() -> AddressTypeCode.mmObject());
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressType2Code.Postal, com.tools20022.repository.codeset.AddressType2Code.POBox,
+						com.tools20022.repository.codeset.AddressType2Code.Residential, com.tools20022.repository.codeset.AddressType2Code.Business, com.tools20022.repository.codeset.AddressType2Code.MailTo,
+						com.tools20022.repository.codeset.AddressType2Code.DeliveryTo));
 			}
 		});
 		return mmObject_lazy.get();

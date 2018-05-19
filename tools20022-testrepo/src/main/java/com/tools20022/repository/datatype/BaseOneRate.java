@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.datatype;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMRate;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.GeneratedRepository;
@@ -65,7 +66,7 @@ public class BaseOneRate {
 	final static public MMRate mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMRate() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("0.60");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "BaseOneRate";

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -153,7 +154,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Max35Text> mmMessageIdentification = new MMMessageAttribute<GroupHeader33, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "MsgId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -161,7 +162,7 @@ public class GroupHeader33 {
 			definition = "Point to point reference, as assigned by the instructing party, and sent to the next party in the chain to unambiguously identify the message.\nUsage: The instructing party has to make sure that MessageIdentification is unique per instructed party for a pre-agreed period.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -205,7 +206,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAttribute<GroupHeader33, ISODateTime> mmCreationDateTime = new MMMessageAttribute<GroupHeader33, ISODateTime>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "CreDtTm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -213,7 +214,7 @@ public class GroupHeader33 {
 			definition = "Date and time at which the message was created.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ISODateTime.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISODateTime.mmObject());
 		}
 
 		@Override
@@ -260,7 +261,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Optional<BatchBookingIndicator>> mmBatchBooking = new MMMessageAttribute<GroupHeader33, Optional<BatchBookingIndicator>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "BtchBookg";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -268,7 +269,7 @@ public class GroupHeader33 {
 			definition = "Identifies whether a single entry per individual transaction or a batch entry for the sum of the amounts of all transactions within the group of a message is requested.\nUsage: Batch booking is used to request and not order a possible batch booking.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> BatchBookingIndicator.mmObject();
+			simpleType_lazy = LazyReference.create(() -> BatchBookingIndicator.mmObject());
 		}
 
 		@Override
@@ -314,7 +315,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Max15NumericText> mmNumberOfTransactions = new MMMessageAttribute<GroupHeader33, Max15NumericText>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "NbOfTxs";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -322,7 +323,7 @@ public class GroupHeader33 {
 			definition = "Number of individual transactions contained in the message.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max15NumericText.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max15NumericText.mmObject());
 		}
 
 		@Override
@@ -369,7 +370,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Optional<DecimalNumber>> mmControlSum = new MMMessageAttribute<GroupHeader33, Optional<DecimalNumber>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "CtrlSum";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -377,7 +378,7 @@ public class GroupHeader33 {
 			definition = "Total of all individual amounts included in the message, irrespective of currencies.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> DecimalNumber.mmObject();
+			simpleType_lazy = LazyReference.create(() -> DecimalNumber.mmObject());
 		}
 
 		@Override
@@ -424,7 +425,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Optional<ActiveCurrencyAndAmount>> mmTotalInterbankSettlementAmount = new MMMessageAttribute<GroupHeader33, Optional<ActiveCurrencyAndAmount>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "TtlIntrBkSttlmAmt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -432,7 +433,7 @@ public class GroupHeader33 {
 			definition = "Total amount of money moved between the instructing agent and the instructed agent.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ActiveCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -478,7 +479,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Optional<ISODate>> mmInterbankSettlementDate = new MMMessageAttribute<GroupHeader33, Optional<ISODate>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "IntrBkSttlmDt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -486,7 +487,7 @@ public class GroupHeader33 {
 			definition = "Date on which the amount of money ceases to be available to the agent that owes it and when the amount of money becomes available to the agent to which it is due.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISODate.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISODate.mmObject());
 		}
 
 		@Override
@@ -532,7 +533,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAssociationEnd<GroupHeader33, SettlementInformation13> mmSettlementInformation = new MMMessageAssociationEnd<GroupHeader33, SettlementInformation13>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "SttlmInf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -541,7 +542,7 @@ public class GroupHeader33 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> SettlementInformation13.mmObject();
+			type_lazy = LazyReference.create(() -> SettlementInformation13.mmObject());
 		}
 
 		@Override
@@ -586,7 +587,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAssociationEnd<GroupHeader33, Optional<PaymentTypeInformation21>> mmPaymentTypeInformation = new MMMessageAssociationEnd<GroupHeader33, Optional<PaymentTypeInformation21>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "PmtTpInf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -595,7 +596,7 @@ public class GroupHeader33 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PaymentTypeInformation21.mmObject();
+			type_lazy = LazyReference.create(() -> PaymentTypeInformation21.mmObject());
 		}
 
 		@Override
@@ -641,7 +642,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAssociationEnd<GroupHeader33, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructingAgent = new MMMessageAssociationEnd<GroupHeader33, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "InstgAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -650,7 +651,7 @@ public class GroupHeader33 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -696,7 +697,7 @@ public class GroupHeader33 {
 	 */
 	public static final MMMessageAssociationEnd<GroupHeader33, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructedAgent = new MMMessageAssociationEnd<GroupHeader33, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GroupHeader33.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
 			isDerived = false;
 			xmlTag = "InstdAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -705,7 +706,7 @@ public class GroupHeader33 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -722,14 +723,14 @@ public class GroupHeader33 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.GroupHeader33.mmMessageIdentification, com.tools20022.repository.msgpart.GroupHeader33.mmCreationDateTime,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.GroupHeader33.mmMessageIdentification, com.tools20022.repository.msgpart.GroupHeader33.mmCreationDateTime,
 						com.tools20022.repository.msgpart.GroupHeader33.mmBatchBooking, com.tools20022.repository.msgpart.GroupHeader33.mmNumberOfTransactions, com.tools20022.repository.msgpart.GroupHeader33.mmControlSum,
 						com.tools20022.repository.msgpart.GroupHeader33.mmTotalInterbankSettlementAmount, com.tools20022.repository.msgpart.GroupHeader33.mmInterbankSettlementDate,
 						com.tools20022.repository.msgpart.GroupHeader33.mmSettlementInformation, com.tools20022.repository.msgpart.GroupHeader33.mmPaymentTypeInformation, com.tools20022.repository.msgpart.GroupHeader33.mmInstructingAgent,
-						com.tools20022.repository.msgpart.GroupHeader33.mmInstructedAgent);
-				messageBuildingBlock_lazy = () -> Arrays.asList(FIToFICustomerCreditTransferV02.mmGroupHeader);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintTotalInterbankSettlementAmountAndDateRule.forGroupHeader33);
+						com.tools20022.repository.msgpart.GroupHeader33.mmInstructedAgent));
+				messageBuildingBlock_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmGroupHeader));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintTotalInterbankSettlementAmountAndDateRule.forGroupHeader33));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "GroupHeader33";
 				definition = "Set of characteristics shared by all individual transactions included in the message.";

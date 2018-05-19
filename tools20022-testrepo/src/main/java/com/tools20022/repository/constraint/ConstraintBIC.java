@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -55,7 +56,7 @@ public class ConstraintBIC {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "BIC";
 			definition = "Valid BICs for financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consist of eight (8) or eleven (11) contiguous characters.";
-			owner_lazy = () -> BICIdentifier.mmObject();
+			owner_lazy = LazyReference.create(() -> BICIdentifier.mmObject());
 		}
 
 		@Override

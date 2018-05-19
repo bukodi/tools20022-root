@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -56,7 +57,7 @@ public class ConstraintActiveOrHistoricCurrency {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "ActiveOrHistoricCurrency";
 			definition = "The Currency Code must be registered, or have already been registered. Valid active or historic currency codes are registered with the ISO 4217 Maintenance Agency, consist of three (3) contiguous letters, and may be or not be withdrawn on the day the message containing the Currency is exchanged.";
-			owner_lazy = () -> ActiveOrHistoricCurrencyCode.mmObject();
+			owner_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyCode.mmObject());
 		}
 
 		@Override

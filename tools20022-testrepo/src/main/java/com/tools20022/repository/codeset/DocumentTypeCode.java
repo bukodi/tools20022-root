@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -159,7 +160,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MeteredServiceInvoice";
 			definition = "Document is an invoice claiming payment for the supply of metered services, for example gas or electricity supplied to a fixed meter.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "MSIN";
 		}
 	};
@@ -192,7 +193,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CreditNoteRelatedToFinancialAdjustment";
 			definition = "Document is a credit note for the final amount settled for a commercial transaction.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "CNFA";
 		}
 	};
@@ -225,7 +226,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "DebitNoteRelatedToFinancialAdjustment";
 			definition = "Document is a debit note for the final amount settled for a commercial transaction.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "DNFA";
 		}
 	};
@@ -255,7 +256,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CommercialInvoice";
 			definition = "Document is an invoice.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "CINV";
 		}
 	};
@@ -285,7 +286,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CreditNote";
 			definition = "Document is a credit note.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "CREN";
 		}
 	};
@@ -315,7 +316,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "DebitNote";
 			definition = "Document is a debit note.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "DEBN";
 		}
 	};
@@ -348,7 +349,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "HireInvoice";
 			definition = "Document is an invoice for the hiring of human resources or renting goods or equipment.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "HIRI";
 		}
 	};
@@ -378,7 +379,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "SelfBilledInvoice";
 			definition = "Document is an invoice issued by the debtor.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "SBIN";
 		}
 	};
@@ -411,7 +412,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "RemittanceAdviceMessage";
 			definition = "Document is a remittance advice sent separately from the current transaction.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "RADM";
 		}
 	};
@@ -444,7 +445,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "RelatedPaymentInstruction";
 			definition = "Document is a linked payment instruction to which the current payment instruction is related, eg, in a cover scenario.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "RPIN";
 		}
 	};
@@ -477,7 +478,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CommercialContract";
 			definition = "Document is an agreement between the parties, stipulating the terms and conditions of the delivery of goods or services.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "CMCN";
 		}
 	};
@@ -510,7 +511,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ForeignExchangeDealReference";
 			definition = "Document is a pre-agreed or pre-arranged foreign exchange transaction to which the payment transaction refers.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "FXDR";
 		}
 	};
@@ -543,7 +544,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "StatementOfAccount";
 			definition = "Document is a statement of the transactions posted to the debtor's account at the supplier.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "SOAC";
 		}
 	};
@@ -573,7 +574,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "DispatchAdvice";
 			definition = "Document is a dispatch advice.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "DISP";
 		}
 	};
@@ -603,7 +604,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PurchaseOrder";
 			definition = "Document is a purchase order.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "PUOR";
 		}
 	};
@@ -636,7 +637,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "StructuredCommunicationReference";
 			definition = "Document is a structured communication reference provided by the creditor to identify the referred transaction.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "SCOR";
 		}
 	};
@@ -666,7 +667,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "BillOfLading";
 			definition = "Document is a shipping notice.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "BOLD";
 		}
 	};
@@ -696,7 +697,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Voucher";
 			definition = "Document is an electronic payment document.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "VCHR";
 		}
 	};
@@ -727,7 +728,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "AccountReceivableOpenItem";
 			definition = "Document is a payment that applies to a specific source document.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "AROI";
 		}
 	};
@@ -760,7 +761,7 @@ public class DocumentTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "TradeServicesUtilityTransaction";
 			definition = "Document is a transaction identifier as assigned by the Trade Services Utility.";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentTypeCode.mmObject());
 			codeName = "TSUT";
 		}
 	};
@@ -772,13 +773,13 @@ public class DocumentTypeCode extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("MSIN");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DocumentTypeCode";
 				definition = "Specifies a type of financial or commercial document.";
-				derivation_lazy = () -> Arrays.asList(DocumentType3Code.mmObject(), DocumentType5Code.mmObject());
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.DocumentTypeCode.MeteredServiceInvoice, com.tools20022.repository.codeset.DocumentTypeCode.CreditNoteRelatedToFinancialAdjustment,
+				derivation_lazy = LazyReference.create(() -> Arrays.asList(DocumentType3Code.mmObject(), DocumentType5Code.mmObject()));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentTypeCode.MeteredServiceInvoice, com.tools20022.repository.codeset.DocumentTypeCode.CreditNoteRelatedToFinancialAdjustment,
 						com.tools20022.repository.codeset.DocumentTypeCode.DebitNoteRelatedToFinancialAdjustment, com.tools20022.repository.codeset.DocumentTypeCode.CommercialInvoice,
 						com.tools20022.repository.codeset.DocumentTypeCode.CreditNote, com.tools20022.repository.codeset.DocumentTypeCode.DebitNote, com.tools20022.repository.codeset.DocumentTypeCode.HireInvoice,
 						com.tools20022.repository.codeset.DocumentTypeCode.SelfBilledInvoice, com.tools20022.repository.codeset.DocumentTypeCode.RemittanceAdviceMessage,
@@ -786,7 +787,7 @@ public class DocumentTypeCode extends MMCode {
 						com.tools20022.repository.codeset.DocumentTypeCode.ForeignExchangeDealReference, com.tools20022.repository.codeset.DocumentTypeCode.StatementOfAccount,
 						com.tools20022.repository.codeset.DocumentTypeCode.DispatchAdvice, com.tools20022.repository.codeset.DocumentTypeCode.PurchaseOrder,
 						com.tools20022.repository.codeset.DocumentTypeCode.StructuredCommunicationReference, com.tools20022.repository.codeset.DocumentTypeCode.BillOfLading, com.tools20022.repository.codeset.DocumentTypeCode.Voucher,
-						com.tools20022.repository.codeset.DocumentTypeCode.AccountReceivableOpenItem, com.tools20022.repository.codeset.DocumentTypeCode.TradeServicesUtilityTransaction);
+						com.tools20022.repository.codeset.DocumentTypeCode.AccountReceivableOpenItem, com.tools20022.repository.codeset.DocumentTypeCode.TradeServicesUtilityTransaction));
 			}
 		});
 		return mmObject_lazy.get();

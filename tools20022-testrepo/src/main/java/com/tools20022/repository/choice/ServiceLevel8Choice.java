@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.choice;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -101,7 +102,7 @@ public class ServiceLevel8Choice {
 	 */
 	public static final MMMessageAttribute<ServiceLevel8Choice, ExternalServiceLevel1Code> mmCode = new MMMessageAttribute<ServiceLevel8Choice, ExternalServiceLevel1Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.ServiceLevel8Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.ServiceLevel8Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -109,7 +110,7 @@ public class ServiceLevel8Choice {
 			definition = "Specifies a pre-agreed service or level of service between the parties, as published in an external service level code list.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ExternalServiceLevel1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ExternalServiceLevel1Code.mmObject());
 		}
 
 		@Override
@@ -155,7 +156,7 @@ public class ServiceLevel8Choice {
 	 */
 	public static final MMMessageAttribute<ServiceLevel8Choice, Max35Text> mmProprietary = new MMMessageAttribute<ServiceLevel8Choice, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.ServiceLevel8Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.ServiceLevel8Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Prtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -163,7 +164,7 @@ public class ServiceLevel8Choice {
 			definition = "Specifies a pre-agreed service or level of service between the parties, as a proprietary code.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -180,8 +181,8 @@ public class ServiceLevel8Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.ServiceLevel8Choice.mmCode, com.tools20022.repository.choice.ServiceLevel8Choice.mmProprietary);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.ServiceLevel8Choice.mmCode, com.tools20022.repository.choice.ServiceLevel8Choice.mmProprietary));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ServiceLevel8Choice";
 				definition = "Specifies the service level of the transaction.";

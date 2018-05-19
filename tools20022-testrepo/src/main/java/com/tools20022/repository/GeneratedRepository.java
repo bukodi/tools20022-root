@@ -17,6 +17,7 @@
 
 package com.tools20022.repository;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.ReflectionBasedRepository;
 import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMDataDictionary;
@@ -75,8 +76,8 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 */
 	public static final MMBusinessProcessCatalogue catalogue = new MMBusinessProcessCatalogue() {
 		{
-			repository_lazy = () -> GeneratedRepository.mmObject();
-			topLevelCatalogueEntry_lazy = () -> Arrays.asList(PaymentsClearingandSettlementArchive.mmObject(), BUSINESSPROCESS_FOR_ROLES.mmObject());
+			repository_lazy = LazyReference.create(() -> GeneratedRepository.mmObject());
+			topLevelCatalogueEntry_lazy = LazyReference.create(() -> Arrays.asList(PaymentsClearingandSettlementArchive.mmObject(), BUSINESSPROCESS_FOR_ROLES.mmObject()));
 		}
 	};
 	/**
@@ -358,8 +359,8 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	 */
 	public static final MMDataDictionary dataDict = new MMDataDictionary() {
 		{
-			repository_lazy = () -> GeneratedRepository.mmObject();
-			topLevelDictionaryEntry_lazy = () -> Arrays.asList(ClearingSystemIdentification3Choice.mmObject(), ClearingSystemIdentification2Choice.mmObject(), ClearingSystemMemberIdentification2.mmObject(),
+			repository_lazy = LazyReference.create(() -> GeneratedRepository.mmObject());
+			topLevelDictionaryEntry_lazy = LazyReference.create(() -> Arrays.asList(ClearingSystemIdentification3Choice.mmObject(), ClearingSystemIdentification2Choice.mmObject(), ClearingSystemMemberIdentification2.mmObject(),
 					FinancialIdentificationSchemeName1Choice.mmObject(), GenericFinancialIdentification1.mmObject(), PostalAddress6.mmObject(), BranchData2.mmObject(), AccountSchemeName1Choice.mmObject(),
 					GenericAccountIdentification1.mmObject(), AccountIdentification4Choice.mmObject(), CashAccountType2.mmObject(), DateAndPlaceOfBirth.mmObject(), OrganisationIdentificationSchemeName1Choice.mmObject(),
 					GenericOrganisationIdentification1.mmObject(), OrganisationIdentification4.mmObject(), PersonIdentificationSchemeName1Choice.mmObject(), GenericPersonIdentification1.mmObject(), PersonIdentification5.mmObject(),
@@ -378,7 +379,7 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 					BaseOneRate.mmObject(), Max4Text.mmObject(), ChargeBearerType1Code.mmObject(), RemittanceLocationMethodCode.mmObject(), DocumentTypeCode.mmObject(), DocumentType3Code.mmObject(), ExternalPurpose1Code.mmObject(),
 					RemittanceLocationMethod2Code.mmObject(), DocumentType5Code.mmObject(), BatchBookingIndicator.mmObject(), ClearingChannelCode.mmObject(), ClearingChannel2Code.mmObject(), Priority2Code.mmObject(),
 					Instruction3Code.mmObject(), RegulatoryReportingTypeCode.mmObject(), RegulatoryReportingType1Code.mmObject(), ExternalServiceLevel1Code.mmObject(), ExternalLocalInstrument1Code.mmObject(),
-					ExternalCategoryPurpose1Code.mmObject(), SettlementMethodCode.mmObject(), SettlementMethod1Code.mmObject(), Instruction4Code.mmObject(), Priority3Code.mmObject());
+					ExternalCategoryPurpose1Code.mmObject(), SettlementMethodCode.mmObject(), SettlementMethod1Code.mmObject(), Instruction4Code.mmObject(), Priority3Code.mmObject()));
 		}
 	};
 
@@ -389,8 +390,8 @@ public class GeneratedRepository extends ReflectionBasedRepository {
 	final static public MMRepository mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMRepository() {
 			{
-				businessProcessCatalogue_lazy = () -> GeneratedRepository.catalogue;
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				businessProcessCatalogue_lazy = LazyReference.create(() -> GeneratedRepository.catalogue);
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 			}
 		});
 		return mmObject_lazy.get();

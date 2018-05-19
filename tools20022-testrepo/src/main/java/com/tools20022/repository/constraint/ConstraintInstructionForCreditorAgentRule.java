@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -58,7 +59,7 @@ public class ConstraintInstructionForCreditorAgentRule {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "InstructionForCreditorAgentRule";
 			definition = "If InstructionForCreditorAgent/Code contains CHQB, then CreditorAccount is not allowed.";
-			owner_lazy = () -> CreditTransferTransactionInformation11.mmObject();
+			owner_lazy = LazyReference.create(() -> CreditTransferTransactionInformation11.mmObject());
 			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"WithInList\"><leftOperand>/InstructionForCreditorAgent[*]/Code</leftOperand><rightOperand>PartialInstruction3Code</rightOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/CreditorAccount</leftOperand></BooleanRule><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructionForCreditorAgent[1]</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
 		}
 

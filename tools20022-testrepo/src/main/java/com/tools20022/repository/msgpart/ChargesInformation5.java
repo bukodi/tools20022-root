@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -104,7 +105,7 @@ public class ChargesInformation5 {
 	 */
 	public static final MMMessageAttribute<ChargesInformation5, ActiveOrHistoricCurrencyAndAmount> mmAmount = new MMMessageAttribute<ChargesInformation5, ActiveOrHistoricCurrencyAndAmount>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ChargesInformation5.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ChargesInformation5.mmObject());
 			isDerived = false;
 			xmlTag = "Amt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -112,7 +113,7 @@ public class ChargesInformation5 {
 			definition = "Transaction charges to be paid by the charge bearer.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -158,7 +159,7 @@ public class ChargesInformation5 {
 	 */
 	public static final MMMessageAssociationEnd<ChargesInformation5, BranchAndFinancialInstitutionIdentification4> mmParty = new MMMessageAssociationEnd<ChargesInformation5, BranchAndFinancialInstitutionIdentification4>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ChargesInformation5.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ChargesInformation5.mmObject());
 			isDerived = false;
 			xmlTag = "Pty";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -167,7 +168,7 @@ public class ChargesInformation5 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -184,8 +185,8 @@ public class ChargesInformation5 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.ChargesInformation5.mmAmount, com.tools20022.repository.msgpart.ChargesInformation5.mmParty);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.ChargesInformation5.mmAmount, com.tools20022.repository.msgpart.ChargesInformation5.mmParty));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ChargesInformation5";
 				definition = "Set of elements used to provide information on the charges related to the payment transaction.";

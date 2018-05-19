@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -81,8 +82,8 @@ public class ActiveCurrencyCode extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintActiveCurrency.forActiveCurrencyCode);
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintActiveCurrency.forActiveCurrencyCode));
 				example = Arrays.asList("EUR");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ActiveCurrencyCode";

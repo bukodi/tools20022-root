@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -54,7 +55,7 @@ public class ConstraintIBAN {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "IBAN";
 			definition = "A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN.";
-			owner_lazy = () -> IBAN2007Identifier.mmObject();
+			owner_lazy = LazyReference.create(() -> IBAN2007Identifier.mmObject());
 		}
 
 		@Override

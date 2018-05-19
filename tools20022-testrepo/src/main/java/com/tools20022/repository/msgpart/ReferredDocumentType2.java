@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -102,7 +103,7 @@ public class ReferredDocumentType2 {
 	 */
 	public static final MMMessageAssociationEnd<ReferredDocumentType2, ReferredDocumentType1Choice> mmCodeOrProprietary = new MMMessageAssociationEnd<ReferredDocumentType2, ReferredDocumentType1Choice>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ReferredDocumentType2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ReferredDocumentType2.mmObject());
 			isDerived = false;
 			xmlTag = "CdOrPrtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -111,7 +112,7 @@ public class ReferredDocumentType2 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> ReferredDocumentType1Choice.mmObject();
+			type_lazy = LazyReference.create(() -> ReferredDocumentType1Choice.mmObject());
 		}
 
 		@Override
@@ -156,7 +157,7 @@ public class ReferredDocumentType2 {
 	 */
 	public static final MMMessageAttribute<ReferredDocumentType2, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<ReferredDocumentType2, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ReferredDocumentType2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ReferredDocumentType2.mmObject());
 			isDerived = false;
 			xmlTag = "Issr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -164,7 +165,7 @@ public class ReferredDocumentType2 {
 			definition = "Identification of the issuer of the reference document type.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -181,8 +182,8 @@ public class ReferredDocumentType2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.ReferredDocumentType2.mmCodeOrProprietary, com.tools20022.repository.msgpart.ReferredDocumentType2.mmIssuer);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.ReferredDocumentType2.mmCodeOrProprietary, com.tools20022.repository.msgpart.ReferredDocumentType2.mmIssuer));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ReferredDocumentType2";
 				definition = "Specifies the type of the document referred in the remittance information.";

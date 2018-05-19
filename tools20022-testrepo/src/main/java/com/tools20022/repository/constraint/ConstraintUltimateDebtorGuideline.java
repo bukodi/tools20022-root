@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -52,7 +53,7 @@ public class ConstraintUltimateDebtorGuideline {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "UltimateDebtorGuideline";
 			definition = "UltimateDebtor may only be present if different from Debtor.";
-			owner_lazy = () -> CreditTransferTransactionInformation11.mmObject();
+			owner_lazy = LazyReference.create(() -> CreditTransferTransactionInformation11.mmObject());
 		}
 
 		@Override

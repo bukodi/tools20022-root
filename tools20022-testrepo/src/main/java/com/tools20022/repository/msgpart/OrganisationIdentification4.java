@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -105,7 +106,7 @@ public class OrganisationIdentification4 {
 	 */
 	public static final MMMessageAttribute<OrganisationIdentification4, Optional<AnyBICIdentifier>> mmBICOrBEI = new MMMessageAttribute<OrganisationIdentification4, Optional<AnyBICIdentifier>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.OrganisationIdentification4.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.OrganisationIdentification4.mmObject());
 			isDerived = false;
 			xmlTag = "BICOrBEI";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -113,7 +114,7 @@ public class OrganisationIdentification4 {
 			definition = "Code allocated to a financial institution or non financial institution by the ISO 9362 Registration Authority as described in ISO 9362 \"Banking - Banking telecommunication messages - Business identifier code (BIC)\".";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> AnyBICIdentifier.mmObject();
+			simpleType_lazy = LazyReference.create(() -> AnyBICIdentifier.mmObject());
 		}
 
 		@Override
@@ -159,7 +160,7 @@ public class OrganisationIdentification4 {
 	 */
 	public static final MMMessageAssociationEnd<OrganisationIdentification4, List<GenericOrganisationIdentification1>> mmOther = new MMMessageAssociationEnd<OrganisationIdentification4, List<GenericOrganisationIdentification1>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.OrganisationIdentification4.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.OrganisationIdentification4.mmObject());
 			isDerived = false;
 			xmlTag = "Othr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -167,7 +168,7 @@ public class OrganisationIdentification4 {
 			definition = "Unique identification of an organisation, as assigned by an institution, using an identification scheme.";
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> GenericOrganisationIdentification1.mmObject();
+			type_lazy = LazyReference.create(() -> GenericOrganisationIdentification1.mmObject());
 		}
 
 		@Override
@@ -184,8 +185,8 @@ public class OrganisationIdentification4 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.OrganisationIdentification4.mmBICOrBEI, com.tools20022.repository.msgpart.OrganisationIdentification4.mmOther);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.OrganisationIdentification4.mmBICOrBEI, com.tools20022.repository.msgpart.OrganisationIdentification4.mmOther));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.OBSOLETE;
 				removalDate = ((Supplier<Date>) (() -> {
 					try {

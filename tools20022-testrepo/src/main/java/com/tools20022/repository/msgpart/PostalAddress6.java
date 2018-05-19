@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -126,7 +127,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<AddressType2Code>> mmAddressType = new MMMessageAttribute<PostalAddress6, Optional<AddressType2Code>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "AdrTp";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -134,7 +135,7 @@ public class PostalAddress6 {
 			definition = "Identifies the nature of the postal address.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> AddressType2Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> AddressType2Code.mmObject());
 		}
 
 		@Override
@@ -179,7 +180,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max70Text>> mmDepartment = new MMMessageAttribute<PostalAddress6, Optional<Max70Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "Dept";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -187,7 +188,7 @@ public class PostalAddress6 {
 			definition = "Identification of a division of a large organisation or building.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max70Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max70Text.mmObject());
 		}
 
 		@Override
@@ -232,7 +233,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max70Text>> mmSubDepartment = new MMMessageAttribute<PostalAddress6, Optional<Max70Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "SubDept";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -240,7 +241,7 @@ public class PostalAddress6 {
 			definition = "Identification of a sub-division of a large organisation or building.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max70Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max70Text.mmObject());
 		}
 
 		@Override
@@ -284,7 +285,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max70Text>> mmStreetName = new MMMessageAttribute<PostalAddress6, Optional<Max70Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "StrtNm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -292,7 +293,7 @@ public class PostalAddress6 {
 			definition = "Name of a street or thoroughfare.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max70Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max70Text.mmObject());
 		}
 
 		@Override
@@ -337,7 +338,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max16Text>> mmBuildingNumber = new MMMessageAttribute<PostalAddress6, Optional<Max16Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "BldgNb";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -345,7 +346,7 @@ public class PostalAddress6 {
 			definition = "Number that identifies the position of a building on a street.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max16Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max16Text.mmObject());
 		}
 
 		@Override
@@ -391,7 +392,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max16Text>> mmPostCode = new MMMessageAttribute<PostalAddress6, Optional<Max16Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "PstCd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -399,7 +400,7 @@ public class PostalAddress6 {
 			definition = "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max16Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max16Text.mmObject());
 		}
 
 		@Override
@@ -445,7 +446,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max35Text>> mmTownName = new MMMessageAttribute<PostalAddress6, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "TwnNm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -453,7 +454,7 @@ public class PostalAddress6 {
 			definition = "Name of a built-up area, with defined boundaries, and a local government.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -498,7 +499,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max35Text>> mmCountrySubDivision = new MMMessageAttribute<PostalAddress6, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "CtrySubDvsn";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -506,7 +507,7 @@ public class PostalAddress6 {
 			definition = "Identifies a subdivision of a country such as state, region, county.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -550,7 +551,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<CountryCode>> mmCountry = new MMMessageAttribute<PostalAddress6, Optional<CountryCode>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "Ctry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -558,7 +559,7 @@ public class PostalAddress6 {
 			definition = "Nation with its own government.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> CountryCode.mmObject();
+			simpleType_lazy = LazyReference.create(() -> CountryCode.mmObject());
 		}
 
 		@Override
@@ -604,7 +605,7 @@ public class PostalAddress6 {
 	 */
 	public static final MMMessageAttribute<PostalAddress6, List<Max70Text>> mmAddressLine = new MMMessageAttribute<PostalAddress6, List<Max70Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PostalAddress6.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PostalAddress6.mmObject());
 			isDerived = false;
 			xmlTag = "AdrLine";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -612,7 +613,7 @@ public class PostalAddress6 {
 			definition = "Information that locates and identifies a specific address, as defined by postal services, presented in free format text.";
 			maxOccurs = 7;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max70Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max70Text.mmObject());
 		}
 
 		@Override
@@ -629,11 +630,11 @@ public class PostalAddress6 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.PostalAddress6.mmAddressType, com.tools20022.repository.msgpart.PostalAddress6.mmDepartment,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PostalAddress6.mmAddressType, com.tools20022.repository.msgpart.PostalAddress6.mmDepartment,
 						com.tools20022.repository.msgpart.PostalAddress6.mmSubDepartment, com.tools20022.repository.msgpart.PostalAddress6.mmStreetName, com.tools20022.repository.msgpart.PostalAddress6.mmBuildingNumber,
 						com.tools20022.repository.msgpart.PostalAddress6.mmPostCode, com.tools20022.repository.msgpart.PostalAddress6.mmTownName, com.tools20022.repository.msgpart.PostalAddress6.mmCountrySubDivision,
-						com.tools20022.repository.msgpart.PostalAddress6.mmCountry, com.tools20022.repository.msgpart.PostalAddress6.mmAddressLine);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+						com.tools20022.repository.msgpart.PostalAddress6.mmCountry, com.tools20022.repository.msgpart.PostalAddress6.mmAddressLine));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "PostalAddress6";
 				definition = "Information that locates and identifies a specific address, as defined by postal services.";

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -106,7 +107,7 @@ public class BranchAndFinancialInstitutionIdentification4 {
 	 */
 	public static final MMMessageAssociationEnd<BranchAndFinancialInstitutionIdentification4, FinancialInstitutionIdentification7> mmFinancialInstitutionIdentification = new MMMessageAssociationEnd<BranchAndFinancialInstitutionIdentification4, FinancialInstitutionIdentification7>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4.mmObject());
 			isDerived = false;
 			xmlTag = "FinInstnId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -115,7 +116,7 @@ public class BranchAndFinancialInstitutionIdentification4 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> FinancialInstitutionIdentification7.mmObject();
+			type_lazy = LazyReference.create(() -> FinancialInstitutionIdentification7.mmObject());
 		}
 
 		@Override
@@ -160,7 +161,7 @@ public class BranchAndFinancialInstitutionIdentification4 {
 	 */
 	public static final MMMessageAssociationEnd<BranchAndFinancialInstitutionIdentification4, Optional<BranchData2>> mmBranchIdentification = new MMMessageAssociationEnd<BranchAndFinancialInstitutionIdentification4, Optional<BranchData2>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4.mmObject());
 			isDerived = false;
 			xmlTag = "BrnchId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -169,7 +170,7 @@ public class BranchAndFinancialInstitutionIdentification4 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchData2.mmObject();
+			type_lazy = LazyReference.create(() -> BranchData2.mmObject());
 		}
 
 		@Override
@@ -186,9 +187,9 @@ public class BranchAndFinancialInstitutionIdentification4 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4.mmFinancialInstitutionIdentification,
-						com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4.mmBranchIdentification);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4.mmFinancialInstitutionIdentification,
+						com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4.mmBranchIdentification));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "BranchAndFinancialInstitutionIdentification4";
 				definition = "Set of elements used to uniquely and unambiguously identify a financial institution or a branch of a financial institution.";

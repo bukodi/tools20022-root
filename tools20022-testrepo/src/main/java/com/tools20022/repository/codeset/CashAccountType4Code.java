@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -132,7 +133,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CashPayment";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.CashPayment.getCodeName().orElse(name);
 		}
 	};
@@ -156,7 +157,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Charges";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Charges.getCodeName().orElse(name);
 		}
 	};
@@ -180,7 +181,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Commission";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Commission.getCodeName().orElse(name);
 		}
 	};
@@ -204,7 +205,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Tax";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Tax.getCodeName().orElse(name);
 		}
 	};
@@ -228,7 +229,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CashIncome";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.CashIncome.getCodeName().orElse(name);
 		}
 	};
@@ -252,7 +253,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CashTrading";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.CashTrading.getCodeName().orElse(name);
 		}
 	};
@@ -276,7 +277,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Settlement";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Settlement.getCodeName().orElse(name);
 		}
 	};
@@ -300,7 +301,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Current";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Current.getCodeName().orElse(name);
 		}
 	};
@@ -324,7 +325,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Savings";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Savings.getCodeName().orElse(name);
 		}
 	};
@@ -348,7 +349,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "OverNightDeposit";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.OverNightDeposit.getCodeName().orElse(name);
 		}
 	};
@@ -372,7 +373,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "MarginalLending";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.MarginalLending.getCodeName().orElse(name);
 		}
 	};
@@ -396,7 +397,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "NonResidentExternal";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.NonResidentExternal.getCodeName().orElse(name);
 		}
 	};
@@ -420,7 +421,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "MoneyMarket";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.MoneyMarket.getCodeName().orElse(name);
 		}
 	};
@@ -444,7 +445,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Loan";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Loan.getCodeName().orElse(name);
 		}
 	};
@@ -468,7 +469,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Salary";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Salary.getCodeName().orElse(name);
 		}
 	};
@@ -492,7 +493,7 @@ public class CashAccountType4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Overdraft";
-			owner_lazy = () -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
 			codeName = CashAccountTypeCode.Overdraft.getCodeName().orElse(name);
 		}
 	};
@@ -504,18 +505,18 @@ public class CashAccountType4Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("CASH");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CashAccountType4Code";
 				definition = "Specifies the nature, or use, of the cash account.";
-				trace_lazy = () -> CashAccountTypeCode.mmObject();
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.CashAccountType4Code.CashPayment, com.tools20022.repository.codeset.CashAccountType4Code.Charges,
+				trace_lazy = LazyReference.create(() -> CashAccountTypeCode.mmObject());
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountType4Code.CashPayment, com.tools20022.repository.codeset.CashAccountType4Code.Charges,
 						com.tools20022.repository.codeset.CashAccountType4Code.Commission, com.tools20022.repository.codeset.CashAccountType4Code.Tax, com.tools20022.repository.codeset.CashAccountType4Code.CashIncome,
 						com.tools20022.repository.codeset.CashAccountType4Code.CashTrading, com.tools20022.repository.codeset.CashAccountType4Code.Settlement, com.tools20022.repository.codeset.CashAccountType4Code.Current,
 						com.tools20022.repository.codeset.CashAccountType4Code.Savings, com.tools20022.repository.codeset.CashAccountType4Code.OverNightDeposit, com.tools20022.repository.codeset.CashAccountType4Code.MarginalLending,
 						com.tools20022.repository.codeset.CashAccountType4Code.NonResidentExternal, com.tools20022.repository.codeset.CashAccountType4Code.MoneyMarket, com.tools20022.repository.codeset.CashAccountType4Code.Loan,
-						com.tools20022.repository.codeset.CashAccountType4Code.Salary, com.tools20022.repository.codeset.CashAccountType4Code.Overdraft);
+						com.tools20022.repository.codeset.CashAccountType4Code.Salary, com.tools20022.repository.codeset.CashAccountType4Code.Overdraft));
 			}
 		});
 		return mmObject_lazy.get();

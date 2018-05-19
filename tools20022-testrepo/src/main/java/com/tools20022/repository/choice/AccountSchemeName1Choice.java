@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.choice;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -103,7 +104,7 @@ public class AccountSchemeName1Choice {
 	 */
 	public static final MMMessageAttribute<AccountSchemeName1Choice, ExternalAccountIdentification1Code> mmCode = new MMMessageAttribute<AccountSchemeName1Choice, ExternalAccountIdentification1Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.AccountSchemeName1Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.AccountSchemeName1Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -111,7 +112,7 @@ public class AccountSchemeName1Choice {
 			definition = "Name of the identification scheme, in a coded form as published in an external list.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ExternalAccountIdentification1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ExternalAccountIdentification1Code.mmObject());
 		}
 
 		@Override
@@ -155,7 +156,7 @@ public class AccountSchemeName1Choice {
 	 */
 	public static final MMMessageAttribute<AccountSchemeName1Choice, Max35Text> mmProprietary = new MMMessageAttribute<AccountSchemeName1Choice, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.AccountSchemeName1Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.AccountSchemeName1Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Prtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -163,7 +164,7 @@ public class AccountSchemeName1Choice {
 			definition = "Name of the identification scheme, in a free text form.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -180,8 +181,8 @@ public class AccountSchemeName1Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.AccountSchemeName1Choice.mmCode, com.tools20022.repository.choice.AccountSchemeName1Choice.mmProprietary);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.AccountSchemeName1Choice.mmCode, com.tools20022.repository.choice.AccountSchemeName1Choice.mmProprietary));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AccountSchemeName1Choice";
 				definition = "Sets of elements to identify a name of the identification scheme";

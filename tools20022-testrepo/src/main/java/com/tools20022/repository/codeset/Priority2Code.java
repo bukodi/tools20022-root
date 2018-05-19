@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -89,7 +90,7 @@ public class Priority2Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "High";
-			owner_lazy = () -> com.tools20022.repository.codeset.Priority2Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority2Code.mmObject());
 			codeName = PriorityCode.High.getCodeName().orElse(name);
 		}
 	};
@@ -113,7 +114,7 @@ public class Priority2Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Normal";
-			owner_lazy = () -> com.tools20022.repository.codeset.Priority2Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority2Code.mmObject());
 			codeName = PriorityCode.Normal.getCodeName().orElse(name);
 		}
 	};
@@ -125,13 +126,13 @@ public class Priority2Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("HIGH");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Priority2Code";
 				definition = "Specifies the priority level of an event.";
-				trace_lazy = () -> PriorityCode.mmObject();
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.Priority2Code.High, com.tools20022.repository.codeset.Priority2Code.Normal);
+				trace_lazy = LazyReference.create(() -> PriorityCode.mmObject());
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Priority2Code.High, com.tools20022.repository.codeset.Priority2Code.Normal));
 			}
 		});
 		return mmObject_lazy.get();

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -111,7 +112,7 @@ public class CashAccountType2 {
 	 */
 	public static final MMMessageAttribute<CashAccountType2, CashAccountType4Code> mmCode = new MMMessageAttribute<CashAccountType2, CashAccountType4Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CashAccountType2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CashAccountType2.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -119,7 +120,7 @@ public class CashAccountType2 {
 			definition = "Account type, in a coded form.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> CashAccountType4Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> CashAccountType4Code.mmObject());
 		}
 
 		@Override
@@ -163,7 +164,7 @@ public class CashAccountType2 {
 	 */
 	public static final MMMessageAttribute<CashAccountType2, Max35Text> mmProprietary = new MMMessageAttribute<CashAccountType2, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CashAccountType2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CashAccountType2.mmObject());
 			isDerived = false;
 			xmlTag = "Prtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -171,7 +172,7 @@ public class CashAccountType2 {
 			definition = "Nature or use of the account in a proprietary form.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -221,16 +222,16 @@ public class CashAccountType2 {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CodeOrProprietaryRule";
 			definition = "Either Code or Proprietary must be present, but not both.";
-			messageComponent_lazy = () -> com.tools20022.repository.msgpart.CashAccountType2.mmObject();
-			impactedElements_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.CashAccountType2.mmCode, com.tools20022.repository.msgpart.CashAccountType2.mmProprietary);
+			messageComponent_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CashAccountType2.mmObject());
+			impactedElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CashAccountType2.mmCode, com.tools20022.repository.msgpart.CashAccountType2.mmProprietary));
 		}
 	};
 
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.CashAccountType2.mmCode, com.tools20022.repository.msgpart.CashAccountType2.mmProprietary);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CashAccountType2.mmCode, com.tools20022.repository.msgpart.CashAccountType2.mmProprietary));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.OBSOLETE;
 				removalDate = ((Supplier<Date>) (() -> {
 					try {
@@ -241,7 +242,7 @@ public class CashAccountType2 {
 				})).get();
 				name = "CashAccountType2";
 				definition = "Nature or use of the account.";
-				xors_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.CashAccountType2.CodeOrProprietaryRule);
+				xors_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CashAccountType2.CodeOrProprietaryRule));
 			}
 		});
 		return mmObject_lazy.get();

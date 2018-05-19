@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -107,7 +108,7 @@ public class BranchData2 {
 	 */
 	public static final MMMessageAttribute<BranchData2, Optional<Max35Text>> mmIdentification = new MMMessageAttribute<BranchData2, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.BranchData2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.BranchData2.mmObject());
 			isDerived = false;
 			xmlTag = "Id";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -115,7 +116,7 @@ public class BranchData2 {
 			definition = "Unique and unambiguous identification of a branch of a financial institution.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -160,7 +161,7 @@ public class BranchData2 {
 	 */
 	public static final MMMessageAttribute<BranchData2, Optional<Max140Text>> mmName = new MMMessageAttribute<BranchData2, Optional<Max140Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.BranchData2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.BranchData2.mmObject());
 			isDerived = false;
 			xmlTag = "Nm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -168,7 +169,7 @@ public class BranchData2 {
 			definition = "Name by which an agent is known and which is usually used to identify that agent.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max140Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max140Text.mmObject());
 		}
 
 		@Override
@@ -212,7 +213,7 @@ public class BranchData2 {
 	 */
 	public static final MMMessageAssociationEnd<BranchData2, Optional<PostalAddress6>> mmPostalAddress = new MMMessageAssociationEnd<BranchData2, Optional<PostalAddress6>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.BranchData2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.BranchData2.mmObject());
 			isDerived = false;
 			xmlTag = "PstlAdr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -221,7 +222,7 @@ public class BranchData2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PostalAddress6.mmObject();
+			type_lazy = LazyReference.create(() -> PostalAddress6.mmObject());
 		}
 
 		@Override
@@ -238,8 +239,9 @@ public class BranchData2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.BranchData2.mmIdentification, com.tools20022.repository.msgpart.BranchData2.mmName, com.tools20022.repository.msgpart.BranchData2.mmPostalAddress);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.BranchData2.mmIdentification, com.tools20022.repository.msgpart.BranchData2.mmName,
+						com.tools20022.repository.msgpart.BranchData2.mmPostalAddress));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "BranchData2";
 				definition = "Information that locates and identifies a specific branch of a financial institution.";

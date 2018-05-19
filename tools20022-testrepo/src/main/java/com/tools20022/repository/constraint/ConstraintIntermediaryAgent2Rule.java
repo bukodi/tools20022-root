@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -57,7 +58,7 @@ public class ConstraintIntermediaryAgent2Rule {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "IntermediaryAgent2Rule";
 			definition = "If IntermediaryAgent2 is present, then IntermediaryAgent1 must be present.";
-			owner_lazy = () -> CreditTransferTransactionInformation11.mmObject();
+			owner_lazy = LazyReference.create(() -> CreditTransferTransactionInformation11.mmObject());
 			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/IntermediaryAgent1</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/IntermediaryAgent2</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
 		}
 

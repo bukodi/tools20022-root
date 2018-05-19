@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -107,7 +108,7 @@ public class ReferredDocumentInformation3 {
 	 */
 	public static final MMMessageAssociationEnd<ReferredDocumentInformation3, Optional<ReferredDocumentType2>> mmType = new MMMessageAssociationEnd<ReferredDocumentInformation3, Optional<ReferredDocumentType2>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmObject());
 			isDerived = false;
 			xmlTag = "Tp";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -116,7 +117,7 @@ public class ReferredDocumentInformation3 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> ReferredDocumentType2.mmObject();
+			type_lazy = LazyReference.create(() -> ReferredDocumentType2.mmObject());
 		}
 
 		@Override
@@ -161,7 +162,7 @@ public class ReferredDocumentInformation3 {
 	 */
 	public static final MMMessageAttribute<ReferredDocumentInformation3, Optional<Max35Text>> mmNumber = new MMMessageAttribute<ReferredDocumentInformation3, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmObject());
 			isDerived = false;
 			xmlTag = "Nb";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -169,7 +170,7 @@ public class ReferredDocumentInformation3 {
 			definition = "Unique and unambiguous identification of the referred document.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -213,7 +214,7 @@ public class ReferredDocumentInformation3 {
 	 */
 	public static final MMMessageAttribute<ReferredDocumentInformation3, Optional<ISODate>> mmRelatedDate = new MMMessageAttribute<ReferredDocumentInformation3, Optional<ISODate>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmObject());
 			isDerived = false;
 			xmlTag = "RltdDt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -221,7 +222,7 @@ public class ReferredDocumentInformation3 {
 			definition = "Date associated with the referred document.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISODate.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISODate.mmObject());
 		}
 
 		@Override
@@ -238,9 +239,9 @@ public class ReferredDocumentInformation3 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmType, com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmNumber,
-						com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmRelatedDate);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmType, com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmNumber,
+						com.tools20022.repository.msgpart.ReferredDocumentInformation3.mmRelatedDate));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ReferredDocumentInformation3";
 				definition = "Set of elements used to identify the documents referred to in the remittance information.";

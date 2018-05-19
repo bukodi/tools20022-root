@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -107,7 +108,7 @@ public class DateAndPlaceOfBirth {
 	 */
 	public static final MMMessageAttribute<DateAndPlaceOfBirth, ISODate> mmBirthDate = new MMMessageAttribute<DateAndPlaceOfBirth, ISODate>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmObject());
 			isDerived = false;
 			xmlTag = "BirthDt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -115,7 +116,7 @@ public class DateAndPlaceOfBirth {
 			definition = "Date on which a person is born.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ISODate.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISODate.mmObject());
 		}
 
 		@Override
@@ -159,7 +160,7 @@ public class DateAndPlaceOfBirth {
 	 */
 	public static final MMMessageAttribute<DateAndPlaceOfBirth, Optional<Max35Text>> mmProvinceOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmObject());
 			isDerived = false;
 			xmlTag = "PrvcOfBirth";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -167,7 +168,7 @@ public class DateAndPlaceOfBirth {
 			definition = "Province where a person was born.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -211,7 +212,7 @@ public class DateAndPlaceOfBirth {
 	 */
 	public static final MMMessageAttribute<DateAndPlaceOfBirth, Max35Text> mmCityOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmObject());
 			isDerived = false;
 			xmlTag = "CityOfBirth";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -219,7 +220,7 @@ public class DateAndPlaceOfBirth {
 			definition = "City where a person was born.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -263,7 +264,7 @@ public class DateAndPlaceOfBirth {
 	 */
 	public static final MMMessageAttribute<DateAndPlaceOfBirth, CountryCode> mmCountryOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, CountryCode>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmObject());
 			isDerived = false;
 			xmlTag = "CtryOfBirth";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -271,7 +272,7 @@ public class DateAndPlaceOfBirth {
 			definition = "Country where a person was born.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> CountryCode.mmObject();
+			simpleType_lazy = LazyReference.create(() -> CountryCode.mmObject());
 		}
 
 		@Override
@@ -288,9 +289,9 @@ public class DateAndPlaceOfBirth {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmBirthDate, com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmProvinceOfBirth,
-						com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmCityOfBirth, com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmCountryOfBirth);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmBirthDate, com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmProvinceOfBirth,
+						com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmCityOfBirth, com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmCountryOfBirth));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DateAndPlaceOfBirth";
 				definition = "Date and place of birth of a person.";

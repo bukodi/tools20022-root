@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -98,7 +99,7 @@ public class PersonIdentification5 {
 	 */
 	public static final MMMessageAssociationEnd<PersonIdentification5, Optional<DateAndPlaceOfBirth>> mmDateAndPlaceOfBirth = new MMMessageAssociationEnd<PersonIdentification5, Optional<DateAndPlaceOfBirth>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PersonIdentification5.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PersonIdentification5.mmObject());
 			isDerived = false;
 			xmlTag = "DtAndPlcOfBirth";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -107,7 +108,7 @@ public class PersonIdentification5 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> DateAndPlaceOfBirth.mmObject();
+			type_lazy = LazyReference.create(() -> DateAndPlaceOfBirth.mmObject());
 		}
 
 		@Override
@@ -153,7 +154,7 @@ public class PersonIdentification5 {
 	 */
 	public static final MMMessageAssociationEnd<PersonIdentification5, List<GenericPersonIdentification1>> mmOther = new MMMessageAssociationEnd<PersonIdentification5, List<GenericPersonIdentification1>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PersonIdentification5.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PersonIdentification5.mmObject());
 			isDerived = false;
 			xmlTag = "Othr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -161,7 +162,7 @@ public class PersonIdentification5 {
 			definition = "Unique identification of a person, as assigned by an institution, using an identification scheme.";
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> GenericPersonIdentification1.mmObject();
+			type_lazy = LazyReference.create(() -> GenericPersonIdentification1.mmObject());
 		}
 
 		@Override
@@ -178,8 +179,8 @@ public class PersonIdentification5 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.PersonIdentification5.mmDateAndPlaceOfBirth, com.tools20022.repository.msgpart.PersonIdentification5.mmOther);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PersonIdentification5.mmDateAndPlaceOfBirth, com.tools20022.repository.msgpart.PersonIdentification5.mmOther));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "PersonIdentification5";
 				definition = "Unique and unambiguous way to identify a person.";

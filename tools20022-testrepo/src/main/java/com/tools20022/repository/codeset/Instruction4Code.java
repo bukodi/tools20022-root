@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -95,7 +96,7 @@ public class Instruction4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "PhoneNextAgent";
-			owner_lazy = () -> com.tools20022.repository.codeset.Instruction4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Instruction4Code.mmObject());
 			codeName = InstructionCode.PhoneNextAgent.getCodeName().orElse(name);
 		}
 	};
@@ -119,7 +120,7 @@ public class Instruction4Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "TelecomNextAgent";
-			owner_lazy = () -> com.tools20022.repository.codeset.Instruction4Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Instruction4Code.mmObject());
 			codeName = InstructionCode.TelecomNextAgent.getCodeName().orElse(name);
 		}
 	};
@@ -131,13 +132,13 @@ public class Instruction4Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("PHOA");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Instruction4Code";
 				definition = "Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s).";
-				trace_lazy = () -> InstructionCode.mmObject();
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.Instruction4Code.PhoneNextAgent, com.tools20022.repository.codeset.Instruction4Code.TelecomNextAgent);
+				trace_lazy = LazyReference.create(() -> InstructionCode.mmObject());
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Instruction4Code.PhoneNextAgent, com.tools20022.repository.codeset.Instruction4Code.TelecomNextAgent));
 			}
 		});
 		return mmObject_lazy.get();

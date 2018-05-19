@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.choice;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -101,7 +102,7 @@ public class ReferredDocumentType1Choice {
 	 */
 	public static final MMMessageAttribute<ReferredDocumentType1Choice, DocumentType5Code> mmCode = new MMMessageAttribute<ReferredDocumentType1Choice, DocumentType5Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.ReferredDocumentType1Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.ReferredDocumentType1Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -109,7 +110,7 @@ public class ReferredDocumentType1Choice {
 			definition = "Document type in a coded form.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> DocumentType5Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> DocumentType5Code.mmObject());
 		}
 
 		@Override
@@ -154,7 +155,7 @@ public class ReferredDocumentType1Choice {
 	 */
 	public static final MMMessageAttribute<ReferredDocumentType1Choice, Max35Text> mmProprietary = new MMMessageAttribute<ReferredDocumentType1Choice, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.ReferredDocumentType1Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.ReferredDocumentType1Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Prtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -162,7 +163,7 @@ public class ReferredDocumentType1Choice {
 			definition = "Proprietary identification of the type of the remittance document.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -179,8 +180,8 @@ public class ReferredDocumentType1Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.ReferredDocumentType1Choice.mmCode, com.tools20022.repository.choice.ReferredDocumentType1Choice.mmProprietary);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.ReferredDocumentType1Choice.mmCode, com.tools20022.repository.choice.ReferredDocumentType1Choice.mmProprietary));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ReferredDocumentType1Choice";
 				definition = "Specifies the type of the document referred in the remittance information.";

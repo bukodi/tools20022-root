@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -59,7 +60,7 @@ public class ConstraintChargesAmountRule {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "ChargesAmountRule";
 			definition = "If ChargesInformation is present, then the currency of ChargesInformation/ChargesAmount must be the same as the currency of InterbankSettlementAmount.";
-			owner_lazy = () -> CreditTransferTransactionInformation11.mmObject();
+			owner_lazy = LazyReference.create(() -> CreditTransferTransactionInformation11.mmObject());
 			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"EqualToNode\"><leftOperand>/ChargesInformation[*]/Amount/@Currency</leftOperand><rightOperand>/InterbankSettlementAmount/@Currency</rightOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/ChargesInformation[1]</leftOperand></BooleanRule><BooleanRule xsi:type=\"Presence\"><leftOperand>/ChargesInformation[*]/Amount</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
 		}
 

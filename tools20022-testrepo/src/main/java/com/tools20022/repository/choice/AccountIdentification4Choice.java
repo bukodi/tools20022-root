@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.choice;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
@@ -106,7 +107,7 @@ public class AccountIdentification4Choice {
 	 */
 	public static final MMMessageAttribute<AccountIdentification4Choice, IBAN2007Identifier> mmIBAN = new MMMessageAttribute<AccountIdentification4Choice, IBAN2007Identifier>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.AccountIdentification4Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.AccountIdentification4Choice.mmObject());
 			isDerived = false;
 			xmlTag = "IBAN";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -114,7 +115,7 @@ public class AccountIdentification4Choice {
 			definition = "International Bank Account Number (IBAN) - identifier used internationally by financial institutions to uniquely identify the account of a customer. Further specifications of the format and content of the IBAN can be found in the standard ISO 13616 \"Banking and related financial services - International Bank Account Number (IBAN)\" version 1997-10-01, or later revisions.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> IBAN2007Identifier.mmObject();
+			simpleType_lazy = LazyReference.create(() -> IBAN2007Identifier.mmObject());
 		}
 
 		@Override
@@ -160,7 +161,7 @@ public class AccountIdentification4Choice {
 	 */
 	public static final MMMessageAssociationEnd<AccountIdentification4Choice, GenericAccountIdentification1> mmOther = new MMMessageAssociationEnd<AccountIdentification4Choice, GenericAccountIdentification1>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.AccountIdentification4Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.AccountIdentification4Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Othr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -169,7 +170,7 @@ public class AccountIdentification4Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> GenericAccountIdentification1.mmObject();
+			type_lazy = LazyReference.create(() -> GenericAccountIdentification1.mmObject());
 		}
 
 		@Override
@@ -186,8 +187,8 @@ public class AccountIdentification4Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.AccountIdentification4Choice.mmIBAN, com.tools20022.repository.choice.AccountIdentification4Choice.mmOther);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.AccountIdentification4Choice.mmIBAN, com.tools20022.repository.choice.AccountIdentification4Choice.mmOther));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AccountIdentification4Choice";
 				definition = "Specifies the unique identification of an account as assigned by the account servicer.";

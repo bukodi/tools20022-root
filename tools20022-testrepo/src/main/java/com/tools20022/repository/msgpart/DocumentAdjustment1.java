@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -112,7 +113,7 @@ public class DocumentAdjustment1 {
 	 */
 	public static final MMMessageAttribute<DocumentAdjustment1, ActiveOrHistoricCurrencyAndAmount> mmAmount = new MMMessageAttribute<DocumentAdjustment1, ActiveOrHistoricCurrencyAndAmount>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.DocumentAdjustment1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.DocumentAdjustment1.mmObject());
 			isDerived = false;
 			xmlTag = "Amt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -120,7 +121,7 @@ public class DocumentAdjustment1 {
 			definition = "Amount of money of the document adjustment.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -167,7 +168,7 @@ public class DocumentAdjustment1 {
 	 */
 	public static final MMMessageAttribute<DocumentAdjustment1, Optional<CreditDebitCode>> mmCreditDebitIndicator = new MMMessageAttribute<DocumentAdjustment1, Optional<CreditDebitCode>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.DocumentAdjustment1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.DocumentAdjustment1.mmObject());
 			isDerived = false;
 			xmlTag = "CdtDbtInd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -175,7 +176,7 @@ public class DocumentAdjustment1 {
 			definition = "Specifies whether the adjustment must be substracted or added to the total amount.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> CreditDebitCode.mmObject();
+			simpleType_lazy = LazyReference.create(() -> CreditDebitCode.mmObject());
 		}
 
 		@Override
@@ -219,7 +220,7 @@ public class DocumentAdjustment1 {
 	 */
 	public static final MMMessageAttribute<DocumentAdjustment1, Optional<Max4Text>> mmReason = new MMMessageAttribute<DocumentAdjustment1, Optional<Max4Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.DocumentAdjustment1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.DocumentAdjustment1.mmObject());
 			isDerived = false;
 			xmlTag = "Rsn";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -227,7 +228,7 @@ public class DocumentAdjustment1 {
 			definition = "Specifies the reason for the adjustment.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max4Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max4Text.mmObject());
 		}
 
 		@Override
@@ -271,7 +272,7 @@ public class DocumentAdjustment1 {
 	 */
 	public static final MMMessageAttribute<DocumentAdjustment1, Optional<Max140Text>> mmAdditionalInformation = new MMMessageAttribute<DocumentAdjustment1, Optional<Max140Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.DocumentAdjustment1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.DocumentAdjustment1.mmObject());
 			isDerived = false;
 			xmlTag = "AddtlInf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -279,7 +280,7 @@ public class DocumentAdjustment1 {
 			definition = "Provides further details on the document adjustment.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max140Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max140Text.mmObject());
 		}
 
 		@Override
@@ -296,9 +297,9 @@ public class DocumentAdjustment1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.DocumentAdjustment1.mmAmount, com.tools20022.repository.msgpart.DocumentAdjustment1.mmCreditDebitIndicator,
-						com.tools20022.repository.msgpart.DocumentAdjustment1.mmReason, com.tools20022.repository.msgpart.DocumentAdjustment1.mmAdditionalInformation);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.DocumentAdjustment1.mmAmount, com.tools20022.repository.msgpart.DocumentAdjustment1.mmCreditDebitIndicator,
+						com.tools20022.repository.msgpart.DocumentAdjustment1.mmReason, com.tools20022.repository.msgpart.DocumentAdjustment1.mmAdditionalInformation));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DocumentAdjustment1";
 				definition = "Set of elements used to provide information on the amount and reason of the document adjustment.";

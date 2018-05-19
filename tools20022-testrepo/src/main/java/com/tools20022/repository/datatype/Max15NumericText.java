@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.datatype;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.metamodel.MMText;
 import com.tools20022.repository.GeneratedRepository;
@@ -60,7 +61,7 @@ public class Max15NumericText {
 	final static public MMText mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMText() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Max15NumericText";
 				definition = "Specifies a numeric string with a maximum length of 15 digits.";

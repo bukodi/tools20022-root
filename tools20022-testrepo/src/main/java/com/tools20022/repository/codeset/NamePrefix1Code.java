@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -97,7 +98,7 @@ public class NamePrefix1Code extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Doctor";
 			definition = "Title of the person is Doctor or Dr.";
-			owner_lazy = () -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 			codeName = "DOCT";
 		}
 	};
@@ -127,7 +128,7 @@ public class NamePrefix1Code extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Mister";
 			definition = "Title of the person is Mister or Mr.";
-			owner_lazy = () -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 			codeName = "MIST";
 		}
 	};
@@ -157,7 +158,7 @@ public class NamePrefix1Code extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Miss";
 			definition = "Title of the person is Miss.";
-			owner_lazy = () -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 			codeName = "MISS";
 		}
 	};
@@ -187,7 +188,7 @@ public class NamePrefix1Code extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Madam";
 			definition = "Title of the person is Madam.";
-			owner_lazy = () -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 			codeName = "MADM";
 		}
 	};
@@ -199,13 +200,13 @@ public class NamePrefix1Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("DOCT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "NamePrefix1Code";
 				definition = "Specifies the terms used to formally address a person.";
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.NamePrefix1Code.Doctor, com.tools20022.repository.codeset.NamePrefix1Code.Mister, com.tools20022.repository.codeset.NamePrefix1Code.Miss,
-						com.tools20022.repository.codeset.NamePrefix1Code.Madam);
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.NamePrefix1Code.Doctor, com.tools20022.repository.codeset.NamePrefix1Code.Mister,
+						com.tools20022.repository.codeset.NamePrefix1Code.Miss, com.tools20022.repository.codeset.NamePrefix1Code.Madam));
 			}
 		});
 		return mmObject_lazy.get();

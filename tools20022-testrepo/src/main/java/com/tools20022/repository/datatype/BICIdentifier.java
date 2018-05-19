@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.datatype;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMIdentifierSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.GeneratedRepository;
@@ -86,8 +87,8 @@ public class BICIdentifier {
 	final static public MMIdentifierSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintBIC.forBICIdentifier);
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintBIC.forBICIdentifier));
 				example = Arrays.asList("CHASUS33");
 				registrationStatus = MMRegistrationStatus.OBSOLETE;
 				removalDate = ((Supplier<Date>) (() -> {

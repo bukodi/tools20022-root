@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -58,7 +59,7 @@ public class ConstraintNumberOfTransactionsAndCreditTransfersRule {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "NumberOfTransactionsAndCreditTransfersRule";
 			definition = "GroupHeader/NumberOfTransactions must equal the number of occurrences of CreditTransferTransactionInformation.";
-			owner_lazy = () -> FIToFICustomerCreditTransferV02.mmObject();
+			owner_lazy = LazyReference.create(() -> FIToFICustomerCreditTransferV02.mmObject());
 			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><SimpleRule xsi:type=\"SimpleRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"EqualToValue\"><leftOperand>/GroupHeader/NumberOfTransactions</leftOperand><rightOperand>number of occurrences of CreditTransferTransactionInformation</rightOperand></BooleanRule></mustBe></SimpleRule></RuleDefinition>\n";
 		}
 

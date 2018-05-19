@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -104,7 +105,7 @@ public class GenericPersonIdentification1 {
 	 */
 	public static final MMMessageAttribute<GenericPersonIdentification1, Max35Text> mmIdentification = new MMMessageAttribute<GenericPersonIdentification1, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GenericPersonIdentification1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GenericPersonIdentification1.mmObject());
 			isDerived = false;
 			xmlTag = "Id";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -112,7 +113,7 @@ public class GenericPersonIdentification1 {
 			definition = "Unique and unambiguous identification of a person.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -156,7 +157,7 @@ public class GenericPersonIdentification1 {
 	 */
 	public static final MMMessageAssociationEnd<GenericPersonIdentification1, Optional<PersonIdentificationSchemeName1Choice>> mmSchemeName = new MMMessageAssociationEnd<GenericPersonIdentification1, Optional<PersonIdentificationSchemeName1Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GenericPersonIdentification1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GenericPersonIdentification1.mmObject());
 			isDerived = false;
 			xmlTag = "SchmeNm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -165,7 +166,7 @@ public class GenericPersonIdentification1 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PersonIdentificationSchemeName1Choice.mmObject();
+			type_lazy = LazyReference.create(() -> PersonIdentificationSchemeName1Choice.mmObject());
 		}
 
 		@Override
@@ -209,7 +210,7 @@ public class GenericPersonIdentification1 {
 	 */
 	public static final MMMessageAttribute<GenericPersonIdentification1, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<GenericPersonIdentification1, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.GenericPersonIdentification1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GenericPersonIdentification1.mmObject());
 			isDerived = false;
 			xmlTag = "Issr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -217,7 +218,7 @@ public class GenericPersonIdentification1 {
 			definition = "Entity that assigns the identification.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -234,9 +235,9 @@ public class GenericPersonIdentification1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.GenericPersonIdentification1.mmIdentification, com.tools20022.repository.msgpart.GenericPersonIdentification1.mmSchemeName,
-						com.tools20022.repository.msgpart.GenericPersonIdentification1.mmIssuer);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.GenericPersonIdentification1.mmIdentification, com.tools20022.repository.msgpart.GenericPersonIdentification1.mmSchemeName,
+						com.tools20022.repository.msgpart.GenericPersonIdentification1.mmIssuer));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "GenericPersonIdentification1";
 				definition = "Information related to an identification of a person.";

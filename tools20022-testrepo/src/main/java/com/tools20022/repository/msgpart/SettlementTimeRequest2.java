@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -109,7 +110,7 @@ public class SettlementTimeRequest2 {
 	 */
 	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmCLSTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementTimeRequest2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementTimeRequest2.mmObject());
 			isDerived = false;
 			xmlTag = "CLSTm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -117,7 +118,7 @@ public class SettlementTimeRequest2 {
 			definition = "Time by which the amount of money must be credited, with confirmation, to the CLS Bank's account at the central bank.\nUsage: Time must be expressed in Central European Time (CET).";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISOTime.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISOTime.mmObject());
 		}
 
 		@Override
@@ -161,7 +162,7 @@ public class SettlementTimeRequest2 {
 	 */
 	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmTillTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementTimeRequest2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementTimeRequest2.mmObject());
 			isDerived = false;
 			xmlTag = "TillTm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -169,7 +170,7 @@ public class SettlementTimeRequest2 {
 			definition = "Time until when the payment may be settled.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISOTime.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISOTime.mmObject());
 		}
 
 		@Override
@@ -213,7 +214,7 @@ public class SettlementTimeRequest2 {
 	 */
 	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmFromTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementTimeRequest2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementTimeRequest2.mmObject());
 			isDerived = false;
 			xmlTag = "FrTm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -221,7 +222,7 @@ public class SettlementTimeRequest2 {
 			definition = "Time as from when the payment may be settled.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISOTime.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISOTime.mmObject());
 		}
 
 		@Override
@@ -266,7 +267,7 @@ public class SettlementTimeRequest2 {
 	 */
 	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmRejectTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementTimeRequest2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementTimeRequest2.mmObject());
 			isDerived = false;
 			xmlTag = "RjctTm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -274,7 +275,7 @@ public class SettlementTimeRequest2 {
 			definition = "Time by when the payment must be settled to avoid rejection.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISOTime.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISOTime.mmObject());
 		}
 
 		@Override
@@ -291,9 +292,9 @@ public class SettlementTimeRequest2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.SettlementTimeRequest2.mmCLSTime, com.tools20022.repository.msgpart.SettlementTimeRequest2.mmTillTime,
-						com.tools20022.repository.msgpart.SettlementTimeRequest2.mmFromTime, com.tools20022.repository.msgpart.SettlementTimeRequest2.mmRejectTime);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementTimeRequest2.mmCLSTime, com.tools20022.repository.msgpart.SettlementTimeRequest2.mmTillTime,
+						com.tools20022.repository.msgpart.SettlementTimeRequest2.mmFromTime, com.tools20022.repository.msgpart.SettlementTimeRequest2.mmRejectTime));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "SettlementTimeRequest2";
 				definition = "Provides information on the requested settlement time(s) of the payment instruction.";

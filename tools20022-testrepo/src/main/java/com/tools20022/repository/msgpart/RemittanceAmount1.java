@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -117,7 +118,7 @@ public class RemittanceAmount1 {
 	 */
 	public static final MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>> mmDuePayableAmount = new MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject());
 			isDerived = false;
 			xmlTag = "DuePyblAmt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -125,7 +126,7 @@ public class RemittanceAmount1 {
 			definition = "Amount specified is the exact amount due and payable to the creditor.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -172,7 +173,7 @@ public class RemittanceAmount1 {
 	 */
 	public static final MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>> mmDiscountAppliedAmount = new MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject());
 			isDerived = false;
 			xmlTag = "DscntApldAmt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -180,7 +181,7 @@ public class RemittanceAmount1 {
 			definition = "Amount of money that results from the application of an agreed discount to the amount due and payable to the creditor.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -227,7 +228,7 @@ public class RemittanceAmount1 {
 	 */
 	public static final MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>> mmCreditNoteAmount = new MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject());
 			isDerived = false;
 			xmlTag = "CdtNoteAmt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -235,7 +236,7 @@ public class RemittanceAmount1 {
 			definition = "Amount specified for the referred document is the amount of a credit note.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -281,7 +282,7 @@ public class RemittanceAmount1 {
 	 */
 	public static final MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>> mmTaxAmount = new MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject());
 			isDerived = false;
 			xmlTag = "TaxAmt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -289,7 +290,7 @@ public class RemittanceAmount1 {
 			definition = "Quantity of cash resulting from the calculation of the tax.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -335,7 +336,7 @@ public class RemittanceAmount1 {
 	 */
 	public static final MMMessageAssociationEnd<RemittanceAmount1, List<DocumentAdjustment1>> mmAdjustmentAmountAndReason = new MMMessageAssociationEnd<RemittanceAmount1, List<DocumentAdjustment1>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject());
 			isDerived = false;
 			xmlTag = "AdjstmntAmtAndRsn";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -343,7 +344,7 @@ public class RemittanceAmount1 {
 			definition = "Set of elements used to provide information on the amount and reason of the document adjustment.";
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> DocumentAdjustment1.mmObject();
+			type_lazy = LazyReference.create(() -> DocumentAdjustment1.mmObject());
 		}
 
 		@Override
@@ -388,7 +389,7 @@ public class RemittanceAmount1 {
 	 */
 	public static final MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>> mmRemittedAmount = new MMMessageAttribute<RemittanceAmount1, Optional<ActiveOrHistoricCurrencyAndAmount>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.RemittanceAmount1.mmObject());
 			isDerived = false;
 			xmlTag = "RmtdAmt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -396,7 +397,7 @@ public class RemittanceAmount1 {
 			definition = "Amount of money remitted for the referred document.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -413,10 +414,10 @@ public class RemittanceAmount1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.RemittanceAmount1.mmDuePayableAmount, com.tools20022.repository.msgpart.RemittanceAmount1.mmDiscountAppliedAmount,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.RemittanceAmount1.mmDuePayableAmount, com.tools20022.repository.msgpart.RemittanceAmount1.mmDiscountAppliedAmount,
 						com.tools20022.repository.msgpart.RemittanceAmount1.mmCreditNoteAmount, com.tools20022.repository.msgpart.RemittanceAmount1.mmTaxAmount,
-						com.tools20022.repository.msgpart.RemittanceAmount1.mmAdjustmentAmountAndReason, com.tools20022.repository.msgpart.RemittanceAmount1.mmRemittedAmount);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+						com.tools20022.repository.msgpart.RemittanceAmount1.mmAdjustmentAmountAndReason, com.tools20022.repository.msgpart.RemittanceAmount1.mmRemittedAmount));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "RemittanceAmount1";
 				definition = "Nature of the amount and currency on a document referred to in the remittance section, typically either the original amount due/payable or the amount actually remitted for the referenced document.";

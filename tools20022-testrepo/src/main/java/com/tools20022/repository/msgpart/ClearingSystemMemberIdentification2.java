@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -106,7 +107,7 @@ public class ClearingSystemMemberIdentification2 {
 	 */
 	public static final MMMessageAssociationEnd<ClearingSystemMemberIdentification2, Optional<ClearingSystemIdentification2Choice>> mmClearingSystemIdentification = new MMMessageAssociationEnd<ClearingSystemMemberIdentification2, Optional<ClearingSystemIdentification2Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2.mmObject());
 			isDerived = false;
 			xmlTag = "ClrSysId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -115,7 +116,7 @@ public class ClearingSystemMemberIdentification2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> ClearingSystemIdentification2Choice.mmObject();
+			type_lazy = LazyReference.create(() -> ClearingSystemIdentification2Choice.mmObject());
 		}
 
 		@Override
@@ -159,7 +160,7 @@ public class ClearingSystemMemberIdentification2 {
 	 */
 	public static final MMMessageAttribute<ClearingSystemMemberIdentification2, Max35Text> mmMemberIdentification = new MMMessageAttribute<ClearingSystemMemberIdentification2, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2.mmObject());
 			isDerived = false;
 			xmlTag = "MmbId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -167,7 +168,7 @@ public class ClearingSystemMemberIdentification2 {
 			definition = "Identification of a member of a clearing system.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -184,9 +185,9 @@ public class ClearingSystemMemberIdentification2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2.mmClearingSystemIdentification,
-						com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2.mmMemberIdentification);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2.mmClearingSystemIdentification,
+						com.tools20022.repository.msgpart.ClearingSystemMemberIdentification2.mmMemberIdentification));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ClearingSystemMemberIdentification2";
 				definition = "Unique identification, as assigned by a clearing system, to unambiguously identify a member of the clearing system.";

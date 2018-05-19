@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -103,7 +104,7 @@ public class CreditorReferenceInformation2 {
 	 */
 	public static final MMMessageAssociationEnd<CreditorReferenceInformation2, Optional<CreditorReferenceType2>> mmType = new MMMessageAssociationEnd<CreditorReferenceInformation2, Optional<CreditorReferenceType2>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditorReferenceInformation2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditorReferenceInformation2.mmObject());
 			isDerived = false;
 			xmlTag = "Tp";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -112,7 +113,7 @@ public class CreditorReferenceInformation2 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CreditorReferenceType2.mmObject();
+			type_lazy = LazyReference.create(() -> CreditorReferenceType2.mmObject());
 		}
 
 		@Override
@@ -158,7 +159,7 @@ public class CreditorReferenceInformation2 {
 	 */
 	public static final MMMessageAttribute<CreditorReferenceInformation2, Optional<Max35Text>> mmReference = new MMMessageAttribute<CreditorReferenceInformation2, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditorReferenceInformation2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditorReferenceInformation2.mmObject());
 			isDerived = false;
 			xmlTag = "Ref";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -166,7 +167,7 @@ public class CreditorReferenceInformation2 {
 			definition = "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.\n\nUsage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.\n\nIf the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -183,8 +184,8 @@ public class CreditorReferenceInformation2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.CreditorReferenceInformation2.mmType, com.tools20022.repository.msgpart.CreditorReferenceInformation2.mmReference);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CreditorReferenceInformation2.mmType, com.tools20022.repository.msgpart.CreditorReferenceInformation2.mmReference));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CreditorReferenceInformation2";
 				definition = "Reference information provided by the creditor to allow the identification of the underlying documents.";

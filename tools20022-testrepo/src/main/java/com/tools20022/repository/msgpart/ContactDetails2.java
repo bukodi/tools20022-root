@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -117,7 +118,7 @@ public class ContactDetails2 {
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<NamePrefix1Code>> mmNamePrefix = new MMMessageAttribute<ContactDetails2, Optional<NamePrefix1Code>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ContactDetails2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ContactDetails2.mmObject());
 			isDerived = false;
 			xmlTag = "NmPrfx";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -125,7 +126,7 @@ public class ContactDetails2 {
 			definition = "Specifies the terms used to formally address a person.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> NamePrefix1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> NamePrefix1Code.mmObject());
 		}
 
 		@Override
@@ -171,7 +172,7 @@ public class ContactDetails2 {
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<Max140Text>> mmName = new MMMessageAttribute<ContactDetails2, Optional<Max140Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ContactDetails2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ContactDetails2.mmObject());
 			isDerived = false;
 			xmlTag = "Nm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -179,7 +180,7 @@ public class ContactDetails2 {
 			definition = "Name by which a party is known and which is usually used to identify that party.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max140Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max140Text.mmObject());
 		}
 
 		@Override
@@ -225,7 +226,7 @@ public class ContactDetails2 {
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>> mmPhoneNumber = new MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ContactDetails2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ContactDetails2.mmObject());
 			isDerived = false;
 			xmlTag = "PhneNb";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -233,7 +234,7 @@ public class ContactDetails2 {
 			definition = "Collection of information that identifies a phone number, as defined by telecom services.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> PhoneNumber.mmObject();
+			simpleType_lazy = LazyReference.create(() -> PhoneNumber.mmObject());
 		}
 
 		@Override
@@ -279,7 +280,7 @@ public class ContactDetails2 {
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>> mmMobileNumber = new MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ContactDetails2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ContactDetails2.mmObject());
 			isDerived = false;
 			xmlTag = "MobNb";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -287,7 +288,7 @@ public class ContactDetails2 {
 			definition = "Collection of information that identifies a mobile phone number, as defined by telecom services.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> PhoneNumber.mmObject();
+			simpleType_lazy = LazyReference.create(() -> PhoneNumber.mmObject());
 		}
 
 		@Override
@@ -333,7 +334,7 @@ public class ContactDetails2 {
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>> mmFaxNumber = new MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ContactDetails2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ContactDetails2.mmObject());
 			isDerived = false;
 			xmlTag = "FaxNb";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -341,7 +342,7 @@ public class ContactDetails2 {
 			definition = "Collection of information that identifies a FAX number, as defined by telecom services.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> PhoneNumber.mmObject();
+			simpleType_lazy = LazyReference.create(() -> PhoneNumber.mmObject());
 		}
 
 		@Override
@@ -385,7 +386,7 @@ public class ContactDetails2 {
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<Max2048Text>> mmEmailAddress = new MMMessageAttribute<ContactDetails2, Optional<Max2048Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ContactDetails2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ContactDetails2.mmObject());
 			isDerived = false;
 			xmlTag = "EmailAdr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -393,7 +394,7 @@ public class ContactDetails2 {
 			definition = "Address for electronic mail (e-mail).";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max2048Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max2048Text.mmObject());
 		}
 
 		@Override
@@ -437,7 +438,7 @@ public class ContactDetails2 {
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<Max35Text>> mmOther = new MMMessageAttribute<ContactDetails2, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.ContactDetails2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.ContactDetails2.mmObject());
 			isDerived = false;
 			xmlTag = "Othr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -445,7 +446,7 @@ public class ContactDetails2 {
 			definition = "Contact details in an other form.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -462,10 +463,10 @@ public class ContactDetails2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.ContactDetails2.mmNamePrefix, com.tools20022.repository.msgpart.ContactDetails2.mmName,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.ContactDetails2.mmNamePrefix, com.tools20022.repository.msgpart.ContactDetails2.mmName,
 						com.tools20022.repository.msgpart.ContactDetails2.mmPhoneNumber, com.tools20022.repository.msgpart.ContactDetails2.mmMobileNumber, com.tools20022.repository.msgpart.ContactDetails2.mmFaxNumber,
-						com.tools20022.repository.msgpart.ContactDetails2.mmEmailAddress, com.tools20022.repository.msgpart.ContactDetails2.mmOther);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+						com.tools20022.repository.msgpart.ContactDetails2.mmEmailAddress, com.tools20022.repository.msgpart.ContactDetails2.mmOther));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ContactDetails2";
 				definition = "Communication device number or electronic address used for communication.";

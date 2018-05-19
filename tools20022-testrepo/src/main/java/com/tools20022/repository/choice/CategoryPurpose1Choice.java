@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.choice;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -108,7 +109,7 @@ public class CategoryPurpose1Choice {
 	 */
 	public static final MMMessageAttribute<CategoryPurpose1Choice, ExternalCategoryPurpose1Code> mmCode = new MMMessageAttribute<CategoryPurpose1Choice, ExternalCategoryPurpose1Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.CategoryPurpose1Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.CategoryPurpose1Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -116,7 +117,7 @@ public class CategoryPurpose1Choice {
 			definition = "Category purpose, as published in an external category purpose code list.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ExternalCategoryPurpose1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ExternalCategoryPurpose1Code.mmObject());
 		}
 
 		@Override
@@ -160,7 +161,7 @@ public class CategoryPurpose1Choice {
 	 */
 	public static final MMMessageAttribute<CategoryPurpose1Choice, Max35Text> mmProprietary = new MMMessageAttribute<CategoryPurpose1Choice, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.CategoryPurpose1Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.CategoryPurpose1Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Prtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -168,7 +169,7 @@ public class CategoryPurpose1Choice {
 			definition = "Category purpose, in a proprietary form.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -185,8 +186,8 @@ public class CategoryPurpose1Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.CategoryPurpose1Choice.mmCode, com.tools20022.repository.choice.CategoryPurpose1Choice.mmProprietary);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.CategoryPurpose1Choice.mmCode, com.tools20022.repository.choice.CategoryPurpose1Choice.mmProprietary));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CategoryPurpose1Choice";
 				definition = "Specifies the high level purpose of the instruction based on a set of pre-defined categories.\nUsage: This is used by the initiating party to provide information concerning the processing of the payment. It is likely to trigger special processing by any of the agents involved in the payment chain.";

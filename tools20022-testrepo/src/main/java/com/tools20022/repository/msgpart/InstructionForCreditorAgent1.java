@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -107,7 +108,7 @@ public class InstructionForCreditorAgent1 {
 	 */
 	public static final MMMessageAttribute<InstructionForCreditorAgent1, Optional<Instruction3Code>> mmCode = new MMMessageAttribute<InstructionForCreditorAgent1, Optional<Instruction3Code>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.InstructionForCreditorAgent1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.InstructionForCreditorAgent1.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -115,7 +116,7 @@ public class InstructionForCreditorAgent1 {
 			definition = "Coded information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor's agent.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Instruction3Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Instruction3Code.mmObject());
 		}
 
 		@Override
@@ -161,7 +162,7 @@ public class InstructionForCreditorAgent1 {
 	 */
 	public static final MMMessageAttribute<InstructionForCreditorAgent1, Optional<Max140Text>> mmInstructionInformation = new MMMessageAttribute<InstructionForCreditorAgent1, Optional<Max140Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.InstructionForCreditorAgent1.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.InstructionForCreditorAgent1.mmObject());
 			isDerived = false;
 			xmlTag = "InstrInf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -169,7 +170,7 @@ public class InstructionForCreditorAgent1 {
 			definition = "Further information complementing the coded instruction or instruction to the creditor's agent that is bilaterally agreed or specific to a user community.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max140Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max140Text.mmObject());
 		}
 
 		@Override
@@ -186,8 +187,8 @@ public class InstructionForCreditorAgent1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.InstructionForCreditorAgent1.mmCode, com.tools20022.repository.msgpart.InstructionForCreditorAgent1.mmInstructionInformation);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.InstructionForCreditorAgent1.mmCode, com.tools20022.repository.msgpart.InstructionForCreditorAgent1.mmInstructionInformation));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "InstructionForCreditorAgent1";
 				definition = "Further information related to the processing of the payment instruction that may need to be acted upon by the creditor's agent. The instruction may relate to a level of service, or may be an instruction that has to be executed by the creditor's agent, or may be information required by the creditor's agent.";

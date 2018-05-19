@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.choice;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -105,7 +106,7 @@ public class LocalInstrument2Choice {
 	 */
 	public static final MMMessageAttribute<LocalInstrument2Choice, ExternalLocalInstrument1Code> mmCode = new MMMessageAttribute<LocalInstrument2Choice, ExternalLocalInstrument1Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.LocalInstrument2Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.LocalInstrument2Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -113,7 +114,7 @@ public class LocalInstrument2Choice {
 			definition = "Specifies the local instrument, as published in an external local instrument code list.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ExternalLocalInstrument1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ExternalLocalInstrument1Code.mmObject());
 		}
 
 		@Override
@@ -157,7 +158,7 @@ public class LocalInstrument2Choice {
 	 */
 	public static final MMMessageAttribute<LocalInstrument2Choice, Max35Text> mmProprietary = new MMMessageAttribute<LocalInstrument2Choice, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.LocalInstrument2Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.LocalInstrument2Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Prtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -165,7 +166,7 @@ public class LocalInstrument2Choice {
 			definition = "Specifies the local instrument, as a proprietary code.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -182,8 +183,8 @@ public class LocalInstrument2Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.LocalInstrument2Choice.mmCode, com.tools20022.repository.choice.LocalInstrument2Choice.mmProprietary);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.LocalInstrument2Choice.mmCode, com.tools20022.repository.choice.LocalInstrument2Choice.mmProprietary));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "LocalInstrument2Choice";
 				definition = "Set of elements that further identifies the type of local instruments being requested by the initiating party.";

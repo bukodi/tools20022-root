@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -116,7 +117,7 @@ public class PaymentTypeInformation21 {
 	 */
 	public static final MMMessageAttribute<PaymentTypeInformation21, Optional<Priority2Code>> mmInstructionPriority = new MMMessageAttribute<PaymentTypeInformation21, Optional<Priority2Code>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject());
 			isDerived = false;
 			xmlTag = "InstrPrty";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -124,7 +125,7 @@ public class PaymentTypeInformation21 {
 			definition = "Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Priority2Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Priority2Code.mmObject());
 		}
 
 		@Override
@@ -171,7 +172,7 @@ public class PaymentTypeInformation21 {
 	 */
 	public static final MMMessageAttribute<PaymentTypeInformation21, Optional<ClearingChannel2Code>> mmClearingChannel = new MMMessageAttribute<PaymentTypeInformation21, Optional<ClearingChannel2Code>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject());
 			isDerived = false;
 			xmlTag = "ClrChanl";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -179,7 +180,7 @@ public class PaymentTypeInformation21 {
 			definition = "Specifies the clearing channel to be used to process the payment instruction.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ClearingChannel2Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ClearingChannel2Code.mmObject());
 		}
 
 		@Override
@@ -224,7 +225,7 @@ public class PaymentTypeInformation21 {
 	 */
 	public static final MMMessageAssociationEnd<PaymentTypeInformation21, Optional<ServiceLevel8Choice>> mmServiceLevel = new MMMessageAssociationEnd<PaymentTypeInformation21, Optional<ServiceLevel8Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject());
 			isDerived = false;
 			xmlTag = "SvcLvl";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -233,7 +234,7 @@ public class PaymentTypeInformation21 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> ServiceLevel8Choice.mmObject();
+			type_lazy = LazyReference.create(() -> ServiceLevel8Choice.mmObject());
 		}
 
 		@Override
@@ -279,7 +280,7 @@ public class PaymentTypeInformation21 {
 	 */
 	public static final MMMessageAssociationEnd<PaymentTypeInformation21, Optional<LocalInstrument2Choice>> mmLocalInstrument = new MMMessageAssociationEnd<PaymentTypeInformation21, Optional<LocalInstrument2Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject());
 			isDerived = false;
 			xmlTag = "LclInstrm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -288,7 +289,7 @@ public class PaymentTypeInformation21 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> LocalInstrument2Choice.mmObject();
+			type_lazy = LazyReference.create(() -> LocalInstrument2Choice.mmObject());
 		}
 
 		@Override
@@ -334,7 +335,7 @@ public class PaymentTypeInformation21 {
 	 */
 	public static final MMMessageAssociationEnd<PaymentTypeInformation21, Optional<CategoryPurpose1Choice>> mmCategoryPurpose = new MMMessageAssociationEnd<PaymentTypeInformation21, Optional<CategoryPurpose1Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PaymentTypeInformation21.mmObject());
 			isDerived = false;
 			xmlTag = "CtgyPurp";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -343,7 +344,7 @@ public class PaymentTypeInformation21 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CategoryPurpose1Choice.mmObject();
+			type_lazy = LazyReference.create(() -> CategoryPurpose1Choice.mmObject());
 		}
 
 		@Override
@@ -360,10 +361,10 @@ public class PaymentTypeInformation21 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.PaymentTypeInformation21.mmInstructionPriority, com.tools20022.repository.msgpart.PaymentTypeInformation21.mmClearingChannel,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PaymentTypeInformation21.mmInstructionPriority, com.tools20022.repository.msgpart.PaymentTypeInformation21.mmClearingChannel,
 						com.tools20022.repository.msgpart.PaymentTypeInformation21.mmServiceLevel, com.tools20022.repository.msgpart.PaymentTypeInformation21.mmLocalInstrument,
-						com.tools20022.repository.msgpart.PaymentTypeInformation21.mmCategoryPurpose);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+						com.tools20022.repository.msgpart.PaymentTypeInformation21.mmCategoryPurpose));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "PaymentTypeInformation21";
 				definition = "Set of elements used to provide further details of the type of payment.";

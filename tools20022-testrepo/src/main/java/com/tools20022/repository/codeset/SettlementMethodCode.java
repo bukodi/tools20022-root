@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -111,7 +112,7 @@ public class SettlementMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "InstructedAgent";
 			definition = "Settlement is done by the agent instructed to execute a payment instruction.";
-			owner_lazy = () -> com.tools20022.repository.codeset.SettlementMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.SettlementMethodCode.mmObject());
 			codeName = "INDA";
 		}
 	};
@@ -144,7 +145,7 @@ public class SettlementMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "InstructingAgent";
 			definition = "Settlement is done by the agent instructing and forwarding the payment to the next party in the payment chain.";
-			owner_lazy = () -> com.tools20022.repository.codeset.SettlementMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.SettlementMethodCode.mmObject());
 			codeName = "INGA";
 		}
 	};
@@ -174,7 +175,7 @@ public class SettlementMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CoverMethod";
 			definition = "Settlement is done through a cover payment.";
-			owner_lazy = () -> com.tools20022.repository.codeset.SettlementMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.SettlementMethodCode.mmObject());
 			codeName = "COVE";
 		}
 	};
@@ -204,7 +205,7 @@ public class SettlementMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ClearingSystem";
 			definition = "Settlement is done through a payment clearing system.";
-			owner_lazy = () -> com.tools20022.repository.codeset.SettlementMethodCode.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.SettlementMethodCode.mmObject());
 			codeName = "CLRG";
 		}
 	};
@@ -216,14 +217,14 @@ public class SettlementMethodCode extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("INDA");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "SettlementMethodCode";
 				definition = "Specifies the method used to settle the payment instruction.";
-				derivation_lazy = () -> Arrays.asList(SettlementMethod1Code.mmObject());
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.SettlementMethodCode.InstructedAgent, com.tools20022.repository.codeset.SettlementMethodCode.InstructingAgent,
-						com.tools20022.repository.codeset.SettlementMethodCode.CoverMethod, com.tools20022.repository.codeset.SettlementMethodCode.ClearingSystem);
+				derivation_lazy = LazyReference.create(() -> Arrays.asList(SettlementMethod1Code.mmObject()));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.SettlementMethodCode.InstructedAgent, com.tools20022.repository.codeset.SettlementMethodCode.InstructingAgent,
+						com.tools20022.repository.codeset.SettlementMethodCode.CoverMethod, com.tools20022.repository.codeset.SettlementMethodCode.ClearingSystem));
 			}
 		});
 		return mmObject_lazy.get();

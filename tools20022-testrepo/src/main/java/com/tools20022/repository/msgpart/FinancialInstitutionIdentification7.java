@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -119,7 +120,7 @@ public class FinancialInstitutionIdentification7 {
 	 */
 	public static final MMMessageAttribute<FinancialInstitutionIdentification7, Optional<BICIdentifier>> mmBIC = new MMMessageAttribute<FinancialInstitutionIdentification7, Optional<BICIdentifier>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject());
 			isDerived = false;
 			xmlTag = "BIC";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -127,7 +128,7 @@ public class FinancialInstitutionIdentification7 {
 			definition = "Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 \"Banking - Banking telecommunication messages - Business identifier code (BIC)\".";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> BICIdentifier.mmObject();
+			simpleType_lazy = LazyReference.create(() -> BICIdentifier.mmObject());
 		}
 
 		@Override
@@ -172,7 +173,7 @@ public class FinancialInstitutionIdentification7 {
 	 */
 	public static final MMMessageAssociationEnd<FinancialInstitutionIdentification7, Optional<ClearingSystemMemberIdentification2>> mmClearingSystemMemberIdentification = new MMMessageAssociationEnd<FinancialInstitutionIdentification7, Optional<ClearingSystemMemberIdentification2>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject());
 			isDerived = false;
 			xmlTag = "ClrSysMmbId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -181,7 +182,7 @@ public class FinancialInstitutionIdentification7 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> ClearingSystemMemberIdentification2.mmObject();
+			type_lazy = LazyReference.create(() -> ClearingSystemMemberIdentification2.mmObject());
 		}
 
 		@Override
@@ -227,7 +228,7 @@ public class FinancialInstitutionIdentification7 {
 	 */
 	public static final MMMessageAttribute<FinancialInstitutionIdentification7, Optional<Max140Text>> mmName = new MMMessageAttribute<FinancialInstitutionIdentification7, Optional<Max140Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject());
 			isDerived = false;
 			xmlTag = "Nm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -235,7 +236,7 @@ public class FinancialInstitutionIdentification7 {
 			definition = "Name by which an agent is known and which is usually used to identify that agent.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max140Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max140Text.mmObject());
 		}
 
 		@Override
@@ -280,7 +281,7 @@ public class FinancialInstitutionIdentification7 {
 	 */
 	public static final MMMessageAssociationEnd<FinancialInstitutionIdentification7, Optional<PostalAddress6>> mmPostalAddress = new MMMessageAssociationEnd<FinancialInstitutionIdentification7, Optional<PostalAddress6>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject());
 			isDerived = false;
 			xmlTag = "PstlAdr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -289,7 +290,7 @@ public class FinancialInstitutionIdentification7 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PostalAddress6.mmObject();
+			type_lazy = LazyReference.create(() -> PostalAddress6.mmObject());
 		}
 
 		@Override
@@ -335,7 +336,7 @@ public class FinancialInstitutionIdentification7 {
 	 */
 	public static final MMMessageAssociationEnd<FinancialInstitutionIdentification7, Optional<GenericFinancialIdentification1>> mmOther = new MMMessageAssociationEnd<FinancialInstitutionIdentification7, Optional<GenericFinancialIdentification1>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmObject());
 			isDerived = false;
 			xmlTag = "Othr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -344,7 +345,7 @@ public class FinancialInstitutionIdentification7 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> GenericFinancialIdentification1.mmObject();
+			type_lazy = LazyReference.create(() -> GenericFinancialIdentification1.mmObject());
 		}
 
 		@Override
@@ -361,10 +362,10 @@ public class FinancialInstitutionIdentification7 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmBIC,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmBIC,
 						com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmClearingSystemMemberIdentification, com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmName,
-						com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmPostalAddress, com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmOther);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+						com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmPostalAddress, com.tools20022.repository.msgpart.FinancialInstitutionIdentification7.mmOther));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.OBSOLETE;
 				removalDate = ((Supplier<Date>) (() -> {
 					try {

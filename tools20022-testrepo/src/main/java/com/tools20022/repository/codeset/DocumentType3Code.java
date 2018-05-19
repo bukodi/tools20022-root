@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.codeset;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -104,7 +105,7 @@ public class DocumentType3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "RemittanceAdviceMessage";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentType3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
 			codeName = DocumentTypeCode.RemittanceAdviceMessage.getCodeName().orElse(name);
 		}
 	};
@@ -128,7 +129,7 @@ public class DocumentType3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "RelatedPaymentInstruction";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentType3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
 			codeName = DocumentTypeCode.RelatedPaymentInstruction.getCodeName().orElse(name);
 		}
 	};
@@ -152,7 +153,7 @@ public class DocumentType3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "ForeignExchangeDealReference";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentType3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
 			codeName = DocumentTypeCode.ForeignExchangeDealReference.getCodeName().orElse(name);
 		}
 	};
@@ -176,7 +177,7 @@ public class DocumentType3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "DispatchAdvice";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentType3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
 			codeName = DocumentTypeCode.DispatchAdvice.getCodeName().orElse(name);
 		}
 	};
@@ -200,7 +201,7 @@ public class DocumentType3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "PurchaseOrder";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentType3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
 			codeName = DocumentTypeCode.PurchaseOrder.getCodeName().orElse(name);
 		}
 	};
@@ -224,7 +225,7 @@ public class DocumentType3Code extends MMCode {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "StructuredCommunicationReference";
-			owner_lazy = () -> com.tools20022.repository.codeset.DocumentType3Code.mmObject();
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
 			codeName = DocumentTypeCode.StructuredCommunicationReference.getCodeName().orElse(name);
 		}
 	};
@@ -236,15 +237,15 @@ public class DocumentType3Code extends MMCode {
 	final static public MMCodeSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				example = Arrays.asList("RADM");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DocumentType3Code";
 				definition = "Specifies a type of financial or commercial document.";
-				trace_lazy = () -> DocumentTypeCode.mmObject();
-				code_lazy = () -> Arrays.asList(com.tools20022.repository.codeset.DocumentType3Code.RemittanceAdviceMessage, com.tools20022.repository.codeset.DocumentType3Code.RelatedPaymentInstruction,
+				trace_lazy = LazyReference.create(() -> DocumentTypeCode.mmObject());
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentType3Code.RemittanceAdviceMessage, com.tools20022.repository.codeset.DocumentType3Code.RelatedPaymentInstruction,
 						com.tools20022.repository.codeset.DocumentType3Code.ForeignExchangeDealReference, com.tools20022.repository.codeset.DocumentType3Code.DispatchAdvice,
-						com.tools20022.repository.codeset.DocumentType3Code.PurchaseOrder, com.tools20022.repository.codeset.DocumentType3Code.StructuredCommunicationReference);
+						com.tools20022.repository.codeset.DocumentType3Code.PurchaseOrder, com.tools20022.repository.codeset.DocumentType3Code.StructuredCommunicationReference));
 			}
 		});
 		return mmObject_lazy.get();

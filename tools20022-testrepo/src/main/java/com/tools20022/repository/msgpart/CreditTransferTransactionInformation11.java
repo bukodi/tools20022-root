@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -305,7 +306,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, PaymentIdentification3> mmPaymentIdentification = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, PaymentIdentification3>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "PmtId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -314,7 +315,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> PaymentIdentification3.mmObject();
+			type_lazy = LazyReference.create(() -> PaymentIdentification3.mmObject());
 		}
 
 		@Override
@@ -359,7 +360,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PaymentTypeInformation21>> mmPaymentTypeInformation = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PaymentTypeInformation21>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "PmtTpInf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -368,7 +369,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PaymentTypeInformation21.mmObject();
+			type_lazy = LazyReference.create(() -> PaymentTypeInformation21.mmObject());
 		}
 
 		@Override
@@ -415,7 +416,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, ActiveCurrencyAndAmount> mmInterbankSettlementAmount = new MMMessageAttribute<CreditTransferTransactionInformation11, ActiveCurrencyAndAmount>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "IntrBkSttlmAmt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -423,7 +424,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Amount of money moved between the instructing agent and the instructed agent.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ActiveCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -469,7 +470,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODate>> mmInterbankSettlementDate = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODate>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "IntrBkSttlmDt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -477,7 +478,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Date on which the amount of money ceases to be available to the agent that owes it and when the amount of money becomes available to the agent to which it is due.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISODate.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISODate.mmObject());
 		}
 
 		@Override
@@ -524,7 +525,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<Priority3Code>> mmSettlementPriority = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<Priority3Code>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "SttlmPrty";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -532,7 +533,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the settlement instruction.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Priority3Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Priority3Code.mmObject());
 		}
 
 		@Override
@@ -578,7 +579,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<SettlementDateTimeIndication1>> mmSettlementTimeIndication = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<SettlementDateTimeIndication1>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "SttlmTmIndctn";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -587,7 +588,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> SettlementDateTimeIndication1.mmObject();
+			type_lazy = LazyReference.create(() -> SettlementDateTimeIndication1.mmObject());
 		}
 
 		@Override
@@ -633,7 +634,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<SettlementTimeRequest2>> mmSettlementTimeRequest = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<SettlementTimeRequest2>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "SttlmTmReq";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -642,7 +643,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> SettlementTimeRequest2.mmObject();
+			type_lazy = LazyReference.create(() -> SettlementTimeRequest2.mmObject());
 		}
 
 		@Override
@@ -688,7 +689,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODateTime>> mmAcceptanceDateTime = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODateTime>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "AccptncDtTm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -696,7 +697,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Point in time when the payment order from the initiating party meets the processing conditions of the account servicing agent. This means that the account servicing agent has received the payment order and has applied checks such as authorisation, availability of funds.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISODateTime.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISODateTime.mmObject());
 		}
 
 		@Override
@@ -742,7 +743,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODate>> mmPoolingAdjustmentDate = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODate>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "PoolgAdjstmntDt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -750,7 +751,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Date used for the correction of the value date of a cash pool movement that has been posted with a different value date.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISODate.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISODate.mmObject());
 		}
 
 		@Override
@@ -797,7 +798,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ActiveOrHistoricCurrencyAndAmount>> mmInstructedAmount = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ActiveOrHistoricCurrencyAndAmount>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "InstdAmt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -805,7 +806,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -851,7 +852,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<BaseOneRate>> mmExchangeRate = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<BaseOneRate>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "XchgRate";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -859,7 +860,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> BaseOneRate.mmObject();
+			simpleType_lazy = LazyReference.create(() -> BaseOneRate.mmObject());
 		}
 
 		@Override
@@ -906,7 +907,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, ChargeBearerType1Code> mmChargeBearer = new MMMessageAttribute<CreditTransferTransactionInformation11, ChargeBearerType1Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "ChrgBr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -914,7 +915,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Specifies which party/parties will bear the charges associated with the processing of the payment transaction.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ChargeBearerType1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ChargeBearerType1Code.mmObject());
 		}
 
 		@Override
@@ -960,7 +961,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<ChargesInformation5>> mmChargesInformation = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<ChargesInformation5>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "ChrgsInf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -968,7 +969,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Provides information on the charges to be paid by the charge bearer(s) related to the payment transaction.";
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> ChargesInformation5.mmObject();
+			type_lazy = LazyReference.create(() -> ChargesInformation5.mmObject());
 		}
 
 		@Override
@@ -1012,7 +1013,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmPreviousInstructingAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "PrvsInstgAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1021,7 +1022,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -1066,7 +1067,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmPreviousInstructingAgentAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "PrvsInstgAgtAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1075,7 +1076,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -1121,7 +1122,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructingAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "InstgAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1130,7 +1131,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -1176,7 +1177,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructedAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "InstdAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1185,7 +1186,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -1231,7 +1232,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmIntermediaryAgent1 = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "IntrmyAgt1";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1240,7 +1241,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -1285,7 +1286,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmIntermediaryAgent1Account = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "IntrmyAgt1Acct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1294,7 +1295,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -1340,7 +1341,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmIntermediaryAgent2 = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "IntrmyAgt2";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1349,7 +1350,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -1394,7 +1395,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmIntermediaryAgent2Account = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "IntrmyAgt2Acct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1403,7 +1404,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -1449,7 +1450,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmIntermediaryAgent3 = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "IntrmyAgt3";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1458,7 +1459,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -1503,7 +1504,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmIntermediaryAgent3Account = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "IntrmyAgt3Acct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1512,7 +1513,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -1558,7 +1559,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>> mmUltimateDebtor = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "UltmtDbtr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1567,7 +1568,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PartyIdentification32.mmObject();
+			type_lazy = LazyReference.create(() -> PartyIdentification32.mmObject());
 		}
 
 		@Override
@@ -1613,7 +1614,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>> mmInitiatingParty = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "InitgPty";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1622,7 +1623,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PartyIdentification32.mmObject();
+			type_lazy = LazyReference.create(() -> PartyIdentification32.mmObject());
 		}
 
 		@Override
@@ -1667,7 +1668,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, PartyIdentification32> mmDebtor = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, PartyIdentification32>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "Dbtr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1676,7 +1677,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> PartyIdentification32.mmObject();
+			type_lazy = LazyReference.create(() -> PartyIdentification32.mmObject());
 		}
 
 		@Override
@@ -1721,7 +1722,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmDebtorAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "DbtrAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1730,7 +1731,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -1775,7 +1776,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, BranchAndFinancialInstitutionIdentification4> mmDebtorAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, BranchAndFinancialInstitutionIdentification4>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "DbtrAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1784,7 +1785,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -1829,7 +1830,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmDebtorAgentAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "DbtrAgtAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1838,7 +1839,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -1883,7 +1884,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, BranchAndFinancialInstitutionIdentification4> mmCreditorAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, BranchAndFinancialInstitutionIdentification4>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "CdtrAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1892,7 +1893,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -1937,7 +1938,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmCreditorAgentAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "CdtrAgtAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1946,7 +1947,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -1990,7 +1991,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, PartyIdentification32> mmCreditor = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, PartyIdentification32>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "Cdtr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -1999,7 +2000,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> PartyIdentification32.mmObject();
+			type_lazy = LazyReference.create(() -> PartyIdentification32.mmObject());
 		}
 
 		@Override
@@ -2044,7 +2045,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmCreditorAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "CdtrAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -2053,7 +2054,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -2097,7 +2098,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>> mmUltimateCreditor = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "UltmtCdtr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -2106,7 +2107,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PartyIdentification32.mmObject();
+			type_lazy = LazyReference.create(() -> PartyIdentification32.mmObject());
 		}
 
 		@Override
@@ -2152,7 +2153,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<InstructionForCreditorAgent1>> mmInstructionForCreditorAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<InstructionForCreditorAgent1>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "InstrForCdtrAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -2160,7 +2161,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.";
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> InstructionForCreditorAgent1.mmObject();
+			type_lazy = LazyReference.create(() -> InstructionForCreditorAgent1.mmObject());
 		}
 
 		@Override
@@ -2206,7 +2207,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<InstructionForNextAgent1>> mmInstructionForNextAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<InstructionForNextAgent1>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "InstrForNxtAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -2214,7 +2215,7 @@ public class CreditTransferTransactionInformation11 {
 			definition = "Further information related to the processing of the payment instruction that may need to be acted upon by the next agent. \n\nUsage: The next agent may not be the creditor agent.\nThe instruction can relate to a level of service, can be an instruction that has to be executed by the agent, or can be information required by the next agent.";
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> InstructionForNextAgent1.mmObject();
+			type_lazy = LazyReference.create(() -> InstructionForNextAgent1.mmObject());
 		}
 
 		@Override
@@ -2259,7 +2260,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<Purpose2Choice>> mmPurpose = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<Purpose2Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "Purp";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -2268,7 +2269,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> Purpose2Choice.mmObject();
+			type_lazy = LazyReference.create(() -> Purpose2Choice.mmObject());
 		}
 
 		@Override
@@ -2313,7 +2314,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<RegulatoryReporting3>> mmRegulatoryReporting = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<RegulatoryReporting3>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "RgltryRptg";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -2322,7 +2323,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 10;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> RegulatoryReporting3.mmObject();
+			type_lazy = LazyReference.create(() -> RegulatoryReporting3.mmObject());
 		}
 
 		@Override
@@ -2368,7 +2369,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<RemittanceLocation2>> mmRelatedRemittanceInformation = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<RemittanceLocation2>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "RltdRmtInf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -2377,7 +2378,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 10;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> RemittanceLocation2.mmObject();
+			type_lazy = LazyReference.create(() -> RemittanceLocation2.mmObject());
 		}
 
 		@Override
@@ -2423,7 +2424,7 @@ public class CreditTransferTransactionInformation11 {
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<RemittanceInformation5>> mmRemittanceInformation = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<RemittanceInformation5>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
 			isDerived = false;
 			xmlTag = "RmtInf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -2432,7 +2433,7 @@ public class CreditTransferTransactionInformation11 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> RemittanceInformation5.mmObject();
+			type_lazy = LazyReference.create(() -> RemittanceInformation5.mmObject());
 		}
 
 		@Override
@@ -2449,7 +2450,7 @@ public class CreditTransferTransactionInformation11 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmPaymentIdentification,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmPaymentIdentification,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmPaymentTypeInformation, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmInterbankSettlementAmount,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmInterbankSettlementDate, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmSettlementPriority,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmSettlementTimeIndication, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmSettlementTimeRequest,
@@ -2469,10 +2470,10 @@ public class CreditTransferTransactionInformation11 {
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmUltimateCreditor, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmInstructionForCreditorAgent,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmInstructionForNextAgent, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmPurpose,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmRegulatoryReporting, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmRelatedRemittanceInformation,
-						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmRemittanceInformation);
-				messageBuildingBlock_lazy = () -> Arrays.asList(FIToFICustomerCreditTransferV02.mmCreditTransferTransactionInformation);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintChargesInformationGuideline.forCreditTransferTransactionInformation11,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmRemittanceInformation));
+				messageBuildingBlock_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmCreditTransferTransactionInformation));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintChargesInformationGuideline.forCreditTransferTransactionInformation11,
 						com.tools20022.repository.constraint.ConstraintUltimateDebtorGuideline.forCreditTransferTransactionInformation11,
 						com.tools20022.repository.constraint.ConstraintUltimateCreditorGuideline.forCreditTransferTransactionInformation11,
 						com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate1Rule.forCreditTransferTransactionInformation11,
@@ -2489,7 +2490,7 @@ public class CreditTransferTransactionInformation11 {
 						com.tools20022.repository.constraint.ConstraintPreviousInstructingAgentAccountRule.forCreditTransferTransactionInformation11,
 						com.tools20022.repository.constraint.ConstraintDebtorAgentAccountRule.forCreditTransferTransactionInformation11,
 						com.tools20022.repository.constraint.ConstraintCreditorAgentAccountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate3Rule.forCreditTransferTransactionInformation11);
+						com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate3Rule.forCreditTransferTransactionInformation11));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CreditTransferTransactionInformation11";
 				definition = "Set of elements used to provide information specific to the individual transaction(s) included in the message.";

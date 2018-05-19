@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -53,7 +54,7 @@ public class ConstraintCountry {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Country";
 			definition = "The code is checked against the list of country names obtained from the United Nations (ISO 3166, Alpha-2 code).";
-			owner_lazy = () -> CountryCode.mmObject();
+			owner_lazy = LazyReference.create(() -> CountryCode.mmObject());
 		}
 
 		@Override

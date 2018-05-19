@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -99,7 +100,7 @@ public class NameAndAddress10 {
 	 */
 	public static final MMMessageAttribute<NameAndAddress10, Max140Text> mmName = new MMMessageAttribute<NameAndAddress10, Max140Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.NameAndAddress10.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.NameAndAddress10.mmObject());
 			isDerived = false;
 			xmlTag = "Nm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -107,7 +108,7 @@ public class NameAndAddress10 {
 			definition = "Name by which a party is known and is usually used to identify that identity.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max140Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max140Text.mmObject());
 		}
 
 		@Override
@@ -152,7 +153,7 @@ public class NameAndAddress10 {
 	 */
 	public static final MMMessageAttribute<NameAndAddress10, PostalAddress6> mmAddress = new MMMessageAttribute<NameAndAddress10, PostalAddress6>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.NameAndAddress10.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.NameAndAddress10.mmObject());
 			isDerived = false;
 			xmlTag = "Adr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -160,7 +161,7 @@ public class NameAndAddress10 {
 			definition = "Postal address of a party.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			complexType_lazy = () -> PostalAddress6.mmObject();
+			complexType_lazy = LazyReference.create(() -> PostalAddress6.mmObject());
 		}
 
 		@Override
@@ -177,8 +178,8 @@ public class NameAndAddress10 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.NameAndAddress10.mmName, com.tools20022.repository.msgpart.NameAndAddress10.mmAddress);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.NameAndAddress10.mmName, com.tools20022.repository.msgpart.NameAndAddress10.mmAddress));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "NameAndAddress10";
 				definition = "Information that locates and identifies a party.";

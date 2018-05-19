@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.area.pacs;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
@@ -174,7 +175,7 @@ public class FIToFICustomerCreditTransferV02 {
 			definition = "Set of characteristics shared by all individual transactions included in the message.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			complexType_lazy = () -> GroupHeader33.mmObject();
+			complexType_lazy = LazyReference.create(() -> GroupHeader33.mmObject());
 		}
 
 		@Override
@@ -221,7 +222,7 @@ public class FIToFICustomerCreditTransferV02 {
 			name = "CreditTransferTransactionInformation";
 			definition = "Set of elements providing information specific to the individual credit transfer(s). ";
 			minOccurs = 1;
-			complexType_lazy = () -> CreditTransferTransactionInformation11.mmObject();
+			complexType_lazy = LazyReference.create(() -> CreditTransferTransactionInformation11.mmObject());
 		}
 
 		@Override
@@ -238,22 +239,22 @@ public class FIToFICustomerCreditTransferV02 {
 	final static public MMMessageDefinition mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageDefinition() {
 			{
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintInstructedAgentRule.for_pacs_FIToFICustomerCreditTransferV02,
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintInstructedAgentRule.for_pacs_FIToFICustomerCreditTransferV02,
 						com.tools20022.repository.constraint.ConstraintInstructingAgentRule.for_pacs_FIToFICustomerCreditTransferV02,
 						com.tools20022.repository.constraint.ConstraintTotalInterbankSettlementAmountRule.for_pacs_FIToFICustomerCreditTransferV02,
 						com.tools20022.repository.constraint.ConstraintTotalInterbankSettlementAmountAndSumRule.for_pacs_FIToFICustomerCreditTransferV02,
 						com.tools20022.repository.constraint.ConstraintGroupHeaderInterbankSettlementDateRule.for_pacs_FIToFICustomerCreditTransferV02,
 						com.tools20022.repository.constraint.ConstraintTransactionInterbankSettlementDateRule.for_pacs_FIToFICustomerCreditTransferV02,
 						com.tools20022.repository.constraint.ConstraintPaymentTypeInformationRule.for_pacs_FIToFICustomerCreditTransferV02,
-						com.tools20022.repository.constraint.ConstraintNumberOfTransactionsAndCreditTransfersRule.for_pacs_FIToFICustomerCreditTransferV02);
+						com.tools20022.repository.constraint.ConstraintNumberOfTransactionsAndCreditTransfersRule.for_pacs_FIToFICustomerCreditTransferV02));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "FIToFICustomerCreditTransferV02";
 				definition = "Scope\r\nThe FinancialInstitutionToFinancialInstitutionCustomerCreditTransfer message is sent by the debtor agent to the creditor agent, directly or through other agents and/or a payment clearing and settlement system. It is used to move funds from a debtor account to a creditor.\r\nUsage\r\nThe FIToFICustomerCreditTransfer message is exchanged between agents and can contain one or more customer credit transfer instructions.\r\nThe FIToFICustomerCreditTransfer message does not allow for grouping: a CreditTransferTransactionInformation block must be present for each credit transfer transaction.\r\nThe FIToFICustomerCreditTransfer message can be used in different ways:\r\n- If the instructing agent and the instructed agent wish to use their direct account relationship in the currency of the transfer then the message contains both the funds for the customer transfer(s) as well as the payment details;\r\n- If the instructing agent and the instructed agent have no direct account relationship in the currency of the transfer, or do not wish to use their account relationship, then other (reimbursement) agents will be involved to cover for the customer transfer(s). The FIToFICustomerCreditTransfer contains only the payment details and the instructing agent must cover the customer transfer by sending a FinancialInstitutionCreditTransfer to a reimbursement agent. This payment method is called the Cover method;\r\n- If more than two financial institutions are involved in the payment chain and if the FIToFICustomerCreditTransfer is sent from one financial institution to the next financial institution in the payment chain, then the payment method is called the Serial method.\r\nThe FIToFICustomerCreditTransfer message can be used in domestic and cross-border scenarios.";
 				rootElement = "Document";
 				xmlTag = "FIToFICstmrCdtTrf";
-				businessArea_lazy = () -> PaymentsClearingandSettlementArchive.mmObject();
-				messageBuildingBlock_lazy = () -> Arrays.asList(com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.mmGroupHeader,
-						com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.mmCreditTransferTransactionInformation);
+				businessArea_lazy = LazyReference.create(() -> PaymentsClearingandSettlementArchive.mmObject());
+				messageBuildingBlock_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.mmGroupHeader,
+						com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.mmCreditTransferTransactionInformation));
 				messageDefinitionIdentifier_lazy = () -> new MMMessageDefinitionIdentifier() {
 					{
 						businessArea = "pacs";

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.choice;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -98,7 +99,7 @@ public class Party6Choice {
 	 */
 	public static final MMMessageAssociationEnd<Party6Choice, OrganisationIdentification4> mmOrganisationIdentification = new MMMessageAssociationEnd<Party6Choice, OrganisationIdentification4>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.Party6Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.Party6Choice.mmObject());
 			isDerived = false;
 			xmlTag = "OrgId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -107,7 +108,7 @@ public class Party6Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> OrganisationIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> OrganisationIdentification4.mmObject());
 		}
 
 		@Override
@@ -151,7 +152,7 @@ public class Party6Choice {
 	 */
 	public static final MMMessageAssociationEnd<Party6Choice, PersonIdentification5> mmPrivateIdentification = new MMMessageAssociationEnd<Party6Choice, PersonIdentification5>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.Party6Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.Party6Choice.mmObject());
 			isDerived = false;
 			xmlTag = "PrvtId";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -160,7 +161,7 @@ public class Party6Choice {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> PersonIdentification5.mmObject();
+			type_lazy = LazyReference.create(() -> PersonIdentification5.mmObject());
 		}
 
 		@Override
@@ -177,8 +178,8 @@ public class Party6Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.Party6Choice.mmOrganisationIdentification, com.tools20022.repository.choice.Party6Choice.mmPrivateIdentification);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.Party6Choice.mmOrganisationIdentification, com.tools20022.repository.choice.Party6Choice.mmPrivateIdentification));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Party6Choice";
 				definition = "Nature or use of the account.";

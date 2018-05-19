@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.area;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMBusinessArea;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
@@ -64,11 +65,11 @@ public class PaymentsClearingandSettlementArchive {
 	final static public MMBusinessArea mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMBusinessArea() {
 			{
-				businessProcessCatalogue_lazy = () -> GeneratedRepository.catalogue;
+				businessProcessCatalogue_lazy = LazyReference.create(() -> GeneratedRepository.catalogue);
 				registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 				name = "Payments Clearing and Settlement - Archive - master";
 				definition = "Messages that support the clearing and settlement processes for payment transactions between financial institutions";
-				messageDefinition_lazy = () -> Arrays.asList(FIToFICustomerCreditTransferV02.mmObject());
+				messageDefinition_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmObject()));
 				code = "pacs";
 			}
 		});

@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -161,7 +162,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAttribute<SettlementInformation13, SettlementMethod1Code> mmSettlementMethod = new MMMessageAttribute<SettlementInformation13, SettlementMethod1Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "SttlmMtd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -169,7 +170,7 @@ public class SettlementInformation13 {
 			definition = "Method used to settle the (batch of) payment instructions.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> SettlementMethod1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> SettlementMethod1Code.mmObject());
 		}
 
 		@Override
@@ -214,7 +215,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>> mmSettlementAccount = new MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "SttlmAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -223,7 +224,7 @@ public class SettlementInformation13 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -269,7 +270,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<ClearingSystemIdentification3Choice>> mmClearingSystem = new MMMessageAssociationEnd<SettlementInformation13, Optional<ClearingSystemIdentification3Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "ClrSys";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -278,7 +279,7 @@ public class SettlementInformation13 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> ClearingSystemIdentification3Choice.mmObject();
+			type_lazy = LazyReference.create(() -> ClearingSystemIdentification3Choice.mmObject());
 		}
 
 		@Override
@@ -324,7 +325,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructingReimbursementAgent = new MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "InstgRmbrsmntAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -333,7 +334,7 @@ public class SettlementInformation13 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -378,7 +379,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>> mmInstructingReimbursementAgentAccount = new MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "InstgRmbrsmntAgtAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -387,7 +388,7 @@ public class SettlementInformation13 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -433,7 +434,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructedReimbursementAgent = new MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "InstdRmbrsmntAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -442,7 +443,7 @@ public class SettlementInformation13 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -487,7 +488,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>> mmInstructedReimbursementAgentAccount = new MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "InstdRmbrsmntAgtAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -496,7 +497,7 @@ public class SettlementInformation13 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -542,7 +543,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>> mmThirdReimbursementAgent = new MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "ThrdRmbrsmntAgt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -551,7 +552,7 @@ public class SettlementInformation13 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> BranchAndFinancialInstitutionIdentification4.mmObject();
+			type_lazy = LazyReference.create(() -> BranchAndFinancialInstitutionIdentification4.mmObject());
 		}
 
 		@Override
@@ -596,7 +597,7 @@ public class SettlementInformation13 {
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>> mmThirdReimbursementAgentAccount = new MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
 			isDerived = false;
 			xmlTag = "ThrdRmbrsmntAgtAcct";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -605,7 +606,7 @@ public class SettlementInformation13 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> CashAccount16.mmObject();
+			type_lazy = LazyReference.create(() -> CashAccount16.mmObject());
 		}
 
 		@Override
@@ -622,18 +623,18 @@ public class SettlementInformation13 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.SettlementInformation13.mmSettlementMethod, com.tools20022.repository.msgpart.SettlementInformation13.mmSettlementAccount,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementInformation13.mmSettlementMethod, com.tools20022.repository.msgpart.SettlementInformation13.mmSettlementAccount,
 						com.tools20022.repository.msgpart.SettlementInformation13.mmClearingSystem, com.tools20022.repository.msgpart.SettlementInformation13.mmInstructingReimbursementAgent,
 						com.tools20022.repository.msgpart.SettlementInformation13.mmInstructingReimbursementAgentAccount, com.tools20022.repository.msgpart.SettlementInformation13.mmInstructedReimbursementAgent,
 						com.tools20022.repository.msgpart.SettlementInformation13.mmInstructedReimbursementAgentAccount, com.tools20022.repository.msgpart.SettlementInformation13.mmThirdReimbursementAgent,
-						com.tools20022.repository.msgpart.SettlementInformation13.mmThirdReimbursementAgentAccount);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintThirdReimbursementAgentRule.forSettlementInformation13,
+						com.tools20022.repository.msgpart.SettlementInformation13.mmThirdReimbursementAgentAccount));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintThirdReimbursementAgentRule.forSettlementInformation13,
 						com.tools20022.repository.constraint.ConstraintSettlementMethodAgentRule.forSettlementInformation13, com.tools20022.repository.constraint.ConstraintSettlementMethodCoverRule.forSettlementInformation13,
 						com.tools20022.repository.constraint.ConstraintSettlementMethodCoverAgentRule.forSettlementInformation13, com.tools20022.repository.constraint.ConstraintSettlementMethodClearingRule.forSettlementInformation13,
 						com.tools20022.repository.constraint.ConstraintInstructingReimbursementAgentAccountRule.forSettlementInformation13,
 						com.tools20022.repository.constraint.ConstraintInstructedReimbursementAgentAccountRule.forSettlementInformation13,
-						com.tools20022.repository.constraint.ConstraintThirdReimbursementAgentAccountRule.forSettlementInformation13);
+						com.tools20022.repository.constraint.ConstraintThirdReimbursementAgentAccountRule.forSettlementInformation13));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "SettlementInformation13";
 				definition = "Set of elements used to provide information on the settlement of the instruction.";

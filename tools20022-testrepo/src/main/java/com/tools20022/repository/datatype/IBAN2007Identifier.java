@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.datatype;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMIdentifierSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.GeneratedRepository;
@@ -85,8 +86,8 @@ public class IBAN2007Identifier {
 	final static public MMIdentifierSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
-				constraint_lazy = () -> Arrays.asList(com.tools20022.repository.constraint.ConstraintIBAN.forIBAN2007Identifier);
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintIBAN.forIBAN2007Identifier));
 				example = Arrays.asList("AT611904300234573201");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "IBAN2007Identifier";

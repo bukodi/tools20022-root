@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -116,7 +117,7 @@ public class StructuredRegulatoryReporting3 {
 	 */
 	public static final MMMessageAttribute<StructuredRegulatoryReporting3, Optional<Max35Text>> mmType = new MMMessageAttribute<StructuredRegulatoryReporting3, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "Tp";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -124,7 +125,7 @@ public class StructuredRegulatoryReporting3 {
 			definition = "Specifies the type of the information supplied in the regulatory reporting details.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -169,7 +170,7 @@ public class StructuredRegulatoryReporting3 {
 	 */
 	public static final MMMessageAttribute<StructuredRegulatoryReporting3, Optional<ISODate>> mmDate = new MMMessageAttribute<StructuredRegulatoryReporting3, Optional<ISODate>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "Dt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -177,7 +178,7 @@ public class StructuredRegulatoryReporting3 {
 			definition = "Date related to the specified type of regulatory reporting details.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ISODate.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ISODate.mmObject());
 		}
 
 		@Override
@@ -222,7 +223,7 @@ public class StructuredRegulatoryReporting3 {
 	 */
 	public static final MMMessageAttribute<StructuredRegulatoryReporting3, Optional<CountryCode>> mmCountry = new MMMessageAttribute<StructuredRegulatoryReporting3, Optional<CountryCode>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "Ctry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -230,7 +231,7 @@ public class StructuredRegulatoryReporting3 {
 			definition = "Country related to the specified type of regulatory reporting details.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> CountryCode.mmObject();
+			simpleType_lazy = LazyReference.create(() -> CountryCode.mmObject());
 		}
 
 		@Override
@@ -276,7 +277,7 @@ public class StructuredRegulatoryReporting3 {
 	 */
 	public static final MMMessageAttribute<StructuredRegulatoryReporting3, Optional<Max10Text>> mmCode = new MMMessageAttribute<StructuredRegulatoryReporting3, Optional<Max10Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -284,7 +285,7 @@ public class StructuredRegulatoryReporting3 {
 			definition = "Specifies the nature, purpose, and reason for the transaction to be reported for regulatory and statutory requirements in a coded form.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max10Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max10Text.mmObject());
 		}
 
 		@Override
@@ -331,7 +332,7 @@ public class StructuredRegulatoryReporting3 {
 	 */
 	public static final MMMessageAttribute<StructuredRegulatoryReporting3, Optional<ActiveOrHistoricCurrencyAndAmount>> mmAmount = new MMMessageAttribute<StructuredRegulatoryReporting3, Optional<ActiveOrHistoricCurrencyAndAmount>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "Amt";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -339,7 +340,7 @@ public class StructuredRegulatoryReporting3 {
 			definition = "Amount of money to be reported for regulatory and statutory requirements.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> ActiveOrHistoricCurrencyAndAmount.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyAndAmount.mmObject());
 		}
 
 		@Override
@@ -385,14 +386,14 @@ public class StructuredRegulatoryReporting3 {
 	 */
 	public static final MMMessageAttribute<StructuredRegulatoryReporting3, List<Max35Text>> mmInformation = new MMMessageAttribute<StructuredRegulatoryReporting3, List<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmObject());
 			isDerived = false;
 			xmlTag = "Inf";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Information";
 			definition = "Additional details that cater for specific domestic regulatory requirements.";
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -409,10 +410,10 @@ public class StructuredRegulatoryReporting3 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmType, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmDate,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmType, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmDate,
 						com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmCountry, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmCode,
-						com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmAmount, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmInformation);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+						com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmAmount, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmInformation));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "StructuredRegulatoryReporting3";
 				definition = "Information needed due to regulatory and statutory requirements.";

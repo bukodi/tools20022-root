@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.choice;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -107,7 +108,7 @@ public class Purpose2Choice {
 	 */
 	public static final MMMessageAttribute<Purpose2Choice, ExternalPurpose1Code> mmCode = new MMMessageAttribute<Purpose2Choice, ExternalPurpose1Code>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.Purpose2Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.Purpose2Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Cd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -115,7 +116,7 @@ public class Purpose2Choice {
 			definition = "Underlying reason for the payment transaction, as published in an external purpose code list.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> ExternalPurpose1Code.mmObject();
+			simpleType_lazy = LazyReference.create(() -> ExternalPurpose1Code.mmObject());
 		}
 
 		@Override
@@ -159,7 +160,7 @@ public class Purpose2Choice {
 	 */
 	public static final MMMessageAttribute<Purpose2Choice, Max35Text> mmProprietary = new MMMessageAttribute<Purpose2Choice, Max35Text>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.choice.Purpose2Choice.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.choice.Purpose2Choice.mmObject());
 			isDerived = false;
 			xmlTag = "Prtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -167,7 +168,7 @@ public class Purpose2Choice {
 			definition = "Purpose, in a proprietary form.";
 			maxOccurs = 1;
 			minOccurs = 1;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -184,8 +185,8 @@ public class Purpose2Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.choice.Purpose2Choice.mmCode, com.tools20022.repository.choice.Purpose2Choice.mmProprietary);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.Purpose2Choice.mmCode, com.tools20022.repository.choice.Purpose2Choice.mmProprietary));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Purpose2Choice";
 				definition = "Specifies the underlying reason for the payment transaction.\nUsage: Purpose is used by the end-customers, that is initiating party, (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose is a content element, which is not used for processing by any of the agents involved in the payment chain.";

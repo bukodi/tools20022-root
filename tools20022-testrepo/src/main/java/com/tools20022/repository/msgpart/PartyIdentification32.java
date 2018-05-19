@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -115,7 +116,7 @@ public class PartyIdentification32 {
 	 */
 	public static final MMMessageAttribute<PartyIdentification32, Optional<Max140Text>> mmName = new MMMessageAttribute<PartyIdentification32, Optional<Max140Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject());
 			isDerived = false;
 			xmlTag = "Nm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -123,7 +124,7 @@ public class PartyIdentification32 {
 			definition = "Name by which a party is known and which is usually used to identify that party.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max140Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max140Text.mmObject());
 		}
 
 		@Override
@@ -168,7 +169,7 @@ public class PartyIdentification32 {
 	 */
 	public static final MMMessageAssociationEnd<PartyIdentification32, Optional<PostalAddress6>> mmPostalAddress = new MMMessageAssociationEnd<PartyIdentification32, Optional<PostalAddress6>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject());
 			isDerived = false;
 			xmlTag = "PstlAdr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -177,7 +178,7 @@ public class PartyIdentification32 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> PostalAddress6.mmObject();
+			type_lazy = LazyReference.create(() -> PostalAddress6.mmObject());
 		}
 
 		@Override
@@ -220,7 +221,7 @@ public class PartyIdentification32 {
 	 */
 	public static final MMMessageAssociationEnd<PartyIdentification32, Optional<Party6Choice>> mmIdentification = new MMMessageAssociationEnd<PartyIdentification32, Optional<Party6Choice>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject());
 			isDerived = false;
 			xmlTag = "Id";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -229,7 +230,7 @@ public class PartyIdentification32 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> Party6Choice.mmObject();
+			type_lazy = LazyReference.create(() -> Party6Choice.mmObject());
 		}
 
 		@Override
@@ -275,7 +276,7 @@ public class PartyIdentification32 {
 	 */
 	public static final MMMessageAttribute<PartyIdentification32, Optional<CountryCode>> mmCountryOfResidence = new MMMessageAttribute<PartyIdentification32, Optional<CountryCode>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject());
 			isDerived = false;
 			xmlTag = "CtryOfRes";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -283,7 +284,7 @@ public class PartyIdentification32 {
 			definition = "Country in which a person resides (the place of a person's home). In the case of a company, it is the country from which the affairs of that company are directed.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> CountryCode.mmObject();
+			simpleType_lazy = LazyReference.create(() -> CountryCode.mmObject());
 		}
 
 		@Override
@@ -327,7 +328,7 @@ public class PartyIdentification32 {
 	 */
 	public static final MMMessageAssociationEnd<PartyIdentification32, Optional<ContactDetails2>> mmContactDetails = new MMMessageAssociationEnd<PartyIdentification32, Optional<ContactDetails2>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PartyIdentification32.mmObject());
 			isDerived = false;
 			xmlTag = "CtctDtls";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -336,7 +337,7 @@ public class PartyIdentification32 {
 			maxOccurs = 1;
 			minOccurs = 0;
 			isComposite = true;
-			type_lazy = () -> ContactDetails2.mmObject();
+			type_lazy = LazyReference.create(() -> ContactDetails2.mmObject());
 		}
 
 		@Override
@@ -353,10 +354,10 @@ public class PartyIdentification32 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.PartyIdentification32.mmName, com.tools20022.repository.msgpart.PartyIdentification32.mmPostalAddress,
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PartyIdentification32.mmName, com.tools20022.repository.msgpart.PartyIdentification32.mmPostalAddress,
 						com.tools20022.repository.msgpart.PartyIdentification32.mmIdentification, com.tools20022.repository.msgpart.PartyIdentification32.mmCountryOfResidence,
-						com.tools20022.repository.msgpart.PartyIdentification32.mmContactDetails);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+						com.tools20022.repository.msgpart.PartyIdentification32.mmContactDetails));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "PartyIdentification32";
 				definition = "Set of elements used to identify a person or an organisation.";

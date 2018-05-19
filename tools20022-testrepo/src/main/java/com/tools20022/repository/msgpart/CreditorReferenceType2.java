@@ -17,6 +17,7 @@
 
 package com.tools20022.repository.msgpart;
 
+import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
@@ -101,7 +102,7 @@ public class CreditorReferenceType2 {
 	 */
 	public static final MMMessageAssociationEnd<CreditorReferenceType2, CreditorReferenceType1Choice> mmCodeOrProprietary = new MMMessageAssociationEnd<CreditorReferenceType2, CreditorReferenceType1Choice>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditorReferenceType2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditorReferenceType2.mmObject());
 			isDerived = false;
 			xmlTag = "CdOrPrtry";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -110,7 +111,7 @@ public class CreditorReferenceType2 {
 			maxOccurs = 1;
 			minOccurs = 1;
 			isComposite = true;
-			type_lazy = () -> CreditorReferenceType1Choice.mmObject();
+			type_lazy = LazyReference.create(() -> CreditorReferenceType1Choice.mmObject());
 		}
 
 		@Override
@@ -154,7 +155,7 @@ public class CreditorReferenceType2 {
 	 */
 	public static final MMMessageAttribute<CreditorReferenceType2, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<CreditorReferenceType2, Optional<Max35Text>>() {
 		{
-			componentContext_lazy = () -> com.tools20022.repository.msgpart.CreditorReferenceType2.mmObject();
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditorReferenceType2.mmObject());
 			isDerived = false;
 			xmlTag = "Issr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
@@ -162,7 +163,7 @@ public class CreditorReferenceType2 {
 			definition = "Entity that assigns the credit reference type.";
 			maxOccurs = 1;
 			minOccurs = 0;
-			simpleType_lazy = () -> Max35Text.mmObject();
+			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());
 		}
 
 		@Override
@@ -179,8 +180,8 @@ public class CreditorReferenceType2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = () -> Arrays.asList(com.tools20022.repository.msgpart.CreditorReferenceType2.mmCodeOrProprietary, com.tools20022.repository.msgpart.CreditorReferenceType2.mmIssuer);
-				dataDictionary_lazy = () -> GeneratedRepository.dataDict;
+				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CreditorReferenceType2.mmCodeOrProprietary, com.tools20022.repository.msgpart.CreditorReferenceType2.mmIssuer));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CreditorReferenceType2";
 				definition = "Specifies the type of creditor reference.";
