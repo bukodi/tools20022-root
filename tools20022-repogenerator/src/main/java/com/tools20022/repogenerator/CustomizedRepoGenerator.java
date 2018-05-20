@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicReference;
 
+import javax.management.RuntimeErrorException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -64,6 +65,21 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 
 	@Override
 	public StructuredName getStructuredName(MMModelEntity mmElem) {
+		// If the constraint owner isn't a MainType
+		if( mmElem instanceof MMConstraint<?>) {			
+			StructuredName ownerName = getStructuredName(mmElem.getContainer());
+			if( ownerName.isCompilationUnit() ) {
+				// Ok, use the default ...
+			} else if ( ownerName.isMember() ) {
+				String constraintName = RoasterHelper.convertToJavaName(((MMConstraint<?>)mmElem).getName());
+				constraintName += "_" + ownerName.getMemberName();
+				StructuredName mainTypename = StructuredName.primaryType( ownerName.getPackage(), ownerName.getCompilationUnit() ); 
+				return StructuredName.member( mainTypename, constraintName );				
+			} else {
+				throw new RuntimeException("Unsupported case!");
+			}
+		}
+		
 		StructuredName name = super.getStructuredName(mmElem);
 		if (mmElem instanceof MMMessageDefinition) {
 			// Please note that the RequestToModifyPayment (camt.007.002.03) was replaced by
@@ -73,8 +89,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
 			MMMessageDefinitionIdentifier id = msgDef.getMessageDefinitionIdentifier();
 			String idTxt = id.getBusinessArea() + id.getMessageFunctionality() + id.getFlavour() + id.getVersion();
-			if( "camt00700203".endsWith(idTxt) ) {
-				name = StructuredName.primaryType(name.getPackage(), name.getCompilationUnit() + "_replaced"); 
+			if ("camt00700203".endsWith(idTxt)) {
+				name = StructuredName.primaryType(name.getPackage(), name.getCompilationUnit() + "_replaced");
 			}
 
 		}
@@ -121,7 +137,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		// Create repo
 		Map<MMModelEntity, MainTypeResult> mainResults = new HashMap<>();
 		for (MMModelEntity mmBean : mainTypes.values()) {
-			MainTypeResult genResult = generateMainResultType(mmBean);					
+			MainTypeResult genResult = generateMainResultType(mmBean);
 			// mainResults.put(mmBean, genResult);
 		}
 		// MainTypeResult repoGen = generateMMRepository(repo.getRootObject());
@@ -131,27 +147,20 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		}
 	}
 
+	protected StructuredName getConstraintValidatorMethodName(MMConstraint<?> mmConstr) {
+		StructuredName maintypeName = StructuredName.primaryType(basePackageName + ".constraint",
+				RoasterHelper.convertToJavaName("Constraint" + mmConstr.getName()));
+		StructuredName ownerName = getStructuredName(mmConstr.getOwner());
+		StructuredName methodName = StructuredName.member(maintypeName, "check" + ownerName.getCompilationUnit());
+		return methodName;
+	}
+
 	protected void generateConstraintGroup(List<MMConstraint<?>> constraintsWithSameName) {
 
 		MMConstraint<?> first = constraintsWithSameName.get(0);
-		StructuredName nameOfFirst = getStructuredName(first);
-		StructuredName maintypeName = StructuredName.primaryType(nameOfFirst.getPackage(),
-				nameOfFirst.getCompilationUnit());
-		MainTypeResult genMain = new MainTypeResult(ctx, null, maintypeName) {
-			{
-				src = ctx.createSourceFile(JavaClassSource.class, maintypeName);
-			}
-
-			@Override
-			public void flush() {
-				if (!ctx.isSkipDocGeneration()) {
-					String docTxt = RoasterHelper.escapeJavaDoc(first.getDefinition().orElse("-no doc-"));
-					src.getJavaDoc().setText(docTxt);
-				}
-
-				ctx.saveSourceFile(src);
-			}
-		};
+		StructuredName nameOfFirst = getConstraintValidatorMethodName(first);
+		StructuredName maintypeName = StructuredName.primaryType(nameOfFirst.getPackage(), nameOfFirst.getCompilationUnit() );
+		JavaClassSource src = ctx.createSourceFile(JavaClassSource.class, maintypeName);
 
 		for (MMConstraint<?> constr : constraintsWithSameName) {
 			String validatorParamType;
@@ -166,37 +175,79 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			}
 
 			// Generate constraint meta class
-			StaticFieldResult staticField = generateMMConstraint(genMain, constr, validatorParamType);
+			// StaticFieldResult staticField = generateMMConstraint(genMain, constr,
+			// validatorParamType);
 
 			{
 				// Generate validator function
-				String validatorBaseName = "check" + staticField.staticFieldSrc.getName().substring("for".length());
-				MethodSource<JavaClassSource> validatorMethod = genMain.src.addMethod().setName(validatorBaseName);
+				StructuredName validatorName = getConstraintValidatorMethodName(constr);
+				MethodSource<JavaClassSource> validatorMethod = src.addMethod().setName( validatorName.getMemberName());
 				validatorMethod.setPublic().setStatic(true);
 				validatorMethod.addThrows(Exception.class);
 				validatorMethod.addParameter(validatorParamType, "obj");
 				validatorMethod.setBody("throw new " + NotImplementedConstraintException.class.getName() + "();");
-				RoasterHelper.addToJavaDoc(validatorMethod,
-						RoasterHelper.escapeJavaDoc(constr.getDefinition().orElse("- no definition -")));
+				if (!ctx.isSkipDocGeneration()) {
+					RoasterHelper.addToJavaDoc(validatorMethod,
+							RoasterHelper.escapeJavaDoc(constr.getDefinition().orElse("- no definition -")));
+					validatorMethod.getJavaDoc().addTagValue("@see", "Object#class");
+				}
+
 			}
 			// This is a workaround, while FieldSourceImpl.setType() automatically add an
 			// import
-			genMain.src.removeImport(validatorParamType);
+			// src.removeImport(validatorParamType);
 		}
-		genMain.flush();
+
+		if (!ctx.isSkipDocGeneration()) {
+			String docTxt = RoasterHelper.escapeJavaDoc(first.getDefinition().orElse("-no doc-"));
+			src.getJavaDoc().setText(docTxt);
+		}
+
+		ctx.saveSourceFile(src);
 	}
 
-	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint<?> mmBean,
-			String validatorParamType) {
+	
+	
+	@Override
+	protected StaticFieldResult generateMMConstraint(MainTypeResult containerGen, MMConstraint mmBean) {
+		throw new RuntimeException("This function should not be called. It is replaced by _generateMMConstraint(..)");
+	}
+	
+	
+	protected StaticFieldResult _generateMMConstraint(TypeResult _gen, MMConstraint mmBean) {
+		
+		MainTypeResult containerGen;
+		String validatorParamType;
+		if( _gen instanceof MainTypeResult ) {
+			containerGen = (MainTypeResult)_gen;
+			validatorParamType = containerGen.src.getQualifiedName();
+		} else if( _gen instanceof StaticFieldResult ) {
+			containerGen = ((StaticFieldResult)_gen).containerGen;			
+			MMRepositoryConcept constrOwner = mmBean.getOwner();
+			if( constrOwner instanceof MMConstruct ) {
+				MMRepositoryType type = ((MMConstruct)constrOwner).getMemberType();
+				validatorParamType = getStructuredName(type).getFullName();
+			} else {
+				throw new RuntimeException("Unsupported case: can't generate constrauint for this type: [" + _gen.getClass().getName() + "]" +  mmBean.getName() );				
+			}
+		} else {
+			throw new RuntimeException("Unsupported case: can't generate constrauint for this type: [" + _gen.getClass().getName() + "]" +  mmBean.getName() );
+		}
+
+		
+		
 		StructuredName staticFieldName = getStructuredName(mmBean);
 		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, staticFieldName);
 		gen.staticFieldSrc = containerGen.src.addField().setName(staticFieldName.getMemberName());
 		gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
 		gen.staticFieldSrc.setType(MMConstraint.class.getName() + "<" + validatorParamType + ">");
+		createJavaDoc(gen.staticFieldSrc, mmBean);
+
+		StructuredName validatorMethodName = getConstraintValidatorMethodName(mmBean);
 
 		String getValidatorMethodSrc = "@Override\n";
 		getValidatorMethodSrc += "public void executeValidator(" + validatorParamType + " obj ) throws Exception {\n";
-		getValidatorMethodSrc += "  check" + staticFieldName.getMemberName().substring("for".length()) + "( obj );\n";
+		getValidatorMethodSrc += "  " + validatorMethodName.getFullName() + "( obj );\n";
 		getValidatorMethodSrc += "}\n";
 
 		gen.staticFieldInitializerBody = new StringJoiner("\n",
@@ -399,11 +450,10 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
 
 		for (MMConstraint mmConstr : mmBean.getConstraint()) {
+			_generateMMConstraint(gen, mmConstr);
 			String ctrJavaName = RoasterHelper.convertToJavaName(mmConstr.getName());
 			constraintsByName.computeIfAbsent(ctrJavaName, x -> new ArrayList<>()).add(mmConstr);
 		}
-
-		defaultAttribute(gen, MMRepositoryConcept.constraintAttribute, mmBean.getConstraint());
 
 		List<MMSemanticMarkup> validMarkups = new ArrayList<>();
 		for (MMSemanticMarkup sm : mmBean.getSemanticMarkup()) {
@@ -471,8 +521,9 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet,
 		// mmBean.getDoclet());
 		defaultAttribute(gen, MMRepositoryConcept.exampleAttribute, mmBean.getExample());
-		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.constraint,
-		// mmBean.getConstraint());
+		if( ! mmBean.getConstraint().isEmpty() ) {
+			defaultAttribute(gen, MMRepositoryConcept.constraintAttribute, mmBean.getConstraint());			
+		}
 		defaultAttribute(gen, MMRepositoryConcept.registrationStatusAttribute, mmBean.getRegistrationStatus());
 		defaultAttribute(gen, MMRepositoryConcept.removalDateAttribute, mmBean.getRemovalDate());
 		defaultAttribute(gen, MMRepositoryConcept.nameAttribute, mmBean.getName());

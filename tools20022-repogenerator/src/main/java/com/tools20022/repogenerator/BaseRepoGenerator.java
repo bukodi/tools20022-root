@@ -129,7 +129,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		} else if (mmElem instanceof MMCode) {
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
 		} else if (mmElem instanceof MMConstraint) {
-
+			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMConstraint) mmElem).getName());
 		}
 
 		String pkg;
@@ -143,26 +143,28 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		}
 
 		// Package
-		if (mmElem instanceof MMConstraint) {
-			MMConstraint<?> mmConstr = (MMConstraint<?>) mmElem;
-			StructuredName mainTypeName = StructuredName.primaryType(basePackageName + ".constraint",
-					RoasterHelper.convertToJavaName("Constraint" + mmConstr.getName()));
-			MMRepositoryConcept owner = mmConstr.getOwner();			
-			StructuredName containername = getStructuredName(owner);
-			String membernamebase = containername.getCompilationUnit();
-			if( containername.isMember() ) {
-				membernamebase += "_" + containername.getMemberName();
-			}
-			if(owner instanceof MMMessageDefinition ) {
-				MMBusinessArea area = ((MMMessageDefinition)owner).getBusinessArea();				
-				String areaCode = area.getCode();
-				if( areaCode == null )
-					areaCode = area.getName();
-				membernamebase = "_" + areaCode + "_" + membernamebase;
-			}
-			StructuredName memberFullName = StructuredName.member(mainTypeName, "for" + membernamebase);
-			return memberFullName;
-		} else if (mmElem instanceof MMMessageDefinition) {
+//		if (mmElem instanceof MMConstraint) {
+//			MMConstraint<?> mmConstr = (MMConstraint<?>) mmElem;
+//			StructuredName mainTypeName = StructuredName.primaryType(basePackageName + ".constraint",
+//					RoasterHelper.convertToJavaName("Constraint" + mmConstr.getName()));
+//			MMRepositoryConcept owner = mmConstr.getOwner();			
+//			StructuredName containername = getStructuredName(owner);
+//			String membernamebase = containername.getCompilationUnit();
+//			if( containername.isMember() ) {
+//				membernamebase += "_" + containername.getMemberName();
+//			}
+//			if(owner instanceof MMMessageDefinition ) {
+//				MMBusinessArea area = ((MMMessageDefinition)owner).getBusinessArea();				
+//				String areaCode = area.getCode();
+//				if( areaCode == null )
+//					areaCode = area.getName();
+//				membernamebase = "_" + areaCode + "_" + membernamebase;
+//			}
+//			StructuredName memberFullName = StructuredName.member(mainTypeName, "for" + membernamebase);
+//			return memberFullName;
+//		}  
+		
+		if (mmElem instanceof MMMessageDefinition) {
 			MMMessageDefinition msgDef = (MMMessageDefinition) mmElem;
 			String areaCode = msgDef.getBusinessArea() == null ? "other"
 					: msgDef.getBusinessArea().getCode() == null ? "other" : msgDef.getBusinessArea().getCode();

@@ -58,7 +58,8 @@ public class TestGeneratedGenerator {
 		// ECoreIOHelper.loadXMIResource("/model/business-domain-payments.iso20022");
 		// EObject xmiRootObj =
 		// ECoreIOHelper.loadXMIResource("/model/business-domain-payments-nobuscomp.iso20022");
-		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-pacs.008.001.02-nobuscomp.iso20022");
+		//EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-pacs.008.001.02-nobuscomp.iso20022");
+		EObject xmiRootObj = ECoreIOHelper.loadXMIResource("/model/msgdef-auth.034.001.01-nobuscomp.iso20022");
 		// EObject xmiRootObj = ECoreIOHelper
 		// .loadXMIResource("/model/MandateInitiationRequestV05-with-BusinessConceptsV2.iso20022");
 		// EObject xmiRootObj =
