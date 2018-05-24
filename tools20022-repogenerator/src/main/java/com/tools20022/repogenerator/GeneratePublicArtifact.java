@@ -34,7 +34,7 @@ public class GeneratePublicArtifact {
 		payments, securities, trade, cards, fx;
 	}
 
-	static boolean skipBusinessComponents = false;
+	static boolean skipBusinessComponents = true;
 
 	static String baseEcoreResourceName = "/model/ISO20022.ecore";
 	// static String baseXmiResourceName =
@@ -48,11 +48,11 @@ public class GeneratePublicArtifact {
 
 	public static void main(String[] args) throws Exception {
 
-//		try {
-//			generateArtifact(BusinessDomain.payments);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			generateArtifact(BusinessDomain.payments);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 //
 //		try {
 //			generateArtifact(BusinessDomain.cards);
@@ -75,11 +75,11 @@ public class GeneratePublicArtifact {
 //			e.printStackTrace();
 //		}
 
-		try {
-			generateArtifact(null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			generateArtifact(null);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		System.out.println("**** Gerneration finished " + sdf.format(new Date()) + " ****");

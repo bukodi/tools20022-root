@@ -1,6 +1,7 @@
 package com.tools20022.repogenerator;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -16,6 +17,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -360,6 +365,62 @@ public class InspectLoadedRepository {
 
 	}
 
+	static class ExtCodeSetGroup {
+		MMCodeSet mmParent;
+		SortedSet<MMCodeSet> mmchildren = new TreeSet<>((a,b)->Collator.getInstance().compare(a.getName(), b.getName()));
+		ExternalCodeSetsXlsx.CodeSet xlsParent;
+		ExternalCodeSetsXlsx.CodeSet xlsChild; 
+	}
+	
+	@Test
+	public void codeSetsExternal() throws Exception {
+
+		InputStream is = ExternalCodeSetsXlsx.class.getResourceAsStream("/externalcodes/ExternalCodeSets_1Q2018_May2018_v1.xlsx");
+		ExternalCodeSetsXlsx ecXlsx = new ExternalCodeSetsXlsx(is);
+		
+		SortedMap<String, ExtCodeSetGroup> groupbyParentName = new TreeMap<>();
+
+		List<? extends MMCodeSet> allCodesets = repo.listObjects(MMCodeSet.class).collect(Collectors.toList());
+		SortedMap<String, MMCodeSet> emptyCodeSets = new TreeMap<>();
+		for( MMCodeSet cs : allCodesets ) {
+			if( ! cs.getCode().isEmpty())
+				continue;
+			//MMCodeSet mmParent = null, mmChild = null;
+			ExternalCodeSetsXlsx.CodeSet xlsxCs = ecXlsx.getCodeSet(cs.getName());
+			ExtCodeSetGroup group;
+			if( ! cs.getTrace().isPresent() ) {
+				group = groupbyParentName.get(cs.getName());
+				if( group == null ) {
+					group = new ExtCodeSetGroup();
+					groupbyParentName.put(cs.getName(), group);					
+				}
+				group.mmParent = cs;
+				group.xlsParent = xlsxCs;
+				groupbyParentName.put(cs.getName(), group);
+			} else {
+				group = groupbyParentName.get(cs.getTrace().get().getName());
+				if( group == null ) {
+					group = new ExtCodeSetGroup();
+					groupbyParentName.put(cs.getTrace().get().getName(), group);					
+				}
+				group.mmchildren.add(cs);
+				group.xlsChild = xlsxCs;
+			}				
+		}
+		
+		// Dump
+		for( Map.Entry<String,ExtCodeSetGroup> e : groupbyParentName.entrySet()) {
+			ExtCodeSetGroup group = e.getValue();
+			System.out.println( e.getKey() + " -> " + (group.xlsParent != null ? group.xlsParent.codeSetName : "null"));
+			for( MMCodeSet cs : group.mmchildren ) {
+				System.out.println( "   " + cs.getName() + " -> " + (group.xlsChild != null ? group.xlsChild.codeSetName : "null"));				
+			}
+			System.out.println();
+		}
+		
+	}
+
+	
 	@Test
 	public void codeSets() throws Exception {
 
@@ -368,6 +429,13 @@ public class InspectLoadedRepository {
 		for (MMCodeSet mmCS : allCodesets) {
 			csByCodesetSize.computeIfAbsent(mmCS.getCode().size(), x -> new ArrayList<>()).add(mmCS);
 		}
+		
+		for (MMCodeSet mmCS : allCodesets) {
+			if( mmCS.getTrace().isPresent() && !mmCS.getDerivation().isEmpty()) {
+				System.out.println("Both trace and derivation: " + mmCS.getName());
+			}
+		}
+		
 
 		List<MMCodeSet> csNoParent = new ArrayList<>();
 		Map<MMCodeSet, List<MMCodeSet>> csByParent = new HashMap<>();
@@ -386,12 +454,13 @@ public class InspectLoadedRepository {
 		System.out.println("Summ: " + allCodesets.size() + " codesets");
 		System.out.println();
 
+		/*
 		csByCodesetSize.get(1).stream().forEachOrdered(cs -> {
 			System.out.print(cs.getName() + ", " + cs.getPattern().orElse("-") + ", "
 					+ cs.getIdentificationScheme().orElse("-"));
 			System.out.print(", " + (cs.getTrace().isPresent() ? cs.getTrace().get().getName() : "-"));
 			System.out.println(", " + (cs.getDerivation().size()));
-		});
+		})*/;
 
 		System.out.println();
 		System.out.println("--- Codeset hierarchy ---");
