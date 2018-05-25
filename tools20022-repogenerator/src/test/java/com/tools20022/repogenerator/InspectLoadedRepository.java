@@ -368,8 +368,27 @@ public class InspectLoadedRepository {
 	static class ExtCodeSetGroup {
 		MMCodeSet mmParent;
 		SortedSet<MMCodeSet> mmchildren = new TreeSet<>((a,b)->Collator.getInstance().compare(a.getName(), b.getName()));
-		ExternalCodeSetsXlsx.CodeSet xlsParent;
-		ExternalCodeSetsXlsx.CodeSet xlsChild; 
+	}
+	@Test
+	public void codeSetsEmptyNotInXls() throws Exception {
+
+		List<? extends MMCodeSet> allCodesets = repo.listObjects(MMCodeSet.class).collect(Collectors.toList());
+		SortedSet<MMCodeSet> emptyCodeSets = new TreeSet<>((a,b)->Collator.getInstance().compare(a.getName(), b.getName()));
+		for( MMCodeSet cs : allCodesets ) {
+			if( ! cs.getCode().isEmpty() )
+				continue;
+			if( cs.getTrace().isPresent() && !cs.getTrace().get().getCode().isEmpty() )
+				continue;
+			if( cs.getName().startsWith("External"))
+				continue;
+			emptyCodeSets.add(cs);
+		}
+		
+		for(MMCodeSet cs : emptyCodeSets ) {
+			System.out.println( cs.getName() +" :");
+			System.out.println( cs.getDefinition().orElse("-no doc-"));
+			System.out.println();
+		}
 	}
 	
 	@Test
@@ -386,7 +405,6 @@ public class InspectLoadedRepository {
 			if( ! cs.getCode().isEmpty())
 				continue;
 			//MMCodeSet mmParent = null, mmChild = null;
-			ExternalCodeSetsXlsx.CodeSet xlsxCs = ecXlsx.getCodeSet(cs.getName());
 			ExtCodeSetGroup group;
 			if( ! cs.getTrace().isPresent() ) {
 				group = groupbyParentName.get(cs.getName());
@@ -395,7 +413,6 @@ public class InspectLoadedRepository {
 					groupbyParentName.put(cs.getName(), group);					
 				}
 				group.mmParent = cs;
-				group.xlsParent = xlsxCs;
 				groupbyParentName.put(cs.getName(), group);
 			} else {
 				group = groupbyParentName.get(cs.getTrace().get().getName());
@@ -404,19 +421,23 @@ public class InspectLoadedRepository {
 					groupbyParentName.put(cs.getTrace().get().getName(), group);					
 				}
 				group.mmchildren.add(cs);
-				group.xlsChild = xlsxCs;
 			}				
 		}
 		
 		// Dump
+		SortedSet<MMCodeSet> notInXls = new TreeSet<>((a,b)->Collator.getInstance().compare(a.getName(), b.getName()));
 		for( Map.Entry<String,ExtCodeSetGroup> e : groupbyParentName.entrySet()) {
 			ExtCodeSetGroup group = e.getValue();
-			System.out.println( e.getKey() + " -> " + (group.xlsParent != null ? group.xlsParent.codeSetName : "null"));
+			String pname = group.mmParent != null ? group.mmParent.getName() : "!!!" + e.getKey() + "!!!";
+			ExternalCodeSetsXlsx.CodeSet pCs = ecXlsx.getCodeSet(pname);
+			System.out.println( pname + " -> " + (pCs != null ? pCs.codeSetName : "null"));
 			for( MMCodeSet cs : group.mmchildren ) {
-				System.out.println( "   " + cs.getName() + " -> " + (group.xlsChild != null ? group.xlsChild.codeSetName : "null"));				
+				ExternalCodeSetsXlsx.CodeSet cCs = ecXlsx.getCodeSet(cs.getName());				
+				System.out.println( "   " + cs.getName() + " -> " + (cCs != null ? cCs.codeSetName : "null"));				
 			}
 			System.out.println();
 		}
+		
 		
 	}
 
