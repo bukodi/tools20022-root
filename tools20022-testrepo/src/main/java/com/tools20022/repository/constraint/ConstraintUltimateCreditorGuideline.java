@@ -17,10 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
-import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.msgpart.CreditTransferTransactionInformation11;
 
 /**
@@ -29,41 +26,9 @@ import com.tools20022.repository.msgpart.CreditTransferTransactionInformation11;
 public class ConstraintUltimateCreditorGuideline {
 
 	/**
-	 * 
-	 <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
-	 * CreditTransferTransactionInformation11}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "UltimateCreditorGuideline"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "UltimateCreditor may only be present if different from Creditor."</li>
-	 * </ul>
-	 */
-	public static final MMConstraint<CreditTransferTransactionInformation11> forCreditTransferTransactionInformation11 = new MMConstraint<CreditTransferTransactionInformation11>() {
-		{
-			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
-			name = "UltimateCreditorGuideline";
-			definition = "UltimateCreditor may only be present if different from Creditor.";
-			owner_lazy = LazyReference.create(() -> CreditTransferTransactionInformation11.mmObject());
-		}
-
-		@Override
-		public void executeValidator(CreditTransferTransactionInformation11 obj) throws Exception {
-			checkCreditTransferTransactionInformation11(obj);
-		}
-	};
-
-	/**
 	 * UltimateCreditor may only be present if different from Creditor.
+	 * 
+	 * @see Object#class
 	 */
 	public static void checkCreditTransferTransactionInformation11(CreditTransferTransactionInformation11 obj) throws Exception {
 		throw new NotImplementedConstraintException();

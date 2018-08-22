@@ -12,6 +12,8 @@ import javax.tools.StandardLocation;
 import javax.xml.ws.Holder;
 
 import org.jboss.forge.roaster.Roaster;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.QualifiedName;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.AST;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTNode;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTVisitor;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Block;
@@ -19,6 +21,7 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.CompilationUnit;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ExpressionStatement;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.MethodInvocation;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Name;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.SimpleName;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
@@ -86,41 +89,93 @@ public class TestRoaster {
 		JavaClassSource javaSrc = Roaster.create(JavaClassSource.class);
 		javaSrc.setPackage("com.bukodi.test").setName("TestType");
 		MethodSource<JavaClassSource> method = javaSrc.addMethod().setName("fn1");
-		method.setBody("replaceThisBlock();");
+		method.setBody("com.pkg1.Type1<ParamType> obj;"
+				+ "replaceThisBlock();");
 		MethodDeclaration jdtMethodDecl = (MethodDeclaration) method.getInternal();	
-		
 		jdtMethodDecl.accept(new FindBlock());
 		
 		System.out.println(javaSrc);
 	}
 	
+	static String templateClass = ""
+			+ "";
+	
+	@Test
+	public void testBlockTemplate2() throws Exception {
+		JavaClassSource javaSrc = Roaster.create(JavaClassSource.class);
+		javaSrc.setPackage("com.bukodi.test").setName("TestType");
+		MethodSource<JavaClassSource> method = javaSrc.addMethod().setName("fn1");
+		method.setBody("com.pkg1.Type1<ParamType> obj;"
+				+ "replaceThisBlock();");
+		MethodDeclaration jdtMethodDecl = (MethodDeclaration) method.getInternal();	
+		jdtMethodDecl.accept(new FindBlock());
+		
+		System.out.println(javaSrc);
+	}
+	
+	@Test
+	public void testExprTemplate() throws Exception {
+		ExpressionTemplate et = new ExpressionTemplate("x = 1; y = 2; return x+y;");
+		System.out.println( et );
+	}
+	
+	
 	class ExpressionTemplate {
 		Block block;
-		ExpressionStatement astExpr = null;
-		
+				
 		ExpressionTemplate( String snippet ) {
 	         String stub = "public class Stub { public void method() {" + snippet + "} }";
 	         JavaClassSource temp = (JavaClassSource) Roaster.parse(stub);
 	         List<MethodSource<JavaClassSource>> methods = temp.getMethods();
 	         block = ((MethodDeclaration) methods.get(0).getInternal()).getBody();
+	         List stmts = block.statements();
+	         System.out.println(); 
 	         //block = (Block) ASTNode.copySubtree(method.getAST(), block);
 		}
 		
 		class Replacer {
 			
 		}
+		
+		
 				
 		
 	}
 	
 	class FindBlock extends ASTVisitor {
 
+//		@Override
+//		public boolean visit(MethodInvocation node) {
+//			SimpleName methodName = node.getName();
+//			if( "replaceThisBlock".equals(methodName.toString())) {
+//				SimpleName newName = node.getAST().newSimpleName("newName"); 
+//				node.setName( newName);
+//			}
+//			return super.visit(node);
+//		}
+
 		@Override
-		public boolean visit(MethodInvocation node) {
-			SimpleName methodName = node.getName();
+		public boolean visit(SimpleName node) {
+			String methodName = node.getIdentifier();
+//			if( "pkg1".equals(methodName.toString())) {
+//				node.setIdentifier("pkg2");
+//			}
 			if( "replaceThisBlock".equals(methodName.toString())) {
-				SimpleName newName = node.getAST().newSimpleName("newName"); 
-				node.setName( newName);
+				node.setIdentifier("newName");
+			}
+			return super.visit(node);
+		}
+		
+		
+		
+
+		@Override
+		public boolean visit(QualifiedName node) {
+			String fqn = node.getFullyQualifiedName();
+			if( "com.pkg1.Type1".equals(fqn) ) {
+				Name newPkgName = node.getAST().newName("com.newpkg");
+				node.setQualifier(newPkgName);
+				node.getName().setIdentifier("NewType");
 			}
 			return super.visit(node);
 		}

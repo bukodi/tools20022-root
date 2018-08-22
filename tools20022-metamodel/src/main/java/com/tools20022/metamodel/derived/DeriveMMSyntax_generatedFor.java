@@ -17,9 +17,11 @@
 
 package com.tools20022.metamodel.derived;
 
+import com.tools20022.metamodel.MMEncoding;
 import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMSyntax;
 import java.util.function.Function;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +34,10 @@ public class DeriveMMSyntax_generatedFor implements Function<MMSyntax, List<MMMe
 	 */
 	@Override
 	public List<MMMessageSet> apply(MMSyntax mmBean) {
-		throw new RuntimeException("Not implemented!");
+		List<MMMessageSet> ret = new ArrayList<>();
+		for( MMEncoding enc : mmBean.getPossibleEncodings() ) {
+			ret.addAll(enc.getMessageSet());
+		}
+		return ret;
 	}
 }

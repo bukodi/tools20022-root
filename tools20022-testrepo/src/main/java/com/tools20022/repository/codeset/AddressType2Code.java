@@ -40,20 +40,24 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * AddressTypeCode}</li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressType2Code#Postal
- * AddressType2Code.Postal}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressType2Code#POBox
- * AddressType2Code.POBox}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.AddressType2Code#Residential
- * AddressType2Code.Residential}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressType2Code#Business
- * AddressType2Code.Business}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressType2Code#MailTo
- * AddressType2Code.MailTo}</li>
+ * {@linkplain com.tools20022.repository.codeset.AddressType2Code#ADDR_Postal
+ * AddressType2Code.ADDR_Postal}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.AddressType2Code#DeliveryTo
- * AddressType2Code.DeliveryTo}</li>
+ * {@linkplain com.tools20022.repository.codeset.AddressType2Code#PBOX_POBox
+ * AddressType2Code.PBOX_POBox}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AddressType2Code#HOME_Residential
+ * AddressType2Code.HOME_Residential}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AddressType2Code#BIZZ_Business
+ * AddressType2Code.BIZZ_Business}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AddressType2Code#MLTO_MailTo
+ * AddressType2Code.MLTO_MailTo}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AddressType2Code#DLVY_DeliveryTo
+ * AddressType2Code.DLVY_DeliveryTo}</li>
  * </ul>
  * </li>
  * <li>
@@ -97,12 +101,12 @@ public class AddressType2Code extends MMCode {
 	 * name} = "Postal"</li>
 	 * </ul>
 	 */
-	public static final AddressType2Code Postal = new AddressType2Code() {
+	public static final AddressType2Code ADDR_Postal = new AddressType2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Postal";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
-			codeName = AddressTypeCode.Postal.getCodeName().orElse(name);
+			codeName = AddressTypeCode.ADDR_Postal.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -121,12 +125,12 @@ public class AddressType2Code extends MMCode {
 	 * name} = "POBox"</li>
 	 * </ul>
 	 */
-	public static final AddressType2Code POBox = new AddressType2Code() {
+	public static final AddressType2Code PBOX_POBox = new AddressType2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "POBox";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
-			codeName = AddressTypeCode.POBox.getCodeName().orElse(name);
+			codeName = AddressTypeCode.PBOX_POBox.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -145,12 +149,12 @@ public class AddressType2Code extends MMCode {
 	 * name} = "Residential"</li>
 	 * </ul>
 	 */
-	public static final AddressType2Code Residential = new AddressType2Code() {
+	public static final AddressType2Code HOME_Residential = new AddressType2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Residential";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
-			codeName = AddressTypeCode.Residential.getCodeName().orElse(name);
+			codeName = AddressTypeCode.HOME_Residential.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -169,12 +173,12 @@ public class AddressType2Code extends MMCode {
 	 * name} = "Business"</li>
 	 * </ul>
 	 */
-	public static final AddressType2Code Business = new AddressType2Code() {
+	public static final AddressType2Code BIZZ_Business = new AddressType2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Business";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
-			codeName = AddressTypeCode.Business.getCodeName().orElse(name);
+			codeName = AddressTypeCode.BIZZ_Business.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -193,12 +197,12 @@ public class AddressType2Code extends MMCode {
 	 * name} = "MailTo"</li>
 	 * </ul>
 	 */
-	public static final AddressType2Code MailTo = new AddressType2Code() {
+	public static final AddressType2Code MLTO_MailTo = new AddressType2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "MailTo";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
-			codeName = AddressTypeCode.MailTo.getCodeName().orElse(name);
+			codeName = AddressTypeCode.MLTO_MailTo.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -217,12 +221,12 @@ public class AddressType2Code extends MMCode {
 	 * name} = "DeliveryTo"</li>
 	 * </ul>
 	 */
-	public static final AddressType2Code DeliveryTo = new AddressType2Code() {
+	public static final AddressType2Code DLVY_DeliveryTo = new AddressType2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "DeliveryTo";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressType2Code.mmObject());
-			codeName = AddressTypeCode.DeliveryTo.getCodeName().orElse(name);
+			codeName = AddressTypeCode.DLVY_DeliveryTo.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, AddressType2Code> codesByName = new LinkedHashMap<>();
@@ -239,21 +243,21 @@ public class AddressType2Code extends MMCode {
 				name = "AddressType2Code";
 				definition = "Specifies the type of address.";
 				trace_lazy = LazyReference.create(() -> AddressTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressType2Code.Postal, com.tools20022.repository.codeset.AddressType2Code.POBox,
-						com.tools20022.repository.codeset.AddressType2Code.Residential, com.tools20022.repository.codeset.AddressType2Code.Business, com.tools20022.repository.codeset.AddressType2Code.MailTo,
-						com.tools20022.repository.codeset.AddressType2Code.DeliveryTo));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressType2Code.ADDR_Postal, com.tools20022.repository.codeset.AddressType2Code.PBOX_POBox,
+						com.tools20022.repository.codeset.AddressType2Code.HOME_Residential, com.tools20022.repository.codeset.AddressType2Code.BIZZ_Business, com.tools20022.repository.codeset.AddressType2Code.MLTO_MailTo,
+						com.tools20022.repository.codeset.AddressType2Code.DLVY_DeliveryTo));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Postal.getCodeName().get(), Postal);
-		codesByName.put(POBox.getCodeName().get(), POBox);
-		codesByName.put(Residential.getCodeName().get(), Residential);
-		codesByName.put(Business.getCodeName().get(), Business);
-		codesByName.put(MailTo.getCodeName().get(), MailTo);
-		codesByName.put(DeliveryTo.getCodeName().get(), DeliveryTo);
+		codesByName.put(ADDR_Postal.getCodeName().get(), ADDR_Postal);
+		codesByName.put(PBOX_POBox.getCodeName().get(), PBOX_POBox);
+		codesByName.put(HOME_Residential.getCodeName().get(), HOME_Residential);
+		codesByName.put(BIZZ_Business.getCodeName().get(), BIZZ_Business);
+		codesByName.put(MLTO_MailTo.getCodeName().get(), MLTO_MailTo);
+		codesByName.put(DLVY_DeliveryTo.getCodeName().get(), DLVY_DeliveryTo);
 	}
 
 	public static AddressType2Code valueOf(String codeName) {

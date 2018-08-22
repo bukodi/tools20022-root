@@ -43,14 +43,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingType1Code#Credit
- * RegulatoryReportingType1Code.Credit}</li>
+ * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingType1Code#CRED_Credit
+ * RegulatoryReportingType1Code.CRED_Credit}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingType1Code#Debit
- * RegulatoryReportingType1Code.Debit}</li>
+ * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingType1Code#DEBT_Debit
+ * RegulatoryReportingType1Code.DEBT_Debit}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingType1Code#Both
- * RegulatoryReportingType1Code.Both}</li>
+ * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingType1Code#BOTH_Both
+ * RegulatoryReportingType1Code.BOTH_Both}</li>
  * </ul>
  * </li>
  * <li>
@@ -96,12 +96,12 @@ public class RegulatoryReportingType1Code extends MMCode {
 	 * name} = "Credit"</li>
 	 * </ul>
 	 */
-	public static final RegulatoryReportingType1Code Credit = new RegulatoryReportingType1Code() {
+	public static final RegulatoryReportingType1Code CRED_Credit = new RegulatoryReportingType1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Credit";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject());
-			codeName = RegulatoryReportingTypeCode.Credit.getCodeName().orElse(name);
+			codeName = RegulatoryReportingTypeCode.CRED_Credit.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -120,12 +120,12 @@ public class RegulatoryReportingType1Code extends MMCode {
 	 * name} = "Debit"</li>
 	 * </ul>
 	 */
-	public static final RegulatoryReportingType1Code Debit = new RegulatoryReportingType1Code() {
+	public static final RegulatoryReportingType1Code DEBT_Debit = new RegulatoryReportingType1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Debit";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject());
-			codeName = RegulatoryReportingTypeCode.Debit.getCodeName().orElse(name);
+			codeName = RegulatoryReportingTypeCode.DEBT_Debit.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -144,12 +144,12 @@ public class RegulatoryReportingType1Code extends MMCode {
 	 * name} = "Both"</li>
 	 * </ul>
 	 */
-	public static final RegulatoryReportingType1Code Both = new RegulatoryReportingType1Code() {
+	public static final RegulatoryReportingType1Code BOTH_Both = new RegulatoryReportingType1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Both";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingType1Code.mmObject());
-			codeName = RegulatoryReportingTypeCode.Both.getCodeName().orElse(name);
+			codeName = RegulatoryReportingTypeCode.BOTH_Both.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, RegulatoryReportingType1Code> codesByName = new LinkedHashMap<>();
@@ -166,17 +166,17 @@ public class RegulatoryReportingType1Code extends MMCode {
 				name = "RegulatoryReportingType1Code";
 				definition = "Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.";
 				trace_lazy = LazyReference.create(() -> RegulatoryReportingTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingType1Code.Credit, com.tools20022.repository.codeset.RegulatoryReportingType1Code.Debit,
-						com.tools20022.repository.codeset.RegulatoryReportingType1Code.Both));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingType1Code.CRED_Credit, com.tools20022.repository.codeset.RegulatoryReportingType1Code.DEBT_Debit,
+						com.tools20022.repository.codeset.RegulatoryReportingType1Code.BOTH_Both));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Credit.getCodeName().get(), Credit);
-		codesByName.put(Debit.getCodeName().get(), Debit);
-		codesByName.put(Both.getCodeName().get(), Both);
+		codesByName.put(CRED_Credit.getCodeName().get(), CRED_Credit);
+		codesByName.put(DEBT_Debit.getCodeName().get(), DEBT_Debit);
+		codesByName.put(BOTH_Both.getCodeName().get(), BOTH_Both);
 	}
 
 	public static RegulatoryReportingType1Code valueOf(String codeName) {

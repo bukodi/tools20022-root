@@ -41,17 +41,17 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#InstructedAgent
- * SettlementMethod1Code.InstructedAgent}</li>
+ * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#INDA_InstructedAgent
+ * SettlementMethod1Code.INDA_InstructedAgent}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#InstructingAgent
- * SettlementMethod1Code.InstructingAgent}</li>
+ * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#INGA_InstructingAgent
+ * SettlementMethod1Code.INGA_InstructingAgent}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#CoverMethod
- * SettlementMethod1Code.CoverMethod}</li>
+ * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#COVE_CoverMethod
+ * SettlementMethod1Code.COVE_CoverMethod}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#ClearingSystem
- * SettlementMethod1Code.ClearingSystem}</li>
+ * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#CLRG_ClearingSystem
+ * SettlementMethod1Code.CLRG_ClearingSystem}</li>
  * </ul>
  * </li>
  * <li>
@@ -96,12 +96,12 @@ public class SettlementMethod1Code extends MMCode {
 	 * name} = "InstructedAgent"</li>
 	 * </ul>
 	 */
-	public static final SettlementMethod1Code InstructedAgent = new SettlementMethod1Code() {
+	public static final SettlementMethod1Code INDA_InstructedAgent = new SettlementMethod1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "InstructedAgent";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.SettlementMethod1Code.mmObject());
-			codeName = SettlementMethodCode.InstructedAgent.getCodeName().orElse(name);
+			codeName = SettlementMethodCode.INDA_InstructedAgent.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -120,12 +120,12 @@ public class SettlementMethod1Code extends MMCode {
 	 * name} = "InstructingAgent"</li>
 	 * </ul>
 	 */
-	public static final SettlementMethod1Code InstructingAgent = new SettlementMethod1Code() {
+	public static final SettlementMethod1Code INGA_InstructingAgent = new SettlementMethod1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "InstructingAgent";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.SettlementMethod1Code.mmObject());
-			codeName = SettlementMethodCode.InstructingAgent.getCodeName().orElse(name);
+			codeName = SettlementMethodCode.INGA_InstructingAgent.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -144,12 +144,12 @@ public class SettlementMethod1Code extends MMCode {
 	 * name} = "CoverMethod"</li>
 	 * </ul>
 	 */
-	public static final SettlementMethod1Code CoverMethod = new SettlementMethod1Code() {
+	public static final SettlementMethod1Code COVE_CoverMethod = new SettlementMethod1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CoverMethod";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.SettlementMethod1Code.mmObject());
-			codeName = SettlementMethodCode.CoverMethod.getCodeName().orElse(name);
+			codeName = SettlementMethodCode.COVE_CoverMethod.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -168,12 +168,12 @@ public class SettlementMethod1Code extends MMCode {
 	 * name} = "ClearingSystem"</li>
 	 * </ul>
 	 */
-	public static final SettlementMethod1Code ClearingSystem = new SettlementMethod1Code() {
+	public static final SettlementMethod1Code CLRG_ClearingSystem = new SettlementMethod1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "ClearingSystem";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.SettlementMethod1Code.mmObject());
-			codeName = SettlementMethodCode.ClearingSystem.getCodeName().orElse(name);
+			codeName = SettlementMethodCode.CLRG_ClearingSystem.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, SettlementMethod1Code> codesByName = new LinkedHashMap<>();
@@ -190,18 +190,18 @@ public class SettlementMethod1Code extends MMCode {
 				name = "SettlementMethod1Code";
 				definition = "Specifies the method used to settle the credit transfer instruction.";
 				trace_lazy = LazyReference.create(() -> SettlementMethodCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.SettlementMethod1Code.InstructedAgent, com.tools20022.repository.codeset.SettlementMethod1Code.InstructingAgent,
-						com.tools20022.repository.codeset.SettlementMethod1Code.CoverMethod, com.tools20022.repository.codeset.SettlementMethod1Code.ClearingSystem));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.SettlementMethod1Code.INDA_InstructedAgent, com.tools20022.repository.codeset.SettlementMethod1Code.INGA_InstructingAgent,
+						com.tools20022.repository.codeset.SettlementMethod1Code.COVE_CoverMethod, com.tools20022.repository.codeset.SettlementMethod1Code.CLRG_ClearingSystem));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(InstructedAgent.getCodeName().get(), InstructedAgent);
-		codesByName.put(InstructingAgent.getCodeName().get(), InstructingAgent);
-		codesByName.put(CoverMethod.getCodeName().get(), CoverMethod);
-		codesByName.put(ClearingSystem.getCodeName().get(), ClearingSystem);
+		codesByName.put(INDA_InstructedAgent.getCodeName().get(), INDA_InstructedAgent);
+		codesByName.put(INGA_InstructingAgent.getCodeName().get(), INGA_InstructingAgent);
+		codesByName.put(COVE_CoverMethod.getCodeName().get(), COVE_CoverMethod);
+		codesByName.put(CLRG_ClearingSystem.getCodeName().get(), CLRG_ClearingSystem);
 	}
 
 	public static SettlementMethod1Code valueOf(String codeName) {

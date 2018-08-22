@@ -37,14 +37,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <ul>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#Urgent
- * PriorityCode.Urgent}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#High
- * PriorityCode.High}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#Normal
- * PriorityCode.Normal}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#Low
- * PriorityCode.Low}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#URGT_Urgent
+ * PriorityCode.URGT_Urgent}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#HIGH_High
+ * PriorityCode.HIGH_High}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#NORM_Normal
+ * PriorityCode.NORM_Normal}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#LOWW_Low
+ * PriorityCode.LOWW_Low}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -101,7 +101,7 @@ public class PriorityCode extends MMCode {
 	 * definition} = "Priority level is urgent (highest priority possible)"</li>
 	 * </ul>
 	 */
-	public static final PriorityCode Urgent = new PriorityCode() {
+	public static final PriorityCode URGT_Urgent = new PriorityCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Urgent";
@@ -130,7 +130,7 @@ public class PriorityCode extends MMCode {
 	 * definition} = "Priority level is high."</li>
 	 * </ul>
 	 */
-	public static final PriorityCode High = new PriorityCode() {
+	public static final PriorityCode HIGH_High = new PriorityCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "High";
@@ -159,7 +159,7 @@ public class PriorityCode extends MMCode {
 	 * definition} = "Priority level is normal."</li>
 	 * </ul>
 	 */
-	public static final PriorityCode Normal = new PriorityCode() {
+	public static final PriorityCode NORM_Normal = new PriorityCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Normal";
@@ -188,7 +188,7 @@ public class PriorityCode extends MMCode {
 	 * definition} = "Priority level is low."</li>
 	 * </ul>
 	 */
-	public static final PriorityCode Low = new PriorityCode() {
+	public static final PriorityCode LOWW_Low = new PriorityCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Low";
@@ -211,18 +211,18 @@ public class PriorityCode extends MMCode {
 				name = "PriorityCode";
 				definition = "Specifies the priority level of an event.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(Priority2Code.mmObject(), Priority3Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.PriorityCode.Urgent, com.tools20022.repository.codeset.PriorityCode.High, com.tools20022.repository.codeset.PriorityCode.Normal,
-						com.tools20022.repository.codeset.PriorityCode.Low));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.PriorityCode.URGT_Urgent, com.tools20022.repository.codeset.PriorityCode.HIGH_High,
+						com.tools20022.repository.codeset.PriorityCode.NORM_Normal, com.tools20022.repository.codeset.PriorityCode.LOWW_Low));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Urgent.getCodeName().get(), Urgent);
-		codesByName.put(High.getCodeName().get(), High);
-		codesByName.put(Normal.getCodeName().get(), Normal);
-		codesByName.put(Low.getCodeName().get(), Low);
+		codesByName.put(URGT_Urgent.getCodeName().get(), URGT_Urgent);
+		codesByName.put(HIGH_High.getCodeName().get(), HIGH_High);
+		codesByName.put(NORM_Normal.getCodeName().get(), NORM_Normal);
+		codesByName.put(LOWW_Low.getCodeName().get(), LOWW_Low);
 	}
 
 	public static PriorityCode valueOf(String codeName) {

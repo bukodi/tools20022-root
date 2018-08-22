@@ -20,8 +20,10 @@ package com.tools20022.repository.codeset;
 import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.CountryCode.InternalXmlAdapter;
+import com.tools20022.repository.constraint.ConstraintCountry;
 import com.tools20022.repository.GeneratedRepository;
 import java.lang.String;
 import java.util.Arrays;
@@ -47,9 +49,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
  * constraint} =
  * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintCountry#forCountryCode
- * ConstraintCountry.forCountryCode}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.CountryCode#Country
+ * CountryCode.Country}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
@@ -74,6 +75,40 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class CountryCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
+	/**
+	 * The code is checked against the list of country names obtained from the
+	 * United Nations (ISO 3166, Alpha-2 code).
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.CountryCode CountryCode}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "Country"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "The code is checked against the list of country names obtained from the United Nations (ISO 3166, Alpha-2 code)."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.codeset.CountryCode> Country = new MMConstraint<com.tools20022.repository.codeset.CountryCode>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "Country";
+			definition = "The code is checked against the list of country names obtained from the United Nations (ISO 3166, Alpha-2 code).";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CountryCode.mmObject());
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.codeset.CountryCode obj) throws Exception {
+			ConstraintCountry.checkCountryCode(obj);
+		}
+	};
 	final static private LinkedHashMap<String, CountryCode> codesByName = new LinkedHashMap<>();
 
 	protected CountryCode() {
@@ -83,8 +118,8 @@ public class CountryCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintCountry.forCountryCode));
 				example = Arrays.asList("BE");
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CountryCode.Country));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CountryCode";
 				definition = "Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code).";

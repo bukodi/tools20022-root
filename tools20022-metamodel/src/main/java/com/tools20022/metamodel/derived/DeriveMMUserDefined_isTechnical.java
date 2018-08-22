@@ -31,6 +31,6 @@ public class DeriveMMUserDefined_isTechnical implements Function<MMUserDefined, 
 	 */
 	@Override
 	public Boolean apply(MMUserDefined mmBean) {
-		throw new RuntimeException("Not implemented!");
+		return ! mmBean.getTrace().isPresent();
 	}
 }

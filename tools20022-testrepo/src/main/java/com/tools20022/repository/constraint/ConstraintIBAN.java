@@ -17,10 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
-import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.IBAN2007Identifier;
 
 /**
@@ -30,43 +27,10 @@ import com.tools20022.repository.datatype.IBAN2007Identifier;
 public class ConstraintIBAN {
 
 	/**
-	 * 
-	 <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.datatype.IBAN2007Identifier
-	 * IBAN2007Identifier}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "IBAN"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN."
-	 * </li>
-	 * </ul>
-	 */
-	public static final MMConstraint<IBAN2007Identifier> forIBAN2007Identifier = new MMConstraint<IBAN2007Identifier>() {
-		{
-			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
-			name = "IBAN";
-			definition = "A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN.";
-			owner_lazy = LazyReference.create(() -> IBAN2007Identifier.mmObject());
-		}
-
-		@Override
-		public void executeValidator(IBAN2007Identifier obj) throws Exception {
-			checkIBAN2007Identifier(obj);
-		}
-	};
-
-	/**
 	 * A valid IBAN consists of all three of the following components: Country
 	 * Code, check digits and BBAN.
+	 * 
+	 * @see Object#class
 	 */
 	public static void checkIBAN2007Identifier(IBAN2007Identifier obj) throws Exception {
 		throw new NotImplementedConstraintException();

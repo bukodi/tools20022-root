@@ -17,10 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
-import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
 
 /**
@@ -31,51 +28,13 @@ import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
 public class ConstraintTotalInterbankSettlementAmountAndSumRule {
 
 	/**
-	 * 
-	 <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
-	 * expression} =
-	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/GroupHeader/TotalInterbankSettlementAmount&lt;/leftOperand&gt;&lt;rightOperand&gt;sum of /CreditTransferTransactionInformation/InterbankSettlementAmount&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/GroupHeader/TotalInterbankSettlementAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
-	 * </li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "TotalInterbankSettlementAmountAndSumRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If GroupHeader/TotalInterbankSettlementAmount is present, then it must equal the sum of all occurrences of CreditTransferTransactionInformation/InterbankSettlementAmount."
-	 * </li>
-	 * </ul>
-	 */
-	public static final MMConstraint<FIToFICustomerCreditTransferV02> for_pacs_FIToFICustomerCreditTransferV02 = new MMConstraint<FIToFICustomerCreditTransferV02>() {
-		{
-			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
-			name = "TotalInterbankSettlementAmountAndSumRule";
-			definition = "If GroupHeader/TotalInterbankSettlementAmount is present, then it must equal the sum of all occurrences of CreditTransferTransactionInformation/InterbankSettlementAmount.";
-			owner_lazy = LazyReference.create(() -> FIToFICustomerCreditTransferV02.mmObject());
-			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"EqualToValue\"><leftOperand>/GroupHeader/TotalInterbankSettlementAmount</leftOperand><rightOperand>sum of /CreditTransferTransactionInformation/InterbankSettlementAmount</rightOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/GroupHeader/TotalInterbankSettlementAmount</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
-		}
-
-		@Override
-		public void executeValidator(FIToFICustomerCreditTransferV02 obj) throws Exception {
-			check_pacs_FIToFICustomerCreditTransferV02(obj);
-		}
-	};
-
-	/**
 	 * If GroupHeader/TotalInterbankSettlementAmount is present, then it must
 	 * equal the sum of all occurrences of
 	 * CreditTransferTransactionInformation/InterbankSettlementAmount.
+	 * 
+	 * @see Object#class
 	 */
-	public static void check_pacs_FIToFICustomerCreditTransferV02(FIToFICustomerCreditTransferV02 obj) throws Exception {
+	public static void checkFIToFICustomerCreditTransferV02(FIToFICustomerCreditTransferV02 obj) throws Exception {
 		throw new NotImplementedConstraintException();
 	}
 }

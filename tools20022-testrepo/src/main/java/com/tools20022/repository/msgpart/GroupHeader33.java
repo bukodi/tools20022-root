@@ -18,11 +18,9 @@
 package com.tools20022.repository.msgpart;
 
 import com.tools20022.core.repo.LazyReference;
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import com.tools20022.metamodel.MMMessageAttribute;
-import com.tools20022.metamodel.MMMessageComponent;
-import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.metamodel.*;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
+import com.tools20022.repository.constraint.ConstraintTotalInterbankSettlementAmountAndDateRule;
 import com.tools20022.repository.datatype.*;
 import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4;
@@ -99,8 +97,8 @@ import javax.xml.bind.annotation.XmlType;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintTotalInterbankSettlementAmountAndDateRule#forGroupHeader33
- * ConstraintTotalInterbankSettlementAmountAndDateRule.forGroupHeader33}</li>
+ * {@linkplain com.tools20022.repository.msgpart.GroupHeader33#TotalInterbankSettlementAmountAndDateRule
+ * GroupHeader33.TotalInterbankSettlementAmountAndDateRule}</li>
  * </ul>
  * </li>
  * <li>
@@ -719,6 +717,46 @@ public class GroupHeader33 {
 			obj.setInstructedAgent(value.orElse(null));
 		}
 	};
+	/**
+	 * If TotalInterbankSettlementAmount is present, then
+	 * InterbankSettlementDate must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.GroupHeader33
+	 * GroupHeader33}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InterbankSettlementDate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/TotalInterbankSettlementAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "TotalInterbankSettlementAmountAndDateRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If TotalInterbankSettlementAmount is present, then InterbankSettlementDate must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.GroupHeader33> TotalInterbankSettlementAmountAndDateRule = new MMConstraint<com.tools20022.repository.msgpart.GroupHeader33>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "TotalInterbankSettlementAmountAndDateRule";
+			definition = "If TotalInterbankSettlementAmount is present, then InterbankSettlementDate must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.GroupHeader33.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/InterbankSettlementDate</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/TotalInterbankSettlementAmount</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.GroupHeader33 obj) throws Exception {
+			ConstraintTotalInterbankSettlementAmountAndDateRule.checkGroupHeader33(obj);
+		}
+	};
 
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
@@ -730,7 +768,7 @@ public class GroupHeader33 {
 						com.tools20022.repository.msgpart.GroupHeader33.mmInstructedAgent));
 				messageBuildingBlock_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmGroupHeader));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintTotalInterbankSettlementAmountAndDateRule.forGroupHeader33));
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.GroupHeader33.TotalInterbankSettlementAmountAndDateRule));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "GroupHeader33";
 				definition = "Set of characteristics shared by all individual transactions included in the message.";

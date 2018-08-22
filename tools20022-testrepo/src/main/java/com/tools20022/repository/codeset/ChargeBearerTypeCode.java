@@ -39,17 +39,17 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#BorneByDebtor
- * ChargeBearerTypeCode.BorneByDebtor}</li>
+ * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#DEBT_BorneByDebtor
+ * ChargeBearerTypeCode.DEBT_BorneByDebtor}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#BorneByCreditor
- * ChargeBearerTypeCode.BorneByCreditor}</li>
+ * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#CRED_BorneByCreditor
+ * ChargeBearerTypeCode.CRED_BorneByCreditor}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#Shared
- * ChargeBearerTypeCode.Shared}</li>
+ * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#SHAR_Shared
+ * ChargeBearerTypeCode.SHAR_Shared}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#FollowingServiceLevel
- * ChargeBearerTypeCode.FollowingServiceLevel}</li>
+ * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#SLEV_FollowingServiceLevel
+ * ChargeBearerTypeCode.SLEV_FollowingServiceLevel}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -107,7 +107,7 @@ public class ChargeBearerTypeCode extends MMCode {
 	 * definition} = "All transaction charges are to be borne by the debtor."</li>
 	 * </ul>
 	 */
-	public static final ChargeBearerTypeCode BorneByDebtor = new ChargeBearerTypeCode() {
+	public static final ChargeBearerTypeCode DEBT_BorneByDebtor = new ChargeBearerTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "BorneByDebtor";
@@ -137,7 +137,7 @@ public class ChargeBearerTypeCode extends MMCode {
 	 * definition} = "All transaction charges are to be borne by the creditor."</li>
 	 * </ul>
 	 */
-	public static final ChargeBearerTypeCode BorneByCreditor = new ChargeBearerTypeCode() {
+	public static final ChargeBearerTypeCode CRED_BorneByCreditor = new ChargeBearerTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "BorneByCreditor";
@@ -174,7 +174,7 @@ public class ChargeBearerTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final ChargeBearerTypeCode Shared = new ChargeBearerTypeCode() {
+	public static final ChargeBearerTypeCode SHAR_Shared = new ChargeBearerTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Shared";
@@ -207,7 +207,7 @@ public class ChargeBearerTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final ChargeBearerTypeCode FollowingServiceLevel = new ChargeBearerTypeCode() {
+	public static final ChargeBearerTypeCode SLEV_FollowingServiceLevel = new ChargeBearerTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "FollowingServiceLevel";
@@ -230,18 +230,18 @@ public class ChargeBearerTypeCode extends MMCode {
 				name = "ChargeBearerTypeCode";
 				definition = "Specifies which party(ies) will pay charges due for processing of the instruction.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(ChargeBearerType1Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ChargeBearerTypeCode.BorneByDebtor, com.tools20022.repository.codeset.ChargeBearerTypeCode.BorneByCreditor,
-						com.tools20022.repository.codeset.ChargeBearerTypeCode.Shared, com.tools20022.repository.codeset.ChargeBearerTypeCode.FollowingServiceLevel));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ChargeBearerTypeCode.DEBT_BorneByDebtor, com.tools20022.repository.codeset.ChargeBearerTypeCode.CRED_BorneByCreditor,
+						com.tools20022.repository.codeset.ChargeBearerTypeCode.SHAR_Shared, com.tools20022.repository.codeset.ChargeBearerTypeCode.SLEV_FollowingServiceLevel));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(BorneByDebtor.getCodeName().get(), BorneByDebtor);
-		codesByName.put(BorneByCreditor.getCodeName().get(), BorneByCreditor);
-		codesByName.put(Shared.getCodeName().get(), Shared);
-		codesByName.put(FollowingServiceLevel.getCodeName().get(), FollowingServiceLevel);
+		codesByName.put(DEBT_BorneByDebtor.getCodeName().get(), DEBT_BorneByDebtor);
+		codesByName.put(CRED_BorneByCreditor.getCodeName().get(), CRED_BorneByCreditor);
+		codesByName.put(SHAR_Shared.getCodeName().get(), SHAR_Shared);
+		codesByName.put(SLEV_FollowingServiceLevel.getCodeName().get(), SLEV_FollowingServiceLevel);
 	}
 
 	public static ChargeBearerTypeCode valueOf(String codeName) {

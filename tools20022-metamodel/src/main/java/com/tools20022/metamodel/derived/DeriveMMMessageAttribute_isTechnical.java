@@ -32,6 +32,6 @@ public class DeriveMMMessageAttribute_isTechnical implements Function<MMMessageA
 	 */
 	@Override
 	public Boolean apply(MMMessageAttribute mmBean) {
-		throw new RuntimeException("Not implemented!");
+		return !(mmBean.getBusinessComponentTrace().isPresent() || mmBean.getBusinessElementTrace().isPresent() );  
 	}
 }

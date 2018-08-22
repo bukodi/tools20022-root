@@ -38,18 +38,22 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.AddressTypeCode#Residential
- * AddressTypeCode.Residential}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressTypeCode#Business
- * AddressTypeCode.Business}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressTypeCode#Postal
- * AddressTypeCode.Postal}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressTypeCode#POBox
- * AddressTypeCode.POBox}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressTypeCode#MailTo
- * AddressTypeCode.MailTo}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AddressTypeCode#DeliveryTo
- * AddressTypeCode.DeliveryTo}</li>
+ * {@linkplain com.tools20022.repository.codeset.AddressTypeCode#HOME_Residential
+ * AddressTypeCode.HOME_Residential}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AddressTypeCode#BIZZ_Business
+ * AddressTypeCode.BIZZ_Business}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AddressTypeCode#ADDR_Postal
+ * AddressTypeCode.ADDR_Postal}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.AddressTypeCode#PBOX_POBox
+ * AddressTypeCode.PBOX_POBox}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AddressTypeCode#MLTO_MailTo
+ * AddressTypeCode.MLTO_MailTo}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AddressTypeCode#DLVY_DeliveryTo
+ * AddressTypeCode.DLVY_DeliveryTo}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -105,7 +109,7 @@ public class AddressTypeCode extends MMCode {
 	 * definition} = "Address is the home address."</li>
 	 * </ul>
 	 */
-	public static final AddressTypeCode Residential = new AddressTypeCode() {
+	public static final AddressTypeCode HOME_Residential = new AddressTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Residential";
@@ -135,7 +139,7 @@ public class AddressTypeCode extends MMCode {
 	 * definition} = "Address is the business address."</li>
 	 * </ul>
 	 */
-	public static final AddressTypeCode Business = new AddressTypeCode() {
+	public static final AddressTypeCode BIZZ_Business = new AddressTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Business";
@@ -165,7 +169,7 @@ public class AddressTypeCode extends MMCode {
 	 * definition} = "Address is the complete postal address."</li>
 	 * </ul>
 	 */
-	public static final AddressTypeCode Postal = new AddressTypeCode() {
+	public static final AddressTypeCode ADDR_Postal = new AddressTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Postal";
@@ -195,7 +199,7 @@ public class AddressTypeCode extends MMCode {
 	 * definition} = "Address is a postal office (PO) box."</li>
 	 * </ul>
 	 */
-	public static final AddressTypeCode POBox = new AddressTypeCode() {
+	public static final AddressTypeCode PBOX_POBox = new AddressTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "POBox";
@@ -225,7 +229,7 @@ public class AddressTypeCode extends MMCode {
 	 * definition} = "Address is the address to which mail is sent."</li>
 	 * </ul>
 	 */
-	public static final AddressTypeCode MailTo = new AddressTypeCode() {
+	public static final AddressTypeCode MLTO_MailTo = new AddressTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MailTo";
@@ -256,7 +260,7 @@ public class AddressTypeCode extends MMCode {
 	 * "Address is the address to which delivery is to take place."</li>
 	 * </ul>
 	 */
-	public static final AddressTypeCode DeliveryTo = new AddressTypeCode() {
+	public static final AddressTypeCode DLVY_DeliveryTo = new AddressTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "DeliveryTo";
@@ -279,21 +283,21 @@ public class AddressTypeCode extends MMCode {
 				name = "AddressTypeCode";
 				definition = "Specifies the type of address.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(AddressType2Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressTypeCode.Residential, com.tools20022.repository.codeset.AddressTypeCode.Business,
-						com.tools20022.repository.codeset.AddressTypeCode.Postal, com.tools20022.repository.codeset.AddressTypeCode.POBox, com.tools20022.repository.codeset.AddressTypeCode.MailTo,
-						com.tools20022.repository.codeset.AddressTypeCode.DeliveryTo));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressTypeCode.HOME_Residential, com.tools20022.repository.codeset.AddressTypeCode.BIZZ_Business,
+						com.tools20022.repository.codeset.AddressTypeCode.ADDR_Postal, com.tools20022.repository.codeset.AddressTypeCode.PBOX_POBox, com.tools20022.repository.codeset.AddressTypeCode.MLTO_MailTo,
+						com.tools20022.repository.codeset.AddressTypeCode.DLVY_DeliveryTo));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Residential.getCodeName().get(), Residential);
-		codesByName.put(Business.getCodeName().get(), Business);
-		codesByName.put(Postal.getCodeName().get(), Postal);
-		codesByName.put(POBox.getCodeName().get(), POBox);
-		codesByName.put(MailTo.getCodeName().get(), MailTo);
-		codesByName.put(DeliveryTo.getCodeName().get(), DeliveryTo);
+		codesByName.put(HOME_Residential.getCodeName().get(), HOME_Residential);
+		codesByName.put(BIZZ_Business.getCodeName().get(), BIZZ_Business);
+		codesByName.put(ADDR_Postal.getCodeName().get(), ADDR_Postal);
+		codesByName.put(PBOX_POBox.getCodeName().get(), PBOX_POBox);
+		codesByName.put(MLTO_MailTo.getCodeName().get(), MLTO_MailTo);
+		codesByName.put(DLVY_DeliveryTo.getCodeName().get(), DLVY_DeliveryTo);
 	}
 
 	public static AddressTypeCode valueOf(String codeName) {

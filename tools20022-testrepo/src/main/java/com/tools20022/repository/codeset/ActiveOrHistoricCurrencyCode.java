@@ -20,8 +20,10 @@ package com.tools20022.repository.codeset;
 import com.tools20022.core.repo.LazyReference;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
+import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode.InternalXmlAdapter;
+import com.tools20022.repository.constraint.ConstraintActiveOrHistoricCurrency;
 import com.tools20022.repository.GeneratedRepository;
 import java.lang.String;
 import java.util.Arrays;
@@ -49,8 +51,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintActiveOrHistoricCurrency#forActiveOrHistoricCurrencyCode
- * ConstraintActiveOrHistoricCurrency.forActiveOrHistoricCurrencyCode}</li>
+ * {@linkplain com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode#ActiveOrHistoricCurrency
+ * ActiveOrHistoricCurrencyCode.ActiveOrHistoricCurrency}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
@@ -75,6 +77,44 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class ActiveOrHistoricCurrencyCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
+	/**
+	 * The Currency Code must be registered, or have already been registered.
+	 * Valid active or historic currency codes are registered with the ISO 4217
+	 * Maintenance Agency, consist of three (3) contiguous letters, and may be
+	 * or not be withdrawn on the day the message containing the Currency is
+	 * exchanged.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode
+	 * ActiveOrHistoricCurrencyCode}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ActiveOrHistoricCurrency"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "The Currency Code must be registered, or have already been registered. Valid active or historic currency codes are registered with the ISO 4217 Maintenance Agency, consist of three (3) contiguous letters, and may be or not be withdrawn on the day the message containing the Currency is exchanged."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode> ActiveOrHistoricCurrency = new MMConstraint<com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "ActiveOrHistoricCurrency";
+			definition = "The Currency Code must be registered, or have already been registered. Valid active or historic currency codes are registered with the ISO 4217 Maintenance Agency, consist of three (3) contiguous letters, and may be or not be withdrawn on the day the message containing the Currency is exchanged.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode.mmObject());
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode obj) throws Exception {
+			ConstraintActiveOrHistoricCurrency.checkActiveOrHistoricCurrencyCode(obj);
+		}
+	};
 	final static private LinkedHashMap<String, ActiveOrHistoricCurrencyCode> codesByName = new LinkedHashMap<>();
 
 	protected ActiveOrHistoricCurrencyCode() {
@@ -84,8 +124,8 @@ public class ActiveOrHistoricCurrencyCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintActiveOrHistoricCurrency.forActiveOrHistoricCurrencyCode));
 				example = Arrays.asList("USD");
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode.ActiveOrHistoricCurrency));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ActiveOrHistoricCurrencyCode";
 				definition = "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".";

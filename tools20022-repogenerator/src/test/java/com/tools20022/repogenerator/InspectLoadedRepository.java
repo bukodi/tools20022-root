@@ -23,6 +23,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -45,13 +46,17 @@ import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMDoclet;
+import com.tools20022.metamodel.MMEncoding;
 import com.tools20022.metamodel.MMExternalSchema;
+import com.tools20022.metamodel.MMISO15022MessageSet;
+import com.tools20022.metamodel.MMIndustryMessageSet;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
+import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.metamodel.MMRepository;
@@ -59,6 +64,8 @@ import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMRepositoryType;
 import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMSemanticMarkupElement;
+import com.tools20022.metamodel.MMSyntax;
+import com.tools20022.metamodel.MMSyntaxMessageScheme;
 import com.tools20022.metamodel.MMUserDefined;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -118,7 +125,7 @@ public class InspectLoadedRepository {
 		});
 		;
 
-		for (MMDataType mmDataType : repo.listObjects(MMDataType.class).collect(Collectors.toList())) {
+		for (MMDataType mmDataType : repo.getObjects(MMDataType.class)) {
 			MetamodelType<? extends MMModelEntity> mmType = mmDataType.getMetamodel();
 			dataTypesBy.computeIfAbsent(mmType, x -> new ArrayList<>()).add(mmDataType);
 		}
@@ -156,8 +163,8 @@ public class InspectLoadedRepository {
 	@Test
 	// @Ignore
 	public void codeSetRelations() throws Exception {
-		for (MMCodeSet mmCodeSet : repo.listObjects(MMCodeSet.class).filter(cs -> cs.getName().startsWith("Repurchase"))
-				.collect(Collectors.toList())) {
+		for (MMCodeSet mmCodeSet : repo.getObjects(MMCodeSet.class).stream()
+				.filter(cs -> cs.getName().startsWith("Repurchase")).collect(Collectors.toList())) {
 			System.out.println(mmCodeSet.getName() + " derivation: "
 					+ mmCodeSet.getDerivation().stream().map(cs -> cs.getName()).collect(Collectors.joining(", "))
 					+ "");
@@ -173,15 +180,15 @@ public class InspectLoadedRepository {
 	@Test
 	public void registrationStatus() throws Exception {
 
-		Map<MMRegistrationStatus, List<MMRepositoryConcept>> byRegStatus = repo.listObjects(MMRepositoryConcept.class)
-				.collect(Collectors.groupingBy(rc -> rc.getRegistrationStatus()));
+		Map<MMRegistrationStatus, List<MMRepositoryConcept>> byRegStatus = repo.getObjects(MMRepositoryConcept.class)
+				.stream().collect(Collectors.groupingBy(rc -> rc.getRegistrationStatus()));
 
 		for (Entry<MMRegistrationStatus, List<MMRepositoryConcept>> e : byRegStatus.entrySet()) {
 			System.out.println(e.getKey() + " : " + e.getValue().size());
 		}
 
 		Date epoch = new Date(0L);
-		Map<Date, List<MMRepositoryConcept>> byRemovalDate = repo.listObjects(MMRepositoryConcept.class)
+		Map<Date, List<MMRepositoryConcept>> byRemovalDate = repo.getObjects(MMRepositoryConcept.class).stream()
 				.collect(Collectors.groupingBy(rc -> rc.getRemovalDate().orElse(epoch)));
 		for (Entry<Date, List<MMRepositoryConcept>> e : byRemovalDate.entrySet()) {
 			System.out.println(e.getKey() + " : " + e.getValue().size());
@@ -197,7 +204,7 @@ public class InspectLoadedRepository {
 		int countAllDoclet = 0;
 		int countMarkups = 0;
 		int countAllMarkups = 0;
-		for (MMRepositoryConcept mmRC : repo.listObjects(MMRepositoryConcept.class).collect(Collectors.toList())) {
+		for (MMRepositoryConcept mmRC : repo.getObjects(MMRepositoryConcept.class)) {
 			countRC++;
 			if (mmRC.getDefinition().isPresent())
 				countDef++;
@@ -244,7 +251,7 @@ public class InspectLoadedRepository {
 	@Test
 	public void semanticMarkups() throws Exception {
 		Map<String, Set<MMSemanticMarkup>> markupsByType = new LinkedHashMap<>();
-		for (MMRepositoryConcept mmRC : repo.listObjects(MMRepositoryConcept.class).collect(Collectors.toList())) {
+		for (MMRepositoryConcept mmRC : repo.getObjects(MMRepositoryConcept.class)) {
 			if (mmRC.getSemanticMarkup().isEmpty())
 				continue;
 			List<MMSemanticMarkup> markups = mmRC.getSemanticMarkup();
@@ -367,129 +374,227 @@ public class InspectLoadedRepository {
 
 	static class ExtCodeSetGroup {
 		MMCodeSet mmParent;
-		SortedSet<MMCodeSet> mmchildren = new TreeSet<>((a,b)->Collator.getInstance().compare(a.getName(), b.getName()));
+		SortedSet<MMCodeSet> mmchildren = new TreeSet<>(
+				(a, b) -> Collator.getInstance().compare(a.getName(), b.getName()));
 	}
+
 	@Test
 	public void codeSetsEmptyNotInXls() throws Exception {
 
-		List<? extends MMCodeSet> allCodesets = repo.listObjects(MMCodeSet.class).collect(Collectors.toList());
-		SortedSet<MMCodeSet> emptyCodeSets = new TreeSet<>((a,b)->Collator.getInstance().compare(a.getName(), b.getName()));
-		for( MMCodeSet cs : allCodesets ) {
-			if( ! cs.getCode().isEmpty() )
+		List<? extends MMCodeSet> allCodesets = repo.getObjects(MMCodeSet.class);
+		SortedSet<MMCodeSet> emptyCodeSets = new TreeSet<>(
+				(a, b) -> Collator.getInstance().compare(a.getName(), b.getName()));
+		for (MMCodeSet cs : allCodesets) {
+			if (!cs.getCode().isEmpty())
 				continue;
-			if( cs.getTrace().isPresent() && !cs.getTrace().get().getCode().isEmpty() )
+			if (cs.getTrace().isPresent() && !cs.getTrace().get().getCode().isEmpty())
 				continue;
-			if( cs.getName().startsWith("External"))
+			if (cs.getName().startsWith("External"))
 				continue;
 			emptyCodeSets.add(cs);
 		}
-		
-		for(MMCodeSet cs : emptyCodeSets ) {
-			System.out.println( cs.getName() +" :");
-			System.out.println( cs.getDefinition().orElse("-no doc-"));
+
+		for (MMCodeSet cs : emptyCodeSets) {
+			cs.getTrace().ifPresent(p -> {
+				System.out.print("(" + p.getName() + ") -> ");
+			});
+			System.out.print(cs.getName() + " :");
+			if (!cs.getDerivation().isEmpty()) {
+				System.out.print(" -> (" + cs.getDerivation().size() + " codesets )");
+			}
+
+			System.out.println();
+			System.out.println(cs.getDefinition().orElse("-no doc-"));
 			System.out.println();
 		}
 	}
-	
+
 	@Test
 	public void codeSetsExternal() throws Exception {
 
-		InputStream is = ExternalCodeSetsXlsx.class.getResourceAsStream("/externalcodes/ExternalCodeSets_1Q2018_May2018_v1.xlsx");
+		InputStream is = ExternalCodeSetsXlsx.class
+				.getResourceAsStream("/externalcodes/ExternalCodeSets_1Q2018_May2018_v1.xlsx");
 		ExternalCodeSetsXlsx ecXlsx = new ExternalCodeSetsXlsx(is);
-		
+
 		SortedMap<String, ExtCodeSetGroup> groupbyParentName = new TreeMap<>();
 
-		List<? extends MMCodeSet> allCodesets = repo.listObjects(MMCodeSet.class).collect(Collectors.toList());
+		List<? extends MMCodeSet> allCodesets = repo.getObjects(MMCodeSet.class);
 		SortedMap<String, MMCodeSet> emptyCodeSets = new TreeMap<>();
-		for( MMCodeSet cs : allCodesets ) {
-			if( ! cs.getCode().isEmpty())
+		for (MMCodeSet cs : allCodesets) {
+			if (!cs.getCode().isEmpty())
 				continue;
-			//MMCodeSet mmParent = null, mmChild = null;
+			// MMCodeSet mmParent = null, mmChild = null;
 			ExtCodeSetGroup group;
-			if( ! cs.getTrace().isPresent() ) {
+			if (!cs.getTrace().isPresent()) {
 				group = groupbyParentName.get(cs.getName());
-				if( group == null ) {
+				if (group == null) {
 					group = new ExtCodeSetGroup();
-					groupbyParentName.put(cs.getName(), group);					
+					groupbyParentName.put(cs.getName(), group);
 				}
 				group.mmParent = cs;
 				groupbyParentName.put(cs.getName(), group);
 			} else {
 				group = groupbyParentName.get(cs.getTrace().get().getName());
-				if( group == null ) {
+				if (group == null) {
 					group = new ExtCodeSetGroup();
-					groupbyParentName.put(cs.getTrace().get().getName(), group);					
+					groupbyParentName.put(cs.getTrace().get().getName(), group);
 				}
 				group.mmchildren.add(cs);
-			}				
+			}
 		}
-		
+
 		// Dump
-		SortedSet<MMCodeSet> notInXls = new TreeSet<>((a,b)->Collator.getInstance().compare(a.getName(), b.getName()));
-		for( Map.Entry<String,ExtCodeSetGroup> e : groupbyParentName.entrySet()) {
+		SortedSet<MMCodeSet> notInXls = new TreeSet<>(
+				(a, b) -> Collator.getInstance().compare(a.getName(), b.getName()));
+		for (Map.Entry<String, ExtCodeSetGroup> e : groupbyParentName.entrySet()) {
 			ExtCodeSetGroup group = e.getValue();
 			String pname = group.mmParent != null ? group.mmParent.getName() : "!!!" + e.getKey() + "!!!";
 			ExternalCodeSetsXlsx.CodeSet pCs = ecXlsx.getCodeSet(pname);
-			System.out.println( pname + " -> " + (pCs != null ? pCs.codeSetName : "null"));
-			for( MMCodeSet cs : group.mmchildren ) {
-				ExternalCodeSetsXlsx.CodeSet cCs = ecXlsx.getCodeSet(cs.getName());				
-				System.out.println( "   " + cs.getName() + " -> " + (cCs != null ? cCs.codeSetName : "null"));				
+			System.out.println(pname + " -> " + (pCs != null ? pCs.codeSetName : "null"));
+			for (MMCodeSet cs : group.mmchildren) {
+				ExternalCodeSetsXlsx.CodeSet cCs = ecXlsx.getCodeSet(cs.getName());
+				System.out.println("   " + cs.getName() + " -> " + (cCs != null ? cCs.codeSetName : "null"));
 			}
 			System.out.println();
 		}
-		
-		
+
 	}
 
-	
 	@Test
 	public void codeSets() throws Exception {
 
-		List<? extends MMCodeSet> allCodesets = repo.listObjects(MMCodeSet.class).collect(Collectors.toList());
+		List<? extends MMCodeSet> allCodesets = repo.getObjects(MMCodeSet.class);
+		System.out.println("There are " + allCodesets.size() + " codesets in the repository.");
+
+		for (MMCodeSet mmCS : allCodesets) {
+		}
+
+		System.out.println();
+		System.out.println("--- Codeset hierarchy ---");
+
+		Comparator<MMCodeSet> compareCs = (cs1, cs2) -> Collator.getInstance().compare(cs1.getName(), cs2.getName());
+
+		Map<MMCodeSet, SortedSet<MMCodeSet>> csByTrace = new TreeMap<>(compareCs);
+		SortedSet<MMCodeSet> csBothTraceAndDerivation = new TreeSet<>(compareCs);
+		SortedSet<MMCodeSet> csNoTraceOrDerivation = new TreeSet<>(compareCs);
+		for (MMCodeSet mmCS : allCodesets) {
+			if (mmCS.getTrace().isPresent() && mmCS.getDerivation().isEmpty()) {
+				// Derived codeSet
+				csByTrace.computeIfAbsent(mmCS.getTrace().get(), x -> new TreeSet<>(compareCs)).add(mmCS);
+			} else if (mmCS.getTrace().isPresent() && !mmCS.getDerivation().isEmpty()) {
+				// Invalid codeset
+				csBothTraceAndDerivation.add(mmCS);
+			} else if (!mmCS.getTrace().isPresent() && !mmCS.getDerivation().isEmpty()) {
+				// Base codeSet
+				// csNoTraceOrDerivation.add(mmCS);
+			} else if (!mmCS.getTrace().isPresent() && mmCS.getDerivation().isEmpty()) {
+				// Standalone codeSet
+				csNoTraceOrDerivation.add(mmCS);
+			} else {
+				throw new RuntimeException("Invalid case");
+			}
+		}
+		System.out.println("  Standalone (has no trace or derivation): " + csNoTraceOrDerivation.size());
+		System.out.println("  Invalid (has trace AND derivation): " + csBothTraceAndDerivation.size());
+		System.out.println("  Base ( has derivation): " + csByTrace.keySet().size());
+		System.out.println(
+				"  Derived ( has trace): " + csByTrace.values().stream().flatMap(csList -> csList.stream()).count());
+		System.out.println();
+
+		Comparator<MMCode> compareCode = (c1, c2) -> Collator.getInstance()
+				.compare(c1.getOwner().getName() + "." + c1.getName(), c1.getOwner().getName() + "." + c2.getName());
+
+		SortedMap<MMCode, MMCode> derivedCodes = new TreeMap<MMCode, MMCode>(compareCode);
+		for (Map.Entry<MMCodeSet, SortedSet<MMCodeSet>> e : csByTrace.entrySet()) {
+			MMCodeSet csBase = e.getKey();
+			LinkedHashMap<String, MMCode> baseCodesByName = new LinkedHashMap<>();
+			csBase.getCode().stream().forEach(c -> baseCodesByName.put(c.getName(), c));
+
+			System.out.print("" + csBase.getName() + " : ");
+			System.out.println(baseCodesByName.size() + " codes");
+			for (MMCodeSet csDerived : e.getValue()) {
+				LinkedHashMap<String, MMCode> derivedCodesByName = new LinkedHashMap<>();
+				csDerived.getCode().stream().forEach(c -> derivedCodesByName.put(c.getName(), c));
+				List<String> onlyInBase = new ArrayList<>(baseCodesByName.keySet());
+				onlyInBase.removeAll(derivedCodesByName.keySet());
+				List<String> onlyInDerived = new ArrayList<>(derivedCodesByName.keySet());
+				onlyInDerived.removeAll(baseCodesByName.keySet());
+
+				System.out.print("  " + csDerived.getName() + " : ");
+				// System.out.print( derivedCodesByName.size() + " codes, ");
+				if (!onlyInBase.isEmpty()) {
+					System.out.print(onlyInBase.size() + " only in base, ");
+				}
+				if (!onlyInDerived.isEmpty()) {
+					throw new RuntimeException(onlyInDerived.size() + " only in derived: " + onlyInDerived);
+				}
+				for (MMCode derivedCode : csDerived.getCode()) {
+					MMCode baseCode = baseCodesByName.get(derivedCode.getName());
+					derivedCodes.put(derivedCode, baseCode);
+				}
+				System.out.println();
+			}
+		}
+
+		System.out.println("--- Analyze derived codes ----");
+		int countIdentical = 0, countOnlyInBase = 0, countOnlyInDerived = 0, countNon = 0;
+		for (Map.Entry<MMCode, MMCode> e : derivedCodes.entrySet()) {
+			MMCode derivedCode = e.getKey();
+			MMCode baseCode = e.getValue();
+
+			String derivedName = derivedCode.getOwner().getName() + "." + derivedCode.getName();
+			boolean isIdentical = true;
+
+			if (baseCode.getCodeName().isPresent() && derivedCode.getCodeName().isPresent()) {
+				// Both present
+				if (baseCode.getCodeName().orElse("-null-").equals(derivedCode.getCodeName().orElse("-null"))) {
+					countIdentical++;
+				} else {
+					isIdentical = false;
+					System.out.println(derivedName + " different codeName: " + baseCode.getCodeName().orElse("-null")
+							+ " != " + derivedCode.getCodeName().orElse("-null"));
+				}
+			} else if (baseCode.getCodeName().isPresent() && !derivedCode.getCodeName().isPresent()) {
+				countOnlyInBase++;
+			} else if (!baseCode.getCodeName().isPresent() && derivedCode.getCodeName().isPresent()) {
+				countOnlyInDerived++;
+			} else if (!baseCode.getCodeName().isPresent() && !derivedCode.getCodeName().isPresent()) {
+				countNon++;
+			} else {
+				throw new RuntimeException("Invalid case");
+			}
+
+			if (baseCode.getDefinition().isPresent() && derivedCode.getDefinition().isPresent()) {
+				if (!baseCode.getDefinition().orElse("-null-").equals(derivedCode.getDefinition().orElse("-null"))) {
+					System.out
+							.println(derivedName + " different definition: " + baseCode.getDefinition().orElse("-null")
+									+ " != " + derivedCode.getDefinition().orElse("-null"));
+				}
+			}
+		}
+		System.out.println("codeNames are Identical: " + countIdentical);
+		System.out.println("codeName exists only in base: " + countOnlyInBase);
+		System.out.println("codeName exists only in derived: " + countOnlyInDerived);
+		System.out.println("codeName not exits: " + countNon);
+		System.out.println();
+
+		System.out.println("Size of codeset : number of codesets");
 		Map<Integer, List<MMCodeSet>> csByCodesetSize = new HashMap<>();
 		for (MMCodeSet mmCS : allCodesets) {
 			csByCodesetSize.computeIfAbsent(mmCS.getCode().size(), x -> new ArrayList<>()).add(mmCS);
 		}
-		
-		for (MMCodeSet mmCS : allCodesets) {
-			if( mmCS.getTrace().isPresent() && !mmCS.getDerivation().isEmpty()) {
-				System.out.println("Both trace and derivation: " + mmCS.getName());
-			}
-		}
-		
-
-		List<MMCodeSet> csNoParent = new ArrayList<>();
-		Map<MMCodeSet, List<MMCodeSet>> csByParent = new HashMap<>();
-		for (MMCodeSet mmCS : allCodesets) {
-			if (mmCS.getTrace().isPresent()) {
-				csByParent.computeIfAbsent(mmCS.getTrace().get(), x -> new ArrayList<>()).add(mmCS);
-			} else {
-				csNoParent.add(mmCS);
-			}
-		}
-
-		System.out.println("Size of codeset : number of codesets");
 		csByCodesetSize.entrySet().stream().forEachOrdered(e -> {
 			System.out.println(e.getKey() + " : " + e.getValue().size());
 		});
-		System.out.println("Summ: " + allCodesets.size() + " codesets");
 		System.out.println();
 
 		/*
-		csByCodesetSize.get(1).stream().forEachOrdered(cs -> {
-			System.out.print(cs.getName() + ", " + cs.getPattern().orElse("-") + ", "
-					+ cs.getIdentificationScheme().orElse("-"));
-			System.out.print(", " + (cs.getTrace().isPresent() ? cs.getTrace().get().getName() : "-"));
-			System.out.println(", " + (cs.getDerivation().size()));
-		})*/;
-
-		System.out.println();
-		System.out.println("--- Codeset hierarchy ---");
-		PrintWriter pw = new PrintWriter(System.out);
-		for (MMCodeSet mmCs : csNoParent) {
-			dumpCodeSetSubTree(mmCs, csByParent, pw, "");
-		}
-		pw.flush();
+		 * csByCodesetSize.get(1).stream().forEachOrdered(cs -> {
+		 * System.out.print(cs.getName() + ", " + cs.getPattern().orElse("-") + ", " +
+		 * cs.getIdentificationScheme().orElse("-")); System.out.print(", " +
+		 * (cs.getTrace().isPresent() ? cs.getTrace().get().getName() : "-"));
+		 * System.out.println(", " + (cs.getDerivation().size())); })
+		 */;
 
 		System.out.println();
 		System.out.println("--- Find MMCode instances without effectiveCode value --- ");
@@ -551,8 +656,8 @@ public class InspectLoadedRepository {
 
 		System.out.println();
 		System.out.println("--- Base codesets without any derived codeset --- ");
-		for (MMCodeSet cs : csNoParent) {
-			if (!csByParent.containsKey(cs)) {
+		for (MMCodeSet cs : csNoTraceOrDerivation) {
+			if (!csByTrace.containsKey(cs)) {
 				System.out.println("No derived codeset:" + cs.getName());
 			}
 		}
@@ -572,7 +677,7 @@ public class InspectLoadedRepository {
 	@Test
 	public void doclets() throws Exception {
 		Map<String, Set<MMDoclet>> docletsByType = new LinkedHashMap<>();
-		for (MMDoclet mmD : repo.listObjects(MMDoclet.class).collect(Collectors.toList())) {
+		for (MMDoclet mmD : repo.getObjects(MMDoclet.class)) {
 			docletsByType.computeIfAbsent(mmD.getType().orElse("-noType-"), x -> new LinkedHashSet<>()).add(mmD);
 		}
 
@@ -588,7 +693,6 @@ public class InspectLoadedRepository {
 		});
 
 	}
-
 	final Map<Class<? extends MMModelEntity>, Set<MMModelEntity>> noTrace = new HashMap<>();
 	final Map<Class<? extends MMModelEntity>, Set<MMModelEntity>> withTrace = new HashMap<>();
 
@@ -622,7 +726,7 @@ public class InspectLoadedRepository {
 	public <T extends MMModelEntity> void inspectTraces(Class<T> mmType, Predicate<T> hasTrace) {
 		Set<MMModelEntity> noTraceSet = noTrace.computeIfAbsent(mmType, x -> new HashSet<>());
 		Set<MMModelEntity> withTraceSet = withTrace.computeIfAbsent(mmType, x -> new HashSet<>());
-		repo.listObjects(mmType).forEach(mmObj -> {
+		repo.getObjects(mmType).forEach(mmObj -> {
 			if (hasTrace.test(mmObj)) {
 				withTraceSet.add(mmObj);
 			} else {
@@ -636,8 +740,7 @@ public class InspectLoadedRepository {
 		Map<MMAggregation, List<MMBusinessAssociationEnd>> refsByAggr = new LinkedHashMap<>();
 		Map<String, List<MMBusinessAssociationEnd>> refsByArity = new LinkedHashMap<>();
 		Set<MMBusinessAssociationEnd> processedMMRef = new HashSet<>();
-		for (MMBusinessAssociationEnd mmRef : repo.listObjects(MMBusinessAssociationEnd.class)
-				.collect(Collectors.toList())) {
+		for (MMBusinessAssociationEnd mmRef : repo.getObjects(MMBusinessAssociationEnd.class)) {
 			if (processedMMRef.contains(mmRef))
 				continue;
 			processedMMRef.add(mmRef);
@@ -678,7 +781,7 @@ public class InspectLoadedRepository {
 		List<MMBusinessComponent> topLevelEntities = new ArrayList<>();
 		Map<MMBusinessComponent, List<MMBusinessComponent>> subTypesByParent = new LinkedHashMap<>();
 
-		for (MMBusinessComponent mmBC : repo.listObjects(MMBusinessComponent.class).collect(Collectors.toList())) {
+		for (MMBusinessComponent mmBC : repo.getObjects(MMBusinessComponent.class)) {
 			if (mmBC.getSuperType().isPresent()) {
 				subTypesByParent.computeIfAbsent(mmBC.getSuperType().get(), x -> new ArrayList<>()).add(mmBC);
 			} else {
@@ -714,7 +817,7 @@ public class InspectLoadedRepository {
 
 		/*** Collect repo types by area codes ***/
 		Map<String, Set<MMRepositoryType>> repoTypesByAreaName = new HashMap<>();
-		for (MMMessageDefinition mmMsgDef : repo.listObjects(MMMessageDefinition.class).collect(Collectors.toList())) {
+		for (MMMessageDefinition mmMsgDef : repo.getObjects(MMMessageDefinition.class)) {
 			Set<MMMessageConstruct> msgElemsAndBBs = new HashSet<>();
 			for (MMXor mmXor : mmMsgDef.getXors()) {
 				msgElemsAndBBs.addAll(mmXor.getImpactedElements());
@@ -771,7 +874,7 @@ public class InspectLoadedRepository {
 		System.out.println("*************************************************");
 
 		Map<MMBusinessComponent, Set<String>> entitiesByAreaCodes = new HashMap<>();
-		for (MMBusinessComponent mmEntity : repo.listObjects(MMBusinessComponent.class).collect(Collectors.toList())) {
+		for (MMBusinessComponent mmEntity : repo.getObjects(MMBusinessComponent.class)) {
 			entitiesByAreaCodes.put(mmEntity, new HashSet<>());
 		}
 		for (Map.Entry<MMRepositoryType, Set<String>> x : areaCodesByRepoType.entrySet()) {
@@ -881,7 +984,7 @@ public class InspectLoadedRepository {
 	@Test
 	public void listMsgDefsWithVersionHistory() throws Exception {
 		int countLatestVersions = 0, countPreviousVersions = 0;
-		for (MMMessageDefinition mmMsgDef : repo.listObjects(MMMessageDefinition.class).collect(Collectors.toList())) {
+		for (MMMessageDefinition mmMsgDef : repo.getObjects(MMMessageDefinition.class)) {
 			if (!mmMsgDef.getNextVersions().isEmpty())
 				continue;
 			System.out.println(msgIdToString(mmMsgDef.getMessageDefinitionIdentifier()) + " - " + mmMsgDef.getName()
@@ -913,7 +1016,7 @@ public class InspectLoadedRepository {
 		List<MMMessageDefinition> wrongAreaCode = new ArrayList<>();
 		Map<String, List<MMMessageDefinition>> defById = new HashMap<>();
 		Map<String, List<MMMessageDefinition>> defByName = new HashMap<>();
-		for (MMMessageDefinition def : repo.listObjects(MMMessageDefinition.class).collect(Collectors.toList())) {
+		for (MMMessageDefinition def : repo.getObjects(MMMessageDefinition.class)) {
 			try {
 				defByName.computeIfAbsent(def.getName(), x -> new ArrayList<>()).add(def);
 				defById.computeIfAbsent(msgIdToString(def.getMessageDefinitionIdentifier()), x -> new ArrayList<>())
@@ -1001,23 +1104,56 @@ public class InspectLoadedRepository {
 		List<? extends MMConstraint<?>> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
 		for (MMConstraint<?> c : constr) {
 			String javaNme = RoasterHelper.convertToJavaName(c.getName());
-			if( c.getName().equals(javaNme) )
+			if (c.getName().equals(javaNme))
 				continue;
 
-			System.out.println("Wrong constraint name: \""+c.getName() + "\" on " + getFullName(c.getOwner()));
-			
-		}		
-	}
-	
-	private String getFullName( MMModelEntity mmBean ) {
-		String name = "["+ mmBean.getMetamodel().getName()+"]";
-		if( mmBean instanceof MMRepositoryConcept ) {
-			name += ((MMRepositoryConcept)mmBean).getName();
+			System.out.println("Wrong constraint name: \"" + c.getName() + "\" on " + getFullName(c.getOwner()));
+
 		}
-		if( mmBean.getContainer() != null && !(mmBean.getContainer() instanceof MMRepository)) {
+	}
+
+	private String getFullName(MMModelEntity mmBean) {
+		String name = "[" + mmBean.getMetamodel().getName() + "]";
+		if (mmBean instanceof MMRepositoryConcept) {
+			name += ((MMRepositoryConcept) mmBean).getName();
+		}
+		if (mmBean.getContainer() != null && !(mmBean.getContainer() instanceof MMRepository)) {
 			name = getFullName(mmBean.getContainer()) + "/" + name;
 		}
 		return name;
+	}
+
+	@Test
+	public void encodingAndSyntax() throws Exception {
+		List<? extends MMEncoding> mmEncodings = repo.listObjects(MMEncoding.metaType()).collect(Collectors.toList());
+		System.out.println("--- List of encodings ---");
+		for (MMEncoding mmEncoding : repo.listObjects(MMEncoding.metaType()).collect(Collectors.toList())) {
+			System.out.println(" > " + mmEncoding.toString());
+		}
+		System.out.println("--- List of syntaxes---");
+		for (MMSyntax mmSyntax : repo.listObjects(MMSyntax.metaType()).collect(Collectors.toList())) {
+			System.out.println(" > " + mmSyntax.toString());
+		}
+
+		System.out.println("--- List of SyntaxMessageSchemes ---");
+		for (MMSyntaxMessageScheme mmSyntaxMsgScheme : repo.listObjects(MMSyntaxMessageScheme.metaType())
+				.collect(Collectors.toList())) {
+			System.out.println(" > " + mmSyntaxMsgScheme.getName());
+		}
+		System.out.println("--- List of MessageSet ---");
+		for (MMMessageSet mmMsgSet : repo.listObjects(MMMessageSet.metaType()).collect(Collectors.toList())) {
+			System.out.println(" > " + mmMsgSet.getName());
+		}
+		System.out.println("--- List of MMIndustryMessageSet ---");
+		for (MMIndustryMessageSet mmMsgSet : repo.listObjects(MMIndustryMessageSet.metaType())
+				.collect(Collectors.toList())) {
+			System.out.println(" > " + mmMsgSet.getName());
+		}
+		System.out.println("--- List of MMISO15022MessageSet ---");
+		for (MMISO15022MessageSet mmMsgSet : repo.listObjects(MMISO15022MessageSet.metaType())
+				.collect(Collectors.toList())) {
+			System.out.println(" > " + mmMsgSet.getName());
+		}
 	}
 
 	@Test

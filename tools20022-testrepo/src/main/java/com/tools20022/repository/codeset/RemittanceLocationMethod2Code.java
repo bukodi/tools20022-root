@@ -41,23 +41,23 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#Fax
- * RemittanceLocationMethod2Code.Fax}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#FAXI_Fax
+ * RemittanceLocationMethod2Code.FAXI_Fax}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#ElectronicDataInterchange
- * RemittanceLocationMethod2Code.ElectronicDataInterchange}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#EDIC_ElectronicDataInterchange
+ * RemittanceLocationMethod2Code.EDIC_ElectronicDataInterchange}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#UniformResourceIdentifier
- * RemittanceLocationMethod2Code.UniformResourceIdentifier}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#URID_UniformResourceIdentifier
+ * RemittanceLocationMethod2Code.URID_UniformResourceIdentifier}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#EMail
- * RemittanceLocationMethod2Code.EMail}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#EMAL_EMail
+ * RemittanceLocationMethod2Code.EMAL_EMail}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#Post
- * RemittanceLocationMethod2Code.Post}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#POST_Post
+ * RemittanceLocationMethod2Code.POST_Post}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#SMS
- * RemittanceLocationMethod2Code.SMS}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#SMSM_SMS
+ * RemittanceLocationMethod2Code.SMSM_SMS}</li>
  * </ul>
  * </li>
  * <li>
@@ -102,12 +102,12 @@ public class RemittanceLocationMethod2Code extends MMCode {
 	 * name} = "Fax"</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethod2Code Fax = new RemittanceLocationMethod2Code() {
+	public static final RemittanceLocationMethod2Code FAXI_Fax = new RemittanceLocationMethod2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Fax";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethod2Code.mmObject());
-			codeName = RemittanceLocationMethodCode.Fax.getCodeName().orElse(name);
+			codeName = RemittanceLocationMethodCode.FAXI_Fax.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -126,12 +126,12 @@ public class RemittanceLocationMethod2Code extends MMCode {
 	 * name} = "ElectronicDataInterchange"</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethod2Code ElectronicDataInterchange = new RemittanceLocationMethod2Code() {
+	public static final RemittanceLocationMethod2Code EDIC_ElectronicDataInterchange = new RemittanceLocationMethod2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "ElectronicDataInterchange";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethod2Code.mmObject());
-			codeName = RemittanceLocationMethodCode.ElectronicDataInterchange.getCodeName().orElse(name);
+			codeName = RemittanceLocationMethodCode.EDIC_ElectronicDataInterchange.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -150,12 +150,12 @@ public class RemittanceLocationMethod2Code extends MMCode {
 	 * name} = "UniformResourceIdentifier"</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethod2Code UniformResourceIdentifier = new RemittanceLocationMethod2Code() {
+	public static final RemittanceLocationMethod2Code URID_UniformResourceIdentifier = new RemittanceLocationMethod2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "UniformResourceIdentifier";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethod2Code.mmObject());
-			codeName = RemittanceLocationMethodCode.UniformResourceIdentifier.getCodeName().orElse(name);
+			codeName = RemittanceLocationMethodCode.URID_UniformResourceIdentifier.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -174,12 +174,12 @@ public class RemittanceLocationMethod2Code extends MMCode {
 	 * name} = "EMail"</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethod2Code EMail = new RemittanceLocationMethod2Code() {
+	public static final RemittanceLocationMethod2Code EMAL_EMail = new RemittanceLocationMethod2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "EMail";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethod2Code.mmObject());
-			codeName = RemittanceLocationMethodCode.EMail.getCodeName().orElse(name);
+			codeName = RemittanceLocationMethodCode.EMAL_EMail.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -198,12 +198,12 @@ public class RemittanceLocationMethod2Code extends MMCode {
 	 * name} = "Post"</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethod2Code Post = new RemittanceLocationMethod2Code() {
+	public static final RemittanceLocationMethod2Code POST_Post = new RemittanceLocationMethod2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Post";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethod2Code.mmObject());
-			codeName = RemittanceLocationMethodCode.Post.getCodeName().orElse(name);
+			codeName = RemittanceLocationMethodCode.POST_Post.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -222,12 +222,12 @@ public class RemittanceLocationMethod2Code extends MMCode {
 	 * name} = "SMS"</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethod2Code SMS = new RemittanceLocationMethod2Code() {
+	public static final RemittanceLocationMethod2Code SMSM_SMS = new RemittanceLocationMethod2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "SMS";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethod2Code.mmObject());
-			codeName = RemittanceLocationMethodCode.SMS.getCodeName().orElse(name);
+			codeName = RemittanceLocationMethodCode.SMSM_SMS.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, RemittanceLocationMethod2Code> codesByName = new LinkedHashMap<>();
@@ -244,21 +244,21 @@ public class RemittanceLocationMethod2Code extends MMCode {
 				name = "RemittanceLocationMethod2Code";
 				definition = "Specifies the method used to deliver the remittance advice information.";
 				trace_lazy = LazyReference.create(() -> RemittanceLocationMethodCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethod2Code.Fax, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.ElectronicDataInterchange,
-						com.tools20022.repository.codeset.RemittanceLocationMethod2Code.UniformResourceIdentifier, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.EMail,
-						com.tools20022.repository.codeset.RemittanceLocationMethod2Code.Post, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.SMS));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethod2Code.FAXI_Fax, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.EDIC_ElectronicDataInterchange,
+						com.tools20022.repository.codeset.RemittanceLocationMethod2Code.URID_UniformResourceIdentifier, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.EMAL_EMail,
+						com.tools20022.repository.codeset.RemittanceLocationMethod2Code.POST_Post, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.SMSM_SMS));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Fax.getCodeName().get(), Fax);
-		codesByName.put(ElectronicDataInterchange.getCodeName().get(), ElectronicDataInterchange);
-		codesByName.put(UniformResourceIdentifier.getCodeName().get(), UniformResourceIdentifier);
-		codesByName.put(EMail.getCodeName().get(), EMail);
-		codesByName.put(Post.getCodeName().get(), Post);
-		codesByName.put(SMS.getCodeName().get(), SMS);
+		codesByName.put(FAXI_Fax.getCodeName().get(), FAXI_Fax);
+		codesByName.put(EDIC_ElectronicDataInterchange.getCodeName().get(), EDIC_ElectronicDataInterchange);
+		codesByName.put(URID_UniformResourceIdentifier.getCodeName().get(), URID_UniformResourceIdentifier);
+		codesByName.put(EMAL_EMail.getCodeName().get(), EMAL_EMail);
+		codesByName.put(POST_Post.getCodeName().get(), POST_Post);
+		codesByName.put(SMSM_SMS.getCodeName().get(), SMSM_SMS);
 	}
 
 	public static RemittanceLocationMethod2Code valueOf(String codeName) {

@@ -38,23 +38,23 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#Fax
- * RemittanceLocationMethodCode.Fax}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#FAXI_Fax
+ * RemittanceLocationMethodCode.FAXI_Fax}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#ElectronicDataInterchange
- * RemittanceLocationMethodCode.ElectronicDataInterchange}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#EDIC_ElectronicDataInterchange
+ * RemittanceLocationMethodCode.EDIC_ElectronicDataInterchange}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#UniformResourceIdentifier
- * RemittanceLocationMethodCode.UniformResourceIdentifier}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#URID_UniformResourceIdentifier
+ * RemittanceLocationMethodCode.URID_UniformResourceIdentifier}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#EMail
- * RemittanceLocationMethodCode.EMail}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#EMAL_EMail
+ * RemittanceLocationMethodCode.EMAL_EMail}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#Post
- * RemittanceLocationMethodCode.Post}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#POST_Post
+ * RemittanceLocationMethodCode.POST_Post}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#SMS
- * RemittanceLocationMethodCode.SMS}</li>
+ * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#SMSM_SMS
+ * RemittanceLocationMethodCode.SMSM_SMS}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -112,7 +112,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * definition} = "Remittance advice information must be faxed."</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethodCode Fax = new RemittanceLocationMethodCode() {
+	public static final RemittanceLocationMethodCode FAXI_Fax = new RemittanceLocationMethodCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Fax";
@@ -145,7 +145,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethodCode ElectronicDataInterchange = new RemittanceLocationMethodCode() {
+	public static final RemittanceLocationMethodCode EDIC_ElectronicDataInterchange = new RemittanceLocationMethodCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ElectronicDataInterchange";
@@ -181,7 +181,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethodCode UniformResourceIdentifier = new RemittanceLocationMethodCode() {
+	public static final RemittanceLocationMethodCode URID_UniformResourceIdentifier = new RemittanceLocationMethodCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "UniformResourceIdentifier";
@@ -212,7 +212,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * "Remittance advice  information must be sent through e-mail."</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethodCode EMail = new RemittanceLocationMethodCode() {
+	public static final RemittanceLocationMethodCode EMAL_EMail = new RemittanceLocationMethodCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "EMail";
@@ -243,7 +243,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * "Remittance advice information must be sent through postal services."</li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethodCode Post = new RemittanceLocationMethodCode() {
+	public static final RemittanceLocationMethodCode POST_Post = new RemittanceLocationMethodCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Post";
@@ -276,7 +276,7 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final RemittanceLocationMethodCode SMS = new RemittanceLocationMethodCode() {
+	public static final RemittanceLocationMethodCode SMSM_SMS = new RemittanceLocationMethodCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "SMS";
@@ -299,21 +299,21 @@ public class RemittanceLocationMethodCode extends MMCode {
 				name = "RemittanceLocationMethodCode";
 				definition = "Specifies the method used to deliver the remittance advice information.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(RemittanceLocationMethod2Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethodCode.Fax, com.tools20022.repository.codeset.RemittanceLocationMethodCode.ElectronicDataInterchange,
-						com.tools20022.repository.codeset.RemittanceLocationMethodCode.UniformResourceIdentifier, com.tools20022.repository.codeset.RemittanceLocationMethodCode.EMail,
-						com.tools20022.repository.codeset.RemittanceLocationMethodCode.Post, com.tools20022.repository.codeset.RemittanceLocationMethodCode.SMS));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethodCode.FAXI_Fax, com.tools20022.repository.codeset.RemittanceLocationMethodCode.EDIC_ElectronicDataInterchange,
+						com.tools20022.repository.codeset.RemittanceLocationMethodCode.URID_UniformResourceIdentifier, com.tools20022.repository.codeset.RemittanceLocationMethodCode.EMAL_EMail,
+						com.tools20022.repository.codeset.RemittanceLocationMethodCode.POST_Post, com.tools20022.repository.codeset.RemittanceLocationMethodCode.SMSM_SMS));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Fax.getCodeName().get(), Fax);
-		codesByName.put(ElectronicDataInterchange.getCodeName().get(), ElectronicDataInterchange);
-		codesByName.put(UniformResourceIdentifier.getCodeName().get(), UniformResourceIdentifier);
-		codesByName.put(EMail.getCodeName().get(), EMail);
-		codesByName.put(Post.getCodeName().get(), Post);
-		codesByName.put(SMS.getCodeName().get(), SMS);
+		codesByName.put(FAXI_Fax.getCodeName().get(), FAXI_Fax);
+		codesByName.put(EDIC_ElectronicDataInterchange.getCodeName().get(), EDIC_ElectronicDataInterchange);
+		codesByName.put(URID_UniformResourceIdentifier.getCodeName().get(), URID_UniformResourceIdentifier);
+		codesByName.put(EMAL_EMail.getCodeName().get(), EMAL_EMail);
+		codesByName.put(POST_Post.getCodeName().get(), POST_Post);
+		codesByName.put(SMSM_SMS.getCodeName().get(), SMSM_SMS);
 	}
 
 	public static RemittanceLocationMethodCode valueOf(String codeName) {

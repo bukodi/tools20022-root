@@ -18,8 +18,10 @@
 package com.tools20022.repository.datatype;
 
 import com.tools20022.core.repo.LazyReference;
+import com.tools20022.metamodel.MMConstraint;
 import com.tools20022.metamodel.MMIdentifierSet;
 import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.repository.constraint.ConstraintBIC;
 import com.tools20022.repository.GeneratedRepository;
 import java.text.DateFormat;
 import java.util.Arrays;
@@ -52,9 +54,8 @@ import javax.xml.bind.annotation.XmlValue;
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
  * constraint} =
  * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintBIC#forBICIdentifier
- * ConstraintBIC.forBICIdentifier}</li>
+ * <li>{@linkplain com.tools20022.repository.datatype.BICIdentifier#BIC
+ * BICIdentifier.BIC}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
@@ -63,11 +64,11 @@ import javax.xml.bind.annotation.XmlValue;
  * <li>"CHASUS33"</li>
  * </ul>
  * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRemovalDate
+ * removalDate} = September 9, 2016</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
  * registrationStatus} = com.tools20022.metamodel.MMRegistrationStatus.OBSOLETE</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRemovalDate
- * removalDate} = September 9, 2016</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "BICIdentifier"</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
@@ -83,13 +84,49 @@ public class BICIdentifier {
 	final static private AtomicReference<MMIdentifierSet> mmObject_lazy = new AtomicReference<>();
 	@XmlValue
 	protected String value;
+	/**
+	 * Valid BICs for financial institutions are registered by the ISO 9362
+	 * Registration Authority in the BIC directory, and consist of eight (8) or
+	 * eleven (11) contiguous characters.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.datatype.BICIdentifier
+	 * BICIdentifier}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "BIC"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "Valid BICs for financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consist of eight (8) or eleven (11) contiguous characters."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<BICIdentifier> BIC = new MMConstraint<BICIdentifier>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "BIC";
+			definition = "Valid BICs for financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consist of eight (8) or eleven (11) contiguous characters.";
+			owner_lazy = LazyReference.create(() -> BICIdentifier.mmObject());
+		}
+
+		@Override
+		public void executeValidator(BICIdentifier obj) throws Exception {
+			ConstraintBIC.checkBICIdentifier(obj);
+		}
+	};
 
 	final static public MMIdentifierSet mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintBIC.forBICIdentifier));
 				example = Arrays.asList("CHASUS33");
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(BICIdentifier.BIC));
 				registrationStatus = MMRegistrationStatus.OBSOLETE;
 				removalDate = ((Supplier<Date>) (() -> {
 					try {

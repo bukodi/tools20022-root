@@ -39,10 +39,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.Priority2Code#High
- * Priority2Code.High}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.Priority2Code#Normal
- * Priority2Code.Normal}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.Priority2Code#HIGH_High
+ * Priority2Code.HIGH_High}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.Priority2Code#NORM_Normal
+ * Priority2Code.NORM_Normal}</li>
  * </ul>
  * </li>
  * <li>
@@ -86,12 +86,12 @@ public class Priority2Code extends MMCode {
 	 * name} = "High"</li>
 	 * </ul>
 	 */
-	public static final Priority2Code High = new Priority2Code() {
+	public static final Priority2Code HIGH_High = new Priority2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "High";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority2Code.mmObject());
-			codeName = PriorityCode.High.getCodeName().orElse(name);
+			codeName = PriorityCode.HIGH_High.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -110,12 +110,12 @@ public class Priority2Code extends MMCode {
 	 * name} = "Normal"</li>
 	 * </ul>
 	 */
-	public static final Priority2Code Normal = new Priority2Code() {
+	public static final Priority2Code NORM_Normal = new Priority2Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Normal";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority2Code.mmObject());
-			codeName = PriorityCode.Normal.getCodeName().orElse(name);
+			codeName = PriorityCode.NORM_Normal.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, Priority2Code> codesByName = new LinkedHashMap<>();
@@ -132,15 +132,15 @@ public class Priority2Code extends MMCode {
 				name = "Priority2Code";
 				definition = "Specifies the priority level of an event.";
 				trace_lazy = LazyReference.create(() -> PriorityCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Priority2Code.High, com.tools20022.repository.codeset.Priority2Code.Normal));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Priority2Code.HIGH_High, com.tools20022.repository.codeset.Priority2Code.NORM_Normal));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(High.getCodeName().get(), High);
-		codesByName.put(Normal.getCodeName().get(), Normal);
+		codesByName.put(HIGH_High.getCodeName().get(), HIGH_High);
+		codesByName.put(NORM_Normal.getCodeName().get(), NORM_Normal);
 	}
 
 	public static Priority2Code valueOf(String codeName) {

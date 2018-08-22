@@ -38,63 +38,65 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#MeteredServiceInvoice
- * DocumentTypeCode.MeteredServiceInvoice}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#MSIN_MeteredServiceInvoice
+ * DocumentTypeCode.MSIN_MeteredServiceInvoice}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#CreditNoteRelatedToFinancialAdjustment
- * DocumentTypeCode.CreditNoteRelatedToFinancialAdjustment}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#CNFA_CreditNoteRelatedToFinancialAdjustment
+ * DocumentTypeCode.CNFA_CreditNoteRelatedToFinancialAdjustment}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#DebitNoteRelatedToFinancialAdjustment
- * DocumentTypeCode.DebitNoteRelatedToFinancialAdjustment}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#DNFA_DebitNoteRelatedToFinancialAdjustment
+ * DocumentTypeCode.DNFA_DebitNoteRelatedToFinancialAdjustment}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#CommercialInvoice
- * DocumentTypeCode.CommercialInvoice}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#CINV_CommercialInvoice
+ * DocumentTypeCode.CINV_CommercialInvoice}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#CreditNote
- * DocumentTypeCode.CreditNote}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.DocumentTypeCode#DebitNote
- * DocumentTypeCode.DebitNote}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#CREN_CreditNote
+ * DocumentTypeCode.CREN_CreditNote}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#HireInvoice
- * DocumentTypeCode.HireInvoice}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#DEBN_DebitNote
+ * DocumentTypeCode.DEBN_DebitNote}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#SelfBilledInvoice
- * DocumentTypeCode.SelfBilledInvoice}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#HIRI_HireInvoice
+ * DocumentTypeCode.HIRI_HireInvoice}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#RemittanceAdviceMessage
- * DocumentTypeCode.RemittanceAdviceMessage}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#SBIN_SelfBilledInvoice
+ * DocumentTypeCode.SBIN_SelfBilledInvoice}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#RelatedPaymentInstruction
- * DocumentTypeCode.RelatedPaymentInstruction}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#RADM_RemittanceAdviceMessage
+ * DocumentTypeCode.RADM_RemittanceAdviceMessage}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#CommercialContract
- * DocumentTypeCode.CommercialContract}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#RPIN_RelatedPaymentInstruction
+ * DocumentTypeCode.RPIN_RelatedPaymentInstruction}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#ForeignExchangeDealReference
- * DocumentTypeCode.ForeignExchangeDealReference}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#CMCN_CommercialContract
+ * DocumentTypeCode.CMCN_CommercialContract}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#StatementOfAccount
- * DocumentTypeCode.StatementOfAccount}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#FXDR_ForeignExchangeDealReference
+ * DocumentTypeCode.FXDR_ForeignExchangeDealReference}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#DispatchAdvice
- * DocumentTypeCode.DispatchAdvice}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#SOAC_StatementOfAccount
+ * DocumentTypeCode.SOAC_StatementOfAccount}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#PurchaseOrder
- * DocumentTypeCode.PurchaseOrder}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#DISP_DispatchAdvice
+ * DocumentTypeCode.DISP_DispatchAdvice}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#StructuredCommunicationReference
- * DocumentTypeCode.StructuredCommunicationReference}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#PUOR_PurchaseOrder
+ * DocumentTypeCode.PUOR_PurchaseOrder}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#BillOfLading
- * DocumentTypeCode.BillOfLading}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.DocumentTypeCode#Voucher
- * DocumentTypeCode.Voucher}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#SCOR_StructuredCommunicationReference
+ * DocumentTypeCode.SCOR_StructuredCommunicationReference}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#AccountReceivableOpenItem
- * DocumentTypeCode.AccountReceivableOpenItem}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#BOLD_BillOfLading
+ * DocumentTypeCode.BOLD_BillOfLading}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#TradeServicesUtilityTransaction
- * DocumentTypeCode.TradeServicesUtilityTransaction}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#VCHR_Voucher
+ * DocumentTypeCode.VCHR_Voucher}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#AROI_AccountReceivableOpenItem
+ * DocumentTypeCode.AROI_AccountReceivableOpenItem}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode#TSUT_TradeServicesUtilityTransaction
+ * DocumentTypeCode.TSUT_TradeServicesUtilityTransaction}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -155,7 +157,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode MeteredServiceInvoice = new DocumentTypeCode() {
+	public static final DocumentTypeCode MSIN_MeteredServiceInvoice = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MeteredServiceInvoice";
@@ -188,7 +190,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode CreditNoteRelatedToFinancialAdjustment = new DocumentTypeCode() {
+	public static final DocumentTypeCode CNFA_CreditNoteRelatedToFinancialAdjustment = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CreditNoteRelatedToFinancialAdjustment";
@@ -221,7 +223,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode DebitNoteRelatedToFinancialAdjustment = new DocumentTypeCode() {
+	public static final DocumentTypeCode DNFA_DebitNoteRelatedToFinancialAdjustment = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "DebitNoteRelatedToFinancialAdjustment";
@@ -251,7 +253,7 @@ public class DocumentTypeCode extends MMCode {
 	 * definition} = "Document is an invoice."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode CommercialInvoice = new DocumentTypeCode() {
+	public static final DocumentTypeCode CINV_CommercialInvoice = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CommercialInvoice";
@@ -281,7 +283,7 @@ public class DocumentTypeCode extends MMCode {
 	 * definition} = "Document is a credit note."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode CreditNote = new DocumentTypeCode() {
+	public static final DocumentTypeCode CREN_CreditNote = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CreditNote";
@@ -311,7 +313,7 @@ public class DocumentTypeCode extends MMCode {
 	 * definition} = "Document is a debit note."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode DebitNote = new DocumentTypeCode() {
+	public static final DocumentTypeCode DEBN_DebitNote = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "DebitNote";
@@ -344,7 +346,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode HireInvoice = new DocumentTypeCode() {
+	public static final DocumentTypeCode HIRI_HireInvoice = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "HireInvoice";
@@ -374,7 +376,7 @@ public class DocumentTypeCode extends MMCode {
 	 * definition} = "Document is an invoice issued by the debtor."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode SelfBilledInvoice = new DocumentTypeCode() {
+	public static final DocumentTypeCode SBIN_SelfBilledInvoice = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "SelfBilledInvoice";
@@ -407,7 +409,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode RemittanceAdviceMessage = new DocumentTypeCode() {
+	public static final DocumentTypeCode RADM_RemittanceAdviceMessage = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "RemittanceAdviceMessage";
@@ -440,7 +442,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode RelatedPaymentInstruction = new DocumentTypeCode() {
+	public static final DocumentTypeCode RPIN_RelatedPaymentInstruction = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "RelatedPaymentInstruction";
@@ -473,7 +475,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode CommercialContract = new DocumentTypeCode() {
+	public static final DocumentTypeCode CMCN_CommercialContract = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CommercialContract";
@@ -506,7 +508,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode ForeignExchangeDealReference = new DocumentTypeCode() {
+	public static final DocumentTypeCode FXDR_ForeignExchangeDealReference = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ForeignExchangeDealReference";
@@ -539,7 +541,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode StatementOfAccount = new DocumentTypeCode() {
+	public static final DocumentTypeCode SOAC_StatementOfAccount = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "StatementOfAccount";
@@ -569,7 +571,7 @@ public class DocumentTypeCode extends MMCode {
 	 * definition} = "Document is a dispatch advice."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode DispatchAdvice = new DocumentTypeCode() {
+	public static final DocumentTypeCode DISP_DispatchAdvice = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "DispatchAdvice";
@@ -599,7 +601,7 @@ public class DocumentTypeCode extends MMCode {
 	 * definition} = "Document is a purchase order."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode PurchaseOrder = new DocumentTypeCode() {
+	public static final DocumentTypeCode PUOR_PurchaseOrder = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PurchaseOrder";
@@ -632,7 +634,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode StructuredCommunicationReference = new DocumentTypeCode() {
+	public static final DocumentTypeCode SCOR_StructuredCommunicationReference = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "StructuredCommunicationReference";
@@ -662,7 +664,7 @@ public class DocumentTypeCode extends MMCode {
 	 * definition} = "Document is a shipping notice."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode BillOfLading = new DocumentTypeCode() {
+	public static final DocumentTypeCode BOLD_BillOfLading = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "BillOfLading";
@@ -692,7 +694,7 @@ public class DocumentTypeCode extends MMCode {
 	 * definition} = "Document is an electronic payment document."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode Voucher = new DocumentTypeCode() {
+	public static final DocumentTypeCode VCHR_Voucher = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Voucher";
@@ -723,7 +725,7 @@ public class DocumentTypeCode extends MMCode {
 	 * "Document is a payment that applies to a specific source document."</li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode AccountReceivableOpenItem = new DocumentTypeCode() {
+	public static final DocumentTypeCode AROI_AccountReceivableOpenItem = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "AccountReceivableOpenItem";
@@ -756,7 +758,7 @@ public class DocumentTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final DocumentTypeCode TradeServicesUtilityTransaction = new DocumentTypeCode() {
+	public static final DocumentTypeCode TSUT_TradeServicesUtilityTransaction = new DocumentTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "TradeServicesUtilityTransaction";
@@ -779,41 +781,42 @@ public class DocumentTypeCode extends MMCode {
 				name = "DocumentTypeCode";
 				definition = "Specifies a type of financial or commercial document.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(DocumentType3Code.mmObject(), DocumentType5Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentTypeCode.MeteredServiceInvoice, com.tools20022.repository.codeset.DocumentTypeCode.CreditNoteRelatedToFinancialAdjustment,
-						com.tools20022.repository.codeset.DocumentTypeCode.DebitNoteRelatedToFinancialAdjustment, com.tools20022.repository.codeset.DocumentTypeCode.CommercialInvoice,
-						com.tools20022.repository.codeset.DocumentTypeCode.CreditNote, com.tools20022.repository.codeset.DocumentTypeCode.DebitNote, com.tools20022.repository.codeset.DocumentTypeCode.HireInvoice,
-						com.tools20022.repository.codeset.DocumentTypeCode.SelfBilledInvoice, com.tools20022.repository.codeset.DocumentTypeCode.RemittanceAdviceMessage,
-						com.tools20022.repository.codeset.DocumentTypeCode.RelatedPaymentInstruction, com.tools20022.repository.codeset.DocumentTypeCode.CommercialContract,
-						com.tools20022.repository.codeset.DocumentTypeCode.ForeignExchangeDealReference, com.tools20022.repository.codeset.DocumentTypeCode.StatementOfAccount,
-						com.tools20022.repository.codeset.DocumentTypeCode.DispatchAdvice, com.tools20022.repository.codeset.DocumentTypeCode.PurchaseOrder,
-						com.tools20022.repository.codeset.DocumentTypeCode.StructuredCommunicationReference, com.tools20022.repository.codeset.DocumentTypeCode.BillOfLading, com.tools20022.repository.codeset.DocumentTypeCode.Voucher,
-						com.tools20022.repository.codeset.DocumentTypeCode.AccountReceivableOpenItem, com.tools20022.repository.codeset.DocumentTypeCode.TradeServicesUtilityTransaction));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentTypeCode.MSIN_MeteredServiceInvoice,
+						com.tools20022.repository.codeset.DocumentTypeCode.CNFA_CreditNoteRelatedToFinancialAdjustment, com.tools20022.repository.codeset.DocumentTypeCode.DNFA_DebitNoteRelatedToFinancialAdjustment,
+						com.tools20022.repository.codeset.DocumentTypeCode.CINV_CommercialInvoice, com.tools20022.repository.codeset.DocumentTypeCode.CREN_CreditNote, com.tools20022.repository.codeset.DocumentTypeCode.DEBN_DebitNote,
+						com.tools20022.repository.codeset.DocumentTypeCode.HIRI_HireInvoice, com.tools20022.repository.codeset.DocumentTypeCode.SBIN_SelfBilledInvoice,
+						com.tools20022.repository.codeset.DocumentTypeCode.RADM_RemittanceAdviceMessage, com.tools20022.repository.codeset.DocumentTypeCode.RPIN_RelatedPaymentInstruction,
+						com.tools20022.repository.codeset.DocumentTypeCode.CMCN_CommercialContract, com.tools20022.repository.codeset.DocumentTypeCode.FXDR_ForeignExchangeDealReference,
+						com.tools20022.repository.codeset.DocumentTypeCode.SOAC_StatementOfAccount, com.tools20022.repository.codeset.DocumentTypeCode.DISP_DispatchAdvice,
+						com.tools20022.repository.codeset.DocumentTypeCode.PUOR_PurchaseOrder, com.tools20022.repository.codeset.DocumentTypeCode.SCOR_StructuredCommunicationReference,
+						com.tools20022.repository.codeset.DocumentTypeCode.BOLD_BillOfLading, com.tools20022.repository.codeset.DocumentTypeCode.VCHR_Voucher,
+						com.tools20022.repository.codeset.DocumentTypeCode.AROI_AccountReceivableOpenItem, com.tools20022.repository.codeset.DocumentTypeCode.TSUT_TradeServicesUtilityTransaction));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(MeteredServiceInvoice.getCodeName().get(), MeteredServiceInvoice);
-		codesByName.put(CreditNoteRelatedToFinancialAdjustment.getCodeName().get(), CreditNoteRelatedToFinancialAdjustment);
-		codesByName.put(DebitNoteRelatedToFinancialAdjustment.getCodeName().get(), DebitNoteRelatedToFinancialAdjustment);
-		codesByName.put(CommercialInvoice.getCodeName().get(), CommercialInvoice);
-		codesByName.put(CreditNote.getCodeName().get(), CreditNote);
-		codesByName.put(DebitNote.getCodeName().get(), DebitNote);
-		codesByName.put(HireInvoice.getCodeName().get(), HireInvoice);
-		codesByName.put(SelfBilledInvoice.getCodeName().get(), SelfBilledInvoice);
-		codesByName.put(RemittanceAdviceMessage.getCodeName().get(), RemittanceAdviceMessage);
-		codesByName.put(RelatedPaymentInstruction.getCodeName().get(), RelatedPaymentInstruction);
-		codesByName.put(CommercialContract.getCodeName().get(), CommercialContract);
-		codesByName.put(ForeignExchangeDealReference.getCodeName().get(), ForeignExchangeDealReference);
-		codesByName.put(StatementOfAccount.getCodeName().get(), StatementOfAccount);
-		codesByName.put(DispatchAdvice.getCodeName().get(), DispatchAdvice);
-		codesByName.put(PurchaseOrder.getCodeName().get(), PurchaseOrder);
-		codesByName.put(StructuredCommunicationReference.getCodeName().get(), StructuredCommunicationReference);
-		codesByName.put(BillOfLading.getCodeName().get(), BillOfLading);
-		codesByName.put(Voucher.getCodeName().get(), Voucher);
-		codesByName.put(AccountReceivableOpenItem.getCodeName().get(), AccountReceivableOpenItem);
-		codesByName.put(TradeServicesUtilityTransaction.getCodeName().get(), TradeServicesUtilityTransaction);
+		codesByName.put(MSIN_MeteredServiceInvoice.getCodeName().get(), MSIN_MeteredServiceInvoice);
+		codesByName.put(CNFA_CreditNoteRelatedToFinancialAdjustment.getCodeName().get(), CNFA_CreditNoteRelatedToFinancialAdjustment);
+		codesByName.put(DNFA_DebitNoteRelatedToFinancialAdjustment.getCodeName().get(), DNFA_DebitNoteRelatedToFinancialAdjustment);
+		codesByName.put(CINV_CommercialInvoice.getCodeName().get(), CINV_CommercialInvoice);
+		codesByName.put(CREN_CreditNote.getCodeName().get(), CREN_CreditNote);
+		codesByName.put(DEBN_DebitNote.getCodeName().get(), DEBN_DebitNote);
+		codesByName.put(HIRI_HireInvoice.getCodeName().get(), HIRI_HireInvoice);
+		codesByName.put(SBIN_SelfBilledInvoice.getCodeName().get(), SBIN_SelfBilledInvoice);
+		codesByName.put(RADM_RemittanceAdviceMessage.getCodeName().get(), RADM_RemittanceAdviceMessage);
+		codesByName.put(RPIN_RelatedPaymentInstruction.getCodeName().get(), RPIN_RelatedPaymentInstruction);
+		codesByName.put(CMCN_CommercialContract.getCodeName().get(), CMCN_CommercialContract);
+		codesByName.put(FXDR_ForeignExchangeDealReference.getCodeName().get(), FXDR_ForeignExchangeDealReference);
+		codesByName.put(SOAC_StatementOfAccount.getCodeName().get(), SOAC_StatementOfAccount);
+		codesByName.put(DISP_DispatchAdvice.getCodeName().get(), DISP_DispatchAdvice);
+		codesByName.put(PUOR_PurchaseOrder.getCodeName().get(), PUOR_PurchaseOrder);
+		codesByName.put(SCOR_StructuredCommunicationReference.getCodeName().get(), SCOR_StructuredCommunicationReference);
+		codesByName.put(BOLD_BillOfLading.getCodeName().get(), BOLD_BillOfLading);
+		codesByName.put(VCHR_Voucher.getCodeName().get(), VCHR_Voucher);
+		codesByName.put(AROI_AccountReceivableOpenItem.getCodeName().get(), AROI_AccountReceivableOpenItem);
+		codesByName.put(TSUT_TradeServicesUtilityTransaction.getCodeName().get(), TSUT_TradeServicesUtilityTransaction);
 	}
 
 	public static DocumentTypeCode valueOf(String codeName) {

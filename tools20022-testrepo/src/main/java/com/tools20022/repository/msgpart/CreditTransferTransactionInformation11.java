@@ -18,14 +18,12 @@
 package com.tools20022.repository.msgpart;
 
 import com.tools20022.core.repo.LazyReference;
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import com.tools20022.metamodel.MMMessageAttribute;
-import com.tools20022.metamodel.MMMessageComponent;
-import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.metamodel.*;
 import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
 import com.tools20022.repository.choice.Purpose2Choice;
 import com.tools20022.repository.codeset.ChargeBearerType1Code;
 import com.tools20022.repository.codeset.Priority3Code;
+import com.tools20022.repository.constraint.*;
 import com.tools20022.repository.datatype.*;
 import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.msgpart.*;
@@ -186,72 +184,61 @@ import javax.xml.bind.annotation.XmlType;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintChargesInformationGuideline#forCreditTransferTransactionInformation11
- * ConstraintChargesInformationGuideline.
- * forCreditTransferTransactionInformation11}</li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#ChargesInformationGuideline
+ * CreditTransferTransactionInformation11.ChargesInformationGuideline}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintUltimateDebtorGuideline#forCreditTransferTransactionInformation11
- * ConstraintUltimateDebtorGuideline.forCreditTransferTransactionInformation11}</li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#UltimateDebtorGuideline
+ * CreditTransferTransactionInformation11.UltimateDebtorGuideline}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintUltimateCreditorGuideline#forCreditTransferTransactionInformation11
- * ConstraintUltimateCreditorGuideline.forCreditTransferTransactionInformation11
- * }</li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#UltimateCreditorGuideline
+ * CreditTransferTransactionInformation11.UltimateCreditorGuideline}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate1Rule#forCreditTransferTransactionInformation11
- * ConstraintInstructedAmountAndExchangeRate1Rule.
- * forCreditTransferTransactionInformation11}</li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#InstructedAmountAndExchangeRate1Rule
+ * CreditTransferTransactionInformation11.InstructedAmountAndExchangeRate1Rule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate2Rule#forCreditTransferTransactionInformation11
- * ConstraintInstructedAmountAndExchangeRate2Rule.
- * forCreditTransferTransactionInformation11}</li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#InstructedAmountAndExchangeRate2Rule
+ * CreditTransferTransactionInformation11.InstructedAmountAndExchangeRate2Rule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintChargesInformationAndInstructedAmountRule#forCreditTransferTransactionInformation11
- * ConstraintChargesInformationAndInstructedAmountRule.
- * forCreditTransferTransactionInformation11}</li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#ChargesInformationAndInstructedAmountRule
+ * CreditTransferTransactionInformation11.
+ * ChargesInformationAndInstructedAmountRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintChargesAmountRule#forCreditTransferTransactionInformation11
- * ConstraintChargesAmountRule.forCreditTransferTransactionInformation11}</li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#ChargesAmountRule
+ * CreditTransferTransactionInformation11.ChargesAmountRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintChargeBearerAndChargesInformationRule#forCreditTransferTransactionInformation11
- * ConstraintChargeBearerAndChargesInformationRule.
- * forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintInstructionForCreditorAgentRule#forCreditTransferTransactionInformation11
- * ConstraintInstructionForCreditorAgentRule.
- * forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintIntermediaryAgent2Rule#forCreditTransferTransactionInformation11
- * ConstraintIntermediaryAgent2Rule.forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintIntermediaryAgent3Rule#forCreditTransferTransactionInformation11
- * ConstraintIntermediaryAgent3Rule.forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintIntermediaryAgent1AccountRule#forCreditTransferTransactionInformation11
- * ConstraintIntermediaryAgent1AccountRule.
- * forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintIntermediaryAgent2AccountRule#forCreditTransferTransactionInformation11
- * ConstraintIntermediaryAgent2AccountRule.
- * forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintIntermediaryAgent3AccountRule#forCreditTransferTransactionInformation11
- * ConstraintIntermediaryAgent3AccountRule.
- * forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintPreviousInstructingAgentAccountRule#forCreditTransferTransactionInformation11
- * ConstraintPreviousInstructingAgentAccountRule.
- * forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintDebtorAgentAccountRule#forCreditTransferTransactionInformation11
- * ConstraintDebtorAgentAccountRule.forCreditTransferTransactionInformation11}</li>
- * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintCreditorAgentAccountRule#forCreditTransferTransactionInformation11
- * ConstraintCreditorAgentAccountRule.forCreditTransferTransactionInformation11}
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#ChargeBearerAndChargesInformationRule
+ * CreditTransferTransactionInformation11.ChargeBearerAndChargesInformationRule}
  * </li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate3Rule#forCreditTransferTransactionInformation11
- * ConstraintInstructedAmountAndExchangeRate3Rule.
- * forCreditTransferTransactionInformation11}</li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#InstructionForCreditorAgentRule
+ * CreditTransferTransactionInformation11.InstructionForCreditorAgentRule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#IntermediaryAgent2Rule
+ * CreditTransferTransactionInformation11.IntermediaryAgent2Rule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#IntermediaryAgent3Rule
+ * CreditTransferTransactionInformation11.IntermediaryAgent3Rule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#IntermediaryAgent1AccountRule
+ * CreditTransferTransactionInformation11.IntermediaryAgent1AccountRule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#IntermediaryAgent2AccountRule
+ * CreditTransferTransactionInformation11.IntermediaryAgent2AccountRule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#IntermediaryAgent3AccountRule
+ * CreditTransferTransactionInformation11.IntermediaryAgent3AccountRule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#PreviousInstructingAgentAccountRule
+ * CreditTransferTransactionInformation11.PreviousInstructingAgentAccountRule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#DebtorAgentAccountRule
+ * CreditTransferTransactionInformation11.DebtorAgentAccountRule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#CreditorAgentAccountRule
+ * CreditTransferTransactionInformation11.CreditorAgentAccountRule}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#InstructedAmountAndExchangeRate3Rule
+ * CreditTransferTransactionInformation11.InstructedAmountAndExchangeRate3Rule}</li>
  * </ul>
  * </li>
  * <li>
@@ -2446,6 +2433,707 @@ public class CreditTransferTransactionInformation11 {
 			obj.setRemittanceInformation(value.orElse(null));
 		}
 	};
+	/**
+	 * The repetitive ChargesInformation should contain all information on
+	 * charges amount and which party has taken the charges, separately for each
+	 * agent along the payment chain.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ChargesInformationGuideline"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "The repetitive ChargesInformation should contain all information on charges amount and which party has taken the charges, separately for each agent along the payment chain."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> ChargesInformationGuideline = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "ChargesInformationGuideline";
+			definition = "The repetitive ChargesInformation should contain all information on charges amount and which party has taken the charges, separately for each agent along the payment chain.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintChargesInformationGuideline.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * UltimateDebtor may only be present if different from Debtor.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "UltimateDebtorGuideline"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "UltimateDebtor may only be present if different from Debtor."</li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> UltimateDebtorGuideline = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "UltimateDebtorGuideline";
+			definition = "UltimateDebtor may only be present if different from Debtor.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintUltimateDebtorGuideline.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * UltimateCreditor may only be present if different from Creditor.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "UltimateCreditorGuideline"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "UltimateCreditor may only be present if different from Creditor."</li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> UltimateCreditorGuideline = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "UltimateCreditorGuideline";
+			definition = "UltimateCreditor may only be present if different from Creditor.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintUltimateCreditorGuideline.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If InstructedAmount is present and the currency is different from the
+	 * currency in InterbankSettlementAmount, then ExchangeRate must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/ExchangeRate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InstructedAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"DifferentFromNode\"&gt;&lt;leftOperand&gt;/InstructedAmount/@Currency&lt;/leftOperand&gt;&lt;rightOperand&gt;/InterbankSettlementAmount/@Currency&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "InstructedAmountAndExchangeRate1Rule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If InstructedAmount is present and the currency is different from the currency in InterbankSettlementAmount, then ExchangeRate must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> InstructedAmountAndExchangeRate1Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "InstructedAmountAndExchangeRate1Rule";
+			definition = "If InstructedAmount is present and the currency is different from the currency in InterbankSettlementAmount, then ExchangeRate must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/ExchangeRate</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructedAmount</leftOperand></BooleanRule><BooleanRule xsi:type=\"DifferentFromNode\"><leftOperand>/InstructedAmount/@Currency</leftOperand><rightOperand>/InterbankSettlementAmount/@Currency</rightOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintInstructedAmountAndExchangeRate1Rule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If InstructedAmount is present and the currency is the same as the
+	 * currency in InterbankSettlementAmount, then ExchangeRate is not allowed.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/ExchangeRate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InstructedAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"EqualToNode\"&gt;&lt;leftOperand&gt;/InstructedAmount/@Currency&lt;/leftOperand&gt;&lt;rightOperand&gt;/InterbankSettlementAmount/@Currency&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "InstructedAmountAndExchangeRate2Rule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If InstructedAmount is present and the currency is the same as the currency in InterbankSettlementAmount, then ExchangeRate is not allowed."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> InstructedAmountAndExchangeRate2Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "InstructedAmountAndExchangeRate2Rule";
+			definition = "If InstructedAmount is present and the currency is the same as the currency in InterbankSettlementAmount, then ExchangeRate is not allowed.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/ExchangeRate</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructedAmount</leftOperand></BooleanRule><BooleanRule xsi:type=\"EqualToNode\"><leftOperand>/InstructedAmount/@Currency</leftOperand><rightOperand>/InterbankSettlementAmount/@Currency</rightOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintInstructedAmountAndExchangeRate2Rule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If ChargesInformation is present, then InstructedAmount must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InstructedAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/ChargesInformation[1]&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/ChargesInformation[*]/Amount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ChargesInformationAndInstructedAmountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If ChargesInformation is present, then InstructedAmount must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> ChargesInformationAndInstructedAmountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "ChargesInformationAndInstructedAmountRule";
+			definition = "If ChargesInformation is present, then InstructedAmount must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructedAmount</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/ChargesInformation[1]</leftOperand></BooleanRule><BooleanRule xsi:type=\"Presence\"><leftOperand>/ChargesInformation[*]/Amount</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintChargesInformationAndInstructedAmountRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If ChargesInformation is present, then the currency of
+	 * ChargesInformation/ChargesAmount must be the same as the currency of
+	 * InterbankSettlementAmount.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToNode\"&gt;&lt;leftOperand&gt;/ChargesInformation[*]/Amount/@Currency&lt;/leftOperand&gt;&lt;rightOperand&gt;/InterbankSettlementAmount/@Currency&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/ChargesInformation[1]&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/ChargesInformation[*]/Amount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ChargesAmountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If ChargesInformation is present, then the currency of ChargesInformation/ChargesAmount must be the same as the currency of InterbankSettlementAmount."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> ChargesAmountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "ChargesAmountRule";
+			definition = "If ChargesInformation is present, then the currency of ChargesInformation/ChargesAmount must be the same as the currency of InterbankSettlementAmount.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"EqualToNode\"><leftOperand>/ChargesInformation[*]/Amount/@Currency</leftOperand><rightOperand>/InterbankSettlementAmount/@Currency</rightOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/ChargesInformation[1]</leftOperand></BooleanRule><BooleanRule xsi:type=\"Presence\"><leftOperand>/ChargesInformation[*]/Amount</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintChargesAmountRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If ChargeBearer contains DEBT, then ChargesInformation may be present to
+	 * communicate charges that have been added for (the) InstructedAgent(s). If
+	 * ChargeBearer contains CRED, then at least one occurrence of
+	 * ChargesInformation must be present to communicate charges that have been
+	 * deducted from the InstructedAmount by (the) InstructingAgent(s). If
+	 * ChargeBearer contains SHAR or SLEV, then ChargesInformation is optional.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/ChargesInformation[1]&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/ChargeBearer&lt;/leftOperand&gt;&lt;rightOperand&gt;BorneByCreditor&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ChargeBearerAndChargesInformationRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If ChargeBearer contains DEBT, then ChargesInformation may be present to communicate charges that have been added for (the) InstructedAgent(s).\nIf ChargeBearer contains CRED, then at least one occurrence of ChargesInformation must be present to communicate charges that have been deducted from the InstructedAmount by (the) InstructingAgent(s).\nIf ChargeBearer contains SHAR or SLEV, then ChargesInformation is optional."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> ChargeBearerAndChargesInformationRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "ChargeBearerAndChargesInformationRule";
+			definition = "If ChargeBearer contains DEBT, then ChargesInformation may be present to communicate charges that have been added for (the) InstructedAgent(s).\nIf ChargeBearer contains CRED, then at least one occurrence of ChargesInformation must be present to communicate charges that have been deducted from the InstructedAmount by (the) InstructingAgent(s).\nIf ChargeBearer contains SHAR or SLEV, then ChargesInformation is optional.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/ChargesInformation[1]</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"EqualToValue\"><leftOperand>/ChargeBearer</leftOperand><rightOperand>BorneByCreditor</rightOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintChargeBearerAndChargesInformationRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If InstructionForCreditorAgent/Code contains CHQB, then CreditorAccount
+	 * is not allowed.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"WithInList\"&gt;&lt;leftOperand&gt;/InstructionForCreditorAgent[*]/Code&lt;/leftOperand&gt;&lt;rightOperand&gt;PartialInstruction3Code&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/CreditorAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InstructionForCreditorAgent[1]&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "InstructionForCreditorAgentRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If InstructionForCreditorAgent/Code contains CHQB, then CreditorAccount is not allowed."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> InstructionForCreditorAgentRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "InstructionForCreditorAgentRule";
+			definition = "If InstructionForCreditorAgent/Code contains CHQB, then CreditorAccount is not allowed.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"WithInList\"><leftOperand>/InstructionForCreditorAgent[*]/Code</leftOperand><rightOperand>PartialInstruction3Code</rightOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/CreditorAccount</leftOperand></BooleanRule><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructionForCreditorAgent[1]</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintInstructionForCreditorAgentRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If IntermediaryAgent2 is present, then IntermediaryAgent1 must be
+	 * present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent1&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent2&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "IntermediaryAgent2Rule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If IntermediaryAgent2 is present, then IntermediaryAgent1 must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent2Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "IntermediaryAgent2Rule";
+			definition = "If IntermediaryAgent2 is present, then IntermediaryAgent1 must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/IntermediaryAgent1</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/IntermediaryAgent2</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintIntermediaryAgent2Rule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If IntermediaryAgent3 is present, then IntermediaryAgent2 must be
+	 * present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent2&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent3&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "IntermediaryAgent3Rule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If IntermediaryAgent3 is present, then IntermediaryAgent2 must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent3Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "IntermediaryAgent3Rule";
+			definition = "If IntermediaryAgent3 is present, then IntermediaryAgent2 must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/IntermediaryAgent2</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/IntermediaryAgent3</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintIntermediaryAgent3Rule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If IntermediaryAgent1Account is present, then IntermediaryAgent1 must be
+	 * present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent1Account&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent1&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "IntermediaryAgent1AccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If IntermediaryAgent1Account is present, then IntermediaryAgent1 must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent1AccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "IntermediaryAgent1AccountRule";
+			definition = "If IntermediaryAgent1Account is present, then IntermediaryAgent1 must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/IntermediaryAgent1Account</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/IntermediaryAgent1</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintIntermediaryAgent1AccountRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If IntermediaryAgent2Account is present, then IntermediaryAgent2 must be
+	 * present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent2Account&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent2&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "IntermediaryAgent2AccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If IntermediaryAgent2Account is present, then IntermediaryAgent2 must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent2AccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "IntermediaryAgent2AccountRule";
+			definition = "If IntermediaryAgent2Account is present, then IntermediaryAgent2 must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/IntermediaryAgent2Account</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/IntermediaryAgent2</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintIntermediaryAgent2AccountRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If IntermediaryAgent3Account is present, then IntermediaryAgent3 must be
+	 * present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent3Account&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/IntermediaryAgent3&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "IntermediaryAgent3AccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If IntermediaryAgent3Account is present, then IntermediaryAgent3 must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent3AccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "IntermediaryAgent3AccountRule";
+			definition = "If IntermediaryAgent3Account is present, then IntermediaryAgent3 must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/IntermediaryAgent3Account</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/IntermediaryAgent3</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintIntermediaryAgent3AccountRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If PreviousInstructingAgentAccount is present, then
+	 * PreviousInstructingAgent must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/PreviousInstructingAgentAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/PreviousInstructingAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "PreviousInstructingAgentAccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If PreviousInstructingAgentAccount is present, then PreviousInstructingAgent must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> PreviousInstructingAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "PreviousInstructingAgentAccountRule";
+			definition = "If PreviousInstructingAgentAccount is present, then PreviousInstructingAgent must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/PreviousInstructingAgentAccount</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/PreviousInstructingAgent</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintPreviousInstructingAgentAccountRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If DebtorAgentAccount is present, then DebtorAgent must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/DebtorAgentAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/DebtorAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "DebtorAgentAccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If DebtorAgentAccount is present, then DebtorAgent must be present."</li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> DebtorAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "DebtorAgentAccountRule";
+			definition = "If DebtorAgentAccount is present, then DebtorAgent must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/DebtorAgentAccount</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/DebtorAgent</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintDebtorAgentAccountRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If CreditorAgentAccount is present, then CreditorAgent must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/CreditorAgentAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/CreditorAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "CreditorAgentAccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If CreditorAgentAccount is present, then CreditorAgent must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> CreditorAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "CreditorAgentAccountRule";
+			definition = "If CreditorAgentAccount is present, then CreditorAgent must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/CreditorAgentAccount</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/CreditorAgent</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintCreditorAgentAccountRule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
+	/**
+	 * If InstructedAmount is not present, then ExchangeRate is not allowed.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11
+	 * CreditTransferTransactionInformation11}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/ExchangeRate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructedAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "InstructedAmountAndExchangeRate3Rule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If InstructedAmount is not present, then ExchangeRate is not allowed."</li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> InstructedAmountAndExchangeRate3Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "InstructedAmountAndExchangeRate3Rule";
+			definition = "If InstructedAmount is not present, then ExchangeRate is not allowed.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/ExchangeRate</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructedAmount</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11 obj) throws Exception {
+			ConstraintInstructedAmountAndExchangeRate3Rule.checkCreditTransferTransactionInformation11(obj);
+		}
+	};
 
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
@@ -2473,24 +3161,17 @@ public class CreditTransferTransactionInformation11 {
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmRemittanceInformation));
 				messageBuildingBlock_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmCreditTransferTransactionInformation));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintChargesInformationGuideline.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintUltimateDebtorGuideline.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintUltimateCreditorGuideline.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate1Rule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate2Rule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintChargesInformationAndInstructedAmountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintChargesAmountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintChargeBearerAndChargesInformationRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintInstructionForCreditorAgentRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintIntermediaryAgent2Rule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintIntermediaryAgent3Rule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintIntermediaryAgent1AccountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintIntermediaryAgent2AccountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintIntermediaryAgent3AccountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintPreviousInstructingAgentAccountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintDebtorAgentAccountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintCreditorAgentAccountRule.forCreditTransferTransactionInformation11,
-						com.tools20022.repository.constraint.ConstraintInstructedAmountAndExchangeRate3Rule.forCreditTransferTransactionInformation11));
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.ChargesInformationGuideline,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.UltimateDebtorGuideline, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.UltimateCreditorGuideline,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.InstructedAmountAndExchangeRate1Rule,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.InstructedAmountAndExchangeRate2Rule,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.ChargesInformationAndInstructedAmountRule, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.ChargesAmountRule,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.ChargeBearerAndChargesInformationRule,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.InstructionForCreditorAgentRule, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.IntermediaryAgent2Rule,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.IntermediaryAgent3Rule, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.IntermediaryAgent1AccountRule,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.IntermediaryAgent2AccountRule, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.IntermediaryAgent3AccountRule,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.PreviousInstructingAgentAccountRule, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.DebtorAgentAccountRule,
+						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.CreditorAgentAccountRule, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.InstructedAmountAndExchangeRate3Rule));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CreditTransferTransactionInformation11";
 				definition = "Set of elements used to provide information specific to the individual transaction(s) included in the message.";

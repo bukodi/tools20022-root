@@ -39,12 +39,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code#Urgent
- * Priority3Code.Urgent}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code#High
- * Priority3Code.High}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code#Normal
- * Priority3Code.Normal}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code#URGT_Urgent
+ * Priority3Code.URGT_Urgent}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code#HIGH_High
+ * Priority3Code.HIGH_High}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code#NORM_Normal
+ * Priority3Code.NORM_Normal}</li>
  * </ul>
  * </li>
  * <li>
@@ -88,12 +88,12 @@ public class Priority3Code extends MMCode {
 	 * name} = "Urgent"</li>
 	 * </ul>
 	 */
-	public static final Priority3Code Urgent = new Priority3Code() {
+	public static final Priority3Code URGT_Urgent = new Priority3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Urgent";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority3Code.mmObject());
-			codeName = PriorityCode.Urgent.getCodeName().orElse(name);
+			codeName = PriorityCode.URGT_Urgent.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -112,12 +112,12 @@ public class Priority3Code extends MMCode {
 	 * name} = "High"</li>
 	 * </ul>
 	 */
-	public static final Priority3Code High = new Priority3Code() {
+	public static final Priority3Code HIGH_High = new Priority3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "High";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority3Code.mmObject());
-			codeName = PriorityCode.High.getCodeName().orElse(name);
+			codeName = PriorityCode.HIGH_High.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -136,12 +136,12 @@ public class Priority3Code extends MMCode {
 	 * name} = "Normal"</li>
 	 * </ul>
 	 */
-	public static final Priority3Code Normal = new Priority3Code() {
+	public static final Priority3Code NORM_Normal = new Priority3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Normal";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Priority3Code.mmObject());
-			codeName = PriorityCode.Normal.getCodeName().orElse(name);
+			codeName = PriorityCode.NORM_Normal.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, Priority3Code> codesByName = new LinkedHashMap<>();
@@ -158,16 +158,17 @@ public class Priority3Code extends MMCode {
 				name = "Priority3Code";
 				definition = "Specifies the priority level of an event.";
 				trace_lazy = LazyReference.create(() -> PriorityCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Priority3Code.Urgent, com.tools20022.repository.codeset.Priority3Code.High, com.tools20022.repository.codeset.Priority3Code.Normal));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Priority3Code.URGT_Urgent, com.tools20022.repository.codeset.Priority3Code.HIGH_High,
+						com.tools20022.repository.codeset.Priority3Code.NORM_Normal));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Urgent.getCodeName().get(), Urgent);
-		codesByName.put(High.getCodeName().get(), High);
-		codesByName.put(Normal.getCodeName().get(), Normal);
+		codesByName.put(URGT_Urgent.getCodeName().get(), URGT_Urgent);
+		codesByName.put(HIGH_High.getCodeName().get(), HIGH_High);
+		codesByName.put(NORM_Normal.getCodeName().get(), NORM_Normal);
 	}
 
 	public static Priority3Code valueOf(String codeName) {

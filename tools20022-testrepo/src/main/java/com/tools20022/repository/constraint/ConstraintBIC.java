@@ -17,10 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
-import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.BICIdentifier;
 
 /**
@@ -31,44 +28,11 @@ import com.tools20022.repository.datatype.BICIdentifier;
 public class ConstraintBIC {
 
 	/**
-	 * 
-	 <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.datatype.BICIdentifier
-	 * BICIdentifier}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "BIC"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Valid BICs for financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consist of eight (8) or eleven (11) contiguous characters."
-	 * </li>
-	 * </ul>
-	 */
-	public static final MMConstraint<BICIdentifier> forBICIdentifier = new MMConstraint<BICIdentifier>() {
-		{
-			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
-			name = "BIC";
-			definition = "Valid BICs for financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consist of eight (8) or eleven (11) contiguous characters.";
-			owner_lazy = LazyReference.create(() -> BICIdentifier.mmObject());
-		}
-
-		@Override
-		public void executeValidator(BICIdentifier obj) throws Exception {
-			checkBICIdentifier(obj);
-		}
-	};
-
-	/**
 	 * Valid BICs for financial institutions are registered by the ISO 9362
 	 * Registration Authority in the BIC directory, and consist of eight (8) or
 	 * eleven (11) contiguous characters.
+	 * 
+	 * @see Object#class
 	 */
 	public static void checkBICIdentifier(BICIdentifier obj) throws Exception {
 		throw new NotImplementedConstraintException();

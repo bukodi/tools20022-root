@@ -39,29 +39,32 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.InstructionCode#PayTheBeneficiary
- * InstructionCode.PayTheBeneficiary}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.InstructionCode#TimeTill
- * InstructionCode.TimeTill}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.InstructionCode#TimeFrom
- * InstructionCode.TimeFrom}</li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#PBEN_PayTheBeneficiary
+ * InstructionCode.PBEN_PayTheBeneficiary}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.InstructionCode#PayCreditorByCheque
- * InstructionCode.PayCreditorByCheque}</li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#TTIL_TimeTill
+ * InstructionCode.TTIL_TimeTill}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.InstructionCode#HoldCashForCreditor
- * InstructionCode.HoldCashForCreditor}</li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#TFRO_TimeFrom
+ * InstructionCode.TFRO_TimeFrom}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.InstructionCode#PhoneBeneficiary
- * InstructionCode.PhoneBeneficiary}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.InstructionCode#Telecom
- * InstructionCode.Telecom}</li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#CHQB_PayCreditorByCheque
+ * InstructionCode.CHQB_PayCreditorByCheque}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.InstructionCode#PhoneNextAgent
- * InstructionCode.PhoneNextAgent}</li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#HOLD_HoldCashForCreditor
+ * InstructionCode.HOLD_HoldCashForCreditor}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.InstructionCode#TelecomNextAgent
- * InstructionCode.TelecomNextAgent}</li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#PHOB_PhoneBeneficiary
+ * InstructionCode.PHOB_PhoneBeneficiary}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#TELB_Telecom
+ * InstructionCode.TELB_Telecom}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#PHOA_PhoneNextAgent
+ * InstructionCode.PHOA_PhoneNextAgent}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.InstructionCode#TELA_TelecomNextAgent
+ * InstructionCode.TELA_TelecomNextAgent}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -122,7 +125,7 @@ public class InstructionCode extends MMCode {
 	 * "(Ultimate) creditor to be paid only after verification of identity."</li>
 	 * </ul>
 	 */
-	public static final InstructionCode PayTheBeneficiary = new InstructionCode() {
+	public static final InstructionCode PBEN_PayTheBeneficiary = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PayTheBeneficiary";
@@ -155,7 +158,7 @@ public class InstructionCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final InstructionCode TimeTill = new InstructionCode() {
+	public static final InstructionCode TTIL_TimeTill = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "TimeTill";
@@ -188,7 +191,7 @@ public class InstructionCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final InstructionCode TimeFrom = new InstructionCode() {
+	public static final InstructionCode TFRO_TimeFrom = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "TimeFrom";
@@ -218,7 +221,7 @@ public class InstructionCode extends MMCode {
 	 * definition} = "(Ultimate) creditor must be paid by cheque."</li>
 	 * </ul>
 	 */
-	public static final InstructionCode PayCreditorByCheque = new InstructionCode() {
+	public static final InstructionCode CHQB_PayCreditorByCheque = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PayCreditorByCheque";
@@ -251,7 +254,7 @@ public class InstructionCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final InstructionCode HoldCashForCreditor = new InstructionCode() {
+	public static final InstructionCode HOLD_HoldCashForCreditor = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "HoldCashForCreditor";
@@ -282,7 +285,7 @@ public class InstructionCode extends MMCode {
 	 * "Please advise/contact (ultimate) creditor/claimant by phone"</li>
 	 * </ul>
 	 */
-	public static final InstructionCode PhoneBeneficiary = new InstructionCode() {
+	public static final InstructionCode PHOB_PhoneBeneficiary = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PhoneBeneficiary";
@@ -315,7 +318,7 @@ public class InstructionCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final InstructionCode Telecom = new InstructionCode() {
+	public static final InstructionCode TELB_Telecom = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Telecom";
@@ -345,7 +348,7 @@ public class InstructionCode extends MMCode {
 	 * definition} = "Please advise/contact next agent by phone."</li>
 	 * </ul>
 	 */
-	public static final InstructionCode PhoneNextAgent = new InstructionCode() {
+	public static final InstructionCode PHOA_PhoneNextAgent = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "PhoneNextAgent";
@@ -378,7 +381,7 @@ public class InstructionCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final InstructionCode TelecomNextAgent = new InstructionCode() {
+	public static final InstructionCode TELA_TelecomNextAgent = new InstructionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "TelecomNextAgent";
@@ -401,25 +404,25 @@ public class InstructionCode extends MMCode {
 				name = "InstructionCode";
 				definition = "Specifies further instructions concerning the processing of a payment instruction.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(Instruction3Code.mmObject(), Instruction4Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.InstructionCode.PayTheBeneficiary, com.tools20022.repository.codeset.InstructionCode.TimeTill,
-						com.tools20022.repository.codeset.InstructionCode.TimeFrom, com.tools20022.repository.codeset.InstructionCode.PayCreditorByCheque, com.tools20022.repository.codeset.InstructionCode.HoldCashForCreditor,
-						com.tools20022.repository.codeset.InstructionCode.PhoneBeneficiary, com.tools20022.repository.codeset.InstructionCode.Telecom, com.tools20022.repository.codeset.InstructionCode.PhoneNextAgent,
-						com.tools20022.repository.codeset.InstructionCode.TelecomNextAgent));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.InstructionCode.PBEN_PayTheBeneficiary, com.tools20022.repository.codeset.InstructionCode.TTIL_TimeTill,
+						com.tools20022.repository.codeset.InstructionCode.TFRO_TimeFrom, com.tools20022.repository.codeset.InstructionCode.CHQB_PayCreditorByCheque,
+						com.tools20022.repository.codeset.InstructionCode.HOLD_HoldCashForCreditor, com.tools20022.repository.codeset.InstructionCode.PHOB_PhoneBeneficiary, com.tools20022.repository.codeset.InstructionCode.TELB_Telecom,
+						com.tools20022.repository.codeset.InstructionCode.PHOA_PhoneNextAgent, com.tools20022.repository.codeset.InstructionCode.TELA_TelecomNextAgent));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(PayTheBeneficiary.getCodeName().get(), PayTheBeneficiary);
-		codesByName.put(TimeTill.getCodeName().get(), TimeTill);
-		codesByName.put(TimeFrom.getCodeName().get(), TimeFrom);
-		codesByName.put(PayCreditorByCheque.getCodeName().get(), PayCreditorByCheque);
-		codesByName.put(HoldCashForCreditor.getCodeName().get(), HoldCashForCreditor);
-		codesByName.put(PhoneBeneficiary.getCodeName().get(), PhoneBeneficiary);
-		codesByName.put(Telecom.getCodeName().get(), Telecom);
-		codesByName.put(PhoneNextAgent.getCodeName().get(), PhoneNextAgent);
-		codesByName.put(TelecomNextAgent.getCodeName().get(), TelecomNextAgent);
+		codesByName.put(PBEN_PayTheBeneficiary.getCodeName().get(), PBEN_PayTheBeneficiary);
+		codesByName.put(TTIL_TimeTill.getCodeName().get(), TTIL_TimeTill);
+		codesByName.put(TFRO_TimeFrom.getCodeName().get(), TFRO_TimeFrom);
+		codesByName.put(CHQB_PayCreditorByCheque.getCodeName().get(), CHQB_PayCreditorByCheque);
+		codesByName.put(HOLD_HoldCashForCreditor.getCodeName().get(), HOLD_HoldCashForCreditor);
+		codesByName.put(PHOB_PhoneBeneficiary.getCodeName().get(), PHOB_PhoneBeneficiary);
+		codesByName.put(TELB_Telecom.getCodeName().get(), TELB_Telecom);
+		codesByName.put(PHOA_PhoneNextAgent.getCodeName().get(), PHOA_PhoneNextAgent);
+		codesByName.put(TELA_TelecomNextAgent.getCodeName().get(), TELA_TelecomNextAgent);
 	}
 
 	public static InstructionCode valueOf(String codeName) {

@@ -41,10 +41,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * AmountDirectionCode}</li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.CreditDebitCode#Credit
- * CreditDebitCode.Credit}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.CreditDebitCode#Debit
- * CreditDebitCode.Debit}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CreditDebitCode#CRDT_Credit
+ * CreditDebitCode.CRDT_Credit}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.CreditDebitCode#DBIT_Debit
+ * CreditDebitCode.DBIT_Debit}</li>
  * </ul>
  * </li>
  * <li>
@@ -91,12 +92,12 @@ public class CreditDebitCode extends MMCode {
 	 * name} = "Credit"</li>
 	 * </ul>
 	 */
-	public static final CreditDebitCode Credit = new CreditDebitCode() {
+	public static final CreditDebitCode CRDT_Credit = new CreditDebitCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Credit";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CreditDebitCode.mmObject());
-			codeName = AmountDirectionCode.Credit.getCodeName().orElse(name);
+			codeName = AmountDirectionCode.CRDT_Credit.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -115,12 +116,12 @@ public class CreditDebitCode extends MMCode {
 	 * name} = "Debit"</li>
 	 * </ul>
 	 */
-	public static final CreditDebitCode Debit = new CreditDebitCode() {
+	public static final CreditDebitCode DBIT_Debit = new CreditDebitCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Debit";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CreditDebitCode.mmObject());
-			codeName = AmountDirectionCode.Debit.getCodeName().orElse(name);
+			codeName = AmountDirectionCode.DBIT_Debit.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, CreditDebitCode> codesByName = new LinkedHashMap<>();
@@ -138,15 +139,15 @@ public class CreditDebitCode extends MMCode {
 				name = "CreditDebitCode";
 				definition = "Specifies if an operation is an increase or a decrease.";
 				trace_lazy = LazyReference.create(() -> AmountDirectionCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CreditDebitCode.Credit, com.tools20022.repository.codeset.CreditDebitCode.Debit));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CreditDebitCode.CRDT_Credit, com.tools20022.repository.codeset.CreditDebitCode.DBIT_Debit));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Credit.getCodeName().get(), Credit);
-		codesByName.put(Debit.getCodeName().get(), Debit);
+		codesByName.put(CRDT_Credit.getCodeName().get(), CRDT_Credit);
+		codesByName.put(DBIT_Debit.getCodeName().get(), DBIT_Debit);
 	}
 
 	public static CreditDebitCode valueOf(String codeName) {

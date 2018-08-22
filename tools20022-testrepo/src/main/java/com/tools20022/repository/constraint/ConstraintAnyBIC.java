@@ -17,10 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
-import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.datatype.AnyBICIdentifier;
 
 /**
@@ -32,45 +29,12 @@ import com.tools20022.repository.datatype.AnyBICIdentifier;
 public class ConstraintAnyBIC {
 
 	/**
-	 * 
-	 <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.datatype.AnyBICIdentifier
-	 * AnyBICIdentifier}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "AnyBIC"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Only a valid Business identifier code is allowed. Business identifier codes for financial or non-financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consists of eight (8) or eleven (11) contiguous characters."
-	 * </li>
-	 * </ul>
-	 */
-	public static final MMConstraint<AnyBICIdentifier> forAnyBICIdentifier = new MMConstraint<AnyBICIdentifier>() {
-		{
-			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
-			name = "AnyBIC";
-			definition = "Only a valid Business identifier code is allowed. Business identifier codes for financial or non-financial institutions are registered by the ISO 9362 Registration Authority in the BIC directory, and consists of eight (8) or eleven (11) contiguous characters.";
-			owner_lazy = LazyReference.create(() -> AnyBICIdentifier.mmObject());
-		}
-
-		@Override
-		public void executeValidator(AnyBICIdentifier obj) throws Exception {
-			checkAnyBICIdentifier(obj);
-		}
-	};
-
-	/**
 	 * Only a valid Business identifier code is allowed. Business identifier
 	 * codes for financial or non-financial institutions are registered by the
 	 * ISO 9362 Registration Authority in the BIC directory, and consists of
 	 * eight (8) or eleven (11) contiguous characters.
+	 * 
+	 * @see Object#class
 	 */
 	public static void checkAnyBICIdentifier(AnyBICIdentifier obj) throws Exception {
 		throw new NotImplementedConstraintException();

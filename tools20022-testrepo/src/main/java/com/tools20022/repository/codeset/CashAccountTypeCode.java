@@ -39,65 +39,68 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#CashPayment
- * CashAccountTypeCode.CashPayment}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#CASH_CashPayment
+ * CashAccountTypeCode.CASH_CashPayment}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Charges
- * CashAccountTypeCode.Charges}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#CHAR_Charges
+ * CashAccountTypeCode.CHAR_Charges}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Commission
- * CashAccountTypeCode.Commission}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Tax
- * CashAccountTypeCode.Tax}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#COMM_Commission
+ * CashAccountTypeCode.COMM_Commission}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#CashIncome
- * CashAccountTypeCode.CashIncome}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#TAXE_Tax
+ * CashAccountTypeCode.TAXE_Tax}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#CashTrading
- * CashAccountTypeCode.CashTrading}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#CISH_CashIncome
+ * CashAccountTypeCode.CISH_CashIncome}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Settlement
- * CashAccountTypeCode.Settlement}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#TRAS_CashTrading
+ * CashAccountTypeCode.TRAS_CashTrading}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Current
- * CashAccountTypeCode.Current}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#SACC_Settlement
+ * CashAccountTypeCode.SACC_Settlement}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Savings
- * CashAccountTypeCode.Savings}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#CACC_Current
+ * CashAccountTypeCode.CACC_Current}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#OverNightDeposit
- * CashAccountTypeCode.OverNightDeposit}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#SVGS_Savings
+ * CashAccountTypeCode.SVGS_Savings}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#MarginalLending
- * CashAccountTypeCode.MarginalLending}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#ONDP_OverNightDeposit
+ * CashAccountTypeCode.ONDP_OverNightDeposit}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#NonResidentExternal
- * CashAccountTypeCode.NonResidentExternal}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#MGLD_MarginalLending
+ * CashAccountTypeCode.MGLD_MarginalLending}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#MoneyMarket
- * CashAccountTypeCode.MoneyMarket}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Loan
- * CashAccountTypeCode.Loan}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Salary
- * CashAccountTypeCode.Salary}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#NREX_NonResidentExternal
+ * CashAccountTypeCode.NREX_NonResidentExternal}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Overdraft
- * CashAccountTypeCode.Overdraft}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#MOMA_MoneyMarket
+ * CashAccountTypeCode.MOMA_MoneyMarket}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Lending
- * CashAccountTypeCode.Lending}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#LOAN_Loan
+ * CashAccountTypeCode.LOAN_Loan}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Collateral
- * CashAccountTypeCode.Collateral}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#SLRY_Salary
+ * CashAccountTypeCode.SLRY_Salary}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#FinancialSettlement
- * CashAccountTypeCode.FinancialSettlement}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#ODFT_Overdraft
+ * CashAccountTypeCode.ODFT_Overdraft}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#MarginReturn
- * CashAccountTypeCode.MarginReturn}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#LEND_Lending
+ * CashAccountTypeCode.LEND_Lending}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#Segregated
- * CashAccountTypeCode.Segregated}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#COLL_Collateral
+ * CashAccountTypeCode.COLL_Collateral}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#SETT_FinancialSettlement
+ * CashAccountTypeCode.SETT_FinancialSettlement}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#MARR_MarginReturn
+ * CashAccountTypeCode.MARR_MarginReturn}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#SEGT_Segregated
+ * CashAccountTypeCode.SEGT_Segregated}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -159,7 +162,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account used for the payment of cash."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode CashPayment = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode CASH_CashPayment = new CashAccountTypeCode() {
 		{
 			semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::CASH"));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
@@ -194,7 +197,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * "Account used for charges if different from the account for payment."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Charges = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode CHAR_Charges = new CashAccountTypeCode() {
 		{
 			semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::CHAR"));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
@@ -229,7 +232,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * "Account used for commission if different from the account for payment."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Commission = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode COMM_Commission = new CashAccountTypeCode() {
 		{
 			semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::COMM"));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
@@ -264,7 +267,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * "Account used for taxes if different from the account for payment."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Tax = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode TAXE_Tax = new CashAccountTypeCode() {
 		{
 			semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::TAXE"));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
@@ -298,7 +301,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode CashIncome = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode CISH_CashIncome = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CashIncome";
@@ -329,7 +332,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * "Account used for trading if different from the current cash account."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode CashTrading = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode TRAS_CashTrading = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CashTrading";
@@ -363,7 +366,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Settlement = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode SACC_Settlement = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Settlement";
@@ -396,7 +399,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * </li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Current = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode CACC_Current = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Current";
@@ -426,7 +429,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account used for savings."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Savings = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode SVGS_Savings = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Savings";
@@ -456,7 +459,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account used for overnight deposits."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode OverNightDeposit = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode ONDP_OverNightDeposit = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "OverNightDeposit";
@@ -486,7 +489,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account used for a marginal lending facility."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode MarginalLending = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode MGLD_MarginalLending = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MarginalLending";
@@ -516,7 +519,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account used for non-resident external."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode NonResidentExternal = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode NREX_NonResidentExternal = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "NonResidentExternal";
@@ -547,7 +550,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * "Account used for money markets if different from the cash account."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode MoneyMarket = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode MOMA_MoneyMarket = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MoneyMarket";
@@ -577,7 +580,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account used for loans."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Loan = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode LOAN_Loan = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Loan";
@@ -607,7 +610,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Accounts used for salary payments."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Salary = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode SLRY_Salary = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Salary";
@@ -637,7 +640,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account is used for overdrafts."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Overdraft = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode ODFT_Overdraft = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Overdraft";
@@ -667,7 +670,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account is for the coverage of lending."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Lending = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode LEND_Lending = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Lending";
@@ -697,7 +700,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account is for collateral."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Collateral = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode COLL_Collateral = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Collateral";
@@ -727,7 +730,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account is for financial settlements."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode FinancialSettlement = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode SETT_FinancialSettlement = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "FinancialSettlement";
@@ -757,7 +760,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account is for margin returns."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode MarginReturn = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode MARR_MarginReturn = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "MarginReturn";
@@ -787,7 +790,7 @@ public class CashAccountTypeCode extends MMCode {
 	 * definition} = "Account is an segregated account."</li>
 	 * </ul>
 	 */
-	public static final CashAccountTypeCode Segregated = new CashAccountTypeCode() {
+	public static final CashAccountTypeCode SEGT_Segregated = new CashAccountTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Segregated";
@@ -811,41 +814,42 @@ public class CashAccountTypeCode extends MMCode {
 				name = "CashAccountTypeCode";
 				definition = "Specifies the nature, or  use, of the cash account.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(CashAccountType4Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountTypeCode.CashPayment, com.tools20022.repository.codeset.CashAccountTypeCode.Charges,
-						com.tools20022.repository.codeset.CashAccountTypeCode.Commission, com.tools20022.repository.codeset.CashAccountTypeCode.Tax, com.tools20022.repository.codeset.CashAccountTypeCode.CashIncome,
-						com.tools20022.repository.codeset.CashAccountTypeCode.CashTrading, com.tools20022.repository.codeset.CashAccountTypeCode.Settlement, com.tools20022.repository.codeset.CashAccountTypeCode.Current,
-						com.tools20022.repository.codeset.CashAccountTypeCode.Savings, com.tools20022.repository.codeset.CashAccountTypeCode.OverNightDeposit, com.tools20022.repository.codeset.CashAccountTypeCode.MarginalLending,
-						com.tools20022.repository.codeset.CashAccountTypeCode.NonResidentExternal, com.tools20022.repository.codeset.CashAccountTypeCode.MoneyMarket, com.tools20022.repository.codeset.CashAccountTypeCode.Loan,
-						com.tools20022.repository.codeset.CashAccountTypeCode.Salary, com.tools20022.repository.codeset.CashAccountTypeCode.Overdraft, com.tools20022.repository.codeset.CashAccountTypeCode.Lending,
-						com.tools20022.repository.codeset.CashAccountTypeCode.Collateral, com.tools20022.repository.codeset.CashAccountTypeCode.FinancialSettlement, com.tools20022.repository.codeset.CashAccountTypeCode.MarginReturn,
-						com.tools20022.repository.codeset.CashAccountTypeCode.Segregated));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountTypeCode.CASH_CashPayment, com.tools20022.repository.codeset.CashAccountTypeCode.CHAR_Charges,
+						com.tools20022.repository.codeset.CashAccountTypeCode.COMM_Commission, com.tools20022.repository.codeset.CashAccountTypeCode.TAXE_Tax, com.tools20022.repository.codeset.CashAccountTypeCode.CISH_CashIncome,
+						com.tools20022.repository.codeset.CashAccountTypeCode.TRAS_CashTrading, com.tools20022.repository.codeset.CashAccountTypeCode.SACC_Settlement, com.tools20022.repository.codeset.CashAccountTypeCode.CACC_Current,
+						com.tools20022.repository.codeset.CashAccountTypeCode.SVGS_Savings, com.tools20022.repository.codeset.CashAccountTypeCode.ONDP_OverNightDeposit,
+						com.tools20022.repository.codeset.CashAccountTypeCode.MGLD_MarginalLending, com.tools20022.repository.codeset.CashAccountTypeCode.NREX_NonResidentExternal,
+						com.tools20022.repository.codeset.CashAccountTypeCode.MOMA_MoneyMarket, com.tools20022.repository.codeset.CashAccountTypeCode.LOAN_Loan, com.tools20022.repository.codeset.CashAccountTypeCode.SLRY_Salary,
+						com.tools20022.repository.codeset.CashAccountTypeCode.ODFT_Overdraft, com.tools20022.repository.codeset.CashAccountTypeCode.LEND_Lending, com.tools20022.repository.codeset.CashAccountTypeCode.COLL_Collateral,
+						com.tools20022.repository.codeset.CashAccountTypeCode.SETT_FinancialSettlement, com.tools20022.repository.codeset.CashAccountTypeCode.MARR_MarginReturn,
+						com.tools20022.repository.codeset.CashAccountTypeCode.SEGT_Segregated));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(CashPayment.getCodeName().get(), CashPayment);
-		codesByName.put(Charges.getCodeName().get(), Charges);
-		codesByName.put(Commission.getCodeName().get(), Commission);
-		codesByName.put(Tax.getCodeName().get(), Tax);
-		codesByName.put(CashIncome.getCodeName().get(), CashIncome);
-		codesByName.put(CashTrading.getCodeName().get(), CashTrading);
-		codesByName.put(Settlement.getCodeName().get(), Settlement);
-		codesByName.put(Current.getCodeName().get(), Current);
-		codesByName.put(Savings.getCodeName().get(), Savings);
-		codesByName.put(OverNightDeposit.getCodeName().get(), OverNightDeposit);
-		codesByName.put(MarginalLending.getCodeName().get(), MarginalLending);
-		codesByName.put(NonResidentExternal.getCodeName().get(), NonResidentExternal);
-		codesByName.put(MoneyMarket.getCodeName().get(), MoneyMarket);
-		codesByName.put(Loan.getCodeName().get(), Loan);
-		codesByName.put(Salary.getCodeName().get(), Salary);
-		codesByName.put(Overdraft.getCodeName().get(), Overdraft);
-		codesByName.put(Lending.getCodeName().get(), Lending);
-		codesByName.put(Collateral.getCodeName().get(), Collateral);
-		codesByName.put(FinancialSettlement.getCodeName().get(), FinancialSettlement);
-		codesByName.put(MarginReturn.getCodeName().get(), MarginReturn);
-		codesByName.put(Segregated.getCodeName().get(), Segregated);
+		codesByName.put(CASH_CashPayment.getCodeName().get(), CASH_CashPayment);
+		codesByName.put(CHAR_Charges.getCodeName().get(), CHAR_Charges);
+		codesByName.put(COMM_Commission.getCodeName().get(), COMM_Commission);
+		codesByName.put(TAXE_Tax.getCodeName().get(), TAXE_Tax);
+		codesByName.put(CISH_CashIncome.getCodeName().get(), CISH_CashIncome);
+		codesByName.put(TRAS_CashTrading.getCodeName().get(), TRAS_CashTrading);
+		codesByName.put(SACC_Settlement.getCodeName().get(), SACC_Settlement);
+		codesByName.put(CACC_Current.getCodeName().get(), CACC_Current);
+		codesByName.put(SVGS_Savings.getCodeName().get(), SVGS_Savings);
+		codesByName.put(ONDP_OverNightDeposit.getCodeName().get(), ONDP_OverNightDeposit);
+		codesByName.put(MGLD_MarginalLending.getCodeName().get(), MGLD_MarginalLending);
+		codesByName.put(NREX_NonResidentExternal.getCodeName().get(), NREX_NonResidentExternal);
+		codesByName.put(MOMA_MoneyMarket.getCodeName().get(), MOMA_MoneyMarket);
+		codesByName.put(LOAN_Loan.getCodeName().get(), LOAN_Loan);
+		codesByName.put(SLRY_Salary.getCodeName().get(), SLRY_Salary);
+		codesByName.put(ODFT_Overdraft.getCodeName().get(), ODFT_Overdraft);
+		codesByName.put(LEND_Lending.getCodeName().get(), LEND_Lending);
+		codesByName.put(COLL_Collateral.getCodeName().get(), COLL_Collateral);
+		codesByName.put(SETT_FinancialSettlement.getCodeName().get(), SETT_FinancialSettlement);
+		codesByName.put(MARR_MarginReturn.getCodeName().get(), MARR_MarginReturn);
+		codesByName.put(SEGT_Segregated.getCodeName().get(), SEGT_Segregated);
 	}
 
 	public static CashAccountTypeCode valueOf(String codeName) {

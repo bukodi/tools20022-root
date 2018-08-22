@@ -222,7 +222,7 @@ public class XMILoader {
 		}
 		MMModelEntity rootRepoObj = repoObjsByEObj.get(rootEObj);
 		RawRepository rawRepo = new RawRepository(metamodel, (MMRepository) rootRepoObj);
-		loadedObjects.forEach(o -> rawRepo.addObject(o));
+		rawRepo.addObjects(loadedObjects);
 		System.out.println("" + objectCount.get() + " objects with " + attributeCount.get() + " attributes loaded.");
 		return rawRepo;
 	}

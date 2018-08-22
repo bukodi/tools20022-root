@@ -26,7 +26,7 @@ public class TestUtil {
 		collectContents(GeneratedRepository.mmObject(), mmBeansByType);
 
 		Set<Class<?>> classes = new HashSet<>();
-		for (Entry<MetamodelType<?>, Set<MMModelEntity>> e : mmBeansByType.entrySet()) {
+		/*for (Entry<MetamodelType<?>, Set<MMModelEntity>> e : mmBeansByType.entrySet()) {
 			if (!RuntimeInstanceAware.class.isAssignableFrom(e.getKey().getBeanClass()))
 				continue;
 
@@ -35,7 +35,7 @@ public class TestUtil {
 				Class instanceClazz = x.getInstanceClass();
 				classes.add(instanceClazz);
 			}
-		}
+		}*/
 		classes.add(FIToFICustomerCreditTransferV02.Document.class);
 
 		// mmBeansByType.get(MMMessageComponent.metaType()).forEach(mmBean->

@@ -37,14 +37,16 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <ul>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#Doctor
- * NamePrefix1Code.Doctor}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#Mister
- * NamePrefix1Code.Mister}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#Miss
- * NamePrefix1Code.Miss}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#Madam
- * NamePrefix1Code.Madam}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code#DOCT_Doctor
+ * NamePrefix1Code.DOCT_Doctor}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code#MIST_Mister
+ * NamePrefix1Code.MIST_Mister}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#MISS_Miss
+ * NamePrefix1Code.MISS_Miss}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.NamePrefix1Code#MADM_Madam
+ * NamePrefix1Code.MADM_Madam}</li>
  * </ul>
  * </li>
  * <li>
@@ -93,7 +95,7 @@ public class NamePrefix1Code extends MMCode {
 	 * definition} = "Title of the person is Doctor or Dr."</li>
 	 * </ul>
 	 */
-	public static final NamePrefix1Code Doctor = new NamePrefix1Code() {
+	public static final NamePrefix1Code DOCT_Doctor = new NamePrefix1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Doctor";
@@ -123,7 +125,7 @@ public class NamePrefix1Code extends MMCode {
 	 * definition} = "Title of the person is Mister or Mr."</li>
 	 * </ul>
 	 */
-	public static final NamePrefix1Code Mister = new NamePrefix1Code() {
+	public static final NamePrefix1Code MIST_Mister = new NamePrefix1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Mister";
@@ -153,7 +155,7 @@ public class NamePrefix1Code extends MMCode {
 	 * definition} = "Title of the person is Miss."</li>
 	 * </ul>
 	 */
-	public static final NamePrefix1Code Miss = new NamePrefix1Code() {
+	public static final NamePrefix1Code MISS_Miss = new NamePrefix1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Miss";
@@ -183,7 +185,7 @@ public class NamePrefix1Code extends MMCode {
 	 * definition} = "Title of the person is Madam."</li>
 	 * </ul>
 	 */
-	public static final NamePrefix1Code Madam = new NamePrefix1Code() {
+	public static final NamePrefix1Code MADM_Madam = new NamePrefix1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Madam";
@@ -205,18 +207,18 @@ public class NamePrefix1Code extends MMCode {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "NamePrefix1Code";
 				definition = "Specifies the terms used to formally address a person.";
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.NamePrefix1Code.Doctor, com.tools20022.repository.codeset.NamePrefix1Code.Mister,
-						com.tools20022.repository.codeset.NamePrefix1Code.Miss, com.tools20022.repository.codeset.NamePrefix1Code.Madam));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.NamePrefix1Code.DOCT_Doctor, com.tools20022.repository.codeset.NamePrefix1Code.MIST_Mister,
+						com.tools20022.repository.codeset.NamePrefix1Code.MISS_Miss, com.tools20022.repository.codeset.NamePrefix1Code.MADM_Madam));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Doctor.getCodeName().get(), Doctor);
-		codesByName.put(Mister.getCodeName().get(), Mister);
-		codesByName.put(Miss.getCodeName().get(), Miss);
-		codesByName.put(Madam.getCodeName().get(), Madam);
+		codesByName.put(DOCT_Doctor.getCodeName().get(), DOCT_Doctor);
+		codesByName.put(MIST_Mister.getCodeName().get(), MIST_Mister);
+		codesByName.put(MISS_Miss.getCodeName().get(), MISS_Miss);
+		codesByName.put(MADM_Madam.getCodeName().get(), MADM_Madam);
 	}
 
 	public static NamePrefix1Code valueOf(String codeName) {

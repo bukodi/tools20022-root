@@ -31,6 +31,6 @@ public class DeriveMMChoiceComponent_isTechnical implements Function<MMChoiceCom
 	 */
 	@Override
 	public Boolean apply(MMChoiceComponent mmBean) {
-		throw new RuntimeException("Not implemented!");
+		return !mmBean.getTrace().isPresent();  
 	}
 }

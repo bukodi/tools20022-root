@@ -17,10 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
-import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode;
 
 /**
@@ -32,46 +29,13 @@ import com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode;
 public class ConstraintActiveOrHistoricCurrency {
 
 	/**
-	 * 
-	 <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.ActiveOrHistoricCurrencyCode
-	 * ActiveOrHistoricCurrencyCode}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "ActiveOrHistoricCurrency"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "The Currency Code must be registered, or have already been registered. Valid active or historic currency codes are registered with the ISO 4217 Maintenance Agency, consist of three (3) contiguous letters, and may be or not be withdrawn on the day the message containing the Currency is exchanged."
-	 * </li>
-	 * </ul>
-	 */
-	public static final MMConstraint<ActiveOrHistoricCurrencyCode> forActiveOrHistoricCurrencyCode = new MMConstraint<ActiveOrHistoricCurrencyCode>() {
-		{
-			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
-			name = "ActiveOrHistoricCurrency";
-			definition = "The Currency Code must be registered, or have already been registered. Valid active or historic currency codes are registered with the ISO 4217 Maintenance Agency, consist of three (3) contiguous letters, and may be or not be withdrawn on the day the message containing the Currency is exchanged.";
-			owner_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyCode.mmObject());
-		}
-
-		@Override
-		public void executeValidator(ActiveOrHistoricCurrencyCode obj) throws Exception {
-			checkActiveOrHistoricCurrencyCode(obj);
-		}
-	};
-
-	/**
 	 * The Currency Code must be registered, or have already been registered.
 	 * Valid active or historic currency codes are registered with the ISO 4217
 	 * Maintenance Agency, consist of three (3) contiguous letters, and may be
 	 * or not be withdrawn on the day the message containing the Currency is
 	 * exchanged.
+	 * 
+	 * @see Object#class
 	 */
 	public static void checkActiveOrHistoricCurrencyCode(ActiveOrHistoricCurrencyCode obj) throws Exception {
 		throw new NotImplementedConstraintException();

@@ -42,17 +42,17 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#BorneByDebtor
- * ChargeBearerType1Code.BorneByDebtor}</li>
+ * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#DEBT_BorneByDebtor
+ * ChargeBearerType1Code.DEBT_BorneByDebtor}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#BorneByCreditor
- * ChargeBearerType1Code.BorneByCreditor}</li>
+ * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#CRED_BorneByCreditor
+ * ChargeBearerType1Code.CRED_BorneByCreditor}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#Shared
- * ChargeBearerType1Code.Shared}</li>
+ * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#SHAR_Shared
+ * ChargeBearerType1Code.SHAR_Shared}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#FollowingServiceLevel
- * ChargeBearerType1Code.FollowingServiceLevel}</li>
+ * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#SLEV_FollowingServiceLevel
+ * ChargeBearerType1Code.SLEV_FollowingServiceLevel}</li>
  * </ul>
  * </li>
  * <li>
@@ -98,12 +98,12 @@ public class ChargeBearerType1Code extends MMCode {
 	 * name} = "BorneByDebtor"</li>
 	 * </ul>
 	 */
-	public static final ChargeBearerType1Code BorneByDebtor = new ChargeBearerType1Code() {
+	public static final ChargeBearerType1Code DEBT_BorneByDebtor = new ChargeBearerType1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "BorneByDebtor";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerType1Code.mmObject());
-			codeName = ChargeBearerTypeCode.BorneByDebtor.getCodeName().orElse(name);
+			codeName = ChargeBearerTypeCode.DEBT_BorneByDebtor.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -122,12 +122,12 @@ public class ChargeBearerType1Code extends MMCode {
 	 * name} = "BorneByCreditor"</li>
 	 * </ul>
 	 */
-	public static final ChargeBearerType1Code BorneByCreditor = new ChargeBearerType1Code() {
+	public static final ChargeBearerType1Code CRED_BorneByCreditor = new ChargeBearerType1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "BorneByCreditor";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerType1Code.mmObject());
-			codeName = ChargeBearerTypeCode.BorneByCreditor.getCodeName().orElse(name);
+			codeName = ChargeBearerTypeCode.CRED_BorneByCreditor.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -146,12 +146,12 @@ public class ChargeBearerType1Code extends MMCode {
 	 * name} = "Shared"</li>
 	 * </ul>
 	 */
-	public static final ChargeBearerType1Code Shared = new ChargeBearerType1Code() {
+	public static final ChargeBearerType1Code SHAR_Shared = new ChargeBearerType1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Shared";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerType1Code.mmObject());
-			codeName = ChargeBearerTypeCode.Shared.getCodeName().orElse(name);
+			codeName = ChargeBearerTypeCode.SHAR_Shared.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -170,12 +170,12 @@ public class ChargeBearerType1Code extends MMCode {
 	 * name} = "FollowingServiceLevel"</li>
 	 * </ul>
 	 */
-	public static final ChargeBearerType1Code FollowingServiceLevel = new ChargeBearerType1Code() {
+	public static final ChargeBearerType1Code SLEV_FollowingServiceLevel = new ChargeBearerType1Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "FollowingServiceLevel";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerType1Code.mmObject());
-			codeName = ChargeBearerTypeCode.FollowingServiceLevel.getCodeName().orElse(name);
+			codeName = ChargeBearerTypeCode.SLEV_FollowingServiceLevel.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, ChargeBearerType1Code> codesByName = new LinkedHashMap<>();
@@ -192,18 +192,18 @@ public class ChargeBearerType1Code extends MMCode {
 				name = "ChargeBearerType1Code";
 				definition = "Specifies which party(ies) will pay charges due for processing of the instruction.";
 				trace_lazy = LazyReference.create(() -> ChargeBearerTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ChargeBearerType1Code.BorneByDebtor, com.tools20022.repository.codeset.ChargeBearerType1Code.BorneByCreditor,
-						com.tools20022.repository.codeset.ChargeBearerType1Code.Shared, com.tools20022.repository.codeset.ChargeBearerType1Code.FollowingServiceLevel));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ChargeBearerType1Code.DEBT_BorneByDebtor, com.tools20022.repository.codeset.ChargeBearerType1Code.CRED_BorneByCreditor,
+						com.tools20022.repository.codeset.ChargeBearerType1Code.SHAR_Shared, com.tools20022.repository.codeset.ChargeBearerType1Code.SLEV_FollowingServiceLevel));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(BorneByDebtor.getCodeName().get(), BorneByDebtor);
-		codesByName.put(BorneByCreditor.getCodeName().get(), BorneByCreditor);
-		codesByName.put(Shared.getCodeName().get(), Shared);
-		codesByName.put(FollowingServiceLevel.getCodeName().get(), FollowingServiceLevel);
+		codesByName.put(DEBT_BorneByDebtor.getCodeName().get(), DEBT_BorneByDebtor);
+		codesByName.put(CRED_BorneByCreditor.getCodeName().get(), CRED_BorneByCreditor);
+		codesByName.put(SHAR_Shared.getCodeName().get(), SHAR_Shared);
+		codesByName.put(SLEV_FollowingServiceLevel.getCodeName().get(), SLEV_FollowingServiceLevel);
 	}
 
 	public static ChargeBearerType1Code valueOf(String codeName) {

@@ -57,6 +57,7 @@ public class MMCode implements MMRepositoryConcept {
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
+	protected Supplier<MMCode> traceCode_lazy;
 
 	@Override
 	public MMCodeSet getContainer() {
@@ -143,5 +144,22 @@ public class MMCode implements MMRepositoryConcept {
 	@Override
 	public Optional<String> getObjectIdentifier() {
 		return objectIdentifier == null ? Optional.empty() : Optional.of(objectIdentifier);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (!(obj instanceof MMCode))
+			return false;
+		MMCode otherCode = (MMCode) obj;
+		if (otherCode.traceCode_lazy != null)
+			otherCode = otherCode.traceCode_lazy.get();
+		return otherCode.equals(traceCode_lazy == null ? this : traceCode_lazy.get());
+	}
+
+	@Override
+	public int hashCode() {
+		return traceCode_lazy == null ? super.hashCode() : traceCode_lazy.get().hashCode();
 	}
 }

@@ -42,11 +42,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.Instruction4Code#PhoneNextAgent
- * Instruction4Code.PhoneNextAgent}</li>
+ * {@linkplain com.tools20022.repository.codeset.Instruction4Code#PHOA_PhoneNextAgent
+ * Instruction4Code.PHOA_PhoneNextAgent}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.Instruction4Code#TelecomNextAgent
- * Instruction4Code.TelecomNextAgent}</li>
+ * {@linkplain com.tools20022.repository.codeset.Instruction4Code#TELA_TelecomNextAgent
+ * Instruction4Code.TELA_TelecomNextAgent}</li>
  * </ul>
  * </li>
  * <li>
@@ -92,12 +92,12 @@ public class Instruction4Code extends MMCode {
 	 * name} = "PhoneNextAgent"</li>
 	 * </ul>
 	 */
-	public static final Instruction4Code PhoneNextAgent = new Instruction4Code() {
+	public static final Instruction4Code PHOA_PhoneNextAgent = new Instruction4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "PhoneNextAgent";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Instruction4Code.mmObject());
-			codeName = InstructionCode.PhoneNextAgent.getCodeName().orElse(name);
+			codeName = InstructionCode.PHOA_PhoneNextAgent.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -116,12 +116,12 @@ public class Instruction4Code extends MMCode {
 	 * name} = "TelecomNextAgent"</li>
 	 * </ul>
 	 */
-	public static final Instruction4Code TelecomNextAgent = new Instruction4Code() {
+	public static final Instruction4Code TELA_TelecomNextAgent = new Instruction4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "TelecomNextAgent";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.Instruction4Code.mmObject());
-			codeName = InstructionCode.TelecomNextAgent.getCodeName().orElse(name);
+			codeName = InstructionCode.TELA_TelecomNextAgent.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, Instruction4Code> codesByName = new LinkedHashMap<>();
@@ -138,15 +138,15 @@ public class Instruction4Code extends MMCode {
 				name = "Instruction4Code";
 				definition = "Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s).";
 				trace_lazy = LazyReference.create(() -> InstructionCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Instruction4Code.PhoneNextAgent, com.tools20022.repository.codeset.Instruction4Code.TelecomNextAgent));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Instruction4Code.PHOA_PhoneNextAgent, com.tools20022.repository.codeset.Instruction4Code.TELA_TelecomNextAgent));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(PhoneNextAgent.getCodeName().get(), PhoneNextAgent);
-		codesByName.put(TelecomNextAgent.getCodeName().get(), TelecomNextAgent);
+		codesByName.put(PHOA_PhoneNextAgent.getCodeName().get(), PHOA_PhoneNextAgent);
+		codesByName.put(TELA_TelecomNextAgent.getCodeName().get(), TELA_TelecomNextAgent);
 	}
 
 	public static Instruction4Code valueOf(String codeName) {

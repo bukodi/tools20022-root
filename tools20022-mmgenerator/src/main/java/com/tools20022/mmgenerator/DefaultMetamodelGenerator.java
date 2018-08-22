@@ -112,7 +112,12 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 			if( mmType.isAbstract() ) {
 				generateMMInterface(srcMetamodelMain, mmType);
 			} else {
-				generateMMClass(srcMetamodelMain, mmType);
+				JavaClassSource src = generateMMClass(srcMetamodelMain, mmType);
+				if( "Code".equals( mmType.getName())) {
+					customizeMMCode( src );
+				} else if( "CodeSet".equals(mmType.getName())) {
+					customizeMMCodeSet( src );					
+				}
 			}
 		}
 
@@ -150,6 +155,34 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		}
 	}
 
+	private void customizeMMCodeSet(JavaClassSource src) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void customizeMMCode(JavaClassSource src) {
+		FieldSource<JavaClassSource> traceCodeField = src.addField().setName("traceCode_lazy").setProtected().setType(Supplier.class.getName() + "<MMCode>"); 
+		
+		String eqMethodSrc = "@Override\n" + 
+				"	public boolean equals(Object obj) {\n" + 
+				"		if (obj == null)\n" + 
+				"			return false;\n" + 
+				"		if (!(obj instanceof MMCode))\n" + 
+				"			return false;\n" + 
+				"		MMCode otherCode = (MMCode) obj;\n" + 
+				"		if (otherCode.traceCode_lazy != null)\n" + 
+				"			otherCode = otherCode.traceCode_lazy.get();\n" + 
+				"		return otherCode.equals( traceCode_lazy == null ? this : traceCode_lazy.get());\n" + 
+				"	}";
+		MethodSource<JavaClassSource> eqMethod = src.addMethod(eqMethodSrc);
+		
+		String hashMethodSrc = "	@Override\n" + 
+				"	public int hashCode() {\n" + 
+				"		return traceCode_lazy == null ? super.hashCode() : traceCode_lazy.get().hashCode();\n" + 
+				"	}";
+		MethodSource<JavaClassSource> hashMethod = src.addMethod(hashMethodSrc);
+	}
+
 	private void addImport(Importer<? extends JavaSource<?>> src, MetamodelElement mmElem) {
 		src.addImport(getStructuredName(mmElem).getFullName());
 	}
@@ -178,11 +211,12 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 
 	}
 
-	void generateMMEnum(JavaClassSource srcMetamodelMain, MetamodelEnum mmEnum) {
+	JavaEnumSource generateMMEnum(JavaClassSource srcMetamodelMain, MetamodelEnum mmEnum) {
 		JavaEnumSource src = ctx.createSourceFile(JavaEnumSource.class, getStructuredName(mmEnum));
 		setMMDoc(src, mmEnum);
 
 		mmEnum.listEnumLiterals().forEachOrdered(l -> generateMMEnumLiteral(src, l));
+		return src;
 	};
 
 	void generateMMEnumLiteral(JavaEnumSource srcMMEnum, MetamodelEnumLiteral mmEnumLit) {
@@ -192,7 +226,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 
 	};
 
-	void generateMMClass(JavaClassSource srcMetamodelMain, MetamodelType mmType) {
+	JavaClassSource generateMMClass(JavaClassSource srcMetamodelMain, MetamodelType mmType) {
 		JavaClassSource src = ctx.createSourceFile(JavaClassSource.class, getStructuredName(mmType));
 		setMMDoc(src, mmType);
 
@@ -304,7 +338,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		mmType.listAllAttributes().forEachOrdered(mmAttr -> {
 			generateMMAttribute(src, mmAttr);
 		});
-
+		return src;
 	};
 
 	<T extends JavaSource<T> & FieldHolderSource<T>> void generateStaticStructInterface(JavaClassSource srcMetamodelMain, T src,
@@ -389,7 +423,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		}
 	}
 
-	void generateMMInterface(JavaClassSource srcMetamodelMain, MetamodelType mmType) {
+	JavaInterfaceSource generateMMInterface(JavaClassSource srcMetamodelMain, MetamodelType mmType) {
 		JavaInterfaceSource src = ctx.createSourceFile(JavaInterfaceSource.class, getStructuredName(mmType));
 		setMMDoc(src, mmType);
 
@@ -422,7 +456,8 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		attrStream.forEachOrdered(mmAttr -> {
 			generateMMAttribute(src, mmAttr);
 		});
-
+		
+		return src;
 	};
 
 	<T extends JavaSource<T> & PropertyHolderSource<T>> void generateMMAttribute(T srcMMType,

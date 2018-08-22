@@ -40,14 +40,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingTypeCode#Credit
- * RegulatoryReportingTypeCode.Credit}</li>
+ * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingTypeCode#CRED_Credit
+ * RegulatoryReportingTypeCode.CRED_Credit}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingTypeCode#Debit
- * RegulatoryReportingTypeCode.Debit}</li>
+ * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingTypeCode#DEBT_Debit
+ * RegulatoryReportingTypeCode.DEBT_Debit}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingTypeCode#Both
- * RegulatoryReportingTypeCode.Both}</li>
+ * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingTypeCode#BOTH_Both
+ * RegulatoryReportingTypeCode.BOTH_Both}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -106,7 +106,7 @@ public class RegulatoryReportingTypeCode extends MMCode {
 	 * definition} = "Regulatory information applies to the credit side."</li>
 	 * </ul>
 	 */
-	public static final RegulatoryReportingTypeCode Credit = new RegulatoryReportingTypeCode() {
+	public static final RegulatoryReportingTypeCode CRED_Credit = new RegulatoryReportingTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Credit";
@@ -136,7 +136,7 @@ public class RegulatoryReportingTypeCode extends MMCode {
 	 * definition} = "Regulatory information applies to the debit side."</li>
 	 * </ul>
 	 */
-	public static final RegulatoryReportingTypeCode Debit = new RegulatoryReportingTypeCode() {
+	public static final RegulatoryReportingTypeCode DEBT_Debit = new RegulatoryReportingTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Debit";
@@ -167,7 +167,7 @@ public class RegulatoryReportingTypeCode extends MMCode {
 	 * "Regulatory information applies to both credit and debit sides."</li>
 	 * </ul>
 	 */
-	public static final RegulatoryReportingTypeCode Both = new RegulatoryReportingTypeCode() {
+	public static final RegulatoryReportingTypeCode BOTH_Both = new RegulatoryReportingTypeCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Both";
@@ -190,17 +190,17 @@ public class RegulatoryReportingTypeCode extends MMCode {
 				name = "RegulatoryReportingTypeCode";
 				definition = "Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(RegulatoryReportingType1Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingTypeCode.Credit, com.tools20022.repository.codeset.RegulatoryReportingTypeCode.Debit,
-						com.tools20022.repository.codeset.RegulatoryReportingTypeCode.Both));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingTypeCode.CRED_Credit, com.tools20022.repository.codeset.RegulatoryReportingTypeCode.DEBT_Debit,
+						com.tools20022.repository.codeset.RegulatoryReportingTypeCode.BOTH_Both));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Credit.getCodeName().get(), Credit);
-		codesByName.put(Debit.getCodeName().get(), Debit);
-		codesByName.put(Both.getCodeName().get(), Both);
+		codesByName.put(CRED_Credit.getCodeName().get(), CRED_Credit);
+		codesByName.put(DEBT_Debit.getCodeName().get(), DEBT_Debit);
+		codesByName.put(BOTH_Both.getCodeName().get(), BOTH_Both);
 	}
 
 	public static RegulatoryReportingTypeCode valueOf(String codeName) {

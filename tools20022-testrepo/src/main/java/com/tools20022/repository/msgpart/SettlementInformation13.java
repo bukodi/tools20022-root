@@ -18,12 +18,10 @@
 package com.tools20022.repository.msgpart;
 
 import com.tools20022.core.repo.LazyReference;
-import com.tools20022.metamodel.MMMessageAssociationEnd;
-import com.tools20022.metamodel.MMMessageAttribute;
-import com.tools20022.metamodel.MMMessageComponent;
-import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.metamodel.*;
 import com.tools20022.repository.choice.ClearingSystemIdentification3Choice;
 import com.tools20022.repository.codeset.SettlementMethod1Code;
+import com.tools20022.repository.constraint.*;
 import com.tools20022.repository.GeneratedRepository;
 import com.tools20022.repository.msgpart.BranchAndFinancialInstitutionIdentification4;
 import com.tools20022.repository.msgpart.CashAccount16;
@@ -84,31 +82,29 @@ import javax.xml.bind.annotation.XmlType;
  * constraint} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintThirdReimbursementAgentRule#forSettlementInformation13
- * ConstraintThirdReimbursementAgentRule.forSettlementInformation13}</li>
+ * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#ThirdReimbursementAgentRule
+ * SettlementInformation13.ThirdReimbursementAgentRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintSettlementMethodAgentRule#forSettlementInformation13
- * ConstraintSettlementMethodAgentRule.forSettlementInformation13}</li>
+ * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#SettlementMethodAgentRule
+ * SettlementInformation13.SettlementMethodAgentRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintSettlementMethodCoverRule#forSettlementInformation13
- * ConstraintSettlementMethodCoverRule.forSettlementInformation13}</li>
+ * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#SettlementMethodCoverRule
+ * SettlementInformation13.SettlementMethodCoverRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintSettlementMethodCoverAgentRule#forSettlementInformation13
- * ConstraintSettlementMethodCoverAgentRule.forSettlementInformation13}</li>
+ * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#SettlementMethodCoverAgentRule
+ * SettlementInformation13.SettlementMethodCoverAgentRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintSettlementMethodClearingRule#forSettlementInformation13
- * ConstraintSettlementMethodClearingRule.forSettlementInformation13}</li>
+ * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#SettlementMethodClearingRule
+ * SettlementInformation13.SettlementMethodClearingRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintInstructingReimbursementAgentAccountRule#forSettlementInformation13
- * ConstraintInstructingReimbursementAgentAccountRule.forSettlementInformation13
- * }</li>
+ * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#InstructingReimbursementAgentAccountRule
+ * SettlementInformation13.InstructingReimbursementAgentAccountRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintInstructedReimbursementAgentAccountRule#forSettlementInformation13
- * ConstraintInstructedReimbursementAgentAccountRule.forSettlementInformation13}
- * </li>
+ * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#InstructedReimbursementAgentAccountRule
+ * SettlementInformation13.InstructedReimbursementAgentAccountRule}</li>
  * <li>
- * {@linkplain com.tools20022.repository.constraint.ConstraintThirdReimbursementAgentAccountRule#forSettlementInformation13
- * ConstraintThirdReimbursementAgentAccountRule.forSettlementInformation13}</li>
+ * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#ThirdReimbursementAgentAccountRule
+ * SettlementInformation13.ThirdReimbursementAgentAccountRule}</li>
  * </ul>
  * </li>
  * <li>
@@ -619,6 +615,326 @@ public class SettlementInformation13 {
 			obj.setThirdReimbursementAgentAccount(value.orElse(null));
 		}
 	};
+	/**
+	 * If ThirdReimbursementAgent is present, then InstructingReimbursementAgent
+	 * and InstructedReimbursementAgent must both be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
+	 * SettlementInformation13}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InstructingReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InstructedReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/ThirdReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ThirdReimbursementAgentRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If ThirdReimbursementAgent is present, then InstructingReimbursementAgent and InstructedReimbursementAgent must both be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> ThirdReimbursementAgentRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "ThirdReimbursementAgentRule";
+			definition = "If ThirdReimbursementAgent is present, then InstructingReimbursementAgent and InstructedReimbursementAgent must both be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructingReimbursementAgent</leftOperand></BooleanRule><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructedReimbursementAgent</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/ThirdReimbursementAgent</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.SettlementInformation13 obj) throws Exception {
+			ConstraintThirdReimbursementAgentRule.checkSettlementInformation13(obj);
+		}
+	};
+	/**
+	 * If SettlementMethod is equal to INDA or INGA, then ReimbursementAgent(s)
+	 * and ClearingSystem are not allowed.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
+	 * SettlementInformation13}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/ClearingSystem&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructingReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructedReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/ThirdReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;OR&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/SettlementMethod&lt;/leftOperand&gt;&lt;rightOperand&gt;InstructingAgent&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/SettlementMethod&lt;/leftOperand&gt;&lt;rightOperand&gt;InstructedAgent&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "SettlementMethodAgentRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If SettlementMethod is equal to INDA or INGA, then ReimbursementAgent(s) and ClearingSystem are not allowed."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> SettlementMethodAgentRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "SettlementMethodAgentRule";
+			definition = "If SettlementMethod is equal to INDA or INGA, then ReimbursementAgent(s) and ClearingSystem are not allowed.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/ClearingSystem</leftOperand></BooleanRule><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructingReimbursementAgent</leftOperand></BooleanRule><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructedReimbursementAgent</leftOperand></BooleanRule><BooleanRule xsi:type=\"Absence\"><leftOperand>/ThirdReimbursementAgent</leftOperand></BooleanRule></mustBe><onCondition><connector>OR</connector><BooleanRule xsi:type=\"EqualToValue\"><leftOperand>/SettlementMethod</leftOperand><rightOperand>InstructingAgent</rightOperand></BooleanRule><BooleanRule xsi:type=\"EqualToValue\"><leftOperand>/SettlementMethod</leftOperand><rightOperand>InstructedAgent</rightOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.SettlementInformation13 obj) throws Exception {
+			ConstraintSettlementMethodAgentRule.checkSettlementInformation13(obj);
+		}
+	};
+	/**
+	 * If SettlementMethod is equal to COVE, then SettlementAccount and
+	 * ClearingSystem are not allowed.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
+	 * SettlementInformation13}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/SettlementAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/ClearingSystem&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/SettlementMethod&lt;/leftOperand&gt;&lt;rightOperand&gt;CoverMethod&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "SettlementMethodCoverRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If SettlementMethod is equal to COVE, then SettlementAccount and ClearingSystem are not allowed."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> SettlementMethodCoverRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "SettlementMethodCoverRule";
+			definition = "If SettlementMethod is equal to COVE, then SettlementAccount and ClearingSystem are not allowed.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/SettlementAccount</leftOperand></BooleanRule><BooleanRule xsi:type=\"Absence\"><leftOperand>/ClearingSystem</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"EqualToValue\"><leftOperand>/SettlementMethod</leftOperand><rightOperand>CoverMethod</rightOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.SettlementInformation13 obj) throws Exception {
+			ConstraintSettlementMethodCoverRule.checkSettlementInformation13(obj);
+		}
+	};
+	/**
+	 * If SettlementMethod is equal to COVE, then InstructedReimbursementAgent
+	 * or InstructingReimbursementAgent must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
+	 * SettlementInformation13}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;OR&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InstructingReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InstructedReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/SettlementMethod&lt;/leftOperand&gt;&lt;rightOperand&gt;CoverMethod&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "SettlementMethodCoverAgentRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If SettlementMethod is equal to COVE, then InstructedReimbursementAgent or InstructingReimbursementAgent must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> SettlementMethodCoverAgentRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "SettlementMethodCoverAgentRule";
+			definition = "If SettlementMethod is equal to COVE, then InstructedReimbursementAgent or InstructingReimbursementAgent must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>OR</connector><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructingReimbursementAgent</leftOperand></BooleanRule><BooleanRule xsi:type=\"Presence\"><leftOperand>/InstructedReimbursementAgent</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"EqualToValue\"><leftOperand>/SettlementMethod</leftOperand><rightOperand>CoverMethod</rightOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.SettlementInformation13 obj) throws Exception {
+			ConstraintSettlementMethodCoverAgentRule.checkSettlementInformation13(obj);
+		}
+	};
+	/**
+	 * If SettlementMethod is equal to CLRG, then SettlementAccount and
+	 * ReimbursementAgent(s) are not allowed.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
+	 * SettlementInformation13}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/SettlementAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructingReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructedReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/ThirdReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/SettlementMethod&lt;/leftOperand&gt;&lt;rightOperand&gt;ClearingSystem&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "SettlementMethodClearingRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If SettlementMethod is equal to CLRG, then SettlementAccount and ReimbursementAgent(s) are not allowed."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> SettlementMethodClearingRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "SettlementMethodClearingRule";
+			definition = "If SettlementMethod is equal to CLRG, then SettlementAccount and ReimbursementAgent(s) are not allowed.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/SettlementAccount</leftOperand></BooleanRule><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructingReimbursementAgent</leftOperand></BooleanRule><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructedReimbursementAgent</leftOperand></BooleanRule><BooleanRule xsi:type=\"Absence\"><leftOperand>/ThirdReimbursementAgent</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"EqualToValue\"><leftOperand>/SettlementMethod</leftOperand><rightOperand>ClearingSystem</rightOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.SettlementInformation13 obj) throws Exception {
+			ConstraintSettlementMethodClearingRule.checkSettlementInformation13(obj);
+		}
+	};
+	/**
+	 * If InstructingReimbursementAgentAccount is present, then
+	 * InstructingReimbursementAgent must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
+	 * SettlementInformation13}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructingReimbursementAgentAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructingReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "InstructingReimbursementAgentAccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If InstructingReimbursementAgentAccount is present, then InstructingReimbursementAgent must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> InstructingReimbursementAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "InstructingReimbursementAgentAccountRule";
+			definition = "If InstructingReimbursementAgentAccount is present, then InstructingReimbursementAgent must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructingReimbursementAgentAccount</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructingReimbursementAgent</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.SettlementInformation13 obj) throws Exception {
+			ConstraintInstructingReimbursementAgentAccountRule.checkSettlementInformation13(obj);
+		}
+	};
+	/**
+	 * If InstructedReimbursementAgentAccount is present, then
+	 * InstructedReimbursementAgent must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
+	 * SettlementInformation13}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructedReimbursementAgentAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/InstructedReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "InstructedReimbursementAgentAccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If InstructedReimbursementAgentAccount is present, then InstructedReimbursementAgent must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> InstructedReimbursementAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "InstructedReimbursementAgentAccountRule";
+			definition = "If InstructedReimbursementAgentAccount is present, then InstructedReimbursementAgent must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructedReimbursementAgentAccount</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/InstructedReimbursementAgent</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.SettlementInformation13 obj) throws Exception {
+			ConstraintInstructedReimbursementAgentAccountRule.checkSettlementInformation13(obj);
+		}
+	};
+	/**
+	 * If ThirdReimbursementAgentAccount is present, then
+	 * ThirdReimbursementAgent must be present.
+	 * <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13
+	 * SettlementInformation13}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
+	 * expression} =
+	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/ThirdReimbursementAgentAccount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/ThirdReimbursementAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
+	 * </li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "ThirdReimbursementAgentAccountRule"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
+	 * definition} =
+	 * "If ThirdReimbursementAgentAccount is present, then ThirdReimbursementAgent must be present."
+	 * </li>
+	 * </ul>
+	 */
+	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> ThirdReimbursementAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
+		{
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "ThirdReimbursementAgentAccountRule";
+			definition = "If ThirdReimbursementAgentAccount is present, then ThirdReimbursementAgent must be present.";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.SettlementInformation13.mmObject());
+			expression = "<RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ComplexRule xsi:type=\"ComplexRule\"><mustBe><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/ThirdReimbursementAgentAccount</leftOperand></BooleanRule></mustBe><onCondition><connector>AND</connector><BooleanRule xsi:type=\"Absence\"><leftOperand>/ThirdReimbursementAgent</leftOperand></BooleanRule></onCondition></ComplexRule></RuleDefinition>\n";
+		}
+
+		@Override
+		public void executeValidator(com.tools20022.repository.msgpart.SettlementInformation13 obj) throws Exception {
+			ConstraintThirdReimbursementAgentAccountRule.checkSettlementInformation13(obj);
+		}
+	};
 
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
@@ -629,12 +945,11 @@ public class SettlementInformation13 {
 						com.tools20022.repository.msgpart.SettlementInformation13.mmInstructedReimbursementAgentAccount, com.tools20022.repository.msgpart.SettlementInformation13.mmThirdReimbursementAgent,
 						com.tools20022.repository.msgpart.SettlementInformation13.mmThirdReimbursementAgentAccount));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.constraint.ConstraintThirdReimbursementAgentRule.forSettlementInformation13,
-						com.tools20022.repository.constraint.ConstraintSettlementMethodAgentRule.forSettlementInformation13, com.tools20022.repository.constraint.ConstraintSettlementMethodCoverRule.forSettlementInformation13,
-						com.tools20022.repository.constraint.ConstraintSettlementMethodCoverAgentRule.forSettlementInformation13, com.tools20022.repository.constraint.ConstraintSettlementMethodClearingRule.forSettlementInformation13,
-						com.tools20022.repository.constraint.ConstraintInstructingReimbursementAgentAccountRule.forSettlementInformation13,
-						com.tools20022.repository.constraint.ConstraintInstructedReimbursementAgentAccountRule.forSettlementInformation13,
-						com.tools20022.repository.constraint.ConstraintThirdReimbursementAgentAccountRule.forSettlementInformation13));
+				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementInformation13.ThirdReimbursementAgentRule,
+						com.tools20022.repository.msgpart.SettlementInformation13.SettlementMethodAgentRule, com.tools20022.repository.msgpart.SettlementInformation13.SettlementMethodCoverRule,
+						com.tools20022.repository.msgpart.SettlementInformation13.SettlementMethodCoverAgentRule, com.tools20022.repository.msgpart.SettlementInformation13.SettlementMethodClearingRule,
+						com.tools20022.repository.msgpart.SettlementInformation13.InstructingReimbursementAgentAccountRule, com.tools20022.repository.msgpart.SettlementInformation13.InstructedReimbursementAgentAccountRule,
+						com.tools20022.repository.msgpart.SettlementInformation13.ThirdReimbursementAgentAccountRule));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "SettlementInformation13";
 				definition = "Set of elements used to provide information on the settlement of the instruction.";

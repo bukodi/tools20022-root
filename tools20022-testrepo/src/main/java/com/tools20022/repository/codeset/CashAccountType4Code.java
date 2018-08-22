@@ -41,51 +41,53 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#CashPayment
- * CashAccountType4Code.CashPayment}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#CASH_CashPayment
+ * CashAccountType4Code.CASH_CashPayment}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Charges
- * CashAccountType4Code.Charges}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#CHAR_Charges
+ * CashAccountType4Code.CHAR_Charges}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Commission
- * CashAccountType4Code.Commission}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Tax
- * CashAccountType4Code.Tax}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#COMM_Commission
+ * CashAccountType4Code.COMM_Commission}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#CashIncome
- * CashAccountType4Code.CashIncome}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#TAXE_Tax
+ * CashAccountType4Code.TAXE_Tax}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#CashTrading
- * CashAccountType4Code.CashTrading}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#CISH_CashIncome
+ * CashAccountType4Code.CISH_CashIncome}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Settlement
- * CashAccountType4Code.Settlement}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#TRAS_CashTrading
+ * CashAccountType4Code.TRAS_CashTrading}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Current
- * CashAccountType4Code.Current}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#SACC_Settlement
+ * CashAccountType4Code.SACC_Settlement}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Savings
- * CashAccountType4Code.Savings}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#CACC_Current
+ * CashAccountType4Code.CACC_Current}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#OverNightDeposit
- * CashAccountType4Code.OverNightDeposit}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#SVGS_Savings
+ * CashAccountType4Code.SVGS_Savings}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#MarginalLending
- * CashAccountType4Code.MarginalLending}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#ONDP_OverNightDeposit
+ * CashAccountType4Code.ONDP_OverNightDeposit}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#NonResidentExternal
- * CashAccountType4Code.NonResidentExternal}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#MGLD_MarginalLending
+ * CashAccountType4Code.MGLD_MarginalLending}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#MoneyMarket
- * CashAccountType4Code.MoneyMarket}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Loan
- * CashAccountType4Code.Loan}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#NREX_NonResidentExternal
+ * CashAccountType4Code.NREX_NonResidentExternal}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Salary
- * CashAccountType4Code.Salary}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#MOMA_MoneyMarket
+ * CashAccountType4Code.MOMA_MoneyMarket}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#Overdraft
- * CashAccountType4Code.Overdraft}</li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#LOAN_Loan
+ * CashAccountType4Code.LOAN_Loan}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#SLRY_Salary
+ * CashAccountType4Code.SLRY_Salary}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#ODFT_Overdraft
+ * CashAccountType4Code.ODFT_Overdraft}</li>
  * </ul>
  * </li>
  * <li>
@@ -129,12 +131,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "CashPayment"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code CashPayment = new CashAccountType4Code() {
+	public static final CashAccountType4Code CASH_CashPayment = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CashPayment";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.CashPayment.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.CASH_CashPayment.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -153,12 +155,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Charges"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Charges = new CashAccountType4Code() {
+	public static final CashAccountType4Code CHAR_Charges = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Charges";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Charges.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.CHAR_Charges.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -177,12 +179,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Commission"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Commission = new CashAccountType4Code() {
+	public static final CashAccountType4Code COMM_Commission = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Commission";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Commission.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.COMM_Commission.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -201,12 +203,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Tax"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Tax = new CashAccountType4Code() {
+	public static final CashAccountType4Code TAXE_Tax = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Tax";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Tax.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.TAXE_Tax.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -225,12 +227,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "CashIncome"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code CashIncome = new CashAccountType4Code() {
+	public static final CashAccountType4Code CISH_CashIncome = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CashIncome";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.CashIncome.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.CISH_CashIncome.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -249,12 +251,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "CashTrading"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code CashTrading = new CashAccountType4Code() {
+	public static final CashAccountType4Code TRAS_CashTrading = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CashTrading";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.CashTrading.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.TRAS_CashTrading.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -273,12 +275,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Settlement"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Settlement = new CashAccountType4Code() {
+	public static final CashAccountType4Code SACC_Settlement = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Settlement";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Settlement.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.SACC_Settlement.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -297,12 +299,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Current"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Current = new CashAccountType4Code() {
+	public static final CashAccountType4Code CACC_Current = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Current";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Current.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.CACC_Current.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -321,12 +323,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Savings"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Savings = new CashAccountType4Code() {
+	public static final CashAccountType4Code SVGS_Savings = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Savings";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Savings.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.SVGS_Savings.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -345,12 +347,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "OverNightDeposit"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code OverNightDeposit = new CashAccountType4Code() {
+	public static final CashAccountType4Code ONDP_OverNightDeposit = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "OverNightDeposit";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.OverNightDeposit.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.ONDP_OverNightDeposit.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -369,12 +371,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "MarginalLending"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code MarginalLending = new CashAccountType4Code() {
+	public static final CashAccountType4Code MGLD_MarginalLending = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "MarginalLending";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.MarginalLending.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.MGLD_MarginalLending.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -393,12 +395,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "NonResidentExternal"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code NonResidentExternal = new CashAccountType4Code() {
+	public static final CashAccountType4Code NREX_NonResidentExternal = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "NonResidentExternal";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.NonResidentExternal.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.NREX_NonResidentExternal.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -417,12 +419,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "MoneyMarket"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code MoneyMarket = new CashAccountType4Code() {
+	public static final CashAccountType4Code MOMA_MoneyMarket = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "MoneyMarket";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.MoneyMarket.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.MOMA_MoneyMarket.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -441,12 +443,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Loan"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Loan = new CashAccountType4Code() {
+	public static final CashAccountType4Code LOAN_Loan = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Loan";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Loan.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.LOAN_Loan.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -465,12 +467,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Salary"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Salary = new CashAccountType4Code() {
+	public static final CashAccountType4Code SLRY_Salary = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Salary";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Salary.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.SLRY_Salary.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -489,12 +491,12 @@ public class CashAccountType4Code extends MMCode {
 	 * name} = "Overdraft"</li>
 	 * </ul>
 	 */
-	public static final CashAccountType4Code Overdraft = new CashAccountType4Code() {
+	public static final CashAccountType4Code ODFT_Overdraft = new CashAccountType4Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Overdraft";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountType4Code.mmObject());
-			codeName = CashAccountTypeCode.Overdraft.getCodeName().orElse(name);
+			codeName = CashAccountTypeCode.ODFT_Overdraft.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, CashAccountType4Code> codesByName = new LinkedHashMap<>();
@@ -511,34 +513,35 @@ public class CashAccountType4Code extends MMCode {
 				name = "CashAccountType4Code";
 				definition = "Specifies the nature, or use, of the cash account.";
 				trace_lazy = LazyReference.create(() -> CashAccountTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountType4Code.CashPayment, com.tools20022.repository.codeset.CashAccountType4Code.Charges,
-						com.tools20022.repository.codeset.CashAccountType4Code.Commission, com.tools20022.repository.codeset.CashAccountType4Code.Tax, com.tools20022.repository.codeset.CashAccountType4Code.CashIncome,
-						com.tools20022.repository.codeset.CashAccountType4Code.CashTrading, com.tools20022.repository.codeset.CashAccountType4Code.Settlement, com.tools20022.repository.codeset.CashAccountType4Code.Current,
-						com.tools20022.repository.codeset.CashAccountType4Code.Savings, com.tools20022.repository.codeset.CashAccountType4Code.OverNightDeposit, com.tools20022.repository.codeset.CashAccountType4Code.MarginalLending,
-						com.tools20022.repository.codeset.CashAccountType4Code.NonResidentExternal, com.tools20022.repository.codeset.CashAccountType4Code.MoneyMarket, com.tools20022.repository.codeset.CashAccountType4Code.Loan,
-						com.tools20022.repository.codeset.CashAccountType4Code.Salary, com.tools20022.repository.codeset.CashAccountType4Code.Overdraft));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountType4Code.CASH_CashPayment, com.tools20022.repository.codeset.CashAccountType4Code.CHAR_Charges,
+						com.tools20022.repository.codeset.CashAccountType4Code.COMM_Commission, com.tools20022.repository.codeset.CashAccountType4Code.TAXE_Tax, com.tools20022.repository.codeset.CashAccountType4Code.CISH_CashIncome,
+						com.tools20022.repository.codeset.CashAccountType4Code.TRAS_CashTrading, com.tools20022.repository.codeset.CashAccountType4Code.SACC_Settlement, com.tools20022.repository.codeset.CashAccountType4Code.CACC_Current,
+						com.tools20022.repository.codeset.CashAccountType4Code.SVGS_Savings, com.tools20022.repository.codeset.CashAccountType4Code.ONDP_OverNightDeposit,
+						com.tools20022.repository.codeset.CashAccountType4Code.MGLD_MarginalLending, com.tools20022.repository.codeset.CashAccountType4Code.NREX_NonResidentExternal,
+						com.tools20022.repository.codeset.CashAccountType4Code.MOMA_MoneyMarket, com.tools20022.repository.codeset.CashAccountType4Code.LOAN_Loan, com.tools20022.repository.codeset.CashAccountType4Code.SLRY_Salary,
+						com.tools20022.repository.codeset.CashAccountType4Code.ODFT_Overdraft));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(CashPayment.getCodeName().get(), CashPayment);
-		codesByName.put(Charges.getCodeName().get(), Charges);
-		codesByName.put(Commission.getCodeName().get(), Commission);
-		codesByName.put(Tax.getCodeName().get(), Tax);
-		codesByName.put(CashIncome.getCodeName().get(), CashIncome);
-		codesByName.put(CashTrading.getCodeName().get(), CashTrading);
-		codesByName.put(Settlement.getCodeName().get(), Settlement);
-		codesByName.put(Current.getCodeName().get(), Current);
-		codesByName.put(Savings.getCodeName().get(), Savings);
-		codesByName.put(OverNightDeposit.getCodeName().get(), OverNightDeposit);
-		codesByName.put(MarginalLending.getCodeName().get(), MarginalLending);
-		codesByName.put(NonResidentExternal.getCodeName().get(), NonResidentExternal);
-		codesByName.put(MoneyMarket.getCodeName().get(), MoneyMarket);
-		codesByName.put(Loan.getCodeName().get(), Loan);
-		codesByName.put(Salary.getCodeName().get(), Salary);
-		codesByName.put(Overdraft.getCodeName().get(), Overdraft);
+		codesByName.put(CASH_CashPayment.getCodeName().get(), CASH_CashPayment);
+		codesByName.put(CHAR_Charges.getCodeName().get(), CHAR_Charges);
+		codesByName.put(COMM_Commission.getCodeName().get(), COMM_Commission);
+		codesByName.put(TAXE_Tax.getCodeName().get(), TAXE_Tax);
+		codesByName.put(CISH_CashIncome.getCodeName().get(), CISH_CashIncome);
+		codesByName.put(TRAS_CashTrading.getCodeName().get(), TRAS_CashTrading);
+		codesByName.put(SACC_Settlement.getCodeName().get(), SACC_Settlement);
+		codesByName.put(CACC_Current.getCodeName().get(), CACC_Current);
+		codesByName.put(SVGS_Savings.getCodeName().get(), SVGS_Savings);
+		codesByName.put(ONDP_OverNightDeposit.getCodeName().get(), ONDP_OverNightDeposit);
+		codesByName.put(MGLD_MarginalLending.getCodeName().get(), MGLD_MarginalLending);
+		codesByName.put(NREX_NonResidentExternal.getCodeName().get(), NREX_NonResidentExternal);
+		codesByName.put(MOMA_MoneyMarket.getCodeName().get(), MOMA_MoneyMarket);
+		codesByName.put(LOAN_Loan.getCodeName().get(), LOAN_Loan);
+		codesByName.put(SLRY_Salary.getCodeName().get(), SLRY_Salary);
+		codesByName.put(ODFT_Overdraft.getCodeName().get(), ODFT_Overdraft);
 	}
 
 	public static CashAccountType4Code valueOf(String codeName) {

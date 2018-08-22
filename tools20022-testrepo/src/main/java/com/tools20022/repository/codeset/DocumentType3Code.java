@@ -41,23 +41,23 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#RemittanceAdviceMessage
- * DocumentType3Code.RemittanceAdviceMessage}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#RADM_RemittanceAdviceMessage
+ * DocumentType3Code.RADM_RemittanceAdviceMessage}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#RelatedPaymentInstruction
- * DocumentType3Code.RelatedPaymentInstruction}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#RPIN_RelatedPaymentInstruction
+ * DocumentType3Code.RPIN_RelatedPaymentInstruction}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#ForeignExchangeDealReference
- * DocumentType3Code.ForeignExchangeDealReference}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#FXDR_ForeignExchangeDealReference
+ * DocumentType3Code.FXDR_ForeignExchangeDealReference}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#DispatchAdvice
- * DocumentType3Code.DispatchAdvice}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#DISP_DispatchAdvice
+ * DocumentType3Code.DISP_DispatchAdvice}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#PurchaseOrder
- * DocumentType3Code.PurchaseOrder}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#PUOR_PurchaseOrder
+ * DocumentType3Code.PUOR_PurchaseOrder}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#StructuredCommunicationReference
- * DocumentType3Code.StructuredCommunicationReference}</li>
+ * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#SCOR_StructuredCommunicationReference
+ * DocumentType3Code.SCOR_StructuredCommunicationReference}</li>
  * </ul>
  * </li>
  * <li>
@@ -101,12 +101,12 @@ public class DocumentType3Code extends MMCode {
 	 * name} = "RemittanceAdviceMessage"</li>
 	 * </ul>
 	 */
-	public static final DocumentType3Code RemittanceAdviceMessage = new DocumentType3Code() {
+	public static final DocumentType3Code RADM_RemittanceAdviceMessage = new DocumentType3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "RemittanceAdviceMessage";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
-			codeName = DocumentTypeCode.RemittanceAdviceMessage.getCodeName().orElse(name);
+			codeName = DocumentTypeCode.RADM_RemittanceAdviceMessage.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -125,12 +125,12 @@ public class DocumentType3Code extends MMCode {
 	 * name} = "RelatedPaymentInstruction"</li>
 	 * </ul>
 	 */
-	public static final DocumentType3Code RelatedPaymentInstruction = new DocumentType3Code() {
+	public static final DocumentType3Code RPIN_RelatedPaymentInstruction = new DocumentType3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "RelatedPaymentInstruction";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
-			codeName = DocumentTypeCode.RelatedPaymentInstruction.getCodeName().orElse(name);
+			codeName = DocumentTypeCode.RPIN_RelatedPaymentInstruction.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -149,12 +149,12 @@ public class DocumentType3Code extends MMCode {
 	 * name} = "ForeignExchangeDealReference"</li>
 	 * </ul>
 	 */
-	public static final DocumentType3Code ForeignExchangeDealReference = new DocumentType3Code() {
+	public static final DocumentType3Code FXDR_ForeignExchangeDealReference = new DocumentType3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "ForeignExchangeDealReference";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
-			codeName = DocumentTypeCode.ForeignExchangeDealReference.getCodeName().orElse(name);
+			codeName = DocumentTypeCode.FXDR_ForeignExchangeDealReference.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -173,12 +173,12 @@ public class DocumentType3Code extends MMCode {
 	 * name} = "DispatchAdvice"</li>
 	 * </ul>
 	 */
-	public static final DocumentType3Code DispatchAdvice = new DocumentType3Code() {
+	public static final DocumentType3Code DISP_DispatchAdvice = new DocumentType3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "DispatchAdvice";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
-			codeName = DocumentTypeCode.DispatchAdvice.getCodeName().orElse(name);
+			codeName = DocumentTypeCode.DISP_DispatchAdvice.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -197,12 +197,12 @@ public class DocumentType3Code extends MMCode {
 	 * name} = "PurchaseOrder"</li>
 	 * </ul>
 	 */
-	public static final DocumentType3Code PurchaseOrder = new DocumentType3Code() {
+	public static final DocumentType3Code PUOR_PurchaseOrder = new DocumentType3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "PurchaseOrder";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
-			codeName = DocumentTypeCode.PurchaseOrder.getCodeName().orElse(name);
+			codeName = DocumentTypeCode.PUOR_PurchaseOrder.getCodeName().orElse(name);
 		}
 	};
 	/**
@@ -221,12 +221,12 @@ public class DocumentType3Code extends MMCode {
 	 * name} = "StructuredCommunicationReference"</li>
 	 * </ul>
 	 */
-	public static final DocumentType3Code StructuredCommunicationReference = new DocumentType3Code() {
+	public static final DocumentType3Code SCOR_StructuredCommunicationReference = new DocumentType3Code() {
 		{
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "StructuredCommunicationReference";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.DocumentType3Code.mmObject());
-			codeName = DocumentTypeCode.StructuredCommunicationReference.getCodeName().orElse(name);
+			codeName = DocumentTypeCode.SCOR_StructuredCommunicationReference.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, DocumentType3Code> codesByName = new LinkedHashMap<>();
@@ -243,21 +243,21 @@ public class DocumentType3Code extends MMCode {
 				name = "DocumentType3Code";
 				definition = "Specifies a type of financial or commercial document.";
 				trace_lazy = LazyReference.create(() -> DocumentTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentType3Code.RemittanceAdviceMessage, com.tools20022.repository.codeset.DocumentType3Code.RelatedPaymentInstruction,
-						com.tools20022.repository.codeset.DocumentType3Code.ForeignExchangeDealReference, com.tools20022.repository.codeset.DocumentType3Code.DispatchAdvice,
-						com.tools20022.repository.codeset.DocumentType3Code.PurchaseOrder, com.tools20022.repository.codeset.DocumentType3Code.StructuredCommunicationReference));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentType3Code.RADM_RemittanceAdviceMessage, com.tools20022.repository.codeset.DocumentType3Code.RPIN_RelatedPaymentInstruction,
+						com.tools20022.repository.codeset.DocumentType3Code.FXDR_ForeignExchangeDealReference, com.tools20022.repository.codeset.DocumentType3Code.DISP_DispatchAdvice,
+						com.tools20022.repository.codeset.DocumentType3Code.PUOR_PurchaseOrder, com.tools20022.repository.codeset.DocumentType3Code.SCOR_StructuredCommunicationReference));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(RemittanceAdviceMessage.getCodeName().get(), RemittanceAdviceMessage);
-		codesByName.put(RelatedPaymentInstruction.getCodeName().get(), RelatedPaymentInstruction);
-		codesByName.put(ForeignExchangeDealReference.getCodeName().get(), ForeignExchangeDealReference);
-		codesByName.put(DispatchAdvice.getCodeName().get(), DispatchAdvice);
-		codesByName.put(PurchaseOrder.getCodeName().get(), PurchaseOrder);
-		codesByName.put(StructuredCommunicationReference.getCodeName().get(), StructuredCommunicationReference);
+		codesByName.put(RADM_RemittanceAdviceMessage.getCodeName().get(), RADM_RemittanceAdviceMessage);
+		codesByName.put(RPIN_RelatedPaymentInstruction.getCodeName().get(), RPIN_RelatedPaymentInstruction);
+		codesByName.put(FXDR_ForeignExchangeDealReference.getCodeName().get(), FXDR_ForeignExchangeDealReference);
+		codesByName.put(DISP_DispatchAdvice.getCodeName().get(), DISP_DispatchAdvice);
+		codesByName.put(PUOR_PurchaseOrder.getCodeName().get(), PUOR_PurchaseOrder);
+		codesByName.put(SCOR_StructuredCommunicationReference.getCodeName().get(), SCOR_StructuredCommunicationReference);
 	}
 
 	public static DocumentType3Code valueOf(String codeName) {

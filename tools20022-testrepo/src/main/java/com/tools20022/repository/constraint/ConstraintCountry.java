@@ -17,10 +17,7 @@
 
 package com.tools20022.repository.constraint;
 
-import com.tools20022.core.repo.LazyReference;
 import com.tools20022.core.repo.NotImplementedConstraintException;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMRegistrationStatus;
 import com.tools20022.repository.codeset.CountryCode;
 
 /**
@@ -30,42 +27,10 @@ import com.tools20022.repository.codeset.CountryCode;
 public class ConstraintCountry {
 
 	/**
-	 * 
-	 <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.CountryCode CountryCode}</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
-	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Country"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "The code is checked against the list of country names obtained from the United Nations (ISO 3166, Alpha-2 code)."
-	 * </li>
-	 * </ul>
-	 */
-	public static final MMConstraint<CountryCode> forCountryCode = new MMConstraint<CountryCode>() {
-		{
-			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
-			name = "Country";
-			definition = "The code is checked against the list of country names obtained from the United Nations (ISO 3166, Alpha-2 code).";
-			owner_lazy = LazyReference.create(() -> CountryCode.mmObject());
-		}
-
-		@Override
-		public void executeValidator(CountryCode obj) throws Exception {
-			checkCountryCode(obj);
-		}
-	};
-
-	/**
 	 * The code is checked against the list of country names obtained from the
 	 * United Nations (ISO 3166, Alpha-2 code).
+	 * 
+	 * @see Object#class
 	 */
 	public static void checkCountryCode(CountryCode obj) throws Exception {
 		throw new NotImplementedConstraintException();

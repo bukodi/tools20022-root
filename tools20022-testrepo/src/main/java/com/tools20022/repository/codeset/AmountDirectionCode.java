@@ -38,16 +38,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <ul>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
  * <ul>
- * <li>{@linkplain com.tools20022.repository.codeset.AmountDirectionCode#Debit
- * AmountDirectionCode.Debit}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.AmountDirectionCode#Credit
- * AmountDirectionCode.Credit}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode#ReversalDebit
- * AmountDirectionCode.ReversalDebit}</li>
+ * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode#DBIT_Debit
+ * AmountDirectionCode.DBIT_Debit}</li>
  * <li>
- * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode#ReversalCredit
- * AmountDirectionCode.ReversalCredit}</li>
+ * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode#CRDT_Credit
+ * AmountDirectionCode.CRDT_Credit}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode#RVDB_ReversalDebit
+ * AmountDirectionCode.RVDB_ReversalDebit}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode#RVCD_ReversalCredit
+ * AmountDirectionCode.RVCD_ReversalCredit}</li>
  * </ul>
  * </li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
@@ -105,7 +107,7 @@ public class AmountDirectionCode extends MMCode {
 	 * definition} = "Operation is a decrease."</li>
 	 * </ul>
 	 */
-	public static final AmountDirectionCode Debit = new AmountDirectionCode() {
+	public static final AmountDirectionCode DBIT_Debit = new AmountDirectionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Debit";
@@ -135,7 +137,7 @@ public class AmountDirectionCode extends MMCode {
 	 * definition} = "Operation is an increase."</li>
 	 * </ul>
 	 */
-	public static final AmountDirectionCode Credit = new AmountDirectionCode() {
+	public static final AmountDirectionCode CRDT_Credit = new AmountDirectionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Credit";
@@ -166,7 +168,7 @@ public class AmountDirectionCode extends MMCode {
 	 * "Credit entry used to reverse a previously booked debit entry."</li>
 	 * </ul>
 	 */
-	public static final AmountDirectionCode ReversalDebit = new AmountDirectionCode() {
+	public static final AmountDirectionCode RVDB_ReversalDebit = new AmountDirectionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ReversalDebit";
@@ -197,7 +199,7 @@ public class AmountDirectionCode extends MMCode {
 	 * "Debit entry used to reverse a previously booked credit entry."</li>
 	 * </ul>
 	 */
-	public static final AmountDirectionCode ReversalCredit = new AmountDirectionCode() {
+	public static final AmountDirectionCode RVCD_ReversalCredit = new AmountDirectionCode() {
 		{
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ReversalCredit";
@@ -220,18 +222,18 @@ public class AmountDirectionCode extends MMCode {
 				name = "AmountDirectionCode";
 				definition = "Specifies if an operation is an increase or a decrease or the result of a reversal operation.";
 				derivation_lazy = LazyReference.create(() -> Arrays.asList(CreditDebitCode.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AmountDirectionCode.Debit, com.tools20022.repository.codeset.AmountDirectionCode.Credit,
-						com.tools20022.repository.codeset.AmountDirectionCode.ReversalDebit, com.tools20022.repository.codeset.AmountDirectionCode.ReversalCredit));
+				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AmountDirectionCode.DBIT_Debit, com.tools20022.repository.codeset.AmountDirectionCode.CRDT_Credit,
+						com.tools20022.repository.codeset.AmountDirectionCode.RVDB_ReversalDebit, com.tools20022.repository.codeset.AmountDirectionCode.RVCD_ReversalCredit));
 			}
 		});
 		return mmObject_lazy.get();
 	}
 
 	static {
-		codesByName.put(Debit.getCodeName().get(), Debit);
-		codesByName.put(Credit.getCodeName().get(), Credit);
-		codesByName.put(ReversalDebit.getCodeName().get(), ReversalDebit);
-		codesByName.put(ReversalCredit.getCodeName().get(), ReversalCredit);
+		codesByName.put(DBIT_Debit.getCodeName().get(), DBIT_Debit);
+		codesByName.put(CRDT_Credit.getCodeName().get(), CRDT_Credit);
+		codesByName.put(RVDB_ReversalDebit.getCodeName().get(), RVDB_ReversalDebit);
+		codesByName.put(RVCD_ReversalCredit.getCodeName().get(), RVCD_ReversalCredit);
 	}
 
 	public static AmountDirectionCode valueOf(String codeName) {

@@ -12,6 +12,7 @@ import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -127,7 +128,29 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 		} else if (mmElem instanceof MMBusinessRole) {
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMBusinessRole) mmElem).getName());
 		} else if (mmElem instanceof MMCode) {
-			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMCode) mmElem).getName());
+			MMCode mmCode = (MMCode) mmElem;
+			String codeName; //
+			if( mmCode.getCodeName().isPresent() ) {
+				codeName = mmCode.getCodeName().get();
+			} else if( mmCode.getOwner().getTrace().isPresent() ){
+				// No codename, but trace codeset exists
+				// So lookup a code in the trace with same name
+				String name = mmCode.getName();
+				Stream<MMCode> codesInTrace = mmCode.getOwner().getTrace().get().getCode().stream();
+				Optional<MMCode> optTraceCode = codesInTrace.filter( tc-> name.equals( tc.getName()) ).findAny();
+				if( optTraceCode.isPresent() ) {
+					codeName = optTraceCode.get().getCodeName().get();
+				} else {
+					System.err.println( "Trace codeset present, but no matching code with name: " + name );
+					codeName = "ZZZZ";
+				}
+			} else {
+				System.err.println( "No codeName and and no trace codeset: " + mmCode );
+				codeName = "YYYY";				
+			}
+			
+			codeName += "_" + mmCode.getName();
+			return createJavaNameAsMemeber.apply(mmElem, "" + codeName);
 		} else if (mmElem instanceof MMConstraint) {
 			return createJavaNameAsMemeber.apply(mmElem, "" + ((MMConstraint) mmElem).getName());
 		}

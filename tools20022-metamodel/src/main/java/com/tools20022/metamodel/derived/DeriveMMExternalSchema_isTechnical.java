@@ -31,6 +31,6 @@ public class DeriveMMExternalSchema_isTechnical implements Function<MMExternalSc
 	 */
 	@Override
 	public Boolean apply(MMExternalSchema mmBean) {
-		throw new RuntimeException("Not implemented!");
+		return !mmBean.getTrace().isPresent();  
 	}
 }
