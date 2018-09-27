@@ -64,6 +64,13 @@ import javax.xml.bind.annotation.*;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
+ * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageDefinitionIdentifier
+ * messageDefinitionIdentifier} = {@code pacs.008.001.02}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getBusinessArea
+ * businessArea} =
+ * {@linkplain com.tools20022.repository.area.PaymentsClearingandSettlementArchive
+ * PaymentsClearingandSettlementArchive}</li>
+ * <li>
  * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageBuildingBlock
  * messageBuildingBlock} =
  * <ul>
@@ -79,13 +86,6 @@ import javax.xml.bind.annotation.*;
  * rootElement} = "Document"</li>
  * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getXmlTag
  * xmlTag} = "FIToFICstmrCdtTrf"</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageDefinitionIdentifier
- * messageDefinitionIdentifier} = {@code pacs.008.001.02}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getBusinessArea
- * businessArea} =
- * {@linkplain com.tools20022.repository.area.PaymentsClearingandSettlementArchive
- * PaymentsClearingandSettlementArchive}</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
  * constraint} =
  * <ul>
@@ -138,13 +138,13 @@ public class FIToFICustomerCreditTransferV02 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/CreditTransferTransactionInformation[*]/InstructedAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/GroupHeader/InstructedAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
+	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -178,13 +178,13 @@ public class FIToFICustomerCreditTransferV02 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/CreditTransferTransactionInformation[*]/InstructingAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/GroupHeader/InstructingAgent&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
+	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -221,13 +221,13 @@ public class FIToFICustomerCreditTransferV02 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToNode\"&gt;&lt;leftOperand&gt;/CreditTransferTransactionInformation[*]/InterbankSettlementAmount/@Currency&lt;/leftOperand&gt;&lt;rightOperand&gt;/GroupHeader/TotalInterbankSettlementAmount/@Currency&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/GroupHeader/TotalInterbankSettlementAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
+	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -262,13 +262,13 @@ public class FIToFICustomerCreditTransferV02 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/GroupHeader/TotalInterbankSettlementAmount&lt;/leftOperand&gt;&lt;rightOperand&gt;sum of /CreditTransferTransactionInformation/InterbankSettlementAmount&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/GroupHeader/TotalInterbankSettlementAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
+	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -303,13 +303,13 @@ public class FIToFICustomerCreditTransferV02 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/CreditTransferTransactionInformation[*]/InterbankSettlementDate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/GroupHeader/InterbankSettlementDate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
+	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -344,13 +344,13 @@ public class FIToFICustomerCreditTransferV02 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/CreditTransferTransactionInformation[*]/InterbankSettlementDate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/GroupHeader/InterbankSettlementDate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
+	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -385,13 +385,13 @@ public class FIToFICustomerCreditTransferV02 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Absence\"&gt;&lt;leftOperand&gt;/CreditTransferTransactionInformation[*]/PaymentTypeInformation&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/GroupHeader/PaymentTypeInformation&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
+	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -425,13 +425,13 @@ public class FIToFICustomerCreditTransferV02 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
-	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;SimpleRule xsi:type=\"SimpleRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"EqualToValue\"&gt;&lt;leftOperand&gt;/GroupHeader/NumberOfTransactions&lt;/leftOperand&gt;&lt;rightOperand&gt;number of occurrences of CreditTransferTransactionInformation&lt;/rightOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;/SimpleRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
+	 * FIToFICustomerCreditTransferV02}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =

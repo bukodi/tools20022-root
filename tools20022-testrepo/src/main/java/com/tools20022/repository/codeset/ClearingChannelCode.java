@@ -91,11 +91,11 @@ public class ClearingChannelCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "RTGS"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.ClearingChannelCode
 	 * ClearingChannelCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "RTGS"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -121,11 +121,11 @@ public class ClearingChannelCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "RTNS"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.ClearingChannelCode
 	 * ClearingChannelCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "RTNS"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -151,11 +151,11 @@ public class ClearingChannelCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MPNS"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.ClearingChannelCode
 	 * ClearingChannelCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MPNS"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -182,11 +182,11 @@ public class ClearingChannelCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "BOOK"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.ClearingChannelCode
 	 * ClearingChannelCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "BOOK"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =

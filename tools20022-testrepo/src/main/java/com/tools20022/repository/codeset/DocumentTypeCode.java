@@ -139,11 +139,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MSIN"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MSIN"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -172,11 +172,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "CNFA"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "CNFA"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -205,11 +205,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "DNFA"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DNFA"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -237,11 +237,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "CINV"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "CINV"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -267,11 +267,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "CREN"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "CREN"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -297,11 +297,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "DEBN"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DEBN"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -328,11 +328,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "HIRI"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "HIRI"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -360,11 +360,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "SBIN"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "SBIN"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -391,11 +391,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "RADM"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "RADM"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -424,11 +424,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "RPIN"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "RPIN"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -457,11 +457,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "CMCN"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "CMCN"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -490,11 +490,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "FXDR"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "FXDR"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -523,11 +523,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "SOAC"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "SOAC"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -555,11 +555,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "DISP"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DISP"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -585,11 +585,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "PUOR"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "PUOR"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -616,11 +616,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "SCOR"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "SCOR"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -648,11 +648,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "BOLD"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "BOLD"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -678,11 +678,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "VCHR"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "VCHR"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -708,11 +708,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "AROI"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "AROI"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -740,11 +740,11 @@ public class DocumentTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "TSUT"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
 	 * DocumentTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "TSUT"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =

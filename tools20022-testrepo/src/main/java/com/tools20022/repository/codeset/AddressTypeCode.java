@@ -93,11 +93,11 @@ public class AddressTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "HOME"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AddressTypeCode
 	 * AddressTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "HOME"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -123,11 +123,11 @@ public class AddressTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "BIZZ"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AddressTypeCode
 	 * AddressTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "BIZZ"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -153,11 +153,11 @@ public class AddressTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "ADDR"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AddressTypeCode
 	 * AddressTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "ADDR"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -183,11 +183,11 @@ public class AddressTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "PBOX"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AddressTypeCode
 	 * AddressTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "PBOX"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -213,11 +213,11 @@ public class AddressTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MLTO"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AddressTypeCode
 	 * AddressTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MLTO"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -243,11 +243,11 @@ public class AddressTypeCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "DLVY"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AddressTypeCode
 	 * AddressTypeCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DLVY"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =

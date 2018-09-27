@@ -723,13 +723,13 @@ public class GroupHeader33 {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.msgpart.GroupHeader33
-	 * GroupHeader33}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getExpression
 	 * expression} =
 	 * "&lt;RuleDefinition xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"&gt;&lt;ComplexRule xsi:type=\"ComplexRule\"&gt;&lt;mustBe&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/InterbankSettlementDate&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/mustBe&gt;&lt;onCondition&gt;&lt;connector&gt;AND&lt;/connector&gt;&lt;BooleanRule xsi:type=\"Presence\"&gt;&lt;leftOperand&gt;/TotalInterbankSettlementAmount&lt;/leftOperand&gt;&lt;/BooleanRule&gt;&lt;/onCondition&gt;&lt;/ComplexRule&gt;&lt;/RuleDefinition&gt;\n"
 	 * </li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.msgpart.GroupHeader33
+	 * GroupHeader33}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =

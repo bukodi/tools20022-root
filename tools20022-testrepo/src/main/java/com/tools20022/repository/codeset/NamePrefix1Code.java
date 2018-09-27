@@ -79,11 +79,11 @@ public class NamePrefix1Code extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "DOCT"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
 	 * NamePrefix1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DOCT"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -109,11 +109,11 @@ public class NamePrefix1Code extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MIST"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
 	 * NamePrefix1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MIST"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -139,11 +139,11 @@ public class NamePrefix1Code extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MISS"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
 	 * NamePrefix1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MISS"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -169,11 +169,11 @@ public class NamePrefix1Code extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "MADM"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
 	 * NamePrefix1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MADM"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =

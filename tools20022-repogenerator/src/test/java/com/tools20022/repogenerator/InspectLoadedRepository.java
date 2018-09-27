@@ -2,7 +2,6 @@ package com.tools20022.repogenerator;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +14,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.SortedMap;
@@ -23,7 +23,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -69,6 +68,9 @@ import com.tools20022.metamodel.MMSyntaxMessageScheme;
 import com.tools20022.metamodel.MMUserDefined;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
+import com.tools20022.repogenerator.RawRepository.IncominRef;
+
+import junit.framework.AssertionFailedError;
 
 public class InspectLoadedRepository {
 
@@ -98,11 +100,97 @@ public class InspectLoadedRepository {
 	}
 
 	@Test
+	public void whereUsed() throws Exception {
+		List<? extends MMMessageDefinition> msgDefs = repo.getObjects(MMMessageDefinition.class);
+
+	}
+
+	@Test
 	public void inspectSpecificObject() throws Exception {
-		MMModelEntity obj = repo.findObjectByTypeAndName(MMCodeSet.class, "AddressType2Code");
+		MMCodeSet obj = repo.findObjectByTypeAndName(MMCodeSet.class, "CategoryPurpose1Code");
+		
+		for( MMCode c : obj.getCode()) {
+			System.out.println( c.getName() + "-" + c.getCodeName().orElse("-N/A-") + " :" + c.getDefinition().orElse("-"));
+		}
 
-		System.out.println(obj);
+		Set<List<IncominRef>> foundPaths = new HashSet<>();
+		Set<List<IncominRef>> candidatePaths = new HashSet<>();
 
+		// Build seed set of paths
+		for (IncominRef ref : repo.whereUsedWithoutContainment(obj)) {
+			if (ref.sourceObj.equals(obj))
+				continue; // Skip self refs
+
+			List<IncominRef> oneStepPath = new ArrayList<>();
+			oneStepPath.add(ref);
+			if (ref.sourceObj instanceof MMMessageDefinition) {
+				foundPaths.add(oneStepPath);
+			} else {
+				candidatePaths.add(oneStepPath);
+			}
+		}
+
+		// Grow the seeds
+		for (; !candidatePaths.isEmpty();) {
+			System.out.println(
+					"candidatePaths.size()=" + candidatePaths.size() + ", foundPaths.size()=" + foundPaths.size());
+			candidatePaths = extendPaths(obj, candidatePaths, foundPaths);
+		}
+
+		// Print found paths
+		for (List<IncominRef> path : foundPaths) {
+			String tab = "";
+			for (IncominRef step : path) {
+				System.out.println(tab + getFullName(step.sourceObj) + "." + step.mmAttr.getName());
+				tab += "  ";
+			}
+			System.out.println();
+		}
+	}
+
+	public class Node {
+		public MMModelEntity sourceObj;
+		public MetamodelAttribute<?, ?> mmAttr;
+
+		public Set<Node> destNodes;
+
+	}
+
+	private Set<List<IncominRef>> extendPaths(MMModelEntity destObj, Set<List<IncominRef>> candidatePaths,
+			Set<List<IncominRef>> foundPaths) {
+		Set<List<IncominRef>> nextCadidates = new HashSet<>();
+		for (List<IncominRef> path : candidatePaths) {
+			Set<MMModelEntity> objectsInPath = new HashSet<>();
+			path.forEach(ir -> objectsInPath.add(ir.sourceObj));
+			objectsInPath.add(destObj);
+
+			System.out.println("--- Elements in path: ----");
+			path.forEach(ir -> System.out.println(getFullName(ir.sourceObj)));
+
+			MMModelEntity headObj = path.get(0).sourceObj;
+			for (IncominRef refHead : repo.whereUsedWithoutContainment(headObj)) {
+				if (objectsInPath.contains(refHead.sourceObj)) {
+					// This path is circle -> skip it
+					System.out.println("Skip:" + getFullName(refHead.sourceObj));
+					continue;
+				}
+
+				List<IncominRef> nextPath = new ArrayList<>(path.size() + 1);
+				nextPath.add(refHead);
+				nextPath.addAll(path);
+
+				if (refHead.sourceObj instanceof MMMessageDefinition) {
+					// Hooray! End of the search
+					foundPaths.add(nextPath);
+					System.out.println("Found:" + getFullName(refHead.sourceObj));
+				} else {
+					nextCadidates.add(nextPath);
+					System.out.println("Append:" + getFullName(refHead.sourceObj));
+				}
+			}
+
+		}
+		return nextCadidates;
 	}
 
 	@Test
@@ -228,10 +316,9 @@ public class InspectLoadedRepository {
 
 		DTCC("DTCC"), DTCC_("DTCC "),
 
-		MIFIDRequirement("MIFID Requirement"), MIFIDrequirement("MIFID requirement"), MiFIR("MiFIR"), EFAMA(
-				"EFAMA"), ebXML("ebXML"), ISO("ISO"), RUCMPG("RU-CMPG"), SubSequenceD3Amounts(
-						"SubSequenceD3 Amounts"), StatementBusinessModeling(
-								"Statement Business Modeling"), ASN1("ASN.1"), OTHER("OTHER");
+		MIFIDRequirement("MIFID Requirement"), MIFIDrequirement("MIFID requirement"), MiFIR("MiFIR"), EFAMA("EFAMA"),
+		ebXML("ebXML"), ISO("ISO"), RUCMPG("RU-CMPG"), SubSequenceD3Amounts("SubSequenceD3 Amounts"),
+		StatementBusinessModeling("Statement Business Modeling"), ASN1("ASN.1"), OTHER("OTHER");
 
 		public final String contextName;
 
@@ -470,12 +557,12 @@ public class InspectLoadedRepository {
 		}
 
 		System.out.println();
-		System.out.println("--- Codeset hierarchy ---");
+		System.out.println("--- Base and derived codesets: ---");
+		System.out.println("Codesets may have a tace or a derived codeset, but not both.");
 
 		Comparator<MMCodeSet> compareCs = (cs1, cs2) -> Collator.getInstance().compare(cs1.getName(), cs2.getName());
 
 		Map<MMCodeSet, SortedSet<MMCodeSet>> csByTrace = new TreeMap<>(compareCs);
-		SortedSet<MMCodeSet> csBothTraceAndDerivation = new TreeSet<>(compareCs);
 		SortedSet<MMCodeSet> csNoTraceOrDerivation = new TreeSet<>(compareCs);
 		for (MMCodeSet mmCS : allCodesets) {
 			if (mmCS.getTrace().isPresent() && mmCS.getDerivation().isEmpty()) {
@@ -483,10 +570,10 @@ public class InspectLoadedRepository {
 				csByTrace.computeIfAbsent(mmCS.getTrace().get(), x -> new TreeSet<>(compareCs)).add(mmCS);
 			} else if (mmCS.getTrace().isPresent() && !mmCS.getDerivation().isEmpty()) {
 				// Invalid codeset
-				csBothTraceAndDerivation.add(mmCS);
+				throw new AssertionFailedError("The " + mmCS.getName() + " codeset has a trace AND derivation.");
 			} else if (!mmCS.getTrace().isPresent() && !mmCS.getDerivation().isEmpty()) {
 				// Base codeSet
-				// csNoTraceOrDerivation.add(mmCS);
+				// will indirectly added to csByTrace map as key.
 			} else if (!mmCS.getTrace().isPresent() && mmCS.getDerivation().isEmpty()) {
 				// Standalone codeSet
 				csNoTraceOrDerivation.add(mmCS);
@@ -494,89 +581,163 @@ public class InspectLoadedRepository {
 				throw new RuntimeException("Invalid case");
 			}
 		}
-		System.out.println("  Standalone (has no trace or derivation): " + csNoTraceOrDerivation.size());
-		System.out.println("  Invalid (has trace AND derivation): " + csBothTraceAndDerivation.size());
-		System.out.println("  Base ( has derivation): " + csByTrace.keySet().size());
-		System.out.println(
-				"  Derived ( has trace): " + csByTrace.values().stream().flatMap(csList -> csList.stream()).count());
+		System.out.println("  Standalone : " + csNoTraceOrDerivation.size() + " codesets hasn't trace or derivation");
+		System.out.println("  Base       : " + csByTrace.keySet().size() + " codesets has at least one derivation");
+		System.out.println("  Derived    : " + csByTrace.values().stream().flatMap(csList -> csList.stream()).count()
+				+ " codesets has a trace");
+		System.out.println("  There are no codeset what has trace AND derivation.");
 		System.out.println();
 
+		System.out.println();
+		System.out.println("--- Codes within base-derived codesets ---");
+		System.out.println("Derived codesets are subsets of the base codesets:\n"
+				+ "every code exists in a derived codeset must exists \n" + "in the base codeset with the same name.");
+		System.out.println(
+				"There are no direct link between the base code and the derived code, just have the same name.");
+
+		// Process codes
 		Comparator<MMCode> compareCode = (c1, c2) -> Collator.getInstance()
 				.compare(c1.getOwner().getName() + "." + c1.getName(), c1.getOwner().getName() + "." + c2.getName());
 
-		SortedMap<MMCode, MMCode> derivedCodes = new TreeMap<MMCode, MMCode>(compareCode);
+		SortedSet<MMCode> onlyInBaseCodes = new TreeSet<MMCode>(compareCode);
+		SortedMap<MMCode, SortedSet<MMCode>> derivedCodes = new TreeMap<MMCode, SortedSet<MMCode>>(compareCode);
+
+		// Loop on base codesets
 		for (Map.Entry<MMCodeSet, SortedSet<MMCodeSet>> e : csByTrace.entrySet()) {
 			MMCodeSet csBase = e.getKey();
 			LinkedHashMap<String, MMCode> baseCodesByName = new LinkedHashMap<>();
 			csBase.getCode().stream().forEach(c -> baseCodesByName.put(c.getName(), c));
-
-			System.out.print("" + csBase.getName() + " : ");
-			System.out.println(baseCodesByName.size() + " codes");
+			onlyInBaseCodes.addAll(baseCodesByName.values());
+			// Loop on derived codesets
 			for (MMCodeSet csDerived : e.getValue()) {
-				LinkedHashMap<String, MMCode> derivedCodesByName = new LinkedHashMap<>();
-				csDerived.getCode().stream().forEach(c -> derivedCodesByName.put(c.getName(), c));
-				List<String> onlyInBase = new ArrayList<>(baseCodesByName.keySet());
-				onlyInBase.removeAll(derivedCodesByName.keySet());
-				List<String> onlyInDerived = new ArrayList<>(derivedCodesByName.keySet());
-				onlyInDerived.removeAll(baseCodesByName.keySet());
-
-				System.out.print("  " + csDerived.getName() + " : ");
-				// System.out.print( derivedCodesByName.size() + " codes, ");
-				if (!onlyInBase.isEmpty()) {
-					System.out.print(onlyInBase.size() + " only in base, ");
-				}
-				if (!onlyInDerived.isEmpty()) {
-					throw new RuntimeException(onlyInDerived.size() + " only in derived: " + onlyInDerived);
-				}
+				// Loop on codes in a derived codeset
 				for (MMCode derivedCode : csDerived.getCode()) {
 					MMCode baseCode = baseCodesByName.get(derivedCode.getName());
-					derivedCodes.put(derivedCode, baseCode);
-				}
-				System.out.println();
-			}
-		}
 
-		System.out.println("--- Analyze derived codes ----");
-		int countIdentical = 0, countOnlyInBase = 0, countOnlyInDerived = 0, countNon = 0;
-		for (Map.Entry<MMCode, MMCode> e : derivedCodes.entrySet()) {
-			MMCode derivedCode = e.getKey();
-			MMCode baseCode = e.getValue();
-
-			String derivedName = derivedCode.getOwner().getName() + "." + derivedCode.getName();
-			boolean isIdentical = true;
-
-			if (baseCode.getCodeName().isPresent() && derivedCode.getCodeName().isPresent()) {
-				// Both present
-				if (baseCode.getCodeName().orElse("-null-").equals(derivedCode.getCodeName().orElse("-null"))) {
-					countIdentical++;
-				} else {
-					isIdentical = false;
-					System.out.println(derivedName + " different codeName: " + baseCode.getCodeName().orElse("-null")
-							+ " != " + derivedCode.getCodeName().orElse("-null"));
-				}
-			} else if (baseCode.getCodeName().isPresent() && !derivedCode.getCodeName().isPresent()) {
-				countOnlyInBase++;
-			} else if (!baseCode.getCodeName().isPresent() && derivedCode.getCodeName().isPresent()) {
-				countOnlyInDerived++;
-			} else if (!baseCode.getCodeName().isPresent() && !derivedCode.getCodeName().isPresent()) {
-				countNon++;
-			} else {
-				throw new RuntimeException("Invalid case");
-			}
-
-			if (baseCode.getDefinition().isPresent() && derivedCode.getDefinition().isPresent()) {
-				if (!baseCode.getDefinition().orElse("-null-").equals(derivedCode.getDefinition().orElse("-null"))) {
-					System.out
-							.println(derivedName + " different definition: " + baseCode.getDefinition().orElse("-null")
-									+ " != " + derivedCode.getDefinition().orElse("-null"));
+					if (baseCode == null) {
+						throw new AssertionFailedError(
+								"Code " + derivedCode.getOwner().getName() + "." + derivedCode.getName()
+										+ " exists only in derived codeset but not in the base codeset.");
+					} else {
+						onlyInBaseCodes.remove(baseCode);
+						derivedCodes.computeIfAbsent(baseCode, x -> new TreeSet<>(compareCode)).add(derivedCode);
+					}
 				}
 			}
 		}
-		System.out.println("codeNames are Identical: " + countIdentical);
-		System.out.println("codeName exists only in base: " + countOnlyInBase);
-		System.out.println("codeName exists only in derived: " + countOnlyInDerived);
-		System.out.println("codeName not exits: " + countNon);
+		System.out
+				.println("  " + onlyInBaseCodes.size() + " codes exists only a base codeset without any derived code.");
+		System.out.println("  " + derivedCodes.values().stream().flatMap(csList -> csList.stream()).count()
+				+ " codes exists a derived codeset which links to " + derivedCodes.keySet().size()
+				+ " codes in base codeset.");
+		System.out.println("  There are no code in a derived codeset without the matching base code.");
+
 		System.out.println();
+		System.out.println("--- Analyze codeName and definition attributes in base-derived code pairs ----");
+		{
+			int countIdentical = 0, countOnlyInBase = 0, countOnlyInDerived = 0, countNon = 0;
+			SortedMap<MMCode, SortedSet<MMCode>> differentCodeNames = new TreeMap<>(compareCode);
+			for (Entry<MMCode, SortedSet<MMCode>> e : derivedCodes.entrySet()) {
+				MMCode baseCode = e.getKey();
+				Optional<String> baseCodeName = e.getKey().getCodeName();
+				// Loop on derived codes
+				for (MMCode derivedCode : e.getValue()) {
+					Optional<String> derivedCodeName = derivedCode.getCodeName();
+		
+					if (baseCodeName.isPresent() && derivedCodeName.isPresent()) {
+						// Both present
+						if (Objects.equals(baseCodeName, derivedCodeName)) {
+							countIdentical++;
+						} else {
+							differentCodeNames.computeIfAbsent(baseCode, x -> new TreeSet<>(compareCode))
+									.add(derivedCode);
+						}
+					} else if (baseCodeName.isPresent() && !derivedCodeName.isPresent()) {
+						countOnlyInBase++;
+					} else if (!baseCodeName.isPresent() && derivedCodeName.isPresent()) {
+						countOnlyInDerived++;
+					} else if (!baseCodeName.isPresent() && !derivedCodeName.isPresent()) {
+						countNon++;
+					} else {
+						throw new RuntimeException("Invalid case");
+					}
+				}
+			}
+			System.out.println("  codeName exists only in base: " + countOnlyInBase);
+			System.out.println("  codeName exists only in derived: " + countOnlyInDerived);
+			System.out.println("  codeName not exits in base nor derived : " + countNon);
+			System.out
+					.println("  codeName exists booth in base and derived, but they are identical: " + countIdentical);
+			System.out.println("  codeName exists booth in base and derived, but they aren't identical: "
+					+ differentCodeNames.values().stream().flatMap(csList -> csList.stream()).count());
+			for (Entry<MMCode, SortedSet<MMCode>> e : differentCodeNames.entrySet()) {
+				System.out.println("    " + getFullName(e.getKey()) + ".codeName = " + e.getKey().getCodeName().get());
+				for (MMCode d : e.getValue()) {
+					System.out.println("      !=  " + getFullName(d) + ".codeName = " + d.getCodeName().get());
+				}
+			}
+			System.out.println();
+		}
+		{
+			int countIdentical = 0, countOnlyInBase = 0, countOnlyInDerived = 0, countNon = 0;
+			SortedMap<MMCode, SortedSet<MMCode>> differentDefs = new TreeMap<>(compareCode);
+			for (Entry<MMCode, SortedSet<MMCode>> e : derivedCodes.entrySet()) {
+				MMCode baseCode = e.getKey();
+				Optional<String> baseDef = e.getKey().getDefinition();
+				// Loop on derived codes
+				for (MMCode derivedCode : e.getValue()) {
+					Optional<String> derivedDef = derivedCode.getDefinition();
+		
+					if (baseDef.isPresent() && derivedDef.isPresent()) {
+						// Both present
+						if (Objects.equals(baseDef, derivedDef)) {
+							countIdentical++;
+						} else {
+							differentDefs.computeIfAbsent(baseCode, x -> new TreeSet<>(compareCode))
+									.add(derivedCode);
+						}
+					} else if (baseDef.isPresent() && !derivedDef.isPresent()) {
+						countOnlyInBase++;
+					} else if (!baseDef.isPresent() && derivedDef.isPresent()) {
+						countOnlyInDerived++;
+					} else if (!baseDef.isPresent() && !derivedDef.isPresent()) {
+						countNon++;
+					} else {
+						throw new RuntimeException("Invalid case");
+					}
+				}
+			}
+			System.out.println("  definition exists only in base: " + countOnlyInBase);
+			System.out.println("  definition exists only in derived: " + countOnlyInDerived);
+			System.out.println("  definition not exits in base nor derived : " + countNon);
+			System.out
+					.println("  definition exists booth in base and derived, but they are identical: " + countIdentical);
+			System.out.println("  definition exists booth in base and derived, but they aren't identical: "
+					+ differentDefs.values().stream().flatMap(csList -> csList.stream()).count());
+			for (Entry<MMCode, SortedSet<MMCode>> e : differentDefs.entrySet()) {
+				System.out.println("    " + getFullName(e.getKey()) + ".definition = '" + e.getKey().getDefinition().get() + "'");
+				for (MMCode d : e.getValue()) {
+					System.out.println("      !=  " + getFullName(d) + ".definition = '" + d.getDefinition().get() + "'");
+				}
+			}
+			System.out.println();
+		}
+		{
+			SortedSet<MMCode> noCodeName = new TreeSet<>(compareCode);
+			for (MMCodeSet cs : csNoTraceOrDerivation) {
+				for( MMCode code : cs.getCode() ) {
+					if( ! code.getCodeName().isPresent())
+						noCodeName.add(code);
+				}
+			}
+			System.out.println("  standalone code hasn't codeName: " + noCodeName.size());
+			for (MMCode c : noCodeName) {
+				System.out.println("    " + getFullName(c) + ".codeName = " + c.getCodeName());
+			}
+			System.out.println();
+		}
+
+		System.out.println("---------------------");
 
 		System.out.println("Size of codeset : number of codesets");
 		Map<Integer, List<MMCodeSet>> csByCodesetSize = new HashMap<>();
@@ -663,17 +824,6 @@ public class InspectLoadedRepository {
 		}
 	}
 
-	private void dumpCodeSetSubTree(MMCodeSet mmCs, Map<MMCodeSet, List<MMCodeSet>> csByParent, PrintWriter pw,
-			String tab) {
-		pw.println(tab + "" + mmCs.getName());
-		List<MMCodeSet> derivedCsList = csByParent.get(mmCs);
-		if (derivedCsList == null)
-			return;
-		for (MMCodeSet derivedCs : derivedCsList) {
-			dumpCodeSetSubTree(derivedCs, csByParent, pw, tab + "  ");
-		}
-	}
-
 	@Test
 	public void doclets() throws Exception {
 		Map<String, Set<MMDoclet>> docletsByType = new LinkedHashMap<>();
@@ -693,6 +843,7 @@ public class InspectLoadedRepository {
 		});
 
 	}
+
 	final Map<Class<? extends MMModelEntity>, Set<MMModelEntity>> noTrace = new HashMap<>();
 	final Map<Class<? extends MMModelEntity>, Set<MMModelEntity>> withTrace = new HashMap<>();
 
@@ -1281,76 +1432,4 @@ public class InspectLoadedRepository {
 		}
 	}
 
-	static List<String> externalCodesetNames = new ArrayList<String>();
-	static {
-		externalCodesetNames.add("ExternalAccountIdentification1Code");
-		externalCodesetNames.add("ExternalBalanceSubType1Code");
-		externalCodesetNames.add("ExternalCashClearingSystem1Code");
-		externalCodesetNames.add("ExternalCategoryPurpose1Code");
-		externalCodesetNames.add("ExternalClearingSystemIdentification1Code");
-		externalCodesetNames.add("ExternalFinancialInstitutionIdentification1Code");
-		externalCodesetNames.add("ExternalLocalInstrument1Code");
-		externalCodesetNames.add("ExternalMandateReason1Code");
-		externalCodesetNames.add("ExternalOrganisationIdentification1Code");
-		externalCodesetNames.add("ExternalPersonIdentification1Code");
-		externalCodesetNames.add("ExternalPurpose1Code");
-		externalCodesetNames.add("ExternalReportingSource1Code");
-		externalCodesetNames.add("ExternalReturnReason1Code");
-		externalCodesetNames.add("ExternalReversalReason1Code");
-		externalCodesetNames.add("ExternalServiceLevel1Code");
-		externalCodesetNames.add("ExternalStatusReason1Code");
-		externalCodesetNames.add("ExternalTechnicalInputChannel1Code");
-		externalCodesetNames.add("ExternalVerificationReason1Code");
-		externalCodesetNames.add("ExternalDocumentPurpose1Code");
-		externalCodesetNames.add("ExternalDocumentType1Code");
-		externalCodesetNames.add("ExternalIncoterms1Code");
-		externalCodesetNames.add("ExternalInformationType1Code");
-		externalCodesetNames.add("ExternalPackagingType1Code");
-		externalCodesetNames.add("ExternalFinancialInstrumentIdentificationType1Code");
-		externalCodesetNames.add("ExternalTradeTransactionCondition1Code");
-		externalCodesetNames.add("ExternalChargeType1Code");
-		externalCodesetNames.add("ExternalCashAccountType1Code");
-		externalCodesetNames.add("ExternalDiscountAmountType1Code");
-		externalCodesetNames.add("ExternalTaxAmountType1Code");
-		externalCodesetNames.add("ExternalCardTransactionCategory1Code");
-		externalCodesetNames.add("ExternalBillingBalanceType1Code");
-		externalCodesetNames.add("ExternalBillingCompensationType1Code");
-		externalCodesetNames.add("ExternalBillingRateIdentification1Code");
-		externalCodesetNames.add("ExternalRePresentmentReason1Code");
-		externalCodesetNames.add("ExternalChannel1Code");
-		externalCodesetNames.add("ExternalDateFrequency1Code");
-		externalCodesetNames.add("ExternalDocumentFormat1Code");
-		externalCodesetNames.add("ExternalModelFormIdentification1Code");
-		externalCodesetNames.add("ExternalNarrativeType1Code");
-		externalCodesetNames.add("ExternalRelativeTo1Code");
-		externalCodesetNames.add("ExternalTypeOfParty1Code");
-		externalCodesetNames.add("ExternalUnderlyingTradeTransactionType1Code");
-		externalCodesetNames.add("ExternalUndertakingAmountType1Code");
-		externalCodesetNames.add("ExternalUndertakingChargeType1Code");
-		externalCodesetNames.add("ExternalUndertakingDocumentType1Code");
-		externalCodesetNames.add("ExternalUndertakingDocumentType2Code");
-		externalCodesetNames.add("ExternalUndertakingStatusCategory1Code");
-		externalCodesetNames.add("ExternalUndertakingType1Code");
-		externalCodesetNames.add("ExternalDocumentLineType1Code");
-		externalCodesetNames.add("ExternalGarnishmentType1Code");
-		externalCodesetNames.add("ExternalTradeMarket1Code");
-		externalCodesetNames.add("ExternalMandateSetupReason1Code");
-		externalCodesetNames.add("ExternalValidationRuleIdentification1Code");
-		externalCodesetNames.add("ExternalContractClosureReason1Code");
-		externalCodesetNames.add("ExternalContractBalanceType1Code");
-		externalCodesetNames.add("ExternalShipmentCondition1Code");
-		externalCodesetNames.add("ExternalMarketArea1Code");
-		externalCodesetNames.add("ExternalEffectiveDateParameter1Code");
-		externalCodesetNames.add("ExternalSecuritiesPurpose1Code");
-		externalCodesetNames.add("ExternalReceivedReason1Code");
-		externalCodesetNames.add("ExternalAcceptedReason1Code");
-		externalCodesetNames.add("ExternalPendingProcessingReason1Code");
-		externalCodesetNames.add("ExternalRejectedReason1Code");
-		externalCodesetNames.add("ExternalPaymentTransactionStatus1Code");
-		externalCodesetNames.add("ExternalPaymentGroupStatus1Code");
-		externalCodesetNames.add("ExternalCancellationReason1Code");
-		externalCodesetNames.add("ExternalMandateStatus1Code");
-		externalCodesetNames.add("ExternalMandateSuspensionReason1Code");
-		externalCodesetNames.add("ExternalAuthenticationChannel1Code");
-	}
 }

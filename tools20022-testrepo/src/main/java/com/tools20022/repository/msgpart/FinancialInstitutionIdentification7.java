@@ -70,11 +70,11 @@ import javax.xml.bind.annotation.XmlType;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRemovalDate
- * removalDate} = September 9, 2016</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
  * registrationStatus} = com.tools20022.metamodel.MMRegistrationStatus.OBSOLETE</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRemovalDate
+ * removalDate} = September 9, 2016</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "FinancialInstitutionIdentification7"</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition

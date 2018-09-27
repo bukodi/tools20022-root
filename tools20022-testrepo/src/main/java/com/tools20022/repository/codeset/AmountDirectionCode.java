@@ -91,11 +91,11 @@ public class AmountDirectionCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "DBIT"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode
 	 * AmountDirectionCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DBIT"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -121,11 +121,11 @@ public class AmountDirectionCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "CRDT"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode
 	 * AmountDirectionCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "CRDT"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -151,11 +151,11 @@ public class AmountDirectionCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "RVDB"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode
 	 * AmountDirectionCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "RVDB"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -182,11 +182,11 @@ public class AmountDirectionCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "RVCD"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode
 	 * AmountDirectionCode}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "RVCD"</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =

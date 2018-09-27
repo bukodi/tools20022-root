@@ -86,10 +86,10 @@ public class PriorityCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
 	 * "URGT"</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -115,10 +115,10 @@ public class PriorityCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
 	 * "HIGH"</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -144,10 +144,10 @@ public class PriorityCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
 	 * "NORM"</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -173,10 +173,10 @@ public class PriorityCode extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
 	 * "LOWW"</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
+	 * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =

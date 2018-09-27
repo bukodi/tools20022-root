@@ -80,11 +80,11 @@ public class ExternalPersonIdentification1Code extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "ABC1"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code
 	 * ExternalPersonIdentification1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "ABC1"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Abc 1"</li>
 	 * </ul>
@@ -101,11 +101,11 @@ public class ExternalPersonIdentification1Code extends MMCode {
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
+	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
+	 * "DEF2"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code
 	 * ExternalPersonIdentification1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DEF2"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Def 21"</li>
 	 * </ul>

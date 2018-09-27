@@ -64,11 +64,11 @@ import javax.xml.bind.annotation.XmlValue;
  * <li>"CHASUS33"</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRemovalDate
- * removalDate} = September 9, 2016</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
  * registrationStatus} = com.tools20022.metamodel.MMRegistrationStatus.OBSOLETE</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRemovalDate
+ * removalDate} = September 9, 2016</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "BICIdentifier"</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition

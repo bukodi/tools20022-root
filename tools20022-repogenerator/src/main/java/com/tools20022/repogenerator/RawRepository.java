@@ -26,17 +26,21 @@ public class RawRepository {
 
 	private final HashMap<MetamodelType<?>, LinkedHashSet<MMModelEntity>> objectsByType = new HashMap<>();
 
-	public class Ref {
-		public final MMModelEntity mmObj;
+	public class IncominRef {
+		public final MMModelEntity sourceObj;
 		public final MetamodelAttribute<?, ?> mmAttr;
 
-		private Ref(MMModelEntity mmObj, MetamodelAttribute<?, ?> mmAttr) {
-			this.mmObj = mmObj;
+		private IncominRef(MMModelEntity mmSource, MetamodelAttribute<?, ?> mmAttr) {
+			this.sourceObj = mmSource;
 			this.mmAttr = mmAttr;
+		}
+		
+		public MMModelEntity getTarget() {
+			return (MMModelEntity) mmAttr.get(sourceObj);
 		}
 	}
 
-	private final HashMap<MMModelEntity, Set<Ref>> incomingRefs = new HashMap<>();
+	private final HashMap<MMModelEntity, Set<IncominRef>> incomingRefs = new HashMap<>();
 
 	private final MMRepository rootObject;
 
@@ -90,7 +94,7 @@ public class RawRepository {
 			return;
 		}
 		MMModelEntity target = (MMModelEntity) targetObj;
-		Ref ref = new Ref(source, ma);
+		IncominRef ref = new IncominRef(source, ma);
 		incomingRefs.computeIfAbsent(target, x -> new HashSet<>()).add(ref);
 	}
 
@@ -128,7 +132,7 @@ public class RawRepository {
 		return set == null ? 0 : set.size();
 	}
 
-	public Set<Ref> getIncomingRefs(MMModelEntity obj) {
+	public Set<IncominRef> getIncomingRefs(MMModelEntity obj) {
 		return incomingRefs.computeIfAbsent(obj, x -> Collections.emptySet());
 	}
 
@@ -191,5 +195,18 @@ public class RawRepository {
 		}
 		throw new NoSuchElementException("type=" + type.getSimpleName() + ", name=" + name);
 	}
+	
+	public Set<IncominRef> whereUsed( MMModelEntity repoObj ) {
+		return incomingRefs.computeIfAbsent(repoObj, x->Collections.emptySet());
+	}
 
+	public Set<IncominRef> whereUsedWithoutContainment( MMModelEntity repoObj ) {
+		Set<IncominRef> ret = new HashSet<>();
+		for( IncominRef ir : incomingRefs.computeIfAbsent(repoObj, x->Collections.emptySet()) ) {
+			if( ir.mmAttr.isContainer()  )
+				continue;
+			ret.add(ir);
+		}
+		return ret;
+	}
 }
