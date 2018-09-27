@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.SettlementMethodCode
  * SettlementMethodCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.SettlementMethod1Code#INDA_InstructedAgent
@@ -59,8 +59,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"INDA"</li>
  * </ul>
@@ -185,12 +185,12 @@ public class SettlementMethod1Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("INDA");
+				examples = Arrays.asList("INDA");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "SettlementMethod1Code";
 				definition = "Specifies the method used to settle the credit transfer instruction.";
 				trace_lazy = LazyReference.create(() -> SettlementMethodCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.SettlementMethod1Code.INDA_InstructedAgent, com.tools20022.repository.codeset.SettlementMethod1Code.INGA_InstructingAgent,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.SettlementMethod1Code.INDA_InstructedAgent, com.tools20022.repository.codeset.SettlementMethod1Code.INGA_InstructingAgent,
 						com.tools20022.repository.codeset.SettlementMethod1Code.COVE_CoverMethod, com.tools20022.repository.codeset.SettlementMethod1Code.CLRG_ClearingSystem));
 			}
 		});

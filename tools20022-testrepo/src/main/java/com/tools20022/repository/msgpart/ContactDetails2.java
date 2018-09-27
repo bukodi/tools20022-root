@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.ContactDetails2#mmNamePrefix
@@ -463,7 +463,7 @@ public class ContactDetails2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.ContactDetails2.mmNamePrefix, com.tools20022.repository.msgpart.ContactDetails2.mmName,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.ContactDetails2.mmNamePrefix, com.tools20022.repository.msgpart.ContactDetails2.mmName,
 						com.tools20022.repository.msgpart.ContactDetails2.mmPhoneNumber, com.tools20022.repository.msgpart.ContactDetails2.mmMobileNumber, com.tools20022.repository.msgpart.ContactDetails2.mmFaxNumber,
 						com.tools20022.repository.msgpart.ContactDetails2.mmEmailAddress, com.tools20022.repository.msgpart.ContactDetails2.mmOther));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);

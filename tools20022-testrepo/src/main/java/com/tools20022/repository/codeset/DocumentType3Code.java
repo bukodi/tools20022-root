@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
  * DocumentTypeCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.DocumentType3Code#RADM_RemittanceAdviceMessage
@@ -65,8 +65,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"RADM"</li>
  * </ul>
@@ -238,12 +238,12 @@ public class DocumentType3Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("RADM");
+				examples = Arrays.asList("RADM");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DocumentType3Code";
 				definition = "Specifies a type of financial or commercial document.";
 				trace_lazy = LazyReference.create(() -> DocumentTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentType3Code.RADM_RemittanceAdviceMessage, com.tools20022.repository.codeset.DocumentType3Code.RPIN_RelatedPaymentInstruction,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentType3Code.RADM_RemittanceAdviceMessage, com.tools20022.repository.codeset.DocumentType3Code.RPIN_RelatedPaymentInstruction,
 						com.tools20022.repository.codeset.DocumentType3Code.FXDR_ForeignExchangeDealReference, com.tools20022.repository.codeset.DocumentType3Code.DISP_DispatchAdvice,
 						com.tools20022.repository.codeset.DocumentType3Code.PUOR_PurchaseOrder, com.tools20022.repository.codeset.DocumentType3Code.SCOR_StructuredCommunicationReference));
 			}

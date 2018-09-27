@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -41,7 +42,7 @@ public class MMCodeSet extends MMString {
 	/**
 	 * The CodeSets which are derived from this CodeSet.
 	 */
-	public final static MetamodelAttribute<MMCodeSet, List<MMCodeSet>> derivationAttribute = newAttribute();
+	public final static MetamodelAttribute<MMCodeSet, List<MMCodeSet>> derivationsAttribute = newAttribute();
 	/**
 	 * Uniquely identifies a set of Codes through a Uniform Resource Identifier
 	 * (URI).
@@ -50,11 +51,11 @@ public class MMCodeSet extends MMString {
 	/**
 	 * A set of Codes belonging to the same CodeSet
 	 */
-	public final static MetamodelAttribute<MMCodeSet, List<MMCode>> codeAttribute = newAttribute();
+	public final static MetamodelAttribute<MMCodeSet, List<MMCode>> codesAttribute = newAttribute();
 	protected Supplier<MMCodeSet> trace_lazy;
-	protected Supplier<List<MMCodeSet>> derivation_lazy;
+	protected Supplier<List<MMCodeSet>> derivations_lazy;
 	protected String identificationScheme;
-	protected Supplier<List<MMCode>> code_lazy;
+	protected Supplier<List<MMCode>> codes_lazy;
 	protected Integer minLength;
 	protected Integer maxLength;
 	protected Integer length;
@@ -62,10 +63,10 @@ public class MMCodeSet extends MMString {
 	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
 	protected String definition;
-	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
-	protected Supplier<List<MMDoclet>> doclet_lazy;
-	protected List<String> example;
-	protected Supplier<List<MMConstraint>> constraint_lazy;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkups_lazy;
+	protected Supplier<List<MMDoclet>> doclets_lazy;
+	protected List<String> examples;
+	protected Supplier<List<MMConstraint>> constraints_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -102,8 +103,9 @@ public class MMCodeSet extends MMString {
 	 * @see MMCodeSet#getTrace()
 	 */
 	@Opposite(bean = MMCodeSet.class, attribute = "trace")
-	public List<MMCodeSet> getDerivation() {
-		return derivation_lazy == null ? Collections.emptyList() : derivation_lazy.get();
+	@EMFName("derivation")
+	public List<MMCodeSet> getDerivations() {
+		return derivations_lazy == null ? Collections.emptyList() : derivations_lazy.get();
 	}
 
 	/**
@@ -121,8 +123,9 @@ public class MMCodeSet extends MMString {
 	 */
 	@Opposite(bean = MMCode.class, attribute = "owner")
 	@Containment
-	public List<MMCode> getCode() {
-		return code_lazy == null ? Collections.emptyList() : code_lazy.get();
+	@EMFName("code")
+	public List<MMCode> getCodes() {
+		return codes_lazy == null ? Collections.emptyList() : codes_lazy.get();
 	}
 
 	@Override
@@ -161,23 +164,23 @@ public class MMCodeSet extends MMString {
 	}
 
 	@Override
-	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
+	public List<MMSemanticMarkup> getSemanticMarkups() {
+		return semanticMarkups_lazy == null ? Collections.emptyList() : semanticMarkups_lazy.get();
 	}
 
 	@Override
-	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
+	public List<MMDoclet> getDoclets() {
+		return doclets_lazy == null ? Collections.emptyList() : doclets_lazy.get();
 	}
 
 	@Override
-	public List<String> getExample() {
-		return example == null ? Collections.emptyList() : example;
+	public List<String> getExamples() {
+		return examples == null ? Collections.emptyList() : examples;
 	}
 
 	@Override
-	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
+	public List<MMConstraint> getConstraints() {
+		return constraints_lazy == null ? Collections.emptyList() : constraints_lazy.get();
 	}
 
 	@Override

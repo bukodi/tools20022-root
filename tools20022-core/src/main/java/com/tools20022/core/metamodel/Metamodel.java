@@ -30,6 +30,7 @@ public interface Metamodel {
 
 	public interface MetamodelElement {		
 		String getName();
+		String getEMFName();
 		MetamodelDocImpl getDocumentation();
 	}
 

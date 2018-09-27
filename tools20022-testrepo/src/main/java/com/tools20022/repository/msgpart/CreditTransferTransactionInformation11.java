@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#mmPaymentIdentification
@@ -167,8 +167,8 @@ import javax.xml.bind.annotation.XmlType;
  * </ul>
  * </li>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlock
- * messageBuildingBlock} =
+ * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlocks
+ * messageBuildingBlocks} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02#mmCreditTransferTransactionInformation
@@ -180,8 +180,8 @@ import javax.xml.bind.annotation.XmlType;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.CreditTransferTransactionInformation11#ChargesInformationGuideline
@@ -3138,7 +3138,7 @@ public class CreditTransferTransactionInformation11 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmPaymentIdentification,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmPaymentIdentification,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmPaymentTypeInformation, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmInterbankSettlementAmount,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmInterbankSettlementDate, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmSettlementPriority,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmSettlementTimeIndication, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmSettlementTimeRequest,
@@ -3159,9 +3159,9 @@ public class CreditTransferTransactionInformation11 {
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmInstructionForNextAgent, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmPurpose,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmRegulatoryReporting, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmRelatedRemittanceInformation,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.mmRemittanceInformation));
-				messageBuildingBlock_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmCreditTransferTransactionInformation));
+				messageBuildingBlocks_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmCreditTransferTransactionInformation));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.ChargesInformationGuideline,
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.ChargesInformationGuideline,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.UltimateDebtorGuideline, com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.UltimateCreditorGuideline,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.InstructedAmountAndExchangeRate1Rule,
 						com.tools20022.repository.msgpart.CreditTransferTransactionInformation11.InstructedAmountAndExchangeRate2Rule,

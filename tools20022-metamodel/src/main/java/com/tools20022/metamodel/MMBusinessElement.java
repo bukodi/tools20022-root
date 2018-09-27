@@ -19,6 +19,7 @@ package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Derived;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -43,7 +44,7 @@ public interface MMBusinessElement extends MMConstruct, MMBusinessConcept {
 	 * All of the MessageElements that derive from one BusinessElement in a
 	 * specific BusinessComponent.
 	 */
-	public final static MetamodelAttribute<MMBusinessElement, List<MMMessageElement>> derivationAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessElement, List<MMMessageElement>> derivationsAttribute = newAttribute();
 	/**
 	 * Derived direct reference to the type of the BusinessElement.
 	 */
@@ -71,7 +72,8 @@ public interface MMBusinessElement extends MMConstruct, MMBusinessConcept {
 	 * @see MMMessageElement#getBusinessElementTrace()
 	 */
 	@Opposite(bean = MMMessageElement.class, attribute = "businessElementTrace")
-	public List<MMMessageElement> getDerivation();
+	@EMFName("derivation")
+	public List<MMMessageElement> getDerivations();
 
 	/**
 	 * Derived direct reference to the type of the BusinessElement.

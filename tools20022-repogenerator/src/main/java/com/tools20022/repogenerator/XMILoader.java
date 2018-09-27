@@ -60,7 +60,7 @@ public class XMILoader {
 					mapping.mmTypesByEClass.put(eClass, mmType);
 					for (MetamodelAttribute<? extends MMModelEntity, ?> mmAttr : mmType
 							.getDeclaredAttributes()) {
-						EStructuralFeature eSF = eClass.getEStructuralFeature(mmAttr.getName());
+						EStructuralFeature eSF = eClass.getEStructuralFeature(mmAttr.getEMFName());
 						mapping.eSFsBymmAttr.put(mmAttr, eSF);
 					}
 					Map<String, EOperation> eOpsByName = new HashMap<>();

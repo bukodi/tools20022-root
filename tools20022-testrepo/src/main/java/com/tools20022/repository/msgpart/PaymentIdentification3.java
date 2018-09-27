@@ -39,8 +39,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.PaymentIdentification3#mmInstructionIdentification
@@ -298,7 +298,7 @@ public class PaymentIdentification3 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PaymentIdentification3.mmInstructionIdentification,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PaymentIdentification3.mmInstructionIdentification,
 						com.tools20022.repository.msgpart.PaymentIdentification3.mmEndToEndIdentification, com.tools20022.repository.msgpart.PaymentIdentification3.mmTransactionIdentification,
 						com.tools20022.repository.msgpart.PaymentIdentification3.mmClearingSystemReference));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);

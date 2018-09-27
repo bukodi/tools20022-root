@@ -62,6 +62,10 @@ public class StaticMemembersBuilder {
 			return impl().getName();
 		}
 
+		public final String getEMFName() {
+			return impl().getEMFName();
+		}
+
 		public final MetamodelDocImpl getDocumentation() {
 			return impl().getDocumentation();
 		}

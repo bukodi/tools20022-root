@@ -39,8 +39,8 @@ import javax.xml.bind.annotation.XmlValue;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"0.60"</li>
  * </ul>
@@ -67,7 +67,7 @@ public class BaseOneRate {
 		mmObject_lazy.compareAndSet(null, new MMRate() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("0.60");
+				examples = Arrays.asList("0.60");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "BaseOneRate";
 				definition = "Rate expressed as a decimal, eg, 0.7 is 7/10 and 70%.";

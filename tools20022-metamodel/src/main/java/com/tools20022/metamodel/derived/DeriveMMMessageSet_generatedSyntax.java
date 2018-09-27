@@ -33,7 +33,7 @@ public class DeriveMMMessageSet_generatedSyntax implements Function<MMMessageSet
 	 */
 	@Override
 	public List<MMSyntax> apply(MMMessageSet mmBean) {
-		List<MMSyntax> syntaxes = mmBean.getValidEncoding().stream().map(mmEnc-> mmEnc.getSyntax()).collect(Collectors.toList());
+		List<MMSyntax> syntaxes = mmBean.getValidEncodings().stream().map(mmEnc-> mmEnc.getSyntax()).collect(Collectors.toList());
 		return syntaxes;
 	}
 }

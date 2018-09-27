@@ -19,6 +19,7 @@ package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -48,7 +49,7 @@ public class MMBusinessProcessCatalogue implements MMModelEntity {
 	/**
 	 * a TopLevelCatalogueEntry in the BusinessProcessCatalague
 	 */
-	public final static MetamodelAttribute<MMBusinessProcessCatalogue, List<MMTopLevelCatalogueEntry>> topLevelCatalogueEntryAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessProcessCatalogue, List<MMTopLevelCatalogueEntry>> topLevelCatalogueEntriesAttribute = newAttribute();
 	/**
 	 * All TopLevelCatalogueEntries of a BusinessProcessCatalogue must have
 	 * different names topLevelCatalogueEntry-&gt;forAll(entry1,entry2 | entry1
@@ -58,7 +59,7 @@ public class MMBusinessProcessCatalogue implements MMModelEntity {
 		new BusinessProcessCatalogueEntriesHaveUniqueName().accept(b);
 	});
 	protected Supplier<MMRepository> repository_lazy;
-	protected Supplier<List<MMTopLevelCatalogueEntry>> topLevelCatalogueEntry_lazy;
+	protected Supplier<List<MMTopLevelCatalogueEntry>> topLevelCatalogueEntries_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
@@ -95,8 +96,9 @@ public class MMBusinessProcessCatalogue implements MMModelEntity {
 	 */
 	@Opposite(bean = MMTopLevelCatalogueEntry.class, attribute = "businessProcessCatalogue")
 	@Containment
-	public List<MMTopLevelCatalogueEntry> getTopLevelCatalogueEntry() {
-		return topLevelCatalogueEntry_lazy == null ? Collections.emptyList() : topLevelCatalogueEntry_lazy.get();
+	@EMFName("topLevelCatalogueEntry")
+	public List<MMTopLevelCatalogueEntry> getTopLevelCatalogueEntries() {
+		return topLevelCatalogueEntries_lazy == null ? Collections.emptyList() : topLevelCatalogueEntries_lazy.get();
 	}
 
 	@Override

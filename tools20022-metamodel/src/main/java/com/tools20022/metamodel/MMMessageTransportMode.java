@@ -17,6 +17,7 @@
 
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -115,7 +116,7 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	 * specifies the BusinessTransaction for which a set of MessageTransportMode
 	 * characteristics apply
 	 */
-	public final static MetamodelAttribute<MMMessageTransportMode, List<MMBusinessTransaction>> businessTransactionAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageTransportMode, List<MMBusinessTransaction>> businessTransactionsAttribute = newAttribute();
 	protected String boundedCommunicationDelay;
 	protected String maximumClockVariation;
 	protected Integer maximumMessageSize;
@@ -130,14 +131,14 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	protected MMMessageValidationResults messageValidationResults;
 	protected MMReceiverAsynchronicity receiverAsynchronicity;
 	protected MMSenderAsynchronicity senderAsynchronicity;
-	protected Supplier<List<MMBusinessTransaction>> businessTransaction_lazy;
+	protected Supplier<List<MMBusinessTransaction>> businessTransactions_lazy;
 	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
 	protected String definition;
-	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
-	protected Supplier<List<MMDoclet>> doclet_lazy;
-	protected List<String> example;
-	protected Supplier<List<MMConstraint>> constraint_lazy;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkups_lazy;
+	protected Supplier<List<MMDoclet>> doclets_lazy;
+	protected List<String> examples;
+	protected Supplier<List<MMConstraint>> constraints_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -284,8 +285,9 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	 * @see MMBusinessTransaction#getMessageTransportMode()
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "messageTransportMode")
-	public List<MMBusinessTransaction> getBusinessTransaction() {
-		return businessTransaction_lazy == null ? Collections.emptyList() : businessTransaction_lazy.get();
+	@EMFName("businessTransaction")
+	public List<MMBusinessTransaction> getBusinessTransactions() {
+		return businessTransactions_lazy == null ? Collections.emptyList() : businessTransactions_lazy.get();
 	}
 
 	@Override
@@ -304,23 +306,23 @@ public class MMMessageTransportMode implements MMTopLevelCatalogueEntry {
 	}
 
 	@Override
-	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
+	public List<MMSemanticMarkup> getSemanticMarkups() {
+		return semanticMarkups_lazy == null ? Collections.emptyList() : semanticMarkups_lazy.get();
 	}
 
 	@Override
-	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
+	public List<MMDoclet> getDoclets() {
+		return doclets_lazy == null ? Collections.emptyList() : doclets_lazy.get();
 	}
 
 	@Override
-	public List<String> getExample() {
-		return example == null ? Collections.emptyList() : example;
+	public List<String> getExamples() {
+		return examples == null ? Collections.emptyList() : examples;
 	}
 
 	@Override
-	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
+	public List<MMConstraint> getConstraints() {
+		return constraints_lazy == null ? Collections.emptyList() : constraints_lazy.get();
 	}
 
 	@Override

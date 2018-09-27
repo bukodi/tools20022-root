@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.choice.ClearingSystemIdentification2Choice#mmCode
@@ -182,7 +182,8 @@ public class ClearingSystemIdentification2Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.ClearingSystemIdentification2Choice.mmCode, com.tools20022.repository.choice.ClearingSystemIdentification2Choice.mmProprietary));
+				messageElements_lazy = LazyReference.create(() -> Arrays
+						.asList(com.tools20022.repository.choice.ClearingSystemIdentification2Choice.mmCode, com.tools20022.repository.choice.ClearingSystemIdentification2Choice.mmProprietary));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ClearingSystemIdentification2Choice";

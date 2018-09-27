@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.RemittanceAmount1#mmDuePayableAmount
@@ -414,7 +414,7 @@ public class RemittanceAmount1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.RemittanceAmount1.mmDuePayableAmount, com.tools20022.repository.msgpart.RemittanceAmount1.mmDiscountAppliedAmount,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.RemittanceAmount1.mmDuePayableAmount, com.tools20022.repository.msgpart.RemittanceAmount1.mmDiscountAppliedAmount,
 						com.tools20022.repository.msgpart.RemittanceAmount1.mmCreditNoteAmount, com.tools20022.repository.msgpart.RemittanceAmount1.mmTaxAmount,
 						com.tools20022.repository.msgpart.RemittanceAmount1.mmAdjustmentAmountAndReason, com.tools20022.repository.msgpart.RemittanceAmount1.mmRemittedAmount));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);

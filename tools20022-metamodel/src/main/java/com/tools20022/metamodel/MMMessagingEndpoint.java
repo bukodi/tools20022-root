@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Container;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -41,19 +42,19 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	/**
 	 * the TransportMessage that is received by the receiving MessagingEndpoint
 	 */
-	public final static MetamodelAttribute<MMMessagingEndpoint, List<MMTransportMessage>> receivedMessageAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessagingEndpoint, List<MMTransportMessage>> receivedMessagesAttribute = newAttribute();
 	/**
 	 * the TransportMessage that is sent by the sending MessagingEndpoint
 	 */
-	public final static MetamodelAttribute<MMMessagingEndpoint, List<MMTransportMessage>> sentMessageAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessagingEndpoint, List<MMTransportMessage>> sentMessagesAttribute = newAttribute();
 	/**
 	 * an Address used to identify the MessagingEndpoint
 	 */
-	public final static MetamodelAttribute<MMMessagingEndpoint, List<MMAddress>> locationAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessagingEndpoint, List<MMAddress>> locationsAttribute = newAttribute();
 	protected Supplier<MMMessageTransportSystem> transportSystem_lazy;
-	protected Supplier<List<MMTransportMessage>> receivedMessage_lazy;
-	protected Supplier<List<MMTransportMessage>> sentMessage_lazy;
-	protected Supplier<List<MMAddress>> location_lazy;
+	protected Supplier<List<MMTransportMessage>> receivedMessages_lazy;
+	protected Supplier<List<MMTransportMessage>> sentMessages_lazy;
+	protected Supplier<List<MMAddress>> locations_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
@@ -89,8 +90,9 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 * @see MMTransportMessage#getReceiver()
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "receiver")
-	public List<MMTransportMessage> getReceivedMessage() {
-		return receivedMessage_lazy == null ? Collections.emptyList() : receivedMessage_lazy.get();
+	@EMFName("receivedMessage")
+	public List<MMTransportMessage> getReceivedMessages() {
+		return receivedMessages_lazy == null ? Collections.emptyList() : receivedMessages_lazy.get();
 	}
 
 	/**
@@ -99,8 +101,9 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 * @see MMTransportMessage#getSender()
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "sender")
-	public List<MMTransportMessage> getSentMessage() {
-		return sentMessage_lazy == null ? Collections.emptyList() : sentMessage_lazy.get();
+	@EMFName("sentMessage")
+	public List<MMTransportMessage> getSentMessages() {
+		return sentMessages_lazy == null ? Collections.emptyList() : sentMessages_lazy.get();
 	}
 
 	/**
@@ -109,8 +112,9 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	 * @see MMAddress#getEndpoint()
 	 */
 	@Opposite(bean = MMAddress.class, attribute = "endpoint")
-	public List<MMAddress> getLocation() {
-		return location_lazy == null ? Collections.emptyList() : location_lazy.get();
+	@EMFName("location")
+	public List<MMAddress> getLocations() {
+		return locations_lazy == null ? Collections.emptyList() : locations_lazy.get();
 	}
 
 	@Override

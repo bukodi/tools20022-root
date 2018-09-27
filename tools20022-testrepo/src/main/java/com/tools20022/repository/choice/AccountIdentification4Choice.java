@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.choice.AccountIdentification4Choice#mmIBAN
@@ -187,7 +187,7 @@ public class AccountIdentification4Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.AccountIdentification4Choice.mmIBAN, com.tools20022.repository.choice.AccountIdentification4Choice.mmOther));
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.AccountIdentification4Choice.mmIBAN, com.tools20022.repository.choice.AccountIdentification4Choice.mmOther));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AccountIdentification4Choice";

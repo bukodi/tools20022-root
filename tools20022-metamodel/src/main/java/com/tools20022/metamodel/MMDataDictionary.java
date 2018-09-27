@@ -19,6 +19,7 @@ package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -44,7 +45,7 @@ public class MMDataDictionary implements MMModelEntity {
 	/**
 	 * a TopLevelDictionaryEntry in the DataDictionary
 	 */
-	public final static MetamodelAttribute<MMDataDictionary, List<MMTopLevelDictionaryEntry>> topLevelDictionaryEntryAttribute = newAttribute();
+	public final static MetamodelAttribute<MMDataDictionary, List<MMTopLevelDictionaryEntry>> topLevelDictionaryEntriesAttribute = newAttribute();
 	/**
 	 * The Repository that owns the DataDictionary.
 	 */
@@ -57,7 +58,7 @@ public class MMDataDictionary implements MMModelEntity {
 	public final static MetamodelConstraint<MMDataDictionary> checkEntriesHaveUniqueName = newConstraint(b -> {
 		new DataDictionaryEntriesHaveUniqueName().accept(b);
 	});
-	protected Supplier<List<MMTopLevelDictionaryEntry>> topLevelDictionaryEntry_lazy;
+	protected Supplier<List<MMTopLevelDictionaryEntry>> topLevelDictionaryEntries_lazy;
 	protected Supplier<MMRepository> repository_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
@@ -84,8 +85,9 @@ public class MMDataDictionary implements MMModelEntity {
 	 */
 	@Opposite(bean = MMTopLevelDictionaryEntry.class, attribute = "dataDictionary")
 	@Containment
-	public List<MMTopLevelDictionaryEntry> getTopLevelDictionaryEntry() {
-		return topLevelDictionaryEntry_lazy == null ? Collections.emptyList() : topLevelDictionaryEntry_lazy.get();
+	@EMFName("topLevelDictionaryEntry")
+	public List<MMTopLevelDictionaryEntry> getTopLevelDictionaryEntries() {
+		return topLevelDictionaryEntries_lazy == null ? Collections.emptyList() : topLevelDictionaryEntries_lazy.get();
 	}
 
 	/**

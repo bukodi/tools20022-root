@@ -51,7 +51,7 @@ public class ClassDiagramGenerator {
 			addSuperEntity(mmBC);
 			addEntity(mmBC, EntityRole.MAIN);
 
-			for (MMBusinessComponent mmSubType : mmBC.getSubType()) {
+			for (MMBusinessComponent mmSubType : mmBC.getSubTypes()) {
 				addEntity(mmSubType, EntityRole.SUBTYPE);
 				pw.println(mmSubType.getName() + " -up-|> " + mmBC.getName());
 			}
@@ -65,7 +65,7 @@ public class ClassDiagramGenerator {
 					continue;
 				pw.println("together {");
 				String prevEntityName = null;
-				for (MMBusinessElement mmElem : e.getKey().getElement()) {
+				for (MMBusinessElement mmElem : e.getKey().getElements()) {
 					if (!(mmElem instanceof MMBusinessAssociationEnd))
 						continue;
 					MMBusinessAssociationEnd mmRef = (MMBusinessAssociationEnd) mmElem;
@@ -87,7 +87,7 @@ public class ClassDiagramGenerator {
 			for (Entry<MMBusinessComponent, EntityRole> e : new LinkedHashSet<>(addedEntities.entrySet())) {
 				if (EntityRole.SUBTYPE.equals(e.getValue()))
 					continue;
-				for (MMBusinessElement mmElem : e.getKey().getElement()) {
+				for (MMBusinessElement mmElem : e.getKey().getElements()) {
 					if (!(mmElem instanceof MMBusinessAssociationEnd))
 						continue;
 					MMBusinessAssociationEnd mmRef = (MMBusinessAssociationEnd) mmElem;
@@ -101,7 +101,7 @@ public class ClassDiagramGenerator {
 
 		{ // Add associations
 			for (Entry<MMBusinessComponent, EntityRole> e : new LinkedHashSet<>(addedEntities.entrySet())) {
-				for (MMBusinessElement mmElem : e.getKey().getElement()) {
+				for (MMBusinessElement mmElem : e.getKey().getElements()) {
 					if (!(mmElem instanceof MMBusinessAssociationEnd))
 						continue;
 					MMBusinessAssociationEnd mmRef = (MMBusinessAssociationEnd) mmElem;
@@ -168,7 +168,7 @@ public class ClassDiagramGenerator {
 		pw.print("[[../" + mmBC.getName() + ".html{" + mmBC.getDefinition().orElse(mmBC.getName()) + "}]] ");
 		pw.println(role.color + " {");
 		if (role.showAttributes) {
-			for (MMBusinessElement mmElem : mmBC.getElement()) {
+			for (MMBusinessElement mmElem : mmBC.getElements()) {
 				if (!(mmElem instanceof MMBusinessAttribute))
 					continue;
 				MMBusinessAttribute<?,?> mmAttr = (MMBusinessAttribute<?,?>) mmElem;

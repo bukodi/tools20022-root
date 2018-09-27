@@ -17,6 +17,7 @@
 
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -39,12 +40,12 @@ public class MMEncoding implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * The MessageSets for which this Encoding is a valid ISO 20022 encoding
 	 */
-	public final static MetamodelAttribute<MMEncoding, List<MMMessageSet>> messageSetAttribute = newAttribute();
+	public final static MetamodelAttribute<MMEncoding, List<MMMessageSet>> messageSetsAttribute = newAttribute();
 	/**
 	 * The source syntax on which an encoding applies
 	 */
 	public final static MetamodelAttribute<MMEncoding, MMSyntax> syntaxAttribute = newAttribute();
-	protected Supplier<List<MMMessageSet>> messageSet_lazy;
+	protected Supplier<List<MMMessageSet>> messageSets_lazy;
 	protected Supplier<MMSyntax> syntax_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
@@ -70,8 +71,9 @@ public class MMEncoding implements OrphanMetamodelType, MMModelEntity {
 	 * @see MMMessageSet#getValidEncoding()
 	 */
 	@Opposite(bean = MMMessageSet.class, attribute = "validEncoding")
-	public List<MMMessageSet> getMessageSet() {
-		return messageSet_lazy == null ? Collections.emptyList() : messageSet_lazy.get();
+	@EMFName("messageSet")
+	public List<MMMessageSet> getMessageSets() {
+		return messageSets_lazy == null ? Collections.emptyList() : messageSets_lazy.get();
 	}
 
 	/**

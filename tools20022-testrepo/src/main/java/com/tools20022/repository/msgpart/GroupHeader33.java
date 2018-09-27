@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.GroupHeader33#mmMessageIdentification
@@ -80,8 +80,8 @@ import javax.xml.bind.annotation.XmlType;
  * </ul>
  * </li>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlock
- * messageBuildingBlock} =
+ * {@linkplain com.tools20022.metamodel.MMMessageComponentType#getMessageBuildingBlocks
+ * messageBuildingBlocks} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02#mmGroupHeader
@@ -93,8 +93,8 @@ import javax.xml.bind.annotation.XmlType;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.GroupHeader33#TotalInterbankSettlementAmountAndDateRule
@@ -761,14 +761,14 @@ public class GroupHeader33 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.GroupHeader33.mmMessageIdentification, com.tools20022.repository.msgpart.GroupHeader33.mmCreationDateTime,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.GroupHeader33.mmMessageIdentification, com.tools20022.repository.msgpart.GroupHeader33.mmCreationDateTime,
 						com.tools20022.repository.msgpart.GroupHeader33.mmBatchBooking, com.tools20022.repository.msgpart.GroupHeader33.mmNumberOfTransactions, com.tools20022.repository.msgpart.GroupHeader33.mmControlSum,
 						com.tools20022.repository.msgpart.GroupHeader33.mmTotalInterbankSettlementAmount, com.tools20022.repository.msgpart.GroupHeader33.mmInterbankSettlementDate,
 						com.tools20022.repository.msgpart.GroupHeader33.mmSettlementInformation, com.tools20022.repository.msgpart.GroupHeader33.mmPaymentTypeInformation, com.tools20022.repository.msgpart.GroupHeader33.mmInstructingAgent,
 						com.tools20022.repository.msgpart.GroupHeader33.mmInstructedAgent));
-				messageBuildingBlock_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmGroupHeader));
+				messageBuildingBlocks_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmGroupHeader));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.GroupHeader33.TotalInterbankSettlementAmountAndDateRule));
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.GroupHeader33.TotalInterbankSettlementAmountAndDateRule));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "GroupHeader33";
 				definition = "Set of characteristics shared by all individual transactions included in the message.";

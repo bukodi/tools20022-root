@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.AmountDirectionCode#DBIT_Debit
@@ -52,8 +52,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * AmountDirectionCode.RVCD_ReversalCredit}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivations
+ * derivations} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.CreditDebitCode
  * CreditDebitCode}</li>
@@ -64,8 +64,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"DBIT"</li>
  * </ul>
@@ -112,8 +112,8 @@ public class AmountDirectionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Debit";
 			definition = "Operation is a decrease.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AmountDirectionCode.mmObject());
 			codeName = "DBIT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AmountDirectionCode.mmObject());
 		}
 	};
 	/**
@@ -142,8 +142,8 @@ public class AmountDirectionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Credit";
 			definition = "Operation is an increase.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AmountDirectionCode.mmObject());
 			codeName = "CRDT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AmountDirectionCode.mmObject());
 		}
 	};
 	/**
@@ -173,8 +173,8 @@ public class AmountDirectionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ReversalDebit";
 			definition = "Credit entry used to reverse a previously booked debit entry.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AmountDirectionCode.mmObject());
 			codeName = "RVDB";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AmountDirectionCode.mmObject());
 		}
 	};
 	/**
@@ -204,8 +204,8 @@ public class AmountDirectionCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ReversalCredit";
 			definition = "Debit entry used to reverse a previously booked credit entry.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AmountDirectionCode.mmObject());
 			codeName = "RVCD";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AmountDirectionCode.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, AmountDirectionCode> codesByName = new LinkedHashMap<>();
@@ -217,12 +217,12 @@ public class AmountDirectionCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("DBIT");
+				examples = Arrays.asList("DBIT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AmountDirectionCode";
 				definition = "Specifies if an operation is an increase or a decrease or the result of a reversal operation.";
-				derivation_lazy = LazyReference.create(() -> Arrays.asList(CreditDebitCode.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AmountDirectionCode.DBIT_Debit, com.tools20022.repository.codeset.AmountDirectionCode.CRDT_Credit,
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(CreditDebitCode.mmObject()));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AmountDirectionCode.DBIT_Debit, com.tools20022.repository.codeset.AmountDirectionCode.CRDT_Credit,
 						com.tools20022.repository.codeset.AmountDirectionCode.RVDB_ReversalDebit, com.tools20022.repository.codeset.AmountDirectionCode.RVCD_ReversalCredit));
 			}
 		});

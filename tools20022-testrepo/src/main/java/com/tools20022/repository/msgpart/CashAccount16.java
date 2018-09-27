@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.CashAccount16#mmIdentification
@@ -296,7 +296,7 @@ public class CashAccount16 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CashAccount16.mmIdentification, com.tools20022.repository.msgpart.CashAccount16.mmType,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CashAccount16.mmIdentification, com.tools20022.repository.msgpart.CashAccount16.mmType,
 						com.tools20022.repository.msgpart.CashAccount16.mmCurrency, com.tools20022.repository.msgpart.CashAccount16.mmName));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;

@@ -301,7 +301,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 
 	private void collectDontModifyImports(MMCodeSet mmBean, List<String> dontModifyImports) {
-		List<MMCode> mmFields = mmBean.getCode();
+		List<MMCode> mmFields = mmBean.getCodes();
 		for (MMCode mmField : mmFields) {
 			StructuredName fieldName = getStructuredName(mmField);
 			if (fieldName == null || fieldName.getMemberName() == null)
@@ -341,21 +341,21 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		implementMMBusinessElementType(gen, mmBean);
 		implementMMRepositoryType(gen, mmBean);
 		implementMMBusinessConcept(gen, mmBean);
-		for (MMBusinessElement mmChild : mmBean.getElement()) {
+		for (MMBusinessElement mmChild : mmBean.getElements()) {
 			generateMMBusinessElement(gen, mmChild);
 		}
-		defaultAttribute(gen, MMBusinessComponent.associationDomainAttribute, mmBean.getAssociationDomain());
-		defaultAttribute(gen, MMBusinessComponent.derivationElementAttribute, mmBean.getDerivationElement());
-		defaultAttribute(gen, MMBusinessComponent.subTypeAttribute, mmBean.getSubType());
+		defaultAttribute(gen, MMBusinessComponent.associationDomainsAttribute, mmBean.getAssociationDomains());
+		defaultAttribute(gen, MMBusinessComponent.derivationElementsAttribute, mmBean.getDerivationElements());
+		defaultAttribute(gen, MMBusinessComponent.subTypesAttribute, mmBean.getSubTypes());
 		defaultAttribute(gen, MMBusinessComponent.superTypeAttribute, mmBean.getSuperType());
-		defaultAttribute(gen, MMBusinessComponent.elementAttribute, mmBean.getElement());
-		defaultAttribute(gen, MMBusinessComponent.derivationComponentAttribute, mmBean.getDerivationComponent());
+		defaultAttribute(gen, MMBusinessComponent.elementsAttribute, mmBean.getElements());
+		defaultAttribute(gen, MMBusinessComponent.derivationComponentsAttribute, mmBean.getDerivationComponents());
 		gen.flush();
 		return gen;
 	}
 
 	private void collectDontModifyImports(MMBusinessComponent mmBean, List<String> dontModifyImports) {
-		List<MMBusinessElement> mmFields = mmBean.getElement();
+		List<MMBusinessElement> mmFields = mmBean.getElements();
 		for (MMBusinessElement mmField : mmFields) {
 			StructuredName fieldName = getStructuredName(mmField);
 			if (fieldName == null || fieldName.getMemberName() == null)
@@ -377,19 +377,19 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		for (MMXor mmChild : mmBean.getXors()) {
 			generateMMXorInMessageDefinition(gen, mmChild);
 		}
-		for (MMMessageBuildingBlock mmChild : mmBean.getMessageBuildingBlock()) {
+		for (MMMessageBuildingBlock mmChild : mmBean.getMessageBuildingBlocks()) {
 			generateMMMessageBuildingBlock(gen, mmChild);
 		}
-		defaultAttribute(gen, MMMessageDefinition.messageSetAttribute, mmBean.getMessageSet());
+		defaultAttribute(gen, MMMessageDefinition.messageSetsAttribute, mmBean.getMessageSets());
 		defaultAttribute(gen, MMMessageDefinition.xorsAttribute, mmBean.getXors());
 		defaultAttribute(gen, MMMessageDefinition.rootElementAttribute, mmBean.getRootElement());
-		defaultAttribute(gen, MMMessageDefinition.choreographyAttribute, mmBean.getChoreography());
+		defaultAttribute(gen, MMMessageDefinition.choreographiesAttribute, mmBean.getChoreographies());
 		defaultAttribute(gen, MMMessageDefinition.xmlTagAttribute, mmBean.getXmlTag());
-		defaultAttribute(gen, MMMessageDefinition.traceAttribute, mmBean.getTrace());
-		defaultAttribute(gen, MMMessageDefinition.derivationAttribute, mmBean.getDerivation());
+		defaultAttribute(gen, MMMessageDefinition.tracesAttribute, mmBean.getTraces());
+		defaultAttribute(gen, MMMessageDefinition.derivationsAttribute, mmBean.getDerivations());
 		defaultAttribute(gen, MMMessageDefinition.businessAreaAttribute, mmBean.getBusinessArea());
 		defaultAttribute(gen, MMMessageDefinition.xmlNameAttribute, mmBean.getXmlName());
-		defaultAttribute(gen, MMMessageDefinition.messageBuildingBlockAttribute, mmBean.getMessageBuildingBlock());
+		defaultAttribute(gen, MMMessageDefinition.messageBuildingBlocksAttribute, mmBean.getMessageBuildingBlocks());
 
 		{
 
@@ -449,20 +449,20 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	protected void implementMMRepositoryConcept(TypeResult gen, MMRepositoryConcept mmBean) {
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.semanticMarkup,
 
-		for (MMConstraint mmConstr : mmBean.getConstraint()) {
+		for (MMConstraint mmConstr : mmBean.getConstraints()) {
 			_generateMMConstraint(gen, mmConstr);
 			String ctrJavaName = RoasterHelper.convertToJavaName(mmConstr.getName());
 			constraintsByName.computeIfAbsent(ctrJavaName, x -> new ArrayList<>()).add(mmConstr);
 		}
 
 		List<MMSemanticMarkup> validMarkups = new ArrayList<>();
-		for (MMSemanticMarkup sm : mmBean.getSemanticMarkup()) {
+		for (MMSemanticMarkup sm : mmBean.getSemanticMarkups()) {
 			if (!sm.getElements().isEmpty())
 				validMarkups.add(sm);
 		}
 
 		if (!validMarkups.isEmpty()) {
-			AttrResult attrGen = gen.createAttrResult(MMRepositoryConcept.semanticMarkupAttribute);
+			AttrResult attrGen = gen.createAttrResult(MMRepositoryConcept.semanticMarkupsAttribute);
 			StringJoiner sjInit = new StringJoiner(", ");
 			StringJoiner sjJavadoc = new StringJoiner(", ");
 			loop_on_markups: for (MMSemanticMarkup sm : validMarkups) {
@@ -512,7 +512,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 				}
 
 			}
-			attrGen.initializationSource = "semanticMarkup_lazy = () -> " + Arrays.class.getName() + ".asList( "
+			attrGen.initializationSource = "semanticMarkups_lazy = () -> " + Arrays.class.getName() + ".asList( "
 					+ sjInit.toString() + ");";
 			attrGen.valueAsJavaDoc = sjJavadoc.toString();
 		}
@@ -520,9 +520,9 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		// mmBean.getSemanticMarkup());
 		// defaultMultivalueAttribute(gen, MMRepositoryConcept_.doclet,
 		// mmBean.getDoclet());
-		defaultAttribute(gen, MMRepositoryConcept.exampleAttribute, mmBean.getExample());
-		if( ! mmBean.getConstraint().isEmpty() ) {
-			defaultAttribute(gen, MMRepositoryConcept.constraintAttribute, mmBean.getConstraint());			
+		defaultAttribute(gen, MMRepositoryConcept.examplesAttribute, mmBean.getExamples());
+		if( ! mmBean.getConstraints().isEmpty() ) {
+			defaultAttribute(gen, MMRepositoryConcept.constraintsAttribute, mmBean.getConstraints());			
 		}
 		defaultAttribute(gen, MMRepositoryConcept.registrationStatusAttribute, mmBean.getRegistrationStatus());
 		defaultAttribute(gen, MMRepositoryConcept.removalDateAttribute, mmBean.getRemovalDate());

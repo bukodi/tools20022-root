@@ -368,6 +368,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			return name;
 		}
 
+		@Override
+		public String getEMFName() {
+			return getName();
+		}
+
 	}
 
 	private static MetamodelDocImpl annotToDoc(AnnotatedElement javaElem) {
@@ -384,6 +389,7 @@ public class ReflectionBasedMetamodel implements Metamodel {
 
 		private final MMTypeImpl<B> metaType;
 		private final String name;
+		private final String emfName;
 		private final Method getterMethod;
 
 		final boolean isOptional;
@@ -438,6 +444,13 @@ public class ReflectionBasedMetamodel implements Metamodel {
 				valueJavaClass = pt.baseClass;
 				referncedType = null;
 			}
+			
+			if( getterMethod.isAnnotationPresent(EMFName.class)) {
+				EMFName emfNameAnnot = getterMethod.getAnnotation(EMFName.class);
+				emfName = emfNameAnnot.value();
+			} else {
+				emfName = name;
+			}
 		}
 
 		@Override
@@ -448,6 +461,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		@Override
 		public String getName() {
 			return name;
+		}
+
+		@Override
+		public String getEMFName() {
+			return emfName;
 		}
 
 		@Override
@@ -578,6 +596,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		@Override
+		public String getEMFName() {
+			return name;
+		}
+
+		@Override
 		public MetamodelDocImpl getDocumentation() {
 			return annotToDoc(implMethod);
 		}
@@ -622,6 +645,11 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		}
 
 		@Override
+		public String getEMFName() {
+			return getName();
+		}
+		
+		@Override
 		public MetamodelDocImpl getDocumentation() {
 			return annotToDoc(enumClass);
 		}
@@ -656,6 +684,12 @@ public class ReflectionBasedMetamodel implements Metamodel {
 			return enumValue.name();
 		}
 
+		@Override
+		public String getEMFName() {
+			return getName();
+		}
+
+		
 		@Override
 		public MetamodelDocImpl getDocumentation() {
 			Field enumValueAsField;

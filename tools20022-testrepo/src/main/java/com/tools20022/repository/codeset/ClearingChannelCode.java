@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.ClearingChannelCode#RTGS_RealTimeGrossSettlementSystem
@@ -52,8 +52,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * ClearingChannelCode.BOOK_BookTransfer}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivations
+ * derivations} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.ClearingChannel2Code
  * ClearingChannel2Code}</li>
@@ -64,8 +64,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"RTGS"</li>
  * </ul>
@@ -112,8 +112,8 @@ public class ClearingChannelCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "RealTimeGrossSettlementSystem";
 			definition = "Clearing channel is a real-time gross settlement system.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ClearingChannelCode.mmObject());
 			codeName = "RTGS";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ClearingChannelCode.mmObject());
 		}
 	};
 	/**
@@ -142,8 +142,8 @@ public class ClearingChannelCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "RealTimeNetSettlementSystem";
 			definition = "Clearing channel is a real-time net settlement system.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ClearingChannelCode.mmObject());
 			codeName = "RTNS";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ClearingChannelCode.mmObject());
 		}
 	};
 	/**
@@ -173,8 +173,8 @@ public class ClearingChannelCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MassPaymentNetSystem";
 			definition = "Clearing channel is a mass payment net settlement system.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ClearingChannelCode.mmObject());
 			codeName = "MPNS";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ClearingChannelCode.mmObject());
 		}
 	};
 	/**
@@ -203,8 +203,8 @@ public class ClearingChannelCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "BookTransfer";
 			definition = "Payment through internal book transfer.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ClearingChannelCode.mmObject());
 			codeName = "BOOK";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ClearingChannelCode.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, ClearingChannelCode> codesByName = new LinkedHashMap<>();
@@ -216,12 +216,12 @@ public class ClearingChannelCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("RTGS");
+				examples = Arrays.asList("RTGS");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ClearingChannelCode";
 				definition = "Specifies the clearing channel for the routing of the transaction, as part of the payment type identification.";
-				derivation_lazy = LazyReference.create(() -> Arrays.asList(ClearingChannel2Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ClearingChannelCode.RTGS_RealTimeGrossSettlementSystem,
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(ClearingChannel2Code.mmObject()));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ClearingChannelCode.RTGS_RealTimeGrossSettlementSystem,
 						com.tools20022.repository.codeset.ClearingChannelCode.RTNS_RealTimeNetSettlementSystem, com.tools20022.repository.codeset.ClearingChannelCode.MPNS_MassPaymentNetSystem,
 						com.tools20022.repository.codeset.ClearingChannelCode.BOOK_BookTransfer));
 			}

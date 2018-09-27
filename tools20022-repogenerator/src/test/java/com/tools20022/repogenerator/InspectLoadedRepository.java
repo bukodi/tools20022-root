@@ -109,7 +109,7 @@ public class InspectLoadedRepository {
 	public void inspectSpecificObject() throws Exception {
 		MMCodeSet obj = repo.findObjectByTypeAndName(MMCodeSet.class, "CategoryPurpose1Code");
 		
-		for( MMCode c : obj.getCode()) {
+		for( MMCode c : obj.getCodes()) {
 			System.out.println( c.getName() + "-" + c.getCodeName().orElse("-N/A-") + " :" + c.getDefinition().orElse("-"));
 		}
 
@@ -254,9 +254,9 @@ public class InspectLoadedRepository {
 		for (MMCodeSet mmCodeSet : repo.getObjects(MMCodeSet.class).stream()
 				.filter(cs -> cs.getName().startsWith("Repurchase")).collect(Collectors.toList())) {
 			System.out.println(mmCodeSet.getName() + " derivation: "
-					+ mmCodeSet.getDerivation().stream().map(cs -> cs.getName()).collect(Collectors.joining(", "))
+					+ mmCodeSet.getDerivations().stream().map(cs -> cs.getName()).collect(Collectors.joining(", "))
 					+ "");
-			for (MMCode c : mmCodeSet.getCode()) {
+			for (MMCode c : mmCodeSet.getCodes()) {
 				System.out.println(" - " + c.getCodeName() + " - " + c.getName());
 			}
 			System.out.println();
@@ -296,13 +296,13 @@ public class InspectLoadedRepository {
 			countRC++;
 			if (mmRC.getDefinition().isPresent())
 				countDef++;
-			if (!mmRC.getDoclet().isEmpty()) {
+			if (!mmRC.getDoclets().isEmpty()) {
 				countDoclet++;
-				countAllDoclet += mmRC.getDoclet().size();
+				countAllDoclet += mmRC.getDoclets().size();
 			}
-			if (!mmRC.getSemanticMarkup().isEmpty()) {
+			if (!mmRC.getSemanticMarkups().isEmpty()) {
 				countMarkups++;
-				countAllMarkups += mmRC.getSemanticMarkup().size();
+				countAllMarkups += mmRC.getSemanticMarkups().size();
 			}
 		}
 		System.out.println("CountRC=" + countRC + ", countDef=" + countDef);
@@ -339,9 +339,9 @@ public class InspectLoadedRepository {
 	public void semanticMarkups() throws Exception {
 		Map<String, Set<MMSemanticMarkup>> markupsByType = new LinkedHashMap<>();
 		for (MMRepositoryConcept mmRC : repo.getObjects(MMRepositoryConcept.class)) {
-			if (mmRC.getSemanticMarkup().isEmpty())
+			if (mmRC.getSemanticMarkups().isEmpty())
 				continue;
-			List<MMSemanticMarkup> markups = mmRC.getSemanticMarkup();
+			List<MMSemanticMarkup> markups = mmRC.getSemanticMarkups();
 			if (markups.size() > 1) {
 				System.out.print("More than one markup on elem " + mmRC + ": ");
 				List<String> list = new ArrayList<>();
@@ -472,9 +472,9 @@ public class InspectLoadedRepository {
 		SortedSet<MMCodeSet> emptyCodeSets = new TreeSet<>(
 				(a, b) -> Collator.getInstance().compare(a.getName(), b.getName()));
 		for (MMCodeSet cs : allCodesets) {
-			if (!cs.getCode().isEmpty())
+			if (!cs.getCodes().isEmpty())
 				continue;
-			if (cs.getTrace().isPresent() && !cs.getTrace().get().getCode().isEmpty())
+			if (cs.getTrace().isPresent() && !cs.getTrace().get().getCodes().isEmpty())
 				continue;
 			if (cs.getName().startsWith("External"))
 				continue;
@@ -486,8 +486,8 @@ public class InspectLoadedRepository {
 				System.out.print("(" + p.getName() + ") -> ");
 			});
 			System.out.print(cs.getName() + " :");
-			if (!cs.getDerivation().isEmpty()) {
-				System.out.print(" -> (" + cs.getDerivation().size() + " codesets )");
+			if (!cs.getDerivations().isEmpty()) {
+				System.out.print(" -> (" + cs.getDerivations().size() + " codesets )");
 			}
 
 			System.out.println();
@@ -508,7 +508,7 @@ public class InspectLoadedRepository {
 		List<? extends MMCodeSet> allCodesets = repo.getObjects(MMCodeSet.class);
 		SortedMap<String, MMCodeSet> emptyCodeSets = new TreeMap<>();
 		for (MMCodeSet cs : allCodesets) {
-			if (!cs.getCode().isEmpty())
+			if (!cs.getCodes().isEmpty())
 				continue;
 			// MMCodeSet mmParent = null, mmChild = null;
 			ExtCodeSetGroup group;
@@ -565,16 +565,16 @@ public class InspectLoadedRepository {
 		Map<MMCodeSet, SortedSet<MMCodeSet>> csByTrace = new TreeMap<>(compareCs);
 		SortedSet<MMCodeSet> csNoTraceOrDerivation = new TreeSet<>(compareCs);
 		for (MMCodeSet mmCS : allCodesets) {
-			if (mmCS.getTrace().isPresent() && mmCS.getDerivation().isEmpty()) {
+			if (mmCS.getTrace().isPresent() && mmCS.getDerivations().isEmpty()) {
 				// Derived codeSet
 				csByTrace.computeIfAbsent(mmCS.getTrace().get(), x -> new TreeSet<>(compareCs)).add(mmCS);
-			} else if (mmCS.getTrace().isPresent() && !mmCS.getDerivation().isEmpty()) {
+			} else if (mmCS.getTrace().isPresent() && !mmCS.getDerivations().isEmpty()) {
 				// Invalid codeset
 				throw new AssertionFailedError("The " + mmCS.getName() + " codeset has a trace AND derivation.");
-			} else if (!mmCS.getTrace().isPresent() && !mmCS.getDerivation().isEmpty()) {
+			} else if (!mmCS.getTrace().isPresent() && !mmCS.getDerivations().isEmpty()) {
 				// Base codeSet
 				// will indirectly added to csByTrace map as key.
-			} else if (!mmCS.getTrace().isPresent() && mmCS.getDerivation().isEmpty()) {
+			} else if (!mmCS.getTrace().isPresent() && mmCS.getDerivations().isEmpty()) {
 				// Standalone codeSet
 				csNoTraceOrDerivation.add(mmCS);
 			} else {
@@ -606,12 +606,12 @@ public class InspectLoadedRepository {
 		for (Map.Entry<MMCodeSet, SortedSet<MMCodeSet>> e : csByTrace.entrySet()) {
 			MMCodeSet csBase = e.getKey();
 			LinkedHashMap<String, MMCode> baseCodesByName = new LinkedHashMap<>();
-			csBase.getCode().stream().forEach(c -> baseCodesByName.put(c.getName(), c));
+			csBase.getCodes().stream().forEach(c -> baseCodesByName.put(c.getName(), c));
 			onlyInBaseCodes.addAll(baseCodesByName.values());
 			// Loop on derived codesets
 			for (MMCodeSet csDerived : e.getValue()) {
 				// Loop on codes in a derived codeset
-				for (MMCode derivedCode : csDerived.getCode()) {
+				for (MMCode derivedCode : csDerived.getCodes()) {
 					MMCode baseCode = baseCodesByName.get(derivedCode.getName());
 
 					if (baseCode == null) {
@@ -725,7 +725,7 @@ public class InspectLoadedRepository {
 		{
 			SortedSet<MMCode> noCodeName = new TreeSet<>(compareCode);
 			for (MMCodeSet cs : csNoTraceOrDerivation) {
-				for( MMCode code : cs.getCode() ) {
+				for( MMCode code : cs.getCodes() ) {
 					if( ! code.getCodeName().isPresent())
 						noCodeName.add(code);
 				}
@@ -742,7 +742,7 @@ public class InspectLoadedRepository {
 		System.out.println("Size of codeset : number of codesets");
 		Map<Integer, List<MMCodeSet>> csByCodesetSize = new HashMap<>();
 		for (MMCodeSet mmCS : allCodesets) {
-			csByCodesetSize.computeIfAbsent(mmCS.getCode().size(), x -> new ArrayList<>()).add(mmCS);
+			csByCodesetSize.computeIfAbsent(mmCS.getCodes().size(), x -> new ArrayList<>()).add(mmCS);
 		}
 		csByCodesetSize.entrySet().stream().forEachOrdered(e -> {
 			System.out.println(e.getKey() + " : " + e.getValue().size());
@@ -760,7 +760,7 @@ public class InspectLoadedRepository {
 		System.out.println();
 		System.out.println("--- Find MMCode instances without effectiveCode value --- ");
 		for (MMCodeSet mmCs : allCodesets) {
-			for (MMCode mmCode : mmCs.getCode()) {
+			for (MMCode mmCode : mmCs.getCodes()) {
 				if (mmCode.getCodeName().isPresent()) {
 
 				} else {
@@ -770,7 +770,7 @@ public class InspectLoadedRepository {
 						continue;
 					}
 
-					Optional<MMCode> optSuperCode = optSuperCs.get().getCode().stream()
+					Optional<MMCode> optSuperCode = optSuperCs.get().getCodes().stream()
 							.filter(sc -> sc.getName().equals(mmCode.getName())).findFirst();
 					if (!optSuperCode.isPresent()) {
 						System.out.println("(Derived codeset)" + mmCs.getName() + "." + mmCode.getName());
@@ -791,8 +791,8 @@ public class InspectLoadedRepository {
 					continue;
 				}
 				MMCodeSet baseCs = mmCs.getTrace().get();
-				for (MMCode mmCode : mmCs.getCode()) {
-					Optional<MMCode> optSuperCode = baseCs.getCode().stream()
+				for (MMCode mmCode : mmCs.getCodes()) {
+					Optional<MMCode> optSuperCode = baseCs.getCodes().stream()
 							.filter(sc -> sc.getName().equals(mmCode.getName())).findFirst();
 					if (!optSuperCode.isPresent()) {
 						System.out.println("Base code not exists:" + mmCs.getName() + "." + mmCode.getName());
@@ -807,7 +807,7 @@ public class InspectLoadedRepository {
 				}
 			} else {
 				// Base codeset
-				for (MMCode mmCode : mmCs.getCode()) {
+				for (MMCode mmCode : mmCs.getCodes()) {
 					if (!mmCode.getCodeName().isPresent()) {
 						System.out.println("No codeName in a base codeset:" + mmCs.getName() + "." + mmCode.getName());
 					}
@@ -853,9 +853,9 @@ public class InspectLoadedRepository {
 		withTrace.clear();
 
 		inspectTraces(MMBusinessComponent.class,
-				mmObj -> !(mmObj.getDerivationComponent().isEmpty() && mmObj.getDerivationComponent().isEmpty()));
-		inspectTraces(MMBusinessAttribute.class, mmObj -> !mmObj.getDerivation().isEmpty());
-		inspectTraces(MMBusinessAssociationEnd.class, mmObj -> !mmObj.getDerivation().isEmpty());
+				mmObj -> !(mmObj.getDerivationComponents().isEmpty() && mmObj.getDerivationComponents().isEmpty()));
+		inspectTraces(MMBusinessAttribute.class, mmObj -> !mmObj.getDerivations().isEmpty());
+		inspectTraces(MMBusinessAssociationEnd.class, mmObj -> !mmObj.getDerivations().isEmpty());
 
 		inspectTraces(MMMessageAttribute.class,
 				mmObj -> mmObj.getBusinessComponentTrace().isPresent() || mmObj.getBusinessElementTrace().isPresent());
@@ -954,8 +954,8 @@ public class InspectLoadedRepository {
 
 	private void printWithSubtypes(MMBusinessComponent mmBC, String tab,
 			Map<MMBusinessComponent, List<MMBusinessComponent>> subTypesByParent) {
-		System.out.println(tab + mmBC.getName() + "( " + mmBC.getElement().size() + ")");
-		mmBC.getSubType().forEach(x -> {
+		System.out.println(tab + mmBC.getName() + "( " + mmBC.getElements().size() + ")");
+		mmBC.getSubTypes().forEach(x -> {
 			printWithSubtypes(x, tab + "  ", subTypesByParent);
 		});
 	}
@@ -974,7 +974,7 @@ public class InspectLoadedRepository {
 				msgElemsAndBBs.addAll(mmXor.getImpactedElements());
 				msgElemsAndBBs.addAll(mmXor.getImpactedMessageBuildingBlocks());
 			}
-			msgElemsAndBBs.addAll(mmMsgDef.getMessageBuildingBlock());
+			msgElemsAndBBs.addAll(mmMsgDef.getMessageBuildingBlocks());
 
 			String areaCode = mmMsgDef.getBusinessArea().getCode();
 			Set<MMRepositoryType> mmRepoTypes = repoTypesByAreaName.computeIfAbsent(areaCode,
@@ -1110,7 +1110,7 @@ public class InspectLoadedRepository {
 		for (Map.Entry<MMBusinessComponent, String> e : entitiesWithSingleAreaCode.entrySet()) {
 			MMBusinessComponent entity = e.getKey();
 			// Extend outgoing relations
-			for (MMBusinessElement member : entity.getElement()) {
+			for (MMBusinessElement member : entity.getElements()) {
 				if (!(member instanceof MMBusinessAssociationEnd))
 					continue;
 				MMBusinessAssociationEnd rel = (MMBusinessAssociationEnd) member;
@@ -1118,12 +1118,12 @@ public class InspectLoadedRepository {
 				entitiesByAreaCodes.get(otherEntity).add(e.getValue());
 			}
 			// Extend incoming relations
-			for (MMBusinessAssociationEnd rel : entity.getAssociationDomain()) {
+			for (MMBusinessAssociationEnd rel : entity.getAssociationDomains()) {
 				MMBusinessComponent otherEntity = rel.getElementContext();
 				entitiesByAreaCodes.get(otherEntity).add(e.getValue());
 			}
 			// Extend by subtypes
-			for (MMBusinessComponent otherEntity : entity.getSubType()) {
+			for (MMBusinessComponent otherEntity : entity.getSubTypes()) {
 				entitiesByAreaCodes.get(otherEntity).add(e.getValue());
 			}
 		}
@@ -1233,7 +1233,7 @@ public class InspectLoadedRepository {
 		System.out.println("------ Constraints on " + MMMessageAttribute.class.getSimpleName() + " ------------");
 		for (MMRepositoryConcept x : ownersByType.get(MMMessageAttribute.class.getSimpleName())) {
 			MMMessageAttribute<?, ?> mmMsgAttr = (MMMessageAttribute<?, ?>) x;
-			MMConstraint<?> c = mmMsgAttr.getConstraint().get(0);
+			MMConstraint<?> c = mmMsgAttr.getConstraints().get(0);
 
 			System.out.println(c.getName() + " constraint on " + mmMsgAttr.getContainer().getName() + "."
 					+ mmMsgAttr.getName() + "(" + mmMsgAttr.getMemberType().getName() + ")");
@@ -1423,7 +1423,7 @@ public class InspectLoadedRepository {
 	@Test
 	public void listEmptyCodesets() throws Exception {
 		List<? extends MMCodeSet> mmCodesets = repo.listObjects(MMCodeSet.metaType())
-				.filter(cs -> cs.getCode().isEmpty())
+				.filter(cs -> cs.getCodes().isEmpty())
 				.sorted((c1, c2) -> Collator.getInstance().compare(c1.getName(), c2.getName()))
 				.collect(Collectors.toList());
 		int i = 1;

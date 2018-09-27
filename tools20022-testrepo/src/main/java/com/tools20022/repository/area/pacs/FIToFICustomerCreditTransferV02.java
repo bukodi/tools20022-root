@@ -64,15 +64,8 @@ import javax.xml.bind.annotation.*;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageDefinitionIdentifier
- * messageDefinitionIdentifier} = {@code pacs.008.001.02}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getBusinessArea
- * businessArea} =
- * {@linkplain com.tools20022.repository.area.PaymentsClearingandSettlementArchive
- * PaymentsClearingandSettlementArchive}</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageBuildingBlock
- * messageBuildingBlock} =
+ * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageBuildingBlocks
+ * messageBuildingBlocks} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02#mmGroupHeader
@@ -86,8 +79,15 @@ import javax.xml.bind.annotation.*;
  * rootElement} = "Document"</li>
  * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getXmlTag
  * xmlTag} = "FIToFICstmrCdtTrf"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageDefinitionIdentifier
+ * messageDefinitionIdentifier} = {@code pacs.008.001.02}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getBusinessArea
+ * businessArea} =
+ * {@linkplain com.tools20022.repository.area.PaymentsClearingandSettlementArchive
+ * PaymentsClearingandSettlementArchive}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02#InstructedAgentRule
@@ -558,7 +558,7 @@ public class FIToFICustomerCreditTransferV02 {
 	final static public MMMessageDefinition mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageDefinition() {
 			{
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.InstructedAgentRule,
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.InstructedAgentRule,
 						com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.InstructingAgentRule, com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.TotalInterbankSettlementAmountRule,
 						com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.TotalInterbankSettlementAmountAndSumRule,
 						com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.GroupHeaderInterbankSettlementDateRule, com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.TransactionInterbankSettlementDateRule,
@@ -569,7 +569,7 @@ public class FIToFICustomerCreditTransferV02 {
 				rootElement = "Document";
 				xmlTag = "FIToFICstmrCdtTrf";
 				businessArea_lazy = LazyReference.create(() -> PaymentsClearingandSettlementArchive.mmObject());
-				messageBuildingBlock_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.mmGroupHeader,
+				messageBuildingBlocks_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.mmGroupHeader,
 						com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02.mmCreditTransferTransactionInformation));
 				messageDefinitionIdentifier_lazy = () -> new MMMessageDefinitionIdentifier() {
 					{

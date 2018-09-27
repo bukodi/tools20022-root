@@ -39,8 +39,8 @@ import javax.xml.bind.annotation.XmlValue;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"123456789.123456789"</li>
  * </ul>
@@ -68,7 +68,7 @@ public class DecimalNumber {
 		mmObject_lazy.compareAndSet(null, new MMQuantity() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("123456789.123456789");
+				examples = Arrays.asList("123456789.123456789");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DecimalNumber";
 				definition = "Number of objects represented as a decimal number, eg, 0.75 or 45.6.";

@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -40,7 +41,7 @@ public interface MMMessageElementContainer extends MMMessageComponentType {
 	/**
 	 * a semantic property of a MessageComponentType
 	 */
-	public final static MetamodelAttribute<MMMessageElementContainer, List<MMMessageElement>> messageElementAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageElementContainer, List<MMMessageElement>> messageElementsAttribute = newAttribute();
 	/**
 	 * All MessageElements contained in this MessageComponentContainer must have
 	 * different names. messageElement-&gt;forAll(el1,el2 | el1 &lt;&gt; el2
@@ -69,5 +70,6 @@ public interface MMMessageElementContainer extends MMMessageComponentType {
 	 */
 	@Opposite(bean = MMMessageElement.class, attribute = "componentContext")
 	@Containment
-	public List<MMMessageElement> getMessageElement();
+	@EMFName("messageElement")
+	public List<MMMessageElement> getMessageElements();
 }

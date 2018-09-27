@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -48,7 +49,7 @@ public class MMSyntax implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * the scheme in which a syntax is encoded
 	 */
-	public final static MetamodelAttribute<MMSyntax, List<MMMessageSet>> generatedForAttribute = newAttribute();
+	public final static MetamodelAttribute<MMSyntax, List<MMMessageSet>> generatedForsAttribute = newAttribute();
 	/**
 	 * the syntax that is valid for a MessageSet, based on the Encoding used
 	 * generatedFor-&gt; asBag()=possibleEncodings.messageSet
@@ -92,7 +93,8 @@ public class MMSyntax implements OrphanMetamodelType, MMModelEntity {
 	 */
 	@Derived
 	@Opposite(bean = MMMessageSet.class, attribute = "generatedSyntax")
-	public List<MMMessageSet> getGeneratedFor() {
+	@EMFName("generatedFor")
+	public List<MMMessageSet> getGeneratedFors() {
 		return (new DeriveMMSyntax_generatedFor()).apply(this);
 	}
 

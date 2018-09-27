@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.AddressTypeCode#HOME_Residential
@@ -56,8 +56,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * AddressTypeCode.DLVY_DeliveryTo}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivations
+ * derivations} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.AddressType2Code
  * AddressType2Code}</li>
@@ -68,8 +68,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"HOME"</li>
  * </ul>
@@ -114,8 +114,8 @@ public class AddressTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Residential";
 			definition = "Address is the home address.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 			codeName = "HOME";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 		}
 	};
 	/**
@@ -144,8 +144,8 @@ public class AddressTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Business";
 			definition = "Address is the business address.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 			codeName = "BIZZ";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 		}
 	};
 	/**
@@ -174,8 +174,8 @@ public class AddressTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Postal";
 			definition = "Address is the complete postal address.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 			codeName = "ADDR";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 		}
 	};
 	/**
@@ -204,8 +204,8 @@ public class AddressTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "POBox";
 			definition = "Address is a postal office (PO) box.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 			codeName = "PBOX";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 		}
 	};
 	/**
@@ -234,8 +234,8 @@ public class AddressTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MailTo";
 			definition = "Address is the address to which mail is sent.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 			codeName = "MLTO";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 		}
 	};
 	/**
@@ -265,8 +265,8 @@ public class AddressTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "DeliveryTo";
 			definition = "Address is the address to which delivery is to take place.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 			codeName = "DLVY";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.AddressTypeCode.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, AddressTypeCode> codesByName = new LinkedHashMap<>();
@@ -278,12 +278,12 @@ public class AddressTypeCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("HOME");
+				examples = Arrays.asList("HOME");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AddressTypeCode";
 				definition = "Specifies the type of address.";
-				derivation_lazy = LazyReference.create(() -> Arrays.asList(AddressType2Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressTypeCode.HOME_Residential, com.tools20022.repository.codeset.AddressTypeCode.BIZZ_Business,
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(AddressType2Code.mmObject()));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressTypeCode.HOME_Residential, com.tools20022.repository.codeset.AddressTypeCode.BIZZ_Business,
 						com.tools20022.repository.codeset.AddressTypeCode.ADDR_Postal, com.tools20022.repository.codeset.AddressTypeCode.PBOX_POBox, com.tools20022.repository.codeset.AddressTypeCode.MLTO_MailTo,
 						com.tools20022.repository.codeset.AddressTypeCode.DLVY_DeliveryTo));
 			}

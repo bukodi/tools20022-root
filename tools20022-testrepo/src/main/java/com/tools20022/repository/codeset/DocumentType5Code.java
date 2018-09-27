@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.DocumentTypeCode
  * DocumentTypeCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.DocumentType5Code#MSIN_MeteredServiceInvoice
@@ -92,8 +92,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"MSIN"</li>
  * </ul>
@@ -481,12 +481,12 @@ public class DocumentType5Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("MSIN");
+				examples = Arrays.asList("MSIN");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DocumentType5Code";
 				definition = "Specifies a type of financial or commercial document.";
 				trace_lazy = LazyReference.create(() -> DocumentTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentType5Code.MSIN_MeteredServiceInvoice,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentType5Code.MSIN_MeteredServiceInvoice,
 						com.tools20022.repository.codeset.DocumentType5Code.CNFA_CreditNoteRelatedToFinancialAdjustment, com.tools20022.repository.codeset.DocumentType5Code.DNFA_DebitNoteRelatedToFinancialAdjustment,
 						com.tools20022.repository.codeset.DocumentType5Code.CINV_CommercialInvoice, com.tools20022.repository.codeset.DocumentType5Code.CREN_CreditNote, com.tools20022.repository.codeset.DocumentType5Code.DEBN_DebitNote,
 						com.tools20022.repository.codeset.DocumentType5Code.HIRI_HireInvoice, com.tools20022.repository.codeset.DocumentType5Code.SBIN_SelfBilledInvoice,

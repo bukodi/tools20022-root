@@ -31,16 +31,17 @@ import java.util.concurrent.atomic.AtomicReference;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMBusinessArea#getCode code} =
- * "pacs"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMBusinessArea#getMessageDefinition
- * messageDefinition} =
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMBusinessArea#getMessageDefinitions
+ * messageDefinitions} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02
  * FIToFICustomerCreditTransferV02}</li>
  * </ul>
  * </li>
+ * <li>{@linkplain com.tools20022.metamodel.MMBusinessArea#getCode code} =
+ * "pacs"</li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelCatalogueEntry#getBusinessProcessCatalogue
  * businessProcessCatalogue} =
@@ -69,7 +70,7 @@ public class PaymentsClearingandSettlementArchive {
 				registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 				name = "Payments Clearing and Settlement - Archive - master";
 				definition = "Messages that support the clearing and settlement processes for payment transactions between financial institutions";
-				messageDefinition_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmObject()));
+				messageDefinitions_lazy = LazyReference.create(() -> Arrays.asList(FIToFICustomerCreditTransferV02.mmObject()));
 				code = "pacs";
 			}
 		});

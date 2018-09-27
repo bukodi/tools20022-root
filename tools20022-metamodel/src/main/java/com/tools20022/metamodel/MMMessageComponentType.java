@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -36,7 +37,7 @@ public interface MMMessageComponentType extends MMTopLevelDictionaryEntry, MMLog
 	 * The MessageBuildingBlock that is the context for this
 	 * MessageComponentType
 	 */
-	public final static MetamodelAttribute<MMMessageComponentType, List<MMMessageBuildingBlock>> messageBuildingBlockAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageComponentType, List<MMMessageBuildingBlock>> messageBuildingBlocksAttribute = newAttribute();
 	/**
 	 * A property indicating the absense of a semantic relationship to a
 	 * BusinessComponent, i.e. it is not derived from a BusinessComponent
@@ -58,7 +59,8 @@ public interface MMMessageComponentType extends MMTopLevelDictionaryEntry, MMLog
 	 * @see MMMessageBuildingBlock#getComplexType()
 	 */
 	@Opposite(bean = MMMessageBuildingBlock.class, attribute = "complexType")
-	public List<MMMessageBuildingBlock> getMessageBuildingBlock();
+	@EMFName("messageBuildingBlock")
+	public List<MMMessageBuildingBlock> getMessageBuildingBlocks();
 
 	/**
 	 * A property indicating the absense of a semantic relationship to a

@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode
  * CashAccountTypeCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.CashAccountType4Code#CASH_CashPayment
@@ -95,8 +95,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"CASH"</li>
  * </ul>
@@ -508,12 +508,12 @@ public class CashAccountType4Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("CASH");
+				examples = Arrays.asList("CASH");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CashAccountType4Code";
 				definition = "Specifies the nature, or use, of the cash account.";
 				trace_lazy = LazyReference.create(() -> CashAccountTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountType4Code.CASH_CashPayment, com.tools20022.repository.codeset.CashAccountType4Code.CHAR_Charges,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountType4Code.CASH_CashPayment, com.tools20022.repository.codeset.CashAccountType4Code.CHAR_Charges,
 						com.tools20022.repository.codeset.CashAccountType4Code.COMM_Commission, com.tools20022.repository.codeset.CashAccountType4Code.TAXE_Tax, com.tools20022.repository.codeset.CashAccountType4Code.CISH_CashIncome,
 						com.tools20022.repository.codeset.CashAccountType4Code.TRAS_CashTrading, com.tools20022.repository.codeset.CashAccountType4Code.SACC_Settlement, com.tools20022.repository.codeset.CashAccountType4Code.CACC_Current,
 						com.tools20022.repository.codeset.CashAccountType4Code.SVGS_Savings, com.tools20022.repository.codeset.CashAccountType4Code.ONDP_OverNightDeposit,

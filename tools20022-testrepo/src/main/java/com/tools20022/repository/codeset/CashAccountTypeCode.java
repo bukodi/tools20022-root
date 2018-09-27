@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode#CASH_CashPayment
@@ -103,8 +103,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * CashAccountTypeCode.SEGT_Segregated}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivations
+ * derivations} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.CashAccountType4Code
  * CashAccountType4Code}</li>
@@ -116,10 +116,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkup
- * semanticMarkup} = ISO15022Synonym: :97A::CASH</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkups
+ * semanticMarkups} = ISO15022Synonym: :97A::CASH</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"CASH"</li>
  * </ul>
@@ -149,8 +149,8 @@ public class CashAccountTypeCode extends MMCode {
 	 * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode
 	 * CashAccountTypeCode}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkup
-	 * semanticMarkup} = ISO15022Synonym: :97A::CASH</li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkups
+	 * semanticMarkups} = ISO15022Synonym: :97A::CASH</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -164,12 +164,12 @@ public class CashAccountTypeCode extends MMCode {
 	 */
 	public static final CashAccountTypeCode CASH_CashPayment = new CashAccountTypeCode() {
 		{
-			semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::CASH"));
+			semanticMarkups_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::CASH"));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CashPayment";
 			definition = "Account used for the payment of cash.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "CASH";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -183,8 +183,8 @@ public class CashAccountTypeCode extends MMCode {
 	 * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode
 	 * CashAccountTypeCode}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkup
-	 * semanticMarkup} = ISO15022Synonym: :97A::CHAR</li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkups
+	 * semanticMarkups} = ISO15022Synonym: :97A::CHAR</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -199,12 +199,12 @@ public class CashAccountTypeCode extends MMCode {
 	 */
 	public static final CashAccountTypeCode CHAR_Charges = new CashAccountTypeCode() {
 		{
-			semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::CHAR"));
+			semanticMarkups_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::CHAR"));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Charges";
 			definition = "Account used for charges if different from the account for payment.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "CHAR";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -218,8 +218,8 @@ public class CashAccountTypeCode extends MMCode {
 	 * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode
 	 * CashAccountTypeCode}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkup
-	 * semanticMarkup} = ISO15022Synonym: :97A::COMM</li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkups
+	 * semanticMarkups} = ISO15022Synonym: :97A::COMM</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -234,12 +234,12 @@ public class CashAccountTypeCode extends MMCode {
 	 */
 	public static final CashAccountTypeCode COMM_Commission = new CashAccountTypeCode() {
 		{
-			semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::COMM"));
+			semanticMarkups_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::COMM"));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Commission";
 			definition = "Account used for commission if different from the account for payment.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "COMM";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -253,8 +253,8 @@ public class CashAccountTypeCode extends MMCode {
 	 * {@linkplain com.tools20022.repository.codeset.CashAccountTypeCode
 	 * CashAccountTypeCode}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkup
-	 * semanticMarkup} = ISO15022Synonym: :97A::TAXE</li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkups
+	 * semanticMarkups} = ISO15022Synonym: :97A::TAXE</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
@@ -269,12 +269,12 @@ public class CashAccountTypeCode extends MMCode {
 	 */
 	public static final CashAccountTypeCode TAXE_Tax = new CashAccountTypeCode() {
 		{
-			semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::TAXE"));
+			semanticMarkups_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::TAXE"));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Tax";
 			definition = "Account used for taxes if different from the account for payment.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "TAXE";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -306,8 +306,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CashIncome";
 			definition = "Account used for payment of income if different from the current cash account.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "CISH";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -337,8 +337,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CashTrading";
 			definition = "Account used for trading if different from the current cash account.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "TRAS";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -371,8 +371,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Settlement";
 			definition = "Account used to post debit and credit entries, as a result of transactions cleared and settled through a specific clearing and settlement system.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "SACC";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -404,8 +404,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Current";
 			definition = "Account used to post debits and credits when no specific account has been nominated.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "CACC";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -434,8 +434,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Savings";
 			definition = "Account used for savings.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "SVGS";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -464,8 +464,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "OverNightDeposit";
 			definition = "Account used for overnight deposits.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "ONDP";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -494,8 +494,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MarginalLending";
 			definition = "Account used for a marginal lending facility.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "MGLD";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -524,8 +524,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "NonResidentExternal";
 			definition = "Account used for non-resident external.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "NREX";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -555,8 +555,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "MoneyMarket";
 			definition = "Account used for money markets if different from the cash account.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "MOMA";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -585,8 +585,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Loan";
 			definition = "Account used for loans.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "LOAN";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -615,8 +615,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Salary";
 			definition = "Accounts used for salary payments.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "SLRY";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -645,8 +645,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Overdraft";
 			definition = "Account is used for overdrafts.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "ODFT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -675,8 +675,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Lending";
 			definition = "Account is for the coverage of lending.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "LEND";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -705,8 +705,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Collateral";
 			definition = "Account is for collateral.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "COLL";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -735,8 +735,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "FinancialSettlement";
 			definition = "Account is for financial settlements.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "SETT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -765,8 +765,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "MarginReturn";
 			definition = "Account is for margin returns.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "MARR";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	/**
@@ -795,8 +795,8 @@ public class CashAccountTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Segregated";
 			definition = "Account is an segregated account.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 			codeName = "SEGT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.CashAccountTypeCode.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, CashAccountTypeCode> codesByName = new LinkedHashMap<>();
@@ -808,13 +808,13 @@ public class CashAccountTypeCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				semanticMarkup_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::CASH"));
-				example = Arrays.asList("CASH");
+				semanticMarkups_lazy = () -> Arrays.asList(new ISO15022Synonym(this, ":97A::CASH"));
+				examples = Arrays.asList("CASH");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CashAccountTypeCode";
 				definition = "Specifies the nature, or  use, of the cash account.";
-				derivation_lazy = LazyReference.create(() -> Arrays.asList(CashAccountType4Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountTypeCode.CASH_CashPayment, com.tools20022.repository.codeset.CashAccountTypeCode.CHAR_Charges,
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(CashAccountType4Code.mmObject()));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CashAccountTypeCode.CASH_CashPayment, com.tools20022.repository.codeset.CashAccountTypeCode.CHAR_Charges,
 						com.tools20022.repository.codeset.CashAccountTypeCode.COMM_Commission, com.tools20022.repository.codeset.CashAccountTypeCode.TAXE_Tax, com.tools20022.repository.codeset.CashAccountTypeCode.CISH_CashIncome,
 						com.tools20022.repository.codeset.CashAccountTypeCode.TRAS_CashTrading, com.tools20022.repository.codeset.CashAccountTypeCode.SACC_Settlement, com.tools20022.repository.codeset.CashAccountTypeCode.CACC_Current,
 						com.tools20022.repository.codeset.CashAccountTypeCode.SVGS_Savings, com.tools20022.repository.codeset.CashAccountTypeCode.ONDP_OverNightDeposit,

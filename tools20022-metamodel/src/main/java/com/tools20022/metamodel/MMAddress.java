@@ -17,6 +17,7 @@
 
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -40,12 +41,12 @@ public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * a BroadCastList to which this Address belongs
 	 */
-	public final static MetamodelAttribute<MMAddress, List<MMBroadcastList>> broadCastListAttribute = newAttribute();
+	public final static MetamodelAttribute<MMAddress, List<MMBroadcastList>> broadCastListsAttribute = newAttribute();
 	/**
 	 * specifies the MessagingEndpoint for the Address
 	 */
 	public final static MetamodelAttribute<MMAddress, MMMessagingEndpoint> endpointAttribute = newAttribute();
-	protected Supplier<List<MMBroadcastList>> broadCastList_lazy;
+	protected Supplier<List<MMBroadcastList>> broadCastLists_lazy;
 	protected Supplier<MMMessagingEndpoint> endpoint_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
@@ -71,8 +72,9 @@ public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 	 * @see MMBroadcastList#getAddress()
 	 */
 	@Opposite(bean = MMBroadcastList.class, attribute = "address")
-	public List<MMBroadcastList> getBroadCastList() {
-		return broadCastList_lazy == null ? Collections.emptyList() : broadCastList_lazy.get();
+	@EMFName("broadCastList")
+	public List<MMBroadcastList> getBroadCastLists() {
+		return broadCastLists_lazy == null ? Collections.emptyList() : broadCastLists_lazy.get();
 	}
 
 	/**

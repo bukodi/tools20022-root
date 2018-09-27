@@ -136,7 +136,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 				// No codename, but trace codeset exists
 				// So lookup a code in the trace with same name
 				String name = mmCode.getName();
-				Stream<MMCode> codesInTrace = mmCode.getOwner().getTrace().get().getCode().stream();
+				Stream<MMCode> codesInTrace = mmCode.getOwner().getTrace().get().getCodes().stream();
 				Optional<MMCode> optTraceCode = codesInTrace.filter( tc-> name.equals( tc.getName()) ).findAny();
 				if( optTraceCode.isPresent() ) {
 					codeName = optTraceCode.get().getCodeName().get();

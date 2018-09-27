@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code#ABC1_Abc1
@@ -53,8 +53,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"ARNU"</li>
  * </ul>
@@ -92,8 +92,8 @@ public class ExternalPersonIdentification1Code extends MMCode {
 	public static final ExternalPersonIdentification1Code ABC1_Abc1 = new ExternalPersonIdentification1Code() {
 		{
 			name = "Abc 1";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ExternalPersonIdentification1Code.mmObject());
 			codeName = "ABC1";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ExternalPersonIdentification1Code.mmObject());
 		}
 	};
 	/**
@@ -113,8 +113,8 @@ public class ExternalPersonIdentification1Code extends MMCode {
 	public static final ExternalPersonIdentification1Code DEF2_Def21 = new ExternalPersonIdentification1Code() {
 		{
 			name = "Def 21";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ExternalPersonIdentification1Code.mmObject());
 			codeName = "DEF2";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ExternalPersonIdentification1Code.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, ExternalPersonIdentification1Code> codesByName = new LinkedHashMap<>();
@@ -126,11 +126,11 @@ public class ExternalPersonIdentification1Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("ARNU");
+				examples = Arrays.asList("ARNU");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ExternalPersonIdentification1Code";
 				definition = "Specifies the external person identification scheme name code in the format of character string with a maximum length of 4 characters.\r\nThe list of valid codes is an external code list published separately.\r\nExternal code sets can be downloaded from www.iso20022.org.";
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ExternalPersonIdentification1Code.ABC1_Abc1, com.tools20022.repository.codeset.ExternalPersonIdentification1Code.DEF2_Def21));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ExternalPersonIdentification1Code.ABC1_Abc1, com.tools20022.repository.codeset.ExternalPersonIdentification1Code.DEF2_Def21));
 				minLength = 1;
 				maxLength = 4;
 			}

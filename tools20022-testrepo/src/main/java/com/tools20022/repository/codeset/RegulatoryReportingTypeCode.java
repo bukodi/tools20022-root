@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingTypeCode#CRED_Credit
@@ -50,8 +50,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * RegulatoryReportingTypeCode.BOTH_Both}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivations
+ * derivations} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingType1Code
@@ -63,8 +63,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"CRED"</li>
  * </ul>
@@ -111,8 +111,8 @@ public class RegulatoryReportingTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Credit";
 			definition = "Regulatory information applies to the credit side.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingTypeCode.mmObject());
 			codeName = "CRED";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingTypeCode.mmObject());
 		}
 	};
 	/**
@@ -141,8 +141,8 @@ public class RegulatoryReportingTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Debit";
 			definition = "Regulatory information applies to the debit side.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingTypeCode.mmObject());
 			codeName = "DEBT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingTypeCode.mmObject());
 		}
 	};
 	/**
@@ -172,8 +172,8 @@ public class RegulatoryReportingTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Both";
 			definition = "Regulatory information applies to both credit and debit sides.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingTypeCode.mmObject());
 			codeName = "BOTH";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RegulatoryReportingTypeCode.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, RegulatoryReportingTypeCode> codesByName = new LinkedHashMap<>();
@@ -185,12 +185,12 @@ public class RegulatoryReportingTypeCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("CRED");
+				examples = Arrays.asList("CRED");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "RegulatoryReportingTypeCode";
 				definition = "Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.";
-				derivation_lazy = LazyReference.create(() -> Arrays.asList(RegulatoryReportingType1Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingTypeCode.CRED_Credit, com.tools20022.repository.codeset.RegulatoryReportingTypeCode.DEBT_Debit,
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(RegulatoryReportingType1Code.mmObject()));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingTypeCode.CRED_Credit, com.tools20022.repository.codeset.RegulatoryReportingTypeCode.DEBT_Debit,
 						com.tools20022.repository.codeset.RegulatoryReportingTypeCode.BOTH_Both));
 			}
 		});

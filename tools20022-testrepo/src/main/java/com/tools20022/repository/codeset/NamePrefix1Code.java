@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code#DOCT_Doctor
@@ -54,8 +54,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"DOCT"</li>
  * </ul>
@@ -100,8 +100,8 @@ public class NamePrefix1Code extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Doctor";
 			definition = "Title of the person is Doctor or Dr.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 			codeName = "DOCT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 		}
 	};
 	/**
@@ -130,8 +130,8 @@ public class NamePrefix1Code extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Mister";
 			definition = "Title of the person is Mister or Mr.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 			codeName = "MIST";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 		}
 	};
 	/**
@@ -160,8 +160,8 @@ public class NamePrefix1Code extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Miss";
 			definition = "Title of the person is Miss.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 			codeName = "MISS";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 		}
 	};
 	/**
@@ -190,8 +190,8 @@ public class NamePrefix1Code extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Madam";
 			definition = "Title of the person is Madam.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 			codeName = "MADM";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, NamePrefix1Code> codesByName = new LinkedHashMap<>();
@@ -203,11 +203,11 @@ public class NamePrefix1Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("DOCT");
+				examples = Arrays.asList("DOCT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "NamePrefix1Code";
 				definition = "Specifies the terms used to formally address a person.";
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.NamePrefix1Code.DOCT_Doctor, com.tools20022.repository.codeset.NamePrefix1Code.MIST_Mister,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.NamePrefix1Code.DOCT_Doctor, com.tools20022.repository.codeset.NamePrefix1Code.MIST_Mister,
 						com.tools20022.repository.codeset.NamePrefix1Code.MISS_Miss, com.tools20022.repository.codeset.NamePrefix1Code.MADM_Madam));
 			}
 		});

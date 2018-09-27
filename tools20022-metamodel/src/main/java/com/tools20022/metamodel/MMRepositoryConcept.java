@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -51,21 +52,21 @@ public interface MMRepositoryConcept extends MMModelEntity {
 	 * Enables modelers to markup elements of the Repository with semantic
 	 * metadata.
 	 */
-	public final static MetamodelAttribute<MMRepositoryConcept, List<MMSemanticMarkup>> semanticMarkupAttribute = newAttribute();
+	public final static MetamodelAttribute<MMRepositoryConcept, List<MMSemanticMarkup>> semanticMarkupsAttribute = newAttribute();
 	/**
 	 * Doclets of the entity, used for documentation.
 	 */
-	public final static MetamodelAttribute<MMRepositoryConcept, List<MMDoclet>> docletAttribute = newAttribute();
+	public final static MetamodelAttribute<MMRepositoryConcept, List<MMDoclet>> docletsAttribute = newAttribute();
 	/**
 	 * provides a representative instance of a RepositoryConcept
 	 */
-	public final static MetamodelAttribute<MMRepositoryConcept, List<String>> exampleAttribute = newAttribute();
+	public final static MetamodelAttribute<MMRepositoryConcept, List<String>> examplesAttribute = newAttribute();
 	/**
 	 * a property of a RepositoryConcept specifying a semantic condition or
 	 * restriction expressed in natural language text and potentially in a
 	 * formal notation
 	 */
-	public final static MetamodelAttribute<MMRepositoryConcept, List<MMConstraint>> constraintAttribute = newAttribute();
+	public final static MetamodelAttribute<MMRepositoryConcept, List<MMConstraint>> constraintsAttribute = newAttribute();
 	/**
 	 * specifies in which stage of the registration lifecycle a
 	 * RepositoryConcept is in
@@ -114,18 +115,21 @@ public interface MMRepositoryConcept extends MMModelEntity {
 	 * metadata.
 	 */
 	@Containment
-	public List<MMSemanticMarkup> getSemanticMarkup();
+	@EMFName("semanticMarkup")
+	public List<MMSemanticMarkup> getSemanticMarkups();
 
 	/**
 	 * Doclets of the entity, used for documentation.
 	 */
 	@Containment
-	public List<MMDoclet> getDoclet();
+	@EMFName("doclet")
+	public List<MMDoclet> getDoclets();
 
 	/**
 	 * provides a representative instance of a RepositoryConcept
 	 */
-	public List<String> getExample();
+	@EMFName("example")
+	public List<String> getExamples();
 
 	/**
 	 * a property of a RepositoryConcept specifying a semantic condition or
@@ -136,7 +140,8 @@ public interface MMRepositoryConcept extends MMModelEntity {
 	 */
 	@Opposite(bean = MMConstraint.class, attribute = "owner")
 	@Containment
-	public List<MMConstraint> getConstraint();
+	@EMFName("constraint")
+	public List<MMConstraint> getConstraints();
 
 	/**
 	 * specifies in which stage of the registration lifecycle a

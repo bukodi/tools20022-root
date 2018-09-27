@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <ul>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.PriorityCode PriorityCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.Priority3Code#URGT_Urgent
  * Priority3Code.URGT_Urgent}</li>
@@ -52,8 +52,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"URGT"</li>
  * </ul>
@@ -153,12 +153,12 @@ public class Priority3Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("URGT");
+				examples = Arrays.asList("URGT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Priority3Code";
 				definition = "Specifies the priority level of an event.";
 				trace_lazy = LazyReference.create(() -> PriorityCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Priority3Code.URGT_Urgent, com.tools20022.repository.codeset.Priority3Code.HIGH_High,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Priority3Code.URGT_Urgent, com.tools20022.repository.codeset.Priority3Code.HIGH_High,
 						com.tools20022.repository.codeset.Priority3Code.NORM_Normal));
 			}
 		});

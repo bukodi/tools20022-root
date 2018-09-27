@@ -43,8 +43,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.StructuredRemittanceInformation7#mmReferredDocumentInformation
@@ -419,7 +419,7 @@ public class StructuredRemittanceInformation7 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.StructuredRemittanceInformation7.mmReferredDocumentInformation,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.StructuredRemittanceInformation7.mmReferredDocumentInformation,
 						com.tools20022.repository.msgpart.StructuredRemittanceInformation7.mmReferredDocumentAmount, com.tools20022.repository.msgpart.StructuredRemittanceInformation7.mmCreditorReferenceInformation,
 						com.tools20022.repository.msgpart.StructuredRemittanceInformation7.mmInvoicer, com.tools20022.repository.msgpart.StructuredRemittanceInformation7.mmInvoicee,
 						com.tools20022.repository.msgpart.StructuredRemittanceInformation7.mmAdditionalRemittanceInformation));

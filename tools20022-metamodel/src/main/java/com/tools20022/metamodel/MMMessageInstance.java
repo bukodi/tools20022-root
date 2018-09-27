@@ -17,6 +17,7 @@
 
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -44,9 +45,9 @@ public class MMMessageInstance implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * the TransportMessage that contains the MessageInstance
 	 */
-	public final static MetamodelAttribute<MMMessageInstance, List<MMTransportMessage>> transportMessageAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageInstance, List<MMTransportMessage>> transportMessagesAttribute = newAttribute();
 	protected Supplier<MMSyntaxMessageScheme> specification_lazy;
-	protected Supplier<List<MMTransportMessage>> transportMessage_lazy;
+	protected Supplier<List<MMTransportMessage>> transportMessages_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
@@ -78,8 +79,9 @@ public class MMMessageInstance implements OrphanMetamodelType, MMModelEntity {
 	 * @see MMTransportMessage#getMessageInstance()
 	 */
 	@Opposite(bean = MMTransportMessage.class, attribute = "messageInstance")
-	public List<MMTransportMessage> getTransportMessage() {
-		return transportMessage_lazy == null ? Collections.emptyList() : transportMessage_lazy.get();
+	@EMFName("transportMessage")
+	public List<MMTransportMessage> getTransportMessages() {
+		return transportMessages_lazy == null ? Collections.emptyList() : transportMessages_lazy.get();
 	}
 
 	@Override

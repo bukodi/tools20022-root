@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"CAD"</li>
  * </ul>
@@ -73,7 +73,7 @@ public class ExternalCashClearingSystem1Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("CAD");
+				examples = Arrays.asList("CAD");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ExternalCashClearingSystem1Code";
 				definition = "Specifies the cash clearing system, as published in an external cash clearing system code list.\r\nExternal code sets can be downloaded from www.iso20022.org.";

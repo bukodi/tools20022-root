@@ -1,5 +1,6 @@
 package com.tools20022.mmgenerator;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.atteo.evo.inflector.English;
 import org.jboss.forge.roaster.model.source.AnnotationSource;
 import org.jboss.forge.roaster.model.source.AnnotationTargetSource;
 import org.jboss.forge.roaster.model.source.EnumConstantSource;
@@ -31,6 +33,7 @@ import org.jboss.forge.roaster.model.source.TypeVariableSource;
 import com.tools20022.core.metamodel.Container;
 import com.tools20022.core.metamodel.Containment;
 import com.tools20022.core.metamodel.Derived;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel;
 import com.tools20022.core.metamodel.MetamodelDocImpl;
 import com.tools20022.core.metamodel.Opposite;
@@ -53,14 +56,14 @@ import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnum;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelEnumLiteral;
 import com.tools20022.mmgenerator.RawMetamodel.MetamodelType;
 
-public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,MetamodelElement> {
+public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel, MetamodelElement> {
 
 	private final static String CLASS_NAME_PREFIX = "MM";
-	
+
 	private final static Set<String> BEAN_AWARE_TYPE_NAMES = new HashSet<>();
 	private final static Set<String> PROPRTY_AWARE_TYPE_NAMES = new HashSet<>();
 	private final static Set<String> VALIDATOR_AWARE_TYPE_NAMES = new HashSet<>();
-	
+
 	static {
 		BEAN_AWARE_TYPE_NAMES.add("MessageDefinition");
 		BEAN_AWARE_TYPE_NAMES.add("BusinessComponent");
@@ -78,17 +81,17 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 	protected String basePackageName = "com.tools20022.metamodel";
 	protected String mainClassSimpleName = "StandardMetamodel2013";
 
-	public DefaultMetamodelGenerator(GenerationContext<RawMetamodel,MetamodelElement> ctx) {
-		super( ctx );
-	}
-	
-	@Override
-	public void prepare(RawMetamodel metamodel, ProgressMonitor monitor ) {
-		
+	public DefaultMetamodelGenerator(GenerationContext<RawMetamodel, MetamodelElement> ctx) {
+		super(ctx);
 	}
 
 	@Override
-	public void generate(RawMetamodel metamodel, ProgressMonitor monitor ) {
+	public void prepare(RawMetamodel metamodel, ProgressMonitor monitor) {
+
+	}
+
+	@Override
+	public void generate(RawMetamodel metamodel, ProgressMonitor monitor) {
 		this.metamodel = metamodel;
 		// Create metamodel model skeleton
 		StructuredName mmName = StructuredName.primaryType(basePackageName, mainClassSimpleName);
@@ -99,24 +102,23 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		// Add domain model classes and enums
 		metamodel.listEnums().forEachOrdered(e -> generateMMEnum(srcMetamodelMain, e));
 
-		for( MetamodelType mmType : metamodel.getAllTypes()) {
+		for (MetamodelType mmType : metamodel.getAllTypes()) {
 			StructuredName name = getStructuredName(mmType);
 			try {
 				Class<?> clazz = Class.forName(name.getFullName());
 				continue;
-			} catch ( ClassNotFoundException e ) {
+			} catch (ClassNotFoundException e) {
 				// no problem, we generating it now ..
 			}
 
-			
-			if( mmType.isAbstract() ) {
+			if (mmType.isAbstract()) {
 				generateMMInterface(srcMetamodelMain, mmType);
 			} else {
 				JavaClassSource src = generateMMClass(srcMetamodelMain, mmType);
-				if( "Code".equals( mmType.getName())) {
-					customizeMMCode( src );
-				} else if( "CodeSet".equals(mmType.getName())) {
-					customizeMMCodeSet( src );					
+				if ("Code".equals(mmType.getName())) {
+					customizeMMCode(src);
+				} else if ("CodeSet".equals(mmType.getName())) {
+					customizeMMCodeSet(src);
 				}
 			}
 		}
@@ -157,29 +159,22 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 
 	private void customizeMMCodeSet(JavaClassSource src) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void customizeMMCode(JavaClassSource src) {
-		FieldSource<JavaClassSource> traceCodeField = src.addField().setName("traceCode_lazy").setProtected().setType(Supplier.class.getName() + "<MMCode>"); 
-		
-		String eqMethodSrc = "@Override\n" + 
-				"	public boolean equals(Object obj) {\n" + 
-				"		if (obj == null)\n" + 
-				"			return false;\n" + 
-				"		if (!(obj instanceof MMCode))\n" + 
-				"			return false;\n" + 
-				"		MMCode otherCode = (MMCode) obj;\n" + 
-				"		if (otherCode.traceCode_lazy != null)\n" + 
-				"			otherCode = otherCode.traceCode_lazy.get();\n" + 
-				"		return otherCode.equals( traceCode_lazy == null ? this : traceCode_lazy.get());\n" + 
-				"	}";
+		FieldSource<JavaClassSource> traceCodeField = src.addField().setName("traceCode_lazy").setProtected()
+				.setType(Supplier.class.getName() + "<MMCode>");
+
+		String eqMethodSrc = "@Override\n" + "	public boolean equals(Object obj) {\n" + "		if (obj == null)\n"
+				+ "			return false;\n" + "		if (!(obj instanceof MMCode))\n" + "			return false;\n"
+				+ "		MMCode otherCode = (MMCode) obj;\n" + "		if (otherCode.traceCode_lazy != null)\n"
+				+ "			otherCode = otherCode.traceCode_lazy.get();\n"
+				+ "		return otherCode.equals( traceCode_lazy == null ? this : traceCode_lazy.get());\n" + "	}";
 		MethodSource<JavaClassSource> eqMethod = src.addMethod(eqMethodSrc);
-		
-		String hashMethodSrc = "	@Override\n" + 
-				"	public int hashCode() {\n" + 
-				"		return traceCode_lazy == null ? super.hashCode() : traceCode_lazy.get().hashCode();\n" + 
-				"	}";
+
+		String hashMethodSrc = "	@Override\n" + "	public int hashCode() {\n"
+				+ "		return traceCode_lazy == null ? super.hashCode() : traceCode_lazy.get().hashCode();\n" + "	}";
 		MethodSource<JavaClassSource> hashMethod = src.addMethod(hashMethodSrc);
 	}
 
@@ -187,20 +182,33 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		src.addImport(getStructuredName(mmElem).getFullName());
 	}
 
+	private final static Set<String> ALREADY_IN_PLURAL = new HashSet<>(
+			Arrays.asList("nextVersions", "elements", "xors", "possibleEncodings", "impactedElements", "impactedMessageBuildingBlocks",
+					"receives", "sends", "endPoints"));
+
 	@Override
 	public StructuredName getStructuredName(MetamodelElement mmElem) {
 		if (mmElem instanceof MetamodelType || mmElem instanceof MetamodelEnum) {
 			return StructuredName.primaryType(basePackageName, CLASS_NAME_PREFIX + mmElem.getName());
 		}
 		StructuredName parentName;
-		String memberName = mmElem.getName();
+		String memberName;
 		if (mmElem instanceof MetamodelAttribute) {
-			parentName = getStructuredName(((MetamodelAttribute) mmElem).getDeclaringType());
+			MetamodelAttribute mmAttr = (MetamodelAttribute) mmElem;
+			parentName = getStructuredName(mmAttr.getDeclaringType());
+			if (ALREADY_IN_PLURAL.contains(mmAttr.getName())) {
+				memberName = mmAttr.getName();
+			} else if (mmAttr.isMultiple()) {
+				memberName = English.plural(mmAttr.getName());
+			} else {
+				memberName = mmAttr.getName();
+			}
 		} else if (mmElem instanceof MetamodelConstraint) {
 			parentName = getStructuredName(((MetamodelConstraint) mmElem).getDeclaringType());
-			memberName = "check" + memberName;
+			memberName = "check" + mmElem.getName();
 		} else if (mmElem instanceof MetamodelEnumLiteral) {
 			parentName = getStructuredName(((MetamodelEnumLiteral) mmElem).getDeclaringEnum());
+			memberName = mmElem.getName();
 		} else {
 			throw new RuntimeException("Invalid type hierarchy:" + mmElem);
 		}
@@ -258,22 +266,22 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 						+ "");
 			} else if (containingRefs.isEmpty()) {
 				// No container ref, mark as an OrphanType, except the Repository
-				if(! "Repository".equals( mmType.getName() ) ) {
+				if (!"Repository".equals(mmType.getName())) {
 					src.addImport(OrphanMetamodelType.class);
-					src.addInterface(OrphanMetamodelType.class.getSimpleName());					
+					src.addInterface(OrphanMetamodelType.class.getSimpleName());
 				}
-				
+
 				getContainerMethod.setReturnType(MMModelEntity.class);
 				getContainerMethod.setBody("return null;");
 			} else {
 				// Exactly one containing ref
 				MetamodelAttribute containingRef = containingRefs.iterator().next();
-				StructuredName containerTypeJavaName = getStructuredName( containingRef.getDeclaringType() );
+				StructuredName containerTypeJavaName = getStructuredName(containingRef.getDeclaringType());
 				src.addImport(containerTypeJavaName.getFullName());
 				getContainerMethod.setReturnType(containerTypeJavaName.getSimpleName());
 				if (containingRef.getOpposite() != null) {
 					// Has an opposite ref
-					String getterName = getterName ( containingRef.getOpposite() );
+					String getterName = getterName(containingRef.getOpposite());
 					getContainerMethod.setBody("return " + getterName + "();");
 				} else {
 					// Hasn't opposite container ref, container field added
@@ -282,7 +290,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 				}
 			}
 		}
-		
+
 		{ // Implement getMetamodel();
 			src.addImport(srcMetamodelMain);
 			MethodSource<JavaClassSource> method = src.addMethod();
@@ -303,17 +311,17 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 
 		{
 			// Implement XXXAware interfaces
-			if( BEAN_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
+			if (BEAN_AWARE_TYPE_NAMES.contains(mmType.getName())) {
 				src.addInterface(RuntimeInstanceAware.class);
 			}
 			// Implement XXXAware interfaces
-			if( PROPRTY_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
+			if (PROPRTY_AWARE_TYPE_NAMES.contains(mmType.getName())) {
 				src.addTypeVariable().setName("T");
 				src.addTypeVariable().setName("V");
 				src.addInterface(RuntimePropertyAware.class.getName() + "<T,V>");
 			}
 			// Implement XXXAware interfaces
-			if( VALIDATOR_AWARE_TYPE_NAMES.contains(mmType.getName()) ) {
+			if (VALIDATOR_AWARE_TYPE_NAMES.contains(mmType.getName())) {
 				TypeVariableSource<JavaClassSource> tvs = src.addTypeVariable();
 				tvs.setName("T");
 				src.addInterface(RuntimeValidatorAware.class.getName() + "<T>");
@@ -341,8 +349,8 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		return src;
 	};
 
-	<T extends JavaSource<T> & FieldHolderSource<T>> void generateStaticStructInterface(JavaClassSource srcMetamodelMain, T src,
-			MetamodelType mmType) {
+	<T extends JavaSource<T> & FieldHolderSource<T>> void generateStaticStructInterface(
+			JavaClassSource srcMetamodelMain, T src, MetamodelType mmType) {
 		StructuredName structJavaName = getStructuredName(mmType);
 //		JavaInterfaceSource src = ctx.createSourceFile(JavaInterfaceSource.class, structJavaName);
 //		for (MetamodelType superType : mmType.getSuperTypes(false, false)) {
@@ -369,7 +377,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 
 		// Add declared constraints
 		for (MetamodelConstraint mmConstr : mmType.getDeclaredConstraints()) {
-			JavaClassSource srcConstr = generateConstraintValidator(mmConstr);			
+			JavaClassSource srcConstr = generateConstraintValidator(mmConstr);
 			src.addImport(Metamodel.MetamodelConstraint.class);
 			FieldSource<T> metaField = src.addField().setName(getStructuredName(mmConstr).getSimpleName());
 			metaField.setType(Metamodel.MetamodelConstraint.class.getSimpleName() + "<" + src.getName() + ">");
@@ -378,8 +386,9 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 			setMMDoc(metaField, mmConstr);
 			// TODO: check class with name ConstraintExists
 			// src.addImport(RuntimeException.class);
-			metaField.setLiteralInitializer("newConstraint( b->{ new " + srcConstr.getQualifiedName() + "().accept(b);})");
-			
+			metaField.setLiteralInitializer(
+					"newConstraint( b->{ new " + srcConstr.getQualifiedName() + "().accept(b);})");
+
 			String javaDocText = "Implementation of constraint ";
 			javaDocText += "{@link " + src.getQualifiedName() + "#" + metaField.getName() + "}";
 			srcConstr.getJavaDoc().setText(javaDocText);
@@ -417,6 +426,12 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 				srcType.addImport(Containment.class);
 				srcGetter.addAnnotation(Containment.class);
 			}
+			
+			if( ! mmMember.getName().equals( getStructuredName(mmMember).getMemberName() ) ) { 
+				AnnotationSource<?> annot = srcGetter.addAnnotation(EMFName.class);
+				annot.setStringValue(mmMember.getName());
+			}
+			
 		} else {
 			// Inherited property
 			srcGetter.addAnnotation(Override.class);
@@ -456,7 +471,7 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		attrStream.forEachOrdered(mmAttr -> {
 			generateMMAttribute(src, mmAttr);
 		});
-		
+
 		return src;
 	};
 
@@ -465,7 +480,8 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		String getterReturnType = generateSourceType(mmAttr, srcMMType, true, true);
 		String fieldValueType = generateSourceType(mmAttr, srcMMType, true, false);
 
-		boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived(); // && !mmAttr.isContainment();
+		boolean isLazyReference = mmAttr.getReferencedType() != null && !mmAttr.isDerived(); // &&
+																								// !mmAttr.isContainment();
 		if (mmAttr.getReferencedType() != null) {
 			srcMMType.addImport(Supplier.class);
 			fieldValueType = Supplier.class.getSimpleName() + "<" + fieldValueType + ">";
@@ -474,13 +490,13 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 
 		// Create getter
 		MethodSource<T> srcGetter;
-		{			
+		{
 			String getterName = getterName(mmAttr);
 			srcGetter = srcMMType.addMethod().setName(getterName);
 			srcGetter.setReturnType(getterReturnType);
 			srcGetter.setPublic();
 		}
-
+		
 		// Create field
 		FieldSource<T> srcField;
 		if ((srcMMType instanceof JavaClassSource) && !mmAttr.isDerived()) {
@@ -552,28 +568,28 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		return srcDerive;
 	}
 
-	protected JavaClassSource generateConstraintValidator(MetamodelConstraint mmConstr) {		
+	protected JavaClassSource generateConstraintValidator(MetamodelConstraint mmConstr) {
 		StructuredName beanTypeName = getStructuredName(mmConstr.getDeclaringType());
-		final String simpleName; 
-		if( "EntriesHaveUniqueName".equals(mmConstr.getName() ) ) {
+		final String simpleName;
+		if ("EntriesHaveUniqueName".equals(mmConstr.getName())) {
 			// This is the only constraint with same name in two different types!
-			if( "DataDictionary".equals( mmConstr.getDeclaringType().getName() ) ) {
-				simpleName = "DataDictionaryEntriesHaveUniqueName"; 
-			} else if( "BusinessProcessCatalogue".equals( mmConstr.getDeclaringType().getName() ) ) {
-				simpleName = "BusinessProcessCatalogueEntriesHaveUniqueName"; 				
+			if ("DataDictionary".equals(mmConstr.getDeclaringType().getName())) {
+				simpleName = "DataDictionaryEntriesHaveUniqueName";
+			} else if ("BusinessProcessCatalogue".equals(mmConstr.getDeclaringType().getName())) {
+				simpleName = "BusinessProcessCatalogueEntriesHaveUniqueName";
 			} else {
 				throw new RuntimeException("Unsupported case!");
 			}
 		} else {
-			simpleName = mmConstr.getName().substring(0, 1).toUpperCase() + mmConstr.getName().substring(1);				
+			simpleName = mmConstr.getName().substring(0, 1).toUpperCase() + mmConstr.getName().substring(1);
 		}
-		StructuredName javaName = StructuredName.primaryType(basePackageName + ".constraints",simpleName);
-		
+		StructuredName javaName = StructuredName.primaryType(basePackageName + ".constraints", simpleName);
+
 		JavaClassSource srcDerive = ctx.createSourceFile(JavaClassSource.class, javaName);
 		srcDerive.addImport(beanTypeName.getFullName());
 		String ifName = Consumer.class.getName() + "<" + beanTypeName.getSimpleName() + ">";
 		srcDerive.addInterface(ifName);
-		MethodSource<JavaClassSource> methodAccept= srcDerive
+		MethodSource<JavaClassSource> methodAccept = srcDerive
 				.addMethod("public void accept(" + beanTypeName.getSimpleName() + " mmBean ) {\n"
 						+ "			throw new RuntimeException(\"Not implemented!\");\n" + "		}");
 		methodAccept.addAnnotation(Override.class);
@@ -633,12 +649,13 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel,Me
 		return javaDoc;
 	}
 
-	protected static String getterName( MetamodelAttribute mmAttr ) {
+	protected String getterName(MetamodelAttribute mmAttr) {
 		boolean isBool = mmAttr.getValueJavaClass() != null && (mmAttr.getValueJavaClass().equals(Boolean.TYPE)
 				|| mmAttr.getValueJavaClass().equals(Boolean.class));
 
-		return (isBool ? "is" : "get") + mmAttr.getName().substring(0, 1).toUpperCase()
-		+ mmAttr.getName().substring(1);
+		String attrName = getStructuredName(mmAttr).getMemberName();
+
+		return (isBool ? "is" : "get") + attrName.substring(0, 1).toUpperCase() + attrName.substring(1);
 	}
 
 }

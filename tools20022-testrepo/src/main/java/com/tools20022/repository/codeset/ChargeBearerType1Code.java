@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode
  * ChargeBearerTypeCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code#DEBT_BorneByDebtor
@@ -60,8 +60,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"DEBT"</li>
  * </ul>
@@ -187,12 +187,12 @@ public class ChargeBearerType1Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("DEBT");
+				examples = Arrays.asList("DEBT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ChargeBearerType1Code";
 				definition = "Specifies which party(ies) will pay charges due for processing of the instruction.";
 				trace_lazy = LazyReference.create(() -> ChargeBearerTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ChargeBearerType1Code.DEBT_BorneByDebtor, com.tools20022.repository.codeset.ChargeBearerType1Code.CRED_BorneByCreditor,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ChargeBearerType1Code.DEBT_BorneByDebtor, com.tools20022.repository.codeset.ChargeBearerType1Code.CRED_BorneByCreditor,
 						com.tools20022.repository.codeset.ChargeBearerType1Code.SHAR_Shared, com.tools20022.repository.codeset.ChargeBearerType1Code.SLEV_FollowingServiceLevel));
 			}
 		});

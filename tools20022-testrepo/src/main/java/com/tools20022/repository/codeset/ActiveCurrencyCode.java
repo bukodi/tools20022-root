@@ -46,16 +46,16 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.ActiveCurrencyCode#ActiveCurrency
  * ActiveCurrencyCode.ActiveCurrency}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"EUR"</li>
  * </ul>
@@ -123,8 +123,8 @@ public class ActiveCurrencyCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("EUR");
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ActiveCurrencyCode.ActiveCurrency));
+				examples = Arrays.asList("EUR");
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ActiveCurrencyCode.ActiveCurrency));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ActiveCurrencyCode";
 				definition = "A code allocated to a currency by a Maintenance Agency under an international identification scheme as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".";

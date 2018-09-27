@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.StructuredRegulatoryReporting3#mmType
@@ -410,7 +410,7 @@ public class StructuredRegulatoryReporting3 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmType, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmDate,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmType, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmDate,
 						com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmCountry, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmCode,
 						com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmAmount, com.tools20022.repository.msgpart.StructuredRegulatoryReporting3.mmInformation));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);

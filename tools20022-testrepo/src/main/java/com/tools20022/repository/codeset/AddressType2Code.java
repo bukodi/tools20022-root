@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.AddressTypeCode
  * AddressTypeCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.AddressType2Code#ADDR_Postal
@@ -65,8 +65,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"ADDR"</li>
  * </ul>
@@ -238,12 +238,12 @@ public class AddressType2Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("ADDR");
+				examples = Arrays.asList("ADDR");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AddressType2Code";
 				definition = "Specifies the type of address.";
 				trace_lazy = LazyReference.create(() -> AddressTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressType2Code.ADDR_Postal, com.tools20022.repository.codeset.AddressType2Code.PBOX_POBox,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.AddressType2Code.ADDR_Postal, com.tools20022.repository.codeset.AddressType2Code.PBOX_POBox,
 						com.tools20022.repository.codeset.AddressType2Code.HOME_Residential, com.tools20022.repository.codeset.AddressType2Code.BIZZ_Business, com.tools20022.repository.codeset.AddressType2Code.MLTO_MailTo,
 						com.tools20022.repository.codeset.AddressType2Code.DLVY_DeliveryTo));
 			}

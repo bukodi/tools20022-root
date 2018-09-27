@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.SettlementTimeRequest2#mmCLSTime
@@ -292,7 +292,7 @@ public class SettlementTimeRequest2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementTimeRequest2.mmCLSTime, com.tools20022.repository.msgpart.SettlementTimeRequest2.mmTillTime,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementTimeRequest2.mmCLSTime, com.tools20022.repository.msgpart.SettlementTimeRequest2.mmTillTime,
 						com.tools20022.repository.msgpart.SettlementTimeRequest2.mmFromTime, com.tools20022.repository.msgpart.SettlementTimeRequest2.mmRejectTime));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;

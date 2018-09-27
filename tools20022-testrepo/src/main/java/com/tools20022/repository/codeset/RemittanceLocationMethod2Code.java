@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode
  * RemittanceLocationMethodCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code#FAXI_Fax
@@ -65,8 +65,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"FAXI"</li>
  * </ul>
@@ -239,12 +239,12 @@ public class RemittanceLocationMethod2Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("FAXI");
+				examples = Arrays.asList("FAXI");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "RemittanceLocationMethod2Code";
 				definition = "Specifies the method used to deliver the remittance advice information.";
 				trace_lazy = LazyReference.create(() -> RemittanceLocationMethodCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethod2Code.FAXI_Fax, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.EDIC_ElectronicDataInterchange,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethod2Code.FAXI_Fax, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.EDIC_ElectronicDataInterchange,
 						com.tools20022.repository.codeset.RemittanceLocationMethod2Code.URID_UniformResourceIdentifier, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.EMAL_EMail,
 						com.tools20022.repository.codeset.RemittanceLocationMethod2Code.POST_Post, com.tools20022.repository.codeset.RemittanceLocationMethod2Code.SMSM_SMS));
 			}

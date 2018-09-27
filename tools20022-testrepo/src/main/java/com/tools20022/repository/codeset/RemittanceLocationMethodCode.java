@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethodCode#FAXI_Fax
@@ -57,8 +57,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * RemittanceLocationMethodCode.SMSM_SMS}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivations
+ * derivations} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.RemittanceLocationMethod2Code
@@ -70,8 +70,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"FAXI"</li>
  * </ul>
@@ -117,8 +117,8 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Fax";
 			definition = "Remittance advice information must be faxed.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "FAXI";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 		}
 	};
 	/**
@@ -150,8 +150,8 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "ElectronicDataInterchange";
 			definition = "Remittance advice information must be sent through Electronic Data Interchange (EDI).";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "EDIC";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 		}
 	};
 	/**
@@ -186,8 +186,8 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "UniformResourceIdentifier";
 			definition = "Remittance advice  information needs to be sent to a Uniform Resource Identifier (URI). URI  is a compact string of characters that uniquely identify an abstract or physical resource.  URI's are the super-set of identifiers, such as URLs, email addresses, ftp sites, etc, and as such, provide the syntax for all of the identification schemes.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "URID";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 		}
 	};
 	/**
@@ -217,8 +217,8 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "EMail";
 			definition = "Remittance advice  information must be sent through e-mail.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "EMAL";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 		}
 	};
 	/**
@@ -248,8 +248,8 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Post";
 			definition = "Remittance advice information must be sent through postal services.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "POST";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 		}
 	};
 	/**
@@ -281,8 +281,8 @@ public class RemittanceLocationMethodCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "SMS";
 			definition = "Remittance advice  information must be sent through by phone as a short message service (SMS).";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 			codeName = "SMSM";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.RemittanceLocationMethodCode.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, RemittanceLocationMethodCode> codesByName = new LinkedHashMap<>();
@@ -294,12 +294,12 @@ public class RemittanceLocationMethodCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("FAXI");
+				examples = Arrays.asList("FAXI");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "RemittanceLocationMethodCode";
 				definition = "Specifies the method used to deliver the remittance advice information.";
-				derivation_lazy = LazyReference.create(() -> Arrays.asList(RemittanceLocationMethod2Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethodCode.FAXI_Fax, com.tools20022.repository.codeset.RemittanceLocationMethodCode.EDIC_ElectronicDataInterchange,
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(RemittanceLocationMethod2Code.mmObject()));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RemittanceLocationMethodCode.FAXI_Fax, com.tools20022.repository.codeset.RemittanceLocationMethodCode.EDIC_ElectronicDataInterchange,
 						com.tools20022.repository.codeset.RemittanceLocationMethodCode.URID_UniformResourceIdentifier, com.tools20022.repository.codeset.RemittanceLocationMethodCode.EMAL_EMail,
 						com.tools20022.repository.codeset.RemittanceLocationMethodCode.POST_Post, com.tools20022.repository.codeset.RemittanceLocationMethodCode.SMSM_SMS));
 			}

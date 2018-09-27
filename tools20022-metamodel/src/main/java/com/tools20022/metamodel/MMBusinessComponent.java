@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -42,7 +43,7 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	/**
 	 * The BusinessComponents that specialize this BusinessComponent.
 	 */
-	public final static MetamodelAttribute<MMBusinessComponent, List<MMBusinessComponent>> subTypeAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessComponent, List<MMBusinessComponent>> subTypesAttribute = newAttribute();
 	/**
 	 * The BusinessComponent that is specialized by this BusinessComponent.
 	 */
@@ -50,20 +51,20 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	/**
 	 * A semantic property of a BusinessComponent.
 	 */
-	public final static MetamodelAttribute<MMBusinessComponent, List<MMBusinessElement>> elementAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessComponent, List<MMBusinessElement>> elementsAttribute = newAttribute();
 	/**
 	 * All of the MessageComponentTypes that derive from this BusinessComponent.
 	 */
-	public final static MetamodelAttribute<MMBusinessComponent, List<MMMessageComponentType>> derivationComponentAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessComponent, List<MMMessageComponentType>> derivationComponentsAttribute = newAttribute();
 	/**
 	 * Describes the semantics that determine how the BusinessComponent may
 	 * participate in the BusinessAssociation.
 	 */
-	public final static MetamodelAttribute<MMBusinessComponent, List<MMBusinessAssociationEnd>> associationDomainAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessComponent, List<MMBusinessAssociationEnd>> associationDomainsAttribute = newAttribute();
 	/**
 	 * All of the MessageElements that derive from this BusinessComponent.
 	 */
-	public final static MetamodelAttribute<MMBusinessComponent, List<MMMessageElement>> derivationElementAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessComponent, List<MMMessageElement>> derivationElementsAttribute = newAttribute();
 	/**
 	 * All BusinessElements contained by this BusinessComponents have different
 	 * names element-&gt;forAll(el1,el2 : BusinessElement| el1 &lt;&gt; el2
@@ -72,19 +73,19 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	public final static MetamodelConstraint<MMBusinessComponent> checkBusinessElementsHaveUniqueNames = newConstraint(b -> {
 		new BusinessElementsHaveUniqueNames().accept(b);
 	});
-	protected Supplier<List<MMBusinessComponent>> subType_lazy;
+	protected Supplier<List<MMBusinessComponent>> subTypes_lazy;
 	protected Supplier<MMBusinessComponent> superType_lazy;
-	protected Supplier<List<MMBusinessElement>> element_lazy;
-	protected Supplier<List<MMMessageComponentType>> derivationComponent_lazy;
-	protected Supplier<List<MMBusinessAssociationEnd>> associationDomain_lazy;
-	protected Supplier<List<MMMessageElement>> derivationElement_lazy;
+	protected Supplier<List<MMBusinessElement>> elements_lazy;
+	protected Supplier<List<MMMessageComponentType>> derivationComponents_lazy;
+	protected Supplier<List<MMBusinessAssociationEnd>> associationDomains_lazy;
+	protected Supplier<List<MMMessageElement>> derivationElements_lazy;
 	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
 	protected String definition;
-	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
-	protected Supplier<List<MMDoclet>> doclet_lazy;
-	protected List<String> example;
-	protected Supplier<List<MMConstraint>> constraint_lazy;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkups_lazy;
+	protected Supplier<List<MMDoclet>> doclets_lazy;
+	protected List<String> examples;
+	protected Supplier<List<MMConstraint>> constraints_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -111,8 +112,9 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	 * @see MMBusinessComponent#getSuperType()
 	 */
 	@Opposite(bean = MMBusinessComponent.class, attribute = "superType")
-	public List<MMBusinessComponent> getSubType() {
-		return subType_lazy == null ? Collections.emptyList() : subType_lazy.get();
+	@EMFName("subType")
+	public List<MMBusinessComponent> getSubTypes() {
+		return subTypes_lazy == null ? Collections.emptyList() : subTypes_lazy.get();
 	}
 
 	/**
@@ -132,8 +134,9 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	 */
 	@Opposite(bean = MMBusinessElement.class, attribute = "elementContext")
 	@Containment
-	public List<MMBusinessElement> getElement() {
-		return element_lazy == null ? Collections.emptyList() : element_lazy.get();
+	@EMFName("element")
+	public List<MMBusinessElement> getElements() {
+		return elements_lazy == null ? Collections.emptyList() : elements_lazy.get();
 	}
 
 	/**
@@ -142,8 +145,9 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	 * @see MMMessageComponentType#getTrace()
 	 */
 	@Opposite(bean = MMMessageComponentType.class, attribute = "trace")
-	public List<MMMessageComponentType> getDerivationComponent() {
-		return derivationComponent_lazy == null ? Collections.emptyList() : derivationComponent_lazy.get();
+	@EMFName("derivationComponent")
+	public List<MMMessageComponentType> getDerivationComponents() {
+		return derivationComponents_lazy == null ? Collections.emptyList() : derivationComponents_lazy.get();
 	}
 
 	/**
@@ -153,8 +157,9 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	 * @see MMBusinessAssociationEnd#getType()
 	 */
 	@Opposite(bean = MMBusinessAssociationEnd.class, attribute = "type")
-	public List<MMBusinessAssociationEnd> getAssociationDomain() {
-		return associationDomain_lazy == null ? Collections.emptyList() : associationDomain_lazy.get();
+	@EMFName("associationDomain")
+	public List<MMBusinessAssociationEnd> getAssociationDomains() {
+		return associationDomains_lazy == null ? Collections.emptyList() : associationDomains_lazy.get();
 	}
 
 	/**
@@ -163,8 +168,9 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	 * @see MMMessageElement#getBusinessComponentTrace()
 	 */
 	@Opposite(bean = MMMessageElement.class, attribute = "businessComponentTrace")
-	public List<MMMessageElement> getDerivationElement() {
-		return derivationElement_lazy == null ? Collections.emptyList() : derivationElement_lazy.get();
+	@EMFName("derivationElement")
+	public List<MMMessageElement> getDerivationElements() {
+		return derivationElements_lazy == null ? Collections.emptyList() : derivationElements_lazy.get();
 	}
 
 	@Override
@@ -183,23 +189,23 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	}
 
 	@Override
-	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
+	public List<MMSemanticMarkup> getSemanticMarkups() {
+		return semanticMarkups_lazy == null ? Collections.emptyList() : semanticMarkups_lazy.get();
 	}
 
 	@Override
-	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
+	public List<MMDoclet> getDoclets() {
+		return doclets_lazy == null ? Collections.emptyList() : doclets_lazy.get();
 	}
 
 	@Override
-	public List<String> getExample() {
-		return example == null ? Collections.emptyList() : example;
+	public List<String> getExamples() {
+		return examples == null ? Collections.emptyList() : examples;
 	}
 
 	@Override
-	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
+	public List<MMConstraint> getConstraints() {
+		return constraints_lazy == null ? Collections.emptyList() : constraints_lazy.get();
 	}
 
 	@Override

@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingTypeCode
  * RegulatoryReportingTypeCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.RegulatoryReportingType1Code#CRED_Credit
@@ -58,8 +58,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"CRED"</li>
  * </ul>
@@ -161,12 +161,12 @@ public class RegulatoryReportingType1Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("CRED");
+				examples = Arrays.asList("CRED");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "RegulatoryReportingType1Code";
 				definition = "Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.";
 				trace_lazy = LazyReference.create(() -> RegulatoryReportingTypeCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingType1Code.CRED_Credit, com.tools20022.repository.codeset.RegulatoryReportingType1Code.DEBT_Debit,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.RegulatoryReportingType1Code.CRED_Credit, com.tools20022.repository.codeset.RegulatoryReportingType1Code.DEBT_Debit,
 						com.tools20022.repository.codeset.RegulatoryReportingType1Code.BOTH_Both));
 			}
 		});

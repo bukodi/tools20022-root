@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.InstructionCode
  * InstructionCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.Instruction4Code#PHOA_PhoneNextAgent
@@ -54,8 +54,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"PHOA"</li>
  * </ul>
@@ -133,12 +133,12 @@ public class Instruction4Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("PHOA");
+				examples = Arrays.asList("PHOA");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Instruction4Code";
 				definition = "Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s).";
 				trace_lazy = LazyReference.create(() -> InstructionCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Instruction4Code.PHOA_PhoneNextAgent, com.tools20022.repository.codeset.Instruction4Code.TELA_TelecomNextAgent));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Instruction4Code.PHOA_PhoneNextAgent, com.tools20022.repository.codeset.Instruction4Code.TELA_TelecomNextAgent));
 			}
 		});
 		return mmObject_lazy.get();

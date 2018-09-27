@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.InstructionCode
  * InstructionCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.Instruction3Code#CHQB_PayCreditorByCheque
@@ -60,8 +60,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"CHQB"</li>
  * </ul>
@@ -187,12 +187,12 @@ public class Instruction3Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("CHQB");
+				examples = Arrays.asList("CHQB");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "Instruction3Code";
 				definition = "Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s).";
 				trace_lazy = LazyReference.create(() -> InstructionCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Instruction3Code.CHQB_PayCreditorByCheque, com.tools20022.repository.codeset.Instruction3Code.HOLD_HoldCashForCreditor,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.Instruction3Code.CHQB_PayCreditorByCheque, com.tools20022.repository.codeset.Instruction3Code.HOLD_HoldCashForCreditor,
 						com.tools20022.repository.codeset.Instruction3Code.PHOB_PhoneBeneficiary, com.tools20022.repository.codeset.Instruction3Code.TELB_Telecom));
 			}
 		});

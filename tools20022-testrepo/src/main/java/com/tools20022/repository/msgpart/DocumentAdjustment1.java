@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.DocumentAdjustment1#mmAmount
@@ -297,7 +297,7 @@ public class DocumentAdjustment1 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.DocumentAdjustment1.mmAmount, com.tools20022.repository.msgpart.DocumentAdjustment1.mmCreditDebitIndicator,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.DocumentAdjustment1.mmAmount, com.tools20022.repository.msgpart.DocumentAdjustment1.mmCreditDebitIndicator,
 						com.tools20022.repository.msgpart.DocumentAdjustment1.mmReason, com.tools20022.repository.msgpart.DocumentAdjustment1.mmAdditionalInformation));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;

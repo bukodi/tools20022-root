@@ -85,10 +85,10 @@ public class TestGeneratedGenerator {
 					this.name = "Def 21";
 				}
 			});
-			Supplier<List<MMCode>> code_lazy = () -> codes;
-			Field field = MMCodeSet.class.getDeclaredField("code_lazy");
+			Supplier<List<MMCode>> codes_lazy = () -> codes;
+			Field field = MMCodeSet.class.getDeclaredField("codes_lazy");
 			field.setAccessible(true);
-			field.set(externalCodeSet, code_lazy);
+			field.set(externalCodeSet, codes_lazy);
 		}
 
 		GeneratorFileManager fileManager = new GeneratorFileManager(mvnProjectRoot);

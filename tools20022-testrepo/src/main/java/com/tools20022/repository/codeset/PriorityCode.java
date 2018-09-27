@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.PriorityCode#URGT_Urgent
  * PriorityCode.URGT_Urgent}</li>
@@ -47,8 +47,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * PriorityCode.LOWW_Low}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivations
+ * derivations} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.Priority2Code
  * Priority2Code}</li>
@@ -61,8 +61,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"URGT"</li>
  * </ul>
@@ -106,8 +106,8 @@ public class PriorityCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Urgent";
 			definition = "Priority level is urgent (highest priority possible)";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.PriorityCode.mmObject());
 			codeName = "URGT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.PriorityCode.mmObject());
 		}
 	};
 	/**
@@ -135,8 +135,8 @@ public class PriorityCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "High";
 			definition = "Priority level is high.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.PriorityCode.mmObject());
 			codeName = "HIGH";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.PriorityCode.mmObject());
 		}
 	};
 	/**
@@ -164,8 +164,8 @@ public class PriorityCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Normal";
 			definition = "Priority level is normal.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.PriorityCode.mmObject());
 			codeName = "NORM";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.PriorityCode.mmObject());
 		}
 	};
 	/**
@@ -193,8 +193,8 @@ public class PriorityCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "Low";
 			definition = "Priority level is low.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.PriorityCode.mmObject());
 			codeName = "LOWW";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.PriorityCode.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, PriorityCode> codesByName = new LinkedHashMap<>();
@@ -206,12 +206,12 @@ public class PriorityCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("URGT");
+				examples = Arrays.asList("URGT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "PriorityCode";
 				definition = "Specifies the priority level of an event.";
-				derivation_lazy = LazyReference.create(() -> Arrays.asList(Priority2Code.mmObject(), Priority3Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.PriorityCode.URGT_Urgent, com.tools20022.repository.codeset.PriorityCode.HIGH_High,
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(Priority2Code.mmObject(), Priority3Code.mmObject()));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.PriorityCode.URGT_Urgent, com.tools20022.repository.codeset.PriorityCode.HIGH_High,
 						com.tools20022.repository.codeset.PriorityCode.NORM_Normal, com.tools20022.repository.codeset.PriorityCode.LOWW_Low));
 			}
 		});

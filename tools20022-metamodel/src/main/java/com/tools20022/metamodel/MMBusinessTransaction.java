@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -46,12 +47,12 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	/**
 	 * the involvement of a BusinessRole in a BusinessTransaction
 	 */
-	public final static MetamodelAttribute<MMBusinessTransaction, List<MMParticipant>> participantAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessTransaction, List<MMParticipant>> participantsAttribute = newAttribute();
 	/**
 	 * he conveyance of information from a sending Participant in the context of
 	 * a BusinessTransaction
 	 */
-	public final static MetamodelAttribute<MMBusinessTransaction, List<MMMessageTransmission>> transmissionAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessTransaction, List<MMMessageTransmission>> transmissionsAttribute = newAttribute();
 	/**
 	 * Provides a set of characterstics for a MessageTransportMode to have in
 	 * the context of a single BusinessTransaction
@@ -61,7 +62,7 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	 * decomposition of a BusinessTransaction into a number of sub transactions
 	 * which are BusinessTransactions in their own right.
 	 */
-	public final static MetamodelAttribute<MMBusinessTransaction, List<MMBusinessTransaction>> subTransactionAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessTransaction, List<MMBusinessTransaction>> subTransactionsAttribute = newAttribute();
 	/**
 	 * assembly of a number of BusinessTransactions that together form a
 	 * BusinessTransaction
@@ -71,7 +72,7 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	 * all of the BusinessTransactionTraces that derive MessageChoreographies
 	 * from one BusinessTransaction
 	 */
-	public final static MetamodelAttribute<MMBusinessTransaction, List<MMMessageChoreography>> traceAttribute = newAttribute();
+	public final static MetamodelAttribute<MMBusinessTransaction, List<MMMessageChoreography>> tracesAttribute = newAttribute();
 	/**
 	 * All MessageTransmissions contained in this BusinessTransaction shall have
 	 * different names. transmission-&gt;forAll(msg1,msg2 | msg1 &lt;&gt; msg2
@@ -89,19 +90,19 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 		new ParticipantsHaveUniqueNames().accept(b);
 	});
 	protected Supplier<MMBusinessProcess> businessProcessTrace_lazy;
-	protected Supplier<List<MMParticipant>> participant_lazy;
-	protected Supplier<List<MMMessageTransmission>> transmission_lazy;
+	protected Supplier<List<MMParticipant>> participants_lazy;
+	protected Supplier<List<MMMessageTransmission>> transmissions_lazy;
 	protected Supplier<MMMessageTransportMode> messageTransportMode_lazy;
-	protected Supplier<List<MMBusinessTransaction>> subTransaction_lazy;
+	protected Supplier<List<MMBusinessTransaction>> subTransactions_lazy;
 	protected Supplier<MMBusinessTransaction> parentTransaction_lazy;
-	protected Supplier<List<MMMessageChoreography>> trace_lazy;
+	protected Supplier<List<MMMessageChoreography>> traces_lazy;
 	protected Supplier<MMBusinessProcessCatalogue> businessProcessCatalogue_lazy;
 	protected String name;
 	protected String definition;
-	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
-	protected Supplier<List<MMDoclet>> doclet_lazy;
-	protected List<String> example;
-	protected Supplier<List<MMConstraint>> constraint_lazy;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkups_lazy;
+	protected Supplier<List<MMDoclet>> doclets_lazy;
+	protected List<String> examples;
+	protected Supplier<List<MMConstraint>> constraints_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -139,8 +140,9 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMParticipant.class, attribute = "businessTransaction")
 	@Containment
-	public List<MMParticipant> getParticipant() {
-		return participant_lazy == null ? Collections.emptyList() : participant_lazy.get();
+	@EMFName("participant")
+	public List<MMParticipant> getParticipants() {
+		return participants_lazy == null ? Collections.emptyList() : participants_lazy.get();
 	}
 
 	/**
@@ -151,8 +153,9 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	 */
 	@Opposite(bean = MMMessageTransmission.class, attribute = "businessTransaction")
 	@Containment
-	public List<MMMessageTransmission> getTransmission() {
-		return transmission_lazy == null ? Collections.emptyList() : transmission_lazy.get();
+	@EMFName("transmission")
+	public List<MMMessageTransmission> getTransmissions() {
+		return transmissions_lazy == null ? Collections.emptyList() : transmissions_lazy.get();
 	}
 
 	/**
@@ -173,8 +176,9 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	 * @see MMBusinessTransaction#getParentTransaction()
 	 */
 	@Opposite(bean = MMBusinessTransaction.class, attribute = "parentTransaction")
-	public List<MMBusinessTransaction> getSubTransaction() {
-		return subTransaction_lazy == null ? Collections.emptyList() : subTransaction_lazy.get();
+	@EMFName("subTransaction")
+	public List<MMBusinessTransaction> getSubTransactions() {
+		return subTransactions_lazy == null ? Collections.emptyList() : subTransactions_lazy.get();
 	}
 
 	/**
@@ -195,8 +199,9 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	 * @see MMMessageChoreography#getBusinessTransactionTrace()
 	 */
 	@Opposite(bean = MMMessageChoreography.class, attribute = "businessTransactionTrace")
-	public List<MMMessageChoreography> getTrace() {
-		return trace_lazy == null ? Collections.emptyList() : trace_lazy.get();
+	@EMFName("trace")
+	public List<MMMessageChoreography> getTraces() {
+		return traces_lazy == null ? Collections.emptyList() : traces_lazy.get();
 	}
 
 	@Override
@@ -215,23 +220,23 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	}
 
 	@Override
-	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
+	public List<MMSemanticMarkup> getSemanticMarkups() {
+		return semanticMarkups_lazy == null ? Collections.emptyList() : semanticMarkups_lazy.get();
 	}
 
 	@Override
-	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
+	public List<MMDoclet> getDoclets() {
+		return doclets_lazy == null ? Collections.emptyList() : doclets_lazy.get();
 	}
 
 	@Override
-	public List<String> getExample() {
-		return example == null ? Collections.emptyList() : example;
+	public List<String> getExamples() {
+		return examples == null ? Collections.emptyList() : examples;
 	}
 
 	@Override
-	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
+	public List<MMConstraint> getConstraints() {
+		return constraints_lazy == null ? Collections.emptyList() : constraints_lazy.get();
 	}
 
 	@Override

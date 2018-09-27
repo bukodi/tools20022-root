@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.msgpart.NameAndAddress10#mmName
  * NameAndAddress10.mmName}</li>
@@ -178,7 +178,7 @@ public class NameAndAddress10 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.NameAndAddress10.mmName, com.tools20022.repository.msgpart.NameAndAddress10.mmAddress));
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.NameAndAddress10.mmName, com.tools20022.repository.msgpart.NameAndAddress10.mmAddress));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "NameAndAddress10";

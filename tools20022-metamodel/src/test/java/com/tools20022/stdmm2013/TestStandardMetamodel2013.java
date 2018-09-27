@@ -26,8 +26,8 @@ public class TestStandardMetamodel2013 {
 	static {
 		skipAttrs.add(MMModelEntity.nextVersionsAttribute);
 		skipAttrs.add(MMModelEntity.previousVersionAttribute);
-		skipAttrs.add(MMRepositoryConcept.semanticMarkupAttribute);
-		skipAttrs.add(MMRepositoryConcept.docletAttribute);		
+		skipAttrs.add(MMRepositoryConcept.semanticMarkupsAttribute);
+		skipAttrs.add(MMRepositoryConcept.docletsAttribute);		
 	}
 
 	

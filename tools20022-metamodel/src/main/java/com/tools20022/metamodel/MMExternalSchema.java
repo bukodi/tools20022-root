@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Derived;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
@@ -39,23 +40,23 @@ public class MMExternalSchema implements MMMessageComponentType {
 	 * Identifies the description of the content model of an ExternalSchema,
 	 * through (a set of) URI.
 	 */
-	public final static MetamodelAttribute<MMExternalSchema, List<String>> namespaceListAttribute = newAttribute();
+	public final static MetamodelAttribute<MMExternalSchema, List<String>> namespaceListsAttribute = newAttribute();
 	/**
 	 * Specifies whether it is required for the content model of the
 	 * ExternalSchema to be validated.
 	 */
 	public final static MetamodelAttribute<MMExternalSchema, MMProcessContent> processContentAttribute = newAttribute();
-	protected List<String> namespaceList;
+	protected List<String> namespaceLists;
 	protected MMProcessContent processContent;
-	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlock_lazy;
+	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlocks_lazy;
 	protected Supplier<MMBusinessComponent> trace_lazy;
 	protected Supplier<MMDataDictionary> dataDictionary_lazy;
 	protected String name;
 	protected String definition;
-	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
-	protected Supplier<List<MMDoclet>> doclet_lazy;
-	protected List<String> example;
-	protected Supplier<List<MMConstraint>> constraint_lazy;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkups_lazy;
+	protected Supplier<List<MMDoclet>> doclets_lazy;
+	protected List<String> examples;
+	protected Supplier<List<MMConstraint>> constraints_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -80,8 +81,9 @@ public class MMExternalSchema implements MMMessageComponentType {
 	 * Identifies the description of the content model of an ExternalSchema,
 	 * through (a set of) URI.
 	 */
-	public List<String> getNamespaceList() {
-		return namespaceList == null ? Collections.emptyList() : namespaceList;
+	@EMFName("namespaceList")
+	public List<String> getNamespaceLists() {
+		return namespaceLists == null ? Collections.emptyList() : namespaceLists;
 	}
 
 	/**
@@ -93,8 +95,8 @@ public class MMExternalSchema implements MMMessageComponentType {
 	}
 
 	@Override
-	public List<MMMessageBuildingBlock> getMessageBuildingBlock() {
-		return messageBuildingBlock_lazy == null ? Collections.emptyList() : messageBuildingBlock_lazy.get();
+	public List<MMMessageBuildingBlock> getMessageBuildingBlocks() {
+		return messageBuildingBlocks_lazy == null ? Collections.emptyList() : messageBuildingBlocks_lazy.get();
 	}
 
 	@Derived
@@ -124,23 +126,23 @@ public class MMExternalSchema implements MMMessageComponentType {
 	}
 
 	@Override
-	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
+	public List<MMSemanticMarkup> getSemanticMarkups() {
+		return semanticMarkups_lazy == null ? Collections.emptyList() : semanticMarkups_lazy.get();
 	}
 
 	@Override
-	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
+	public List<MMDoclet> getDoclets() {
+		return doclets_lazy == null ? Collections.emptyList() : doclets_lazy.get();
 	}
 
 	@Override
-	public List<String> getExample() {
-		return example == null ? Collections.emptyList() : example;
+	public List<String> getExamples() {
+		return examples == null ? Collections.emptyList() : examples;
 	}
 
 	@Override
-	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
+	public List<MMConstraint> getConstraints() {
+		return constraints_lazy == null ? Collections.emptyList() : constraints_lazy.get();
 	}
 
 	@Override

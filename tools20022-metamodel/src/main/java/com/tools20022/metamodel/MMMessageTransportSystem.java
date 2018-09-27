@@ -18,6 +18,7 @@
 package com.tools20022.metamodel;
 
 import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -41,8 +42,8 @@ public class MMMessageTransportSystem implements OrphanMetamodelType, MMModelEnt
 	/**
 	 * a MessagingEndpoint owned by a single MessageTransportSystem
 	 */
-	public final static MetamodelAttribute<MMMessageTransportSystem, List<MMMessagingEndpoint>> endpointAttribute = newAttribute();
-	protected Supplier<List<MMMessagingEndpoint>> endpoint_lazy;
+	public final static MetamodelAttribute<MMMessageTransportSystem, List<MMMessagingEndpoint>> endpointsAttribute = newAttribute();
+	protected Supplier<List<MMMessagingEndpoint>> endpoints_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
@@ -68,8 +69,9 @@ public class MMMessageTransportSystem implements OrphanMetamodelType, MMModelEnt
 	 */
 	@Opposite(bean = MMMessagingEndpoint.class, attribute = "transportSystem")
 	@Containment
-	public List<MMMessagingEndpoint> getEndpoint() {
-		return endpoint_lazy == null ? Collections.emptyList() : endpoint_lazy.get();
+	@EMFName("endpoint")
+	public List<MMMessagingEndpoint> getEndpoints() {
+		return endpoints_lazy == null ? Collections.emptyList() : endpoints_lazy.get();
 	}
 
 	@Override

@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#mmSettlementMethod
@@ -78,8 +78,8 @@ import javax.xml.bind.annotation.XmlType;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.SettlementInformation13#ThirdReimbursementAgentRule
@@ -939,13 +939,13 @@ public class SettlementInformation13 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementInformation13.mmSettlementMethod, com.tools20022.repository.msgpart.SettlementInformation13.mmSettlementAccount,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementInformation13.mmSettlementMethod, com.tools20022.repository.msgpart.SettlementInformation13.mmSettlementAccount,
 						com.tools20022.repository.msgpart.SettlementInformation13.mmClearingSystem, com.tools20022.repository.msgpart.SettlementInformation13.mmInstructingReimbursementAgent,
 						com.tools20022.repository.msgpart.SettlementInformation13.mmInstructingReimbursementAgentAccount, com.tools20022.repository.msgpart.SettlementInformation13.mmInstructedReimbursementAgent,
 						com.tools20022.repository.msgpart.SettlementInformation13.mmInstructedReimbursementAgentAccount, com.tools20022.repository.msgpart.SettlementInformation13.mmThirdReimbursementAgent,
 						com.tools20022.repository.msgpart.SettlementInformation13.mmThirdReimbursementAgentAccount));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementInformation13.ThirdReimbursementAgentRule,
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.SettlementInformation13.ThirdReimbursementAgentRule,
 						com.tools20022.repository.msgpart.SettlementInformation13.SettlementMethodAgentRule, com.tools20022.repository.msgpart.SettlementInformation13.SettlementMethodCoverRule,
 						com.tools20022.repository.msgpart.SettlementInformation13.SettlementMethodCoverAgentRule, com.tools20022.repository.msgpart.SettlementInformation13.SettlementMethodClearingRule,
 						com.tools20022.repository.msgpart.SettlementInformation13.InstructingReimbursementAgentAccountRule, com.tools20022.repository.msgpart.SettlementInformation13.InstructedReimbursementAgentAccountRule,

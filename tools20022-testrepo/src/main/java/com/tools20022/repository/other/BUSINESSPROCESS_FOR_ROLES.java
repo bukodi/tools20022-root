@@ -31,8 +31,8 @@ import java.util.concurrent.atomic.AtomicReference;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMBusinessProcess#getBusinessRole
- * businessRole} =
+ * <li>{@linkplain com.tools20022.metamodel.MMBusinessProcess#getBusinessRoles
+ * businessRoles} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.other.BUSINESSPROCESS_FOR_ROLES#OrderGiver
@@ -1754,8 +1754,8 @@ public class BUSINESSPROCESS_FOR_ROLES {
 	 * {@linkplain com.tools20022.repository.other.BUSINESSPROCESS_FOR_ROLES
 	 * BUSINESSPROCESS_FOR_ROLES}</li>
 	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkup
-	 * semanticMarkup} = type=BUSINESSCOMMENT, comment=Controls the Custody
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getSemanticMarkups
+	 * semanticMarkups} = type=BUSINESSCOMMENT, comment=Controls the Custody
 	 * activities for one market., type=ADMINCOMMENT, comment=Controls the
 	 * Custody activities for one market.</li>
 	 * <li>
@@ -1773,8 +1773,8 @@ public class BUSINESSPROCESS_FOR_ROLES {
 	 */
 	public static final MMBusinessRole CentralCounterparty = new MMBusinessRole() {
 		{
-			semanticMarkup_lazy = () -> Arrays.asList(new OtherSemanticMarkup(this, "BUSINESSCOMMENT", new String[]{"comment", "Controls the Custody activities for one market."}), new OtherSemanticMarkup(this, "ADMINCOMMENT", new String[]{
-					"comment", "Controls the Custody activities for one market."}));
+			semanticMarkups_lazy = () -> Arrays.asList(new OtherSemanticMarkup(this, "BUSINESSCOMMENT", new String[]{"comment", "Controls the Custody activities for one market."}), new OtherSemanticMarkup(this, "ADMINCOMMENT",
+					new String[]{"comment", "Controls the Custody activities for one market."}));
 			registrationStatus = MMRegistrationStatus.REGISTERED;
 			name = "CentralCounterparty";
 			definition = "Infrastructure that is very often a component of a clearinghouse, and facilitates clearing and settlement for its members by standing between the buyer and the seller of a trade. It may net transactions, and substitutes itself as a settlement counterparty to each position.";
@@ -3835,7 +3835,7 @@ public class BUSINESSPROCESS_FOR_ROLES {
 				businessProcessCatalogue_lazy = LazyReference.create(() -> GeneratedRepository.catalogue);
 				registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 				name = "BUSINESSPROCESS_FOR_ROLES";
-				businessRole_lazy = LazyReference.create(() -> Arrays.asList(BUSINESSPROCESS_FOR_ROLES.OrderGiver, BUSINESSPROCESS_FOR_ROLES.Trustee, BUSINESSPROCESS_FOR_ROLES.AffirmingParty, BUSINESSPROCESS_FOR_ROLES.ExecutingBroker,
+				businessRoles_lazy = LazyReference.create(() -> Arrays.asList(BUSINESSPROCESS_FOR_ROLES.OrderGiver, BUSINESSPROCESS_FOR_ROLES.Trustee, BUSINESSPROCESS_FOR_ROLES.AffirmingParty, BUSINESSPROCESS_FOR_ROLES.ExecutingBroker,
 						BUSINESSPROCESS_FOR_ROLES.InstitutionalInvestor, BUSINESSPROCESS_FOR_ROLES.PrimeBroker, BUSINESSPROCESS_FOR_ROLES.Underwriter, BUSINESSPROCESS_FOR_ROLES.CentralMatchingUtility,
 						BUSINESSPROCESS_FOR_ROLES.NonClearingMember, BUSINESSPROCESS_FOR_ROLES.ClearingMember, BUSINESSPROCESS_FOR_ROLES.MasterTerminalManager, BUSINESSPROCESS_FOR_ROLES.TerminalManager, BUSINESSPROCESS_FOR_ROLES.Buyer,
 						BUSINESSPROCESS_FOR_ROLES.BuyersBank, BUSINESSPROCESS_FOR_ROLES.Seller, BUSINESSPROCESS_FOR_ROLES.SellersBank, BUSINESSPROCESS_FOR_ROLES.Acquirer, BUSINESSPROCESS_FOR_ROLES.CardAcceptor,

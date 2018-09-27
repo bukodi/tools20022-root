@@ -17,13 +17,10 @@
 
 package com.tools20022.metamodel;
 
-import com.tools20022.core.metamodel.Container;
-import com.tools20022.core.metamodel.Containment;
+import com.tools20022.core.metamodel.*;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.core.metamodel.Opposite;
-import com.tools20022.core.metamodel.RuntimeInstanceAware;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newAttribute;
 import static com.tools20022.core.metamodel.StaticMemembersBuilder.newConstraint;
 import com.tools20022.metamodel.constraints.BusinessAreaNameMatch;
@@ -42,7 +39,7 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	/**
 	 * the MessageSet to which the MessageDefinition belongs
 	 */
-	public final static MetamodelAttribute<MMMessageDefinition, List<MMMessageSet>> messageSetAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageDefinition, List<MMMessageSet>> messageSetsAttribute = newAttribute();
 	/**
 	 * Name used in an XML schema for the ComplexType that defines the Message
 	 * Definition.
@@ -69,16 +66,16 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	/**
 	 * a MessageBuildingBlock belonging to this MessageDefinition
 	 */
-	public final static MetamodelAttribute<MMMessageDefinition, List<MMMessageBuildingBlock>> messageBuildingBlockAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageDefinition, List<MMMessageBuildingBlock>> messageBuildingBlocksAttribute = newAttribute();
 	/**
 	 * the MessageChoreography to which the MessageDefinition belongs
 	 */
-	public final static MetamodelAttribute<MMMessageDefinition, List<MMMessageChoreography>> choreographyAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageDefinition, List<MMMessageChoreography>> choreographiesAttribute = newAttribute();
 	/**
 	 * all of the MessageTypeTraces from one MessageDefinition that are traced
 	 * to different MessageTransmissions
 	 */
-	public final static MetamodelAttribute<MMMessageDefinition, List<MMMessageTransmission>> traceAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageDefinition, List<MMMessageTransmission>> tracesAttribute = newAttribute();
 	/**
 	 * The MessageDefinitionIdentifier for this MessageDefinition
 	 */
@@ -87,7 +84,7 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	 * All of the SyntaxMessageSchemes that are derived from from one
 	 * MessageDefinition
 	 */
-	public final static MetamodelAttribute<MMMessageDefinition, List<MMSyntaxMessageScheme>> derivationAttribute = newAttribute();
+	public final static MetamodelAttribute<MMMessageDefinition, List<MMSyntaxMessageScheme>> derivationsAttribute = newAttribute();
 	/**
 	 * The businessArea of the messageDefinitionIdentifier of this
 	 * MessageDefinition is equal to the code of the BusinessArea that contains
@@ -97,23 +94,23 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	public final static MetamodelConstraint<MMMessageDefinition> checkBusinessAreaNameMatch = newConstraint(b -> {
 		new BusinessAreaNameMatch().accept(b);
 	});
-	protected Supplier<List<MMMessageSet>> messageSet_lazy;
+	protected Supplier<List<MMMessageSet>> messageSets_lazy;
 	protected String xmlName;
 	protected String xmlTag;
 	protected Supplier<MMBusinessArea> businessArea_lazy;
 	protected Supplier<List<MMXor>> xors_lazy;
 	protected String rootElement;
-	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlock_lazy;
-	protected Supplier<List<MMMessageChoreography>> choreography_lazy;
-	protected Supplier<List<MMMessageTransmission>> trace_lazy;
+	protected Supplier<List<MMMessageBuildingBlock>> messageBuildingBlocks_lazy;
+	protected Supplier<List<MMMessageChoreography>> choreographies_lazy;
+	protected Supplier<List<MMMessageTransmission>> traces_lazy;
 	protected Supplier<MMMessageDefinitionIdentifier> messageDefinitionIdentifier_lazy;
-	protected Supplier<List<MMSyntaxMessageScheme>> derivation_lazy;
+	protected Supplier<List<MMSyntaxMessageScheme>> derivations_lazy;
 	protected String name;
 	protected String definition;
-	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
-	protected Supplier<List<MMDoclet>> doclet_lazy;
-	protected List<String> example;
-	protected Supplier<List<MMConstraint>> constraint_lazy;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkups_lazy;
+	protected Supplier<List<MMDoclet>> doclets_lazy;
+	protected List<String> examples;
+	protected Supplier<List<MMConstraint>> constraints_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -140,8 +137,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	 * @see MMMessageSet#getMessageDefinition()
 	 */
 	@Opposite(bean = MMMessageSet.class, attribute = "messageDefinition")
-	public List<MMMessageSet> getMessageSet() {
-		return messageSet_lazy == null ? Collections.emptyList() : messageSet_lazy.get();
+	@EMFName("messageSet")
+	public List<MMMessageSet> getMessageSets() {
+		return messageSets_lazy == null ? Collections.emptyList() : messageSets_lazy.get();
 	}
 
 	/**
@@ -194,8 +192,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	 * a MessageBuildingBlock belonging to this MessageDefinition
 	 */
 	@Containment
-	public List<MMMessageBuildingBlock> getMessageBuildingBlock() {
-		return messageBuildingBlock_lazy == null ? Collections.emptyList() : messageBuildingBlock_lazy.get();
+	@EMFName("messageBuildingBlock")
+	public List<MMMessageBuildingBlock> getMessageBuildingBlocks() {
+		return messageBuildingBlocks_lazy == null ? Collections.emptyList() : messageBuildingBlocks_lazy.get();
 	}
 
 	/**
@@ -204,8 +203,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	 * @see MMMessageChoreography#getMessageDefinition()
 	 */
 	@Opposite(bean = MMMessageChoreography.class, attribute = "messageDefinition")
-	public List<MMMessageChoreography> getChoreography() {
-		return choreography_lazy == null ? Collections.emptyList() : choreography_lazy.get();
+	@EMFName("choreography")
+	public List<MMMessageChoreography> getChoreographies() {
+		return choreographies_lazy == null ? Collections.emptyList() : choreographies_lazy.get();
 	}
 
 	/**
@@ -215,8 +215,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	 * @see MMMessageTransmission#getDerivation()
 	 */
 	@Opposite(bean = MMMessageTransmission.class, attribute = "derivation")
-	public List<MMMessageTransmission> getTrace() {
-		return trace_lazy == null ? Collections.emptyList() : trace_lazy.get();
+	@EMFName("trace")
+	public List<MMMessageTransmission> getTraces() {
+		return traces_lazy == null ? Collections.emptyList() : traces_lazy.get();
 	}
 
 	/**
@@ -234,8 +235,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	 * @see MMSyntaxMessageScheme#getMessageDefinitionTrace()
 	 */
 	@Opposite(bean = MMSyntaxMessageScheme.class, attribute = "messageDefinitionTrace")
-	public List<MMSyntaxMessageScheme> getDerivation() {
-		return derivation_lazy == null ? Collections.emptyList() : derivation_lazy.get();
+	@EMFName("derivation")
+	public List<MMSyntaxMessageScheme> getDerivations() {
+		return derivations_lazy == null ? Collections.emptyList() : derivations_lazy.get();
 	}
 
 	@Override
@@ -249,23 +251,23 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	}
 
 	@Override
-	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
+	public List<MMSemanticMarkup> getSemanticMarkups() {
+		return semanticMarkups_lazy == null ? Collections.emptyList() : semanticMarkups_lazy.get();
 	}
 
 	@Override
-	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
+	public List<MMDoclet> getDoclets() {
+		return doclets_lazy == null ? Collections.emptyList() : doclets_lazy.get();
 	}
 
 	@Override
-	public List<String> getExample() {
-		return example == null ? Collections.emptyList() : example;
+	public List<String> getExamples() {
+		return examples == null ? Collections.emptyList() : examples;
 	}
 
 	@Override
-	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
+	public List<MMConstraint> getConstraints() {
+		return constraints_lazy == null ? Collections.emptyList() : constraints_lazy.get();
 	}
 
 	@Override

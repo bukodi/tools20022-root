@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.choice.ServiceLevel8Choice#mmCode
  * ServiceLevel8Choice.mmCode}</li>
@@ -181,7 +181,7 @@ public class ServiceLevel8Choice {
 	final static public MMChoiceComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMChoiceComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.ServiceLevel8Choice.mmCode, com.tools20022.repository.choice.ServiceLevel8Choice.mmProprietary));
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.choice.ServiceLevel8Choice.mmCode, com.tools20022.repository.choice.ServiceLevel8Choice.mmProprietary));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ServiceLevel8Choice";

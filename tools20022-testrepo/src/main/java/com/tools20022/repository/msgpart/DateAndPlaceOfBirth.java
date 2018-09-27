@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.DateAndPlaceOfBirth#mmBirthDate
@@ -289,7 +289,7 @@ public class DateAndPlaceOfBirth {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmBirthDate, com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmProvinceOfBirth,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmBirthDate, com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmProvinceOfBirth,
 						com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmCityOfBirth, com.tools20022.repository.msgpart.DateAndPlaceOfBirth.mmCountryOfBirth));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.REGISTERED;

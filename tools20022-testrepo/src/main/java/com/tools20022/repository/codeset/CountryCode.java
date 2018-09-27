@@ -46,15 +46,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.CountryCode#Country
  * CountryCode.Country}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"BE"</li>
  * </ul>
@@ -118,8 +118,8 @@ public class CountryCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("BE");
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CountryCode.Country));
+				examples = Arrays.asList("BE");
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.CountryCode.Country));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "CountryCode";
 				definition = "Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code).";

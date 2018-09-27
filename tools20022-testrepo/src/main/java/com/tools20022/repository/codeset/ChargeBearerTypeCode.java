@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.ChargeBearerTypeCode#DEBT_BorneByDebtor
@@ -52,8 +52,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * ChargeBearerTypeCode.SLEV_FollowingServiceLevel}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivation derivation}
- * =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getDerivations
+ * derivations} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.ChargeBearerType1Code
  * ChargeBearerType1Code}</li>
@@ -64,8 +64,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"DEBT"</li>
  * </ul>
@@ -112,8 +112,8 @@ public class ChargeBearerTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "BorneByDebtor";
 			definition = "All transaction charges are to be borne by the debtor.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerTypeCode.mmObject());
 			codeName = "DEBT";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerTypeCode.mmObject());
 		}
 	};
 	/**
@@ -142,8 +142,8 @@ public class ChargeBearerTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "BorneByCreditor";
 			definition = "All transaction charges are to be borne by the creditor.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerTypeCode.mmObject());
 			codeName = "CRED";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerTypeCode.mmObject());
 		}
 	};
 	/**
@@ -179,8 +179,8 @@ public class ChargeBearerTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Shared";
 			definition = "In a credit transfer context, means that transaction charges on the sender side are to be borne by the debtor, transaction charges on the receiver side are to be borne by the creditor. In a direct debit context, means that transaction charges on the sender side are to be borne by the creditor, transaction charges on the receiver side are to be borne by the debtor.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerTypeCode.mmObject());
 			codeName = "SHAR";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerTypeCode.mmObject());
 		}
 	};
 	/**
@@ -212,8 +212,8 @@ public class ChargeBearerTypeCode extends MMCode {
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "FollowingServiceLevel";
 			definition = "Charges are to be applied following the rules agreed in the service level and/or scheme.";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerTypeCode.mmObject());
 			codeName = "SLEV";
+			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ChargeBearerTypeCode.mmObject());
 		}
 	};
 	final static private LinkedHashMap<String, ChargeBearerTypeCode> codesByName = new LinkedHashMap<>();
@@ -225,12 +225,12 @@ public class ChargeBearerTypeCode extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("DEBT");
+				examples = Arrays.asList("DEBT");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ChargeBearerTypeCode";
 				definition = "Specifies which party(ies) will pay charges due for processing of the instruction.";
-				derivation_lazy = LazyReference.create(() -> Arrays.asList(ChargeBearerType1Code.mmObject()));
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ChargeBearerTypeCode.DEBT_BorneByDebtor, com.tools20022.repository.codeset.ChargeBearerTypeCode.CRED_BorneByCreditor,
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(ChargeBearerType1Code.mmObject()));
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ChargeBearerTypeCode.DEBT_BorneByDebtor, com.tools20022.repository.codeset.ChargeBearerTypeCode.CRED_BorneByCreditor,
 						com.tools20022.repository.codeset.ChargeBearerTypeCode.SHAR_Shared, com.tools20022.repository.codeset.ChargeBearerTypeCode.SLEV_FollowingServiceLevel));
 			}
 		});

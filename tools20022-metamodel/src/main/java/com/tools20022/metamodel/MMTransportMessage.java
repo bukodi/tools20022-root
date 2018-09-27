@@ -17,6 +17,7 @@
 
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelConstraint;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
@@ -50,7 +51,7 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * the receiving MessagingEndpoint in a TransportMessage
 	 */
-	public final static MetamodelAttribute<MMTransportMessage, List<MMMessagingEndpoint>> receiverAttribute = newAttribute();
+	public final static MetamodelAttribute<MMTransportMessage, List<MMMessagingEndpoint>> receiversAttribute = newAttribute();
 	/**
 	 * The sender and receiver of a TransportMessage must use the same
 	 * MessageTransportSystem receiver-&gt;asBag().transportSystem =
@@ -61,7 +62,7 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 	});
 	protected Supplier<MMMessagingEndpoint> sender_lazy;
 	protected Supplier<MMMessageInstance> messageInstance_lazy;
-	protected Supplier<List<MMMessagingEndpoint>> receiver_lazy;
+	protected Supplier<List<MMMessagingEndpoint>> receivers_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
@@ -106,8 +107,9 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 	 * @see MMMessagingEndpoint#getReceivedMessage()
 	 */
 	@Opposite(bean = MMMessagingEndpoint.class, attribute = "receivedMessage")
-	public List<MMMessagingEndpoint> getReceiver() {
-		return receiver_lazy == null ? Collections.emptyList() : receiver_lazy.get();
+	@EMFName("receiver")
+	public List<MMMessagingEndpoint> getReceivers() {
+		return receivers_lazy == null ? Collections.emptyList() : receivers_lazy.get();
 	}
 
 	@Override

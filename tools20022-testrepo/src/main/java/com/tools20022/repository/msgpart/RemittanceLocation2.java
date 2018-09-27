@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.RemittanceLocation2#mmRemittanceIdentification
@@ -299,7 +299,7 @@ public class RemittanceLocation2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.RemittanceLocation2.mmRemittanceIdentification,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.RemittanceLocation2.mmRemittanceIdentification,
 						com.tools20022.repository.msgpart.RemittanceLocation2.mmRemittanceLocationMethod, com.tools20022.repository.msgpart.RemittanceLocation2.mmRemittanceLocationElectronicAddress,
 						com.tools20022.repository.msgpart.RemittanceLocation2.mmRemittanceLocationPostalAddress));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);

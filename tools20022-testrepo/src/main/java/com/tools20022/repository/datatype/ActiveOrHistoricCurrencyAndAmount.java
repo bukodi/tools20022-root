@@ -46,16 +46,16 @@ import javax.xml.bind.annotation.*;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.datatype.ActiveOrHistoricCurrencyAndAmount#CurrencyAmount
  * ActiveOrHistoricCurrencyAndAmount.CurrencyAmount}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"6284534"</li>
  * </ul>
@@ -121,15 +121,15 @@ public class ActiveOrHistoricCurrencyAndAmount {
 		mmObject_lazy.compareAndSet(null, new MMAmount() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("6284534");
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(ActiveOrHistoricCurrencyAndAmount.CurrencyAmount));
+				examples = Arrays.asList("6284534");
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(ActiveOrHistoricCurrencyAndAmount.CurrencyAmount));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ActiveOrHistoricCurrencyAndAmount";
 				definition = "A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217.";
 				currencyIdentifierSet_lazy = LazyReference.create(() -> ActiveOrHistoricCurrencyCode.mmObject());
+				minInclusive = "0";
 				totalDigits = 18;
 				fractionDigits = 5;
-				minInclusive = "0";
 			}
 		});
 		return mmObject_lazy.get();

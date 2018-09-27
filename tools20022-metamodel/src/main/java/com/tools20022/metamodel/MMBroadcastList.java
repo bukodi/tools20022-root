@@ -17,6 +17,7 @@
 
 package com.tools20022.metamodel;
 
+import com.tools20022.core.metamodel.EMFName;
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
 import com.tools20022.core.metamodel.Opposite;
@@ -39,8 +40,8 @@ public class MMBroadcastList implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * a BroadCastList entry using an Address
 	 */
-	public final static MetamodelAttribute<MMBroadcastList, List<MMAddress>> addressAttribute = newAttribute();
-	protected Supplier<List<MMAddress>> address_lazy;
+	public final static MetamodelAttribute<MMBroadcastList, List<MMAddress>> addressesAttribute = newAttribute();
+	protected Supplier<List<MMAddress>> addresses_lazy;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
 	protected Supplier<MMModelEntity> previousVersion_lazy;
 	protected String objectIdentifier;
@@ -65,8 +66,9 @@ public class MMBroadcastList implements OrphanMetamodelType, MMModelEntity {
 	 * @see MMAddress#getBroadCastList()
 	 */
 	@Opposite(bean = MMAddress.class, attribute = "broadCastList")
-	public List<MMAddress> getAddress() {
-		return address_lazy == null ? Collections.emptyList() : address_lazy.get();
+	@EMFName("address")
+	public List<MMAddress> getAddresses() {
+		return addresses_lazy == null ? Collections.emptyList() : addresses_lazy.get();
 	}
 
 	@Override

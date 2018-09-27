@@ -49,8 +49,8 @@ import javax.xml.bind.annotation.XmlType;
  * </ul>
  * </li>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.msgpart.CashAccountType2#mmCode
  * CashAccountType2.mmCode}</li>
@@ -230,7 +230,7 @@ public class CashAccountType2 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CashAccountType2.mmCode, com.tools20022.repository.msgpart.CashAccountType2.mmProprietary));
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.CashAccountType2.mmCode, com.tools20022.repository.msgpart.CashAccountType2.mmProprietary));
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
 				registrationStatus = MMRegistrationStatus.OBSOLETE;
 				removalDate = ((Supplier<Date>) (() -> {

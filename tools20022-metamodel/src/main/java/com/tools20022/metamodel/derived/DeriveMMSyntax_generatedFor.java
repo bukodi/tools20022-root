@@ -36,7 +36,7 @@ public class DeriveMMSyntax_generatedFor implements Function<MMSyntax, List<MMMe
 	public List<MMMessageSet> apply(MMSyntax mmBean) {
 		List<MMMessageSet> ret = new ArrayList<>();
 		for( MMEncoding enc : mmBean.getPossibleEncodings() ) {
-			ret.addAll(enc.getMessageSet());
+			ret.addAll(enc.getMessageSets());
 		}
 		return ret;
 	}

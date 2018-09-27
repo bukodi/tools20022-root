@@ -51,15 +51,15 @@ import javax.xml.bind.annotation.XmlValue;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.datatype.IBAN2007Identifier#IBAN
  * IBAN2007Identifier.IBAN}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"AT611904300234573201"</li>
  * </ul>
@@ -123,8 +123,8 @@ public class IBAN2007Identifier {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("AT611904300234573201");
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(IBAN2007Identifier.IBAN));
+				examples = Arrays.asList("AT611904300234573201");
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(IBAN2007Identifier.IBAN));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "IBAN2007Identifier";
 				definition = "An identifier used internationally by financial institutions to uniquely identify the account of a customer at a financial institution, as described in the latest edition of the international standard ISO 13616:2007 - \"Banking and related financial services - International Bank Account Number (IBAN)\".";

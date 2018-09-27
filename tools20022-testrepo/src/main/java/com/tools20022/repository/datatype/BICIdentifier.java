@@ -51,15 +51,15 @@ import javax.xml.bind.annotation.XmlValue;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.datatype.BICIdentifier#BIC
  * BICIdentifier.BIC}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"CHASUS33"</li>
  * </ul>
@@ -125,8 +125,8 @@ public class BICIdentifier {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("CHASUS33");
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(BICIdentifier.BIC));
+				examples = Arrays.asList("CHASUS33");
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(BICIdentifier.BIC));
 				registrationStatus = MMRegistrationStatus.OBSOLETE;
 				removalDate = ((Supplier<Date>) (() -> {
 					try {

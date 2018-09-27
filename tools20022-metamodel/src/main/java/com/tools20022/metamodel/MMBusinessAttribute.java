@@ -70,14 +70,14 @@ public class MMBusinessAttribute<T, V> implements RuntimePropertyAware<T, V>, MM
 	protected Supplier<MMDataType> simpleType_lazy;
 	protected Supplier<MMBusinessComponent> complexType_lazy;
 	protected boolean isDerived;
-	protected Supplier<List<MMMessageElement>> derivation_lazy;
+	protected Supplier<List<MMMessageElement>> derivations_lazy;
 	protected Supplier<MMBusinessComponent> elementContext_lazy;
 	protected String name;
 	protected String definition;
-	protected Supplier<List<MMSemanticMarkup>> semanticMarkup_lazy;
-	protected Supplier<List<MMDoclet>> doclet_lazy;
-	protected List<String> example;
-	protected Supplier<List<MMConstraint>> constraint_lazy;
+	protected Supplier<List<MMSemanticMarkup>> semanticMarkups_lazy;
+	protected Supplier<List<MMDoclet>> doclets_lazy;
+	protected List<String> examples;
+	protected Supplier<List<MMConstraint>> constraints_lazy;
 	protected MMRegistrationStatus registrationStatus;
 	protected Date removalDate;
 	protected Supplier<List<MMModelEntity>> nextVersions_lazy;
@@ -122,8 +122,8 @@ public class MMBusinessAttribute<T, V> implements RuntimePropertyAware<T, V>, MM
 	}
 
 	@Override
-	public List<MMMessageElement> getDerivation() {
-		return derivation_lazy == null ? Collections.emptyList() : derivation_lazy.get();
+	public List<MMMessageElement> getDerivations() {
+		return derivations_lazy == null ? Collections.emptyList() : derivations_lazy.get();
 	}
 
 	@Derived
@@ -154,23 +154,23 @@ public class MMBusinessAttribute<T, V> implements RuntimePropertyAware<T, V>, MM
 	}
 
 	@Override
-	public List<MMSemanticMarkup> getSemanticMarkup() {
-		return semanticMarkup_lazy == null ? Collections.emptyList() : semanticMarkup_lazy.get();
+	public List<MMSemanticMarkup> getSemanticMarkups() {
+		return semanticMarkups_lazy == null ? Collections.emptyList() : semanticMarkups_lazy.get();
 	}
 
 	@Override
-	public List<MMDoclet> getDoclet() {
-		return doclet_lazy == null ? Collections.emptyList() : doclet_lazy.get();
+	public List<MMDoclet> getDoclets() {
+		return doclets_lazy == null ? Collections.emptyList() : doclets_lazy.get();
 	}
 
 	@Override
-	public List<String> getExample() {
-		return example == null ? Collections.emptyList() : example;
+	public List<String> getExamples() {
+		return examples == null ? Collections.emptyList() : examples;
 	}
 
 	@Override
-	public List<MMConstraint> getConstraint() {
-		return constraint_lazy == null ? Collections.emptyList() : constraint_lazy.get();
+	public List<MMConstraint> getConstraints() {
+		return constraints_lazy == null ? Collections.emptyList() : constraints_lazy.get();
 	}
 
 	@Override

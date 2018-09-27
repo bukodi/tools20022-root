@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElement
- * messageElement} =
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.msgpart.PostalAddress6#mmAddressType
@@ -630,7 +630,7 @@ public class PostalAddress6 {
 	final static public MMMessageComponent mmObject() {
 		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
 			{
-				messageElement_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PostalAddress6.mmAddressType, com.tools20022.repository.msgpart.PostalAddress6.mmDepartment,
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PostalAddress6.mmAddressType, com.tools20022.repository.msgpart.PostalAddress6.mmDepartment,
 						com.tools20022.repository.msgpart.PostalAddress6.mmSubDepartment, com.tools20022.repository.msgpart.PostalAddress6.mmStreetName, com.tools20022.repository.msgpart.PostalAddress6.mmBuildingNumber,
 						com.tools20022.repository.msgpart.PostalAddress6.mmPostCode, com.tools20022.repository.msgpart.PostalAddress6.mmTownName, com.tools20022.repository.msgpart.PostalAddress6.mmCountrySubDivision,
 						com.tools20022.repository.msgpart.PostalAddress6.mmCountry, com.tools20022.repository.msgpart.PostalAddress6.mmAddressLine));

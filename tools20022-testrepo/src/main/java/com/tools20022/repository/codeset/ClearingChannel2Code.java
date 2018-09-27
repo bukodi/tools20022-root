@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
  * {@linkplain com.tools20022.repository.codeset.ClearingChannelCode
  * ClearingChannelCode}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCode code} =
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
  * {@linkplain com.tools20022.repository.codeset.ClearingChannel2Code#RTGS_RealTimeGrossSettlementSystem
@@ -60,8 +60,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"RTGS"</li>
  * </ul>
@@ -187,12 +187,12 @@ public class ClearingChannel2Code extends MMCode {
 		mmObject_lazy.compareAndSet(null, new MMCodeSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("RTGS");
+				examples = Arrays.asList("RTGS");
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ClearingChannel2Code";
 				definition = "Specifies the clearing channel for the routing of the transaction, as part of the payment type identification.";
 				trace_lazy = LazyReference.create(() -> ClearingChannelCode.mmObject());
-				code_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ClearingChannel2Code.RTGS_RealTimeGrossSettlementSystem,
+				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ClearingChannel2Code.RTGS_RealTimeGrossSettlementSystem,
 						com.tools20022.repository.codeset.ClearingChannel2Code.RTNS_RealTimeNetSettlementSystem, com.tools20022.repository.codeset.ClearingChannel2Code.MPNS_MassPaymentNetSystem,
 						com.tools20022.repository.codeset.ClearingChannel2Code.BOOK_BookTransfer));
 			}

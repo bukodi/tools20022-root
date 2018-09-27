@@ -48,15 +48,15 @@ import javax.xml.bind.annotation.XmlValue;
  * dataDictionary} =
  * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
  * GeneratedRepository.dataDict}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraint
- * constraint} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
+ * constraints} =
  * <ul>
  * <li>{@linkplain com.tools20022.repository.datatype.AnyBICIdentifier#AnyBIC
  * AnyBICIdentifier.AnyBIC}</li>
  * </ul>
  * </li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExample
- * example} =
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getExamples
+ * examples} =
  * <ul>
  * <li>"CHASUS33"</li>
  * </ul>
@@ -122,8 +122,8 @@ public class AnyBICIdentifier {
 		mmObject_lazy.compareAndSet(null, new MMIdentifierSet() {
 			{
 				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
-				example = Arrays.asList("CHASUS33");
-				constraint_lazy = LazyReference.create(() -> Arrays.asList(AnyBICIdentifier.AnyBIC));
+				examples = Arrays.asList("CHASUS33");
+				constraints_lazy = LazyReference.create(() -> Arrays.asList(AnyBICIdentifier.AnyBIC));
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "AnyBICIdentifier";
 				definition = "Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362 \"Banking - Banking telecommunication messages - Business identifier code (BIC)\".";
