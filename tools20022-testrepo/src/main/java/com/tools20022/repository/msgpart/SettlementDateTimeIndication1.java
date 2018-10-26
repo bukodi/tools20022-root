@@ -59,9 +59,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "SettlementDateTimeIndication1"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Information on the occurred settlement time(s) of the payment transaction."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -93,11 +90,6 @@ public class SettlementDateTimeIndication1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DebitDateTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Date and time at which a payment has been debited at the transaction administrator. In the case of TARGET, the date and time at which the payment has been debited at the central bank, expressed in Central European Time (CET)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<SettlementDateTimeIndication1, Optional<ISODateTime>> mmDebitDateTime = new MMMessageAttribute<SettlementDateTimeIndication1, Optional<ISODateTime>>() {
@@ -147,11 +139,6 @@ public class SettlementDateTimeIndication1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditDateTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Date and time at which a payment has been credited at the transaction administrator. In the case of TARGET, the date and time at which the payment has been credited at the receiving central bank, expressed in Central European Time (CET)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<SettlementDateTimeIndication1, Optional<ISODateTime>> mmCreditDateTime = new MMMessageAttribute<SettlementDateTimeIndication1, Optional<ISODateTime>>() {

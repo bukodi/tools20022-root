@@ -84,10 +84,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "PostalAddress6"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Information that locates and identifies a specific address, as defined by postal services."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -120,9 +116,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "AddressType"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Identifies the nature of the postal address."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<AddressType2Code>> mmAddressType = new MMMessageAttribute<PostalAddress6, Optional<AddressType2Code>>() {
@@ -172,10 +165,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Department"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identification of a division of a large organisation or building."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max70Text>> mmDepartment = new MMMessageAttribute<PostalAddress6, Optional<Max70Text>>() {
@@ -225,10 +214,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SubDepartment"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identification of a sub-division of a large organisation or building."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max70Text>> mmSubDepartment = new MMMessageAttribute<PostalAddress6, Optional<Max70Text>>() {
@@ -278,9 +263,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "StreetName"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Name of a street or thoroughfare."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max70Text>> mmStreetName = new MMMessageAttribute<PostalAddress6, Optional<Max70Text>>() {
@@ -330,10 +312,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "BuildingNumber"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Number that identifies the position of a building on a street."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max16Text>> mmBuildingNumber = new MMMessageAttribute<PostalAddress6, Optional<Max16Text>>() {
@@ -383,11 +361,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PostCode"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max16Text>> mmPostCode = new MMMessageAttribute<PostalAddress6, Optional<Max16Text>>() {
@@ -437,11 +410,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "TownName"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Name of a built-up area, with defined boundaries, and a local government."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max35Text>> mmTownName = new MMMessageAttribute<PostalAddress6, Optional<Max35Text>>() {
@@ -491,10 +459,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CountrySubDivision"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identifies a subdivision of a country such as state, region, county."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<Max35Text>> mmCountrySubDivision = new MMMessageAttribute<PostalAddress6, Optional<Max35Text>>() {
@@ -544,9 +508,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Country"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Nation with its own government."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, Optional<CountryCode>> mmCountry = new MMMessageAttribute<PostalAddress6, Optional<CountryCode>>() {
@@ -596,11 +557,6 @@ public class PostalAddress6 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "AddressLine"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Information that locates and identifies a specific address, as defined by postal services, presented in free format text."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PostalAddress6, List<Max70Text>> mmAddressLine = new MMMessageAttribute<PostalAddress6, List<Max70Text>>() {

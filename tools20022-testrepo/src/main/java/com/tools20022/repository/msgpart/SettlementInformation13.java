@@ -113,10 +113,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "SettlementInformation13"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Set of elements used to provide information on the settlement of the instruction."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -150,10 +146,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementMethod"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Method used to settle the (batch of) payment instructions."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<SettlementInformation13, SettlementMethod1Code> mmSettlementMethod = new MMMessageAttribute<SettlementInformation13, SettlementMethod1Code>() {
@@ -202,11 +194,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "A specific purpose account used to post debit and credit entries as a result of the transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>> mmSettlementAccount = new MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>>() {
@@ -257,11 +244,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ClearingSystem"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<ClearingSystemIdentification3Choice>> mmClearingSystem = new MMMessageAssociationEnd<SettlementInformation13, Optional<ClearingSystemIdentification3Choice>>() {
@@ -312,11 +294,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructingReimbursementAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent through which the instructing agent will reimburse the instructed agent.\n\nUsage: If InstructingAgent and InstructedAgent have the same reimbursement agent, then only InstructingReimbursementAgent must be used."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructingReimbursementAgent = new MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -366,11 +343,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructingReimbursementAgentAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the instructing reimbursement agent account at its servicing agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>> mmInstructingReimbursementAgentAccount = new MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>>() {
@@ -421,11 +393,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedReimbursementAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent at which the instructed agent will be reimbursed.\nUsage: If InstructedReimbursementAgent contains a branch of the InstructedAgent, then the party in InstructedAgent will claim reimbursement from that branch/will be paid by that branch.\nUsage: If InstructingAgent and InstructedAgent have the same reimbursement agent, then only InstructingReimbursementAgent must be used."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructedReimbursementAgent = new MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -475,11 +442,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedReimbursementAgentAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the instructed reimbursement agent account at its servicing agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>> mmInstructedReimbursementAgentAccount = new MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>>() {
@@ -530,11 +492,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ThirdReimbursementAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent at which the instructed agent will be reimbursed.\nUsage: If ThirdReimbursementAgent contains a branch of the InstructedAgent, then the party in InstructedAgent will claim reimbursement from that branch/will be paid by that branch."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>> mmThirdReimbursementAgent = new MMMessageAssociationEnd<SettlementInformation13, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -584,11 +541,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ThirdReimbursementAgentAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the third reimbursement agent account at its servicing agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>> mmThirdReimbursementAgentAccount = new MMMessageAssociationEnd<SettlementInformation13, Optional<CashAccount16>>() {
@@ -634,11 +586,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ThirdReimbursementAgentRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If ThirdReimbursementAgent is present, then InstructingReimbursementAgent and InstructedReimbursementAgent must both be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> ThirdReimbursementAgentRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
@@ -674,11 +621,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementMethodAgentRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If SettlementMethod is equal to INDA or INGA, then ReimbursementAgent(s) and ClearingSystem are not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> SettlementMethodAgentRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
@@ -714,11 +656,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementMethodCoverRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If SettlementMethod is equal to COVE, then SettlementAccount and ClearingSystem are not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> SettlementMethodCoverRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
@@ -754,11 +691,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementMethodCoverAgentRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If SettlementMethod is equal to COVE, then InstructedReimbursementAgent or InstructingReimbursementAgent must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> SettlementMethodCoverAgentRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
@@ -794,11 +726,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementMethodClearingRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If SettlementMethod is equal to CLRG, then SettlementAccount and ReimbursementAgent(s) are not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> SettlementMethodClearingRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
@@ -834,11 +761,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructingReimbursementAgentAccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If InstructingReimbursementAgentAccount is present, then InstructingReimbursementAgent must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> InstructingReimbursementAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
@@ -874,11 +796,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedReimbursementAgentAccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If InstructedReimbursementAgentAccount is present, then InstructedReimbursementAgent must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> InstructedReimbursementAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {
@@ -914,11 +831,6 @@ public class SettlementInformation13 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ThirdReimbursementAgentAccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If ThirdReimbursementAgentAccount is present, then ThirdReimbursementAgent must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13> ThirdReimbursementAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.SettlementInformation13>() {

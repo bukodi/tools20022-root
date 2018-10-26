@@ -45,9 +45,6 @@ import javax.xml.bind.annotation.XmlValue;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "Max15NumericText"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies a numeric string with a maximum length of 15 digits."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)

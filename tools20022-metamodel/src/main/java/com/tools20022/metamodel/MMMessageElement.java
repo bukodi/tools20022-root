@@ -98,27 +98,27 @@ public interface MMMessageElement extends MMMessageConstruct, MMMessageConcept {
 	 * the trace of a MessageElement to the BusinessComponent from which it is
 	 * derived
 	 * 
-	 * @see MMBusinessComponent#getDerivationElement()
+	 * @see MMBusinessComponent#getDerivationElements()
 	 */
-	@Opposite(bean = MMBusinessComponent.class, attribute = "derivationElement")
+	@Opposite(bean = MMBusinessComponent.class, attribute = "derivationElements")
 	public Optional<MMBusinessComponent> getBusinessComponentTrace();
 
 	/**
 	 * The trace of a MessageElement to the BusinessElement from which the
 	 * MessageElement is derived
 	 * 
-	 * @see MMBusinessElement#getDerivation()
+	 * @see MMBusinessElement#getDerivations()
 	 */
-	@Opposite(bean = MMBusinessElement.class, attribute = "derivation")
+	@Opposite(bean = MMBusinessElement.class, attribute = "derivations")
 	public Optional<MMBusinessElement> getBusinessElementTrace();
 
 	/**
 	 * the MessageComponent that describes the context within which the
 	 * MessageElement is defined
 	 * 
-	 * @see MMMessageElementContainer#getMessageElement()
+	 * @see MMMessageElementContainer#getMessageElements()
 	 */
-	@Opposite(bean = MMMessageElementContainer.class, attribute = "messageElement")
+	@Opposite(bean = MMMessageElementContainer.class, attribute = "messageElements")
 	@Container
 	public MMMessageElementContainer getComponentContext();
 

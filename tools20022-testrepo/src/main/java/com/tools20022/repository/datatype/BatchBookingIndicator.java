@@ -53,10 +53,6 @@ import javax.xml.bind.annotation.XmlValue;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "BatchBookingIndicator"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Identifies whether the sending party requests a single debit or credit entry per individual transaction or a batch entry for the sum of the amounts of all transactions."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)

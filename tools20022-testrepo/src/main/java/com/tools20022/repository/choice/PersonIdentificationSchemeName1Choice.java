@@ -60,9 +60,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "PersonIdentificationSchemeName1Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Sets of elements to identify a name of the identification scheme."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -95,11 +92,6 @@ public class PersonIdentificationSchemeName1Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Name of the identification scheme, in a coded form as published in an external list."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PersonIdentificationSchemeName1Choice, ExternalPersonIdentification1Code> mmCode = new MMMessageAttribute<PersonIdentificationSchemeName1Choice, ExternalPersonIdentification1Code>() {
@@ -149,9 +141,6 @@ public class PersonIdentificationSchemeName1Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Name of the identification scheme, in a free text form."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<PersonIdentificationSchemeName1Choice, Max35Text> mmProprietary = new MMMessageAttribute<PersonIdentificationSchemeName1Choice, Max35Text>() {

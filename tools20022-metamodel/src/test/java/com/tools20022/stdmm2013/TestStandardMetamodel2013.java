@@ -48,6 +48,22 @@ public class TestStandardMetamodel2013 {
 	}
 	
 	@Test
+	public void groupTypes() throws Exception {
+		for( MetamodelType<? extends MMModelEntity> mmType : metamodel.getAllTypes() ) {
+			for( MetamodelAttribute<? extends MMModelEntity, ?> mmAttr : mmType.getDeclaredAttributes() ) {
+				if( mmAttr.getReferencedType() == null )
+					continue;
+				if( mmAttr.isContainer() )
+					continue;
+				if( mmAttr.isDerived() )
+					continue;
+
+				System.out.println( mmAttr.getDeclaringType().getName() + "." + mmAttr.getName() + " : " + mmAttr.getReferencedType().getName()) ;
+			}
+		}
+	}
+	
+	@Test
 	public void testPathsFromMMMesageDefinition() {
 		
 		Consumer<ArrayList<MetamodelAttribute<?, ?>>> endOfPathHandler = path-> {

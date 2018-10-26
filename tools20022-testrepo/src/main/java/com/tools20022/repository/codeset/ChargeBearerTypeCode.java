@@ -76,10 +76,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ChargeBearerTypeCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies which party(ies) will pay charges due for processing of the instruction."
- * </li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -102,9 +98,6 @@ public class ChargeBearerTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "BorneByDebtor"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "All transaction charges are to be borne by the debtor."</li>
 	 * </ul>
 	 */
 	public static final ChargeBearerTypeCode DEBT_BorneByDebtor = new ChargeBearerTypeCode() {
@@ -132,9 +125,6 @@ public class ChargeBearerTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "BorneByCreditor"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "All transaction charges are to be borne by the creditor."</li>
 	 * </ul>
 	 */
 	public static final ChargeBearerTypeCode CRED_BorneByCreditor = new ChargeBearerTypeCode() {
@@ -167,11 +157,6 @@ public class ChargeBearerTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Shared"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "In a credit transfer context, means that transaction charges on the sender side are to be borne by the debtor, transaction charges on the receiver side are to be borne by the creditor. In a direct debit context, means that transaction charges on the sender side are to be borne by the creditor, transaction charges on the receiver side are to be borne by the debtor."
-	 * </li>
 	 * </ul>
 	 */
 	public static final ChargeBearerTypeCode SHAR_Shared = new ChargeBearerTypeCode() {
@@ -200,11 +185,6 @@ public class ChargeBearerTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "FollowingServiceLevel"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Charges are to be applied following the rules agreed in the service level and/or scheme."
-	 * </li>
 	 * </ul>
 	 */
 	public static final ChargeBearerTypeCode SLEV_FollowingServiceLevel = new ChargeBearerTypeCode() {

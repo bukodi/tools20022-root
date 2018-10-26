@@ -89,10 +89,10 @@ public class MMSyntax implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * the scheme in which a syntax is encoded
 	 * 
-	 * @see MMMessageSet#getGeneratedSyntax()
+	 * @see MMMessageSet#getGeneratedSyntaxes()
 	 */
 	@Derived
-	@Opposite(bean = MMMessageSet.class, attribute = "generatedSyntax")
+	@Opposite(bean = MMMessageSet.class, attribute = "generatedSyntaxes")
 	@EMFName("generatedFor")
 	public List<MMMessageSet> getGeneratedFors() {
 		return (new DeriveMMSyntax_generatedFor()).apply(this);

@@ -70,10 +70,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "DocumentAdjustment1"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Set of elements used to provide information on the amount and reason of the document adjustment."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -106,9 +102,6 @@ public class DocumentAdjustment1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Amount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Amount of money of the document adjustment."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<DocumentAdjustment1, ActiveOrHistoricCurrencyAndAmount> mmAmount = new MMMessageAttribute<DocumentAdjustment1, ActiveOrHistoricCurrencyAndAmount>() {
@@ -159,11 +152,6 @@ public class DocumentAdjustment1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditDebitIndicator"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Specifies whether the adjustment must be substracted or added to the total amount."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<DocumentAdjustment1, Optional<CreditDebitCode>> mmCreditDebitIndicator = new MMMessageAttribute<DocumentAdjustment1, Optional<CreditDebitCode>>() {
@@ -213,9 +201,6 @@ public class DocumentAdjustment1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Reason"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Specifies the reason for the adjustment."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<DocumentAdjustment1, Optional<Max4Text>> mmReason = new MMMessageAttribute<DocumentAdjustment1, Optional<Max4Text>>() {
@@ -265,9 +250,6 @@ public class DocumentAdjustment1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "AdditionalInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Provides further details on the document adjustment."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<DocumentAdjustment1, Optional<Max140Text>> mmAdditionalInformation = new MMMessageAttribute<DocumentAdjustment1, Optional<Max140Text>>() {

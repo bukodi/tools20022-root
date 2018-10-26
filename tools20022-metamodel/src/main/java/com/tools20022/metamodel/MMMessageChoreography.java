@@ -79,9 +79,9 @@ public class MMMessageChoreography implements MMTopLevelCatalogueEntry {
 	 * the BusinessTransactionTrace from the MessageChoreography to the
 	 * BusinessTransaction
 	 * 
-	 * @see MMBusinessTransaction#getTrace()
+	 * @see MMBusinessTransaction#getTraces()
 	 */
-	@Opposite(bean = MMBusinessTransaction.class, attribute = "trace")
+	@Opposite(bean = MMBusinessTransaction.class, attribute = "traces")
 	public Optional<MMBusinessTransaction> getBusinessTransactionTrace() {
 		return businessTransactionTrace_lazy == null ? Optional.empty() : Optional.of(businessTransactionTrace_lazy.get());
 	}
@@ -89,9 +89,9 @@ public class MMMessageChoreography implements MMTopLevelCatalogueEntry {
 	/**
 	 * The MessageDefinition that is used in a MessageChoreography.
 	 * 
-	 * @see MMMessageDefinition#getChoreography()
+	 * @see MMMessageDefinition#getChoreographies()
 	 */
-	@Opposite(bean = MMMessageDefinition.class, attribute = "choreography")
+	@Opposite(bean = MMMessageDefinition.class, attribute = "choreographies")
 	@EMFName("messageDefinition")
 	public List<MMMessageDefinition> getMessageDefinitions() {
 		return messageDefinitions_lazy == null ? Collections.emptyList() : messageDefinitions_lazy.get();

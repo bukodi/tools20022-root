@@ -62,8 +62,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "CreditorReferenceType2"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Specifies the type of creditor reference."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -95,9 +93,6 @@ public class CreditorReferenceType2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CodeOrProprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Coded or proprietary format creditor reference type."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditorReferenceType2, CreditorReferenceType1Choice> mmCodeOrProprietary = new MMMessageAssociationEnd<CreditorReferenceType2, CreditorReferenceType1Choice>() {
@@ -148,9 +143,6 @@ public class CreditorReferenceType2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Issuer"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Entity that assigns the credit reference type."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditorReferenceType2, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<CreditorReferenceType2, Optional<Max35Text>>() {

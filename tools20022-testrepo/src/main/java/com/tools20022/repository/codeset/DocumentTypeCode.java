@@ -125,8 +125,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "DocumentTypeCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Specifies a type of financial or commercial document."</li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -150,11 +148,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "MeteredServiceInvoice"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is an invoice claiming payment for the supply of metered services, for example gas or electricity supplied to a fixed meter."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode MSIN_MeteredServiceInvoice = new DocumentTypeCode() {
@@ -183,11 +176,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditNoteRelatedToFinancialAdjustment"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a credit note for the final amount settled for a commercial transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode CNFA_CreditNoteRelatedToFinancialAdjustment = new DocumentTypeCode() {
@@ -216,11 +204,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DebitNoteRelatedToFinancialAdjustment"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a debit note for the final amount settled for a commercial transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode DNFA_DebitNoteRelatedToFinancialAdjustment = new DocumentTypeCode() {
@@ -248,9 +231,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CommercialInvoice"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document is an invoice."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode CINV_CommercialInvoice = new DocumentTypeCode() {
@@ -278,9 +258,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditNote"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document is a credit note."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode CREN_CreditNote = new DocumentTypeCode() {
@@ -308,9 +285,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DebitNote"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document is a debit note."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode DEBN_DebitNote = new DocumentTypeCode() {
@@ -339,11 +313,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "HireInvoice"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is an invoice for the hiring of human resources or renting goods or equipment."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode HIRI_HireInvoice = new DocumentTypeCode() {
@@ -371,9 +340,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SelfBilledInvoice"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document is an invoice issued by the debtor."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode SBIN_SelfBilledInvoice = new DocumentTypeCode() {
@@ -402,11 +368,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RemittanceAdviceMessage"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a remittance advice sent separately from the current transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode RADM_RemittanceAdviceMessage = new DocumentTypeCode() {
@@ -435,11 +396,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RelatedPaymentInstruction"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a linked payment instruction to which the current payment instruction is related, eg, in a cover scenario."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode RPIN_RelatedPaymentInstruction = new DocumentTypeCode() {
@@ -468,11 +424,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CommercialContract"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is an agreement between the parties, stipulating the terms and conditions of the delivery of goods or services."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode CMCN_CommercialContract = new DocumentTypeCode() {
@@ -501,11 +452,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ForeignExchangeDealReference"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a pre-agreed or pre-arranged foreign exchange transaction to which the payment transaction refers."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode FXDR_ForeignExchangeDealReference = new DocumentTypeCode() {
@@ -534,11 +480,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "StatementOfAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a statement of the transactions posted to the debtor's account at the supplier."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode SOAC_StatementOfAccount = new DocumentTypeCode() {
@@ -566,9 +507,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DispatchAdvice"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document is a dispatch advice."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode DISP_DispatchAdvice = new DocumentTypeCode() {
@@ -596,9 +534,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PurchaseOrder"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document is a purchase order."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode PUOR_PurchaseOrder = new DocumentTypeCode() {
@@ -627,11 +562,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "StructuredCommunicationReference"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a structured communication reference provided by the creditor to identify the referred transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode SCOR_StructuredCommunicationReference = new DocumentTypeCode() {
@@ -659,9 +589,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "BillOfLading"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document is a shipping notice."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode BOLD_BillOfLading = new DocumentTypeCode() {
@@ -689,9 +616,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Voucher"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document is an electronic payment document."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode VCHR_Voucher = new DocumentTypeCode() {
@@ -719,10 +643,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "AccountReceivableOpenItem"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a payment that applies to a specific source document."</li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode AROI_AccountReceivableOpenItem = new DocumentTypeCode() {
@@ -751,11 +671,6 @@ public class DocumentTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "TradeServicesUtilityTransaction"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Document is a transaction identifier as assigned by the Trade Services Utility."
-	 * </li>
 	 * </ul>
 	 */
 	public static final DocumentTypeCode TSUT_TradeServicesUtilityTransaction = new DocumentTypeCode() {

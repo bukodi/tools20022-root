@@ -69,9 +69,9 @@ public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * a BroadCastList to which this Address belongs
 	 * 
-	 * @see MMBroadcastList#getAddress()
+	 * @see MMBroadcastList#getAddresses()
 	 */
-	@Opposite(bean = MMBroadcastList.class, attribute = "address")
+	@Opposite(bean = MMBroadcastList.class, attribute = "addresses")
 	@EMFName("broadCastList")
 	public List<MMBroadcastList> getBroadCastLists() {
 		return broadCastLists_lazy == null ? Collections.emptyList() : broadCastLists_lazy.get();
@@ -80,9 +80,9 @@ public class MMAddress implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * specifies the MessagingEndpoint for the Address
 	 * 
-	 * @see MMMessagingEndpoint#getLocation()
+	 * @see MMMessagingEndpoint#getLocations()
 	 */
-	@Opposite(bean = MMMessagingEndpoint.class, attribute = "location")
+	@Opposite(bean = MMMessagingEndpoint.class, attribute = "locations")
 	public MMMessagingEndpoint getEndpoint() {
 		return endpoint_lazy.get();
 	}

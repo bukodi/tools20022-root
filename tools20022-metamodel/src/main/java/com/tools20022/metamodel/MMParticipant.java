@@ -86,9 +86,9 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	/**
 	 * the BusinessTransaction in which the Participant plays a role
 	 * 
-	 * @see MMBusinessTransaction#getParticipant()
+	 * @see MMBusinessTransaction#getParticipants()
 	 */
-	@Opposite(bean = MMBusinessTransaction.class, attribute = "participant")
+	@Opposite(bean = MMBusinessTransaction.class, attribute = "participants")
 	@Container
 	public MMBusinessTransaction getBusinessTransaction() {
 		return businessTransaction_lazy.get();
@@ -118,9 +118,9 @@ public class MMParticipant implements MMRepositoryConcept, MMMultiplicityEntity 
 	/**
 	 * the BusinessRoleTrace that traces the Participant to its BusinessRole
 	 * 
-	 * @see MMBusinessRole#getBusinessRoleTrace()
+	 * @see MMBusinessRole#getBusinessRoleTraces()
 	 */
-	@Opposite(bean = MMBusinessRole.class, attribute = "businessRoleTrace")
+	@Opposite(bean = MMBusinessRole.class, attribute = "businessRoleTraces")
 	public MMBusinessRole getBusinessRoleTrace() {
 		return businessRoleTrace_lazy.get();
 	}

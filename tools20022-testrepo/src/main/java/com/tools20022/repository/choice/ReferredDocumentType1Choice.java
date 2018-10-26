@@ -60,9 +60,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ReferredDocumentType1Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies the type of the document referred in the remittance information."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -95,9 +92,6 @@ public class ReferredDocumentType1Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Document type in a coded form."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ReferredDocumentType1Choice, DocumentType5Code> mmCode = new MMMessageAttribute<ReferredDocumentType1Choice, DocumentType5Code>() {
@@ -147,10 +141,6 @@ public class ReferredDocumentType1Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Proprietary identification of the type of the remittance document."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ReferredDocumentType1Choice, Max35Text> mmProprietary = new MMMessageAttribute<ReferredDocumentType1Choice, Max35Text>() {

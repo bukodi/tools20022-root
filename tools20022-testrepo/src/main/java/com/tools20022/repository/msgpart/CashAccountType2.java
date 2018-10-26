@@ -71,8 +71,6 @@ import javax.xml.bind.annotation.XmlType;
  * removalDate} = September 9, 2016</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "CashAccountType2"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Nature or use of the account."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -105,9 +103,6 @@ public class CashAccountType2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account type, in a coded form."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CashAccountType2, CashAccountType4Code> mmCode = new MMMessageAttribute<CashAccountType2, CashAccountType4Code>() {
@@ -157,9 +152,6 @@ public class CashAccountType2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Nature or use of the account in a proprietary form."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CashAccountType2, Max35Text> mmProprietary = new MMMessageAttribute<CashAccountType2, Max35Text>() {
@@ -211,10 +203,6 @@ public class CashAccountType2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CodeOrProprietaryRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Either Code or Proprietary must be present, but not both."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMXor CodeOrProprietaryRule = new MMXor() {

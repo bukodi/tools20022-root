@@ -64,9 +64,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "RegulatoryReporting3"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Information needed due to regulatory and/or statutory requirements."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -99,11 +96,6 @@ public class RegulatoryReporting3 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DebitCreditReportingIndicator"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<RegulatoryReporting3, Optional<RegulatoryReportingType1Code>> mmDebitCreditReportingIndicator = new MMMessageAttribute<RegulatoryReporting3, Optional<RegulatoryReportingType1Code>>() {
@@ -153,9 +145,6 @@ public class RegulatoryReporting3 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Authority"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Entity requiring the regulatory reporting information."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<RegulatoryReporting3, Optional<RegulatoryAuthority2>> mmAuthority = new MMMessageAssociationEnd<RegulatoryReporting3, Optional<RegulatoryAuthority2>>() {
@@ -206,11 +195,6 @@ public class RegulatoryReporting3 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Details"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Set of elements used to provide details on the regulatory reporting information."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<RegulatoryReporting3, List<StructuredRegulatoryReporting3>> mmDetails = new MMMessageAssociationEnd<RegulatoryReporting3, List<StructuredRegulatoryReporting3>>() {

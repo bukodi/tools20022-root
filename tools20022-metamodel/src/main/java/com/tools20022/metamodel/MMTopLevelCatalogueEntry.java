@@ -46,9 +46,9 @@ public interface MMTopLevelCatalogueEntry extends MMRepositoryConcept {
 	 * the BusinessProcessCatalogue that contains all ISO 20022
 	 * TopLevelCatalogueEntries
 	 * 
-	 * @see MMBusinessProcessCatalogue#getTopLevelCatalogueEntry()
+	 * @see MMBusinessProcessCatalogue#getTopLevelCatalogueEntries()
 	 */
-	@Opposite(bean = MMBusinessProcessCatalogue.class, attribute = "topLevelCatalogueEntry")
+	@Opposite(bean = MMBusinessProcessCatalogue.class, attribute = "topLevelCatalogueEntries")
 	@Container
 	public MMBusinessProcessCatalogue getBusinessProcessCatalogue();
 }

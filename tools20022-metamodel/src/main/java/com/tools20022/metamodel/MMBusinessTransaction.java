@@ -126,9 +126,9 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	/**
 	 * the BusinessProcessTrace that is used to trace the BusinessTransaction
 	 * 
-	 * @see MMBusinessProcess#getBusinessProcessTrace()
+	 * @see MMBusinessProcess#getBusinessProcessTraces()
 	 */
-	@Opposite(bean = MMBusinessProcess.class, attribute = "businessProcessTrace")
+	@Opposite(bean = MMBusinessProcess.class, attribute = "businessProcessTraces")
 	public MMBusinessProcess getBusinessProcessTrace() {
 		return businessProcessTrace_lazy.get();
 	}
@@ -162,9 +162,9 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	 * Provides a set of characterstics for a MessageTransportMode to have in
 	 * the context of a single BusinessTransaction
 	 * 
-	 * @see MMMessageTransportMode#getBusinessTransaction()
+	 * @see MMMessageTransportMode#getBusinessTransactions()
 	 */
-	@Opposite(bean = MMMessageTransportMode.class, attribute = "businessTransaction")
+	@Opposite(bean = MMMessageTransportMode.class, attribute = "businessTransactions")
 	public MMMessageTransportMode getMessageTransportMode() {
 		return messageTransportMode_lazy.get();
 	}
@@ -185,9 +185,9 @@ public class MMBusinessTransaction implements MMTopLevelCatalogueEntry {
 	 * assembly of a number of BusinessTransactions that together form a
 	 * BusinessTransaction
 	 * 
-	 * @see MMBusinessTransaction#getSubTransaction()
+	 * @see MMBusinessTransaction#getSubTransactions()
 	 */
-	@Opposite(bean = MMBusinessTransaction.class, attribute = "subTransaction")
+	@Opposite(bean = MMBusinessTransaction.class, attribute = "subTransactions")
 	public Optional<MMBusinessTransaction> getParentTransaction() {
 		return parentTransaction_lazy == null ? Optional.empty() : Optional.of(parentTransaction_lazy.get());
 	}

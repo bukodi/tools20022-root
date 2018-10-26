@@ -102,9 +102,9 @@ public class MMMessageBuildingBlock<T, V> implements RuntimePropertyAware<T, V>,
 	 * the complex content model of a MessageBuildingBlock when it is expressed
 	 * using a MessageComponentType
 	 * 
-	 * @see MMMessageComponentType#getMessageBuildingBlock()
+	 * @see MMMessageComponentType#getMessageBuildingBlocks()
 	 */
-	@Opposite(bean = MMMessageComponentType.class, attribute = "messageBuildingBlock")
+	@Opposite(bean = MMMessageComponentType.class, attribute = "messageBuildingBlocks")
 	public Optional<MMMessageComponentType> getComplexType() {
 		return complexType_lazy == null ? Optional.empty() : Optional.of(complexType_lazy.get());
 	}

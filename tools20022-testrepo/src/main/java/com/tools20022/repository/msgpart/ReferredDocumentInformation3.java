@@ -66,10 +66,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ReferredDocumentInformation3"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Set of elements used to identify the documents referred to in the remittance information."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -101,9 +97,6 @@ public class ReferredDocumentInformation3 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Type"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Specifies the type of referred document."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<ReferredDocumentInformation3, Optional<ReferredDocumentType2>> mmType = new MMMessageAssociationEnd<ReferredDocumentInformation3, Optional<ReferredDocumentType2>>() {
@@ -154,10 +147,6 @@ public class ReferredDocumentInformation3 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Number"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique and unambiguous identification of the referred document."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ReferredDocumentInformation3, Optional<Max35Text>> mmNumber = new MMMessageAttribute<ReferredDocumentInformation3, Optional<Max35Text>>() {
@@ -207,9 +196,6 @@ public class ReferredDocumentInformation3 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RelatedDate"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Date associated with the referred document."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ReferredDocumentInformation3, Optional<ISODate>> mmRelatedDate = new MMMessageAttribute<ReferredDocumentInformation3, Optional<ISODate>>() {

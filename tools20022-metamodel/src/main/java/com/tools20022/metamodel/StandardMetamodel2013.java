@@ -42,4 +42,20 @@ public class StandardMetamodel2013 extends ReflectionBasedMetamodel {
 	public static StandardMetamodel2013 metamodel() {
 		return metamodel;
 	}
+
+	public static String toString(MMModelEntity obj) {
+		if (obj == null)
+			return null;
+		String prettyName = "[" + obj.getClass().getSimpleName() + "]";
+		if (obj instanceof MMRepositoryConcept) {
+			prettyName = ((MMRepositoryConcept) obj).getName() + prettyName;
+		}
+		Class<?> containerClass = obj.getClass().getEnclosingClass();
+		if (containerClass != null) {
+			MMModelEntity containerObj = obj.getContainer();
+			String cotainerPrettyName = StandardMetamodel2013.toString(containerObj);
+			prettyName = cotainerPrettyName + "/" + prettyName;
+		}
+		return prettyName;
+	}
 }

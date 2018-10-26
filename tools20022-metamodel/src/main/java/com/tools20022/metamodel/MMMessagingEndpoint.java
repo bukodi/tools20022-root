@@ -76,9 +76,9 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	/**
 	 * the MessageTransportSystem that owns and uses this MessagingEndpoint
 	 * 
-	 * @see MMMessageTransportSystem#getEndpoint()
+	 * @see MMMessageTransportSystem#getEndpoints()
 	 */
-	@Opposite(bean = MMMessageTransportSystem.class, attribute = "endpoint")
+	@Opposite(bean = MMMessageTransportSystem.class, attribute = "endpoints")
 	@Container
 	public MMMessageTransportSystem getTransportSystem() {
 		return transportSystem_lazy.get();
@@ -87,9 +87,9 @@ public class MMMessagingEndpoint implements MMModelEntity {
 	/**
 	 * the TransportMessage that is received by the receiving MessagingEndpoint
 	 * 
-	 * @see MMTransportMessage#getReceiver()
+	 * @see MMTransportMessage#getReceivers()
 	 */
-	@Opposite(bean = MMTransportMessage.class, attribute = "receiver")
+	@Opposite(bean = MMTransportMessage.class, attribute = "receivers")
 	@EMFName("receivedMessage")
 	public List<MMTransportMessage> getReceivedMessages() {
 		return receivedMessages_lazy == null ? Collections.emptyList() : receivedMessages_lazy.get();

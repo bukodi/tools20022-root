@@ -18,12 +18,16 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+import javax.swing.text.AbstractWriter;
+
 import com.tools20022.core.metamodel.ISODoc.Basis;
+import com.tools20022.core.metamodel.StaticMemembersBuilder.AbstractWrapper;
 import com.tools20022.core.metamodel.StaticMemembersBuilder.AttrWrapper;
 import com.tools20022.core.metamodel.StaticMemembersBuilder.ConstrWrapper;
 import com.tools20022.metamodel.MMModelEntity;
@@ -174,6 +178,16 @@ public class ReflectionBasedMetamodel implements Metamodel {
 		public String toString() {
 			return "[" + getClass().getSimpleName() + "]:" + getName();
 		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if( obj instanceof AbstractWrapper<?>) {
+				return Objects.equals(this,  ((AbstractWrapper) obj).impl() );
+			}
+			return super.equals(obj);
+		}
+		
+		
 	}
 
 	protected final static String getMethodSignature(Method m) {

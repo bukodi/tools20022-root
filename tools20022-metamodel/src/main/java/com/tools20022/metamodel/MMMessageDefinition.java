@@ -134,9 +134,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	/**
 	 * the MessageSet to which the MessageDefinition belongs
 	 * 
-	 * @see MMMessageSet#getMessageDefinition()
+	 * @see MMMessageSet#getMessageDefinitions()
 	 */
-	@Opposite(bean = MMMessageSet.class, attribute = "messageDefinition")
+	@Opposite(bean = MMMessageSet.class, attribute = "messageDefinitions")
 	@EMFName("messageSet")
 	public List<MMMessageSet> getMessageSets() {
 		return messageSets_lazy == null ? Collections.emptyList() : messageSets_lazy.get();
@@ -161,9 +161,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	/**
 	 * The BusinessArea to which this MessageDefinition belongs
 	 * 
-	 * @see MMBusinessArea#getMessageDefinition()
+	 * @see MMBusinessArea#getMessageDefinitions()
 	 */
-	@Opposite(bean = MMBusinessArea.class, attribute = "messageDefinition")
+	@Opposite(bean = MMBusinessArea.class, attribute = "messageDefinitions")
 	@Container
 	public MMBusinessArea getBusinessArea() {
 		return businessArea_lazy.get();
@@ -200,9 +200,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	/**
 	 * the MessageChoreography to which the MessageDefinition belongs
 	 * 
-	 * @see MMMessageChoreography#getMessageDefinition()
+	 * @see MMMessageChoreography#getMessageDefinitions()
 	 */
-	@Opposite(bean = MMMessageChoreography.class, attribute = "messageDefinition")
+	@Opposite(bean = MMMessageChoreography.class, attribute = "messageDefinitions")
 	@EMFName("choreography")
 	public List<MMMessageChoreography> getChoreographies() {
 		return choreographies_lazy == null ? Collections.emptyList() : choreographies_lazy.get();
@@ -212,9 +212,9 @@ public class MMMessageDefinition implements RuntimeInstanceAware, MMRepositoryTy
 	 * all of the MessageTypeTraces from one MessageDefinition that are traced
 	 * to different MessageTransmissions
 	 * 
-	 * @see MMMessageTransmission#getDerivation()
+	 * @see MMMessageTransmission#getDerivations()
 	 */
-	@Opposite(bean = MMMessageTransmission.class, attribute = "derivation")
+	@Opposite(bean = MMMessageTransmission.class, attribute = "derivations")
 	@EMFName("trace")
 	public List<MMMessageTransmission> getTraces() {
 		return traces_lazy == null ? Collections.emptyList() : traces_lazy.get();

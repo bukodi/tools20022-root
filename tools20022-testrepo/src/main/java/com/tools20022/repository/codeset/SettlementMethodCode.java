@@ -75,8 +75,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "SettlementMethodCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Specifies the method used to settle the payment instruction."</li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -100,11 +98,6 @@ public class SettlementMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Settlement is done by the agent instructed to execute a payment instruction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final SettlementMethodCode INDA_InstructedAgent = new SettlementMethodCode() {
@@ -133,11 +126,6 @@ public class SettlementMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructingAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Settlement is done by the agent instructing and forwarding the payment to the next party in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final SettlementMethodCode INGA_InstructingAgent = new SettlementMethodCode() {
@@ -165,9 +153,6 @@ public class SettlementMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CoverMethod"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Settlement is done through a cover payment."</li>
 	 * </ul>
 	 */
 	public static final SettlementMethodCode COVE_CoverMethod = new SettlementMethodCode() {
@@ -195,9 +180,6 @@ public class SettlementMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ClearingSystem"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Settlement is done through a payment clearing system."</li>
 	 * </ul>
 	 */
 	public static final SettlementMethodCode CLRG_ClearingSystem = new SettlementMethodCode() {

@@ -67,9 +67,9 @@ public class MMReceive implements MMModelEntity {
 	/**
 	 * the stimulus handled as part of the Receive
 	 * 
-	 * @see MMMessageTransmission#getReceive()
+	 * @see MMMessageTransmission#getReceives()
 	 */
-	@Opposite(bean = MMMessageTransmission.class, attribute = "receive")
+	@Opposite(bean = MMMessageTransmission.class, attribute = "receives")
 	@Container
 	public MMMessageTransmission getMessageTransmission() {
 		return messageTransmission_lazy.get();

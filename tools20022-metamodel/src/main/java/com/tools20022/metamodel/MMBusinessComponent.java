@@ -120,9 +120,9 @@ public class MMBusinessComponent implements RuntimeInstanceAware, MMTopLevelDict
 	/**
 	 * The BusinessComponent that is specialized by this BusinessComponent.
 	 * 
-	 * @see MMBusinessComponent#getSubType()
+	 * @see MMBusinessComponent#getSubTypes()
 	 */
-	@Opposite(bean = MMBusinessComponent.class, attribute = "subType")
+	@Opposite(bean = MMBusinessComponent.class, attribute = "subTypes")
 	public Optional<MMBusinessComponent> getSuperType() {
 		return superType_lazy == null ? Optional.empty() : Optional.of(superType_lazy.get());
 	}

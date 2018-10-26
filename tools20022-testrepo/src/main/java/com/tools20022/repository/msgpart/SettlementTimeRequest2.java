@@ -66,10 +66,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "SettlementTimeRequest2"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Provides information on the requested settlement time(s) of the payment instruction."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -101,11 +97,6 @@ public class SettlementTimeRequest2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CLSTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Time by which the amount of money must be credited, with confirmation, to the CLS Bank's account at the central bank.\nUsage: Time must be expressed in Central European Time (CET)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmCLSTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
@@ -155,9 +146,6 @@ public class SettlementTimeRequest2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "TillTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Time until when the payment may be settled."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmTillTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
@@ -207,9 +195,6 @@ public class SettlementTimeRequest2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "FromTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Time as from when the payment may be settled."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmFromTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {
@@ -259,10 +244,6 @@ public class SettlementTimeRequest2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RejectTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Time by when the payment must be settled to avoid rejection."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>> mmRejectTime = new MMMessageAttribute<SettlementTimeRequest2, Optional<ISOTime>>() {

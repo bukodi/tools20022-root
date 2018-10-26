@@ -83,9 +83,9 @@ public class MMCode implements MMRepositoryConcept {
 	/**
 	 * Direct reference to the CodeSet owning this Code.
 	 * 
-	 * @see MMCodeSet#getCode()
+	 * @see MMCodeSet#getCodes()
 	 */
-	@Opposite(bean = MMCodeSet.class, attribute = "code")
+	@Opposite(bean = MMCodeSet.class, attribute = "codes")
 	@Container
 	public MMCodeSet getOwner() {
 		return owner_lazy.get();

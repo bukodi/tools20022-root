@@ -63,8 +63,6 @@ import javax.xml.bind.annotation.XmlType;
  * removalDate} = September 9, 2016</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "OrganisationIdentification4"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Unique and unambiguous way to identify an organisation."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -97,11 +95,6 @@ public class OrganisationIdentification4 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "BICOrBEI"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Code allocated to a financial institution or non financial institution by the ISO 9362 Registration Authority as described in ISO 9362 \"Banking - Banking telecommunication messages - Business identifier code (BIC)\"."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<OrganisationIdentification4, Optional<AnyBICIdentifier>> mmBICOrBEI = new MMMessageAttribute<OrganisationIdentification4, Optional<AnyBICIdentifier>>() {
@@ -151,11 +144,6 @@ public class OrganisationIdentification4 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Other"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique identification of an organisation, as assigned by an institution, using an identification scheme."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<OrganisationIdentification4, List<GenericOrganisationIdentification1>> mmOther = new MMMessageAssociationEnd<OrganisationIdentification4, List<GenericOrganisationIdentification1>>() {

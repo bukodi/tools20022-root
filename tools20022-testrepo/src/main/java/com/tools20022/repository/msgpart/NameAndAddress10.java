@@ -58,8 +58,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "NameAndAddress10"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Information that locates and identifies a party."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -91,11 +89,6 @@ public class NameAndAddress10 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Name"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Name by which a party is known and is usually used to identify that identity."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<NameAndAddress10, Max140Text> mmName = new MMMessageAttribute<NameAndAddress10, Max140Text>() {
@@ -146,9 +139,6 @@ public class NameAndAddress10 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Address"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Postal address of a party."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<NameAndAddress10, PostalAddress6> mmAddress = new MMMessageAttribute<NameAndAddress10, PostalAddress6>() {

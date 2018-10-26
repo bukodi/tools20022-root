@@ -63,10 +63,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "InstructionForNextAgent1"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Further information related to the processing of the payment instruction that may need to be acted upon by an other agent. The instruction may relate to a level of service, or may be an instruction that has to be executed by the creditor's agent, or may be information required by the other agent."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -99,11 +95,6 @@ public class InstructionForNextAgent1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Coded information related to the processing of the payment instruction, provided by the initiating party, and intended for the next agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<InstructionForNextAgent1, Optional<Instruction4Code>> mmCode = new MMMessageAttribute<InstructionForNextAgent1, Optional<Instruction4Code>>() {
@@ -153,11 +144,6 @@ public class InstructionForNextAgent1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructionInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Further information complementing the coded instruction or instruction to the next agent that is bilaterally agreed or specific to a user community."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<InstructionForNextAgent1, Optional<Max140Text>> mmInstructionInformation = new MMMessageAttribute<InstructionForNextAgent1, Optional<Max140Text>>() {

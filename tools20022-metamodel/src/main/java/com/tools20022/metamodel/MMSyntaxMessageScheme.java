@@ -71,9 +71,9 @@ public class MMSyntaxMessageScheme implements MMTopLevelCatalogueEntry {
 	 * the MessageDefinitionTrace from the SyntaxMessageScheme to the
 	 * MessageDefinition
 	 * 
-	 * @see MMMessageDefinition#getDerivation()
+	 * @see MMMessageDefinition#getDerivations()
 	 */
-	@Opposite(bean = MMMessageDefinition.class, attribute = "derivation")
+	@Opposite(bean = MMMessageDefinition.class, attribute = "derivations")
 	public Optional<MMMessageDefinition> getMessageDefinitionTrace() {
 		return messageDefinitionTrace_lazy == null ? Optional.empty() : Optional.of(messageDefinitionTrace_lazy.get());
 	}

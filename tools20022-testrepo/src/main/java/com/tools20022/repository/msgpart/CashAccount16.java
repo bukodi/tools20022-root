@@ -67,8 +67,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "CashAccount16"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Set of elements used to identify an account."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -100,11 +98,6 @@ public class CashAccount16 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Identification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique and unambiguous identification for the account between the account owner and the account servicer."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CashAccount16, AccountIdentification4Choice> mmIdentification = new MMMessageAssociationEnd<CashAccount16, AccountIdentification4Choice>() {
@@ -154,9 +147,6 @@ public class CashAccount16 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Type"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Specifies the nature, or use of the account."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CashAccount16, Optional<CashAccountType2>> mmType = new MMMessageAssociationEnd<CashAccount16, Optional<CashAccountType2>>() {
@@ -208,11 +198,6 @@ public class CashAccount16 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Currency"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identification of the currency in which the account is held. \n\nUsage: Currency should only be used in case one and the same account number covers several currencies\nand the initiating party needs to identify which currency needs to be used for settlement on the account."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CashAccount16, Optional<ActiveOrHistoricCurrencyCode>> mmCurrency = new MMMessageAttribute<CashAccount16, Optional<ActiveOrHistoricCurrencyCode>>() {
@@ -262,11 +247,6 @@ public class CashAccount16 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Name"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.\n\nUsage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CashAccount16, Optional<Max70Text>> mmName = new MMMessageAttribute<CashAccount16, Optional<Max70Text>>() {

@@ -96,9 +96,9 @@ public class MMConstraint<T> implements RuntimeValidatorAware<T>, MMRepositoryCo
 	/**
 	 * The owner of the Rule.
 	 * 
-	 * @see MMRepositoryConcept#getConstraint()
+	 * @see MMRepositoryConcept#getConstraints()
 	 */
-	@Opposite(bean = MMRepositoryConcept.class, attribute = "constraint")
+	@Opposite(bean = MMRepositoryConcept.class, attribute = "constraints")
 	@Container
 	public MMRepositoryConcept getOwner() {
 		return owner_lazy.get();

@@ -130,8 +130,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "CashAccountTypeCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Specifies the nature, or  use, of the cash account."</li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -157,9 +155,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CashPayment"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account used for the payment of cash."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode CASH_CashPayment = new CashAccountTypeCode() {
@@ -191,10 +186,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Charges"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Account used for charges if different from the account for payment."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode CHAR_Charges = new CashAccountTypeCode() {
@@ -226,10 +217,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Commission"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Account used for commission if different from the account for payment."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode COMM_Commission = new CashAccountTypeCode() {
@@ -261,10 +248,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Tax"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Account used for taxes if different from the account for payment."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode TAXE_Tax = new CashAccountTypeCode() {
@@ -294,11 +277,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CashIncome"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Account used for payment of income if different from the current cash account."
-	 * </li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode CISH_CashIncome = new CashAccountTypeCode() {
@@ -326,10 +304,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CashTrading"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Account used for trading if different from the current cash account."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode TRAS_CashTrading = new CashAccountTypeCode() {
@@ -359,11 +333,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Settlement"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Account used to post debit and credit entries, as a result of transactions cleared and settled through a specific clearing and settlement system."
-	 * </li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode SACC_Settlement = new CashAccountTypeCode() {
@@ -392,11 +361,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Current"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Account used to post debits and credits when no specific account has been nominated."
-	 * </li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode CACC_Current = new CashAccountTypeCode() {
@@ -424,9 +388,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Savings"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account used for savings."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode SVGS_Savings = new CashAccountTypeCode() {
@@ -454,9 +415,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "OverNightDeposit"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account used for overnight deposits."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode ONDP_OverNightDeposit = new CashAccountTypeCode() {
@@ -484,9 +442,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "MarginalLending"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account used for a marginal lending facility."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode MGLD_MarginalLending = new CashAccountTypeCode() {
@@ -514,9 +469,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "NonResidentExternal"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account used for non-resident external."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode NREX_NonResidentExternal = new CashAccountTypeCode() {
@@ -544,10 +496,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "MoneyMarket"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Account used for money markets if different from the cash account."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode MOMA_MoneyMarket = new CashAccountTypeCode() {
@@ -575,9 +523,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Loan"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account used for loans."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode LOAN_Loan = new CashAccountTypeCode() {
@@ -605,9 +550,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Salary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Accounts used for salary payments."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode SLRY_Salary = new CashAccountTypeCode() {
@@ -635,9 +577,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Overdraft"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account is used for overdrafts."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode ODFT_Overdraft = new CashAccountTypeCode() {
@@ -665,9 +604,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Lending"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account is for the coverage of lending."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode LEND_Lending = new CashAccountTypeCode() {
@@ -695,9 +631,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Collateral"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account is for collateral."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode COLL_Collateral = new CashAccountTypeCode() {
@@ -725,9 +658,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "FinancialSettlement"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account is for financial settlements."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode SETT_FinancialSettlement = new CashAccountTypeCode() {
@@ -755,9 +685,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "MarginReturn"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account is for margin returns."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode MARR_MarginReturn = new CashAccountTypeCode() {
@@ -785,9 +712,6 @@ public class CashAccountTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Segregated"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Account is an segregated account."</li>
 	 * </ul>
 	 */
 	public static final CashAccountTypeCode SEGT_Segregated = new CashAccountTypeCode() {

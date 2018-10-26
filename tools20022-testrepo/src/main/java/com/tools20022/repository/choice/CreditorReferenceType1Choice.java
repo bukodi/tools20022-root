@@ -60,8 +60,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "CreditorReferenceType1Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Specifies the type of document referred by the creditor."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -94,9 +92,6 @@ public class CreditorReferenceType1Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Type of creditor reference, in a coded form."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditorReferenceType1Choice, DocumentType3Code> mmCode = new MMMessageAttribute<CreditorReferenceType1Choice, DocumentType3Code>() {
@@ -146,9 +141,6 @@ public class CreditorReferenceType1Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Creditor reference type, in a proprietary form."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditorReferenceType1Choice, Max35Text> mmProprietary = new MMMessageAttribute<CreditorReferenceType1Choice, Max35Text>() {

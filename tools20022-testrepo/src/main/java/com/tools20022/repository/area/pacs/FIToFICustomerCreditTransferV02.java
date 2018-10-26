@@ -64,6 +64,13 @@ import javax.xml.bind.annotation.*;
  * <strong>Constant fields:</strong>
  * <ul>
  * <li>
+ * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageDefinitionIdentifier
+ * messageDefinitionIdentifier} = {@code pacs.008.001.02}</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getBusinessArea
+ * businessArea} =
+ * {@linkplain com.tools20022.repository.area.PaymentsClearingandSettlementArchive
+ * PaymentsClearingandSettlementArchive}</li>
+ * <li>
  * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageBuildingBlocks
  * messageBuildingBlocks} =
  * <ul>
@@ -79,13 +86,6 @@ import javax.xml.bind.annotation.*;
  * rootElement} = "Document"</li>
  * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getXmlTag
  * xmlTag} = "FIToFICstmrCdtTrf"</li>
- * <li>
- * {@linkplain com.tools20022.metamodel.MMMessageDefinition#getMessageDefinitionIdentifier
- * messageDefinitionIdentifier} = {@code pacs.008.001.02}</li>
- * <li>{@linkplain com.tools20022.metamodel.MMMessageDefinition#getBusinessArea
- * businessArea} =
- * {@linkplain com.tools20022.repository.area.PaymentsClearingandSettlementArchive
- * PaymentsClearingandSettlementArchive}</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getConstraints
  * constraints} =
  * <ul>
@@ -121,10 +121,6 @@ import javax.xml.bind.annotation.*;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "FIToFICustomerCreditTransferV02"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Scope\r\nThe FinancialInstitutionToFinancialInstitutionCustomerCreditTransfer message is sent by the debtor agent to the creditor agent, directly or through other agents and/or a payment clearing and settlement system. It is used to move funds from a debtor account to a creditor.\r\nUsage\r\nThe FIToFICustomerCreditTransfer message is exchanged between agents and can contain one or more customer credit transfer instructions.\r\nThe FIToFICustomerCreditTransfer message does not allow for grouping: a CreditTransferTransactionInformation block must be present for each credit transfer transaction.\r\nThe FIToFICustomerCreditTransfer message can be used in different ways:\r\n- If the instructing agent and the instructed agent wish to use their direct account relationship in the currency of the transfer then the message contains both the funds for the customer transfer(s) as well as the payment details;\r\n- If the instructing agent and the instructed agent have no direct account relationship in the currency of the transfer, or do not wish to use their account relationship, then other (reimbursement) agents will be involved to cover for the customer transfer(s). The FIToFICustomerCreditTransfer contains only the payment details and the instructing agent must cover the customer transfer by sending a FinancialInstitutionCreditTransfer to a reimbursement agent. This payment method is called the Cover method;\r\n- If more than two financial institutions are involved in the payment chain and if the FIToFICustomerCreditTransfer is sent from one financial institution to the next financial institution in the payment chain, then the payment method is called the Serial method.\r\nThe FIToFICustomerCreditTransfer message can be used in domestic and cross-border scenarios."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -151,11 +147,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedAgentRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If GroupHeader/InstructedAgent is present, then CreditTransferTransactionInformation/InstructedAgent is not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02> InstructedAgentRule = new MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02>() {
@@ -191,11 +182,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructingAgentRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If GroupHeader/InstructingAgent is present, then CreditTransferTransactionInformation/InstructingAgent is not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02> InstructingAgentRule = new MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02>() {
@@ -234,11 +220,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "TotalInterbankSettlementAmountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If GroupHeader/TotalInterbankSettlementAmount is present, then all occurrences of CreditTransferTransactionInformation/InterbankSettlementAmount must have the same currency as the currency of GroupHeader/TotalInterbankSettlementAmount."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02> TotalInterbankSettlementAmountRule = new MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02>() {
@@ -275,11 +256,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "TotalInterbankSettlementAmountAndSumRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If GroupHeader/TotalInterbankSettlementAmount is present, then it must equal the sum of all occurrences of CreditTransferTransactionInformation/InterbankSettlementAmount."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02> TotalInterbankSettlementAmountAndSumRule = new MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02>() {
@@ -316,11 +292,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "GroupHeaderInterbankSettlementDateRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If GroupHeader/InterbankSettlementDate is present, then CreditTransferTransactionInformation/InterbankSettlementDate is not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02> GroupHeaderInterbankSettlementDateRule = new MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02>() {
@@ -357,11 +328,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "TransactionInterbankSettlementDateRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If GroupHeader/InterbankSettlementDate is not present, then CreditTransferTransactionInformation/InterbankSettlementDate must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02> TransactionInterbankSettlementDateRule = new MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02>() {
@@ -398,11 +364,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PaymentTypeInformationRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If GroupHeader/PaymentTypeInformation is present, then CreditTransferTransactionInformation/PaymentTypeInformation is not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02> PaymentTypeInformationRule = new MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02>() {
@@ -438,11 +399,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "NumberOfTransactionsAndCreditTransfersRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "GroupHeader/NumberOfTransactions must equal the number of occurrences of CreditTransferTransactionInformation."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02> NumberOfTransactionsAndCreditTransfersRule = new MMConstraint<com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02>() {
@@ -479,11 +435,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "GroupHeader"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Set of characteristics shared by all individual transactions included in the message."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageBuildingBlock<FIToFICustomerCreditTransferV02, GroupHeader33> mmGroupHeader = new MMMessageBuildingBlock<FIToFICustomerCreditTransferV02, GroupHeader33>() {
@@ -527,11 +478,6 @@ public class FIToFICustomerCreditTransferV02 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditTransferTransactionInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Set of elements providing information specific to the individual credit transfer(s). "
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageBuildingBlock<FIToFICustomerCreditTransferV02, List<CreditTransferTransactionInformation11>> mmCreditTransferTransactionInformation = new MMMessageBuildingBlock<FIToFICustomerCreditTransferV02, List<CreditTransferTransactionInformation11>>() {

@@ -69,9 +69,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "RemittanceLocation2"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Set of elements used to provide information on the remittance advice."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -103,11 +100,6 @@ public class RemittanceLocation2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RemittanceIdentification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique identification, as assigned by the initiating party, to unambiguously identify the remittance information sent separately from the payment instruction, such as a remittance advice."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<RemittanceLocation2, Optional<Max35Text>> mmRemittanceIdentification = new MMMessageAttribute<RemittanceLocation2, Optional<Max35Text>>() {
@@ -158,10 +150,6 @@ public class RemittanceLocation2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RemittanceLocationMethod"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Method used to deliver the remittance advice information."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<RemittanceLocation2, Optional<RemittanceLocationMethod2Code>> mmRemittanceLocationMethod = new MMMessageAttribute<RemittanceLocation2, Optional<RemittanceLocationMethod2Code>>() {
@@ -211,11 +199,6 @@ public class RemittanceLocation2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RemittanceLocationElectronicAddress"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Electronic address to which an agent is to send the remittance information."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<RemittanceLocation2, Optional<Max2048Text>> mmRemittanceLocationElectronicAddress = new MMMessageAttribute<RemittanceLocation2, Optional<Max2048Text>>() {
@@ -264,11 +247,6 @@ public class RemittanceLocation2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RemittanceLocationPostalAddress"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Postal address to which an agent is to send the remittance information."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<RemittanceLocation2, Optional<NameAndAddress10>> mmRemittanceLocationPostalAddress = new MMMessageAssociationEnd<RemittanceLocation2, Optional<NameAndAddress10>>() {

@@ -31,7 +31,7 @@ public class StaticMemembersBuilder {
 	}
 
 	/*** Wrapper classes ***/
-	private abstract class AbstractWrapper<T extends MetamodelElement> {
+	abstract class AbstractWrapper<T extends MetamodelElement> {
 		private T impl;
 
 		protected T impl() {

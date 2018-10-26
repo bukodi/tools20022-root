@@ -128,9 +128,9 @@ public class MMBusinessAssociationEnd<T, V> implements RuntimePropertyAware<T, V
 	 * model and is therefore always typed by a BusinessComponent, contrarily to
 	 * a BusinessAttribute which may be typed by a data type.
 	 * 
-	 * @see MMBusinessComponent#getAssociationDomain()
+	 * @see MMBusinessComponent#getAssociationDomains()
 	 */
-	@Opposite(bean = MMBusinessComponent.class, attribute = "associationDomain")
+	@Opposite(bean = MMBusinessComponent.class, attribute = "associationDomains")
 	public MMBusinessComponent getType() {
 		return type_lazy.get();
 	}

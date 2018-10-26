@@ -79,4 +79,5 @@ public interface MMModelEntity {
 	}
 
 	MMModelEntity getContainer();
+	
 }

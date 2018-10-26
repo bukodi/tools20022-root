@@ -76,9 +76,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ContactDetails2"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Communication device number or electronic address used for communication."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -111,9 +108,6 @@ public class ContactDetails2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "NamePrefix"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Specifies the terms used to formally address a person."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<NamePrefix1Code>> mmNamePrefix = new MMMessageAttribute<ContactDetails2, Optional<NamePrefix1Code>>() {
@@ -163,11 +157,6 @@ public class ContactDetails2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Name"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Name by which a party is known and which is usually used to identify that party."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<Max140Text>> mmName = new MMMessageAttribute<ContactDetails2, Optional<Max140Text>>() {
@@ -217,11 +206,6 @@ public class ContactDetails2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PhoneNumber"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Collection of information that identifies a phone number, as defined by telecom services."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>> mmPhoneNumber = new MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>>() {
@@ -271,11 +255,6 @@ public class ContactDetails2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "MobileNumber"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Collection of information that identifies a mobile phone number, as defined by telecom services."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>> mmMobileNumber = new MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>>() {
@@ -325,11 +304,6 @@ public class ContactDetails2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "FaxNumber"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Collection of information that identifies a FAX number, as defined by telecom services."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>> mmFaxNumber = new MMMessageAttribute<ContactDetails2, Optional<PhoneNumber>>() {
@@ -379,9 +353,6 @@ public class ContactDetails2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "EmailAddress"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Address for electronic mail (e-mail)."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<Max2048Text>> mmEmailAddress = new MMMessageAttribute<ContactDetails2, Optional<Max2048Text>>() {
@@ -431,9 +402,6 @@ public class ContactDetails2 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Other"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Contact details in an other form."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ContactDetails2, Optional<Max35Text>> mmOther = new MMMessageAttribute<ContactDetails2, Optional<Max35Text>>() {

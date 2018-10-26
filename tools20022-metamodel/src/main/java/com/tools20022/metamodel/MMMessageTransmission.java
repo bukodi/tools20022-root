@@ -94,9 +94,9 @@ public class MMMessageTransmission implements MMRepositoryConcept {
 	/**
 	 * the BusinessTransaction to which the MessageTransmission belongs
 	 * 
-	 * @see MMBusinessTransaction#getTransmission()
+	 * @see MMBusinessTransaction#getTransmissions()
 	 */
-	@Opposite(bean = MMBusinessTransaction.class, attribute = "transmission")
+	@Opposite(bean = MMBusinessTransaction.class, attribute = "transmissions")
 	@Container
 	public MMBusinessTransaction getBusinessTransaction() {
 		return businessTransaction_lazy.get();
@@ -106,9 +106,9 @@ public class MMMessageTransmission implements MMRepositoryConcept {
 	 * all of the MessagetypeTraces that derive MessageDefinitions from one
 	 * MessageTransmission
 	 * 
-	 * @see MMMessageDefinition#getTrace()
+	 * @see MMMessageDefinition#getTraces()
 	 */
-	@Opposite(bean = MMMessageDefinition.class, attribute = "trace")
+	@Opposite(bean = MMMessageDefinition.class, attribute = "traces")
 	@EMFName("derivation")
 	public List<MMMessageDefinition> getDerivations() {
 		return derivations_lazy == null ? Collections.emptyList() : derivations_lazy.get();

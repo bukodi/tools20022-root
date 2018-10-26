@@ -90,10 +90,10 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	/**
 	 * identification of the syntax for a specific EncodingScheme
 	 * 
-	 * @see MMSyntax#getGeneratedFor()
+	 * @see MMSyntax#getGeneratedFors()
 	 */
 	@Derived
-	@Opposite(bean = MMSyntax.class, attribute = "generatedFor")
+	@Opposite(bean = MMSyntax.class, attribute = "generatedFors")
 	@EMFName("generatedSyntax")
 	public List<MMSyntax> getGeneratedSyntaxes() {
 		return (new DeriveMMMessageSet_generatedSyntax()).apply(this);
@@ -102,9 +102,9 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	/**
 	 * the set of encodings considered ISO 20022 valid for this MessageSet
 	 * 
-	 * @see MMEncoding#getMessageSet()
+	 * @see MMEncoding#getMessageSets()
 	 */
-	@Opposite(bean = MMEncoding.class, attribute = "messageSet")
+	@Opposite(bean = MMEncoding.class, attribute = "messageSets")
 	@EMFName("validEncoding")
 	public List<MMEncoding> getValidEncodings() {
 		return validEncodings_lazy == null ? Collections.emptyList() : validEncodings_lazy.get();
@@ -113,9 +113,9 @@ public class MMMessageSet implements MMTopLevelCatalogueEntry {
 	/**
 	 * the MessageDefinition that belongs to the MessageSet
 	 * 
-	 * @see MMMessageDefinition#getMessageSet()
+	 * @see MMMessageDefinition#getMessageSets()
 	 */
-	@Opposite(bean = MMMessageDefinition.class, attribute = "messageSet")
+	@Opposite(bean = MMMessageDefinition.class, attribute = "messageSets")
 	@EMFName("messageDefinition")
 	public List<MMMessageDefinition> getMessageDefinitions() {
 		return messageDefinitions_lazy == null ? Collections.emptyList() : messageDefinitions_lazy.get();

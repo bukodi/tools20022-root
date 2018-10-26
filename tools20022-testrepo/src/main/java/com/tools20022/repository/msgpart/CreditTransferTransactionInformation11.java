@@ -247,10 +247,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "CreditTransferTransactionInformation11"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Set of elements used to provide information specific to the individual transaction(s) included in the message."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -286,9 +282,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PaymentIdentification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Set of elements used to reference a payment instruction."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, PaymentIdentification3> mmPaymentIdentification = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, PaymentIdentification3>() {
@@ -339,10 +332,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PaymentTypeInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Set of elements used to further specify the type of transaction."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PaymentTypeInformation21>> mmPaymentTypeInformation = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PaymentTypeInformation21>>() {
@@ -394,11 +383,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InterbankSettlementAmount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Amount of money moved between the instructing agent and the instructed agent."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, ActiveCurrencyAndAmount> mmInterbankSettlementAmount = new MMMessageAttribute<CreditTransferTransactionInformation11, ActiveCurrencyAndAmount>() {
@@ -448,11 +432,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InterbankSettlementDate"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Date on which the amount of money ceases to be available to the agent that owes it and when the amount of money becomes available to the agent to which it is due."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODate>> mmInterbankSettlementDate = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODate>>() {
@@ -503,11 +482,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementPriority"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the settlement instruction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<Priority3Code>> mmSettlementPriority = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<Priority3Code>>() {
@@ -557,11 +531,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementTimeIndication"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Provides information on the occurred settlement time(s) of the payment transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<SettlementDateTimeIndication1>> mmSettlementTimeIndication = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<SettlementDateTimeIndication1>>() {
@@ -612,11 +581,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementTimeRequest"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Provides information on the requested settlement time(s) of the payment instruction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<SettlementTimeRequest2>> mmSettlementTimeRequest = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<SettlementTimeRequest2>>() {
@@ -667,11 +631,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "AcceptanceDateTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Point in time when the payment order from the initiating party meets the processing conditions of the account servicing agent. This means that the account servicing agent has received the payment order and has applied checks such as authorisation, availability of funds."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODateTime>> mmAcceptanceDateTime = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODateTime>>() {
@@ -721,11 +680,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PoolingAdjustmentDate"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Date used for the correction of the value date of a cash pool movement that has been posted with a different value date."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODate>> mmPoolingAdjustmentDate = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ISODate>>() {
@@ -776,11 +730,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedAmount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ActiveOrHistoricCurrencyAndAmount>> mmInstructedAmount = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<ActiveOrHistoricCurrencyAndAmount>>() {
@@ -830,11 +779,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ExchangeRate"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, Optional<BaseOneRate>> mmExchangeRate = new MMMessageAttribute<CreditTransferTransactionInformation11, Optional<BaseOneRate>>() {
@@ -885,11 +829,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ChargeBearer"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Specifies which party/parties will bear the charges associated with the processing of the payment transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<CreditTransferTransactionInformation11, ChargeBearerType1Code> mmChargeBearer = new MMMessageAttribute<CreditTransferTransactionInformation11, ChargeBearerType1Code>() {
@@ -939,11 +878,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ChargesInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Provides information on the charges to be paid by the charge bearer(s) related to the payment transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<ChargesInformation5>> mmChargesInformation = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<ChargesInformation5>>() {
@@ -993,9 +927,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PreviousInstructingAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Agent immediately prior to the instructing agent."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmPreviousInstructingAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -1045,11 +976,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PreviousInstructingAgentAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the previous instructing agent at its servicing agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmPreviousInstructingAgentAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
@@ -1100,11 +1026,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructingAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent that instructs the next party in the chain to carry out the (set of) instruction(s)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructingAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -1155,11 +1076,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent that is instructed by the previous party in the chain to carry out the (set of) instruction(s)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructedAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -1210,11 +1126,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent1"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent between the debtor's agent and the creditor's agent.\n\nUsage: If more than one intermediary agent is present, then IntermediaryAgent1 identifies the agent between the DebtorAgent and the IntermediaryAgent2."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmIntermediaryAgent1 = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -1264,11 +1175,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent1Account"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the intermediary agent 1 at its servicing agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmIntermediaryAgent1Account = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
@@ -1319,11 +1225,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent2"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent between the debtor's agent and the creditor's agent.\n\nUsage: If more than two intermediary agents are present, then IntermediaryAgent2 identifies the agent between the IntermediaryAgent1 and the IntermediaryAgent3."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmIntermediaryAgent2 = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -1373,11 +1274,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent2Account"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the intermediary agent 2 at its servicing agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmIntermediaryAgent2Account = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
@@ -1428,11 +1324,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent3"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent between the debtor's agent and the creditor's agent.\n\nUsage: If IntermediaryAgent3 is present, then it identifies the agent between the IntermediaryAgent 2 and the CreditorAgent."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>> mmIntermediaryAgent3 = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -1482,11 +1373,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent3Account"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the intermediary agent 3 at its servicing agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmIntermediaryAgent3Account = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
@@ -1537,11 +1423,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "UltimateDebtor"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Ultimate party that owes an amount of money to the (ultimate) creditor."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>> mmUltimateDebtor = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>>() {
@@ -1592,11 +1473,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InitiatingParty"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Party that initiates the payment.\nUsage: This can be either the debtor or a party that initiates the credit transfer on behalf of the debtor."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>> mmInitiatingParty = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>>() {
@@ -1647,10 +1523,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Debtor"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Party that owes an amount of money to the (ultimate) creditor."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, PartyIdentification32> mmDebtor = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, PartyIdentification32>() {
@@ -1700,11 +1572,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DebtorAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmDebtorAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
@@ -1755,10 +1622,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DebtorAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Financial institution servicing an account for the debtor."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, BranchAndFinancialInstitutionIdentification4> mmDebtorAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, BranchAndFinancialInstitutionIdentification4>() {
@@ -1808,11 +1671,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DebtorAgentAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the debtor agent at its servicing agent in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmDebtorAgentAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
@@ -1863,10 +1721,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditorAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Financial institution servicing an account for the creditor."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, BranchAndFinancialInstitutionIdentification4> mmCreditorAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, BranchAndFinancialInstitutionIdentification4>() {
@@ -1916,11 +1770,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditorAgentAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the creditor agent at its servicing agent to which a credit entry will be made as a result of the payment transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmCreditorAgentAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
@@ -1971,9 +1820,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Creditor"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Party to which an amount of money is due."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, PartyIdentification32> mmCreditor = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, PartyIdentification32>() {
@@ -2023,11 +1869,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditorAccount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>> mmCreditorAccount = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<CashAccount16>>() {
@@ -2078,9 +1919,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "UltimateCreditor"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Ultimate party to which an amount of money is due."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>> mmUltimateCreditor = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<PartyIdentification32>>() {
@@ -2131,11 +1969,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructionForCreditorAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<InstructionForCreditorAgent1>> mmInstructionForCreditorAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<InstructionForCreditorAgent1>>() {
@@ -2185,11 +2018,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructionForNextAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Further information related to the processing of the payment instruction that may need to be acted upon by the next agent. \n\nUsage: The next agent may not be the creditor agent.\nThe instruction can relate to a level of service, can be an instruction that has to be executed by the agent, or can be information required by the next agent."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<InstructionForNextAgent1>> mmInstructionForNextAgent = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<InstructionForNextAgent1>>() {
@@ -2238,11 +2066,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Purpose"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Underlying reason for the payment transaction.\nUsage: Purpose is used by the end-customers, that is initiating party, (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose is a content element, which is not used for processing by any of the agents involved in the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<Purpose2Choice>> mmPurpose = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<Purpose2Choice>>() {
@@ -2293,10 +2116,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RegulatoryReporting"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Information needed due to regulatory and statutory requirements."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<RegulatoryReporting3>> mmRegulatoryReporting = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<RegulatoryReporting3>>() {
@@ -2347,11 +2166,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RelatedRemittanceInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Set of elements used to provide information related to the handling of the remittance information by any of the agents in the transaction processing chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<RemittanceLocation2>> mmRelatedRemittanceInformation = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, List<RemittanceLocation2>>() {
@@ -2402,11 +2216,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RemittanceInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<RemittanceInformation5>> mmRemittanceInformation = new MMMessageAssociationEnd<CreditTransferTransactionInformation11, Optional<RemittanceInformation5>>() {
@@ -2449,11 +2258,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ChargesInformationGuideline"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "The repetitive ChargesInformation should contain all information on charges amount and which party has taken the charges, separately for each agent along the payment chain."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> ChargesInformationGuideline = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2483,10 +2287,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "UltimateDebtorGuideline"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "UltimateDebtor may only be present if different from Debtor."</li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> UltimateDebtorGuideline = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2516,10 +2316,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "UltimateCreditorGuideline"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "UltimateCreditor may only be present if different from Creditor."</li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> UltimateCreditorGuideline = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2554,11 +2350,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedAmountAndExchangeRate1Rule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If InstructedAmount is present and the currency is different from the currency in InterbankSettlementAmount, then ExchangeRate must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> InstructedAmountAndExchangeRate1Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2594,11 +2385,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedAmountAndExchangeRate2Rule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If InstructedAmount is present and the currency is the same as the currency in InterbankSettlementAmount, then ExchangeRate is not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> InstructedAmountAndExchangeRate2Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2633,11 +2419,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ChargesInformationAndInstructedAmountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If ChargesInformation is present, then InstructedAmount must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> ChargesInformationAndInstructedAmountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2674,11 +2455,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ChargesAmountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If ChargesInformation is present, then the currency of ChargesInformation/ChargesAmount must be the same as the currency of InterbankSettlementAmount."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> ChargesAmountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2718,11 +2494,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ChargeBearerAndChargesInformationRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If ChargeBearer contains DEBT, then ChargesInformation may be present to communicate charges that have been added for (the) InstructedAgent(s).\nIf ChargeBearer contains CRED, then at least one occurrence of ChargesInformation must be present to communicate charges that have been deducted from the InstructedAmount by (the) InstructingAgent(s).\nIf ChargeBearer contains SHAR or SLEV, then ChargesInformation is optional."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> ChargeBearerAndChargesInformationRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2758,11 +2529,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructionForCreditorAgentRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If InstructionForCreditorAgent/Code contains CHQB, then CreditorAccount is not allowed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> InstructionForCreditorAgentRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2798,11 +2564,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent2Rule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If IntermediaryAgent2 is present, then IntermediaryAgent1 must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent2Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2838,11 +2599,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent3Rule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If IntermediaryAgent3 is present, then IntermediaryAgent2 must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent3Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2878,11 +2634,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent1AccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If IntermediaryAgent1Account is present, then IntermediaryAgent1 must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent1AccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2918,11 +2669,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent2AccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If IntermediaryAgent2Account is present, then IntermediaryAgent2 must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent2AccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2958,11 +2704,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "IntermediaryAgent3AccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If IntermediaryAgent3Account is present, then IntermediaryAgent3 must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> IntermediaryAgent3AccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -2998,11 +2739,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PreviousInstructingAgentAccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If PreviousInstructingAgentAccount is present, then PreviousInstructingAgent must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> PreviousInstructingAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -3037,10 +2773,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DebtorAgentAccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If DebtorAgentAccount is present, then DebtorAgent must be present."</li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> DebtorAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -3075,11 +2807,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreditorAgentAccountRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If CreditorAgentAccount is present, then CreditorAgent must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> CreditorAgentAccountRule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {
@@ -3114,10 +2841,6 @@ public class CreditTransferTransactionInformation11 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedAmountAndExchangeRate3Rule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If InstructedAmount is not present, then ExchangeRate is not allowed."</li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11> InstructedAmountAndExchangeRate3Rule = new MMConstraint<com.tools20022.repository.msgpart.CreditTransferTransactionInformation11>() {

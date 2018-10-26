@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -19,10 +21,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
+import java.util.StringJoiner;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiConsumer;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -39,10 +44,12 @@ import com.tools20022.metamodel.MMBusinessAssociationEnd;
 import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMBusinessProcessCatalogue;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMConstraint;
+import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMDoclet;
 import com.tools20022.metamodel.MMEncoding;
@@ -51,10 +58,12 @@ import com.tools20022.metamodel.MMISO15022MessageSet;
 import com.tools20022.metamodel.MMIndustryMessageSet;
 import com.tools20022.metamodel.MMMessageAssociationEnd;
 import com.tools20022.metamodel.MMMessageAttribute;
+import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponent;
 import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
 import com.tools20022.metamodel.MMMessageDefinitionIdentifier;
+import com.tools20022.metamodel.MMMessageElementContainer;
 import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRegistrationStatus;
@@ -65,6 +74,9 @@ import com.tools20022.metamodel.MMSemanticMarkup;
 import com.tools20022.metamodel.MMSemanticMarkupElement;
 import com.tools20022.metamodel.MMSyntax;
 import com.tools20022.metamodel.MMSyntaxMessageScheme;
+import com.tools20022.metamodel.MMText;
+import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
+import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
 import com.tools20022.metamodel.MMUserDefined;
 import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
@@ -82,12 +94,13 @@ public class InspectLoadedRepository {
 		try {
 			EPackage ecorePkg = ECoreIOHelper
 					.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
-			// EObject rootEObj = ECoreIOHelper.loadXMIResource(
-			// ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
+			EObject rootEObj = ECoreIOHelper.loadXMIResource(
+			ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
 			// EObject rootEObj = ECoreIOHelper.loadXMIResource(
 			// ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
-			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-					ECoreIOHelper.class.getResourceAsStream("/model/20180314_ISO20022_2013_eRepository.iso20022"));
+			//EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/msgdef-pacs.008.001.02-nobuscomp.iso20022"));
+			//EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/msgdef-tsmt.049.001.01-nobuscomp.iso20022"));
+			//EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/20180314_ISO20022_2013_eRepository.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 			repo = loader.load(ecorePkg, rootEObj);
 		} catch (IOException e) {
@@ -105,92 +118,252 @@ public class InspectLoadedRepository {
 
 	}
 
+	static Set<MetamodelAttribute<?, ?>> msgDefRefs;
+	static {
+		Set<MetamodelAttribute<?, ?>> tmpSet = new HashSet<>();
+		tmpSet.add(MMMessageDefinition.messageBuildingBlocksAttribute);
+		tmpSet.add(MMMessageDefinition.xorsAttribute);
+		tmpSet.add(MMXor.messageComponentAttribute);
+		tmpSet.add(MMXor.impactedElementsAttribute);
+		tmpSet.add(MMXor.impactedMessageBuildingBlocksAttribute);
+		tmpSet.add(MMMessageElementContainer.messageElementsAttribute);
+		tmpSet.add(MMMessageBuildingBlock.complexTypeAttribute);
+		tmpSet.add(MMMessageBuildingBlock.simpleTypeAttribute);
+		tmpSet.add(MMMessageAssociationEnd.typeAttribute);
+		tmpSet.add(MMMessageAttribute.simpleTypeAttribute);
+		tmpSet.add(MMMessageAttribute.complexTypeAttribute);
+		msgDefRefs = Collections.unmodifiableSet(tmpSet);
+	}
+
 	@Test
-	public void inspectSpecificObject() throws Exception {
-		MMCodeSet obj = repo.findObjectByTypeAndName(MMCodeSet.class, "CategoryPurpose1Code");
-		
-		for( MMCode c : obj.getCodes()) {
-			System.out.println( c.getName() + "-" + c.getCodeName().orElse("-N/A-") + " :" + c.getDefinition().orElse("-"));
-		}
+	public void inspectSpecificMSGDefObject() throws Exception {
+		MMMessageDefinition obj = repo.findObjectByTypeAndName(MMMessageDefinition.class, "RoleAndBaselineAcceptanceV01");
 
-		Set<List<IncominRef>> foundPaths = new HashSet<>();
-		Set<List<IncominRef>> candidatePaths = new HashSet<>();
-
-		// Build seed set of paths
-		for (IncominRef ref : repo.whereUsedWithoutContainment(obj)) {
-			if (ref.sourceObj.equals(obj))
-				continue; // Skip self refs
-
-			List<IncominRef> oneStepPath = new ArrayList<>();
-			oneStepPath.add(ref);
-			if (ref.sourceObj instanceof MMMessageDefinition) {
-				foundPaths.add(oneStepPath);
+		printMembers(obj, "");
+	}
+	
+	private void printMembers( MMModelEntity obj, String tab ) {
+		for( MetamodelAttribute<?, ?> mmAttr : obj.getMetamodel().getAllAttributes() ) {
+			if( ! msgDefRefs.contains(mmAttr) )
+				continue;
+			
+			Object value = mmAttr.get(obj);
+			if( value == null )
+				continue;
+			if( value instanceof Collection ) {
+				for(Object entry : ((Collection)value)) {
+					MMModelEntity refObj = (MMModelEntity)entry;					
+					System.out.println( tab + "" + mmAttr.getName() + " : " + StandardMetamodel2013.toString(refObj));
+					printMembers(refObj, tab + "  ");
+				}				
+			} else if( value instanceof MMModelEntity ) {
+				MMModelEntity refObj = (MMModelEntity)value;
+				System.out.println( tab + "" + mmAttr.getName() + " : " + StandardMetamodel2013.toString(refObj));
+				printMembers(refObj, tab + "  ");
+			} else if( value instanceof Optional ) {
+				Optional<?> opt = (Optional<?>)value;
+				if( opt.isPresent() ) {
+					MMModelEntity refObj = (MMModelEntity)(opt.get());
+					System.out.println( tab + "" + mmAttr.getName() + " : " + StandardMetamodel2013.toString(refObj));
+					printMembers(refObj, tab + "  ");					
+				}
 			} else {
-				candidatePaths.add(oneStepPath);
-			}
+				throw new RuntimeException("Invalid type: " + value.getClass() );
+			}					
+		}
+	}
+
+	@Test
+	public void fingUsagesOfAType() throws Exception {
+		//MMText obj = repo.findObjectByTypeAndName(MMText.class, "Max35Text");
+		MMCodeSet obj = repo.findObjectByTypeAndName(MMCodeSet.class, "ExternalCommunicationFormat1Code");
+		Map<MMMessageDefinition, Set<List<IncominRef>>> pathsByMsgDefs = findPathsToMsgDefs(obj);
+		
+		for( Entry<MMMessageDefinition, Set<List<IncominRef>>> e : pathsByMsgDefs.entrySet()) {
+			MMMessageDefinition msgDef = e.getKey();
+			System.out.println( msgIdToString( msgDef.getMessageDefinitionIdentifier() ) + "  " + msgDef.getName() + " ( x " + e.getValue().size() + " )");
+		}
+		
+	}
+
+	public Map<MMMessageDefinition, Set<List<IncominRef>>> findPathsToMsgDefs( MMModelEntity obj ) {
+		
+		// Build seed set
+		Set<List<IncominRef>> paths = new LinkedHashSet<>();
+		for (IncominRef ir : repo.getIncomingRefs(obj)) {
+			if (!msgDefRefs.contains(ir.mmAttr))
+				continue;
+			List<IncominRef> path = new ArrayList<>();
+			path.add(ir);
+			paths.add(path);
 		}
 
-		// Grow the seeds
-		for (; !candidatePaths.isEmpty();) {
-			System.out.println(
-					"candidatePaths.size()=" + candidatePaths.size() + ", foundPaths.size()=" + foundPaths.size());
-			candidatePaths = extendPaths(obj, candidatePaths, foundPaths);
+		// Extend seed
+		for( int i = 1;extendPaths(paths); i++) {
+			System.out.println( i + ". iteration");
 		}
+		
+		// Group by msgDef
+		Comparator<MMMessageDefinition> cmp = (x,y)->Collator.getInstance().compare(x.getMessageDefinitionIdentifier().toString(), y.getMessageDefinitionIdentifier().toString());
+		Map<MMMessageDefinition, Set<List<IncominRef>>> pathsByMsgDef = new TreeMap<>(cmp );
+		for( List<IncominRef> path : paths ) {
+			 IncominRef firstRef = path.iterator().next();
+			 MMMessageDefinition msgDef = (MMMessageDefinition)firstRef.sourceObj;
+			 pathsByMsgDef.computeIfAbsent(msgDef, x->new HashSet<>()).add(path);			
+		}
+		return pathsByMsgDef;
+	}
 
-		// Print found paths
-		for (List<IncominRef> path : foundPaths) {
-			String tab = "";
+	private Set<List<IncominRef>> dumpPaths(Set<List<IncominRef>> paths) {
+		for (List<IncominRef> path : paths) {
+			StringJoiner sj = new StringJoiner(" > ");
 			for (IncominRef step : path) {
-				System.out.println(tab + getFullName(step.sourceObj) + "." + step.mmAttr.getName());
-				tab += "  ";
+				String txt = "[" + step.sourceObj.getClass().getSimpleName() + "]";
+				if( step.sourceObj instanceof MMRepositoryConcept ) {
+					txt+= ((MMRepositoryConcept)step.sourceObj).getName();
+				}
+				txt += "." + step.mmAttr.getName();
+				sj.add(txt);
 			}
-			System.out.println();
+			System.out.println(sj);
 		}
+		System.out.println();
+		return paths;
 	}
 
-	public class Node {
-		public MMModelEntity sourceObj;
-		public MetamodelAttribute<?, ?> mmAttr;
+	private boolean extendPaths(Set<List<IncominRef>> prevPaths) {
+		//Set<List<IncominRef>> nextPaths = new LinkedHashSet<>();
+		boolean changed = false;
+		for (List<IncominRef> path : new ArrayList<>( prevPaths) ) {
+			IncominRef headIR = path.get(0);
+			if( headIR.sourceObj instanceof MMMessageDefinition ) {
+				// Ok, don't change
+			} else {
+				changed = true;
+				prevPaths.remove(path);
+				for (IncominRef ir : repo.getIncomingRefs(headIR.sourceObj)) {
+					if (!msgDefRefs.contains(ir.mmAttr))
+						continue;
+					List<IncominRef> newPath = new ArrayList<>();
+					newPath.add(ir);
+					newPath.addAll(path);
+					prevPaths.add(newPath);
+				}				
+			}
+		}
+		return changed;
+	}
 
-		public Set<Node> destNodes;
+	@Test
+	public void categorizeMMTypes() {
+		Map<String, Set<MetamodelType<? extends MMModelEntity>>> typesByCategorie = new HashMap<>();
+		BiConsumer<MetamodelType<? extends MMModelEntity>, String> printType = (mmType, name) -> {
+			typesByCategorie.computeIfAbsent(name, x -> new LinkedHashSet<MetamodelType<? extends MMModelEntity>>())
+					.add(mmType);
+		};
+
+		System.out.println("------------------------");
+
+		for (MetamodelType<? extends MMModelEntity> mmType : StandardMetamodel2013.metamodel().getAllTypes()) {
+
+			if (MMDataType.class.isAssignableFrom(mmType.getBeanClass())) {
+				printType.accept(mmType, "DataType");
+			} else if (Arrays.asList(MMRepository.class, MMDataDictionary.class, MMBusinessProcessCatalogue.class)
+					.contains(mmType.getBeanClass())) {
+				printType.accept(mmType, "Structure");
+			} else if (Arrays
+					.asList(MMConstraint.class, MMDoclet.class, MMSemanticMarkup.class, MMSemanticMarkupElement.class)
+					.contains(mmType.getBeanClass())) {
+				printType.accept(mmType, "Markups");
+			} else if (mmType.isAbstract()) {
+				printType.accept(mmType, "Interface");
+			} else if (MMTopLevelCatalogueEntry.class.isAssignableFrom(mmType.getBeanClass())
+					|| MMTopLevelDictionaryEntry.class.isAssignableFrom(mmType.getBeanClass())
+					|| MMMessageDefinition.class.equals(mmType.getBeanClass())) {
+				printType.accept(mmType, repo.getCountByType(mmType) > 1 ? "MainType" : "SingletonMain");
+			} else {
+				printType.accept(mmType, repo.getCountByType(mmType) > 1 ? "SubType" : "SingletonSub");
+			}
+		}
+
+		for (String name : typesByCategorie.keySet().stream().sorted().collect(Collectors.toSet())) {
+			for (MetamodelType<? extends MMModelEntity> mmType : typesByCategorie.get(name)) {
+				System.out.println(name + " - " + mmType.getName() + " ( " + repo.getCountByType(mmType) + ")");
+				if ("MainType".equals(name) || "SubType".equals(name)) {
+					mmType.listAllAttributes().filter(a -> a.isContainment()).map(a -> a.getReferencedType()).distinct()
+							.forEach(rt -> {
+								if (!Arrays.asList(MMConstraint.class, MMDoclet.class, MMSemanticMarkup.class,
+										MMSemanticMarkupElement.class).contains(rt.getBeanClass()))
+									System.out.println("  - " + rt.getName());
+							});
+				}
+			}
+		}
+
+		System.out.println("------------------------");
+	}
+
+	@Test
+	public void countMMTypes() throws Exception {
+		System.out.println("Abstract types: "
+				+ StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> t.isAbstract()).count());
+		System.out.println("Non abstract types: "
+				+ StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> !t.isAbstract()).count());
+		System.out.println("Non abstract and RepositoryConcept: " + StandardMetamodel2013.metamodel().getAllTypes()
+				.stream().filter(t -> !t.isAbstract())
+				.filter(t -> t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
+				.count());
+		System.out.println("Non abstract and non RepositoryConcept: " + StandardMetamodel2013.metamodel().getAllTypes()
+				.stream().filter(t -> !t.isAbstract())
+				.filter(t -> !t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
+				.count());
+		System.out.println();
+		System.out.println("Non abstract and non RepositoryConcept: ");
+		StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> !t.isAbstract())
+				.filter(t -> !t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
+				.forEachOrdered(t -> {
+					System.out.println(t.getName() + " " + repo.getCountByType(t));
+				});
+
+		System.out.println("Number of MMConstraint objects : " + repo.getCountByType(MMConstraint.metaType()));
+		System.out.println("Number of MMDoclet objects : " + repo.getCountByType(MMDoclet.metaType()));
+		System.out.println("Number of MMSemanticMarkup objects : " + repo.getCountByType(MMSemanticMarkup.metaType()));
+		System.out.println("Number of MMSemanticMarkupElement objects : "
+				+ repo.getCountByType(MMSemanticMarkupElement.metaType()));
+		System.out.println();
 
 	}
 
-	private Set<List<IncominRef>> extendPaths(MMModelEntity destObj, Set<List<IncominRef>> candidatePaths,
-			Set<List<IncominRef>> foundPaths) {
-		Set<List<IncominRef>> nextCadidates = new HashSet<>();
-		for (List<IncominRef> path : candidatePaths) {
-			Set<MMModelEntity> objectsInPath = new HashSet<>();
-			path.forEach(ir -> objectsInPath.add(ir.sourceObj));
-			objectsInPath.add(destObj);
-
-			System.out.println("--- Elements in path: ----");
-			path.forEach(ir -> System.out.println(getFullName(ir.sourceObj)));
-
-			MMModelEntity headObj = path.get(0).sourceObj;
-			for (IncominRef refHead : repo.whereUsedWithoutContainment(headObj)) {
-				if (objectsInPath.contains(refHead.sourceObj)) {
-					// This path is circle -> skip it
-					System.out.println("Skip:" + getFullName(refHead.sourceObj));
-					continue;
-				}
-
-				List<IncominRef> nextPath = new ArrayList<>(path.size() + 1);
-				nextPath.add(refHead);
-				nextPath.addAll(path);
-
-				if (refHead.sourceObj instanceof MMMessageDefinition) {
-					// Hooray! End of the search
-					foundPaths.add(nextPath);
-					System.out.println("Found:" + getFullName(refHead.sourceObj));
-				} else {
-					nextCadidates.add(nextPath);
-					System.out.println("Append:" + getFullName(refHead.sourceObj));
-				}
+	@Test
+	// @Ignore
+	public void testMsgBolcs() throws Exception {
+		System.out.println("----- MSG Blocks ---------");
+		System.out.println();
+		Map<String, Set<Integer>> seqsByName = new HashMap<>();
+		for (MMMessageComponent msgComp : repo.listObjects(MMMessageComponent.metaType())
+				.collect(Collectors.toList())) {
+			// System.out.println(msgComp.getName());
+			String name = msgComp.getName();
+			String seq = "";
+			for (;;) {
+				char lastChar = name.charAt(name.length() - 1);
+				if (!Character.isDigit(lastChar))
+					break;
+				name = name.substring(0, name.length() - 1);
+				seq += lastChar;
 			}
-
+			Integer s = seq.length() == 0 ? 0 : Integer.valueOf(seq);
+			Set<Integer> seqs = seqsByName.computeIfAbsent(name, x -> new HashSet<>());
+			seqs.add(s);
 		}
-		return nextCadidates;
+
+		for (Entry<String, Set<Integer>> e : seqsByName.entrySet()) {
+			System.out.println(
+					e.getKey() + " " + e.getValue().stream().max(Integer::compare).get() + " " + e.getValue().size());
+		}
+		System.out.println("------------------");
+		System.out.println("Names: " + seqsByName.keySet().size() + ", values: " + seqsByName.values().size());
+		System.out.println();
 	}
 
 	@Test
@@ -643,7 +816,7 @@ public class InspectLoadedRepository {
 				// Loop on derived codes
 				for (MMCode derivedCode : e.getValue()) {
 					Optional<String> derivedCodeName = derivedCode.getCodeName();
-		
+
 					if (baseCodeName.isPresent() && derivedCodeName.isPresent()) {
 						// Both present
 						if (Objects.equals(baseCodeName, derivedCodeName)) {
@@ -687,14 +860,13 @@ public class InspectLoadedRepository {
 				// Loop on derived codes
 				for (MMCode derivedCode : e.getValue()) {
 					Optional<String> derivedDef = derivedCode.getDefinition();
-		
+
 					if (baseDef.isPresent() && derivedDef.isPresent()) {
 						// Both present
 						if (Objects.equals(baseDef, derivedDef)) {
 							countIdentical++;
 						} else {
-							differentDefs.computeIfAbsent(baseCode, x -> new TreeSet<>(compareCode))
-									.add(derivedCode);
+							differentDefs.computeIfAbsent(baseCode, x -> new TreeSet<>(compareCode)).add(derivedCode);
 						}
 					} else if (baseDef.isPresent() && !derivedDef.isPresent()) {
 						countOnlyInBase++;
@@ -710,14 +882,16 @@ public class InspectLoadedRepository {
 			System.out.println("  definition exists only in base: " + countOnlyInBase);
 			System.out.println("  definition exists only in derived: " + countOnlyInDerived);
 			System.out.println("  definition not exits in base nor derived : " + countNon);
-			System.out
-					.println("  definition exists booth in base and derived, but they are identical: " + countIdentical);
+			System.out.println(
+					"  definition exists booth in base and derived, but they are identical: " + countIdentical);
 			System.out.println("  definition exists booth in base and derived, but they aren't identical: "
 					+ differentDefs.values().stream().flatMap(csList -> csList.stream()).count());
 			for (Entry<MMCode, SortedSet<MMCode>> e : differentDefs.entrySet()) {
-				System.out.println("    " + getFullName(e.getKey()) + ".definition = '" + e.getKey().getDefinition().get() + "'");
+				System.out.println(
+						"    " + getFullName(e.getKey()) + ".definition = '" + e.getKey().getDefinition().get() + "'");
 				for (MMCode d : e.getValue()) {
-					System.out.println("      !=  " + getFullName(d) + ".definition = '" + d.getDefinition().get() + "'");
+					System.out
+							.println("      !=  " + getFullName(d) + ".definition = '" + d.getDefinition().get() + "'");
 				}
 			}
 			System.out.println();
@@ -725,8 +899,8 @@ public class InspectLoadedRepository {
 		{
 			SortedSet<MMCode> noCodeName = new TreeSet<>(compareCode);
 			for (MMCodeSet cs : csNoTraceOrDerivation) {
-				for( MMCode code : cs.getCodes() ) {
-					if( ! code.getCodeName().isPresent())
+				for (MMCode code : cs.getCodes()) {
+					if (!code.getCodeName().isPresent())
 						noCodeName.add(code);
 				}
 			}

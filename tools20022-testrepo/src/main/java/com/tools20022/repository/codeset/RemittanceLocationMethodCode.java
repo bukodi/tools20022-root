@@ -82,9 +82,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "RemittanceLocationMethodCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies the method used to deliver the remittance advice information."</li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -107,9 +104,6 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Fax"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Remittance advice information must be faxed."</li>
 	 * </ul>
 	 */
 	public static final RemittanceLocationMethodCode FAXI_Fax = new RemittanceLocationMethodCode() {
@@ -138,11 +132,6 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ElectronicDataInterchange"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Remittance advice information must be sent through Electronic Data Interchange (EDI)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final RemittanceLocationMethodCode EDIC_ElectronicDataInterchange = new RemittanceLocationMethodCode() {
@@ -174,11 +163,6 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "UniformResourceIdentifier"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Remittance advice  information needs to be sent to a Uniform Resource Identifier (URI). URI  is a compact string of characters that uniquely identify an abstract or physical resource.  URI's are the super-set of identifiers, such as URLs, email addresses, ftp sites, etc, and as such, provide the syntax for all of the identification schemes."
-	 * </li>
 	 * </ul>
 	 */
 	public static final RemittanceLocationMethodCode URID_UniformResourceIdentifier = new RemittanceLocationMethodCode() {
@@ -206,10 +190,6 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "EMail"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Remittance advice  information must be sent through e-mail."</li>
 	 * </ul>
 	 */
 	public static final RemittanceLocationMethodCode EMAL_EMail = new RemittanceLocationMethodCode() {
@@ -237,10 +217,6 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Post"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Remittance advice information must be sent through postal services."</li>
 	 * </ul>
 	 */
 	public static final RemittanceLocationMethodCode POST_Post = new RemittanceLocationMethodCode() {
@@ -269,11 +245,6 @@ public class RemittanceLocationMethodCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SMS"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Remittance advice  information must be sent through by phone as a short message service (SMS)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final RemittanceLocationMethodCode SMSM_SMS = new RemittanceLocationMethodCode() {

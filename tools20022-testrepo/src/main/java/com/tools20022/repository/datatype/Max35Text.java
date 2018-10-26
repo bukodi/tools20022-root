@@ -43,9 +43,6 @@ import javax.xml.bind.annotation.XmlValue;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "Max35Text"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies a character string with a maximum length of 35 characters."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)

@@ -107,10 +107,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "GroupHeader33"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Set of characteristics shared by all individual transactions included in the message."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -143,11 +139,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "MessageIdentification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Point to point reference, as assigned by the instructing party, and sent to the next party in the chain to unambiguously identify the message.\nUsage: The instructing party has to make sure that MessageIdentification is unique per instructed party for a pre-agreed period."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Max35Text> mmMessageIdentification = new MMMessageAttribute<GroupHeader33, Max35Text>() {
@@ -197,9 +188,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CreationDateTime"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Date and time at which the message was created."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GroupHeader33, ISODateTime> mmCreationDateTime = new MMMessageAttribute<GroupHeader33, ISODateTime>() {
@@ -250,11 +238,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "BatchBooking"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identifies whether a single entry per individual transaction or a batch entry for the sum of the amounts of all transactions within the group of a message is requested.\nUsage: Batch booking is used to request and not order a possible batch booking."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Optional<BatchBookingIndicator>> mmBatchBooking = new MMMessageAttribute<GroupHeader33, Optional<BatchBookingIndicator>>() {
@@ -305,10 +288,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "NumberOfTransactions"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Number of individual transactions contained in the message."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Max15NumericText> mmNumberOfTransactions = new MMMessageAttribute<GroupHeader33, Max15NumericText>() {
@@ -359,11 +338,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ControlSum"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Total of all individual amounts included in the message, irrespective of currencies."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Optional<DecimalNumber>> mmControlSum = new MMMessageAttribute<GroupHeader33, Optional<DecimalNumber>>() {
@@ -414,11 +388,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "TotalInterbankSettlementAmount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Total amount of money moved between the instructing agent and the instructed agent."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Optional<ActiveCurrencyAndAmount>> mmTotalInterbankSettlementAmount = new MMMessageAttribute<GroupHeader33, Optional<ActiveCurrencyAndAmount>>() {
@@ -468,11 +437,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InterbankSettlementDate"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Date on which the amount of money ceases to be available to the agent that owes it and when the amount of money becomes available to the agent to which it is due."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GroupHeader33, Optional<ISODate>> mmInterbankSettlementDate = new MMMessageAttribute<GroupHeader33, Optional<ISODate>>() {
@@ -522,11 +486,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SettlementInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Specifies the details on how the settlement of the transaction(s) between the instructing agent and the instructed agent is completed."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<GroupHeader33, SettlementInformation13> mmSettlementInformation = new MMMessageAssociationEnd<GroupHeader33, SettlementInformation13>() {
@@ -577,10 +536,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PaymentTypeInformation"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Set of elements used to further specify the type of transaction."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<GroupHeader33, Optional<PaymentTypeInformation21>> mmPaymentTypeInformation = new MMMessageAssociationEnd<GroupHeader33, Optional<PaymentTypeInformation21>>() {
@@ -631,11 +586,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructingAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent that instructs the next party in the chain to carry out the (set of) instruction(s)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<GroupHeader33, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructingAgent = new MMMessageAssociationEnd<GroupHeader33, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -686,11 +636,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "InstructedAgent"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Agent that is instructed by the previous party in the chain to carry out the (set of) instruction(s)."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<GroupHeader33, Optional<BranchAndFinancialInstitutionIdentification4>> mmInstructedAgent = new MMMessageAssociationEnd<GroupHeader33, Optional<BranchAndFinancialInstitutionIdentification4>>() {
@@ -736,11 +681,6 @@ public class GroupHeader33 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "TotalInterbankSettlementAmountAndDateRule"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "If TotalInterbankSettlementAmount is present, then InterbankSettlementDate must be present."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<com.tools20022.repository.msgpart.GroupHeader33> TotalInterbankSettlementAmountAndDateRule = new MMConstraint<com.tools20022.repository.msgpart.GroupHeader33>() {

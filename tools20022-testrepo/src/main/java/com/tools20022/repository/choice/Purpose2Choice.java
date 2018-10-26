@@ -63,10 +63,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "Purpose2Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies the underlying reason for the payment transaction.\nUsage: Purpose is used by the end-customers, that is initiating party, (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose is a content element, which is not used for processing by any of the agents involved in the payment chain."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -99,11 +95,6 @@ public class Purpose2Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Underlying reason for the payment transaction, as published in an external purpose code list."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<Purpose2Choice, ExternalPurpose1Code> mmCode = new MMMessageAttribute<Purpose2Choice, ExternalPurpose1Code>() {
@@ -153,9 +144,6 @@ public class Purpose2Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Purpose, in a proprietary form."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<Purpose2Choice, Max35Text> mmProprietary = new MMMessageAttribute<Purpose2Choice, Max35Text>() {

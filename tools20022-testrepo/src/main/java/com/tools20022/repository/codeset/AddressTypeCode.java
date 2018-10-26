@@ -80,8 +80,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "AddressTypeCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Specifies the type of address."</li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -104,9 +102,6 @@ public class AddressTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Residential"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Address is the home address."</li>
 	 * </ul>
 	 */
 	public static final AddressTypeCode HOME_Residential = new AddressTypeCode() {
@@ -134,9 +129,6 @@ public class AddressTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Business"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Address is the business address."</li>
 	 * </ul>
 	 */
 	public static final AddressTypeCode BIZZ_Business = new AddressTypeCode() {
@@ -164,9 +156,6 @@ public class AddressTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Postal"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Address is the complete postal address."</li>
 	 * </ul>
 	 */
 	public static final AddressTypeCode ADDR_Postal = new AddressTypeCode() {
@@ -194,9 +183,6 @@ public class AddressTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "POBox"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Address is a postal office (PO) box."</li>
 	 * </ul>
 	 */
 	public static final AddressTypeCode PBOX_POBox = new AddressTypeCode() {
@@ -224,9 +210,6 @@ public class AddressTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "MailTo"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Address is the address to which mail is sent."</li>
 	 * </ul>
 	 */
 	public static final AddressTypeCode MLTO_MailTo = new AddressTypeCode() {
@@ -254,10 +237,6 @@ public class AddressTypeCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DeliveryTo"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Address is the address to which delivery is to take place."</li>
 	 * </ul>
 	 */
 	public static final AddressTypeCode DLVY_DeliveryTo = new AddressTypeCode() {

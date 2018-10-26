@@ -65,8 +65,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "GenericOrganisationIdentification1"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Information related to an identification of an organisation."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -98,9 +96,6 @@ public class GenericOrganisationIdentification1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Identification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Identification assigned by an institution."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GenericOrganisationIdentification1, Max35Text> mmIdentification = new MMMessageAttribute<GenericOrganisationIdentification1, Max35Text>() {
@@ -150,9 +145,6 @@ public class GenericOrganisationIdentification1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "SchemeName"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Name of the identification scheme."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<GenericOrganisationIdentification1, Optional<OrganisationIdentificationSchemeName1Choice>> mmSchemeName = new MMMessageAssociationEnd<GenericOrganisationIdentification1, Optional<OrganisationIdentificationSchemeName1Choice>>() {
@@ -203,9 +195,6 @@ public class GenericOrganisationIdentification1 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Issuer"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Entity that assigns the identification."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<GenericOrganisationIdentification1, Optional<Max35Text>> mmIssuer = new MMMessageAttribute<GenericOrganisationIdentification1, Optional<Max35Text>>() {

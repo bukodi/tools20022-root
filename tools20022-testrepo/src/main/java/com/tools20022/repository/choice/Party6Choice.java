@@ -60,8 +60,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "Party6Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Nature or use of the account."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -92,9 +90,6 @@ public class Party6Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "OrganisationIdentification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Unique and unambiguous way to identify an organisation."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<Party6Choice, OrganisationIdentification4> mmOrganisationIdentification = new MMMessageAssociationEnd<Party6Choice, OrganisationIdentification4>() {
@@ -144,10 +139,6 @@ public class Party6Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "PrivateIdentification"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique and unambiguous identification of a person, eg, passport."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<Party6Choice, PersonIdentification5> mmPrivateIdentification = new MMMessageAssociationEnd<Party6Choice, PersonIdentification5>() {

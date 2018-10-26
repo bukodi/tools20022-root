@@ -155,6 +155,28 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel, M
 			method.setReturnType(srcMetamodelMain.getName());
 			method.setBody("return metamodel;");
 		}
+		
+		{
+			MethodSource<JavaClassSource> method = srcMetamodelMain.addMethod(
+			"	public static String toString( MMModelEntity obj ) {\n" + 
+			"		if( obj == null )\n" + 
+			"			return null;\n" + 
+			"		String prettyName = \"[\" +obj.getClass().getSimpleName() + \"]\"; \n" + 
+			"		if( obj instanceof MMRepositoryConcept ) {\n" + 
+			"			prettyName = ((MMRepositoryConcept)obj).getName() + prettyName;\n" + 
+			"		}\n" + 
+			"		\n" + 
+			"		Class<?> containerClass = obj.getClass().getEnclosingClass();\n" + 
+			"		if( containerClass != null ) {\n" + 
+			"			MMModelEntity containerObj = obj.getContainer();\n" + 
+			"			String cotainerPrettyName = StandardMetamodel2013.toString(containerObj);\n" + 
+			"			prettyName = cotainerPrettyName + \"/\" + prettyName;\n" + 
+			"		}\n" + 
+			"		return prettyName;\n" + 
+			"	}\n" + 
+			"");
+			
+		}
 	}
 
 	private void customizeMMCodeSet(JavaClassSource src) {
@@ -411,12 +433,14 @@ public class DefaultMetamodelGenerator extends AbstractGenerator<RawMetamodel, M
 			if (mmMember.getOpposite() != null) {
 				srcType.addImport(Opposite.class);
 				AnnotationSource<O> annotOpp = srcGetter.addAnnotation(Opposite.class);
-				String opBeanName = getStructuredName(mmMember.getOpposite().getDeclaringType()).getSimpleName();
-				String opAttrName = mmMember.getOpposite().getName();
-				annotOpp.setLiteralValue("bean", opBeanName + ".class");
-				annotOpp.setStringValue("attribute", opAttrName);
-				String opGetterName = "get" + opAttrName.substring(0, 1).toUpperCase() + opAttrName.substring(1);
-				srcGetter.getJavaDoc().addTagValue("@see", opBeanName + "#" + opGetterName + "()");
+				StructuredName oppositeAttrName = getStructuredName(mmMember.getOpposite());
+				
+				//String opBeanName = getStructuredName(mmMember.getOpposite().getDeclaringType()).getSimpleName();
+				//String opAttrName = mmMember.getOpposite().getName();
+				annotOpp.setLiteralValue("bean", oppositeAttrName.getCompilationUnit() + ".class");
+				annotOpp.setStringValue("attribute", oppositeAttrName.getMemberName());
+				String opGetterName = getterName(mmMember.getOpposite());
+				srcGetter.getJavaDoc().addTagValue("@see", oppositeAttrName.getCompilationUnit() + "#" + opGetterName + "()");
 			}
 			if (mmMember.isContainer()) {
 				srcType.addImport(Container.class);

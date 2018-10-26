@@ -86,9 +86,9 @@ public class MMBusinessRole implements MMRepositoryConcept {
 	/**
 	 * the BusinessProcess that owns the BusinessRole
 	 * 
-	 * @see MMBusinessProcess#getBusinessRole()
+	 * @see MMBusinessProcess#getBusinessRoles()
 	 */
-	@Opposite(bean = MMBusinessProcess.class, attribute = "businessRole")
+	@Opposite(bean = MMBusinessProcess.class, attribute = "businessRoles")
 	@Container
 	public MMBusinessProcess getBusinessProcess() {
 		return businessProcess_lazy.get();

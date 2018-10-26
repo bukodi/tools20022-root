@@ -76,10 +76,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "AmountDirectionCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies if an operation is an increase or a decrease or the result of a reversal operation."
- * </li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -102,9 +98,6 @@ public class AmountDirectionCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Debit"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Operation is a decrease."</li>
 	 * </ul>
 	 */
 	public static final AmountDirectionCode DBIT_Debit = new AmountDirectionCode() {
@@ -132,9 +125,6 @@ public class AmountDirectionCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Credit"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Operation is an increase."</li>
 	 * </ul>
 	 */
 	public static final AmountDirectionCode CRDT_Credit = new AmountDirectionCode() {
@@ -162,10 +152,6 @@ public class AmountDirectionCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ReversalDebit"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Credit entry used to reverse a previously booked debit entry."</li>
 	 * </ul>
 	 */
 	public static final AmountDirectionCode RVDB_ReversalDebit = new AmountDirectionCode() {
@@ -193,10 +179,6 @@ public class AmountDirectionCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ReversalCredit"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Debit entry used to reverse a previously booked credit entry."</li>
 	 * </ul>
 	 */
 	public static final AmountDirectionCode RVCD_ReversalCredit = new AmountDirectionCode() {

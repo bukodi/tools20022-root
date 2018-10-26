@@ -68,8 +68,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "DateAndPlaceOfBirth"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Date and place of birth of a person."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -101,9 +99,6 @@ public class DateAndPlaceOfBirth {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "BirthDate"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Date on which a person is born."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<DateAndPlaceOfBirth, ISODate> mmBirthDate = new MMMessageAttribute<DateAndPlaceOfBirth, ISODate>() {
@@ -153,9 +148,6 @@ public class DateAndPlaceOfBirth {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "ProvinceOfBirth"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Province where a person was born."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<DateAndPlaceOfBirth, Optional<Max35Text>> mmProvinceOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, Optional<Max35Text>>() {
@@ -205,9 +197,6 @@ public class DateAndPlaceOfBirth {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CityOfBirth"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "City where a person was born."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<DateAndPlaceOfBirth, Max35Text> mmCityOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, Max35Text>() {
@@ -257,9 +246,6 @@ public class DateAndPlaceOfBirth {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CountryOfBirth"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Country where a person was born."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<DateAndPlaceOfBirth, CountryCode> mmCountryOfBirth = new MMMessageAttribute<DateAndPlaceOfBirth, CountryCode>() {

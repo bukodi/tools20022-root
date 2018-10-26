@@ -59,8 +59,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ServiceLevel8Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Specifies the service level of the transaction."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -93,11 +91,6 @@ public class ServiceLevel8Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Specifies a pre-agreed service or level of service between the parties, as published in an external service level code list."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ServiceLevel8Choice, ExternalServiceLevel1Code> mmCode = new MMMessageAttribute<ServiceLevel8Choice, ExternalServiceLevel1Code>() {
@@ -147,11 +140,6 @@ public class ServiceLevel8Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Specifies a pre-agreed service or level of service between the parties, as a proprietary code."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ServiceLevel8Choice, Max35Text> mmProprietary = new MMMessageAttribute<ServiceLevel8Choice, Max35Text>() {

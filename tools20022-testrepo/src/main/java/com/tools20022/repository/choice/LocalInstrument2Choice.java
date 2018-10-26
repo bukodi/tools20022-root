@@ -61,10 +61,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "LocalInstrument2Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Set of elements that further identifies the type of local instruments being requested by the initiating party."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -97,11 +93,6 @@ public class LocalInstrument2Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Specifies the local instrument, as published in an external local instrument code list."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<LocalInstrument2Choice, ExternalLocalInstrument1Code> mmCode = new MMMessageAttribute<LocalInstrument2Choice, ExternalLocalInstrument1Code>() {
@@ -151,9 +142,6 @@ public class LocalInstrument2Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Specifies the local instrument, as a proprietary code."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<LocalInstrument2Choice, Max35Text> mmProprietary = new MMMessageAttribute<LocalInstrument2Choice, Max35Text>() {

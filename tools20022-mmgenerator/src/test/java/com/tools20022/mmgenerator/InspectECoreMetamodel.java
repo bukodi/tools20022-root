@@ -240,27 +240,5 @@ public class InspectECoreMetamodel {
 		});
 	}
 
-	@Test
-	@Ignore
-	public void plantUMLClassDiagramm() {
-		Set<EClass> eClasses = metamodelPkg.eContents().stream().filter(eObj -> eObj instanceof EClass)
-				.map(eObj -> ((EClass) eObj)).collect(Collectors.toSet());
-		StringWriter sw = new StringWriter();
-		generatePlantUMLClassDiagramm(new PrintWriter(sw), eClasses);
-		System.out.println(sw.toString());
-	}
-
-	public void generatePlantUMLClassDiagramm(PrintWriter pw, Set<EClass> eClasses) {
-		for (EClass ec : eClasses) {
-			pw.print(ec.getName() + " ");
-			for (EClass st : ec.getESuperTypes()) {
-				pw.print("^-" + st.getName() + " ");
-			}
-			pw.println();
-			for (EObject crossRef : ec.eContents()) {
-				pw.println("  --> " + crossRef);
-			}
-		}
-	}
 
 }

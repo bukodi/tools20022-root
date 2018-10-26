@@ -68,9 +68,9 @@ public class MMEncoding implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * The MessageSets for which this Encoding is a valid ISO 20022 encoding
 	 * 
-	 * @see MMMessageSet#getValidEncoding()
+	 * @see MMMessageSet#getValidEncodings()
 	 */
-	@Opposite(bean = MMMessageSet.class, attribute = "validEncoding")
+	@Opposite(bean = MMMessageSet.class, attribute = "validEncodings")
 	@EMFName("messageSet")
 	public List<MMMessageSet> getMessageSets() {
 		return messageSets_lazy == null ? Collections.emptyList() : messageSets_lazy.get();

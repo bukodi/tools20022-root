@@ -66,8 +66,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "NamePrefix1Code"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Specifies the terms used to formally address a person."</li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -90,9 +88,6 @@ public class NamePrefix1Code extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Doctor"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Title of the person is Doctor or Dr."</li>
 	 * </ul>
 	 */
 	public static final NamePrefix1Code DOCT_Doctor = new NamePrefix1Code() {
@@ -120,9 +115,6 @@ public class NamePrefix1Code extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Mister"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Title of the person is Mister or Mr."</li>
 	 * </ul>
 	 */
 	public static final NamePrefix1Code MIST_Mister = new NamePrefix1Code() {
@@ -150,9 +142,6 @@ public class NamePrefix1Code extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Miss"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Title of the person is Miss."</li>
 	 * </ul>
 	 */
 	public static final NamePrefix1Code MISS_Miss = new NamePrefix1Code() {
@@ -180,9 +169,6 @@ public class NamePrefix1Code extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Madam"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Title of the person is Madam."</li>
 	 * </ul>
 	 */
 	public static final NamePrefix1Code MADM_Madam = new NamePrefix1Code() {

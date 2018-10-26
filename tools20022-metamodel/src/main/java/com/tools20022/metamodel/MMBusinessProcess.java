@@ -95,9 +95,9 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	/**
 	 * specifies the BusinessProcess that is extending another BusinessProcess
 	 * 
-	 * @see MMBusinessProcess#getExtended()
+	 * @see MMBusinessProcess#getExtendeds()
 	 */
-	@Opposite(bean = MMBusinessProcess.class, attribute = "extended")
+	@Opposite(bean = MMBusinessProcess.class, attribute = "extendeds")
 	@EMFName("extender")
 	public List<MMBusinessProcess> getExtenders() {
 		return extenders_lazy == null ? Collections.emptyList() : extenders_lazy.get();
@@ -106,9 +106,9 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	/**
 	 * specifies the BusinessProcess that is extended by another BusinessProcess
 	 * 
-	 * @see MMBusinessProcess#getExtender()
+	 * @see MMBusinessProcess#getExtenders()
 	 */
-	@Opposite(bean = MMBusinessProcess.class, attribute = "extender")
+	@Opposite(bean = MMBusinessProcess.class, attribute = "extenders")
 	@EMFName("extended")
 	public List<MMBusinessProcess> getExtendeds() {
 		return extendeds_lazy == null ? Collections.emptyList() : extendeds_lazy.get();
@@ -117,9 +117,9 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	/**
 	 * specifies the BusinessProcess that is included by another BusinessProcess
 	 * 
-	 * @see MMBusinessProcess#getIncluder()
+	 * @see MMBusinessProcess#getIncluders()
 	 */
-	@Opposite(bean = MMBusinessProcess.class, attribute = "includer")
+	@Opposite(bean = MMBusinessProcess.class, attribute = "includers")
 	@EMFName("included")
 	public List<MMBusinessProcess> getIncludeds() {
 		return includeds_lazy == null ? Collections.emptyList() : includeds_lazy.get();
@@ -128,9 +128,9 @@ public class MMBusinessProcess implements MMTopLevelCatalogueEntry {
 	/**
 	 * specifies the BusinessProcess that is incuding another BusinessProcess
 	 * 
-	 * @see MMBusinessProcess#getIncluded()
+	 * @see MMBusinessProcess#getIncludeds()
 	 */
-	@Opposite(bean = MMBusinessProcess.class, attribute = "included")
+	@Opposite(bean = MMBusinessProcess.class, attribute = "includeds")
 	@EMFName("includer")
 	public List<MMBusinessProcess> getIncluders() {
 		return includers_lazy == null ? Collections.emptyList() : includers_lazy.get();

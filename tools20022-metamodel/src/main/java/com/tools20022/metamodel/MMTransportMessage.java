@@ -84,9 +84,9 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * the sending MessagingEndpoint of a TransportMessage
 	 * 
-	 * @see MMMessagingEndpoint#getSentMessage()
+	 * @see MMMessagingEndpoint#getSentMessages()
 	 */
-	@Opposite(bean = MMMessagingEndpoint.class, attribute = "sentMessage")
+	@Opposite(bean = MMMessagingEndpoint.class, attribute = "sentMessages")
 	public MMMessagingEndpoint getSender() {
 		return sender_lazy.get();
 	}
@@ -94,9 +94,9 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * the MessageInstance that is part of the TransportMessage
 	 * 
-	 * @see MMMessageInstance#getTransportMessage()
+	 * @see MMMessageInstance#getTransportMessages()
 	 */
-	@Opposite(bean = MMMessageInstance.class, attribute = "transportMessage")
+	@Opposite(bean = MMMessageInstance.class, attribute = "transportMessages")
 	public MMMessageInstance getMessageInstance() {
 		return messageInstance_lazy.get();
 	}
@@ -104,9 +104,9 @@ public class MMTransportMessage implements OrphanMetamodelType, MMModelEntity {
 	/**
 	 * the receiving MessagingEndpoint in a TransportMessage
 	 * 
-	 * @see MMMessagingEndpoint#getReceivedMessage()
+	 * @see MMMessagingEndpoint#getReceivedMessages()
 	 */
-	@Opposite(bean = MMMessagingEndpoint.class, attribute = "receivedMessage")
+	@Opposite(bean = MMMessagingEndpoint.class, attribute = "receivedMessages")
 	@EMFName("receiver")
 	public List<MMMessagingEndpoint> getReceivers() {
 		return receivers_lazy == null ? Collections.emptyList() : receivers_lazy.get();

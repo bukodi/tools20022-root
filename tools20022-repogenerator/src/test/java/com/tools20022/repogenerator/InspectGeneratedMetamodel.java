@@ -1,72 +1,59 @@
 package com.tools20022.repogenerator;
 
-import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Queue;
 import java.util.Set;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.core.metamodel.Metamodel.MetamodelType;
-import com.tools20022.generators.ECoreIOHelper;
 import com.tools20022.metamodel.MMBusinessArea;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessAttribute;
 import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMBusinessProcessCatalogue;
+import com.tools20022.metamodel.MMBusinessConcept;
+import com.tools20022.metamodel.MMBusinessElement;
+import com.tools20022.metamodel.MMBusinessElementType;
 import com.tools20022.metamodel.MMChoiceComponent;
 import com.tools20022.metamodel.MMCodeSet;
 import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMDataDictionary;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMDoclet;
+import com.tools20022.metamodel.MMMessageAssociationEnd;
+import com.tools20022.metamodel.MMMessageAttribute;
+import com.tools20022.metamodel.MMMessageBuildingBlock;
 import com.tools20022.metamodel.MMMessageComponent;
+import com.tools20022.metamodel.MMMessageComponentType;
+import com.tools20022.metamodel.MMMessageConcept;
+import com.tools20022.metamodel.MMMessageConstruct;
 import com.tools20022.metamodel.MMMessageDefinition;
+import com.tools20022.metamodel.MMMessageElement;
+import com.tools20022.metamodel.MMMessageElementContainer;
 import com.tools20022.metamodel.MMMessageSet;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepository;
 import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.metamodel.MMSemanticMarkup;
-import com.tools20022.metamodel.MMSemanticMarkupElement;
 import com.tools20022.metamodel.MMTopLevelCatalogueEntry;
 import com.tools20022.metamodel.MMTopLevelDictionaryEntry;
+import com.tools20022.metamodel.MMXor;
 import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class InspectGeneratedMetamodel {
-
-	final static RawRepository repo;
-
-	static {
-		long usedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-		long start = System.currentTimeMillis();
-		try {
-			EPackage ecorePkg = ECoreIOHelper
-					.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
-			EObject rootEObj = ECoreIOHelper.loadXMIResource(
-					ECoreIOHelper.class.getResourceAsStream("/model/20170516_ISO20022_2013_eRepository.iso20022"));
-			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
-			repo = loader.load(ecorePkg, rootEObj);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-
-		long usedMem2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-		System.out.println("Model load: " + (System.currentTimeMillis() - start) + " ms, "
-				+ ((usedMem2 - usedMem) / (1024 * 1024)) + " MB");
-	}
 
 	@Test
 	public void testContaining() {
@@ -75,55 +62,49 @@ public class InspectGeneratedMetamodel {
 	}
 
 	@Test
-	public void categorizeMMTypes() {
-		Map<String, Set<MetamodelType<? extends MMModelEntity>>> typesByCategorie = new HashMap<>();
-		BiConsumer<MetamodelType<? extends MMModelEntity>, String> printType = (mmType, name) -> {
-			typesByCategorie
-					.computeIfAbsent(name, x -> new LinkedHashSet<MetamodelType<? extends MMModelEntity>>())
-					.add(mmType);
-		};
-
-		System.out.println("------------------------");
-
-		for (MetamodelType<? extends MMModelEntity> mmType : StandardMetamodel2013.metamodel().getAllTypes()) {
-
-			if (MMDataType.class.isAssignableFrom(mmType.getBeanClass())) {
-				printType.accept(mmType, "DataType");
-			} else if (Arrays.asList(MMRepository.class, MMDataDictionary.class, MMBusinessProcessCatalogue.class)
-					.contains(mmType.getBeanClass())) {
-				printType.accept(mmType, "Structure");
-			} else if (Arrays
-					.asList(MMConstraint.class, MMDoclet.class, MMSemanticMarkup.class, MMSemanticMarkupElement.class)
-					.contains(mmType.getBeanClass())) {
-				printType.accept(mmType, "Markups");
-			} else if (mmType.isAbstract()) {
-				printType.accept(mmType, "Interface");
-			} else if (MMTopLevelCatalogueEntry.class.isAssignableFrom(mmType.getBeanClass())
-					|| MMTopLevelDictionaryEntry.class.isAssignableFrom(mmType.getBeanClass())
-					|| MMMessageDefinition.class.equals(mmType.getBeanClass())) {
-				printType.accept(mmType, repo.getCountByType(mmType) > 1 ? "MainType" : "SingletonMain");
-			} else {
-				printType.accept(mmType, repo.getCountByType(mmType) > 1 ? "SubType" : "SingletonSub");
-			}
-		}
-
-		for (String name : typesByCategorie.keySet().stream().sorted().collect(Collectors.toSet())) {
-			for (MetamodelType<? extends MMModelEntity> mmType : typesByCategorie.get(name)) {
-				System.out.println(name + " - " + mmType.getName() + " ( " + repo.getCountByType(mmType) + ")");
-				if ("MainType".equals(name) || "SubType".equals(name)) {
-					mmType.listAllAttributes().filter(a -> a.isContainment()).map(a -> a.getReferencedType()).distinct()
-							.forEach(rt -> {
-								if (!Arrays.asList(MMConstraint.class, MMDoclet.class, MMSemanticMarkup.class,
-										MMSemanticMarkupElement.class).contains(rt.getBeanClass()))
-									System.out.println("  - " + rt.getName());
-							});
+	public void inspectReferences() throws Exception {
+		
+		Set<MetamodelAttribute<?, ?>> processedAttrs = new HashSet<>();
+		Set<MetamodelType<?>> processedTypes = new HashSet<>();
+		Deque<MetamodelType<?>> typesToProcess = new ArrayDeque<>();
+		
+		typesToProcess.add(MMMessageDefinition.metaType());
+		typesToProcess.addAll(StandardMetamodel2013.metamodel().getAllTypes());
+		
+		for (;!typesToProcess.isEmpty();) {			
+			MetamodelType<?> mmType = typesToProcess.removeFirst();
+			for( MetamodelAttribute<?, ?> mmRef: mmType.getDeclaredAttributes() ) {
+				if( mmRef.getReferencedType() == null ) 
+					continue;
+				if( processedAttrs.contains(mmRef))
+					continue;
+				MetamodelType<?> refType = mmRef.getReferencedType();
+				MetamodelAttribute<?, ?> oppositeRef = mmRef.getOpposite();
+				
+				String line = "";
+				line += " " + mmType.getName() + "." + mmRef.getName() ;
+				line +=  oppositeRef != null ? " <--> " : " ---> ";   
+				if( oppositeRef != null ) {
+					line +=   oppositeRef.getDeclaringType().getName() + "." + oppositeRef.getName() ;					
+					processedAttrs.add(oppositeRef);
+				} else {
+					line += refType.getName() ;
 				}
+				if( mmRef.isDerived() ) {
+					line = "( " + line + " )";
+				}
+				System.out.println( line );
+				
+				processedAttrs.add(mmRef);
+				if( ! processedTypes.contains(refType) )
+					typesToProcess.add(refType);
 			}
+			processedTypes.add(mmType);			
 		}
 
-		System.out.println("------------------------");
+		
 	}
-
+	
 	@Test
 	public void testRepoConceptTypes() throws Exception {
 		List<? extends MetamodelType<? extends MMModelEntity>> allTypes = StandardMetamodel2013.metamodel()
@@ -206,69 +187,6 @@ public class InspectGeneratedMetamodel {
 		});
 		System.out.println("------------------");
 		System.out.println();
-	}
-
-	@Test
-	@Ignore
-	public void testMsgBolcs() throws Exception {
-		System.out.println("----- MSG Blocks ---------");
-		System.out.println();
-		Map<String, Set<Integer>> seqsByName = new HashMap<>();
-		for (MMMessageComponent msgComp : repo.listObjects(MMMessageComponent.metaType())
-				.collect(Collectors.toList())) {
-			// System.out.println(msgComp.getName());
-			String name = msgComp.getName();
-			String seq = "";
-			for (;;) {
-				char lastChar = name.charAt(name.length() - 1);
-				if (!Character.isDigit(lastChar))
-					break;
-				name = name.substring(0, name.length() - 1);
-				seq += lastChar;
-			}
-			Integer s = seq.length() == 0 ? 0 : Integer.valueOf(seq);
-			Set<Integer> seqs = seqsByName.computeIfAbsent(name, x -> new HashSet<>());
-			seqs.add(s);
-		}
-
-		for (Entry<String, Set<Integer>> e : seqsByName.entrySet()) {
-			System.out.println(
-					e.getKey() + " " + e.getValue().stream().max(Integer::compare).get() + " " + e.getValue().size());
-		}
-		System.out.println("------------------");
-		System.out.println("Names: " + seqsByName.keySet().size() + ", values: " + seqsByName.values().size());
-		System.out.println();
-	}
-
-	@Test
-	public void countMMTypes() throws Exception {
-		System.out.println(
-				"Abstract types: " + StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> t.isAbstract()).count());
-		System.out.println("Non abstract types: "
-				+ StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> !t.isAbstract()).count());
-		System.out.println("Non abstract and RepositoryConcept: " + StandardMetamodel2013.metamodel().getAllTypes().stream()
-				.filter(t -> !t.isAbstract())
-				.filter(t -> t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
-				.count());
-		System.out.println("Non abstract and non RepositoryConcept: " + StandardMetamodel2013.metamodel().getAllTypes().stream()
-				.filter(t -> !t.isAbstract())
-				.filter(t -> !t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
-				.count());
-		System.out.println();
-		System.out.println("Non abstract and non RepositoryConcept: ");
-		StandardMetamodel2013.metamodel().getAllTypes().stream().filter(t -> !t.isAbstract())
-				.filter(t -> !t.listSuperTypes(false, true).anyMatch(s -> s.equals(MMRepositoryConcept.metaType())))
-				.forEachOrdered(t -> {
-					System.out.println(t.getName() + " " + repo.getCountByType(t));
-				});
-
-		System.out.println("Number of MMConstraint objects : " + repo.getCountByType(MMConstraint.metaType()));
-		System.out.println("Number of MMDoclet objects : " + repo.getCountByType(MMDoclet.metaType()));
-		System.out.println("Number of MMSemanticMarkup objects : " + repo.getCountByType(MMSemanticMarkup.metaType()));
-		System.out.println("Number of MMSemanticMarkupElement objects : "
-				+ repo.getCountByType(MMSemanticMarkupElement.metaType()));
-		System.out.println();
-
 	}
 
 	@Test
@@ -363,7 +281,7 @@ public class InspectGeneratedMetamodel {
 		if (pkg == null)
 			pkg = "-";
 		System.out.println(
-				tab + prefix + pkg + container.getName() + " (" + repo.getCountByType(container) + " objects )");
+				tab + prefix + pkg + container.getName() );
 
 		container.listAllAttributes().filter(mmAttr -> mmAttr.isContainment())
 				.filter(mmAttr -> !refPath.contains(mmAttr)).forEachOrdered(mmAttr -> {
@@ -378,6 +296,132 @@ public class InspectGeneratedMetamodel {
 								printContainmentTree(subType, nextpath, tab + "  ", "(" + mmAttr.getName() + ") ");
 							});
 				});
+	}
+
+	final static LinkedHashMap<String,List<MetamodelType<?>>> togetherGroups;
+	final static List<MetamodelType<?>> notInTogetherGroups;
+	static {
+		togetherGroups = new LinkedHashMap<>();
+		{
+			ArrayList<MetamodelType<?>> group = new ArrayList<>();
+			group.add(MMBusinessConcept.metaType());
+			group.add(MMBusinessComponent.metaType());
+			group.add(MMBusinessAttribute.metaType());
+			group.add(MMBusinessAssociationEnd.metaType());
+			group.add(MMBusinessElement.metaType());
+			group.add(MMBusinessElementType.metaType());
+			togetherGroups.put("BusinessObjects", group);
+		}
+		{
+			ArrayList<MetamodelType<?>> group = new ArrayList<>();
+			group.add(MMMessageConcept.metaType());
+			group.add(MMMessageComponent.metaType());
+			group.add(MMMessageComponentType.metaType());
+			group.add(MMMessageConstruct.metaType());
+			group.add(MMMessageBuildingBlock.metaType());
+			group.add(MMMessageDefinition.metaType());
+			group.add(MMMessageAttribute.metaType());
+			group.add(MMMessageAssociationEnd.metaType());
+			group.add(MMMessageElement.metaType());
+			group.add(MMMessageElementContainer.metaType());
+			group.add(MMChoiceComponent.metaType());
+			group.add(MMXor.metaType());
+			togetherGroups.put("Messages", group);
+		}
+		
+		notInTogetherGroups = new ArrayList<>();
+		notInTogetherGroups.addAll(StandardMetamodel2013.metamodel().getAllTypes());
+		for( List<MetamodelType<?>> group: togetherGroups.values() ) {
+			notInTogetherGroups.removeAll(group);
+		}
+		
+		
+	}
+	
+	@Test
+	//@Ignore
+	public void plantUMLInheritanceDiagramm() {
+		Set<MetamodelType<?>> selectedTypes = new LinkedHashSet<>();
+		for( MetamodelType<? extends MMModelEntity> mmType : StandardMetamodel2013.metamodel().getAllTypes() ) {
+			if( mmType.getSuperTypes(false, true).contains(MMDataType.metaType()))
+				continue;
+			selectedTypes.add(mmType);
+		}
+
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		pw.println("@startuml");
+		pw.println("hide empty members");
+
+		for( Entry<String, List<MetamodelType<?>>> e : togetherGroups.entrySet() ) {
+			pw.println("package " +e.getKey() + " <<Rectangle>> {");
+			printEntities(pw, e.getValue());			
+			pw.println("}");
+			pw.println();
+		}
+		
+		printEntities(pw, notInTogetherGroups);			
+		
+		
+		Set<MetamodelAttribute<?, ?>> processedAttrs = new HashSet<>();
+		for (MetamodelType<?> mmType : selectedTypes) {
+			for (MetamodelType<?> st : mmType.getSuperTypes(false, false)) {
+				if( "ModelEntity".equals( st.getName() ) )
+					continue;
+				pw.println(mmType.getName() + " -up-|> " + st.getName());
+			}
+			
+			/*for (MetamodelAttribute<?, ?> mmAttr : mmType.getDeclaredAttributes()) {
+				MetamodelType<?> refType = mmAttr.getReferencedType();
+				if( refType == null  )
+					continue;
+				if( processedAttrs.contains(mmAttr))
+					continue;
+				
+				pw.println(mmType.getName() + " -- " + refType.getName());
+				processedAttrs.add(mmAttr);
+				MetamodelAttribute<?, ?> oppositeAttr = mmAttr.getOpposite();
+				if( oppositeAttr != null )
+					processedAttrs.add(oppositeAttr);
+			}*/
+			pw.println();
+//			for (EObject crossRef : ec.eContents()) {
+//				pw.println("  --> " + crossRef);
+//			}
+		}
+
+		
+		generatePlantUMLClassDiagramm(pw, selectedTypes);
+		pw.println("@enduml");
+		System.out.println(sw.toString());
+	}
+
+	private void printEntities(PrintWriter pw, List<MetamodelType<?>> group) {
+		for (MetamodelType<?> mmType : group) {
+			pw.print(mmType.isAbstract() ? "interface " : "class ");
+			pw.println( mmType.getName() + " {");
+			for( MetamodelAttribute<?, ?> mmAttr: mmType.getDeclaredAttributes() ) {
+				
+				pw.print("  + " );
+				//pw.print( mmAttr.isOptional() ? "{field}" : "{method}");
+				pw.print( " " + mmAttr.getName() );
+				pw.print( (mmAttr.isMultiple() ? " *":"") );
+				if( mmAttr.getReferencedType() !=null ) {
+					pw.print( " : " + mmAttr.getReferencedType().getName() );					
+				} else if( mmAttr.getValueJavaClass() !=null ) {
+					pw.print( " : " + mmAttr.getValueJavaClass().getSimpleName() );										
+				} else if( mmAttr.getEnumType() !=null ) {
+					pw.print( " : " + mmAttr.getEnumType().getName());															
+				}
+				pw.println();
+			}
+			pw.println( "}");
+		}
+	}
+	
+	
+
+	public void generatePlantUMLClassDiagramm(PrintWriter pw, Set<MetamodelType<?>> eClasses) {
 	}
 
 }

@@ -53,10 +53,6 @@ import java.util.concurrent.atomic.AtomicReference;
  * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "Payments Clearing and Settlement - Archive - master"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Messages that support the clearing and settlement processes for payment transactions between financial institutions"
- * </li>
  * </ul>
  */
 public class PaymentsClearingandSettlementArchive {

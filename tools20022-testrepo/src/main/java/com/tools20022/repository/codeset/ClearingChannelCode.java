@@ -76,10 +76,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ClearingChannelCode"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies the clearing channel for the routing of the transaction, as part of the payment type identification."
- * </li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
@@ -102,9 +98,6 @@ public class ClearingChannelCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RealTimeGrossSettlementSystem"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Clearing channel is a real-time gross settlement system."</li>
 	 * </ul>
 	 */
 	public static final ClearingChannelCode RTGS_RealTimeGrossSettlementSystem = new ClearingChannelCode() {
@@ -132,9 +125,6 @@ public class ClearingChannelCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "RealTimeNetSettlementSystem"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Clearing channel is a real-time net settlement system."</li>
 	 * </ul>
 	 */
 	public static final ClearingChannelCode RTNS_RealTimeNetSettlementSystem = new ClearingChannelCode() {
@@ -162,10 +152,6 @@ public class ClearingChannelCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "MassPaymentNetSystem"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Clearing channel is a mass payment net settlement system."
-	 * </li>
 	 * </ul>
 	 */
 	public static final ClearingChannelCode MPNS_MassPaymentNetSystem = new ClearingChannelCode() {
@@ -193,9 +179,6 @@ public class ClearingChannelCode extends MMCode {
 	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "BookTransfer"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Payment through internal book transfer."</li>
 	 * </ul>
 	 */
 	public static final ClearingChannelCode BOOK_BookTransfer = new ClearingChannelCode() {

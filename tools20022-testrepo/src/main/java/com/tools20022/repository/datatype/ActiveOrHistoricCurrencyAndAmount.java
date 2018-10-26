@@ -66,10 +66,6 @@ import javax.xml.bind.annotation.*;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ActiveOrHistoricCurrencyAndAmount"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217."
- * </li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -96,11 +92,6 @@ public class ActiveOrHistoricCurrencyAndAmount {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "CurrencyAmount"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "The number of fractional digits (or minor unit of currency) must comply with ISO 4217.\nNote: The decimal separator is a dot."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMConstraint<ActiveOrHistoricCurrencyAndAmount> CurrencyAmount = new MMConstraint<ActiveOrHistoricCurrencyAndAmount>() {

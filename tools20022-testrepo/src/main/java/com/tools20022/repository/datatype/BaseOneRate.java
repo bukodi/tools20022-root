@@ -51,8 +51,6 @@ import javax.xml.bind.annotation.XmlValue;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "BaseOneRate"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Rate expressed as a decimal, eg, 0.7 is 7/10 and 70%."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)

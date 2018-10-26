@@ -60,8 +60,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ClearingSystemIdentification2Choice"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Choice of a clearing system identifier."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -94,11 +92,6 @@ public class ClearingSystemIdentification2Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Code"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identification of a clearing system, in a coded form as published in an external list."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ClearingSystemIdentification2Choice, ExternalClearingSystemIdentification1Code> mmCode = new MMMessageAttribute<ClearingSystemIdentification2Choice, ExternalClearingSystemIdentification1Code>() {
@@ -148,11 +141,6 @@ public class ClearingSystemIdentification2Choice {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Proprietary"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Identification code for a clearing system, that has not yet been identified in the list of clearing systems."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAttribute<ClearingSystemIdentification2Choice, Max35Text> mmProprietary = new MMMessageAttribute<ClearingSystemIdentification2Choice, Max35Text>() {

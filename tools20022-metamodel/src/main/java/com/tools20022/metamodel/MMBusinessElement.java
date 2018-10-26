@@ -84,9 +84,9 @@ public interface MMBusinessElement extends MMConstruct, MMBusinessConcept {
 	/**
 	 * The business context in which the BusinessElement is used
 	 * 
-	 * @see MMBusinessComponent#getElement()
+	 * @see MMBusinessComponent#getElements()
 	 */
-	@Opposite(bean = MMBusinessComponent.class, attribute = "element")
+	@Opposite(bean = MMBusinessComponent.class, attribute = "elements")
 	@Container
 	public MMBusinessComponent getElementContext();
 }

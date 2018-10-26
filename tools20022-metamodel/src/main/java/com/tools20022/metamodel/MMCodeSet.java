@@ -90,9 +90,9 @@ public class MMCodeSet extends MMString {
 	/**
 	 * The CodeSet that this CodesSet is derived from.
 	 * 
-	 * @see MMCodeSet#getDerivation()
+	 * @see MMCodeSet#getDerivations()
 	 */
-	@Opposite(bean = MMCodeSet.class, attribute = "derivation")
+	@Opposite(bean = MMCodeSet.class, attribute = "derivations")
 	public Optional<MMCodeSet> getTrace() {
 		return trace_lazy == null ? Optional.empty() : Optional.of(trace_lazy.get());
 	}

@@ -70,12 +70,12 @@ public class TestConsistentSubset {
 		
 	@Test
 	public void subsetForMessageDef() throws Exception {
-		boolean skipBusinessComponents = false;
+		boolean skipBusinessComponents = true;
 		//final String msgId = "pain.002.001.08";
 		//final String msgId = "camt.030.001.04";
 		//final String msgId = "pacs.008.001.02";
 		//final String msgId = "pain.002.001.02";
-		final String msgId = "auth.034.001.01";
+		final String msgId = "tsmt.049.001.01";
 		
 		
 		long start = System.currentTimeMillis();

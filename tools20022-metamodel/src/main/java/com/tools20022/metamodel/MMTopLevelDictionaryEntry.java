@@ -44,9 +44,9 @@ public interface MMTopLevelDictionaryEntry extends MMRepositoryConcept {
 	/**
 	 * the DataDictionary that contains all ISO 20022 TopLevelDictionaryEntries
 	 * 
-	 * @see MMDataDictionary#getTopLevelDictionaryEntry()
+	 * @see MMDataDictionary#getTopLevelDictionaryEntries()
 	 */
-	@Opposite(bean = MMDataDictionary.class, attribute = "topLevelDictionaryEntry")
+	@Opposite(bean = MMDataDictionary.class, attribute = "topLevelDictionaryEntries")
 	@Container
 	public MMDataDictionary getDataDictionary();
 }

@@ -59,8 +59,6 @@ import javax.xml.bind.annotation.XmlType;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "PersonIdentification5"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} = "Unique and unambiguous way to identify a person."</li>
  * </ul>
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -92,9 +90,6 @@ public class PersonIdentification5 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "DateAndPlaceOfBirth"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} = "Date and place of birth of a person."</li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<PersonIdentification5, Optional<DateAndPlaceOfBirth>> mmDateAndPlaceOfBirth = new MMMessageAssociationEnd<PersonIdentification5, Optional<DateAndPlaceOfBirth>>() {
@@ -145,11 +140,6 @@ public class PersonIdentification5 {
 	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Other"</li>
-	 * <li>
-	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
-	 * definition} =
-	 * "Unique identification of a person, as assigned by an institution, using an identification scheme."
-	 * </li>
 	 * </ul>
 	 */
 	public static final MMMessageAssociationEnd<PersonIdentification5, List<GenericPersonIdentification1>> mmOther = new MMMessageAssociationEnd<PersonIdentification5, List<GenericPersonIdentification1>>() {

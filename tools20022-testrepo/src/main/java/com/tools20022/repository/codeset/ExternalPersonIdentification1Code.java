@@ -38,16 +38,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
- * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
- * <ul>
- * <li>
- * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code#ABC1_Abc1
- * ExternalPersonIdentification1Code.ABC1_Abc1}</li>
- * <li>
- * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code#DEF2_Def21
- * ExternalPersonIdentification1Code.DEF2_Def21}</li>
- * </ul>
- * </li>
  * <li>
  * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
  * dataDictionary} =
@@ -65,58 +55,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
  * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
  * "ExternalPersonIdentification1Code"</li>
- * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getDefinition
- * definition} =
- * "Specifies the external person identification scheme name code in the format of character string with a maximum length of 4 characters.\r\nThe list of valid codes is an external code list published separately.\r\nExternal code sets can be downloaded from www.iso20022.org."
- * </li>
  * </ul>
  */
 @XmlJavaTypeAdapter(InternalXmlAdapter.class)
 public class ExternalPersonIdentification1Code extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
-	/**
-	 * (No doc)
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "ABC1"</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code
-	 * ExternalPersonIdentification1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Abc 1"</li>
-	 * </ul>
-	 */
-	public static final ExternalPersonIdentification1Code ABC1_Abc1 = new ExternalPersonIdentification1Code() {
-		{
-			name = "Abc 1";
-			codeName = "ABC1";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ExternalPersonIdentification1Code.mmObject());
-		}
-	};
-	/**
-	 * (No doc)
-	 * <p>
-	 * <strong>Constant fields:</strong>
-	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DEF2"</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
-	 * {@linkplain com.tools20022.repository.codeset.ExternalPersonIdentification1Code
-	 * ExternalPersonIdentification1Code}</li>
-	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
-	 * name} = "Def 21"</li>
-	 * </ul>
-	 */
-	public static final ExternalPersonIdentification1Code DEF2_Def21 = new ExternalPersonIdentification1Code() {
-		{
-			name = "Def 21";
-			codeName = "DEF2";
-			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.ExternalPersonIdentification1Code.mmObject());
-		}
-	};
 	final static private LinkedHashMap<String, ExternalPersonIdentification1Code> codesByName = new LinkedHashMap<>();
 
 	protected ExternalPersonIdentification1Code() {
@@ -130,7 +74,6 @@ public class ExternalPersonIdentification1Code extends MMCode {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "ExternalPersonIdentification1Code";
 				definition = "Specifies the external person identification scheme name code in the format of character string with a maximum length of 4 characters.\r\nThe list of valid codes is an external code list published separately.\r\nExternal code sets can be downloaded from www.iso20022.org.";
-				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.ExternalPersonIdentification1Code.ABC1_Abc1, com.tools20022.repository.codeset.ExternalPersonIdentification1Code.DEF2_Def21));
 				minLength = 1;
 				maxLength = 4;
 			}
@@ -139,8 +82,6 @@ public class ExternalPersonIdentification1Code extends MMCode {
 	}
 
 	static {
-		codesByName.put(ABC1_Abc1.getCodeName().get(), ABC1_Abc1);
-		codesByName.put(DEF2_Def21.getCodeName().get(), DEF2_Def21);
 	}
 
 	public static ExternalPersonIdentification1Code valueOf(String codeName) {

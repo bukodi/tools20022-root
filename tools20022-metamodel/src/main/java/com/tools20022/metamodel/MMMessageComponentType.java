@@ -72,8 +72,8 @@ public interface MMMessageComponentType extends MMTopLevelDictionaryEntry, MMLog
 	/**
 	 * The BusinessComponent that this MessageComponentType is derived from.
 	 * 
-	 * @see MMBusinessComponent#getDerivationComponent()
+	 * @see MMBusinessComponent#getDerivationComponents()
 	 */
-	@Opposite(bean = MMBusinessComponent.class, attribute = "derivationComponent")
+	@Opposite(bean = MMBusinessComponent.class, attribute = "derivationComponents")
 	public Optional<MMBusinessComponent> getTrace();
 }
