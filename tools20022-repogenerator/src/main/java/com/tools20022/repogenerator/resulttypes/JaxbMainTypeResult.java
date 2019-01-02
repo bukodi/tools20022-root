@@ -23,13 +23,13 @@ public class JaxbMainTypeResult extends MainTypeResult {
 	
 	public List<String> propOrder = new ArrayList<>();
 
-	public JaxbMainTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMRepositoryConcept mmBean, StructuredName baseName) {
-		super(ctx, mmBean, baseName);
+	public JaxbMainTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMRepositoryConcept mmBean) {
+		super(ctx, mmBean);
 	}
 
 	@Override
-	public JaxbPropertyResult addProperty( MMConstruct propertyMMBean, StructuredName propertyBaseName ) {
-		JaxbPropertyResult newProperty = new JaxbPropertyResult(this, (MMMessageConstruct) propertyMMBean, propertyBaseName);
+	public JaxbPropertyResult addProperty( MMConstruct propertyMMBean) {
+		JaxbPropertyResult newProperty = new JaxbPropertyResult(this, (MMMessageConstruct) propertyMMBean);
 		properties.add(newProperty);
 		return newProperty;
 	}

@@ -19,11 +19,13 @@ import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTNode;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ASTVisitor;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Block;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.CompilationUnit;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.ExpressionStatement;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Name;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.QualifiedName;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.SimpleName;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.Statement;
+import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.StructuralPropertyDescriptor;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 import org.junit.Ignore;
@@ -121,7 +123,7 @@ public class TestRoaster {
 		method.setReturnType(Integer.TYPE);
 
 		
-		et.replace("x", "a").replace("y", "b").addToBody(method);
+		et.replaceName("x", "a").replace("y", "b").addToBody(method);
 		System.out.println(javaSrc);
 	}
 
@@ -136,7 +138,7 @@ public class TestRoaster {
 			
 		}
 				
-		public Replacer replace( String originalName, String replacedName ) {
+		public Replacer replaceName( String originalName, String replacedName ) {
 			return new Replacer( new HashMap<>(), originalName, replacedName );
 		}
 
@@ -186,11 +188,15 @@ public class TestRoaster {
 			String simpleName = node.getIdentifier();
 			String replacement = replaceMap.get(simpleName);
 			if( replacement != null ) {
-				node.setIdentifier(replacement);				
+//				node.setIdentifier(replacement);
+				SimpleName newNode = node.getAST().newSimpleName(replacement);
+				ASTNode parentNode = node.getParent();
+				StructuralPropertyDescriptor loc = node.getLocationInParent();
+				parentNode.setStructuralProperty(loc, newNode );
 			}
 			return super.visit(node);
 		}
-
+		
 		@Override
 		public boolean visit(QualifiedName node) {
 			String fqn = node.getFullyQualifiedName();

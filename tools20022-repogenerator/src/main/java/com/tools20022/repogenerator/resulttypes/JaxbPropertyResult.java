@@ -10,8 +10,8 @@ import com.tools20022.metamodel.MMMessageConstruct;
 
 public class JaxbPropertyResult extends PropertyResult {
 
-	JaxbPropertyResult(JaxbMainTypeResult containerGen, MMMessageConstruct mmBean, StructuredName baseName) {
-		super(containerGen, mmBean, baseName);
+	JaxbPropertyResult(JaxbMainTypeResult containerGen, MMMessageConstruct mmBean) {
+		super(containerGen, mmBean);
 	}
 	
 	@Override

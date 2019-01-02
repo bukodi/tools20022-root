@@ -24,8 +24,8 @@ public class PropertyResult extends StaticFieldResult {
 	public MethodSource<JavaClassSource> beanSetterSrc;
 	public MethodSource<JavaClassSource> beanWithSrc;
 
-	PropertyResult(MainTypeResult containerGen, MMConstruct mmBean, StructuredName name) {		
-		super(containerGen, mmBean, name);
+	PropertyResult(MainTypeResult containerGen, MMConstruct mmBean) {		
+		super(containerGen, mmBean);
 		if( ! (mmBean instanceof RuntimePropertyAware) )
 			throw new RuntimeException(mmBean.getName() + " isn't an instance of " + RuntimePropertyAware.class.getName());		
 		
@@ -38,7 +38,7 @@ public class PropertyResult extends StaticFieldResult {
 
 
 		{
-			String fieldName = name.getMemberName().substring(0, 1).toLowerCase() + name.getMemberName().substring(1);
+			String fieldName = baseName.getMemberName().substring(0, 1).toLowerCase() + baseName.getMemberName().substring(1);
 			fieldName = RoasterHelper.convertToJavaName(fieldName);
 			beanFieldSrc = containerGen.src.addField().setName(fieldName);
 			beanFieldSrc.setProtected();
@@ -58,7 +58,7 @@ public class PropertyResult extends StaticFieldResult {
 			wrappedtype = propertyType;
 		{
 			// TODO: support isXXX() for boolean type
-			beanGetterSrc = containerGen.src.addMethod().setName("get" + name.getMemberName());
+			beanGetterSrc = containerGen.src.addMethod().setName("get" + baseName.getMemberName());
 			beanGetterSrc.setPublic();
 			beanGetterSrc.setReturnType(wrappedtype);
 			if( isMultiple ) {
@@ -75,7 +75,7 @@ public class PropertyResult extends StaticFieldResult {
 		}
 		{
 			// TODO: support isXXX() for boolean type
-			beanSetterSrc = containerGen.src.addMethod().setName("set" + name.getMemberName());
+			beanSetterSrc = containerGen.src.addMethod().setName("set" + baseName.getMemberName());
 			beanSetterSrc.setPublic();
 			beanSetterSrc.setReturnType(containerGen.src.getName());
 			if( isMultiple ) {
@@ -98,7 +98,7 @@ public class PropertyResult extends StaticFieldResult {
 			}
 		}
 		{
-			staticFieldSrc = containerGen.src.addField().setName("mm" + name.getMemberName());
+			staticFieldSrc = containerGen.src.addField().setName("mm" + baseName.getMemberName());
 			staticFieldSrc.setPublic().setStatic(true).setFinal(true);
 			staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass().getName() + "<" + containerGen.src.getName()+ "," + beanGetterSrc.getReturnType().getQualifiedNameWithGenerics() +">");
 			

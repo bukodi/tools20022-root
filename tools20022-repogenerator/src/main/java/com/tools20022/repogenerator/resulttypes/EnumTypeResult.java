@@ -28,12 +28,12 @@ public class EnumTypeResult extends MainTypeResult {
 	public List<EnumConstantResult> enumConstants = new ArrayList<>(); 
 	
 
-	public EnumTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMCodeSet mmBean, StructuredName baseName) {
-		super(ctx, mmBean, baseName);
+	public EnumTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMCodeSet mmBean) {
+		super(ctx, mmBean);
 	}
 	
-	public EnumConstantResult addConstant( MMCode mmCode, StructuredName codeBaseName ) {
-		EnumConstantResult newCode = new EnumConstantResult(this, mmCode, codeBaseName);
+	public EnumConstantResult addConstant( MMCode mmCode) {
+		EnumConstantResult newCode = new EnumConstantResult(this, mmCode);
 		enumConstants.add(newCode);
 		return newCode;
 	}

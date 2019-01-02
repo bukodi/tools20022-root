@@ -5,9 +5,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
+
 import com.tools20022.core.metamodel.Metamodel.MetamodelAttribute;
 import com.tools20022.generators.GenerationContext;
 import com.tools20022.generators.GenerationResult;
+import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepositoryConcept;
@@ -20,10 +23,10 @@ public abstract class TypeResult extends GenerationResult<RawRepository,MMModelE
 
 	public final List<AttrResult> attrGens = new ArrayList<>();
 
-	protected TypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMModelEntity mmBean, StructuredName baseName) {
+	protected TypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMModelEntity mmBean) {
 		super(ctx);
 		this.mmBean = mmBean;
-		this.baseName = baseName;
+		this.baseName = ctx.getStructuredName(mmBean);
 	}
 
 	public AttrResult createAttrResult(MetamodelAttribute<?, ?> mmAttr) {
@@ -62,5 +65,24 @@ public abstract class TypeResult extends GenerationResult<RawRepository,MMModelE
 		javadoc += "\r\n</ul>";
 		return javadoc;
 	}
+	
+	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, MMModelEntity repoObj) {
+		if (ctx.isSkipDocGeneration())
+			return;
+		String docTxt;
+		if (repoObj instanceof MMRepositoryConcept) {
+			MMRepositoryConcept mmRC = (MMRepositoryConcept) repoObj;
+			docTxt = mmRC.getDefinition().orElse("(No doc)");
+		} else {
+			docTxt = "An instance of " + repoObj.getMetamodel().getName() + ".";
+		}
+		// Replace <, >, & chars
+		docTxt = RoasterHelper.escapeJavaDoc(docTxt);
+		docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
+		docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
+		javaDocHolder.getJavaDoc().setText(docTxt);
+	}
+	
+	protected abstract void createJavaDoc();
 
 }

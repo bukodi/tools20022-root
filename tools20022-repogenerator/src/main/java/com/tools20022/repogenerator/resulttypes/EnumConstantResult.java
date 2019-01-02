@@ -9,8 +9,8 @@ import com.tools20022.metamodel.MMCodeSet;
 
 public class EnumConstantResult extends StaticFieldResult{
 
-	EnumConstantResult(EnumTypeResult containerGen, MMCode mmBean, StructuredName baseName) {
-		super(containerGen, mmBean, baseName);
+	EnumConstantResult(EnumTypeResult containerGen, MMCode mmBean) {
+		super(containerGen, mmBean);
 	}
 
 	@Override

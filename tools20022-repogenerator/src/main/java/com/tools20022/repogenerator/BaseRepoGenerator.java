@@ -364,10 +364,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	}
 
 	protected MainTypeResult defaultMainType(MMModelEntity mmBean) {
-		StructuredName name = getStructuredName(mmBean);
-		MainTypeResult gen = new MainTypeResult(ctx, mmBean, name);
-		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
-		createJavaDoc(gen.src, mmBean);
+		MainTypeResult gen = new MainTypeResult(ctx, mmBean);
 
 		// private final static AtomicReference<MMBusinessComponent> mmObject_lazy = new
 		// AtomicReference<>();
@@ -388,10 +385,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	}
 
 	protected JaxbMainTypeResult defaultJaxbMainType(MMRepositoryConcept mmBean) {
-		StructuredName name = getStructuredName(mmBean);
-		JaxbMainTypeResult gen = new JaxbMainTypeResult(ctx, mmBean, name);
-		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
-		createJavaDoc(gen.src, mmBean);
+		JaxbMainTypeResult gen = new JaxbMainTypeResult(ctx, mmBean);
 
 		// private final static AtomicReference<MMBusinessComponent> mmObject_lazy = new
 		// AtomicReference<>();
@@ -412,10 +406,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	}
 
 	protected DataTypeResult defaultDataType(MMDataType mmBean) {
-		StructuredName name = getStructuredName(mmBean);
-		DataTypeResult gen = new DataTypeResult(ctx, mmBean, name);
-		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
-		createJavaDoc(gen.src, mmBean);
+		DataTypeResult gen = new DataTypeResult(ctx, mmBean);
 
 		// private final static AtomicReference<MMBusinessComponent> mmObject_lazy = new
 		// AtomicReference<>();
@@ -533,11 +524,7 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	}
 
 	protected EnumTypeResult defaultEnumType(MMCodeSet mmBean) {
-		StructuredName name = getStructuredName(mmBean);
-		EnumTypeResult gen = new EnumTypeResult(ctx, mmBean, name);
-
-		gen.src = ctx.createSourceFile(JavaClassSource.class, name);
-		createJavaDoc(gen.src, mmBean);
+		EnumTypeResult gen = new EnumTypeResult(ctx, mmBean);
 
 		gen.src.extendSuperType(MMCode.class);
 		MethodSource<JavaClassSource> privConstructor = gen.src.addMethod();
@@ -564,26 +551,24 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	}
 
 	protected EnumConstantResult defaultEnumConstant(MMCode mmBean, EnumTypeResult containerGen) {
-		StructuredName name = getStructuredName(mmBean);
-		EnumConstantResult gen = containerGen.addConstant(mmBean, name);
+		EnumConstantResult gen = containerGen.addConstant(mmBean);
 
 		{
-			gen.staticFieldSrc = containerGen.src.addField().setName(name.getMemberName());
+			gen.staticFieldSrc = containerGen.src.addField().setName(gen.baseName.getMemberName());
 			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
 			gen.staticFieldSrc.setType(containerGen.src);
-			createJavaDoc(gen.staticFieldSrc, mmBean);
+			gen.createJavaDoc();
 		}
 		return gen;
 	}
 
 	protected StaticFieldResult defaultStaticFieldResult(MMModelEntity mmBean, MainTypeResult containerGen) {
-		StructuredName name = getStructuredName(mmBean);
-		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, name);
+		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean);
 		{
-			gen.staticFieldSrc = containerGen.src.addField().setName(name.getMemberName());
+			gen.staticFieldSrc = containerGen.src.addField().setName(gen.baseName.getMemberName());
 			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
 			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
-			createJavaDoc(gen.staticFieldSrc, mmBean);
+			gen.createJavaDoc();
 		}
 		return gen;
 	}
@@ -617,34 +602,12 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	}
 
 	protected PropertyResult defaultPropertyResult(MMConstruct mmBean, MainTypeResult containerGen) {
-		StructuredName name = getStructuredName(mmBean);
-
 		// TODO: support optionals
-		PropertyResult gen = containerGen.addProperty(mmBean, name);
-		return gen;
+		return containerGen.addProperty(mmBean);
 	}
 
 	protected JaxbPropertyResult defaultJaxbPropertyResult(MMMessageConstruct mmBean, JaxbMainTypeResult containerGen) {
-		StructuredName name = getStructuredName(mmBean);
-		JaxbPropertyResult gen = containerGen.addProperty(mmBean, name);
-		return gen;
-	}
-
-	protected void createJavaDoc(JavaDocCapableSource<?> javaDocHolder, MMModelEntity repoObj) {
-		if (ctx.isSkipDocGeneration())
-			return;
-		String docTxt;
-		if (repoObj instanceof MMRepositoryConcept) {
-			MMRepositoryConcept mmRC = (MMRepositoryConcept) repoObj;
-			docTxt = mmRC.getDefinition().orElse("(No doc)");
-		} else {
-			docTxt = "An instance of " + repoObj.getMetamodel().getName() + ".";
-		}
-		// Replace <, >, & chars
-		docTxt = RoasterHelper.escapeJavaDoc(docTxt);
-		docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
-		docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
-		javaDocHolder.getJavaDoc().setText(docTxt);
+		return containerGen.addProperty(mmBean);
 	}
 
 	protected StructuredName createLongListBuilder(TypeResult gen, List<?> elems) {

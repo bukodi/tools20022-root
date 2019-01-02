@@ -75,7 +75,8 @@ public class TestConsistentSubset {
 		//final String msgId = "camt.030.001.04";
 		//final String msgId = "pacs.008.001.02";
 		//final String msgId = "pain.002.001.02";
-		final String msgId = "tsmt.049.001.01";
+		//final String msgId = "tsmt.049.001.01";
+		final String msgId = "camt.053.001.07";
 		
 		
 		long start = System.currentTimeMillis();

@@ -234,14 +234,10 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			throw new RuntimeException("Unsupported case: can't generate constrauint for this type: [" + _gen.getClass().getName() + "]" +  mmBean.getName() );
 		}
 
-		
-		
-		StructuredName staticFieldName = getStructuredName(mmBean);
-		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean, staticFieldName);
-		gen.staticFieldSrc = containerGen.src.addField().setName(staticFieldName.getMemberName());
+		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean);
+		gen.staticFieldSrc = containerGen.src.addField().setName(gen.baseName.getMemberName());
 		gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
 		gen.staticFieldSrc.setType(MMConstraint.class.getName() + "<" + validatorParamType + ">");
-		createJavaDoc(gen.staticFieldSrc, mmBean);
 
 		StructuredName validatorMethodName = getConstraintValidatorMethodName(mmBean);
 
@@ -266,9 +262,8 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 
 	@Override
 	protected MainTypeResult generateMMRepository(MMRepository mmBean) {
-		StructuredName repoName = StructuredName.primaryType(basePackageName, mainClassSimpleName);
-		MainTypeResult mtr = new MainTypeResult(ctx, mmBean, repoName);
-		mtr.src = ctx.createSourceFile(JavaClassSource.class, repoName);
+		MainTypeResult mtr = new MainTypeResult(ctx, mmBean);
+		mtr.src = ctx.createSourceFile(JavaClassSource.class, mtr.baseName);
 		mtr.src.setSuperType(ReflectionBasedRepository.class);
 		mtr.src.addMethod().setConstructor(true).setPrivate()
 				.setBody("super( " + StandardMetamodel2013.class.getName() + ".metamodel());");

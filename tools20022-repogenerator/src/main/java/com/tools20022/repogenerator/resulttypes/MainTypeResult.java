@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jboss.forge.roaster.ParserException;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
+import org.jboss.forge.roaster.model.source.JavaDocCapableSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
 
 import com.tools20022.core.metamodel.RuntimeInstanceAware;
@@ -13,6 +14,7 @@ import com.tools20022.generators.RoasterHelper;
 import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMModelEntity;
+import com.tools20022.metamodel.MMRepositoryConcept;
 import com.tools20022.repogenerator.RawRepository;
 
 public class MainTypeResult extends TypeResult {
@@ -22,12 +24,14 @@ public class MainTypeResult extends TypeResult {
 	public List<String> dontModifyImports = new ArrayList<>();
 	public List<PropertyResult> properties = new ArrayList<>();
 
-	public MainTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMModelEntity mmBean, StructuredName baseName) {
-		super(ctx, mmBean, baseName);
+	public MainTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMModelEntity mmBean) {
+		super(ctx, mmBean);
+		src = ctx.createSourceFile(JavaClassSource.class, baseName);
+		createJavaDoc();
 	}
 	
-	public PropertyResult addProperty( MMConstruct propertyMMBean, StructuredName propertyBaseName ) {
-		PropertyResult newProperty = new PropertyResult(this, propertyMMBean, propertyBaseName);
+	public PropertyResult addProperty( MMConstruct propertyMMBean ) {
+		PropertyResult newProperty = new PropertyResult(this, propertyMMBean);
 		properties.add(newProperty);
 		return newProperty;
 	}
@@ -63,6 +67,24 @@ public class MainTypeResult extends TypeResult {
 		}
 		
 		ctx.saveSourceFile(src, dontModifyImports);
+	}
+
+	@Override
+	protected void createJavaDoc() {
+		if (ctx.isSkipDocGeneration())
+			return;
+		String docTxt;
+		if (mmBean instanceof MMRepositoryConcept) {
+			MMRepositoryConcept mmRC = (MMRepositoryConcept) mmBean;
+			docTxt = mmRC.getDefinition().orElse("(No doc)");
+		} else {
+			docTxt = "An instance of " + mmBean.getMetamodel().getName() + ".";
+		}
+		// Replace <, >, & chars
+		docTxt = RoasterHelper.escapeJavaDoc(docTxt);
+		docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
+		docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
+		src.getJavaDoc().setText(docTxt);
 	}
 
 }

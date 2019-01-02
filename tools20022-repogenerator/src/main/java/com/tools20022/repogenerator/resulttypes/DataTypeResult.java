@@ -8,8 +8,8 @@ import com.tools20022.repogenerator.RawRepository;
 
 public class DataTypeResult extends MainTypeResult {
 
-	public DataTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMDataType mmBean, StructuredName baseName) {
-		super(ctx, mmBean, baseName);
+	public DataTypeResult(GenerationContext<RawRepository,MMModelEntity> ctx, MMDataType mmBean) {
+		super(ctx, mmBean);
 	}
 
 	@Override
