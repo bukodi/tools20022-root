@@ -11,16 +11,17 @@ import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.MMRepositoryConcept;
 
-public class StaticFieldResult extends TypeResult {
+public class StaticFieldResult extends MemberResult {
 
-	public final MainTypeResult containerGen;
-	public FieldSource<JavaClassSource> staticFieldSrc;
-	public StringJoiner staticFieldInitializerBody = new StringJoiner("\n");
+	public StringJoiner staticFieldInitializerBody;
 
 	public StaticFieldResult(MainTypeResult containerGen, MMModelEntity mmBean) {
-		super(containerGen.ctx, mmBean);
-		this.containerGen = containerGen;
+		super(containerGen, mmBean);
 		this.staticFieldInitializerBody = new StringJoiner("\n", "new " + mmBean.getMetamodel().getBeanClass().getName() + "(){{", "}};");		
+		staticFieldSrc = containerGen.src.addField().setName(baseName.getMemberName());
+		staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+		staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
+		createJavaDoc();
 	}
 
 	@Override
@@ -36,17 +37,5 @@ public class StaticFieldResult extends TypeResult {
 		}
 	}
 	
-	@Override
-	public void createJavaDoc() {
-		if (ctx.isSkipDocGeneration())
-			return;
-		String docTxt = "An instance of " + mmBean.getMetamodel().getName() + ".";
-		// Replace <, >, & chars
-		docTxt = RoasterHelper.escapeJavaDoc(docTxt);
-		docTxt = docTxt.replaceAll("Scope<br>", "<b>Scope</b><br>");
-		docTxt = docTxt.replaceAll("Usage<br>", "<b>Usage</b><br>");
-		staticFieldSrc.getJavaDoc().setText(docTxt);
-	}
-
 
 }

@@ -161,7 +161,7 @@ public class DocumentAdjustment1 {
 			xmlTag = "CdtDbtInd";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "CreditDebitIndicator";
-			definition = "Specifies whether the adjustment must be substracted or added to the total amount.";
+			definition = "Specifies whether the adjustment must be subtracted or added to the total amount.";
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = LazyReference.create(() -> CreditDebitCode.mmObject());

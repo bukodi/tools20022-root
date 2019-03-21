@@ -78,9 +78,8 @@ public class ActiveCurrencyAndAmount {
 	@XmlAttribute(name = "ccy", required = true)
 	protected ActiveCurrencyCode currency;
 	/**
-	 * The number of fractional digits (or minor unit of currency) must comply
-	 * with ISO 4217. Note: The decimal separator is a dot.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =

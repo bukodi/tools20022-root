@@ -1,26 +1,10 @@
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.stream.StreamResult;
-
 import org.junit.Test;
-import org.xml.sax.InputSource;
-
-import com.tools20022.repository.area.pacs.FIToFICustomerCreditTransferV02;
-import com.tools20022.repository.datatype.ActiveCurrencyAndAmount;
-import com.tools20022.repository.datatype.Max35Text;
-import com.tools20022.repository.msgpart.GroupHeader33;
 
 public class ParsePacs008 {
 	
 	@Test
-	public void testName() throws Exception {
-		JAXBContext ctx = TestUtil.createJaxbContext();
+	public void test_pacs008() throws Exception {
+/*		JAXBContext ctx = JAXBContext.newInstance( FIToFICustomerCreditTransferV02.Document.class );
 		{
 			FIToFICustomerCreditTransferV02 msg = new FIToFICustomerCreditTransferV02();
 			GroupHeader33 groupHeader = new GroupHeader33();
@@ -60,7 +44,7 @@ public class ParsePacs008 {
 			System.out.println( "GroupHeader/MessageIdentification: " + msgId);			
 		}
 
-		
+	*/	
 	}
 
 }

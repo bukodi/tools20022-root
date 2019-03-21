@@ -98,7 +98,7 @@ public class NameAndAddress10 {
 			xmlTag = "Nm";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Name";
-			definition = "Name by which a party is known and is usually used to identify that identity.";
+			definition = "Name by which a party is known and is usually used to identify that party.";
 			maxOccurs = 1;
 			minOccurs = 1;
 			simpleType_lazy = LazyReference.create(() -> Max140Text.mmObject());

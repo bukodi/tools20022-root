@@ -25,8 +25,12 @@ import com.tools20022.generators.GeneratorFileManager;
 import com.tools20022.generators.ProgressMonitor;
 import com.tools20022.generators.SaveConsistentSubSet;
 import com.tools20022.generators.SaveConsistentSubSet.ConsistentSubset;
+import com.tools20022.metamodel.MMBusinessAssociationEnd;
+import com.tools20022.metamodel.MMBusinessComponent;
 import com.tools20022.metamodel.MMModelEntity;
 import com.tools20022.metamodel.StandardMetamodel2013;
+
+import gen.lib.dotgen.conc__c;
 
 public class GeneratePublicArtifact {
 
@@ -34,7 +38,7 @@ public class GeneratePublicArtifact {
 		payments, securities, trade, cards, fx;
 	}
 
-	static boolean skipBusinessComponents = true;
+	static boolean skipBusinessComponents = false;
 
 	static String baseEcoreResourceName = "/model/ISO20022.ecore";
 	// static String baseXmiResourceName =
@@ -110,6 +114,16 @@ public class GeneratePublicArtifact {
 			repo = loader.load(ecorePackage, xmiRootObj);
 		}
 
+		beans: for( MMBusinessComponent mmBean : repo.getObjects(MMBusinessComponent.class) ) {
+			for( MMBusinessAssociationEnd assoc : mmBean.getAssociationDomains() ) {
+				if( ! assoc.getMaxOccurs().isPresent() ) {
+					continue beans;
+				}
+			}
+			
+			System.out.println(mmBean.getName() + " : " + mmBean.getAssociationDomains().size() + " associations");
+		}
+		
 		GeneratorFileManager fileManager = new GeneratorFileManager(mvnProjectRoot);
 		fileManager.cleanOutputFolder();
 

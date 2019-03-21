@@ -50,6 +50,7 @@ import com.tools20022.metamodel.ext.FIXSynonym;
 import com.tools20022.metamodel.ext.ISO15022Synonym;
 import com.tools20022.metamodel.ext.OtherSemanticMarkup;
 import com.tools20022.repogenerator.resulttypes.AttrResult;
+import com.tools20022.repogenerator.resulttypes.ConstraintValidatorResult;
 import com.tools20022.repogenerator.resulttypes.DataTypeResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
@@ -214,7 +215,7 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 	}
 	
 	
-	protected StaticFieldResult _generateMMConstraint(TypeResult _gen, MMConstraint mmBean) {
+	protected ConstraintValidatorResult _generateMMConstraint(TypeResult _gen, MMConstraint mmBean) {
 		
 		MainTypeResult containerGen;
 		String validatorParamType;
@@ -233,22 +234,9 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 		} else {
 			throw new RuntimeException("Unsupported case: can't generate constrauint for this type: [" + _gen.getClass().getName() + "]" +  mmBean.getName() );
 		}
-
-		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean);
-		gen.staticFieldSrc = containerGen.src.addField().setName(gen.baseName.getMemberName());
-		gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-		gen.staticFieldSrc.setType(MMConstraint.class.getName() + "<" + validatorParamType + ">");
-
 		StructuredName validatorMethodName = getConstraintValidatorMethodName(mmBean);
 
-		String getValidatorMethodSrc = "@Override\n";
-		getValidatorMethodSrc += "public void executeValidator(" + validatorParamType + " obj ) throws Exception {\n";
-		getValidatorMethodSrc += "  " + validatorMethodName.getFullName() + "( obj );\n";
-		getValidatorMethodSrc += "}\n";
-
-		gen.staticFieldInitializerBody = new StringJoiner("\n",
-				"new " + MMConstraint.class.getName() + "<" + validatorParamType + ">" + "(){{",
-				"}\n" + getValidatorMethodSrc + "};");
+		ConstraintValidatorResult gen = new ConstraintValidatorResult(containerGen, mmBean, validatorMethodName, validatorParamType );
 
 		implementMMRepositoryConcept(gen, mmBean);
 		implementMMModelEntity(gen, mmBean);

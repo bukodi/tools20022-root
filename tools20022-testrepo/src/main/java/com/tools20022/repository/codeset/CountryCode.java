@@ -72,9 +72,8 @@ public class CountryCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
 	/**
-	 * The code is checked against the list of country names obtained from the
-	 * United Nations (ISO 3166, Alpha-2 code).
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =

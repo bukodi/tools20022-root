@@ -87,7 +87,7 @@ public class AddressTypeCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
 	/**
-	 * Address is the home address.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -114,7 +114,7 @@ public class AddressTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Address is the business address.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -141,7 +141,7 @@ public class AddressTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Address is the complete postal address.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -168,7 +168,7 @@ public class AddressTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Address is a postal office (PO) box.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -195,7 +195,7 @@ public class AddressTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Address is the address to which mail is sent.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -222,7 +222,7 @@ public class AddressTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Address is the address to which delivery is to take place.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>

@@ -1,0 +1,388 @@
+/* Tools20022 - API for ISO 20022
+* Copyright (C) 2017 Tools20022.com - László Bukodi 
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+package com.tools20022.repository.msgpart;
+
+import com.tools20022.core.repo.LazyReference;
+import com.tools20022.metamodel.MMMessageAttribute;
+import com.tools20022.metamodel.MMMessageComponent;
+import com.tools20022.metamodel.MMRegistrationStatus;
+import com.tools20022.repository.codeset.CardDataReading1Code;
+import com.tools20022.repository.codeset.CardholderVerificationCapability1Code;
+import com.tools20022.repository.codeset.OnLineCapability1Code;
+import com.tools20022.repository.datatype.Max3NumericText;
+import com.tools20022.repository.GeneratedRepository;
+import com.tools20022.repository.msgpart.DisplayCapabilities1;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+/**
+ * Capabilities of the POI performing the transaction.
+ * <p>
+ * <strong>Constant fields:</strong>
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMMessageElementContainer#getMessageElements
+ * messageElements} =
+ * <ul>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1#mmCardReadingCapabilities
+ * PointOfInteractionCapabilities1.mmCardReadingCapabilities}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1#mmCardholderVerificationCapabilities
+ * PointOfInteractionCapabilities1.mmCardholderVerificationCapabilities}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1#mmOnLineCapabilities
+ * PointOfInteractionCapabilities1.mmOnLineCapabilities}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1#mmDisplayCapabilities
+ * PointOfInteractionCapabilities1.mmDisplayCapabilities}</li>
+ * <li>
+ * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1#mmPrintLineWidth
+ * PointOfInteractionCapabilities1.mmPrintLineWidth}</li>
+ * </ul>
+ * </li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMTopLevelDictionaryEntry#getDataDictionary
+ * dataDictionary} =
+ * {@linkplain com.tools20022.repository.GeneratedRepository#dataDict
+ * GeneratedRepository.dataDict}</li>
+ * <li>
+ * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+ * registrationStatus} =
+ * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+ * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName name} =
+ * "PointOfInteractionCapabilities1"</li>
+ * </ul>
+ */
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlType(name = "PointOfInteractionCapabilities1", propOrder = {"cardReadingCapabilities", "cardholderVerificationCapabilities", "onLineCapabilities", "displayCapabilities", "printLineWidth"})
+public class PointOfInteractionCapabilities1 {
+
+	final static private AtomicReference<MMMessageComponent> mmObject_lazy = new AtomicReference<>();
+	@XmlElement(name = "CardRdngCpblties")
+	protected List<CardDataReading1Code> cardReadingCapabilities;
+	/**
+	 * 
+	 <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} =
+	 * {@linkplain com.tools20022.repository.codeset.CardDataReading1Code
+	 * CardDataReading1Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1
+	 * PointOfInteractionCapabilities1}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "CardRdngCpblties"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "CardReadingCapabilities"</li>
+	 * </ul>
+	 */
+	public static final MMMessageAttribute<PointOfInteractionCapabilities1, List<CardDataReading1Code>> mmCardReadingCapabilities = new MMMessageAttribute<PointOfInteractionCapabilities1, List<CardDataReading1Code>>() {
+		{
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmObject());
+			isDerived = false;
+			xmlTag = "CardRdngCpblties";
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "CardReadingCapabilities";
+			definition = "Card reading capabilities of the POI performing the transaction.";
+			minOccurs = 0;
+			simpleType_lazy = LazyReference.create(() -> CardDataReading1Code.mmObject());
+		}
+
+		@Override
+		public List<CardDataReading1Code> getValue(PointOfInteractionCapabilities1 obj) {
+			return obj.getCardReadingCapabilities();
+		}
+
+		@Override
+		public void setValue(PointOfInteractionCapabilities1 obj, List<CardDataReading1Code> value) {
+			obj.setCardReadingCapabilities(value);
+		}
+	};
+	@XmlElement(name = "CrdhldrVrfctnCpblties")
+	protected List<CardholderVerificationCapability1Code> cardholderVerificationCapabilities;
+	/**
+	 * 
+	 <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} =
+	 * {@linkplain com.tools20022.repository.codeset.CardholderVerificationCapability1Code
+	 * CardholderVerificationCapability1Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1
+	 * PointOfInteractionCapabilities1}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "CrdhldrVrfctnCpblties"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "CardholderVerificationCapabilities"</li>
+	 * </ul>
+	 */
+	public static final MMMessageAttribute<PointOfInteractionCapabilities1, List<CardholderVerificationCapability1Code>> mmCardholderVerificationCapabilities = new MMMessageAttribute<PointOfInteractionCapabilities1, List<CardholderVerificationCapability1Code>>() {
+		{
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmObject());
+			isDerived = false;
+			xmlTag = "CrdhldrVrfctnCpblties";
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "CardholderVerificationCapabilities";
+			definition = "Cardholder verification capabilities of the POI performing the transaction.";
+			minOccurs = 0;
+			simpleType_lazy = LazyReference.create(() -> CardholderVerificationCapability1Code.mmObject());
+		}
+
+		@Override
+		public List<CardholderVerificationCapability1Code> getValue(PointOfInteractionCapabilities1 obj) {
+			return obj.getCardholderVerificationCapabilities();
+		}
+
+		@Override
+		public void setValue(PointOfInteractionCapabilities1 obj, List<CardholderVerificationCapability1Code> value) {
+			obj.setCardholderVerificationCapabilities(value);
+		}
+	};
+	@XmlElement(name = "OnLineCpblties")
+	protected OnLineCapability1Code onLineCapabilities;
+	/**
+	 * 
+	 <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} =
+	 * {@linkplain com.tools20022.repository.codeset.OnLineCapability1Code
+	 * OnLineCapability1Code}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1
+	 * PointOfInteractionCapabilities1}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "OnLineCpblties"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "OnLineCapabilities"</li>
+	 * </ul>
+	 */
+	public static final MMMessageAttribute<PointOfInteractionCapabilities1, Optional<OnLineCapability1Code>> mmOnLineCapabilities = new MMMessageAttribute<PointOfInteractionCapabilities1, Optional<OnLineCapability1Code>>() {
+		{
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmObject());
+			isDerived = false;
+			xmlTag = "OnLineCpblties";
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "OnLineCapabilities";
+			definition = "On-line and off-line capabilities of the POI.";
+			maxOccurs = 1;
+			minOccurs = 0;
+			simpleType_lazy = LazyReference.create(() -> OnLineCapability1Code.mmObject());
+		}
+
+		@Override
+		public Optional<OnLineCapability1Code> getValue(PointOfInteractionCapabilities1 obj) {
+			return obj.getOnLineCapabilities();
+		}
+
+		@Override
+		public void setValue(PointOfInteractionCapabilities1 obj, Optional<OnLineCapability1Code> value) {
+			obj.setOnLineCapabilities(value.orElse(null));
+		}
+	};
+	@XmlElement(name = "DispCpblties")
+	protected List<DisplayCapabilities1> displayCapabilities;
+	/**
+	 * 
+	 <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getComplexType
+	 * complexType} =
+	 * {@linkplain com.tools20022.repository.msgpart.DisplayCapabilities1
+	 * DisplayCapabilities1}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1
+	 * PointOfInteractionCapabilities1}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "DispCpblties"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "DisplayCapabilities"</li>
+	 * </ul>
+	 */
+	public static final MMMessageAttribute<PointOfInteractionCapabilities1, List<DisplayCapabilities1>> mmDisplayCapabilities = new MMMessageAttribute<PointOfInteractionCapabilities1, List<DisplayCapabilities1>>() {
+		{
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmObject());
+			isDerived = false;
+			xmlTag = "DispCpblties";
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "DisplayCapabilities";
+			definition = "Capabilities of the display components performing the transaction.";
+			minOccurs = 0;
+			complexType_lazy = LazyReference.create(() -> DisplayCapabilities1.mmObject());
+		}
+
+		@Override
+		public List<DisplayCapabilities1> getValue(PointOfInteractionCapabilities1 obj) {
+			return obj.getDisplayCapabilities();
+		}
+
+		@Override
+		public void setValue(PointOfInteractionCapabilities1 obj, List<DisplayCapabilities1> value) {
+			obj.setDisplayCapabilities(value);
+		}
+	};
+	@XmlElement(name = "PrtLineWidth")
+	protected Max3NumericText printLineWidth;
+	/**
+	 * 
+	 <p>
+	 * <strong>Constant fields:</strong>
+	 * <ul>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageAttribute#getSimpleType
+	 * simpleType} =
+	 * {@linkplain com.tools20022.repository.datatype.Max3NumericText
+	 * Max3NumericText}</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMMessageElement#getComponentContext
+	 * componentContext} =
+	 * {@linkplain com.tools20022.repository.msgpart.PointOfInteractionCapabilities1
+	 * PointOfInteractionCapabilities1}</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMMessageConstruct#getXmlTag
+	 * xmlTag} = "PrtLineWidth"</li>
+	 * <li>
+	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
+	 * registrationStatus} =
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
+	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
+	 * name} = "PrintLineWidth"</li>
+	 * </ul>
+	 */
+	public static final MMMessageAttribute<PointOfInteractionCapabilities1, Optional<Max3NumericText>> mmPrintLineWidth = new MMMessageAttribute<PointOfInteractionCapabilities1, Optional<Max3NumericText>>() {
+		{
+			componentContext_lazy = LazyReference.create(() -> com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmObject());
+			isDerived = false;
+			xmlTag = "PrtLineWidth";
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
+			name = "PrintLineWidth";
+			definition = "Number of columns of the printer component.";
+			maxOccurs = 1;
+			minOccurs = 0;
+			simpleType_lazy = LazyReference.create(() -> Max3NumericText.mmObject());
+		}
+
+		@Override
+		public Optional<Max3NumericText> getValue(PointOfInteractionCapabilities1 obj) {
+			return obj.getPrintLineWidth();
+		}
+
+		@Override
+		public void setValue(PointOfInteractionCapabilities1 obj, Optional<Max3NumericText> value) {
+			obj.setPrintLineWidth(value.orElse(null));
+		}
+	};
+
+	final static public MMMessageComponent mmObject() {
+		mmObject_lazy.compareAndSet(null, new MMMessageComponent() {
+			{
+				messageElements_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmCardReadingCapabilities,
+						com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmCardholderVerificationCapabilities, com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmOnLineCapabilities,
+						com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmDisplayCapabilities, com.tools20022.repository.msgpart.PointOfInteractionCapabilities1.mmPrintLineWidth));
+				dataDictionary_lazy = LazyReference.create(() -> GeneratedRepository.dataDict);
+				registrationStatus = MMRegistrationStatus.REGISTERED;
+				name = "PointOfInteractionCapabilities1";
+				definition = "Capabilities of the POI performing the transaction.";
+			}
+		});
+		return mmObject_lazy.get();
+	}
+
+	public List<CardDataReading1Code> getCardReadingCapabilities() {
+		return cardReadingCapabilities == null ? cardReadingCapabilities = new ArrayList<>() : cardReadingCapabilities;
+	}
+
+	public PointOfInteractionCapabilities1 setCardReadingCapabilities(List<CardDataReading1Code> cardReadingCapabilities) {
+		this.cardReadingCapabilities = Objects.requireNonNull(cardReadingCapabilities);
+		return this;
+	}
+
+	public List<CardholderVerificationCapability1Code> getCardholderVerificationCapabilities() {
+		return cardholderVerificationCapabilities == null ? cardholderVerificationCapabilities = new ArrayList<>() : cardholderVerificationCapabilities;
+	}
+
+	public PointOfInteractionCapabilities1 setCardholderVerificationCapabilities(List<CardholderVerificationCapability1Code> cardholderVerificationCapabilities) {
+		this.cardholderVerificationCapabilities = Objects.requireNonNull(cardholderVerificationCapabilities);
+		return this;
+	}
+
+	public Optional<OnLineCapability1Code> getOnLineCapabilities() {
+		return Optional.ofNullable(onLineCapabilities);
+	}
+
+	public PointOfInteractionCapabilities1 setOnLineCapabilities(OnLineCapability1Code onLineCapabilities) {
+		this.onLineCapabilities = onLineCapabilities;
+		return this;
+	}
+
+	public List<DisplayCapabilities1> getDisplayCapabilities() {
+		return displayCapabilities == null ? displayCapabilities = new ArrayList<>() : displayCapabilities;
+	}
+
+	public PointOfInteractionCapabilities1 setDisplayCapabilities(List<DisplayCapabilities1> displayCapabilities) {
+		this.displayCapabilities = Objects.requireNonNull(displayCapabilities);
+		return this;
+	}
+
+	public Optional<Max3NumericText> getPrintLineWidth() {
+		return Optional.ofNullable(printLineWidth);
+	}
+
+	public PointOfInteractionCapabilities1 setPrintLineWidth(Max3NumericText printLineWidth) {
+		this.printLineWidth = printLineWidth;
+		return this;
+	}
+}

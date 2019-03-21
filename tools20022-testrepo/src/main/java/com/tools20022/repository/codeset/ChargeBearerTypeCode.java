@@ -83,7 +83,7 @@ public class ChargeBearerTypeCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
 	/**
-	 * All transaction charges are to be borne by the debtor.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -110,7 +110,7 @@ public class ChargeBearerTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * All transaction charges are to be borne by the creditor.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -137,12 +137,7 @@ public class ChargeBearerTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * In a credit transfer context, means that transaction charges on the
-	 * sender side are to be borne by the debtor, transaction charges on the
-	 * receiver side are to be borne by the creditor. In a direct debit context,
-	 * means that transaction charges on the sender side are to be borne by the
-	 * creditor, transaction charges on the receiver side are to be borne by the
-	 * debtor.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -169,8 +164,7 @@ public class ChargeBearerTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Charges are to be applied following the rules agreed in the service level
-	 * and/or scheme.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>

@@ -77,11 +77,8 @@ public class AnyBICIdentifier {
 	@XmlValue
 	protected String value;
 	/**
-	 * Only a valid Business identifier code is allowed. Business identifier
-	 * codes for financial or non-financial institutions are registered by the
-	 * ISO 9362 Registration Authority in the BIC directory, and consists of
-	 * eight (8) or eleven (11) contiguous characters.
-	 * <p>
+	 * 
+	 <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
 	 * <li>{@linkplain com.tools20022.metamodel.MMConstraint#getOwner owner} =

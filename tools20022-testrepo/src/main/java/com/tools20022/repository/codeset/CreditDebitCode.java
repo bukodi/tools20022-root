@@ -75,7 +75,7 @@ public class CreditDebitCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
 	/**
-	 * (No doc)
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -99,7 +99,7 @@ public class CreditDebitCode extends MMCode {
 		}
 	};
 	/**
-	 * (No doc)
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>

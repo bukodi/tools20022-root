@@ -83,7 +83,7 @@ public class AmountDirectionCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
 	/**
-	 * Operation is a decrease.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -110,7 +110,7 @@ public class AmountDirectionCode extends MMCode {
 		}
 	};
 	/**
-	 * Operation is an increase.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -137,7 +137,7 @@ public class AmountDirectionCode extends MMCode {
 		}
 	};
 	/**
-	 * Credit entry used to reverse a previously booked debit entry.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -164,7 +164,7 @@ public class AmountDirectionCode extends MMCode {
 		}
 	};
 	/**
-	 * Debit entry used to reverse a previously booked credit entry.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>

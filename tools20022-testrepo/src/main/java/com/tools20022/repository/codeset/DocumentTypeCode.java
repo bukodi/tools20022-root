@@ -104,8 +104,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <ul>
  * <li>{@linkplain com.tools20022.repository.codeset.DocumentType3Code
  * DocumentType3Code}</li>
- * <li>{@linkplain com.tools20022.repository.codeset.DocumentType5Code
- * DocumentType5Code}</li>
+ * <li>{@linkplain com.tools20022.repository.codeset.DocumentType6Code
+ * DocumentType6Code}</li>
  * </ul>
  * </li>
  * <li>
@@ -132,8 +132,7 @@ public class DocumentTypeCode extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
 	/**
-	 * Document is an invoice claiming payment for the supply of metered
-	 * services, for example gas or electricity supplied to a fixed meter.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -160,8 +159,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a credit note for the final amount settled for a commercial
-	 * transaction.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -188,8 +186,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a debit note for the final amount settled for a commercial
-	 * transaction.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -216,7 +213,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is an invoice.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -243,7 +240,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a credit note.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -270,7 +267,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a debit note.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -297,8 +294,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is an invoice for the hiring of human resources or renting goods
-	 * or equipment.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -325,7 +321,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is an invoice issued by the debtor.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -352,8 +348,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a remittance advice sent separately from the current
-	 * transaction.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -380,8 +375,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a linked payment instruction to which the current payment
-	 * instruction is related, eg, in a cover scenario.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -408,8 +402,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is an agreement between the parties, stipulating the terms and
-	 * conditions of the delivery of goods or services.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -436,8 +429,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a pre-agreed or pre-arranged foreign exchange transaction to
-	 * which the payment transaction refers.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -464,8 +456,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a statement of the transactions posted to the debtor's
-	 * account at the supplier.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -492,7 +483,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a dispatch advice.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -519,7 +510,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a purchase order.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -546,8 +537,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a structured communication reference provided by the creditor
-	 * to identify the referred transaction.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -574,7 +564,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a shipping notice.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -601,7 +591,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is an electronic payment document.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -628,7 +618,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a payment that applies to a specific source document.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -655,8 +645,7 @@ public class DocumentTypeCode extends MMCode {
 		}
 	};
 	/**
-	 * Document is a transaction identifier as assigned by the Trade Services
-	 * Utility.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
@@ -695,7 +684,7 @@ public class DocumentTypeCode extends MMCode {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "DocumentTypeCode";
 				definition = "Specifies a type of financial or commercial document.";
-				derivations_lazy = LazyReference.create(() -> Arrays.asList(DocumentType3Code.mmObject(), DocumentType5Code.mmObject()));
+				derivations_lazy = LazyReference.create(() -> Arrays.asList(DocumentType3Code.mmObject(), DocumentType6Code.mmObject()));
 				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.DocumentTypeCode.MSIN_MeteredServiceInvoice,
 						com.tools20022.repository.codeset.DocumentTypeCode.CNFA_CreditNoteRelatedToFinancialAdjustment, com.tools20022.repository.codeset.DocumentTypeCode.DNFA_DebitNoteRelatedToFinancialAdjustment,
 						com.tools20022.repository.codeset.DocumentTypeCode.CINV_CommercialInvoice, com.tools20022.repository.codeset.DocumentTypeCode.CREN_CreditNote, com.tools20022.repository.codeset.DocumentTypeCode.DEBN_DebitNote,

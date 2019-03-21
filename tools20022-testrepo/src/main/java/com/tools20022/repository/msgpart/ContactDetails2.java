@@ -411,7 +411,7 @@ public class ContactDetails2 {
 			xmlTag = "Othr";
 			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Other";
-			definition = "Contact details in an other form.";
+			definition = "Contact details in another form.";
 			maxOccurs = 1;
 			minOccurs = 0;
 			simpleType_lazy = LazyReference.create(() -> Max35Text.mmObject());

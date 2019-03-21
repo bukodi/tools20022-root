@@ -35,6 +35,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <p>
  * <strong>Constant fields:</strong>
  * <ul>
+ * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getTrace trace} =
+ * {@linkplain com.tools20022.repository.codeset.NamePrefixCode NamePrefixCode}</li>
  * <li>{@linkplain com.tools20022.metamodel.MMCodeSet#getCodes codes} =
  * <ul>
  * <li>
@@ -73,111 +75,99 @@ public class NamePrefix1Code extends MMCode {
 
 	final static private AtomicReference<MMCodeSet> mmObject_lazy = new AtomicReference<>();
 	/**
-	 * Title of the person is Doctor or Dr.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "DOCT"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
 	 * NamePrefix1Code}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Doctor"</li>
 	 * </ul>
 	 */
 	public static final NamePrefix1Code DOCT_Doctor = new NamePrefix1Code() {
 		{
-			registrationStatus = MMRegistrationStatus.REGISTERED;
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Doctor";
-			definition = "Title of the person is Doctor or Dr.";
-			codeName = "DOCT";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
+			codeName = NamePrefixCode.DOCT_Doctor.getCodeName().orElse(name);
 		}
 	};
 	/**
-	 * Title of the person is Mister or Mr.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MIST"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
 	 * NamePrefix1Code}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Mister"</li>
 	 * </ul>
 	 */
 	public static final NamePrefix1Code MIST_Mister = new NamePrefix1Code() {
 		{
-			registrationStatus = MMRegistrationStatus.REGISTERED;
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Mister";
-			definition = "Title of the person is Mister or Mr.";
-			codeName = "MIST";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
+			codeName = NamePrefixCode.MIST_Mister.getCodeName().orElse(name);
 		}
 	};
 	/**
-	 * Title of the person is Miss.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MISS"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
 	 * NamePrefix1Code}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Miss"</li>
 	 * </ul>
 	 */
 	public static final NamePrefix1Code MISS_Miss = new NamePrefix1Code() {
 		{
-			registrationStatus = MMRegistrationStatus.REGISTERED;
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Miss";
-			definition = "Title of the person is Miss.";
-			codeName = "MISS";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
+			codeName = NamePrefixCode.MISS_Miss.getCodeName().orElse(name);
 		}
 	};
 	/**
-	 * Title of the person is Madam.
+	 * An instance of Code.
 	 * <p>
 	 * <strong>Constant fields:</strong>
 	 * <ul>
-	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getCodeName codeName} =
-	 * "MADM"</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMCode#getOwner owner} =
 	 * {@linkplain com.tools20022.repository.codeset.NamePrefix1Code
 	 * NamePrefix1Code}</li>
 	 * <li>
 	 * {@linkplain com.tools20022.metamodel.MMRepositoryConcept#getRegistrationStatus
 	 * registrationStatus} =
-	 * com.tools20022.metamodel.MMRegistrationStatus.REGISTERED</li>
+	 * com.tools20022.metamodel.MMRegistrationStatus.PROVISIONALLY_REGISTERED</li>
 	 * <li>{@linkplain com.tools20022.metamodel.MMRepositoryConcept#getName
 	 * name} = "Madam"</li>
 	 * </ul>
 	 */
 	public static final NamePrefix1Code MADM_Madam = new NamePrefix1Code() {
 		{
-			registrationStatus = MMRegistrationStatus.REGISTERED;
+			registrationStatus = MMRegistrationStatus.PROVISIONALLY_REGISTERED;
 			name = "Madam";
-			definition = "Title of the person is Madam.";
-			codeName = "MADM";
 			owner_lazy = LazyReference.create(() -> com.tools20022.repository.codeset.NamePrefix1Code.mmObject());
+			codeName = NamePrefixCode.MADM_Madam.getCodeName().orElse(name);
 		}
 	};
 	final static private LinkedHashMap<String, NamePrefix1Code> codesByName = new LinkedHashMap<>();
@@ -193,6 +183,7 @@ public class NamePrefix1Code extends MMCode {
 				registrationStatus = MMRegistrationStatus.REGISTERED;
 				name = "NamePrefix1Code";
 				definition = "Specifies the terms used to formally address a person.";
+				trace_lazy = LazyReference.create(() -> NamePrefixCode.mmObject());
 				codes_lazy = LazyReference.create(() -> Arrays.asList(com.tools20022.repository.codeset.NamePrefix1Code.DOCT_Doctor, com.tools20022.repository.codeset.NamePrefix1Code.MIST_Mister,
 						com.tools20022.repository.codeset.NamePrefix1Code.MISS_Miss, com.tools20022.repository.codeset.NamePrefix1Code.MADM_Madam));
 			}

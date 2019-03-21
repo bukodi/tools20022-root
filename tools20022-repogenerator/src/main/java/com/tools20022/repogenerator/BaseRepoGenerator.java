@@ -149,6 +149,9 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 				codeName = "YYYY";				
 			}
 			
+			if( ! Character.isJavaIdentifierStart( codeName.charAt(0)) ) {
+				codeName = "_" + codeName;
+			}
 			codeName += "_" + mmCode.getName();
 			return createJavaNameAsMemeber.apply(mmElem, "" + codeName);
 		} else if (mmElem instanceof MMConstraint) {
@@ -551,26 +554,11 @@ public abstract class BaseRepoGenerator extends AbstractGenerator<RawRepository,
 	}
 
 	protected EnumConstantResult defaultEnumConstant(MMCode mmBean, EnumTypeResult containerGen) {
-		EnumConstantResult gen = containerGen.addConstant(mmBean);
-
-		{
-			gen.staticFieldSrc = containerGen.src.addField().setName(gen.baseName.getMemberName());
-			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-			gen.staticFieldSrc.setType(containerGen.src);
-			gen.createJavaDoc();
-		}
-		return gen;
+		return containerGen.addConstant(mmBean);
 	}
 
 	protected StaticFieldResult defaultStaticFieldResult(MMModelEntity mmBean, MainTypeResult containerGen) {
-		StaticFieldResult gen = new StaticFieldResult(containerGen, mmBean);
-		{
-			gen.staticFieldSrc = containerGen.src.addField().setName(gen.baseName.getMemberName());
-			gen.staticFieldSrc.setPublic().setStatic(true).setFinal(true);
-			gen.staticFieldSrc.setType(mmBean.getMetamodel().getBeanClass());
-			gen.createJavaDoc();
-		}
-		return gen;
+		return new StaticFieldResult(containerGen, mmBean);
 	}
 
 	protected MMRepositoryConcept getPropertyType(MMConstruct mmBean) {

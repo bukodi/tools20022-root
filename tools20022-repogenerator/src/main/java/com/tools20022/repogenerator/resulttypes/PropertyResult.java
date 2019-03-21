@@ -12,17 +12,18 @@ import org.jboss.forge.roaster.model.source.MethodSource;
 
 import com.tools20022.core.metamodel.RuntimePropertyAware;
 import com.tools20022.generators.RoasterHelper;
-import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMConstruct;
 import com.tools20022.metamodel.MMDataType;
 import com.tools20022.metamodel.MMRepositoryType;
 
-public class PropertyResult extends StaticFieldResult {
+public class PropertyResult extends MemberResult {
 
 	public FieldSource<JavaClassSource> beanFieldSrc;
 	public MethodSource<JavaClassSource> beanGetterSrc;
 	public MethodSource<JavaClassSource> beanSetterSrc;
 	public MethodSource<JavaClassSource> beanWithSrc;
+	
+	public final StringJoiner staticFieldInitializerBody;
 
 	PropertyResult(MainTypeResult containerGen, MMConstruct mmBean) {		
 		super(containerGen, mmBean);

@@ -7,10 +7,14 @@ import com.tools20022.generators.StructuredName;
 import com.tools20022.metamodel.MMCode;
 import com.tools20022.metamodel.MMCodeSet;
 
-public class EnumConstantResult extends StaticFieldResult{
+public class EnumConstantResult extends MemberResult{
 
 	EnumConstantResult(EnumTypeResult containerGen, MMCode mmBean) {
 		super(containerGen, mmBean);
+		staticFieldSrc = containerGen.src.addField().setName(baseName.getMemberName());
+		staticFieldSrc.setPublic().setStatic(true).setFinal(true);
+		staticFieldSrc.setType(containerGen.src);
+		createJavaDoc();
 	}
 
 	@Override
