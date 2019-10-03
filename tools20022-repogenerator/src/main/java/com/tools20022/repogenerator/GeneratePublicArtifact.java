@@ -38,7 +38,7 @@ public class GeneratePublicArtifact {
 		payments, securities, trade, cards, fx;
 	}
 
-	static boolean skipBusinessComponents = false;
+	static boolean skipBusinessComponents = true;
 
 	static String baseEcoreResourceName = "/model/ISO20022.ecore";
 	// static String baseXmiResourceName =
@@ -78,7 +78,7 @@ public class GeneratePublicArtifact {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-
+//
 //		try {
 //			generateArtifact(null);
 //		} catch (Exception e) {
@@ -138,8 +138,8 @@ public class GeneratePublicArtifact {
 
 		GenerationContext<RawRepository, MMModelEntity> genCtx = new GenerationContext<>(RawRepository.class,
 				MMModelEntity.class, fileManager);
-		genCtx.setSkipDocGeneration(false);
-		genCtx.setLicenceHeaderGPLv3();
+		genCtx.setSkipDocGeneration(true);
+		//genCtx.setLicenceHeaderGPLv3();
 		genCtx.setDontModifyImports(Arrays.asList("com.tools20022.repository.area.tsmt.StatusReportV03", "com.tools20022.repository.area.catm.StatusReportV03"));
 		genCtx.generate(repo, new CustomizedRepoGenerator(genCtx), monitor);
 

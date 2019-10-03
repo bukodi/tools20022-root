@@ -54,6 +54,7 @@ import com.tools20022.repogenerator.resulttypes.ConstraintValidatorResult;
 import com.tools20022.repogenerator.resulttypes.DataTypeResult;
 import com.tools20022.repogenerator.resulttypes.EnumTypeResult;
 import com.tools20022.repogenerator.resulttypes.JaxbMainTypeResult;
+import com.tools20022.repogenerator.resulttypes.JaxbPropertyResult;
 import com.tools20022.repogenerator.resulttypes.MainTypeResult;
 import com.tools20022.repogenerator.resulttypes.StaticFieldResult;
 import com.tools20022.repogenerator.resulttypes.TypeResult;
@@ -231,8 +232,17 @@ public class CustomizedRepoGenerator extends GeneratedRepoGenerator {
 			} else {
 				throw new RuntimeException("Unsupported case: can't generate constrauint for this type: [" + _gen.getClass().getName() + "]" +  mmBean.getName() );				
 			}
+		} else if( _gen instanceof JaxbPropertyResult ) {
+			containerGen = ((JaxbPropertyResult)_gen).containerGen;			
+			MMRepositoryConcept constrOwner = mmBean.getOwner();
+			if( constrOwner instanceof MMConstruct ) {
+				MMRepositoryType type = ((MMConstruct)constrOwner).getMemberType();
+				validatorParamType = getStructuredName(type).getFullName();
+			} else {
+				throw new RuntimeException("Unsupported case: can't generate constrauint for this type: [" + _gen.getClass().getName() + "]" +  mmBean.getName() );				
+			}
 		} else {
-			throw new RuntimeException("Unsupported case: can't generate constrauint for this type: [" + _gen.getClass().getName() + "]" +  mmBean.getName() );
+			throw new RuntimeException("Unsupported case: can't generate constraint for this type: [" + _gen.getClass().getName() + "]" +  mmBean.getName() );
 		}
 		StructuredName validatorMethodName = getConstraintValidatorMethodName(mmBean);
 
