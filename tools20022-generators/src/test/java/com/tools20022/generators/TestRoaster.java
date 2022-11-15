@@ -11,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.tools.JavaFileObject;
 import javax.tools.StandardLocation;
-import javax.xml.ws.Holder;
 
 import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster._shade.org.eclipse.jdt.core.dom.AST;

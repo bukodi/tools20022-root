@@ -1393,7 +1393,7 @@ public class InspectLoadedRepository {
 	@Test
 	public void testConstraintOwners() throws Exception {
 		Map<String, List<MMRepositoryConcept>> ownersByType = new HashMap<>();
-		List<? extends MMConstraint<?>> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
+		List<? extends MMConstraint> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
 		for (MMConstraint<?> c : constr) {
 			String typeName = c.getContainer().getClass().getSimpleName();
 			ownersByType.computeIfAbsent(typeName, x -> new ArrayList<>()).add(c.getContainer());
@@ -1426,7 +1426,7 @@ public class InspectLoadedRepository {
 
 	@Test
 	public void testConstraintNames() throws Exception {
-		List<? extends MMConstraint<?>> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
+		List<? extends MMConstraint> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
 		for (MMConstraint<?> c : constr) {
 			String javaNme = RoasterHelper.convertToJavaName(c.getName());
 			if (c.getName().equals(javaNme))
@@ -1490,7 +1490,7 @@ public class InspectLoadedRepository {
 		Map<String, Set<MMConstraint<?>>> sameNameMap = new HashMap<>();
 		Map<String, List<MMRepositoryConcept>> constraintOwners = new HashMap<>();
 
-		List<? extends MMConstraint<?>> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
+		List<? extends MMConstraint> constr = repo.listObjects(MMConstraint.metaType()).collect(Collectors.toList());
 		System.out.println("--- Constraints : -----");
 		for (MMConstraint<?> c : constr) {
 			// if(! c.getName().equals("ControlSumAndGroupReversalRule") )

@@ -1,10 +1,7 @@
 package com.tools20022.repogenerator;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -70,7 +67,8 @@ public class TestXMIModel {
 	@Test
 	@Ignore
 	public void testMsgDefsByArea() throws Exception {
-		Map<MMBusinessArea, Set<MMMessageDefinition>> map = domainModel.listObjects(MMMessageDefinition.metaType()).collect(Collectors.groupingBy(msgDef->msgDef.getBusinessArea(), Collectors.toSet()));
+		List<MMMessageDefinition> msgDefs = domainModel.listObjects(MMMessageDefinition.metaType()).collect(Collectors.toList());
+		Map<MMBusinessArea, Set<MMMessageDefinition>> map = msgDefs.stream().collect(Collectors.groupingBy(msgDef->msgDef.getBusinessArea(), Collectors.toSet()));
 		System.out.println(map);
 		map.entrySet().forEach(e->{
 			System.out.println( e.getKey().getCode() + " " + e.getValue().size() );
