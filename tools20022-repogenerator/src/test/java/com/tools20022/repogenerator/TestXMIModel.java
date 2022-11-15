@@ -90,31 +90,43 @@ public class TestXMIModel {
 	@Test
 	//@Ignore
 	public void testConstraints() throws Exception {
-		System.out.println("Number of constraints: " + domainModel.listObjects(MMConstraint.metaType()).count());
-		System.out.println("Constraints with expression: " + domainModel.listObjects(MMConstraint.metaType()).filter(mmDef->mmDef.getExpression().isPresent()).count());
-
 		Map<String,Set<MMConstraint>> constraintsWithDesc = new HashMap<>();
 		domainModel.listObjects(MMConstraint.metaType()).forEach(mmConstr->{
 			String nameDesc = mmConstr.getName() + ": " + mmConstr.getDefinition().orElse("<no def>");
 			constraintsWithDesc.computeIfAbsent(nameDesc, x->new HashSet<>()).add(mmConstr);
 		});
-		System.out.println("Number of different constraints: " + constraintsWithDesc.size());
 
-		domainModel.listObjects(MMConstraint.metaType()).filter(mmDef->mmDef.getExpression().isPresent()).forEachOrdered(mmC->{
-//			System.out.println( mmC.getName() + " on " + mmC.getOwner());
-//			System.out.println( mmC.getDefinition().orElse("-"));
-//			System.out.println( mmC.getExpressionLanguage() + ": " + mmC.getExpression().orElse("-"));
-//			System.out.println();
-		});		
+		int i = 0;
+		int hasExpression = 0;
+		int hasExample = 0;
+		for( Map.Entry<String,Set<MMConstraint>> e : constraintsWithDesc.entrySet() ) {
+			MMConstraint c = e.getValue().stream().findFirst().get();
+			System.out.printf( "*** %d. constraint: %s (used %d times) ***\n", ++i, c.getName(), e.getValue().size());
+			System.out.printf( "%s\n", e.getKey());
+			if( c.getExpression().isPresent() ) hasExpression ++;
+			if( !c.getExamples().isEmpty() ) hasExample ++;
+		}
+
+		System.out.printf( "\n\n**** Summary ****\n");
+		System.out.printf( "  %-5d constraints\n", constraintsWithDesc.size());
+		System.out.printf( "  %-5d has expression\n", hasExpression);
+		System.out.printf( "  %-5d has example\n", hasExample);
+		Set<MMConstraint> noDesc = constraintsWithDesc.get("<no def>");
+		if( noDesc != null ) {
+			System.out.printf( "  %-5d has no description\n", noDesc.size());
+		}
 	}
 
 	@Test
 	//@Ignore
 	public void testConnectionsBetweenMessagesAndBusinessModel() throws Exception {
-		List<? extends MMMessageElement> mmMessageElements = domainModel.getObjects(MMMessageElement.class);
-		List<? extends MMBusinessComponent> mmBusinessComponents = domainModel.getObjects(MMBusinessComponent.class);
-		List<? extends MMBusinessElement> mmBusinessElements = domainModel.getObjects(MMBusinessElement.class);
+		//List<? extends MMMessageDefinition> mmMessageDefs = domainModel.getObjects(MMMessageDefinition.class);
+		List<? extends MMMessageElement> mmMessageElements = domainModel.getObjects(MMMessageElement.class, true);
+		List<? extends MMBusinessComponent> mmBusinessComponents = domainModel.getObjects(MMBusinessComponent.class, true);
+		List<? extends MMBusinessElement> mmBusinessElements = domainModel.getObjects(MMBusinessElement.class, true);
 
+		//long msgDefHasTrace = mmMessageDefs.stream().filter( md-> !md.getTraces().isEmpty() ).count();
+		//System.out.printf("MessageDefinitions has trace: %d (from %d)\n", msgDefHasTrace, mmMessageDefs.size());
 		long msgElemHasTrace = mmMessageElements.stream().filter( me-> me.getBusinessElementTrace().isPresent() || me.getBusinessComponentTrace().isPresent() ).count();
 		System.out.printf("MessageElements has trace: %d (from %d)\n", msgElemHasTrace, mmMessageElements.size());
 		long busCompHasDerivation = mmBusinessComponents.stream().filter( bc-> !(bc.getDerivationElements().isEmpty() && bc.getDerivationComponents().isEmpty()) ).count();

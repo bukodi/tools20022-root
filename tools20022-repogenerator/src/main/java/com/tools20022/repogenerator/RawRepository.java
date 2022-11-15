@@ -113,6 +113,11 @@ public class RawRepository {
 
 	@SuppressWarnings("unchecked")
 	public <B extends MMModelEntity> List<? extends B> getObjects(Class<B> mmClass) {
+		return getObjects(mmClass, false);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <B extends MMModelEntity> List<? extends B> getObjects(Class<B> mmClass, boolean skipOldVersions ) {
 		MetamodelType<B> mmType = metamodel.getTypeByClass(mmClass);
 		List<B> repoObjects = new ArrayList<>();
 		Set<? extends MetamodelType<? extends B>> subTypes = mmType.getSubTypes(true, true);
@@ -121,6 +126,8 @@ public class RawRepository {
 			if (objects == null)
 				continue;
 			for (MMModelEntity obj : objects) {
+				if( skipOldVersions && !obj.getNextVersions().isEmpty() )
+					continue;
 				repoObjects.add((B) obj);
 			}
 		}
