@@ -3,7 +3,9 @@ package com.tools20022.repogenerator;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import com.tools20022.metamodel.*;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.junit.BeforeClass;
@@ -11,12 +13,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.tools20022.generators.ECoreIOHelper;
-import com.tools20022.metamodel.MMBusinessArea;
-import com.tools20022.metamodel.MMBusinessAssociationEnd;
-import com.tools20022.metamodel.MMBusinessComponent;
-import com.tools20022.metamodel.MMConstraint;
-import com.tools20022.metamodel.MMMessageDefinition;
-import com.tools20022.metamodel.StandardMetamodel2013;
 
 public class TestXMIModel {
 
@@ -110,6 +106,21 @@ public class TestXMIModel {
 //			System.out.println( mmC.getExpressionLanguage() + ": " + mmC.getExpression().orElse("-"));
 //			System.out.println();
 		});		
+	}
+
+	@Test
+	//@Ignore
+	public void testConnectionsBetweenMessagesAndBusinessModel() throws Exception {
+		List<? extends MMMessageElement> mmMessageElements = domainModel.getObjects(MMMessageElement.class);
+		List<? extends MMBusinessComponent> mmBusinessComponents = domainModel.getObjects(MMBusinessComponent.class);
+		List<? extends MMBusinessElement> mmBusinessElements = domainModel.getObjects(MMBusinessElement.class);
+
+		long msgElemHasTrace = mmMessageElements.stream().filter( me-> me.getBusinessElementTrace().isPresent() || me.getBusinessComponentTrace().isPresent() ).count();
+		System.out.printf("MessageElements has trace: %d (from %d)\n", msgElemHasTrace, mmMessageElements.size());
+		long busCompHasDerivation = mmBusinessComponents.stream().filter( bc-> !(bc.getDerivationElements().isEmpty() && bc.getDerivationComponents().isEmpty()) ).count();
+		System.out.printf("BusinessComponents has at least one derivation: %d (from %d)\n", busCompHasDerivation, mmBusinessComponents.size());
+		long busElemHasDerivation = mmBusinessElements.stream().filter( be-> !be.getDerivations().isEmpty()).count();
+		System.out.printf("BusinessElements has at least one derivation: %d (from %d)\n", busElemHasDerivation, mmBusinessElements.size());
 	}
 
 }
