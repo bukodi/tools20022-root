@@ -24,7 +24,8 @@ public class TestXMIModel {
 		long start = System.currentTimeMillis();
 		try {
 			EPackage ecorePkg = ECoreIOHelper.loadECorePackage(ECoreIOHelper.class.getResourceAsStream("/model/ISO20022.ecore"));
-			EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
+			//EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/20170713_ISO20022_2013_eRepository.iso20022"));
+			EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/20220520_ISO20022_2013_eRepository.iso20022"));
 			//EObject rootEObj = ECoreIOHelper.loadXMIResource(ECoreIOHelper.class.getResourceAsStream("/model/business-domain-payments.iso20022"));
 			XMILoader loader = new XMILoader(StandardMetamodel2013.metamodel());
 			domainModel = loader.load( ecorePkg, rootEObj);
@@ -77,7 +78,7 @@ public class TestXMIModel {
 	@Ignore
 	public void testCounts() throws Exception {
 		domainModel.listObjects(MMMessageDefinition.metaType()).forEachOrdered(mmDef-> {
-//			System.out.println(mmDef.getName() + "  ( " + (mmDef.getPreviousVersion() == null) + ", " + mmDef.getNextVersions().isEmpty()  + ")");
+			System.out.println(mmDef.getName() + "  ( " + (mmDef.getPreviousVersion() == null) + ", " + mmDef.getNextVersions().isEmpty()  + ")");
 		});
 
 		System.out.println(domainModel.listObjects(MMMessageDefinition.metaType()).count());
